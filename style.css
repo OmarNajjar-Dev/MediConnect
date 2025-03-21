@@ -1,0 +1,34 @@
+/* Global Style */
+:root {
+    --background-color: #FCFDFC;
+    --foreground-color: #0F172C;
+    --primary-color: #00A69C;
+    --primary-foreground-color: #FFFFFF;
+    --secondary-color: #B5DDEE;
+    --secondary-foreground-color: #254157;
+    --muted-color: #F1F7F6;
+    --muted-foreground-color: #64748B;
+    --accent-color: #E5F9F7;
+    --destructive-color: #F04440;
+    --destructive-foreground-color: #F8FAFC;
+    --border-color: #E6F0EE;
+    --input-color: #D9E6E3;
+  
+    --medical-50: #E0F2F1;
+    --medical-100: #B2DFDB;
+    --medical-200: #80CBC4;
+    --medical-300: #4DB6AC;
+    --medical-400: #26A69A;
+    --medical-500: #009688;
+    --medical-600: #00897B;
+    --medical-700: #00796B;
+    --medical-800: #00695C;
+    --medical-900: #004D40;
+  
+    --sidebar-background: #FAFAFA;
+    --sidebar-foreground: #424245;
+    --sidebar-primary: #1A1A1D;
+    --sidebar-accent: #F5F5F7;
+    --sidebar-border: #E8E7ED;
+  }
+  
