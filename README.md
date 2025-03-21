@@ -1,315 +1,259 @@
-# Healthcare Services System – MediConnect / HealthBridge / MediLink
+# MediConnect - Healthcare Platform
 
-This project is a comprehensive healthcare services system designed to connect patients with various healthcare providers such as doctors, hospitals, pharmacies, emergency services, blood donation centers, and insurance verification. The system caters to different user roles and provides multiple user-facing services, all underpinned by a robust MySQL database design.
+## Overview
+MediConnect is a healthcare platform designed to connect patients with medical professionals, hospitals, pharmacies, and emergency services. The platform focuses on external interactions to serve patients efficiently without interfering with internal hospital management.
 
----
+## Actors & Roles
+### 1. **Patients**
+   - Book appointments with doctors.
+   - Request dietary plans from nurses.
+   - Rate hospitals and doctors.
+   - Receive medical reports and prescriptions.
+   - Request emergency services (specific to COVID-19 cases).
 
-## 1. Actors
+### 2. **Doctors**
+   - Provide medical consultations.
+   - Issue medical reports and prescriptions.
+   - Approve or deny appointment requests.
+   - Refer patients to nurses for dietary plans.
 
-### Patients
+### 3. **Nurses**
+   - Assist doctors in medical care.
+   - Provide dietary plans based on doctor's reports.
+   - Communicate with patients regarding their nutritional needs.
 
-- **Who are they?**  
-  Individuals seeking medical assistance, information about nearby hospitals, appointment bookings, emergency services, etc.
-- **Responsibilities/Actions:**
-  - Register and manage their profiles.
-  - Book appointments with doctors.
-  - Request emergency help (ambulance).
-  - Search for nearby hospitals and clinics.
-  - Schedule blood donation appointments.
-  - Browse pharmacy services and order prescriptions.
-  - Read reviews and ratings for hospitals and doctors.
+### 4. **Hospitals**
+   - Display available beds.
+   - Provide details about available emergency services.
+   - Report doctor availability.
+   - Allow patients to rate their services.
 
-### Doctors
+### 5. **Secretaries**
+   - Manage doctors' appointments.
+   - Handle scheduling and cancellations (with notifications to patients).
+   - Work with multiple doctors when necessary.
 
-- **Who are they?**  
-  Medical professionals who provide consultations, diagnoses, and treatments.
-- **Responsibilities/Actions:**
-  - Manage appointments and teleconsultations.
-  - Update and access patient medical records.
-  - Prescribe medications.
-  - Collaborate with other healthcare providers.
+### 6. **Pharmacies**
+   - Display available medications.
+   - Process prescription-based medicine requests.
+   - Allow direct purchase of basic over-the-counter drugs (e.g., Panadol).
 
-### Nurses
+### 7. **Pharmacists**
+   - Dispense prescription medications.
+   - Provide medication guidance to patients.
+   - Verify prescriptions before processing orders.
 
-- **Who are they?**  
-  Support staff assisting in patient care and following up on treatment plans.
-- **Responsibilities/Actions:**
-  - Monitor patient health.
-  - Assist in managing appointments and emergencies.
-  - Provide follow-up care.
+### 8. **Emergency Medical Team (Ambulance Services)**
+   - Respond to COVID-19 emergency cases.
+   - Update emergency request statuses.
+   - Share live location for tracking emergency response times.
 
-### Pharmacists
+## Features
+### **Appointments & Scheduling**
+- Patients can book doctor appointments.
+- Secretaries handle scheduling based on doctor availability.
+- Patients receive notifications for any appointment changes.
 
-- **Who are they?**  
-  Experts responsible for dispensing prescriptions and providing pharmacy services.
-- **Responsibilities/Actions:**
-  - Verify and dispense prescriptions.
-  - Manage pharmacy inventory.
-  - Advise patients on medication usage.
+### **Medical Reports & Dietary Plans**
+- Doctors issue reports for medications and dietary plans.
+- Nurses provide dietary plans based on doctor-issued reports.
 
-### Ambulance Drivers
+### **Hospital & Doctor Ratings**
+- Patients can rate hospitals.
+- Supervisors or authorized personnel can rate doctors.
+- Ratings are public for transparency.
 
-- **Who are they?**  
-  Personnel responsible for the emergency transportation of patients.
-- **Responsibilities/Actions:**
-  - Respond to emergency requests.
-  - Provide real-time location updates.
-  - Ensure the ambulance is equipped with necessary supplies.
+### **Pharmacy & Medication Management**
+- Patients can order medications.
+- Prescription-based drugs require a doctor's report.
+- Basic medications are available without a prescription.
+- Pharmacists verify and dispense prescription medications.
 
-### Insurance Agents
+### **Emergency Services**
+- Patients can request emergency services (limited to COVID-19 cases).
+- Ambulance teams update case status and location tracking.
 
-- **Who are they?**  
-  Representatives who manage and verify insurance details for patients.
-- **Responsibilities/Actions:**
-  - Validate patient insurance coverage.
-  - Process claims related to medical services.
-  - Provide guidance on insurance policies.
+## Notes
+- The platform does not handle financial transactions.
+- The system is focused on external interactions only (no internal hospital management features).
 
-### System Administrators
+# MediConnect Database Schema (MLDR Format)
 
-- **Who are they?**  
-  IT professionals who manage and maintain the website/platform.
-- **Responsibilities/Actions:**
-  - Manage user accounts and roles.
-  - Ensure system security and performance.
-  - Perform system updates and monitor logs.
-
-### Blood Donors
-
-- **Who are they?**  
-  Individuals who register to donate blood. They might also be patients but are considered a distinct actor for blood donation services.
-- **Responsibilities/Actions:**
-  - Register as a donor.
-  - Schedule donation appointments.
-  - Check eligibility and receive donation reminders.
-  - Track donation history.
+MediConnect is a healthcare platform designed to connect patients with medical professionals, hospitals, pharmacies, and emergency services. Below is the **MLDR (Merise Logical Data Model)** representation of the database structure.
 
 ---
 
-## 2. User-Facing Services
+## 📌 1️⃣ Users & Roles  
 
-The website offers a range of external services for users, including:
+### **users**  
+📌 Stores general user information  
+**Primary Key:** `user_id`  
 
-- **Hospital & Clinic Search:**  
-  Search for nearby hospitals/clinics, view details such as location, available beds, emergency services, and ratings.
-- **Doctor & Specialist Lookup:**  
-  Access profiles of doctors, including their specialties, experience, and ratings.
-- **Appointment Booking:**  
-  Schedule, cancel, or reschedule appointments with doctors online.
-- **Emergency Request:**  
-  Request an ambulance or emergency assistance along with current location details.
-- **Blood Donation Services:**  
-  Find information on blood donation centers, check eligibility, schedule donation appointments, and track donation history.
-- **Pharmacy Services:**  
-  Locate partnered pharmacies, view prescription details, order medications online, and check pharmacy ratings/hours.
-- **Insurance Verification:**  
-  Verify insurance coverage, process claims, and view insurance details if applicable.
-- **Reviews & Ratings:**  
-  Read and post reviews for hospitals, doctors, and other healthcare services.
-- **Notifications:**  
-  Receive alerts and updates regarding appointments, emergencies, or new offers/services.
-- **Telemedicine:**  
-  Access online consultations for non-emergency cases.
+| Attribute       | Type                          | Constraints                     |
+|---------------|-----------------------------|--------------------------------|
+| user_id       | SERIAL (PK)                  | Auto-incremented primary key  |
+| full_name     | VARCHAR(255)                  | NOT NULL                       |
+| email         | VARCHAR(255)                  | UNIQUE, NOT NULL               |
+| phone         | VARCHAR(20)                   | UNIQUE, NOT NULL               |
+| password_hash | TEXT                          | NOT NULL                       |
+| role          | ENUM('patient', 'doctor', 'nurse', 'secretary', 'pharmacist', 'ambulance') | NOT NULL |
+| created_at    | TIMESTAMP                     | DEFAULT CURRENT_TIMESTAMP      |
 
 ---
 
-## 3. MySQL Tables (MLDR Format)
+### **patients**  
+📌 Stores patient-specific details  
+**Primary Key:** `patient_id`  
+**Foreign Key:** `patient_id → users.user_id`  
 
-The system's database is structured with the following main tables. In each table, the primary key is denoted by an underline, and foreign keys are prefixed with `#`.
+| Attribute      | Type        | Constraints    |
+|--------------|-----------|--------------|
+| patient_id   | INT (PK, FK)  | REFERENCES users(user_id) |
+| date_of_birth | DATE       | NOT NULL     |
+| gender       | ENUM('male', 'female', 'other') | NOT NULL |
+| address      | TEXT       | NOT NULL     |
 
-### 3.1 Users
+---
 
-```sql
-Users (
-    _user_id_,
-    full_name,
-    email,
-    password,
-    phone_number,
-    role,            -- e.g., patient, doctor, pharmacist, etc.
-    date_of_birth,
-    gender,
-    address
-)
-```
+### **doctors**  
+📌 Stores doctor details and their hospital association  
+**Primary Key:** `doctor_id`  
+**Foreign Key:** `doctor_id → users.user_id`, `hospital_id → hospitals.hospital_id`  
 
-### 3.2 Patients
+| Attribute     | Type         | Constraints    |
+|-------------|------------|--------------|
+| doctor_id   | INT (PK, FK)  | REFERENCES users(user_id) |
+| specialization | VARCHAR(255) | NOT NULL |
+| hospital_id | INT (FK)  | REFERENCES hospitals(hospital_id) |
 
-```sql
-Patients (
-    _patient_id_,
-    #user_id,          -- References Users.user_id
-    blood_type,
-    medical_history,
-    allergies,
-    chronic_conditions,
-    emergency_contact,
-    #insurance_id      -- References Insurance.insurance_id
-)
-```
+---
 
-### 3.3 Doctors
+### **nurses**  
+📌 Stores nurse details and their hospital association  
+**Primary Key:** `nurse_id`  
+**Foreign Key:** `nurse_id → users.user_id`, `hospital_id → hospitals.hospital_id`  
 
-```sql
-Doctors (
-    _doctor_id_,
-    #user_id,          -- References Users.user_id
-    specialization,
-    license_number,
-    years_of_experience,
-    #hospital_id       -- References Hospitals.hospital_id
-)
-```
+| Attribute    | Type         | Constraints    |
+|------------|------------|--------------|
+| nurse_id   | INT (PK, FK)  | REFERENCES users(user_id) |
+| hospital_id | INT (FK)  | REFERENCES hospitals.hospital_id |
 
-### 3.4 Hospitals
+---
 
-```sql
-Hospitals (
-    _hospital_id_,
-    name,
-    location,
-    phone_number,
-    available_beds,
-    emergency_services,   -- Description of emergency services available
-    rating                -- Average rating from user reviews
-)
-```
+### **secretaries**  
+📌 Stores secretaries who manage doctor appointments  
+**Primary Key:** `secretary_id`  
+**Foreign Key:** `secretary_id → users.user_id`  
 
-### 3.5 Appointments
+| Attribute     | Type         | Constraints    |
+|-------------|------------|--------------|
+| secretary_id | INT (PK, FK)  | REFERENCES users(user_id) |
 
-```sql
-Appointments (
-    _appointment_id_,
-    #patient_id,       -- References Patients.patient_id
-    #doctor_id,        -- References Doctors.doctor_id
-    appointment_date,
-    status,            -- e.g., scheduled, canceled, completed
-    notes
-)
-```
+---
 
-### 3.6 Reviews
+### **pharmacists**  
+📌 Stores pharmacists who verify and dispense medications  
+**Primary Key:** `pharmacist_id`  
+**Foreign Key:** `pharmacist_id → users.user_id`, `pharmacy_id → pharmacies.pharmacy_id`  
 
-```sql
-Reviews (
-    _review_id_,
-    #user_id,          -- References Users.user_id (the reviewer)
-    target_type,       -- 'hospital' or 'doctor'
-    target_id,         -- ID of the hospital or doctor being reviewed
-    review_text,
-    rating,            -- Numeric rating (e.g., 1-5)
-    review_date
-)
-```
+| Attribute     | Type         | Constraints    |
+|-------------|------------|--------------|
+| pharmacist_id | INT (PK, FK)  | REFERENCES users(user_id) |
+| pharmacy_id  | INT (FK)  | REFERENCES pharmacies(pharmacy_id) |
 
-### 3.7 Emergency Requests
+---
 
-```sql
-Emergency_Requests (
-    _request_id_,
-    #patient_id,       -- References Patients.patient_id
-    request_time,
-    location,          -- Patient's current location
-    description,
-    status             -- e.g., pending, dispatched, resolved
-)
-```
+## 📌 2️⃣ Medical Services  
 
-### 3.8 Notifications
+### **hospitals**  
+📌 Stores hospital details  
+**Primary Key:** `hospital_id`  
 
-```sql
-Notifications (
-    _notification_id_,
-    #user_id,          -- References Users.user_id
-    message,
-    sent_date,
-    is_read            -- Boolean: 0 (unread) / 1 (read)
-)
-```
+| Attribute      | Type        | Constraints    |
+|--------------|-----------|--------------|
+| hospital_id  | SERIAL (PK) | Auto-incremented primary key |
+| name         | VARCHAR(255) | NOT NULL |
+| location     | TEXT         | NOT NULL |
+| available_beds | INT       | DEFAULT 0 |
+| emergency_services_available | BOOLEAN | DEFAULT FALSE |
 
-### 3.9 Hospital Services
+---
 
-```sql
-Hospital_Services (
-    _service_id_,
-    #hospital_id,      -- References Hospitals.hospital_id
-    service_name,      -- e.g., "Pharmacy", "Blood Donation"
-    description,
-    availability       -- e.g., operating hours or current status
-)
-```
+### **hospital_ratings**  
+📌 Stores hospital ratings by patients  
+**Primary Key:** `rating_id`  
+**Foreign Key:** `patient_id → patients.patient_id`, `hospital_id → hospitals.hospital_id`  
 
-### 3.10 Pharmacies
+| Attribute     | Type         | Constraints    |
+|-------------|------------|--------------|
+| rating_id   | SERIAL (PK) | Auto-incremented primary key |
+| patient_id  | INT (FK)  | REFERENCES patients(patient_id) |
+| hospital_id | INT (FK)  | REFERENCES hospitals(hospital_id) |
+| rating      | INT        | CHECK (rating BETWEEN 1 AND 5) |
+| review      | TEXT       | NULLABLE |
+| created_at  | TIMESTAMP  | DEFAULT CURRENT_TIMESTAMP |
 
-```sql
-Pharmacies (
-    _pharmacy_id_,
-    name,
-    location,
-    phone_number,
-    opening_hours,     -- e.g., "08:00-20:00"
-    rating             -- Average rating from user feedback
-)
-```
+---
 
-### 3.11 Pharmacists
+### **doctor_ratings**  
+📌 Stores doctor ratings by patients  
+**Primary Key:** `rating_id`  
+**Foreign Key:** `patient_id → patients.patient_id`, `doctor_id → doctors.doctor_id`  
 
-```sql
-Pharmacists (
-    _pharmacist_id_,
-    #user_id,          -- References Users.user_id
-    license_number,
-    years_of_experience,
-    #pharmacy_id       -- References Pharmacies.pharmacy_id
-)
-```
+| Attribute     | Type         | Constraints    |
+|-------------|------------|--------------|
+| rating_id   | SERIAL (PK) | Auto-incremented primary key |
+| patient_id  | INT (FK)  | REFERENCES patients(patient_id) |
+| doctor_id   | INT (FK)  | REFERENCES doctors(doctor_id) |
+| rating      | INT        | CHECK (rating BETWEEN 1 AND 5) |
+| review      | TEXT       | NULLABLE |
+| created_at  | TIMESTAMP  | DEFAULT CURRENT_TIMESTAMP |
 
-### 3.12 Blood Donations
+---
 
-```sql
-Blood_Donations (
-    _donation_id_,
-    #patient_id,       -- References Patients.patient_id (the donor)
-    donation_date,
-    donation_center,   -- Name or identifier for the donation center
-    status             -- e.g., "Scheduled", "Completed"
-)
-```
+### **appointments**  
+📌 Stores doctor appointment details  
+**Primary Key:** `appointment_id`  
+**Foreign Key:** `patient_id → patients.patient_id`, `doctor_id → doctors.doctor_id`, `secretary_id → secretaries.secretary_id`  
 
-### 3.13 Insurance
+| Attribute      | Type         | Constraints    |
+|--------------|------------|--------------|
+| appointment_id | SERIAL (PK) | Auto-incremented primary key |
+| patient_id    | INT (FK)  | REFERENCES patients(patient_id) |
+| doctor_id     | INT (FK)  | REFERENCES doctors(doctor_id) |
+| secretary_id  | INT (FK)  | NULLABLE, REFERENCES secretaries(secretary_id) |
+| status        | ENUM('pending', 'approved', 'canceled', 'completed') | DEFAULT 'pending' |
+| scheduled_time | TIMESTAMP  | NOT NULL |
+| created_at    | TIMESTAMP  | DEFAULT CURRENT_TIMESTAMP |
 
-```sql
-Insurance (
-    _insurance_id_,
-    company_name,
-    coverage_details,
-    policy_number,
-    expiration_date
-)
-```
+---
 
-### 3.14 Questions & Answers
+## 📌 3️⃣ Pharmacy Management  
 
-```sql
-QST_Answers (
-    _qst_id_,        -- Unique identifier for each Q&A entry
-    question_text,     -- The question text
-    answer_text,       -- The corresponding answer text
-    category,          -- (Optional) e.g., Appointments, Emergency, Blood Donation, etc.
-    created_at         -- Timestamp when the entry was created
-)
-```
+### **pharmacies**  
+📌 Stores pharmacy details  
+**Primary Key:** `pharmacy_id`  
 
-### 3.15 Ambulances
+| Attribute     | Type        | Constraints    |
+|-------------|-----------|--------------|
+| pharmacy_id | SERIAL (PK) | Auto-incremented primary key |
+| name        | VARCHAR(255) | NOT NULL |
+| location    | TEXT         | NOT NULL |
 
-```sql
-Ambulances (
-    _ambulance_id_,
-    #hospital_id,      -- References Hospitals.hospital_id (affiliated hospital)
-    driver_name,       -- Name of the ambulance driver
-    vehicle_number,    -- Vehicle registration number
-    current_location,  -- Current GPS coordinates or location description
-    status,            -- e.g., "Available", "Busy", "Under Maintenance"
-    last_updated       -- Timestamp of the last update
-)
-```
+---
+
+### **pharmacy_ratings**  
+📌 Stores pharmacy ratings by patients  
+**Primary Key:** `rating_id`  
+**Foreign Key:** `patient_id → patients.patient_id`, `pharmacy_id → pharmacies.pharmacy_id`  
+
+| Attribute     | Type         | Constraints    |
+|-------------|------------|--------------|
+| rating_id   | SERIAL (PK) | Auto-incremented primary key |
+| patient_id  | INT (FK)  | REFERENCES patients(patient_id) |
+| pharmacy_id | INT (FK)  | REFERENCES pharmacies(pharmacy_id) |
+| rating      | INT        | CHECK (rating BETWEEN 1 AND 5) |
+| review      | TEXT       | NULLABLE |
+| created_at  | TIMESTAMP  | DEFAULT CURRENT_TIMESTAMP |
+
+---
