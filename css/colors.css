@@ -1,128 +1,159 @@
 /* === Main Colors === */
 /* Background and text colors used throughout the website */
 .bg-main {
-  background-color: #fcfdfc; /* Main background color */
-}
-
-.text-main {
-  color: #0f172c; /* Main text color */
-}
-
-/* === Primary Colors === */
-/* Primary theme colors for buttons, highlights, and main elements */
-.bg-primary {
-  background-color: #009485; /* Primary brand color */
-}
-
-.text-primary {
-  color: #ffffff; /* Primary foreground color for contrast */
-}
-
-/* === Secondary Colors === */
-/* Secondary colors for additional highlights and accents */
-.bg-secondary {
-  background-color: #b5ddee; /* Soft secondary background */
-}
-
-.text-secondary {
-  color: #254157; /* Text color for secondary elements */
-}
-
-/* === Muted and Accent Colors === */
-/* Muted colors for backgrounds, cards, and subtle UI elements */
-.bg-muted {
-  background-color: #f1f7f6; /* Light muted background */
-}
-
-.text-muted {
-  color: #64748b; /* Muted text color */
-}
-
-/* Accent color used for additional highlights */
-.bg-accent {
-  background-color: #e5f9f7; /* Light accent background */
-}
-
-/* === Danger and Alert Colors === */
-/* Colors for warnings, errors, and destructive actions */
-.bg-danger {
-  background-color: #f04440; /* Red alert/danger background */
-}
-
-.text-danger {
-  color: #f8fafc; /* Text color on danger backgrounds */
-}
-
-/* === Borders and Inputs === */
-/* Styling for borders and input fields */
-.border-main {
-  border-color: #e6f0ee; /* General border color */
-}
-
-.bg-input {
-  background-color: #d9e6e3; /* Input field background */
-}
-
-/* === Sidebar Colors === */
-/* Colors used for sidebar backgrounds, text, and borders */
-.bg-sidebar {
-  background-color: #fafafa; /* Light sidebar background */
-}
-
-.text-sidebar {
-  color: #424245; /* Sidebar text color */
-}
-
-.bg-sidebar-primary {
-  background-color: #1a1a1d; /* Dark sidebar primary background */
-}
-
-.bg-sidebar-accent {
-  background-color: #f5f5f7; /* Sidebar accent background */
-}
-
-.border-sidebar {
-  border-color: #e8e7ed; /* Sidebar border color */
-}
-
-/* === Medical Color Variations (for text) === */
-/* Different shades of medical colors used for text and design elements */
-.medical-50 {
-  color: #e0f2f1; /* Lightest medical shade */
-}
-
-.medical-100 {
-  color: #b2dfdb; /* Very light medical shade */
-}
-
-.medical-200 {
-  color: #80cbc4; /* Light medical shade */
-}
-
-.medical-300 {
-  color: #4db6ac; /* Medium-light medical shade */
-}
-
-.medical-400 {
-  color: #26a69a; /* Slightly darker medical shade */
-}
-
-.medical-500 {
-  color: #009688; /* Standard medical color */
-}
-
-.medical-600 {
-  color: #00897b; /* Deeper medical tone */
-}
-
-.medical-700 {
-  color: #00796b; /* Darker medical tone */
-}
-
-.medical-800 {
-  color: #00695c; /* Very dark medical tone */
-}
-
-.medical-900 {
-  color: #004d40; /* Darkest medical shade */
-}
+    background-color: #fcfdfc; /* Main background color */
+  }
+  
+  .text-main {
+    color: #0f172c; /* Main text color */
+  }
+  
+  /* === Primary Colors === */
+  /* Primary theme colors for buttons, highlights, and main elements */
+  .bg-primary {
+    background-color: #00a69c; /* Primary brand color */
+  }
+  
+  .text-primary {
+    color: #ffffff; /* Primary foreground color for contrast */
+  }
+  
+  /* === Secondary Colors === */
+  /* Secondary colors for additional highlights and accents */
+  .bg-secondary {
+    background-color: #b5ddee; /* Soft secondary background */
+  }
+  
+  .text-secondary {
+    color: #254157; /* Text color for secondary elements */
+  }
+  
+  /* === Muted and Accent Colors === */
+  /* Muted colors for backgrounds, cards, and subtle UI elements */
+  .bg-muted {
+    background-color: #f1f7f6; /* Light muted background */
+  }
+  
+  .text-muted {
+    color: #64748b; /* Muted text color */
+  }
+  
+  /* Accent color used for additional highlights */
+  .bg-accent {
+    background-color: #e5f9f7; /* Light accent background */
+  }
+  
+  /* === Danger and Alert Colors === */
+  /* Colors for warnings, errors, and destructive actions */
+  .bg-danger {
+    background-color: #f04440; /* Red alert/danger background */
+  }
+  
+  .text-danger {
+    color: #f8fafc; /* Text color on danger backgrounds */
+  }
+  
+  /* === Borders and Inputs === */
+  /* Styling for borders and input fields */
+  .border-main {
+    border-color: #e6f0ee; /* General border color */
+  }
+  
+  .bg-input {
+    background-color: #d9e6e3; /* Input field background */
+  }
+  
+  /* === Medical Colors === */
+  /* Shades of medical-themed colors for branding and UI elements (backgrounds) */
+  .bg-medical-lightest {
+    background-color: #e0f2f1; /* Very light medical shade */
+  }
+  
+  .bg-medical-lighter {
+    background-color: #b2dfdb; /* Light medical shade */
+  }
+  
+  .bg-medical-light {
+    background-color: #80cbc4; /* Soft medical tone */
+  }
+  
+  .bg-medical-medium {
+    background-color: #4db6ac; /* Balanced medical green */
+  }
+  
+  .bg-medical-dark {
+    background-color: #26a69a; /* Slightly darker medical tone */
+  }
+  
+  .bg-medical-darker {
+    background-color: #009688; /* Deep medical shade */
+  }
+  
+  .bg-medical-darkest {
+    background-color: #004d40; /* Darkest medical tone */
+  }
+  
+  /* === Sidebar Colors === */
+  /* Colors used for sidebar backgrounds, text, and borders */
+  .bg-sidebar {
+    background-color: #fafafa; /* Light sidebar background */
+  }
+  
+  .text-sidebar {
+    color: #424245; /* Sidebar text color */
+  }
+  
+  .bg-sidebar-primary {
+    background-color: #1a1a1d; /* Dark sidebar primary background */
+  }
+  
+  .bg-sidebar-accent {
+    background-color: #f5f5f7; /* Sidebar accent background */
+  }
+  
+  .border-sidebar {
+    border-color: #e8e7ed; /* Sidebar border color */
+  }
+  
+  /* === Medical Color Variations (for text) === */
+  /* Different shades of medical colors used for text and design elements */
+  .medical-50 {
+    color: #e0f2f1; /* Lightest medical shade */
+  }
+  
+  .medical-100 {
+    color: #b2dfdb; /* Very light medical shade */
+  }
+  
+  .medical-200 {
+    color: #80cbc4; /* Light medical shade */
+  }
+  
+  .medical-300 {
+    color: #4db6ac; /* Medium-light medical shade */
+  }
+  
+  .medical-400 {
+    color: #26a69a; /* Slightly darker medical shade */
+  }
+  
+  .medical-500 {
+    color: #009688; /* Standard medical color */
+  }
+  
+  .medical-600 {
+    color: #00897b; /* Deeper medical tone */
+  }
+  
+  .medical-700 {
+    color: #00796b; /* Darker medical tone */
+  }
+  
+  .medical-800 {
+    color: #00695c; /* Very dark medical tone */
+  }
+  
+  .medical-900 {
+    color: #004d40; /* Darkest medical shade */
+  }
+  
