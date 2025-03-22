@@ -1,0 +1,178 @@
+/* Primary Colors */
+.bg-main {
+    background-color: #fcfdfc;
+}
+
+.text-main {
+    color: #0f172c;
+}
+
+.border-main {
+    border-color: #e6f0ee;
+}
+
+/* White and Card Backgrounds */
+.bg-white {
+    background-color: white;
+}
+
+.bg-card {
+    background-color: #ffffff80;
+}
+
+/* Medical Background Colors */
+.bg-medical-50 {
+    background-color: #e0f2f1;
+}
+
+.bg-medical-100 {
+    background-color: #b2dfdb;
+}
+
+.bg-medical-200 {
+    background-color: #80cbc4;
+}
+
+.bg-medical-300 {
+    background-color: #4db6ac;
+}
+
+.bg-medical-400 {
+    background-color: #26a69a;
+}
+
+.bg-medical-500 {
+    background-color: #009688;
+}
+
+.bg-medical-600 {
+    background-color: #00897b;
+}
+
+.bg-medical-700 {
+    background-color: #00796b;
+}
+
+.bg-medical-800 {
+    background-color: #00695c;
+}
+
+.bg-medical-900 {
+    background-color: #004d40;
+}
+
+/* Medical Text Colors */
+.text-medical-50 {
+    color: #e0f2f1;
+}
+
+.text-medical-100 {
+    color: #b2dfdb;
+}
+
+.text-medical-200 {
+    color: #80cbc4;
+}
+
+.text-medical-300 {
+    color: #4db6ac;
+}
+
+.text-medical-400 {
+    color: #26a69a;
+}
+
+.text-medical-500 {
+    color: #009688;
+}
+
+.text-medical-600 {
+    color: #00897b;
+}
+
+.text-medical-700 {
+    color: #00796b;
+}
+
+.text-medical-800 {
+    color: #00695c;
+}
+
+.text-medical-900 {
+    color: #004d40;
+}
+
+/* Grayscale Text Colors */
+.text-gray-50 {
+    color: #f9fafb;
+}
+
+.text-gray-100 {
+    color: #f3f4f6;
+}
+
+.text-gray-200 {
+    color: #e5e7eb;
+}
+
+.text-gray-300 {
+    color: #d1d5db;
+}
+
+.text-gray-400 {
+    color: #9ca3af;
+}
+
+.text-gray-500 {
+    color: #6b7280;
+}
+
+.text-gray-600 {
+    color: #4b5563;
+}
+
+.text-gray-700 {
+    color: #374151;
+}
+
+.text-gray-800 {
+    color: #1f2937;
+}
+
+.text-gray-900 {
+    color: #111827;
+}
+
+/* Status Colors */
+.bg-danger {
+    background-color: #f04440;
+}
+
+.text-danger {
+    color: #f8fafc;
+}
+
+.bg-green-100 {
+    background-color: #dcfce7;
+}
+
+.text-green-600 {
+    color: #16a34a;
+}
+
+.text-green-800 {
+    color: #166534;
+}
+
+.text-yellow-800 {
+    color: #854d0e;
+}
+
+/* UI Elements */
+.bg-input {
+    background-color: #d9e6e3;
+}
+
+.text-shield {
+    background-color: #ffffffcc;
+}
