@@ -1,0 +1,14 @@
+/* Global Style */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}
+
+section {
+  padding: 0 5em;
+}
