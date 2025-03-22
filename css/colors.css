@@ -85,6 +85,36 @@
   border-color: #e8e7ed; /* Sidebar border color */
 }
 
+/* === Medical Colors === */
+/* Shades of medical-themed colors for branding and UI elements (backgrounds) */
+.bg-medical-50 {
+  background-color: #e0f2f1; /* Very light medical shade */
+}
+
+.bg-medical-100 {
+  background-color: #b2dfdb; /* Light medical shade */
+}
+
+.bg-medical-200 {
+  background-color: #80cbc4; /* Soft medical tone */
+}
+
+.bg-medical-300 {
+  background-color: #4db6ac; /* Balanced medical green */
+}
+
+.bg-medical-400 {
+  background-color: #26a69a; /* Slightly darker medical tone */
+}
+
+.bg-medical-500 {
+  background-color: #009688; /* Deep medical shade */
+}
+
+.bg-medical-600 {
+  background-color: #004d40; /* Darkest medical tone */
+}
+
 /* === Medical Color Variations (for text) === */
 /* Different shades of medical colors used for text and design elements */
 .medical-50 {
