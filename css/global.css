@@ -1,0 +1,48 @@
+/* --- Global Reset --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* --- Body Styles --- */
+body {
+    font-family: ui-sans-serif, system-ui, sans-serif;
+}
+
+/* --- Section Padding --- */
+section {
+    padding: 0 5em;
+}
+
+/* --- List Style Reset --- */
+ul {
+    list-style-type: none;
+}
+
+/* --- Anchor Tag Styles --- */
+a {
+    text-decoration: none;
+}
+
+/* --- Rounded Borders --- */
+.rounded-full {
+    border-radius: 9999px;
+}
+
+/* --- Text Alignment --- */
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-justify {
+    text-align: justify;
+}

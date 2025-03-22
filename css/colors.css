@@ -1,158 +1,182 @@
-/* === Main Colors === */
-/* Background and text colors used throughout the website */
+/* Primary Colors */
 .bg-main {
-  background-color: #fcfdfc; /* Main background color */
+    background-color: #fcfdfc;
 }
 
 .text-main {
-  color: #0f172c; /* Main text color */
+    color: #0f1729;
 }
 
-/* === Primary Colors === */
-/* Primary theme colors for buttons, highlights, and main elements */
-.bg-primary {
-  background-color: #009485; /* Primary brand color */
-}
-
-.text-primary {
-  color: #ffffff; /* Primary foreground color for contrast */
-}
-
-/* === Secondary Colors === */
-/* Secondary colors for additional highlights and accents */
-.bg-secondary {
-  background-color: #b5ddee; /* Soft secondary background */
-}
-
-.text-secondary {
-  color: #254157; /* Text color for secondary elements */
-}
-
-/* === Muted and Accent Colors === */
-/* Muted colors for backgrounds, cards, and subtle UI elements */
-.bg-muted {
-  background-color: #f1f7f6; /* Light muted background */
-}
-
-.text-muted {
-  color: #64748b; /* Muted text color */
-}
-
-/* Accent color used for additional highlights */
-.bg-accent {
-  background-color: #e5f9f7; /* Light accent background */
-}
-
-/* === Danger and Alert Colors === */
-/* Colors for warnings, errors, and destructive actions */
-.bg-danger {
-  background-color: #f04440; /* Red alert/danger background */
-}
-
-.text-danger {
-  color: #f8fafc; /* Text color on danger backgrounds */
-}
-
-/* === Borders and Inputs === */
-/* Styling for borders and input fields */
 .border-main {
-  border-color: #e6f0ee; /* General border color */
+    border-color: #e6f0ee;
 }
 
-.bg-input {
-  background-color: #d9e6e3; /* Input field background */
+/* White and Card Backgrounds */
+.bg-white {
+    background-color: white;
 }
 
-/* === Sidebar Colors === */
-/* Colors used for sidebar backgrounds, text, and borders */
-.bg-sidebar {
-  background-color: #fafafa; /* Light sidebar background */
+.text-white {
+    color: white;
 }
 
-.text-sidebar {
-  color: #424245; /* Sidebar text color */
+.bg-card {
+    background-color: #ffffff80;
 }
 
-.bg-sidebar-primary {
-  background-color: #1a1a1d; /* Dark sidebar primary background */
-}
-
-.bg-sidebar-accent {
-  background-color: #f5f5f7; /* Sidebar accent background */
-}
-
-.border-sidebar {
-  border-color: #e8e7ed; /* Sidebar border color */
-}
-
-/* === Medical Colors === */
-/* Shades of medical-themed colors for branding and UI elements (backgrounds) */
+/* Medical Background Colors */
 .bg-medical-50 {
-  background-color: #e0f2f1; /* Very light medical shade */
+    background-color: #e2f2f3;
 }
 
 .bg-medical-100 {
-  background-color: #b2dfdb; /* Light medical shade */
+    background-color: #b2dfdb;
 }
 
 .bg-medical-200 {
-  background-color: #80cbc4; /* Soft medical tone */
+    background-color: #80cbc4;
 }
 
 .bg-medical-300 {
-  background-color: #4db6ac; /* Balanced medical green */
+    background-color: #4db6ac;
 }
 
 .bg-medical-400 {
-  background-color: #26a69a; /* Slightly darker medical tone */
+    background-color: #26a69a;
 }
 
 .bg-medical-500 {
-  background-color: #009688; /* Deep medical shade */
+    background-color: #009688;
 }
 
 .bg-medical-600 {
-  background-color: #004d40; /* Darkest medical tone */
+    background-color: #00897b;
 }
 
-/* === Medical Color Variations (for text) === */
-/* Different shades of medical colors used for text and design elements */
-.medical-50 {
-  color: #e0f2f1; /* Lightest medical shade */
+.bg-medical-700 {
+    background-color: #00796b;
 }
 
-.medical-100 {
-  color: #b2dfdb; /* Very light medical shade */
+.bg-medical-800 {
+    background-color: #00695c;
 }
 
-.medical-200 {
-  color: #80cbc4; /* Light medical shade */
+.bg-medical-900 {
+    background-color: #004d40;
 }
 
-.medical-300 {
-  color: #4db6ac; /* Medium-light medical shade */
+/* Medical Text Colors */
+.text-medical-50 {
+    color: #e0f2f1;
 }
 
-.medical-400 {
-  color: #26a69a; /* Slightly darker medical shade */
+.text-medical-100 {
+    color: #b2dfdb;
 }
 
-.medical-500 {
-  color: #009688; /* Standard medical color */
+.text-medical-200 {
+    color: #80cbc4;
 }
 
-.medical-600 {
-  color: #00897b; /* Deeper medical tone */
+.text-medical-300 {
+    color: #4db6ac;
 }
 
-.medical-700 {
-  color: #00796b; /* Darker medical tone */
+.text-medical-400 {
+    color: #26a69a;
 }
 
-.medical-800 {
-  color: #00695c; /* Very dark medical tone */
+.text-medical-500 {
+    color: #009688;
 }
 
-.medical-900 {
-  color: #004d40; /* Darkest medical shade */
+.text-medical-600 {
+    color: #00897b;
+}
+
+.text-medical-700 {
+    color: #00796b;
+}
+
+.text-medical-800 {
+    color: #00695c;
+}
+
+.text-medical-900 {
+    color: #004d40;
+}
+
+/* Grayscale Text Colors */
+.text-gray-50 {
+    color: #f9fafb;
+}
+
+.text-gray-100 {
+    color: #f3f4f6;
+}
+
+.text-gray-200 {
+    color: #e5e7eb;
+}
+
+.text-gray-300 {
+    color: #d1d5db;
+}
+
+.text-gray-400 {
+    color: #9ca3af;
+}
+
+.text-gray-500 {
+    color: #6b7280;
+}
+
+.text-gray-600 {
+    color: #4b5563;
+}
+
+.text-gray-700 {
+    color: #374151;
+}
+
+.text-gray-800 {
+    color: #1f2937;
+}
+
+.text-gray-900 {
+    color: #111827;
+}
+
+/* Status Colors */
+.bg-danger {
+    background-color: #f04440;
+}
+
+.text-danger {
+    color: #f8fafc;
+}
+
+.bg-green-100 {
+    background-color: #dcfce7;
+}
+
+.text-green-600 {
+    color: #16a34a;
+}
+
+.text-green-800 {
+    color: #166534;
+}
+
+.text-yellow-800 {
+    color: #854d0e;
+}
+
+/* UI Elements */
+.bg-input {
+    background-color: #d9e6e3;
+}
+
+.text-shield {
+    background-color: #ffffffcc;
 }
