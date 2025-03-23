@@ -4,7 +4,7 @@
 }
 
 .text-main {
-    color: #0f172c;
+    color: #0f1729;
 }
 
 .border-main {
@@ -16,13 +16,17 @@
     background-color: white;
 }
 
+.text-white {
+    color: white;
+}
+
 .bg-card {
     background-color: #ffffff80;
 }
 
 /* Medical Background Colors */
 .bg-medical-50 {
-    background-color: #e0f2f1;
+    background-color: #e2f2f3;
 }
 
 .bg-medical-100 {

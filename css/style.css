@@ -1,3 +1,4 @@
+/* Header Style */
 header .container {
     display: flex;
     align-items: center;
@@ -29,3 +30,8 @@ header .nav-links {
 .nav-links li a:hover {
     color: #00796b;
 }
+
+
+/* Hero Style */
+
+/* Services Style */
