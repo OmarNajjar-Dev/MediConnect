@@ -4,7 +4,12 @@ header .container {
     justify-content: space-between;
 }
 
-header .nav-links,
+header.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+
+}
 header nav {
     display: flex;
 
@@ -15,12 +20,6 @@ header .nav-links {
 }
 
 
-nav .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 30px;
-
-}
 
 .nav-links li {
     display: inline-block;
