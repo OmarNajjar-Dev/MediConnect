@@ -1,35 +1,96 @@
 /* Header Style */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    transition: all 300ms ease-in-out;
+    background-color: rgba(255, 255, 255, 0.8);
+    /* شفافية 80% */
+    backdrop-filter: blur(12px);
+    /* تأثير تمويه متوسط */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    /* ظل صغير */
+}
+
 header .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
 }
 
-header.nav-links {
-    list-style: none;
+header .logo {
     display: flex;
-    gap: 30px;
+    align-items: center;
 
 }
+
 header nav {
     display: flex;
-
+    align-items: center;
+    gap: 2rem;
 }
 
-header .nav-links {
-    gap: 2em;
+header nav a {
+
+    transition: color 0.3s ease;
+}
+
+header nav a:hover {
+    color: #00796B;
+}
+
+header .buttom {
+    display: flex;
+    align-items: center;
+    margin-left: 1em;
+}
+
+header .btn-signin {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.375rem;
+    /* rounded-md */
+    font-size: 0.875rem;
+    /* text-sm */
+    font-weight: 500;
+    /* font-medium */
+    height: 2.25rem;
+    /* h-9 (36px) */
+    padding: 0.5rem 1rem;
+    /* px-4 py-2 */
+    border: 1px solid var(--border-input);
+    /* border border-input */
+    background-color: var(--bg-background);
+    /* bg-background */
+    color: var(--text-default);
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    /* transition-colors */
+}
+
+header .btn-signin:focus-visible {
+    outline: none; /* focus-visible:outline-none */
+    box-shadow: 0 0 0 2px var(--ring-ring); /* focus-visible:ring-2 focus-visible:ring-ring */
+    outline-offset: 2px; /* focus-visible:ring-offset-2 */
+    background-color: var(--ring-offset-background); /* ring-offset-background */
+}
+
+header .btn-signin:hover {
+    background-color: var(--bg-accent); /* hover:bg-accent */
+    color: var(--text-accent-foreground); /* hover:text-accent-foreground */
+}
+
+header .btn-signin:disabled {
+    pointer-events: none; /* disabled:pointer-events-none */
+    opacity: 0.5; /* disabled:opacity-50 */
 }
 
 
 
-.nav-links li {
-    display: inline-block;
-}
 
-
-.nav-links li a:hover {
-    color: #00796b;
-}
 
 
 /* Hero Style */
