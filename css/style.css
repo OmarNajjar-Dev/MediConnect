@@ -1,5 +1,33 @@
 /* Header Style */
 
 /* Hero Style */
+#hero .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#hero span {
+    display: inline-block;
+}
+
+#hero h1 {
+    font-size: 60px;
+    line-height: 1.25;
+}
+
+.hero-content {
+    max-width: 48rem;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+
+.border-input {
+    border: 1px solid #d1d5db;
+}
 
 /* Services Style */
