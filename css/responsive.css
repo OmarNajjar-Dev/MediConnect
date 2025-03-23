@@ -1,0 +1,19 @@
+@media screen and (max-width:767px) {
+    header nav {
+        display: none;
+    }
+
+    header .button {
+        display:none;
+    }
+
+    header .menu {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media screen and (min-width: 768px) { 
+   
+}

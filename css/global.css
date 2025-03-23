@@ -46,3 +46,7 @@ a {
 .text-justify {
     text-align: justify;
 }
+
+.max-w-3xl {
+    max-width: 48em;
+}
