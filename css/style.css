@@ -16,10 +16,6 @@
     line-height: 1.25;
 }
 
-.hero-content {
-    max-width: 48rem;
-}
-
 .cta-buttons {
     display: flex;
     justify-content: center;
