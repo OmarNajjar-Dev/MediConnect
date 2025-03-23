@@ -1,0 +1,32 @@
+header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header .nav-links,
+header nav {
+    display: flex;
+
+}
+
+header .nav-links {
+    gap: 2em;
+}
+
+
+nav .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+
+}
+
+.nav-links li {
+    display: inline-block;
+}
+
+
+.nav-links li a:hover {
+    color: #00796b;
+}
