@@ -69,7 +69,13 @@ header .auth-buttons>*+* {
     height: 24px;
 }
 
-
+#mobile-navigation {
+    background-color: rgba(255, 255, 255, 0.95);
+    display: none;
+    top: 100%;
+    left: 0;
+    right: 0;
+}
 
 
 
