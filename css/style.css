@@ -63,6 +63,7 @@ header .button {
     justify-content: center;
     height: 2.25rem;
     transition: all 0.2s ease-in-out;
+    border: 1px solid #d1d5db;
 }
 
 header .menu {
