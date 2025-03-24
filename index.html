@@ -36,13 +36,13 @@
         class="py-5">
         <div class="container mx-auto px-4">
             <a href="/">
-                <span class="text-medical-700 text-2xl">
-                    Medi<span class="text-medical-500">Connect</span>
+                <span class="text-medical-700 text-2xl font-semibold">
+                    Medi<span class="text-medical-500 ">Connect</span>
                 </span>
             </a>
 
             <!-- Desktop Navigation -->
-            <nav class="hidden">
+            <nav>
                 <a href="/"
                     class="text-sm font-medium hover:text-medical-600 text-medical-700">Home</a>
                 <a href="/doctors"
@@ -55,18 +55,18 @@
                     class="text-sm font-medium hover:text-medical-600 text-gray-600">Dashboard</a>
             </nav>
 
-            <div class="">
+            <div class="auth-buttons" >
                 <a href="/login"
-                    class="hidden md:flex items-center justify-center rounded-xl text-sm font-medium border bg-main text-main px-4 py-2">Sign
+                    class="text-sm rounded-md font-medium border-input bg-main text-main px-3 py-2">Sign
                     In</a>
                 <a href="/signup"
-                    class="hidden md:flex items-center justify-center rounded-xl text-sm font-medium bg-medical-500 text-white px-4 py-2">Sign
+                    class="text-sm rounded-md font-medium bg-medical-500 text-white mr-20 px-3 py-2">Sign
                     Up</a>
 
                 <!-- Mobile Menu Button -->
                 <button
-                    class="md:hidden rounded-md p-2 inline-flex items-center justify-center text-gray-700 hover:text-medical-600 hover:bg-gray-100">
-                    <i class="lucide lucide-menu h-6 w-6"></i>
+                    class="mobile-menu rounded-md p-2 text-gray-700 hover:text-medical-600 hover:bg-gray-100">
+                    <i data-lucide="menu"></i>
                 </button>
             </div>
         </div>

@@ -8,11 +8,12 @@
 /* --- Body Styles --- */
 body {
     font-family: ui-sans-serif, system-ui, sans-serif;
+    line-height: 1.6;
 }
 
-/* --- Section Padding --- */
-section {
-    padding: 0 5em;
+/* --- Main Styles --- */
+main {
+    overflow: hidden;
 }
 
 /* --- List Style Reset --- */
@@ -25,9 +26,28 @@ a {
     text-decoration: none;
 }
 
-/* --- Rounded Borders --- */
+h1,
+h2,
+h3,
+h4 {
+    letter-spacing: -0.025em;
+}
+
+/* --- Borders --- */
 .rounded-full {
     border-radius: 9999px;
+}
+
+.rounded-xl {
+    border-radius: 0.75rem;
+}
+
+.rounded-md {
+    border-radius: 0.375rem; /* 6px */
+}
+
+.border-input {
+    border: 1px solid #d1d5db;
 }
 
 /* --- Text Alignment --- */
@@ -47,6 +67,23 @@ a {
     text-align: justify;
 }
 
+/* --- Position --- */
+.relative {
+    position: relative;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.fixed {
+    position: fixed;
+}
+
 .max-w-3xl {
     max-width: 48em;
+}
+
+.max-w-4xl {
+    max-width: 56rem;
 }
