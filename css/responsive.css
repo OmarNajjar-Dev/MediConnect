@@ -39,10 +39,6 @@
         display: none;
     }
 
-    header .button {
-        display: none;
-    }
-
     header .menu {
         display: inline-flex;
         justify-content: center;

@@ -26,8 +26,8 @@
 <body class="bg-main">
     <!-- Add your Header Section here  -->
     <header
-        class="py-5">
-        <div class="container mx-auto px-4">
+        class="pl-16 py-5 fixed z-50">
+        <div class="container flex items-center justify-between mx-auto px-4">
             <a href="/">
                 <span class="text-medical-700 text-2xl font-semibold">
                     Medi<span class="text-medical-500 ">Connect</span>
@@ -48,12 +48,12 @@
                     class="text-sm font-medium hover:text-medical-600 text-gray-600">Dashboard</a>
             </nav>
 
-            <div class="auth-buttons" >
+            <div class="auth-buttons flex items-center gap-4">
                 <a href="/login"
-                    class="text-sm rounded-md font-medium   border bg-main text-main px-3 py-2">Sign
+                    class="inline-flex items-center justify-center text-sm rounded-xl font-medium border border-solid border-main bg-main text-main px-3 py-2 h-9">Sign
                     In</a>
                 <a href="/signup"
-                    class="text-sm rounded-md font-medium bg-medical-500 text-white mr-20 px-3 py-2">Sign
+                    class="inline-flex items-center justify-center text-sm rounded-xl font-medium bg-medical-500 text-white mr-20 px-3 py-2 h-9">Sign
                     Up</a>
 
                 <!-- Mobile Menu Button -->
@@ -67,7 +67,7 @@
         <!-- Mobile Navigation (Hidden by default) -->
         <div id="mobile-navigation"
             class="backdrop-blur-lg shadow-lg animate-slide-down">
-            <nav class="container mx-auto px-4 py-4 flex flex-col space-y-4">
+            <nav class="none container mx-auto px-4 py-4 flex flex-col space-y-4">
                 <a href="/"
                     class="text-sm py-2 px-3 rounded-md font-medium transition-colors bg-medical-50 text-medical-700">Home</a>
                 <a href="/doctors"
@@ -81,7 +81,7 @@
 
                 <div class="flex flex-col space-y-2 pt-2 border-t">
                     <a href="/login"
-                        class="inline-flex items-center justify-center rounded-md text-sm font-medium border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2">Sign
+                        class="inline-flex items-center justify-center border border-solid borer-main rounded-md text-sm font-medium bg-background hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2">Sign
                         In</a>
                     <a href="/signup"
                         class="inline-flex items-center justify-center rounded-md text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 h-9 px-4 py-2">Sign
