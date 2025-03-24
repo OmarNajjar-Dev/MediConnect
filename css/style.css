@@ -1,7 +1,20 @@
+/* --- Global Reset --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-/* Header Style */
+/* --- Body Styles --- */
+body {
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.6;
+}
 
-/* Hero Style */
+/* --- List Style Reset --- */
+ul {
+  list-style-type: none;
+}
 
 /* Services Style */
 .services-header p{
@@ -62,3 +75,8 @@ main{
     height:16px;
 }
 
+
+/* --- Anchor Tag Styles --- */
+a {
+  text-decoration: none;
+}

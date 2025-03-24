@@ -40,6 +40,7 @@ const container = document.getElementById("services-container");
 const cards = services.map((service) => {
     const card = document.createElement("div");
     card.classList.add("service-card","p-6","rounded-xl","bg-card");
+    //<div class="mb-6 w-14 h-14 bg-medical-100 rounded-lg flex items-center justify-center"></div>
 
     card.innerHTML = `
       <div class="service-icon mb-6 bg-medical-100 text-medical-600">${service.icon}</div>
