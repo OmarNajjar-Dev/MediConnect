@@ -1,29 +1,60 @@
-/* Header Style */
+/* ========== Hero Section Styles ========== */
 
-/* Hero Style */
+/* Set background gradient for hero section */
+#hero {
+    background: linear-gradient(to right, #e2f2f3, #eff6ff);
+}
+
+/* Center content inside the hero container */
 #hero .container {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+/* Ensure the hero span is inline-block */
 #hero span {
     display: inline-block;
 }
 
-#hero h1 {
-    font-size: 60px;
-    line-height: 1.25;
-}
+/* ========== Call-to-Action Buttons ========== */
 
+/* Style the CTA button container */
 .cta-buttons {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     gap: 16px;
 }
 
-.border-input {
-    border: 1px solid #d1d5db;
+/* Set the height for CTA buttons */
+.cta-buttons {
+    height: 44px;
 }
 
-/* Services Style */
+/* ========== Hero Cards ========== */
+
+/* Layout for hero cards (single column) */
+.hero-cards-container {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1.5rem;
+}
+
+/* Style for individual hero cards */
+.hero-card {
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* ========== Hero Icons ========== */
+
+/* Center the icon inside the card */
+.hero-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+}

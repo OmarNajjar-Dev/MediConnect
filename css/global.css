@@ -1,52 +1,85 @@
 /* --- Global Reset --- */
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 /* --- Body Styles --- */
 body {
-    font-family: ui-sans-serif, system-ui, sans-serif;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.6;
 }
 
-/* --- Section Padding --- */
-section {
-    padding: 0 5em;
+/* --- Main Styles --- */
+main {
+  overflow: hidden;
 }
 
 /* --- List Style Reset --- */
 ul {
-    list-style-type: none;
+  list-style-type: none;
 }
 
 /* --- Anchor Tag Styles --- */
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
-/* --- Rounded Borders --- */
+h1,
+h2,
+h3,
+h4 {
+  letter-spacing: -0.025em;
+}
+
+/* --- Borders --- */
 .rounded-full {
-    border-radius: 9999px;
+  border-radius: 9999px;
+}
+
+.rounded-xl {
+  border-radius: 0.75rem;
+}
+
+.border-input {
+  border: 1px solid #d1d5db;
 }
 
 /* --- Text Alignment --- */
 .text-left {
-    text-align: left;
+  text-align: left;
 }
 
 .text-right {
-    text-align: right;
+  text-align: right;
 }
 
 .text-center {
-    text-align: center;
+  text-align: center;
 }
 
 .text-justify {
-    text-align: justify;
+  text-align: justify;
+}
+
+/* --- Position --- */
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.fixed {
+  position: fixed;
 }
 
 .max-w-3xl {
-    max-width: 48em;
+  max-width: 48em;
+}
+
+.max-w-4xl {
+  max-width: 56rem;
 }

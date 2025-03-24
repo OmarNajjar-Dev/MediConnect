@@ -7,23 +7,13 @@
 
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    
-    <!-- Colors Style  -->
+
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="css/colors.css" />
-
-    <!-- Global Style -->
     <link rel="stylesheet" href="css/global.css" />
-
-    <!-- Typography Style -->
     <link rel="stylesheet" href="css/typography.css" />
-
-    <!-- Spacing Style -->
     <link rel="stylesheet" href="css/spacing.css" />
-
-    <!-- Custom Style -->
     <link rel="stylesheet" href="css/style.css" />
-
-    <!-- Responsive Style  -->
     <link rel="stylesheet" href="css/responsive.css" />
 
     <!-- Page Title -->
@@ -31,50 +21,63 @@
 </head>
 
 <body class="bg-main">
-    <!-- Add your Header Section here  -->
+    <main class="pt-20">
+        <!-- ========== Header Section ========== -->
+        <!-- Add your Header Section here -->
 
-    <!-- Add your Hero Section here  -->
-    <section id="hero" class="bg-medical-50 py-28">
-        <div class="container">
+        <!-- ========== Hero Section ========== -->
+        <section id="hero" class="relative py-20">
+            <div class="container mx-auto px-4 relative">
 
-            <!-- Hero content wrapper -->
-            <div class="hero-content text-center mb-12 max-w-3xl mx-auto">
-                <span class="bg-medical-100 text-medical-800 rounded-full text-sm font-medium px-3 py-1 mb-4">
-                    Simplifying Healthcare Access
-                </span>
-                <h1 class="text-gray-900 text-center mb-4">
-                    Connecting Patients with
-                    Healthcare Professionals
-                </h1>
-                <p class="text-gray-600 text-center text-xl mb-8">
-                    Book appointments, connect with specialists, and access quality
-                    healthcare services - all in one place.
-                </p>
+                <!-- Hero Content -->
+                <div class="hero-content text-center mb-12 max-w-3xl mx-auto">
+                    <!-- Small badge above title -->
+                    <span class="bg-medical-100 text-medical-800 rounded-full text-sm font-medium px-3 py-1 mb-4">
+                        Simplifying Healthcare Access
+                    </span>
 
-                <!-- Call-to-action buttons -->
-                <div class="cta-buttons">
-                    <a href="#appointments.html"
-                        class="bg-medical-500 rounded-full text-white text-sm font-medium px-8 py-3">
-                        Book an Appointment
-                    </a>
-                    <a href="#doctor.html"
-                        class="border-input bg-main rounded-full text-main border-main text-sm font-medium px-8 py-3">
-                        Find a Doctor
-                    </a>
+                    <!-- Main Heading -->
+                    <h1 class="text-gray-900 text-center text-4xl leading-tight mb-4">
+                        Connecting Patients with Healthcare Professionals
+                    </h1>
+
+                    <!-- Short Description -->
+                    <p class="text-gray-600 text-center text-xl mb-8">
+                        Book appointments, connect with specialists, and access quality
+                        healthcare services - all in one place.
+                    </p>
+
+                    <!-- Call-to-Action Buttons -->
+                    <div class="cta-buttons">
+                        <a href="#appointments.html"
+                            class="bg-medical-500 rounded-full text-white text-sm font-medium px-8 py-3">
+                            Book an Appointment
+                        </a>
+                        <a href="#doctor.html"
+                            class="bg-main rounded-full border-input text-main border-main text-sm font-medium px-8 py-3">
+                            Find a Doctor
+                        </a>
+                    </div>
                 </div>
+
+                <!-- Hero Cards Container -->
+                <div class="hero-cards-container max-w-4xl mx-auto">
+                    <!-- Cards will be added dynamically using JavaScript -->
+                </div>
+
             </div>
+        </section>
 
-            <!-- Future cards or other content go here -->
-            <div class="cards-wrapper">
-                <!-- Add your card elements or additional sections here -->
-            </div>
+        <!-- ========== Services Section ========== -->
+        <!-- Add your Services Section here -->
 
-        </div>
-    </section>
+    </main>
 
-    <!-- Add your Services Section here  -->
+    <!-- JavaScript -->
+    <script src="main.js"></script>
+    <script>
+        lucide.createIcons(); // Initialize Lucide icons
+    </script>
 </body>
 
 </html>
-
-<!-- https://preview--connectcare-linq.lovable.app/ -->
