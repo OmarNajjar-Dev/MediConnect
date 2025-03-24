@@ -16,6 +16,9 @@ ul {
   list-style-type: none;
 }
 
+.container {
+    width: 100%;
+}
 /* Services Style */
 .service-card{
    height:100%;
