@@ -1,0 +1,74 @@
+/* --- Border Widths --- */
+.border-0 {
+    border-width: 0;
+}
+
+.border {
+    border-width: 1px;
+}
+
+.border-2 {
+    border-width: 2px;
+}
+
+.border-4 {
+    border-width: 4px;
+}
+
+.border-8 {
+    border-width: 8px;
+}
+
+/* --- Border Styles --- */
+.border-solid {
+    border-style: solid;
+}
+
+.border-dashed {
+    border-style: dashed;
+}
+
+.border-dotted {
+    border-style: dotted;
+}
+
+.border-double {
+    border-style: double;
+}
+
+.border-none {
+    border-style: none;
+}
+
+/* --- Border Radius --- */
+.rounded-none {
+    border-radius: 0;
+}
+
+.rounded-sm {
+    border-radius: 0.125rem;   /* 2px */
+}
+
+.rounded {
+    border-radius: 0.25rem;    /* 4px */
+}
+
+.rounded-md {
+    border-radius: 0.375rem;   /* 6px */
+}
+
+.rounded-lg {
+    border-radius: 0.5rem;     /* 8px */
+}
+
+.rounded-xl {
+    border-radius: 0.75rem;    /* 12px */
+}
+
+.rounded-2xl {
+    border-radius: 1rem;       /* 16px */
+}
+
+.rounded-full {
+    border-radius: 9999px;
+}

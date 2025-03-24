@@ -42,7 +42,7 @@
 }
 
 .bg-medical-500 {
-    background-color: #009688;
+    background-color: #009485;
 }
 
 .bg-medical-600 {
@@ -83,7 +83,7 @@
 }
 
 .text-medical-500 {
-    color: #009688;
+    color: #009485;
 }
 
 .text-medical-600 {
@@ -210,7 +210,7 @@
 }
 
 .hover\:bg-medical-500:hover {
-    background-color: #009688;
+    background-color: #009485;
 }
 
 .hover\:bg-medical-600:hover {
@@ -250,7 +250,7 @@
 }
 
 .hover\:text-medical-500:hover {
-    color: #009688;
+    color: #009485;
 }
 
 .hover\:text-medical-600:hover {
