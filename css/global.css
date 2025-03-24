@@ -3,50 +3,83 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-}
-
-/* --- Body Styles --- */
-body {
+  }
+  
+  /* --- Body Styles --- */
+  body {
     font-family: ui-sans-serif, system-ui, sans-serif;
-}
-
-/* --- Section Padding --- */
-section {
-    padding: 0 5em;
-}
-
-/* --- List Style Reset --- */
-ul {
+    line-height: 1.6;
+  }
+  
+  /* --- Main Styles --- */
+  main {
+    overflow: hidden;
+  }
+  
+  /* --- List Style Reset --- */
+  ul {
     list-style-type: none;
-}
-
-/* --- Anchor Tag Styles --- */
-a {
+  }
+  
+  /* --- Anchor Tag Styles --- */
+  a {
     text-decoration: none;
-}
-
-/* --- Rounded Borders --- */
-.rounded-full {
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4 {
+    letter-spacing: -0.025em;
+  }
+  
+  /* --- Borders --- */
+  .rounded-full {
     border-radius: 9999px;
-}
-
-/* --- Text Alignment --- */
-.text-left {
+  }
+  
+  .rounded-xl {
+    border-radius: 0.75rem;
+  }
+  
+  .border-input {
+    border: 1px solid #d1d5db;
+  }
+  
+  /* --- Text Alignment --- */
+  .text-left {
     text-align: left;
-}
-
-.text-right {
+  }
+  
+  .text-right {
     text-align: right;
-}
-
-.text-center {
+  }
+  
+  .text-center {
     text-align: center;
-}
-
-.text-justify {
+  }
+  
+  .text-justify {
     text-align: justify;
-}
-
-.max-w-3xl {
+  }
+  
+  /* --- Position --- */
+  .relative {
+    position: relative;
+  }
+  
+  .absolute {
+    position: absolute;
+  }
+  
+  .fixed {
+    position: fixed;
+  }
+  
+  .max-w-3xl {
     max-width: 48em;
-}
+  }
+  
+  .max-w-4xl {
+    max-width: 56rem;
+  }

@@ -5,8 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <!--lucide icons-->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
     <!-- Colors Style  -->
     <link rel="stylesheet" href="css/colors.css" />
@@ -36,26 +36,35 @@
     <!-- Add your Hero Section here  -->
 
     <!-- Add your Services Section here  -->
-
-    <section id="services">
-        <div class="healthcare-services py-0 px-4">
+<main class="pt-20">
+    <section id="services py-20">
+        <div class="healthcare-services mx-auto py-0 px-4">
             <div class="services-header max-w-3xl mx-auto text-center mb-16">
-                <span class="service-badge px-3 py-1 mb-4 rounded-full bg-medical-100 text-small font-medium text-medical-800">
+                <span
+                    class="px-3 py-1 mb-4 rounded-full bg-medical-100 text-sm font-medium text-medical-800">
                     Our Services
                 </span>
-                <h2 class="services-title mb-4">Comprehensive Healthcare Solutions</h2>
-                <p class="services-description text-gray-600 text-xl">
+                <h2 id="services-title" class="mb-4 text-gray-900 text-4xl leading-tight">Comprehensive Healthcare Solutions</h2>
+                <p class="text-gray-600 text-xl">
                     MediConnect offers a range of services to meet your healthcare needs.
                 </p>
             </div>
-            <div id="services-container" class="services-list"></div>
+            <div id="services-container"></div>
+            
         </div>
     </section>
-    
+</main>
 
-    <script src="main.js"></script>
+
+<script src="main.js"></script>
+
+<script>
+    lucide.createIcons();
+ </script>
 </body>
 
 </html>
 
 <!-- https://preview--connectcare-linq.lovable.app/ -->
+
+

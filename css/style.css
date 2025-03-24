@@ -7,3 +7,58 @@
 .services-header p{
     font-size:20px;
 }
+
+.service-card{
+    display:flex;
+   flex-direction: column;
+   height:100%;
+}
+
+main{
+    overflow:hiden;
+}
+
+.service-icon{
+    width: 3.5rem;               
+    height: 3.5rem; 
+    border-radius: 0.5rem;      
+    display: flex;               
+    align-items: center;        
+    justify-content: center;
+}
+.services-header span{
+    display:inline-block;
+}
+
+
+#services-container{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 24px; 
+}
+
+.service-card{
+    transition: all 0.3s;
+    backdrop-filter: blur(10px); 
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); 
+    height:100%;
+}
+.service-card:hover{
+    box-shadow: 0 12px 8px rgba(0, 0, 0, 0.2); /* Larger shadow (hover:shadow-md) */
+    transform: translateY(-2px); 
+}
+
+.service-card a{
+    display:inline-flex;
+    align-items: center;
+    gap: 1rem; 
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.right-arrow{
+    width:16px;
+    height:16px;
+}
+
