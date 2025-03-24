@@ -915,3 +915,176 @@
     padding-top: 112px;
     padding-bottom: 112px;
 }
+
+/* === Gap Spacing Utilities === */
+
+/* General Gap (Applies to both grid & flex layouts) */
+.gap-0 {
+    gap: 0px;
+}
+
+.gap-1 {
+    gap: 4px;
+}
+
+.gap-2 {
+    gap: 8px;
+}
+
+.gap-3 {
+    gap: 12px;
+}
+
+.gap-4 {
+    gap: 16px;
+}
+
+.gap-5 {
+    gap: 20px;
+}
+
+.gap-6 {
+    gap: 24px;
+}
+
+.gap-8 {
+    gap: 32px;
+}
+
+.gap-10 {
+    gap: 40px;
+}
+
+.gap-12 {
+    gap: 48px;
+}
+
+.gap-16 {
+    gap: 64px;
+}
+
+.gap-20 {
+    gap: 80px;
+}
+
+.gap-24 {
+    gap: 96px;
+}
+
+.gap-28 {
+    gap: 112px;
+}
+
+/* Horizontal Gap */
+.gap-x-0 {
+    column-gap: 0px;
+}
+
+.gap-x-1 {
+    column-gap: 4px;
+}
+
+.gap-x-2 {
+    column-gap: 8px;
+}
+
+.gap-x-3 {
+    column-gap: 12px;
+}
+
+.gap-x-4 {
+    column-gap: 16px;
+}
+
+.gap-x-5 {
+    column-gap: 20px;
+}
+
+.gap-x-6 {
+    column-gap: 24px;
+}
+
+.gap-x-8 {
+    column-gap: 32px;
+}
+
+.gap-x-10 {
+    column-gap: 40px;
+}
+
+.gap-x-12 {
+    column-gap: 48px;
+}
+
+.gap-x-16 {
+    column-gap: 64px;
+}
+
+.gap-x-20 {
+    column-gap: 80px;
+}
+
+.gap-x-24 {
+    column-gap: 96px;
+}
+
+.gap-x-28 {
+    column-gap: 112px;
+}
+
+/* Vertical Gap */
+.gap-y-0 {
+    row-gap: 0px;
+}
+
+.gap-y-1 {
+    row-gap: 4px;
+}
+
+.gap-y-2 {
+    row-gap: 8px;
+}
+
+.gap-y-3 {
+    row-gap: 12px;
+}
+
+.gap-y-4 {
+    row-gap: 16px;
+}
+
+.gap-y-5 {
+    row-gap: 20px;
+}
+
+.gap-y-6 {
+    row-gap: 24px;
+}
+
+.gap-y-8 {
+    row-gap: 32px;
+}
+
+.gap-y-10 {
+    row-gap: 40px;
+}
+
+.gap-y-12 {
+    row-gap: 48px;
+}
+
+.gap-y-16 {
+    row-gap: 64px;
+}
+
+.gap-y-20 {
+    row-gap: 80px;
+}
+
+.gap-y-24 {
+    row-gap: 96px;
+}
+
+.gap-y-28 {
+    row-gap: 112px;
+}

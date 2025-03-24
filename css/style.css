@@ -1,3 +1,26 @@
+/* --- Global Reset --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* --- Body Styles --- */
+body {
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    line-height: 1.6;
+}
+
+/* --- List Style Reset --- */
+ul {
+    list-style-type: none;
+}
+
+/* --- Anchor Tag Styles --- */
+a {
+    text-decoration: none;
+}
+
 /* Header Style */
 header {
     position: fixed;
@@ -76,10 +99,3 @@ header .auth-buttons>*+* {
     left: 0;
     right: 0;
 }
-
-
-
-
-/* Hero Style */
-
-/* Services Style */
