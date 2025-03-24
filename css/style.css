@@ -1,22 +1,44 @@
-/* --- Global Reset --- */
+/* ========== CSS Variables (Root) ========== */
+:root {
+    --box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --transition: all 0.3s ease-in-out;
+}
+
+/* ========== Global Reset ========== */
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-/* --- Body Styles --- */
-body {
-  font-family: ui-sans-serif, system-ui, sans-serif;
-  line-height: 1.6;
-}
-
-/* --- List Style Reset --- */
+/* ========== Element Resets ========== */
 ul {
-  list-style-type: none;
+    list-style-type: none;
 }
 
-/* --- Anchor Tag Styles --- */
 a {
-  text-decoration: none;
+    text-decoration: none;
+}
+
+/* ========== Global Body Styles ========== */
+body {
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    line-height: 1.6;
+}
+
+/* ========== Section-Specific Styles ========== */
+
+/* --- Hero Section Styles --- */
+#hero {
+    background: linear-gradient(to right, #dff1f0, #e7f4f8);
+}
+
+/* --- Call-to-Action Buttons --- */
+.cta-buttons a {
+    transition: var(--transition);
+}
+
+/* --- Hero Cards --- */
+.hero-card {
+    box-shadow: var(--box-shadow);
 }
