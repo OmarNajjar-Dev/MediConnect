@@ -1,48 +1,17 @@
 /* Small Screen */
-@media screen and (min-width: 640px) {
-    #hero h1 {
-        font-size: 3rem; /* 48px */
-    }
-    
-    .cta-buttons {
-        flex-direction: row;
-    }
-}
+@media screen and (min-width: 640px) {}
 
 /* Medium Screen */
-@media screen and (min-width: 768px) {
-    #hero {
-        padding-top: 112px;
-        padding-bottom: 112px; 
-    }
-
-    #hero h1 {
-        font-size: 3.75rem; /* 60px */
-    }
-
-    .hero-cards-container {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-}
+@media screen and (min-width: 768px) {}
 
 /* Large Screen */
-@media screen and (min-width: 1024px) {
-
-}
+@media screen and (min-width: 1024px) {}
 
 /* Extra Large Screen */
-@media screen and (min-width: 1280px) {
-
-}
+@media screen and (min-width: 1280px) {}
 
 /* Extra Extra Large Screen */
-@media screen and (min-width: 1536px) {
-    
-}
+@media screen and (min-width: 1536px) {}
 
 /* Custom Screen */
-@media screen and (max-width: 768px) {
-    .hero-cards-container {
-        width: 100%;
-    }
-}
+@media screen and (max-width: 768px) {}
