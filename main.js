@@ -46,7 +46,7 @@ const cards = services.map((service) => {
       <div class="service-icon mb-6 w-14 h-14 bg-medical-100 rounded-lg border-8 text-medical-600 flex items-center justify-center">${service.icon}</div>
       <h3 class="service-title text-xl font-medium mb-3">${service.title}</h3>
       <p class="service-description text-gray-600 mb-4">${service.description}</p>
-      <a href="${service.linkHref}" class="service-link text-main inline-flex items-center gap-4 justify-start p-0"><span>${service.linkText}</span><i data-lucide="arrow-right" class="right-arrow w-4 h-4 ml-2"></i></a>
+      <a href="${service.linkHref}" class="service-link text-main inline-flex items-center gap-2 rounded-lg justify-start p-0 hover:bg-medical-50 hover:text-medical-500 h-10"><span>${service.linkText}</span><i data-lucide="arrow-right" class="right-arrow w-4 h-4 ml-2"></i></a>
     `;
       
     return card;

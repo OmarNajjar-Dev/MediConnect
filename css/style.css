@@ -41,7 +41,7 @@ ul {
     transition: transform 0.3s ease; 
 }
 
-.service-link:hover{
+.service-link:hover .right-arrow {
     transform: translateX(0.25rem);
 }
 
