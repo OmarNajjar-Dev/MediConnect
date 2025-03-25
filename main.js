@@ -24,7 +24,7 @@ const heroContent = [
 const heroCards = heroContent.map(
   (card) =>
     `
-    <div class="hero-card bg-card border border-solid border-card rounded-xl p-6">
+    <div class="hero-card bg-card border border-solid border-card rounded-xl shadow-sm p-6">
         <div class="card-container text-center">
             <div class="flex justify-center items-center text-medical-600 bg-medical-100 rounded-full mx-auto mb-4 w-12 h-12">
                 ${card.icon}
