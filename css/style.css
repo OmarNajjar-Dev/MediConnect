@@ -21,18 +21,13 @@ ul {
 }
 /* Services Style */
 .service-card{
-   height:100%;
-}
-
-.service-card{
     transition: all 0.3s;
     backdrop-filter: blur(10px); 
     border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); 
-    height:100%;
 }
+
 .service-card:hover{
-    box-shadow: 0 12px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
     transform: translateY(-2px); 
 }
 
