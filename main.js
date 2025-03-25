@@ -24,15 +24,15 @@ const heroContent = [
 const heroCards = heroContent.map(
   (card) =>
     `
-    <div class="hero-card bg-card border border-solid border-card rounded-xl shadow-sm p-6">
-        <div class="card-container text-center">
-            <div class="flex justify-center items-center text-medical-600 bg-medical-100 rounded-full mx-auto mb-4 w-12 h-12">
-                ${card.icon}
-            </div>
-            <h3 class="text-xl font-medium tracking-tight capitalize mb-2">${card.title}</h3>
-            <p class="text-gray-600">${card.description}</p>
-        </div>
-    </div>
+      <div class="hero-card bg-card border border-solid border-card rounded-xl shadow-sm p-6">
+          <div class="card-container text-center">
+              <div class="flex justify-center items-center text-medical-600 bg-medical-100 rounded-full mx-auto mb-4 w-12 h-12">
+                  ${card.icon}
+              </div>
+              <h3 class="text-xl font-medium tracking-tight capitalize mb-2">${card.title}</h3>
+              <p class="text-gray-600">${card.description}</p>
+          </div>
+      </div>
     `
 );
 

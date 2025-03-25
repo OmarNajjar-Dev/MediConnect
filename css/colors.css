@@ -280,6 +280,47 @@
     color: #004d40;
 }
 
+/* === Hover Effects: Grayscale Background Colors === */
+.hover\:bg-gray-50:hover {
+    background-color: #f9fafb;
+}
+
+.hover\:bg-gray-100:hover {
+    background-color: #f3f4f6;
+}
+
+.hover\:bg-gray-200:hover {
+    background-color: #e5e7eb;
+}
+
+.hover\:bg-gray-300:hover {
+    background-color: #d1d5db;
+}
+
+.hover\:bg-gray-400:hover {
+    background-color: #9ca3af;
+}
+
+.hover\:bg-gray-500:hover {
+    background-color: #6b7280;
+}
+
+.hover\:bg-gray-600:hover {
+    background-color: #4b5563;
+}
+
+.hover\:bg-gray-700:hover {
+    background-color: #374151;
+}
+
+.hover\:bg-gray-800:hover {
+    background-color: #1f2937;
+}
+
+.hover\:bg-gray-900:hover {
+    background-color: #111827;
+}
+
 /* === Hover Effects: Grayscale Text Colors === */
 .hover\:text-gray-50:hover {
     color: #f9fafb;
