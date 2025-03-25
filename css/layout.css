@@ -1,4 +1,8 @@
 /* --- Display Utilities --- */
+
+.none{
+    display : none;
+}
 .block {
     display: block;
 }

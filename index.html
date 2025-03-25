@@ -65,19 +65,18 @@
         </div>
 
         <!-- Mobile Navigation (Hidden by default) -->
-        <div id="mobile-navigation"
-            class="backdrop-blur-lg shadow-lg animate-slide-down">
-            <nav class="none container mx-auto px-4 py-4 flex flex-col space-y-4">
+        <div class="mobile-nav bg-medical-50 none absolute shadow-lg">
+            <nav class="container my-0 mx-auto p-4 py-4 flex  flex-col gap-4 space-y-4 > * + * ">
                 <a href="/"
-                    class="text-sm py-2 px-3 rounded-md font-medium transition-colors bg-medical-50 text-medical-700">Home</a>
+                    class="text-sm py-2 px-3 rounded-md font-medium bg-medical-50 text-medical-700">Home</a>
                 <a href="/doctors"
-                    class="text-sm py-2 px-3 rounded-md font-medium transition-colors text-gray-600 hover:bg-gray-50">Doctors</a>
+                    class="text-sm py-2 px-3 rounded-md font-medium text-gray-600 hover:bg-gray-50">Doctors</a>
                 <a href="/hospitals"
-                    class="text-sm py-2 px-3 rounded-md font-medium transition-colors text-gray-600 hover:bg-gray-50">Hospitals</a>
+                    class="text-sm py-2 px-3 rounded-md font-medium text-gray-600 hover:bg-gray-50">Hospitals</a>
                 <a href="/appointments"
-                    class="text-sm py-2 px-3 rounded-md font-medium transition-colors text-gray-600 hover:bg-gray-50">Appointments</a>
+                    class="text-sm py-2 px-3 rounded-md font-medium text-gray-600 hover:bg-gray-50">Appointments</a>
                 <a href="/dashboard"
-                    class="text-sm py-2 px-3 rounded-md font-medium transition-colors text-gray-600 hover:bg-gray-50">Dashboard</a>
+                    class="text-sm py-2 px-3 rounded-md font-medium text-gray-600 hover:bg-gray-50">Dashboard</a>
 
                 <div class="flex flex-col space-y-2 pt-2 border-t">
                     <a href="/login"
