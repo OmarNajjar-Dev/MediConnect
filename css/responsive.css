@@ -15,7 +15,7 @@
 /* Large Screen */
 @media screen and (min-width: 1024px) {
     .container {
-        max-width: 10240px;
+        max-width: 1024px;
     }
 }
 
