@@ -1,3 +1,4 @@
+// Sample testimonials array
 const testimonials = [
   {
     name: "Sarah Johnson",
@@ -12,7 +13,7 @@ const testimonials = [
     role: "Cardiologist",
     content: `"The platform streamlines patient bookings and allows me to efficiently manage appointments and share medical reports securely."`,
     avatar: "M",
-    stars: 5, // Number of stars to display
+    stars: 4, // Number of stars to display
     transitionDelay: "100ms"
   },
   {
@@ -26,15 +27,27 @@ const testimonials = [
 ];
 
 
-// Use map to create an array of testimonial HTML strings
 const testimonialHTMLs = testimonials.map(testimonial => {
+  // Generate filled stars based on rating
+  const filledStars = Array(testimonial.stars)
+    .fill()
+    .map(() => `<i data-lucide="star" class="text-yellow-400 fill-yellow-400 w-5 h-5"></i>`)
+    .join('');
+  
+  // Generate empty stars for the remaining (5 - rating)
+  const emptyStars = Array(5 - testimonial.stars)
+    .fill()
+    .map(() => `<i data-lucide="star" class="text-gray-400 w-5 h-5"></i>`)
+    .join('');
+
   return `
     <div class="animate-on-scroll" style="transition-delay: ${testimonial.transitionDelay};">
       <div class="glass-card rounded-xl p-6 bg-card border border-solid border-card shadow-sm h-full">
         <div class="flex flex-col h-full">
           <div class="mb-6">
             <div class="flex mb-1">
-              ${generateStars(testimonial.stars)}
+              ${filledStars}
+              ${emptyStars}
             </div>
           </div>
           <p class="text-gray-600 mb-6 flex-grow italic">${testimonial.content}</p>
@@ -51,32 +64,7 @@ const testimonialHTMLs = testimonials.map(testimonial => {
       </div>
     </div>
   `;
-});
+}).join('');
 
-// Use forEach to append the HTML to the container
-testimonialHTMLs.forEach(html => {
-  container.innerHTML += html;
-});
-//generate stars 
-function generateStars(stars) {
-  let starsHTML = '';
-
-  for (let i = 1; i <= 5; i++) {
-    const span =document.createElement("span");
-    const starIcon = document.createElement('i');
-    
-    // Set the data-lucide attribute to identify the icon
-    starIcon.setAttribute('data-lucide', 'star');
-    
-    // Set the fill color using the 'fill' attribute
-    if (i <= stars) {
-      span.className="text-yellow-800";
-    } else {
-      span.className="text-gray-300";
-    }
-    span.appendChild(starIcon);
-    starsHTML += span.outerHTML; // Convert the element to HTML string and append it
-  }
-
-  return starsHTML;
-}
+// Update the container with all testimonials at once
+document.getElementById('testimonials-container').innerHTML = testimonialHTMLs;
