@@ -6,15 +6,15 @@ const testimonials = [
     content: `"MediConnect made it so easy to find a specialist and book an appointment. I love being able to see doctor ratings before making a choice."`,
     avatar: "S",
     stars: 5, // Number of stars to display
-    transitionDelay: "0ms"
+    AnimationDelay: "0ms",
   },
   {
     name: "Dr. Michael Chen",
     role: "Cardiologist",
     content: `"The platform streamlines patient bookings and allows me to efficiently manage appointments and share medical reports securely."`,
     avatar: "M",
-    stars: 4, // Number of stars to display
-    transitionDelay: "100ms"
+    stars: 5, // Number of stars to display
+    AnimationDelay: "100ms",
   },
   {
     name: "Emma Rodriguez",
@@ -22,33 +22,34 @@ const testimonials = [
     content: `"Creating and sharing dietary plans with patients has never been easier. The interface is intuitive and saves us so much time."`,
     avatar: "E",
     stars: 5, // Number of stars to display
-    transitionDelay: "200ms"
-  }
+    AnimationDelay: "200ms",
+  },
 ];
 
+const testimonialHTMLs = testimonials
+  .map((testimonial) => {
+    // Generate filled stars based on rating
+    const filledStars = Array(testimonial.stars)
+      .fill()
+      .map(
+        () =>
+          `<i data-lucide="star" class="text-yellow-400 fill-yellow-400 w-4 h-4"></i>`
+      )
+      .join("");
 
-const testimonialHTMLs = testimonials.map(testimonial => {
-  // Generate filled stars based on rating
-  const filledStars = Array(testimonial.stars)
-    .fill()
-    .map(() => `<i data-lucide="star" class="text-yellow-400 fill-yellow-400 w-5 h-5"></i>`)
-    .join('');
-  
-  // Generate empty stars for the remaining (5 - rating)
-  const emptyStars = Array(5 - testimonial.stars)
-    .fill()
-    .map(() => `<i data-lucide="star" class="text-gray-400 w-5 h-5"></i>`)
-    .join('');
+    // Generate empty stars for the remaining (5 - rating)
+    const emptyStars = Array(5 - testimonial.stars)
+      .fill()
+      .map(() => `<i data-lucide="star" class="text-gray-400 w-4 h-4"></i>`)
+      .join("");
 
-  return `
-    <div class="animate-on-scroll" style="transition-delay: ${testimonial.transitionDelay};">
+    return `
+    <div class="animate-on-scroll" style="Animation-delay: ${testimonial.AnimationDelay};">
       <div class="glass-card rounded-xl p-6 bg-card border border-solid border-card shadow-sm h-full">
         <div class="flex flex-col h-full">
-          <div class="mb-6">
-            <div class="flex mb-1">
-              ${filledStars}
-              ${emptyStars}
-            </div>
+          <div class="flex mb-6">
+          ${filledStars}
+          ${emptyStars}
           </div>
           <p class="text-gray-600 mb-6 flex-grow italic">${testimonial.content}</p>
           <div class="flex items-center">
@@ -64,7 +65,9 @@ const testimonialHTMLs = testimonials.map(testimonial => {
       </div>
     </div>
   `;
-}).join('');
+})
+.join("");
 
 // Update the container with all testimonials at once
-document.getElementById('testimonials-container').innerHTML = testimonialHTMLs;
+document.getElementById("testimonials-container").innerHTML = testimonialHTMLs;
+        
