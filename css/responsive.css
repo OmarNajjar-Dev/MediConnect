@@ -10,7 +10,7 @@
     .container {
         max-width: 768px;
     }
-    .footer-content {
+    #footer-content {
         grid-template-columns: repeat(2, minmax(0, 1fr)); 
     }
 }
@@ -20,7 +20,7 @@
     .container {
         max-width: 1024px;
     }
-    .footer-content {
+    #footer-content {
         grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 }
