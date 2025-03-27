@@ -23,13 +23,5 @@ a {
 
 /* --- Container Utility --- */
 .container {
-    width: 100%;
-  }
-
-.glass-card{
-    backdrop-filter: blur(10px);
-}
-
-.testimonial-card{
-  backdrop-filter: blur(12px);
+  width: 100%;
 }
