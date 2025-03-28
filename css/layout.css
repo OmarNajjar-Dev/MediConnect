@@ -35,8 +35,31 @@
     display: table-cell;
 }
 
-.none {
+.hidden {
     display: none;
+}
+
+/* --- Additional Display & Text Utilities --- */
+
+/* Whitespace Utilities */
+.whitespace-normal {
+    white-space: normal;
+}
+
+.whitespace-nowrap {
+    white-space: nowrap;
+}
+
+.whitespace-pre {
+    white-space: pre;
+}
+
+.whitespace-pre-wrap {
+    white-space: pre-wrap;
+}
+
+.whitespace-pre-line {
+    white-space: pre-line;
 }
 
 /* --- Flexbox Utilities --- */
@@ -151,38 +174,6 @@
 
 .grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-.grid-cols-5 {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-}
-
-.grid-cols-6 {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-}
-
-.grid-cols-7 {
-    grid-template-columns: repeat(7, minmax(0, 1fr));
-}
-
-.grid-cols-8 {
-    grid-template-columns: repeat(8, minmax(0, 1fr));
-}
-
-.grid-cols-9 {
-    grid-template-columns: repeat(9, minmax(0, 1fr));
-}
-
-.grid-cols-10 {
-    grid-template-columns: repeat(10, minmax(0, 1fr));
-}
-
-.grid-cols-11 {
-    grid-template-columns: repeat(11, minmax(0, 1fr));
-}
-
-.grid-cols-12 {
-    grid-template-columns: repeat(12, minmax(0, 1fr));
 }
 
 /* --- Other Layout Utilities --- */

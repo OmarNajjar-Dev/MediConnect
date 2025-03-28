@@ -58,7 +58,7 @@
 }
 
 .rounded-lg {
-    border-radius: 0.5rem;     /* 8px */
+    border-radius: 0.6rem;     /* 8px */
 }
 
 .rounded-xl {
@@ -104,4 +104,30 @@
 
 .shadow-none {
     box-shadow: none;
+}
+
+/* --- Outline --- */
+.outline-none {
+    outline: none;
+}
+
+.outline {
+    outline: 1px solid black;
+}
+
+.outline-2 {
+    outline: 2px solid black;
+}
+
+.outline-4 {
+    outline: 4px solid black;
+}
+
+.outline-8 {
+    outline: 8px solid black;
+}
+
+/* Custom Borders */
+.border-t {
+    border-top: 1px solid #e5e7eb;
 }

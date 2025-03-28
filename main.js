@@ -1,13 +1,10 @@
-for (let i = 1; i <= 5; i++) {
-  let color;
-  if (i <= star) {
-    color = "text-yellow-200";
-  } else {
-    color = "text-gray-300";
-  }
-  `
-    <div> 
-     <i data-lucide='star' class='${color}'
-    </div>
-  `;
-}
+// Get the mobile navigation element
+const mobileNav = document.getElementById("mobile-nav");
+
+// Get the menu button element
+const menuButton = document.getElementById("menu-button");
+
+// Toggle the 'hidden' class on the mobile nav when the button is clicked
+menuButton.addEventListener("click", () => {
+  mobileNav.classList.toggle("hidden");
+});
