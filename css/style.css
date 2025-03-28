@@ -5,6 +5,11 @@
   padding: 0;
 }
 
+/* HTML Styles */
+html {
+  scroll-behavior: smooth;
+}
+
 /* Body Styles */
 body {
   font-family: ui-sans-serif, system-ui, sans-serif;

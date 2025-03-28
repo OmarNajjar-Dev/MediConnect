@@ -8,19 +8,31 @@
 }
 
 .border {
-    border-width: 1px;
+    border-width: 1px
 }
 
-.border-2 {
-    border-width: 2px;
+.border-x {
+    border-width: 0 1px 0 1px;
 }
 
-.border-4 {
-    border-width: 4px;
+.border-y {
+  border-width: 1px 0 1px 0;
 }
 
-.border-8 {
-    border-width: 8px;
+.border-b {
+    border-width: 0 0 1px 0
+}
+
+.border-l {
+    border-width: 0 0 0 1px 
+}
+
+.border-r {
+    border-width: 0 1px 0 0
+}
+
+.border-t {
+    border-width: 1px 0 0 0
 }
 
 /* --- Border Styles --- */
@@ -117,21 +129,4 @@
 
 .outline-2 {
     outline: 2px solid black;
-}
-
-.outline-4 {
-    outline: 4px solid black;
-}
-
-.outline-8 {
-    outline: 8px solid black;
-}
-
-/* Custom Borders */
-.border-t {
-    border-top: 1px solid #e5e7eb;
-}
-
-.border-b {
-    border-bottom: 1px solid #e5e7eb;
 }
