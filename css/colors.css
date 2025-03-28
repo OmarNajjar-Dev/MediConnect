@@ -1,388 +1,488 @@
-/* === Primary Colors === */
-.bg-main {
-    background-color: #fcfdfc;
+/* ==================================================
+   ROOT COLORS
+   ================================================== */
+:root {
+    /* Medical Colors */
+    --medical-50: 224, 242, 241;
+    --medical-100: 178, 223, 219;
+    --medical-200: 128, 203, 196;
+    --medical-300: 77, 182, 172;
+    --medical-400: 38, 166, 154;
+    --medical-500: 0, 150, 136;
+    --medical-600: 0, 137, 123;
+    --medical-700: 0, 121, 107;
+    --medical-800: 0, 105, 92;
+    --medical-900: 0, 77, 64;
+
+    /* Gray Colors */
+    --gray-50: 249, 250, 251;
+    --gray-100: 243, 244, 246;
+    --gray-200: 229, 231, 235;
+    --gray-300: 209, 213, 219;
+    --gray-400: 156, 163, 175;
+    --gray-500: 107, 114, 128;
+    --gray-600: 75, 85, 99;
+    --gray-700: 55, 65, 81;
+    --gray-800: 31, 41, 55;
+    --gray-900: 17, 24, 39;
+
+    /* Status Colors */
+    --success: 22, 163, 74;
+    --danger: 240, 68, 64;
+    --warning: 133, 77, 14;
+
+    /* Custom UI Colors */
+    --background: 255, 255, 255;
+    --heading: 15, 23, 41;
+    --card-background: 255, 255, 255;
+    --foreground: 75, 85, 99;
+    --border: 209, 213, 219;
+    --input: 252, 253, 253;
+    --separator: 229, 231, 235;
 }
 
-.text-main {
-    color: #0f1729;
-}
+/* ==================================================
+   BACKGROUND COLOR CLASSES
+   ================================================== */
 
-.border-main {
-    border-color: #d1d5db;
-}
-
-.bg-card {
-    background-color: rgba(255, 255, 255, 0.5);
-}
-
-.border-card {
-    border-color: rgba(255, 255, 255, 0.2);
-}
-
-/* === White & Card Backgrounds === */
-.bg-white {
-    background-color: white;
-}
-
-.text-white {
-    color: white;
-}
-
-/* === Medical Colors === */
+/* Medical Backgrounds */
 .bg-medical-50 {
-    background-color: #e2f2f3;
+    background-color: rgb(var(--medical-50));
 }
 
 .bg-medical-100 {
-    background-color: #b2dfdb;
+    background-color: rgb(var(--medical-100));
 }
 
 .bg-medical-200 {
-    background-color: #80cbc4;
+    background-color: rgb(var(--medical-200));
 }
 
 .bg-medical-300 {
-    background-color: #4db6ac;
+    background-color: rgb(var(--medical-300));
 }
 
 .bg-medical-400 {
-    background-color: #26a69a;
+    background-color: rgb(var(--medical-400));
 }
 
 .bg-medical-500 {
-    background-color: #009485;
+    background-color: rgb(var(--medical-500));
 }
 
 .bg-medical-600 {
-    background-color: #00897b;
+    background-color: rgb(var(--medical-600));
 }
 
 .bg-medical-700 {
-    background-color: #00796b;
+    background-color: rgb(var(--medical-700));
 }
 
 .bg-medical-800 {
-    background-color: #00695c;
+    background-color: rgb(var(--medical-800));
 }
 
 .bg-medical-900 {
-    background-color: #004d40;
+    background-color: rgb(var(--medical-900));
 }
 
-/* === Medical Text Colors === */
+/* Gray Backgrounds */
+.bg-gray-50 {
+    background-color: rgb(var(--gray-50));
+}
+
+.bg-gray-100 {
+    background-color: rgb(var(--gray-100));
+}
+
+.bg-gray-200 {
+    background-color: rgb(var(--gray-200));
+}
+
+.bg-gray-300 {
+    background-color: rgb(var(--gray-300));
+}
+
+.bg-gray-400 {
+    background-color: rgb(var(--gray-400));
+}
+
+.bg-gray-500 {
+    background-color: rgb(var(--gray-500));
+}
+
+.bg-gray-600 {
+    background-color: rgb(var(--gray-600));
+}
+
+.bg-gray-700 {
+    background-color: rgb(var(--gray-700));
+}
+
+.bg-gray-800 {
+    background-color: rgb(var(--gray-800));
+}
+
+.bg-gray-900 {
+    background-color: rgb(var(--gray-900));
+}
+
+/* Status Backgrounds */
+.bg-success {
+    background-color: rgb(var(--success));
+}
+
+.bg-danger {
+    background-color: rgb(var(--danger));
+}
+
+.bg-warning {
+    background-color: rgb(var(--warning));
+}
+
+/* Custom UI Backgrounds */
+.bg-white {
+    background-color: rgba(var(--background));
+}
+
+.bg-background {
+    background-color: rgba(var(--background), 0.8);
+}
+
+.bg-card {
+    background-color: rgba(var(--card-background), 0.8);
+}
+
+.bg-input {
+    background-color: rgb(var(--input));
+}
+
+/* ==================================================
+   TEXT COLOR CLASSES
+   ================================================== */
+
+/* Medical Text Colors */
 .text-medical-50 {
-    color: #e0f2f1;
+    color: rgb(var(--medical-50));
 }
 
 .text-medical-100 {
-    color: #b2dfdb;
+    color: rgb(var(--medical-100));
 }
 
 .text-medical-200 {
-    color: #80cbc4;
+    color: rgb(var(--medical-200));
 }
 
 .text-medical-300 {
-    color: #4db6ac;
+    color: rgb(var(--medical-300));
 }
 
 .text-medical-400 {
-    color: #26a69a;
+    color: rgb(var(--medical-400));
 }
 
 .text-medical-500 {
-    color: #009485;
+    color: rgb(var(--medical-500));
 }
 
 .text-medical-600 {
-    color: #00897b;
+    color: rgb(var(--medical-600));
 }
 
 .text-medical-700 {
-    color: #00796b;
+    color: rgb(var(--medical-700));
 }
 
 .text-medical-800 {
-    color: #00695c;
+    color: rgb(var(--medical-800));
 }
 
 .text-medical-900 {
-    color: #004d40;
+    color: rgb(var(--medical-900));
 }
 
-/* === Grayscale Text Colors === */
+/* Gray Text Colors */
 .text-gray-50 {
-    color: #f9fafb;
+    color: rgb(var(--gray-50));
 }
 
 .text-gray-100 {
-    color: #f3f4f6;
+    color: rgb(var(--gray-100));
 }
 
 .text-gray-200 {
-    color: #e5e7eb;
+    color: rgb(var(--gray-200));
 }
 
 .text-gray-300 {
-    color: #d1d5db;
+    color: rgb(var(--gray-300));
 }
 
 .text-gray-400 {
-    color: #9ca3af;
+    color: rgb(var(--gray-400));
 }
 
 .text-gray-500 {
-    color: #6b7280;
+    color: rgb(var(--gray-500));
 }
 
 .text-gray-600 {
-    color: #4b5563;
+    color: rgb(var(--gray-600));
 }
 
 .text-gray-700 {
-    color: #374151;
+    color: rgb(var(--gray-700));
 }
 
 .text-gray-800 {
-    color: #1f2937;
+    color: rgb(var(--gray-800));
 }
 
 .text-gray-900 {
-    color: #111827;
+    color: rgb(var(--gray-900));
 }
 
-/* === Status Colors === */
-.bg-danger {
-    background-color: #f04440;
+/* Status Text Colors */
+.text-success {
+    color: rgb(var(--success));
 }
 
 .text-danger {
-    color: #f8fafc;
+    color: rgb(var(--danger));
 }
 
-.bg-green-100 {
-    background-color: #dcfce7;
+.text-warning {
+    color: rgb(var(--warning));
 }
 
-.text-green-600 {
-    color: #16a34a;
+/* Primary Text Colors */
+.text-foreground {
+    color: rgb(var(--foreground));
 }
 
-.text-green-800 {
-    color: #166534;
+.text-heading {
+    color: rgb(var(--heading));
 }
 
-.text-yellow-800 {
-    color: #854d0e;
+.text-white {
+    color: rgb(var(--background));
 }
 
-/* === Hover Effects: Primary Colors === */
-.hover\:bg-main:hover {
-    background-color: #fcfdfc;
+/* ==================================================
+   BORDER COLOR CLASSES
+   ================================================== */
+.border-input {
+    border-color: rgb(var(--border));
 }
 
-.hover\:text-main:hover {
-    color: #0f1729;
+.separator {
+    border-color: rgb(var(--separator));
 }
 
-.hover\:border-main:hover {
-    border-color: #e6f0ee;
-}
+/* ==================================================
+   HOVER STATE CLASSES
+   ================================================== */
 
-/* === Hover Effects: White & Card Backgrounds === */
-.hover\:bg-white:hover {
-    background-color: white;
-}
-
-.hover\:text-white:hover {
-    color: white;
-}
-
-/* === Hover Effects: Medical Colors === */
+/* Hover - Medical Backgrounds */
 .hover\:bg-medical-50:hover {
-    background-color: #e7f9f7;
+    background-color: rgba(var(--medical-50));
 }
 
 .hover\:bg-medical-100:hover {
-    background-color: #b2dfdb;
+    background-color: rgba(var(--medical-100));
 }
 
 .hover\:bg-medical-200:hover {
-    background-color: #80cbc4;
+    background-color: rgba(var(--medical-200));
 }
 
 .hover\:bg-medical-300:hover {
-    background-color: #4db6ac;
+    background-color: rgba(var(--medical-300));
 }
 
 .hover\:bg-medical-400:hover {
-    background-color: #26a69a;
+    background-color: rgba(var(--medical-400));
 }
 
 .hover\:bg-medical-500:hover {
-    background-color: #009485;
+    background-color: rgba(var(--medical-500));
 }
 
 .hover\:bg-medical-600:hover {
-    background-color: #00897b;
+    background-color: rgba(var(--medical-600));
 }
 
 .hover\:bg-medical-700:hover {
-    background-color: #00796b;
+    background-color: rgba(var(--medical-700));
 }
 
 .hover\:bg-medical-800:hover {
-    background-color: #00695c;
+    background-color: rgba(var(--medical-800));
 }
 
 .hover\:bg-medical-900:hover {
-    background-color: #004d40;
+    background-color: rgba(var(--medical-900));
 }
 
-/* === Hover Effects: Medical Text Colors === */
-.hover\:text-medical-50:hover {
-    color: #e0f2f1;
-}
-
-.hover\:text-medical-100:hover {
-    color: #b2dfdb;
-}
-
-.hover\:text-medical-200:hover {
-    color: #80cbc4;
-}
-
-.hover\:text-medical-300:hover {
-    color: #4db6ac;
-}
-
-.hover\:text-medical-400:hover {
-    color: #26a69a;
-}
-
-.hover\:text-medical-500:hover {
-    color: #009485;
-}
-
-.hover\:text-medical-600:hover {
-    color: #00897b;
-}
-
-.hover\:text-medical-700:hover {
-    color: #00796b;
-}
-
-.hover\:text-medical-800:hover {
-    color: #00695c;
-}
-
-.hover\:text-medical-900:hover {
-    color: #004d40;
-}
-
-/* === Hover Effects: Grayscale Background Colors === */
+/* Hover - Gray Backgrounds */
 .hover\:bg-gray-50:hover {
-    background-color: #f9fafb;
+    background-color: rgba(var(--gray-50));
 }
 
 .hover\:bg-gray-100:hover {
-    background-color: #f3f4f6;
+    background-color: rgba(var(--gray-100));
 }
 
 .hover\:bg-gray-200:hover {
-    background-color: #e5e7eb;
+    background-color: rgba(var(--gray-200));
 }
 
 .hover\:bg-gray-300:hover {
-    background-color: #d1d5db;
+    background-color: rgba(var(--gray-300));
 }
 
 .hover\:bg-gray-400:hover {
-    background-color: #9ca3af;
+    background-color: rgba(var(--gray-400));
 }
 
 .hover\:bg-gray-500:hover {
-    background-color: #6b7280;
+    background-color: rgba(var(--gray-500));
 }
 
 .hover\:bg-gray-600:hover {
-    background-color: #4b5563;
+    background-color: rgba(var(--gray-600));
 }
 
 .hover\:bg-gray-700:hover {
-    background-color: #374151;
+    background-color: rgba(var(--gray-700));
 }
 
 .hover\:bg-gray-800:hover {
-    background-color: #1f2937;
+    background-color: rgba(var(--gray-800));
 }
 
 .hover\:bg-gray-900:hover {
-    background-color: #111827;
+    background-color: rgba(var(--gray-900));
 }
 
-/* === Hover Effects: Grayscale Text Colors === */
+/* Hover - Status Backgrounds */
+.hover\:bg-success:hover {
+    background-color: rgba(var(--success));
+}
+
+.hover\:bg-danger:hover {
+    background-color: rgba(var(--danger));
+}
+
+.hover\:bg-warning:hover {
+    background-color: rgba(var(--warning));
+}
+
+/* Hover - Custom UI Backgrounds */
+.hover\:bg-background:hover {
+    background-color: rgba(var(--background));
+}
+
+.hover\:bg-card:hover {
+    background-color: rgba(var(--card-foreground));
+}
+
+.hover\:bg-input:hover {
+    background-color: rgb(var(--input));
+}
+
+/* Hover - Medical Text Colors */
+.hover\:text-medical-50:hover {
+    color: rgba(var(--medical-50));
+}
+
+.hover\:text-medical-100:hover {
+    color: rgba(var(--medical-100));
+}
+
+.hover\:text-medical-200:hover {
+    color: rgba(var(--medical-200));
+}
+
+.hover\:text-medical-300:hover {
+    color: rgba(var(--medical-300));
+}
+
+.hover\:text-medical-400:hover {
+    color: rgba(var(--medical-400));
+}
+
+.hover\:text-medical-500:hover {
+    color: rgba(var(--medical-500));
+}
+
+.hover\:text-medical-600:hover {
+    color: rgba(var(--medical-600));
+}
+
+.hover\:text-medical-700:hover {
+    color: rgba(var(--medical-700));
+}
+
+.hover\:text-medical-800:hover {
+    color: rgba(var(--medical-800));
+}
+
+.hover\:text-medical-900:hover {
+    color: rgba(var(--medical-900));
+}
+
+/* Hover - Gray Text Colors */
 .hover\:text-gray-50:hover {
-    color: #f9fafb;
+    color: rgba(var(--gray-50));
 }
 
 .hover\:text-gray-100:hover {
-    color: #f3f4f6;
+    color: rgba(var(--gray-100));
 }
 
 .hover\:text-gray-200:hover {
-    color: #e5e7eb;
+    color: rgba(var(--gray-200));
 }
 
 .hover\:text-gray-300:hover {
-    color: #d1d5db;
+    color: rgba(var(--gray-300));
 }
 
 .hover\:text-gray-400:hover {
-    color: #9ca3af;
+    color: rgba(var(--gray-400));
 }
 
 .hover\:text-gray-500:hover {
-    color: #6b7280;
+    color: rgba(var(--gray-500));
 }
 
 .hover\:text-gray-600:hover {
-    color: #4b5563;
+    color: rgba(var(--gray-600));
 }
 
 .hover\:text-gray-700:hover {
-    color: #374151;
+    color: rgba(var(--gray-700));
 }
 
 .hover\:text-gray-800:hover {
-    color: #1f2937;
+    color: rgba(var(--gray-800));
 }
 
 .hover\:text-gray-900:hover {
-    color: #111827;
+    color: rgba(var(--gray-900));
 }
 
-/* === Hover Effects: Status Colors === */
-.hover\:bg-danger:hover {
-    background-color: #f04440;
+/* Hover - Status Text Colors */
+.hover\:text-success:hover {
+    color: rgba(var(--success));
 }
 
 .hover\:text-danger:hover {
-    color: #f8fafc;
+    color: rgba(var(--danger));
 }
 
-.hover\:bg-green-100:hover {
-    background-color: #dcfce7;
-}
-
-.hover\:text-green-600:hover {
-    color: #16a34a;
-}
-
-.hover\:text-green-800:hover {
-    color: #166534;
-}
-
-.hover\:text-yellow-800:hover {
-    color: #854d0e;
+.hover\:text-warning:hover {
+    color: rgba(var(--warning));
 }
