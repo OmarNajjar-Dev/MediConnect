@@ -40,7 +40,7 @@ body {
 
 /* Hero Section */
 #hero {
-    background: linear-gradient(to right, #dff1f0, #e7f4f8);
+    background: linear-gradient(to bottom right, #e0f2f1, #eff6ff);
 }
 
 /* Container Utility */
@@ -65,16 +65,4 @@ header {
   top: 100%;
   left: 0;
   right: 0;
-}
-
-.glass-card {
-  border-width: 1px;
-  border-color: #fff3;
-  background-color: #ffffff80 rgba(255,255,255,0.5);
-  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / .05);
-  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(0 1px 2px 0 rgb(0 0 0 / .05));
-  --tw-backdrop-blur: blur(12px);
-  -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
-  backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)
 }

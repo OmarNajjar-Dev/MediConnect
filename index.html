@@ -24,7 +24,7 @@
 </head>
 
 <body class="bg-background text-foreground">
-    <header class="fixed z-50 py-5 bg-background transition-all">
+    <header class="fixed z-50 py-5 bg-background backdrop-blur-md transition-all">
         <div class="container mx-auto flex items-center justify-between px-4">
             <a href="/" class="flex items-center">
                 <span class="text-medical-700 text-2xl font-semibold">
@@ -32,7 +32,7 @@
                 </span>
             </a>
 
-            <!-- Desktop Navigation  -->
+            <!-- Desktop Navigation -->
             <nav id="desktop-nav" class="hidden items-center gap-4">
                 <a href="/"
                     class="text-medical-700 text-sm font-medium hover:text-medical-600 transition-colors">Home</a>
@@ -62,7 +62,7 @@
             </div>
 
             <!-- Mobile Navigation (Hidden by default) -->
-            <div id="mobile-nav" class="hidden absolute animate-slide-down shadow-lg">
+            <div id="mobile-nav" class="hidden absolute bg-background backdrop-blur-lg animate-slide-down shadow-lg">
                 <nav class="container mx-auto flex flex-col gap-4 px-4 py-4">
                     <a href="/"
                         class="text-medical-700 bg-medical-50 py-2 px-3 rounded-md text-sm font-medium transition-colors">Home</a>
@@ -89,7 +89,7 @@
     </header>
     <main class="pt-20 overflow-hidden">
 
-        <!-- ========== Hero Section ========== -->
+        <!-- Hero Section -->
         <section id="hero" class="relative py-20">
             <div class="container flex flex-col items-center mx-auto px-4 relative">
 
@@ -108,8 +108,8 @@
 
                     <!-- Short Description -->
                     <p class="text-gray-600 text-xl mb-8">
-                        Book appointments, connect with specialists, and access quality
-                        healthcare services - all in one place.
+                        Book appointments, connect with specialists, and access quality healthcare services - all in one
+                        place.
                     </p>
 
                     <!-- Call-to-Action Buttons -->
@@ -129,10 +129,8 @@
                 <div id="hero-cards-container" class="grid grid-cols-1 max-w-4xl mx-auto gap-6">
                     <!-- Cards will be added dynamically using JavaScript -->
                 </div>
-
             </div>
         </section>
-
 
         <!-- JavaScript -->
         <script src="main.js"></script>
