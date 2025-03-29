@@ -150,6 +150,10 @@
     background-color: rgb(var(--background));
 }
 
+.bg-white-95 {
+    background-color: rgb(var(--background), 0.95);
+}
+
 .bg-background {
     background-color: rgba(var(--background), 0.8);
 }
