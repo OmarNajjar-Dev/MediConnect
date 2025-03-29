@@ -1,22 +1,51 @@
-/* --- Global Reset --- */
+/* Global Reset */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* --- Body Styles --- */
+/* HTML Styles */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Body Styles */
 body {
   font-family: ui-sans-serif, system-ui, sans-serif;
   line-height: 1.6;
 }
 
-/* --- List Style Reset --- */
+/* List Reset */
 ul {
   list-style-type: none;
 }
 
-/* --- Anchor Tag Styles --- */
+/* Anchor Reset */
 a {
   text-decoration: none;
+}
+
+/* Container Utility */
+.container {
+  width: 100%;
+}
+
+/* Pointer Cursor Utility */
+.pointer {
+  cursor: pointer;
+}
+
+/* Header Positioning */
+header {
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+/* Mobile Navigation Positioning */
+#mobile-nav {
+  top: 100%;
+  left: 0;
+  right: 0;
 }
