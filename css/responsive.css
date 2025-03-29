@@ -16,15 +16,29 @@
         max-width: 768px;
     }
 
-    #testimonials-container {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+    #desktop-nav,
+    #sign-in,
+    #sign-up {
+        display: flex;
+    }
+
+    #menu-button {
+        display: none;
+    }
+
+    #mobile-nav {
+        display: none;
     }
 }
 
 /* Large Screen */
 @media screen and (min-width: 1024px) {
     .container {
-        max-width: 10240px;
+        max-width: 1024px;
+    }
+
+    #desktop-nav {
+        gap: 32px;
     }
 }
 
@@ -43,4 +57,6 @@
 }
 
 /* Custom Screen */
-@media screen and (max-width: 768px) {}
+@media screen and (max-width: 768px) {
+
+}
