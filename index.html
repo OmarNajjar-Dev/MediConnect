@@ -6,15 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/colors.css" />
     <link rel="stylesheet" href="css/typography.css" />
     <link rel="stylesheet" href="css/spacing.css" />
-    <link rel="stylesheet" href="css/sizing.css">
-    <link rel="stylesheet" href="css/borders.css">
-    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/sizing.css" />
+    <link rel="stylesheet" href="css/borders.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/animations.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/responsive.css" />
 
@@ -22,7 +23,70 @@
     <title>MediConnect - Bridging Healthcare & Technology</title>
 </head>
 
-<body class="bg-maint">
+<body class="bg-background text-foreground">
+    <header class="fixed z-50 py-5 bg-background transition-all">
+        <div class="container mx-auto flex items-center justify-between px-4">
+            <a href="/" class="flex items-center">
+                <span class="text-medical-700 text-2xl font-semibold">
+                    Medi<span class="text-medical-500">Connect</span>
+                </span>
+            </a>
+
+            <!-- Desktop Navigation  -->
+            <nav id="desktop-nav" class="hidden items-center gap-4">
+                <a href="/"
+                    class="text-medical-700 text-sm font-medium hover:text-medical-600 transition-colors">Home</a>
+                <a href="/doctors"
+                    class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Doctors</a>
+                <a href="/hospitals"
+                    class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Hospitals</a>
+                <a href="/appointments"
+                    class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Appointments</a>
+                <a href="/dashboard"
+                    class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Dashboard</a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <a href="/login" id="sign-in"
+                    class="hidden items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-3 rounded-md text-sm font-medium whitespace-nowrap transition-all">Sign
+                    In</a>
+                <a href="/signup" id="sign-up"
+                    class="hidden items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-3 rounded-md text-sm font-medium whitespace-nowrap transition-all">Sign
+                    Up</a>
+
+                <!-- Mobile Menu Button -->
+                <button id="menu-button"
+                    class="inline-flex items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-0 pointer">
+                    <i data-lucide="menu" class="h-4 w-4"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Navigation (Hidden by default) -->
+            <div id="mobile-nav" class="hidden absolute animate-slide-down shadow-lg">
+                <nav class="container mx-auto flex flex-col gap-4 px-4 py-4">
+                    <a href="/"
+                        class="text-medical-700 bg-medical-50 py-2 px-3 rounded-md text-sm font-medium transition-colors">Home</a>
+                    <a href="/doctors"
+                        class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-md text-sm font-medium transition-colors">Doctors</a>
+                    <a href="/hospitals"
+                        class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-md text-sm font-medium transition-colors">Hospitals</a>
+                    <a href="/appointments"
+                        class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-md text-sm font-medium transition-colors">Appointments</a>
+                    <a href="/dashboard"
+                        class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-md text-sm font-medium transition-colors">Dashboard</a>
+
+                    <div class="flex flex-col pt-2 gap-2 border-t border-solid separator">
+                        <a href="/login"
+                            class="inline-flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-4 py-2 rounded-md text-sm font-medium transition-all">Sign
+                            In</a>
+                        <a href="/signup"
+                            class="inline-flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-4 py-2 rounded-md text-sm font-medium transition-colors">Sign
+                            Up</a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
     <main class="pt-20 overflow-hidden">
 
         <!-- ========== Hero Section ========== -->
@@ -30,7 +94,7 @@
             <div class="container flex flex-col items-center mx-auto px-4 relative">
 
                 <!-- Hero Content -->
-                <div class="hero-content text-center mb-12 max-w-3xl mx-auto">
+                <div id="hero-content" class="text-center mb-12 max-w-3xl mx-auto">
                     <!-- Small badge above title -->
                     <span
                         class="inline-block bg-medical-100 text-medical-800 rounded-full text-sm font-medium px-3 py-1 mb-4">
@@ -38,7 +102,7 @@
                     </span>
 
                     <!-- Main Heading -->
-                    <h1 class="text-gray-900 text-4xl leading-tight tracking-tight mb-4">
+                    <h1 class="text-heading text-4xl leading-tight tracking-tight mb-4">
                         Connecting Patients with Healthcare Professionals
                     </h1>
 
@@ -49,13 +113,13 @@
                     </p>
 
                     <!-- Call-to-Action Buttons -->
-                    <div class="cta-buttons flex flex-col justify-center gap-4">
-                        <a href="#appointments.html"
-                            class="inline-flex items-center justify-center bg-medical-500 hover:bg-medical-400 rounded-full text-white text-sm font-medium px-8 h-11">
+                    <div id="cta-buttons" class="flex flex-col justify-center gap-4">
+                        <a href="/appointments"
+                            class="inline-flex items-center justify-center bg-medical-500 hover:bg-medical-400 rounded-full text-white text-sm font-medium px-8 h-11 transition-all">
                             Book an Appointment
                         </a>
-                        <a href="#doctor.html"
-                            class="inline-flex items-center justify-center bg-main rounded-full border-input text-main border border-solid border-main hover:text-medical-400 hover:bg-medical-50 text-sm font-medium px-8 h-11">
+                        <a href="/doctor"
+                            class="inline-flex items-center justify-center rounded-full border-input text-heading border border-solid border-input bg-background hover:text-medical-400 hover:bg-medical-50 text-sm font-medium px-8 h-11 transition-all">
                             Find a Doctor
                         </a>
                     </div>

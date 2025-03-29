@@ -1,3 +1,14 @@
+// Get the mobile navigation element
+const mobileNav = document.getElementById("mobile-nav");
+
+// Get the menu button element
+const menuButton = document.getElementById("menu-button");
+
+// Toggle the 'hidden' class on the mobile nav when the button is clicked
+menuButton.addEventListener("click", () => {
+  mobileNav.classList.toggle("hidden");
+});
+
 // Select the container element where hero cards will be added
 const heroContainer = document.getElementById("hero-cards-container");
 
@@ -24,7 +35,7 @@ const heroContent = [
 const heroCards = heroContent.map(
   (card) =>
     `
-      <div class="hero-card bg-card border border-solid border-card rounded-xl shadow-sm p-6">
+      <div class="bg-card border border-solid border-card rounded-xl shadow-sm p-6">
           <div class="card-container text-center">
               <div class="flex justify-center items-center text-medical-600 bg-medical-100 rounded-full mx-auto mb-4 w-12 h-12">
                   ${card.icon}
@@ -37,4 +48,4 @@ const heroCards = heroContent.map(
 );
 
 // Append each hero card HTML to the hero container
-heroCards.forEach((card) => heroContainer.innerHTML += card);
+heroCards.forEach((card) => (heroContainer.innerHTML += card));
