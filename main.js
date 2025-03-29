@@ -6,52 +6,56 @@ const menuButton = document.getElementById("menu-button");
 
 // Toggle the 'hidden' class on the mobile nav when the button is clicked
 menuButton.addEventListener("click", () => {
-    mobileNav.classList.toggle("hidden");
+  mobileNav.classList.toggle("hidden");
+});
 
-    // Sample testimonials array
-    const testimonials = [
-        {
-            name: "Sarah Johnson",
-            role: "Patient",
-            content: `"MediConnect made it so easy to find a specialist and book an appointment. I love being able to see doctor ratings before making a choice."`,
-            avatar: "S",
-            stars: 5, // Number of stars to display
-            animationDelay: "0ms",
-        },
-        {
-            name: "Dr. Michael Chen",
-            role: "Cardiologist",
-            content: `"The platform streamlines patient bookings and allows me to efficiently manage appointments and share medical reports securely."`,
-            avatar: "M",
-            stars: 5, // Number of stars to display
-            animationDelay: "100ms",
-        },
-        {
-            name: "Emma Rodriguez",
-            role: "Nurse",
-            content: `"Creating and sharing dietary plans with patients has never been easier. The interface is intuitive and saves us so much time."`,
-            avatar: "E",
-            stars: 5, // Number of stars to display
-            animationDelay: "200ms",
-        },
-    ];
+// Sample testimonials array
+const testimonials = [
+  {
+    name: "Sarah Johnson",
+    role: "Patient",
+    content: `"MediConnect made it so easy to find a specialist and book an appointment. I love being able to see doctor ratings before making a choice."`,
+    avatar: "S",
+    stars: 5, // Number of stars to display
+    animationDelay: "0ms",
+  },
+  {
+    name: "Dr. Michael Chen",
+    role: "Cardiologist",
+    content: `"The platform streamlines patient bookings and allows me to efficiently manage appointments and share medical reports securely."`,
+    avatar: "M",
+    stars: 5, // Number of stars to display
+    animationDelay: "100ms",
+  },
+  {
+    name: "Emma Rodriguez",
+    role: "Nurse",
+    content: `"Creating and sharing dietary plans with patients has never been easier. The interface is intuitive and saves us so much time."`,
+    avatar: "E",
+    stars: 5, // Number of stars to display
+    animationDelay: "200ms",
+  },
+];
 
-    // Generate testimonials HTML
-    const testimonialHTMLs = testimonials
-        .map((testimonial) => {
-            // Generate filled stars based on rating
-            const filledStars = Array(testimonial.stars)
-                .fill()
-                .map(() => `<i data-lucide="star" class="text-yellow-400 fill-yellow-400 w-4 h-4"></i>`)
-                .join("");
+// Generate testimonials HTML
+const testimonialHTMLs = testimonials
+  .map((testimonial) => {
+    // Generate filled stars based on rating
+    const filledStars = Array(testimonial.stars)
+      .fill()
+      .map(
+        () =>
+          `<i data-lucide="star" class="text-star-400 fill-star-400 w-4 h-4"></i>`
+      )
+      .join("");
 
-            // Generate empty stars for the remaining (5 - rating)
-            const emptyStars = Array(5 - testimonial.stars)
-                .fill()
-                .map(() => `<i data-lucide="star" class="text-gray-400 w-4 h-4"></i>`)
-                .join("");
+    // Generate empty stars for the remaining (5 - rating)
+    const emptyStars = Array(5 - testimonial.stars)
+      .fill()
+      .map(() => `<i data-lucide="star" class="text-gray-400 w-4 h-4"></i>`)
+      .join("");
 
-            return `
+    return `
                 <div class="animate-on-scroll" style="animation-delay: ${testimonial.animationDelay};">
                     <div class="rounded-xl p-6 bg-card border border-solid border-card shadow-sm h-full">
                         <div class="flex flex-col h-full">
@@ -67,7 +71,7 @@ menuButton.addEventListener("click", () => {
                                     ${testimonial.avatar}
                                 </div>
                                 <div class="ml-3">
-                                    <p class="font-medium">${testimonial.name}</p>
+                                    <p class="font-medium text-heading">${testimonial.name}</p>
                                     <p class="text-sm text-gray-500">${testimonial.role}</p>
                                 </div>
                             </div>
@@ -75,9 +79,8 @@ menuButton.addEventListener("click", () => {
                     </div>
                 </div>
             `;
-        })
-        .join("");
+  })
+  .join("");
 
-    // Update the container with all testimonials at once
-    document.getElementById("testimonials-container").innerHTML = testimonialHTMLs;
-});
+// Update the container with all testimonials at once
+document.getElementById("testimonials-container").innerHTML = testimonialHTMLs;
