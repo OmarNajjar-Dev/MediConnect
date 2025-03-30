@@ -1,8 +1,8 @@
 /* Global Reset */
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 /* HTML Styles */
@@ -18,12 +18,29 @@ body {
 
 /* List Reset */
 ul {
-  list-style-type: none;
+    list-style: none;
 }
 
 /* Anchor Reset */
 a {
-  text-decoration: none;
+    text-decoration: none;
+}
+
+/* ========== Global Styles ========== */
+body {
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    line-height: 1.6;
+}
+
+.container {
+    width: 100%;
+}
+
+/* ========== Section Styles ========== */
+
+/* Hero Section */
+#hero {
+    background: linear-gradient(to bottom right, #e0f2f1, #eff6ff);
 }
 
 /* Container Utility */

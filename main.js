@@ -7,80 +7,46 @@ const menuButton = document.getElementById("menu-button");
 // Toggle the 'hidden' class on the mobile nav when the button is clicked
 menuButton.addEventListener("click", () => {
   mobileNav.classList.toggle("hidden");
+  document.body.classList.toggle("overflow-hidden");
 });
 
-// Sample testimonials array
-const testimonials = [
+// Select the container element where hero cards will be added
+const heroContainer = document.getElementById("hero-cards-container");
+
+// Array of hero card data
+const heroContent = [
   {
-    name: "Sarah Johnson",
-    role: "Patient",
-    content: `"MediConnect made it so easy to find a specialist and book an appointment. I love being able to see doctor ratings before making a choice."`,
-    avatar: "S",
-    stars: 5, // Number of stars to display
-    animationDelay: "0ms",
+    icon: "<i data-lucide='calendar'></i>", // Icon for scheduling feature
+    title: "Easy Scheduling", // Feature title
+    description: "Book appointments with doctors in just a few clicks", // Feature description
   },
   {
-    name: "Dr. Michael Chen",
-    role: "Cardiologist",
-    content: `"The platform streamlines patient bookings and allows me to efficiently manage appointments and share medical reports securely."`,
-    avatar: "M",
-    stars: 5, // Number of stars to display
-    animationDelay: "100ms",
+    icon: "<i data-lucide='users'></i>", // Icon for specialists feature
+    title: "Top Specialists", // Feature title
+    description: "Connect with experienced healthcare professionals", // Feature description
   },
   {
-    name: "Emma Rodriguez",
-    role: "Nurse",
-    content: `"Creating and sharing dietary plans with patients has never been easier. The interface is intuitive and saves us so much time."`,
-    avatar: "E",
-    stars: 5, // Number of stars to display
-    animationDelay: "200ms",
+    icon: "<i data-lucide='hospital'></i>", // Icon for hospital info feature
+    title: "Hospital Info", // Feature title
+    description: "Find hospitals with available beds and services", // Feature description
   },
 ];
 
-// Generate testimonials HTML
-const testimonialHTMLs = testimonials
-  .map((testimonial) => {
-    // Generate filled stars based on rating
-    const filledStars = Array(testimonial.stars)
-      .fill()
-      .map(
-        () =>
-          `<i data-lucide="star" class="text-star-400 fill-star-400 w-4 h-4"></i>`
-      )
-      .join("");
+// Generate HTML for each hero card
+const heroCards = heroContent.map(
+  (card) =>
+    `
+      <div class="bg-card border border-solid border-card rounded-xl backdrop-blur-md shadow-sm p-6">
+          <div class="card-container text-center">
+              <div class="flex justify-center items-center text-medical-600 bg-medical-100 rounded-full mx-auto mb-4 w-12 h-12">
+                  ${card.icon}
+              </div>
+              <h3 class="text-heading text-xl font-medium tracking-tight capitalize mb-2">${card.title}</h3>
+              <p class="text-gray-600">${card.description}</p>
+          </div>
+      </div>
+    `
+);
 
-    // Generate empty stars for the remaining (5 - rating)
-    const emptyStars = Array(5 - testimonial.stars)
-      .fill()
-      .map(() => `<i data-lucide="star" class="text-gray-400 w-4 h-4"></i>`)
-      .join("");
-
-    return `
-                <div class="animate-on-scroll" style="animation-delay: ${testimonial.animationDelay};">
-                    <div class="rounded-xl p-6 bg-card border border-solid border-card shadow-sm h-full">
-                        <div class="flex flex-col h-full">
-                            <div class="mb-6">
-                                <div class="flex mb-1">
-                                    ${filledStars}
-                                    ${emptyStars}
-                                </div>
-                            </div>
-                            <p class="text-gray-600 mb-6 flex-grow italic">${testimonial.content}</p>
-                            <div class="flex items-center">
-                                <div class="w-10 h-10 rounded-full bg-medical-200 flex items-center justify-center text-medical-700 font-medium">
-                                    ${testimonial.avatar}
-                                </div>
-                                <div class="ml-3">
-                                    <p class="font-medium text-heading">${testimonial.name}</p>
-                                    <p class="text-sm text-gray-500">${testimonial.role}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-  })
-  .join("");
-
-// Update the container with all testimonials at once
-document.getElementById("testimonials-container").innerHTML = testimonialHTMLs;
+// Append each hero card HTML to the hero container
+heroCards.forEach((card) => (heroContainer.innerHTML += card));
