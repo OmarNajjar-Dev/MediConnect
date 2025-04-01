@@ -49,3 +49,33 @@ header {
   left: 0;
   right: 0;
 }
+
+.search-input {
+  transition: outline 0.2s, ring 0.2s;
+  /* focus animation */
+}
+
+.search-input::placeholder {
+  color: #6b7280
+}
+
+.search-input:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px #3b82f6, 0 0 0 4px #e0f2fe;
+  /* Blue-500 for --ring, Light Blue-100 for --ring-offset-background */
+}
+
+.search-input:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.min-h-screen {
+  min-height: 100vh
+}
+
+[data-lucide="search"] {
+  left: 0.75rem;/* 12px, adjust if needed for spacing */
+  top: 50%;
+  transform: translateY(-50%);/* Vertically center the icon */
+}

@@ -2,12 +2,13 @@
 <html lang="en">
 
 <head>
+    <!-- Meta Tags -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MediConnect - Bridging Healthcare & Technology</title>
 
-    <!-- Lucide Icons -->
-    <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <!-- External Script for Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/colors.css" />
@@ -21,18 +22,92 @@
     <link rel="stylesheet" href="css/responsive.css" />
 </head>
 
-<body class="bg-background text-foreground">
-    <main class="pt-20 overflow-hidden">
-        <!-- Content goes here -->
+<body class="bg-background">
+
+    <!-- Main Content -->
+    <main class="pt-20 pb-16 min-h-screen bg-gray-50">
+        <div class="container mx-auto px-4">
+            
+            <!-- Header Section -->
+            <div class="py-8">
+                <h1 class="text-3xl font-bold mb-2 tracking-tight text-heading">Find Doctors</h1>
+                <p class="text-gray-600">Connect with top specialists in various medical fields</p>
+            </div>
+
+            <!-- Search Section -->
+            <div class="search-container flex gap-6 mb-8">
+                <div class="search-input-container text-xl flex-grow">
+                    <div class="input-wrapper relative">
+                        <!-- Search Icon (Lucide) -->
+                        <i data-lucide="search" class="absolute text-gray-500"></i>
+                        <!-- Search Input Field -->
+                        <input type="text" placeholder="Search doctors by name, specialty, or hospital"
+                        class="search-input px-10 h-12 flex w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm outline-none"/>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Specialties Section -->
+            <div class="specialties-container mb-8 overflow-x-auto">
+                <div class="buttons-container inline-flex gap-2 pb-2">
+                
+                    <!-- All Specialties Button -->
+                    <button id="all-specialties" class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background
+                    rounded-full text-sm font-medium transition-all border border-solid border-input hover:bg-medical-50 hover:text-medical-600 h-10 px-4 py-2">
+                        All Specialties
+                    </button>
+                    
+                    <!-- Cardiologist Button -->
+                    <button id="cardiologist" class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background
+                     rounded-full text-sm font-medium transition-all border border-solid border-input hover:bg-medical-50 hover:text-medical-600 h-10 px-4 py-2">
+                        Cardiologist
+                    </button>
+
+                    <!-- Dermatologist Button -->
+                    <button id="dermatologist" class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background
+                    rounded-full text-sm font-medium transition-all border border-solid border-input hover:bg-medical-50 hover:text-medical-600 h-10 px-4 py-2">
+                        Dermatologist
+                    </button>
+
+                    <!-- Neurology Button -->
+                    <button id="neurology" class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background
+                    rounded-full text-sm font-medium transition-all border border-solid border-input hover:bg-medical-50 hover:text-medical-600 h-10 px-4 py-2">
+                        Neurology
+                    </button>
+
+                    <!-- Orthopedics Button -->
+                    <button id="orthopedics" class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background
+                    rounded-full text-sm font-medium transition-all border border-solid border-input hover:bg-medical-50 hover:text-medical-600 h-10 px-4 py-2">
+                        Orthopedics
+                    </button>
+
+                    <!-- Pediatrics Button -->
+                    <button id="pediatrics" class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background
+                    rounded-full text-sm font-medium transition-all border border-solid border-input hover:bg-medical-50 hover:text-medical-600 h-10 px-4 py-2">
+                        Pediatrics
+                    </button>
+
+                    <!-- Psychiatry Button -->
+                    <button id="psychiatry" class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background
+                    rounded-full text-sm font-medium transition-all border border-solid border-input hover:bg-medical-50 hover:text-medical-800 h-10 px-4 py-2">
+                        Psychiatry
+                    </button>
+
+                </div>
+            </div>
+            <div id="doctor-cards-container" class="grid grid-cols-1 gap-6"></div>
+
+        </div>
     </main>
 
-    <!-- JavaScript -->
+    <!-- External JavaScript -->
     <script defer src="main.js"></script>
+
+    <!-- Initialize Lucide Icons -->
     <script>
-
         lucide.createIcons(); // Initialize Lucide icons after DOM load
-
     </script>
+
 </body>
 
 </html>
