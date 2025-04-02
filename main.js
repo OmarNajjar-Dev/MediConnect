@@ -2,7 +2,7 @@ const doctors = [
     {
       id: 1,
       name: "Dr. Sarah Johnson",
-      specialty: "Cardiologist",
+      specialty: "Gastroenterologist",
       imageUrl: "https://randomuser.me/api/portraits/women/45.jpg",
       hospital: "Central Medical Center",
       rating: 4.9,
@@ -13,7 +13,7 @@ const doctors = [
     {
       id: 2,
       name: "Dr. Michael Chen",
-      specialty: "Dermatologist",
+      specialty: "Dentist",
       imageUrl: "https://randomuser.me/api/portraits/men/32.jpg",
       hospital: "Westside Hospital",
       rating: 4.7,
@@ -24,7 +24,7 @@ const doctors = [
     {
       id: 3,
       name: "Dr. Emily Rodriguez",
-      specialty: "Neurology",
+      specialty: "Virologist",
       imageUrl: "https://randomuser.me/api/portraits/women/63.jpg",
       hospital: "Metropolitan Medical Center",
       rating: 4.8,
@@ -35,7 +35,7 @@ const doctors = [
     {
       id: 4,
       name: "Dr. James Wilson",
-      specialty: "Orthopedics",
+      specialty: "Orthopedic Surgeon",
       imageUrl: "https://randomuser.me/api/portraits/men/46.jpg",
       hospital: "Central Medical Center",
       rating: 4.6,
@@ -57,7 +57,7 @@ const doctors = [
     {
       id: 6,
       name: "Dr. Robert Taylor",
-      specialty: "Psychiatry",
+      specialty: "Ophthalmologist",
       imageUrl: "https://randomuser.me/api/portraits/men/79.jpg",
       hospital: "Behavioral Health Institute",
       rating: 4.8,
@@ -78,7 +78,7 @@ doctors.map(doctor => {
           <div class="w-20 h-20 rounded-full overflow-hidden mr-4 flex-shrink-0">
             <img src="${doctor.imageUrl}" alt="${doctor.name}" class="w-full h-full object-cover" loading="lazy"/>
           </div>
-          
+        
           <div>
             <h2 class="text-lg font-bold">${doctor.name}</h2>
             <p class="text-medical-600 font-medium">${doctor.specialty}</p>
@@ -88,7 +88,7 @@ doctors.map(doctor => {
             </div>
             <div class="flex items-center">
               <!-- Replacing SVG with Lucide Star Icon -->
-              <i class="lucide lucide-star text-yellow-500 fill-yellow-500 mr-1" style="font-size: 14px;"></i>
+              <i data-lucide="star" class="text-star-400 fill-star-400 w-4 h-4"></i>
               <span class="font-medium text-sm">${doctor.rating}</span>
               <span class="text-gray-500 text-xs ml-1">(${doctor.reviews} reviews)</span>
             </div>
