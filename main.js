@@ -83,11 +83,10 @@ doctors.map(doctor => {
             <h2 class="text-lg font-bold">${doctor.name}</h2>
             <p class="text-medical-600 font-medium">${doctor.specialty}</p>
             <div class="flex items-center mt-1 mb-1">
-              <i class="lucide lucide-user text-gray-500 mr-1" style="font-size: 14px;"></i>
+              <i data-lucide="map-pin" class="h-7 w-7 text-medical-500 pr-2"></i>
               <span class="text-gray-600 text-sm">${doctor.hospital}</span>
             </div>
             <div class="flex items-center">
-              <!-- Replacing SVG with Lucide Star Icon -->
               <i data-lucide="star" class="text-star-400 fill-star-400 w-4 h-4"></i>
               <span class="font-medium text-sm">${doctor.rating}</span>
               <span class="text-gray-500 text-xs ml-1">(${doctor.reviews} reviews)</span>
