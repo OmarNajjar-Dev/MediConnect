@@ -1,3 +1,25 @@
+const header = document.querySelector("header");
+
+// Handle scroll to change header appearance
+let isScrolled = false;
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 20) {
+    header.classList.remove("py-5");
+    header.classList.add(
+      "shadow-sm",
+      "backdrop-blur-md",
+      "py-3"
+    );
+  } else {
+    header.classList.add("py-5");
+    header.classList.remove(
+      "shadow-sm",
+      "backdrop-blur-md",
+      "py-3"
+    );
+  }
+});
+
 // Get the mobile navigation element
 const mobileNav = document.getElementById("mobile-nav");
 
@@ -36,7 +58,7 @@ const heroContent = [
 const heroCards = heroContent.map(
   (card) =>
     `
-      <div class="bg-card border border-solid border-card rounded-xl backdrop-blur-md shadow-sm p-6">
+      <div class="bg-card border border-solid border-card rounded-lg backdrop-blur-md shadow-sm p-6">
           <div class="card-container text-center">
               <div class="flex justify-center items-center text-medical-600 bg-medical-100 rounded-full mx-auto mb-4 w-12 h-12">
                   ${card.icon}
