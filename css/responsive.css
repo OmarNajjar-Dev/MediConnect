@@ -3,12 +3,33 @@
     .container {
         max-width: 640px;
     }
+
+    #hero h1 {
+        font-size: 3rem;            /* 48px */
+    }
+
+    #cta-buttons {
+        flex-direction: row;
+    }
 }
 
 /* Medium Screen */
 @media screen and (min-width: 768px) {
     .container {
         max-width: 768px;
+    }
+
+    #hero {
+        padding-top: 112px;
+        padding-bottom: 112px;
+    }
+
+    #hero h1 {
+        font-size: 3.75rem;         /* 60px */
+    }
+
+    #hero-cards-container {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
     #desktop-nav,
@@ -64,4 +85,8 @@
 }
 
 /* Custom Screen */
-@media screen and (max-width: 768px) {}
+@media screen and (max-width: 768px) {
+    #hero-cards-container {
+        width: 100%;
+    }
+}

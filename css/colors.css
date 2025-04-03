@@ -2,7 +2,7 @@
    ROOT COLORS
    ================================================== */
 :root {
-    /* Medical Colors */
+    /* Primary Colors: Medical */
     --medical-50: 224, 242, 241;
     --medical-100: 178, 223, 219;
     --medical-200: 128, 203, 196;
@@ -14,7 +14,7 @@
     --medical-800: 0, 105, 92;
     --medical-900: 0, 77, 64;
 
-    /* Gray Colors */
+    /* Neutral Colors: Gray */
     --gray-50: 249, 250, 251;
     --gray-100: 243, 244, 246;
     --gray-200: 229, 231, 235;
@@ -36,14 +36,19 @@
     --heading: 15, 23, 41;
     --card-background: 255, 255, 255;
     --foreground: 75, 85, 99;
+    --border-card: 255, 255, 255, 0.2;
     --border: 209, 213, 219;
     --input: 252, 253, 253;
     --separator: 229, 231, 235;
+
+    /* Star Colors */
+    --rating-400: 250, 204, 21;
+    --rating-500: 234, 179, 8;
 }
 
 /* ==================================================
-   BACKGROUND COLOR CLASSES
-   ================================================== */
+     BACKGROUND COLOR CLASSES
+     ================================================== */
 
 /* Medical Backgrounds */
 .bg-medical-50 {
@@ -142,7 +147,11 @@
 
 /* Custom UI Backgrounds */
 .bg-white {
-    background-color: rgba(var(--background));
+    background-color: rgb(var(--background));
+}
+
+.bg-white-95 {
+    background-color: rgb(var(--background), 0.95);
 }
 
 .bg-background {
@@ -150,7 +159,7 @@
 }
 
 .bg-card {
-    background-color: rgba(var(--card-background), 0.8);
+    background-color: rgba(var(--card-background), 0.5);
 }
 
 .bg-input {
@@ -158,8 +167,8 @@
 }
 
 /* ==================================================
-   TEXT COLOR CLASSES
-   ================================================== */
+     TEXT COLOR CLASSES
+     ================================================== */
 
 /* Medical Text Colors */
 .text-medical-50 {
@@ -270,8 +279,8 @@
 }
 
 /* ==================================================
-   BORDER COLOR CLASSES
-   ================================================== */
+     BORDER COLOR CLASSES
+     ================================================== */
 .border-input {
     border-color: rgb(var(--border));
 }
@@ -280,9 +289,13 @@
     border-color: rgb(var(--separator));
 }
 
+.border-card {
+    border-color: rgb(var(--border-card));
+}
+
 /* ==================================================
-   HOVER STATE CLASSES
-   ================================================== */
+     HOVER STATE CLASSES
+     ================================================== */
 
 /* Hover - Medical Backgrounds */
 .hover\:bg-medical-50:hover {
@@ -384,8 +397,9 @@
     background-color: rgba(var(--background));
 }
 
+/* Corrected variable name for card background hover */
 .hover\:bg-card:hover {
-    background-color: rgba(var(--card-foreground));
+    background-color: rgba(var(--card-background), 0.7);
 }
 
 .hover\:bg-input:hover {
@@ -485,4 +499,24 @@
 
 .hover\:text-warning:hover {
     color: rgba(var(--warning));
+}
+
+/* ==================================================
+     STAR COLORS
+     ================================================== */
+
+.text-star-400 {
+    color: rgb(var(--rating-400));
+}
+
+.fill-star-400 {
+    fill: rgb(var(--rating-400));
+}
+
+.text-star-500 {
+    color: rgb(var(--rating-500));
+}
+
+.fill-star-500 {
+    fill: rgb(var(--rating-500));
 }
