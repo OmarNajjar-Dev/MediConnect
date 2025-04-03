@@ -1,51 +1,114 @@
-// Get the mobile navigation element
-const mobileNav = document.getElementById("mobile-nav");
-
-// Get the menu button element
-const menuButton = document.getElementById("menu-button");
-
-// Toggle the 'hidden' class on the mobile nav when the button is clicked
-menuButton.addEventListener("click", () => {
-  mobileNav.classList.toggle("hidden");
-});
-
-// Select the container element where hero cards will be added
-const heroContainer = document.getElementById("hero-cards-container");
-
-// Array of hero card data
-const heroContent = [
+const doctors = [
   {
-    icon: "<i data-lucide='calendar'></i>", // Icon for scheduling feature
-    title: "Easy Scheduling", // Feature title
-    description: "Book appointments with doctors in just a few clicks", // Feature description
+    id: 1,
+    name: "Dr. Sarah Johnson",
+    specialty: "Cardiologist",
+    imageUrl: "https://randomuser.me/api/portraits/women/45.jpg",
+    hospital: "Central Medical Center",
+    rating: 4.9,
+    reviews: 124,
+    bio: "Dr. Sarah Johnson is a board-certified cardiologist with over 12 years of experience in treating cardiovascular diseases. She completed her medical training at Harvard Medical School...",
+    profileLink: "/appointments?doctor=1"
   },
   {
-    icon: "<i data-lucide='users'></i>", // Icon for specialists feature
-    title: "Top Specialists", // Feature title
-    description: "Connect with experienced healthcare professionals", // Feature description
+    id: 2,
+    name: "Dr. Michael Chen",
+    specialty: "Dermatologist",
+    imageUrl: "https://randomuser.me/api/portraits/men/32.jpg",
+    hospital: "Westside Hospital",
+    rating: 4.7,
+    reviews: 98,
+    bio: "Dr. Michael Chen specializes in medical, surgical, and cosmetic dermatology. He has expertise in treating skin conditions like acne, eczema, psoriasis, and skin cancer...",
+    profileLink: "/appointments?doctor=2"
   },
   {
-    icon: "<i data-lucide='hospital'></i>", // Icon for hospital info feature
-    title: "Hospital Info", // Feature title
-    description: "Find hospitals with available beds and services", // Feature description
+    id: 3,
+    name: "Dr. Emily Rodriguez",
+    specialty: "Neurology",
+    imageUrl: "https://randomuser.me/api/portraits/women/63.jpg",
+    hospital: "Metropolitan Medical Center",
+    rating: 4.8,
+    reviews: 156,
+    bio: "Dr. Emily Rodriguez is a neurologist with expertise in headache disorders, multiple sclerosis, and neurodegenerative diseases. She is dedicated to providing compassionate care...",
+    profileLink: "/appointments?doctor=3"
   },
+  {
+    id: 4,
+    name: "Dr. James Wilson",
+    specialty: "Orthopedics",
+    imageUrl: "https://randomuser.me/api/portraits/men/46.jpg",
+    hospital: "Central Medical Center",
+    rating: 4.6,
+    reviews: 87,
+    bio: "Dr. James Wilson is an orthopedic surgeon specializing in sports medicine, joint replacement, and trauma. With 20 years of experience, he has helped thousands of patients...",
+    profileLink: "/appointments?doctor=4"
+  },
+  {
+    id: 5,
+    name: "Dr. Lisa Kim",
+    specialty: "Pediatrics",
+    imageUrl: "https://randomuser.me/api/portraits/women/69.jpg",
+    hospital: "Children's Health Center",
+    rating: 4.9,
+    reviews: 142,
+    bio: "Dr. Lisa Kim is a dedicated pediatrician who provides comprehensive healthcare for children from birth through adolescence. She is known for her gentle approach...",
+    profileLink: "/appointments?doctor=5"
+  },
+  {
+    id: 6,
+    name: "Dr. Robert Taylor",
+    specialty: "Psychiatry",
+    imageUrl: "https://randomuser.me/api/portraits/men/79.jpg",
+    hospital: "Behavioral Health Institute",
+    rating: 4.8,
+    reviews: 73,
+    bio: "Dr. Robert Taylor is a psychiatrist specializing in mood disorders, anxiety, and PTSD. He takes a holistic approach to mental health, combining medication management...",
+    profileLink: "/appointments?doctor=6"
+  }
 ];
 
-// Generate HTML for each hero card
-const heroCards = heroContent.map(
-  (card) =>
-    `
-      <div class="bg-card border border-solid border-card rounded-xl backdrop-blur-md shadow-sm p-6">
-          <div class="card-container text-center">
-              <div class="flex justify-center items-center text-medical-600 bg-medical-100 rounded-full mx-auto mb-4 w-12 h-12">
-                  ${card.icon}
-              </div>
-              <h3 class="text-heading text-xl font-medium tracking-tight capitalize mb-2">${card.title}</h3>
-              <p class="text-gray-600">${card.description}</p>
-          </div>
-      </div>
-    `
-);
+// Use .map() to render the doctor cards dynamically
+const container = document.getElementById('doctor-cards-container'); // Make sure to add a container div in your HTML
 
-// Append each hero card HTML to the hero container
-heroCards.forEach((card) => (heroContainer.innerHTML += card));
+doctors.map(doctor => {
+const doctorCard = `
+  <div id="doctor-card" class="backdrop-blur-md bg-white/50 border border-white/20 shadow-sm animate-fade-in rounded-lg p-6">
+    <div class="flex flex-col h-full">
+      <div class="flex items-start mb-4">
+        <div class="w-20 h-20 rounded-full overflow-hidden mr-4 flex-shrink-0">
+          <img src="${doctor.imageUrl}" alt="${doctor.name}" class="w-full h-full object-cover" loading="lazy"/>
+        </div>
+      
+        <div>
+          <h2 class="text-lg font-bold">${doctor.name}</h2>
+          <p class="text-medical-600 font-medium">${doctor.specialty}</p>
+          <div class="flex items-center mt-1 mb-1">
+          <i data-lucide="map-pin" class="h-4 w-4 text-gray-500 mr-1"></i>
+          <span class="text-gray-600 text-sm">${doctor.hospital}</span>
+        </div>
+        <div class="flex items-center">
+         <i data-lucide="star" class="w-4 h-4 text-star-500 fill-star-500 mr-1"></i>
+          <span class="font-medium text-sm">${doctor.rating}</span>
+          <span class="text-gray-500 text-xs ml-1">(${doctor.reviews} reviews)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-sm text-gray-600 mb-4 flex-grow">
+      ${doctor.bio}
+    </div>
+
+    <div class="flex space-x-2 mt-2">
+      <button class="flex-1 text-sm inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-solid border-input bg-background hover:bg-medical-50 hover:text-accent-foreground h-10 px-4 py-2">
+        View Profile
+      </button>
+      <a href="${doctor.profileLink}" class="flex-1 text-sm inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
+        Book Appointment
+      </a>
+    </div>
+  </div>
+</div>
+`;
+
+container.innerHTML += doctorCard; // Add the rendered card to the container
+});
