@@ -26,24 +26,6 @@ a {
   text-decoration: none;
 }
 
-/* ========== Global Styles ========== */
-body {
-  font-family: ui-sans-serif, system-ui, sans-serif;
-  line-height: 1.6;
-}
-
-.container {
-  width: 100%;
-}
-
-/* ========== Section Styles ========== */
-
-/* Hero Section */
-#hero {
-  background: linear-gradient(to bottom right, #e0f2f1, #eff6ff);
-}
-
-/* Container Utility */
 .container {
   width: 100%;
 }
@@ -64,4 +46,14 @@ header {
   top: 100%;
   left: 0;
   right: 0;
+}
+
+/* Services Style */
+.service-card:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.service-link:hover .right-arrow {
+  transform: translateX(0.25rem);
 }
