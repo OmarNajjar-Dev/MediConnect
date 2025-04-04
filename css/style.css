@@ -72,8 +72,8 @@ header {
   /* focus animation */
 }
 
-.search-input::placeholder {
-  color: #6b7280
+ input::placeholder {
+  color: #6b7280;
 }
 
 .search-input:focus-visible {
