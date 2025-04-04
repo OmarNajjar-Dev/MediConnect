@@ -50,3 +50,28 @@ document.addEventListener("DOMContentLoaded", () => {
     setDefaultActiveButton();  // Set the default active button
     addButtonClickListeners();  // Attach the event listeners to buttons
 });
+
+// INPUT SEARCH FILTER FUNCTION
+function searchDoctors() {
+    const input = document.getElementById("search-input");
+    const query = input.value.trim().toLowerCase();
+  
+    const cards = document.querySelectorAll(".doctor-card");
+  
+    cards.forEach((card) => {
+      const name = card.querySelector("h2").textContent.toLowerCase();
+      const specialty = card.querySelector(".text-medical-600").textContent.toLowerCase();
+      const hospital = card.querySelector(".text-gray-600.text-sm").textContent.toLowerCase();
+  
+      if (
+        name.includes(query) ||
+        specialty.includes(query) ||
+        hospital.includes(query)
+      ) {
+        card.style.display = "block";
+      } else {
+        card.style.display = "none";
+      }
+    });
+  }
+  document.getElementById("search-input").addEventListener("input", searchDoctors);  
