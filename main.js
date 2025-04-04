@@ -46,7 +46,7 @@ const heroCards = heroContent.map(
         ${card.icon}
       </div>
       <h3 class="text-heading text-xl font-medium tracking-tight capitalize mb-2">${card.title}</h3>
-      <p class="text-gray-600">${card.description}</p>
+      <p class="text-gray-600 leading-relaxed">${card.description}</p>
     </div>
   </div>
 `
