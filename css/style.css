@@ -96,3 +96,13 @@ header {
   top: 50%;
   transform: translateY(-50%);/* Vertically center the icon */
 }
+
+.doctor-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); /* base shadow */
+}
+
+.doctor-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* soft hover shadow */
+}
