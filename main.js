@@ -1,4 +1,9 @@
-// Header scroll effect
+// ============================
+// Header Scroll Effect
+// ============================
+// When the page is scrolled, adjust the header classes to shrink it and add a shadow.
+// If scrollY is greater than 20, remove extra padding and add shadow and blur.
+// Otherwise, revert to the original padding and remove shadow/blur.
 const headerElement = document.querySelector("header");
 window.addEventListener("scroll", () => {
   if (window.scrollY > 20) {
@@ -10,7 +15,11 @@ window.addEventListener("scroll", () => {
   }
 });
 
-// Mobile navigation toggle
+// ============================
+// Mobile Navigation Toggle
+// ============================
+// This toggles the mobile navigation menu when the menu button is clicked.
+// It also toggles the body overflow to prevent background scrolling.
 const mobileNavElement = document.getElementById("mobile-nav");
 const menuButtonElement = document.getElementById("menu-button");
 menuButtonElement.addEventListener("click", () => {
@@ -18,7 +27,10 @@ menuButtonElement.addEventListener("click", () => {
   document.body.classList.toggle("overflow-hidden");
 });
 
-// Hero cards data
+// ============================
+// Hero Cards Section
+// ============================
+// Data for the hero cards displayed on the homepage.
 const heroCardsContainer = document.getElementById("hero-cards-container");
 const heroCardsData = [
   {
@@ -38,6 +50,7 @@ const heroCardsData = [
   },
 ];
 
+// Create the HTML for each hero card and append it to the container.
 const heroCardsHtml = heroCardsData.map(
   (card) =>
     `
@@ -54,10 +67,11 @@ const heroCardsHtml = heroCardsData.map(
 );
 heroCardsHtml.forEach((cardHtml) => (heroCardsContainer.innerHTML += cardHtml));
 
-// Services cards data
-const servicesCardsContainer = document.getElementById(
-  "services-cards-container"
-);
+// ============================
+// Services Cards Section
+// ============================
+// Data for the services cards section.
+const servicesCardsContainer = document.getElementById("services-cards-container");
 const servicesCardsData = [
   {
     icon: "<i data-lucide='calendar' class='w-7 h-7'></i>",
@@ -89,6 +103,7 @@ const servicesCardsData = [
   },
 ];
 
+// Create the HTML for each services card and append it to the container.
 const servicesCardsHtml = servicesCardsData.map(
   (card) =>
     `
@@ -109,11 +124,12 @@ const servicesCardsHtml = servicesCardsData.map(
     </div>
     `
 );
-servicesCardsHtml.forEach(
-  (cardHtml) => (servicesCardsContainer.innerHTML += cardHtml)
-);
+servicesCardsHtml.forEach((cardHtml) => (servicesCardsContainer.innerHTML += cardHtml));
 
-// Rating cards data
+// ============================
+// Rating Cards Section
+// ============================
+// Data for the rating cards section, showing ratings and reviews.
 const ratingCardsContainer = document.getElementById("rating-cards-container");
 const ratingCardsData = [
   {
@@ -132,6 +148,7 @@ const ratingCardsData = [
   },
 ];
 
+// Create the HTML for each rating card using the generateRatingStars function to display stars.
 const ratingCardsHtml = ratingCardsData.map(
   (card) =>
     `
@@ -153,13 +170,75 @@ const ratingCardsHtml = ratingCardsData.map(
     </div>
     `
 );
-ratingCardsHtml.forEach(
-  (cardHtml) => (ratingCardsContainer.innerHTML += cardHtml)
+ratingCardsHtml.forEach((cardHtml) => (ratingCardsContainer.innerHTML += cardHtml));
+
+// ============================
+// Testimonials Cards Section
+// ============================
+// Data for the testimonials cards section.
+const testimonialsCardsContainer = document.getElementById("testimonials-cards-container");
+const testimonialsCardsData = [
+  {
+    name: "Sarah Johnson",
+    role: "Patient",
+    quote: `"MediConnect made it so easy to find a specialist and book an appointment. I love being able to see doctor ratings before making a choice."`,
+    avatar: "S",
+    stars: 5, // Number of stars to display
+    animationDelay: "0ms",
+  },
+  {
+    name: "Dr. Michael Chen",
+    role: "Cardiologist",
+    quote: `"The platform streamlines patient bookings and allows me to efficiently manage appointments and share medical reports securely."`,
+    avatar: "M",
+    stars: 5,
+    animationDelay: "100ms",
+  },
+  {
+    name: "Emma Rodriguez",
+    role: "Nurse",
+    quote: `"Creating and sharing dietary plans with patients has never been easier. The interface is intuitive and saves us so much time."`,
+    avatar: "E",
+    stars: 5,
+    animationDelay: "200ms",
+  },
+];
+
+// Create the HTML for each testimonials card and append it to the container.
+const testimonialsCardsHtml = testimonialsCardsData.map(
+  (card) =>
+    `
+    <div class="animate-on-scroll" style="animation-delay: ${card.animationDelay};">
+      <div class="rounded-xl p-6 bg-card border border-solid border-card shadow-sm h-full">
+        <div class="flex flex-col h-full">
+          <div class="mb-6">
+            <div class="flex mb-1">${generateRatingStars(card.stars, ["w-4", "h-4"])}</div>
+          </div>
+          <p class="text-gray-600 mb-6 flex-grow italic">${card.quote}</p>
+          <div class="flex items-center">
+            <div class="w-10 h-10 rounded-full bg-medical-200 flex items-center justify-center text-medical-700 font-medium">${card.avatar}</div>
+            <div class="ml-3">
+              <p class="font-medium text-heading">${card.name}</p>
+              <p class="text-sm text-gray-500">${card.role}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    `
 );
+testimonialsCardsHtml.forEach((cardHtml) => (testimonialsCardsContainer.innerHTML += cardHtml));
 
-
+// ============================
+// Helper Function: generateRatingStars
+// ============================
+// This function generates an HTML string for rating stars.
+// It accepts a rating (number from 1 to 5) and an optional array of additional classes.
+// It returns yellow stars for the rating and gray stars for the remaining out of 5.
 function generateRatingStars(rating, classes = []) {
+  // Yellow star icon with specified classes
   const yellowStar = `<i data-lucide="star" class="text-star-400 fill-star-400 ${classes.join(" ")}"></i>`;
+  // Gray star icon with specified classes
   const grayStar = `<i data-lucide="star" class="text-gray-300 ${classes.join(" ")}"></i>`;
   return yellowStar.repeat(rating) + grayStar.repeat(5 - rating);
 }
