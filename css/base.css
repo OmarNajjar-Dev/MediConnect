@@ -1,0 +1,49 @@
+/* Global Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* HTML Styles */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Body Styles */
+body {
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    line-height: 1.5;
+}
+
+/* Remove list styles */
+ul {
+    list-style: none;
+}
+
+/* Remove link underline */
+a {
+    text-decoration: none;
+}
+
+/* Full width container */
+.container {
+    width: 100%;
+}
+
+/* Pointer cursor */
+.pointer {
+    cursor: pointer;
+}
+
+/* Reset form elements */
+button,
+input,
+optgroup,
+select,
+textarea {
+    font-family: inherit;
+    color: inherit;
+    margin: 0;
+    padding: 0;
+}

@@ -80,7 +80,7 @@ doctors.map(doctor => {
           </div>
         
           <div>
-            <h2 class="text-lg font-bold tracking-tight">${doctor.name}</h2>
+            <h2 class="text-lg text-heading font-bold tracking-tight">${doctor.name}</h2>
             <p class="text-medical-600 font-medium">${doctor.specialty}</p>
             <div class="flex items-center mt-1 mb-1">
             <i data-lucide="map-pin" class="h-3.5 w-3.5 text-gray-500 mr-1"></i>
