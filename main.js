@@ -37,16 +37,19 @@ const heroCardsData = [
     icon: "<i data-lucide='calendar'></i>", // Calendar icon
     title: "Easy Scheduling",
     description: "Book appointments with doctors in just a few clicks",
+    animationDelay: "0ms",
   },
   {
     icon: "<i data-lucide='users'></i>", // Specialists icon
     title: "Top Specialists",
     description: "Connect with experienced healthcare professionals",
+    animationDelay: "100ms",
   },
   {
     icon: "<i data-lucide='hospital'></i>", // Hospital icon
     title: "Hospital Info",
     description: "Find hospitals with available beds and services",
+    animationDelay: "200ms",
   },
 ];
 
@@ -54,7 +57,7 @@ const heroCardsData = [
 const heroCardsHtml = heroCardsData.map(
   (card) =>
     `
-    <div class="bg-card border border-solid border-card rounded-lg backdrop-blur-md shadow-sm p-6">
+    <div class="bg-card border border-solid border-card rounded-lg backdrop-blur-md shadow-sm animate-on-scroll p-6" style="animation-delay:${card.animationDelay}">
       <div class="card-container text-center">
         <div class="flex justify-center items-center text-medical-600 bg-medical-100 rounded-full mx-auto mb-4 w-12 h-12">
           ${card.icon}
@@ -79,6 +82,7 @@ const servicesCardsData = [
     description: "Schedule appointments with doctors and receive notifications for any changes.",
     linkText: "Book Now",
     linkHref: "/appointments.html",
+    animationDelay: "0ms",
   },
   {
     icon: "<i data-lucide='clipboard-list' class='w-7 h-7'></i>",
@@ -86,6 +90,7 @@ const servicesCardsData = [
     description: "Receive digital medical reports and prescriptions directly from your doctor.",
     linkText: "Learn More",
     linkHref: "/reports.html",
+    animationDelay: "100ms",
   },
   {
     icon: "<i data-lucide='hospital' class='w-7 h-7'></i>",
@@ -93,6 +98,7 @@ const servicesCardsData = [
     description: "Find hospitals with available beds and emergency services in your area.",
     linkText: "View Hospitals",
     linkHref: "/hospitals.html",
+    animationDelay: "200ms",
   },
   {
     icon: "<i data-lucide='plus-circle' class='w-7 h-7'></i>",
@@ -100,6 +106,7 @@ const servicesCardsData = [
     description: "Order prescription and over-the-counter medications from registered pharmacies.",
     linkText: "Order Medicines",
     linkHref: "/pharmacy.html",
+    animationDelay: "300ms",
   },
 ];
 
@@ -107,7 +114,7 @@ const servicesCardsData = [
 const servicesCardsHtml = servicesCardsData.map(
   (card) =>
     `
-    <div class="animate-on-scroll">
+    <div class="animate-on-scroll" style="animation-delay:${card.animationDelay}">
       <div class="service-card rounded-xl p-6 bg-card shadow-sm transition-all backdrop-blur-md border border-solid border-card h-full">
         <div class="flex flex-col h-full">
           <div class="mb-6 w-14 h-14 bg-medical-100 text-medical-600 rounded-md flex items-center justify-center">
@@ -138,6 +145,7 @@ const ratingCardsData = [
     description: "View and contribute to hospital ratings based on quality of care, facilities, and services.",
     buttonText: "View Hospital Ratings",
     linkHref: "/hospital.html",
+    animationDelay: "100ms",
   },
   {
     title: "Doctor Reviews",
@@ -145,6 +153,7 @@ const ratingCardsData = [
     description: "Browse doctor reviews and ratings to find the best healthcare provider for your needs.",
     buttonText: "Find Rated Doctors",
     linkHref: "/doctors.html",
+    animationDelay: "200ms",
   },
 ];
 
@@ -152,7 +161,7 @@ const ratingCardsData = [
 const ratingCardsHtml = ratingCardsData.map(
   (card) =>
     `
-    <div class="animate-on-scroll">
+    <div class="animate-on-scroll" style="animation-delay:${card.animationDelay}">
       <div class="glass-card rounded-xl p-6 backdrop-blur-md bg-card border border-solid border-card shadow-sm h-full">
         <div class="flex flex-col h-full">
           <div class="flex items-center justify-between mb-6">
@@ -208,7 +217,7 @@ const testimonialsCardsData = [
 const testimonialsCardsHtml = testimonialsCardsData.map(
   (card) =>
     `
-    <div class="animate-on-scroll" style="animation-delay: ${card.animationDelay};">
+    <div class="animate-on-scroll" style="animation-delay:${card.animationDelay}">
       <div class="rounded-xl p-6 bg-card border border-solid border-card shadow-sm h-full">
         <div class="flex flex-col h-full">
           <div class="mb-6">
