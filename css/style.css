@@ -1,8 +1,8 @@
 /* Global Reset */
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 /* HTML Styles */
@@ -16,33 +16,6 @@ body {
   line-height: 1.6;
 }
 
-/* List Reset */
-ul {
-    list-style: none;
-}
-
-/* Anchor Reset */
-a {
-    text-decoration: none;
-}
-
-/* ========== Global Styles ========== */
-body {
-    font-family: ui-sans-serif, system-ui, sans-serif;
-    line-height: 1.6;
-}
-
-.container {
-    width: 100%;
-}
-
-/* ========== Section Styles ========== */
-
-/* Hero Section */
-#hero {
-    background: linear-gradient(to bottom right, #e0f2f1, #eff6ff);
-}
-
 /* Container Utility */
 .container {
   width: 100%;
@@ -52,6 +25,27 @@ body {
 .pointer {
   cursor: pointer;
 }
+
+
+/* List Reset */
+ul {
+  list-style: none;
+}
+
+/* Anchor Reset */
+a {
+  text-decoration: none;
+}
+
+
+/* ========== Section Styles ========== */
+
+/* Hero Section */
+#hero {
+  background: linear-gradient(to bottom right, #e0f2f1, #eff6ff);
+}
+
+
 
 /* Header Positioning */
 header {
@@ -69,17 +63,17 @@ header {
 
 .search-input {
   transition: outline 0.2s, ring 0.2s;
-  /* focus animation */
+  font-family: inherit;
 }
 
- input::placeholder {
+input::placeholder {
   color: #6b7280;
+  opacity:1;
 }
 
 .search-input:focus-visible {
   outline: none;
   box-shadow: 0 0 0 2px rgb(var(--medical-500)), 0 0 0 4px #e0f2fe;
-  /* Blue-500 for --ring, Light Blue-100 for --ring-offset-background */
 }
 
 .search-input:disabled {
@@ -92,17 +86,21 @@ header {
 }
 
 [data-lucide="search"] {
-  left: 0.75rem;/* 12px, adjust if needed for spacing */
+  left: 0.75rem;
+  /* 12px, adjust if needed for spacing */
   top: 50%;
-  transform: translateY(-50%);/* Vertically center the icon */
+  transform: translateY(-50%);
+  /* Vertically center the icon */
 }
 
 .doctor-card {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); /* base shadow */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  /* base shadow */
 }
 
 .doctor-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* soft hover shadow */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* soft hover shadow */
 }

@@ -17,7 +17,7 @@ function filterDoctors(specialty) {
 function setDefaultActiveButton() {
     const allSpecialtiesButton = document.getElementById("all-specialties");
     if (allSpecialtiesButton) {
-        allSpecialtiesButton.classList.add("bg-medical-500", "text-white", "border-medical-500");
+        allSpecialtiesButton.classList.add("bg-medical-500", "text-white", "border-medical-500","hover:bg-medical-400");
         allSpecialtiesButton.classList.remove("bg-background", "text-black", "hover:bg-medical-50", "hover:text-medical-600");
         filterDoctors("All Specialties"); // Show all doctors by default
     }
@@ -34,12 +34,12 @@ function addButtonClickListeners() {
 
             // Remove active styles from all buttons
             specialtyButtons.forEach(btn => {
-                btn.classList.remove("bg-medical-500", "text-white", "border-medical-500");
+                btn.classList.remove("bg-medical-500", "text-white", "border-medical-500","hover:bg-medical-400");
                 btn.classList.add("bg-background", "text-black", "hover:bg-medical-50", "hover:text-medical-600");
             });
 
             // Add active styles to the clicked button
-            button.classList.add("bg-medical-500", "text-white", "border-medical-500");
+            button.classList.add("bg-medical-500", "text-white", "border-medical-500","hover:bg-medical-400");
             button.classList.remove("bg-background", "text-black", "hover:bg-medical-50", "hover:text-medical-600");
         });
     });
