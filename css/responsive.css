@@ -6,15 +6,16 @@
 
     #hero h1 {
         font-size: 3rem;
-        /* 48px */
     }
 
     #cta-buttons {
         flex-direction: row;
     }
 
-    #services-title {
+    #services-title,
+    #rating-title {
         font-size: 2.25rem;
+        line-height: 2.5rem;
     }
 }
 
@@ -31,7 +32,6 @@
 
     #hero h1 {
         font-size: 3.75rem;
-        /* 60px */
     }
 
     #hero-cards-container {
@@ -63,14 +63,15 @@
         gap: 32px;
     }
 
-    #services-container {
+    #services-cards-container,
+    #rating-cards-container {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
 /* Large Screen */
 @media screen and (min-width: 1024px) {
-    #services-container {
+    #services-cards-container {
         grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 }
@@ -91,8 +92,4 @@
 }
 
 /* Custom Screen */
-@media screen and (max-width: 768px) {
-    #hero-cards-container {
-        width: 100%;
-    }
-}
+@media screen and (max-width: 768px) {}
