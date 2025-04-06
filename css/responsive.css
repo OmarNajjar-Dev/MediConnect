@@ -38,7 +38,8 @@
         font-size: 3.75rem;
     }
 
-    #hero-cards-container {
+    #hero-cards-container,
+    #testimonials-cards-container {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
@@ -56,8 +57,8 @@
         display: none;
     }
 
-    #testimonials-cards-container {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+    #footer-content {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
@@ -79,7 +80,12 @@
 
 /* Large Screen */
 @media screen and (min-width: 1024px) {
-    #services-cards-container {
+    .container {
+        max-width: 1024px;
+    }
+
+    #services-cards-container,
+    #footer-content {
         grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 }
