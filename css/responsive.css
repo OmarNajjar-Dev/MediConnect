@@ -45,6 +45,10 @@
     #mobile-nav {
         display: none;
     }
+
+    #doctor-cards-container {
+        grid-template-columns: repeat(2, 1fr); 
+      }
 }
 
 /* Large Screen */
@@ -55,6 +59,14 @@
 
     #desktop-nav {
         gap: 32px;
+    }
+    
+    .search-container{
+        flex-direction: row;
+    }
+
+    #doctor-cards-container{
+        grid-template-columns: repeat(3, 1fr); /* 3 columns */
     }
 }
 

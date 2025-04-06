@@ -7,7 +7,7 @@ const doctors = [
     hospital: "Central Medical Center",
     rating: 4.9,
     reviews: 124,
-    bio: "Dr. Sarah Johnson is a board-certified cardiologist with over 12 years of experience in treating cardiovascular diseases. She completed her medical training at Harvard Medical School...",
+    bio: "Dr. Sarah Johnson is a board-certified cardiologist with over 12 years of experience in treating cardiovascular diseases...",
     profileLink: "/appointments?doctor=1"
   },
   {
@@ -18,7 +18,7 @@ const doctors = [
     hospital: "Westside Hospital",
     rating: 4.7,
     reviews: 98,
-    bio: "Dr. Michael Chen specializes in medical, surgical, and cosmetic dermatology. He has expertise in treating skin conditions like acne, eczema, psoriasis, and skin cancer...",
+    bio: "Dr. Michael Chen specializes in medical, surgical, and cosmetic dermatology. He has expertise in treating skin conditions...",
     profileLink: "/appointments?doctor=2"
   },
   {
@@ -29,7 +29,7 @@ const doctors = [
     hospital: "Metropolitan Medical Center",
     rating: 4.8,
     reviews: 156,
-    bio: "Dr. Emily Rodriguez is a neurologist with expertise in headache disorders, multiple sclerosis, and neurodegenerative diseases. She is dedicated to providing compassionate care...",
+    bio: "Dr. Emily Rodriguez is a neurologist with expertise in headache disorders, multiple sclerosis, and neurodegenerative diseases...",
     profileLink: "/appointments?doctor=3"
   },
   {
@@ -40,7 +40,7 @@ const doctors = [
     hospital: "Central Medical Center",
     rating: 4.6,
     reviews: 87,
-    bio: "Dr. James Wilson is an orthopedic surgeon specializing in sports medicine, joint replacement, and trauma. With 20 years of experience, he has helped thousands of patients...",
+    bio: "Dr. James Wilson is an orthopedic surgeon specializing in sports medicine, joint replacement, and trauma. With 20 years...",
     profileLink: "/appointments?doctor=4"
   },
   {
@@ -51,7 +51,7 @@ const doctors = [
     hospital: "Children's Health Center",
     rating: 4.9,
     reviews: 142,
-    bio: "Dr. Lisa Kim is a dedicated pediatrician who provides comprehensive healthcare for children from birth through adolescence. She is known for her gentle approach...",
+    bio: "Dr. Lisa Kim is a dedicated pediatrician who provides comprehensive healthcare for children from birth through adolescence...",
     profileLink: "/appointments?doctor=5"
   },
   {
@@ -62,7 +62,7 @@ const doctors = [
     hospital: "Behavioral Health Institute",
     rating: 4.8,
     reviews: 73,
-    bio: "Dr. Robert Taylor is a psychiatrist specializing in mood disorders, anxiety, and PTSD. He takes a holistic approach to mental health, combining medication management...",
+    bio: "Dr. Robert Taylor is a psychiatrist specializing in mood disorders, anxiety, and PTSD. He takes a holistic approach to mental health...",
     profileLink: "/appointments?doctor=6"
   }
 ];
@@ -72,7 +72,7 @@ const container = document.getElementById('doctor-cards-container'); // Make sur
 
 doctors.map(doctor => {
 const doctorCard = `
-  <div id="doctor-card" class="backdrop-blur-md bg-white/50 border border-white/20 shadow-sm animate-fade-in rounded-lg p-6">
+  <div class="doctor-card backdrop-blur-md bg-card border border-solid border-card shadow-sm animate-fade-in rounded-lg p-6">
     <div class="flex flex-col h-full">
       <div class="flex items-start mb-4">
         <div class="w-20 h-20 rounded-full overflow-hidden mr-4 flex-shrink-0">
@@ -80,14 +80,14 @@ const doctorCard = `
         </div>
       
         <div>
-          <h2 class="text-lg font-bold">${doctor.name}</h2>
+          <h2 class="text-lg font-bold tracking-tight">${doctor.name}</h2>
           <p class="text-medical-600 font-medium">${doctor.specialty}</p>
           <div class="flex items-center mt-1 mb-1">
-          <i data-lucide="map-pin" class="h-4 w-4 text-gray-500 mr-1"></i>
+          <i data-lucide="map-pin" class="h-3.5 w-3.5 text-gray-500 mr-1"></i>
           <span class="text-gray-600 text-sm">${doctor.hospital}</span>
         </div>
         <div class="flex items-center">
-         <i data-lucide="star" class="w-4 h-4 text-star-500 fill-star-500 mr-1"></i>
+         <i data-lucide="star" class="w-3.5 h-3.5 text-star-500 fill-star-500 mr-1"></i>
           <span class="font-medium text-sm">${doctor.rating}</span>
           <span class="text-gray-500 text-xs ml-1">(${doctor.reviews} reviews)</span>
         </div>
@@ -98,11 +98,14 @@ const doctorCard = `
       ${doctor.bio}
     </div>
 
-    <div class="flex space-x-2 mt-2">
-      <button class="flex-1 text-sm inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-solid border-input bg-background hover:bg-medical-50 hover:text-accent-foreground h-10 px-4 py-2">
+    <div class="flex gap-2 mt-2">
+      <button class="flex-grow text-sm inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all 
+        border border-solid border-input
+        bg-background hover:bg-medical-50 hover:text-medical-600 h-10 px-8 py-2">
         View Profile
       </button>
-      <a href="${doctor.profileLink}" class="flex-1 text-sm inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
+      <a href="${doctor.profileLink}" class="flex-grow text-sm inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium 
+      transition-all bg-medical-500 text-white hover:bg-medical-400 h-10 px-2 py-2">
         Book Appointment
       </a>
     </div>

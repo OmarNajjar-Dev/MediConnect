@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <!-- Meta Tags -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-
+    
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/colors.css" />
     <link rel="stylesheet" href="css/typography.css" />
@@ -18,100 +18,94 @@
     <link rel="stylesheet" href="css/animations.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/responsive.css" />
-
-    <!-- Page Title -->
-    <title>MediConnect - Bridging Healthcare & Technology</title>
 </head>
 
-<body class="bg-background text-foreground">
-    <header class="fixed z-50 py-5 bg-background transition-all">
-        <div class="container mx-auto flex items-center justify-between px-4">
-            <a href="/" class="flex items-center">
-                <span class="text-medical-700 text-2xl font-semibold">
-                    Medi<span class="text-medical-500">Connect</span>
-                </span>
-            </a>
+<body class="bg-background">
 
-            <!-- Desktop Navigation -->
-            <nav id="desktop-nav" class="hidden items-center gap-4">
-                <a href="/"
-                    class="text-medical-700 text-sm font-medium hover:text-medical-600 transition-colors">Home</a>
-                <a href="/doctors"
-                    class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Doctors</a>
-                <a href="/hospitals"
-                    class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Hospitals</a>
-                <a href="/appointments"
-                    class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Appointments</a>
-                <a href="/dashboard"
-                    class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Dashboard</a>
-            </nav>
-
-            <div class="flex items-center gap-4">
-                <a href="/login" id="sign-in"
-                    class="hidden items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-3 rounded-md text-sm font-medium whitespace-nowrap transition-all">Sign
-                    In</a>
-                <a href="/signup" id="sign-up"
-                    class="hidden items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-3 rounded-md text-sm font-medium whitespace-nowrap transition-all">Sign
-                    Up</a>
-
-                <!-- Mobile Menu Button -->
-                <button id="menu-button"
-                    class="inline-flex items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-0 pointer">
-                    <i data-lucide="menu" class="h-4 w-4"></i>
-                </button>
-            </div>
-
-            <!-- Mobile Navigation (Hidden by default) -->
-            <div id="mobile-nav" class="hidden absolute bg-white-95 backdrop-blur-lg animate-slide-down shadow-lg">
-                <nav class="container mx-auto flex flex-col gap-4 px-4 py-4">
-                    <a href="/"
-                        class="text-medical-700 bg-medical-50 py-2 px-3 rounded-md text-sm font-medium transition-colors">Home</a>
-                    <a href="/doctors"
-                        class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-md text-sm font-medium transition-colors">Doctors</a>
-                    <a href="/hospitals"
-                        class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-md text-sm font-medium transition-colors">Hospitals</a>
-                    <a href="/appointments"
-                        class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-md text-sm font-medium transition-colors">Appointments</a>
-                    <a href="/dashboard"
-                        class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-md text-sm font-medium transition-colors">Dashboard</a>
-
-                    <div class="flex flex-col pt-2 gap-2 border-t border-solid separator">
-                        <a href="/login"
-                            class="inline-flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-4 py-2 rounded-md text-sm font-medium transition-all">Sign
-                            In</a>
-                        <a href="/signup"
-                            class="inline-flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-4 py-2 rounded-md text-sm font-medium transition-colors">Sign
-                            Up</a>
+    <!-- Main Content -->
+    <main class="pt-20 pb-16 min-h-screen bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="py-8">
+                <h1 class="text-3xl font-bold mb-2 tracking-tight">Find Doctors</h1>
+                <p class="text-gray-600">Connect with top specialists in various medical fields</p>
+              </div>
+            <!-- Search Section -->
+            <div class="search-container flex gap-6 mb-8">
+                <div class="search-input-container text-xl flex-grow">
+                    <div class="input-wrapper relative">
+                        <!-- Search Icon (Lucide) -->
+                        <i data-lucide="search" class="absolute text-gray-500"></i>
+                        <!-- Search Input Field -->
+                        <input type="text" placeholder="Search doctors by name, specialty, or hospital"
+                        class="search-input px-10 h-12 flex w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm outline-none"/>
                     </div>
-                </nav>
-            </div>
-        </div>
-    </header>
-    <main class="pt-20 overflow-hidden">
-
-      <div class="container mx-auto px-4">
-        <div class="py-8">
-            <h1 class="text-3xl font-bold mb-2">Find Doctors</h1>
-            <p class="text-gray-600">Connect with top specialists in various medical fields</p>
-          </div>
-        <!-- Search Section -->
-        <div class="search-container flex gap-6 mb-8">
-            <div class="search-input-container text-xl flex-grow">
-                <div class="input-wrapper relative">
-                    <!-- Search Icon (Lucide) -->
-                    <i data-lucide="search" class="absolute text-gray-500"></i>
-                    <!-- Search Input Field -->
-                    <input type="text" placeholder="Search doctors by name, specialty, or hospital"
-                    class="search-input px-10 h-12 flex w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm outline-none"/>
                 </div>
             </div>
+
+            <!-- Specialties Section -->
+            <div class="specialties-container mb-8 overflow-x-auto">
+                <div class="buttons-container inline-flex gap-2 pb-2">
+                
+                    <!-- All Specialties Button -->
+                    <button id="all-specialties" class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background
+                    rounded-full text-sm font-medium transition-all border border-solid border-input hover:bg-medical-50 hover:text-medical-600 h-10 px-4 py-2">
+                        All Specialties
+                    </button>
+                    
+                    <!-- Cardiologist Button -->
+                    <button id="cardiologist" class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background
+                     rounded-full text-sm font-medium transition-all border border-solid border-input hover:bg-medical-50 hover:text-medical-600 h-10 px-4 py-2">
+                        Cardiologist
+                    </button>
+
+                    <!-- Dermatologist Button -->
+                    <button id="dermatologist" class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background
+                    rounded-full text-sm font-medium transition-all border border-solid border-input hover:bg-medical-50 hover:text-medical-600 h-10 px-4 py-2">
+                        Dermatologist
+                    </button>
+
+                    <!-- Neurology Button -->
+                    <button id="neurology" class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background
+                    rounded-full text-sm font-medium transition-all border border-solid border-input hover:bg-medical-50 hover:text-medical-600 h-10 px-4 py-2">
+                        Neurology
+                    </button>
+
+                    <!-- Orthopedics Button -->
+                    <button id="orthopedics" class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background
+                    rounded-full text-sm font-medium transition-all border border-solid border-input hover:bg-medical-50 hover:text-medical-600 h-10 px-4 py-2">
+                        Orthopedics
+                    </button>
+
+                    <!-- Pediatrics Button -->
+                    <button id="pediatrics" class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background
+                    rounded-full text-sm font-medium transition-all border border-solid border-input hover:bg-medical-50 hover:text-medical-600 h-10 px-4 py-2">
+                        Pediatrics
+                    </button>
+
+                    <!-- Psychiatry Button -->
+                    <button id="psychiatry" class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background
+                    rounded-full text-sm font-medium transition-all border border-solid border-input hover:bg-medical-50 hover:text-medical-800 h-10 px-4 py-2">
+                        Psychiatry
+                    </button>
+
+                </div>
+            </div>
+            <div id="doctor-cards-container" class="grid grid-cols-1 gap-6">
+                <!-- Dynamically Generated Doctor Cards will be inserted here -->
+            </div>
+
         </div>
+    </main>
+    <!-- Initialize Lucide Icons -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            lucide.createIcons();
+        });
+    </script>
 
-        <!-- JavaScript -->
-        <script src="main.js"></script>
-        <script>
-            lucide.createIcons(); // Initialize Lucide icons
-        </script>
+    <!-- External JavaScript -->
+    <script defer src="js/main.js"></script>
+    <script defer src="js/filter.js"></script>
+
 </body>
-
 </html>
