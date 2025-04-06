@@ -1,3 +1,10 @@
+/* Header positioning */
+header {
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
 .search-input {
   transition: outline 0.2s, ring 0.2s;
   font-family: inherit;
@@ -25,6 +32,10 @@ input::placeholder {
   left: 0.75rem;
   top: 50%;
   transform: translateY(-50%);
+}
+
+.buttons-container{
+  min-width:100%;
 }
 
 .doctor-card {
