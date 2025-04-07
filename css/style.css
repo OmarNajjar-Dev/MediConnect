@@ -34,6 +34,16 @@ input::placeholder {
   transform: translateY(-50%);
 }
 
+.specialties-container {
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+}
+
+.specialties-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge (new) */
+}
+
+
 .buttons-container{
   min-width:100%;
 }
