@@ -28,3 +28,9 @@ header {
 .service-link:hover .right-arrow {
   transform: translateX(0.25rem);
 }
+
+.input-container .search-icon {
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
