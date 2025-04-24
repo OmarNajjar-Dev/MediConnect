@@ -2,548 +2,656 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/colors.css">
-    <link rel="stylesheet" href="css/typography.css">
-    <link rel="stylesheet" href="css/spacing.css">
-    <link rel="stylesheet" href="css/sizing.css">
-    <link rel="stylesheet" href="css/borders.css">
-    <link rel="stylesheet" href="css/layout.css">
-    <link rel="stylesheet" href="css/animations.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/responsive.css">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/colors.css">
+  <link rel="stylesheet" href="css/typography.css">
+  <link rel="stylesheet" href="css/spacing.css">
+  <link rel="stylesheet" href="css/sizing.css">
+  <link rel="stylesheet" href="css/borders.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
 
-    <!-- Page Title -->
-    <title>MediConnect - Bridging Healthcare & Technology</title>
+  <!-- Page Title -->
+  <title>MediConnect - Bridging Healthcare & Technology</title>
 </head>
 
 <body class="bg-background text-foreground">
-    <!-- Header Section -->
-    <header class="fixed z-50 py-5 bg-background transition-all">
-        <div class="container mx-auto flex items-center justify-between px-4">
-            <a href="/" class="flex items-center">
-                <span class="text-medical-700 text-2xl font-semibold">
-                    Medi<span class="text-medical-500">Connect</span>
-                </span>
+  <!-- Header Section -->
+  <header class="fixed z-50 py-5 bg-background transition-all">
+    <div class="container mx-auto flex items-center justify-between px-4">
+      <a href="/" class="flex items-center">
+        <span class="text-medical-700 text-2xl font-semibold">
+          Medi<span class="text-medical-500">Connect</span>
+        </span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav id="desktop-nav" class="hidden items-center gap-4">
+        <a href="/" class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Home</a>
+        <a href="/doctors"
+          class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Doctors</a>
+        <a href="/hospitals"
+          class="text-medical-700 text-sm font-medium hover:text-medical-600 transition-colors">Hospitals</a>
+        <a href="/appointments"
+          class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Appointments</a>
+        <a href="/dashboard"
+          class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Dashboard</a>
+      </nav>
+
+      <!-- Header Right Section -->
+      <div class="flex items-center gap-4">
+        <!-- Sign In / Sign Up buttons (hidden by default) -->
+        <a href="/login" id="sign-in"
+          class="hidden items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all">Sign
+          In</a>
+        <a href="/signup" id="sign-up"
+          class="hidden items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all">Sign
+          Up</a>
+
+        <!-- Mobile Menu Button -->
+        <button id="menu-button"
+          class="inline-flex items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-0 pointer">
+          <i data-lucide="menu" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Navigation (Hidden by default) -->
+      <div id="mobile-nav" class="hidden absolute bg-white-95 backdrop-blur-lg animate-slide-down shadow-lg">
+        <nav class="container mx-auto flex flex-col gap-4 px-4 py-4">
+          <a href="/"
+            class="text-medical-700 bg-medical-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Home</a>
+          <a href="/doctors"
+            class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Doctors</a>
+          <a href="/hospitals"
+            class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
+          <a href="/appointments"
+            class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
+          <a href="/dashboard"
+            class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Dashboard</a>
+
+          <!-- Sign In / Sign Up buttons (Mobile view) -->
+          <div class="flex flex-col pt-2 gap-2 border-t border-solid separator">
+            <a href="/login"
+              class="inline-flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-all">Sign
+              In</a>
+            <a href="/signup"
+              class="inline-flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Sign
+              Up</a>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="overflow-hidden pt-20">
+
+
+
+    <!-- Main Content -->
+    <main class="pt-20 pb-16 min-h-screen bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="py-8">
+          <h1 class="text-3xl font-bold mb-2 tracking-tight text-heading">Hospitals</h1>
+          <p class="text-gray-600">Find hospitals, check bed availability, and view services</p>
+        </div>
+
+        <div class="input-container flex flex-col lg:flex-row gap-6 mb-8">
+          <div class="flex-grow">
+            <div class="relative">
+              <!-- Search Icon (Lucide) -->
+              <i data-lucide="search" class="absolute text-gray-500"></i>
+              <input id="search-input" type="text" placeholder="Search doctors by name, specialty, or hospital"
+                class="search-input px-10 h-12 flex w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm outline-none"/>
+              
+            </div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-3">
+            <button class="flex items-center gap-2 rounded-md border border-input h-10 px-4 py-2 bg-white">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+              </svg>
+              <span>Emergency Services</span>
+            </button>
+
+            <button class="flex items-center gap-2 rounded-md border border-input h-10 px-4 py-2 bg-white">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 6h-5a2 2 0 0 0-2 2v10"></path>
+                <path d="M13 18h-3"></path>
+                <rect width="8" height="4" x="2" y="6" rx="1"></rect>
+                <path d="M18 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path>
+              </svg>
+              <span>Available Beds</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 gap-6">
+          <!-- Hospital Card 1 -->
+          <div class="backdrop-blur-md bg-white/50 border border-white/20 shadow-sm rounded-xl overflow-hidden">
+            <div class="flex flex-col md:flex-row">
+              <div class="md:w-1/3 h-48 md:h-auto relative">
+                <img
+                  src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  alt="Central Medical Center" class="w-full h-full object-cover" loading="lazy" />
+                <div
+                  class="absolute top-4 left-4 bg-red-500 text-white px-2 py-1 rounded-md text-xs font-medium flex items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                  </svg>
+                  Emergency Services
+                </div>
+              </div>
+
+              <div class="p-6 flex-grow">
+                <div class="flex flex-col md:flex-row md:items-start md:justify-between">
+                  <div>
+                    <h2 class="text-xl font-bold mb-1">Central Medical Center</h2>
+                    <div class="flex items-center mb-3">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="text-gray-500 mr-1.5">
+                        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                      </svg>
+                      <span class="text-gray-600 text-sm">123 Medical Blvd, Central City</span>
+                    </div>
+                  </div>
+
+                  <div class="flex items-center mt-2 md:mt-0">
+                    <div class="px-3 py-1.5 bg-yellow-50 rounded-md flex items-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                        fill="rgb(234, 179, 8)" stroke="rgb(234, 179, 8)" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="mr-1">
+                        <polygon
+                          points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                        </polygon>
+                      </svg>
+                      <span class="font-medium">4.8</span>
+                      <span class="text-gray-500 text-sm ml-1">(356)</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flex flex-wrap gap-2 my-3">
+                  <span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-xs font-medium text-gray-800">
+                    Cardiology
+                  </span>
+                  <span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-xs font-medium text-gray-800">
+                    Neurology
+                  </span>
+                  <span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-xs font-medium text-gray-800">
+                    Orthopedics
+                  </span>
+                  <span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-xs font-medium text-gray-800">
+                    Oncology
+                  </span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
+                  <div class="flex items-center">
+                    <div class="w-10 h-10 rounded-full bg-green-100 text-green-600 flex items-center justify-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 6h-5a2 2 0 0 0-2 2v10"></path>
+                        <path d="M13 18h-3"></path>
+                        <rect width="8" height="4" x="2" y="6" rx="1"></rect>
+                        <path d="M18 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path>
+                      </svg>
+                    </div>
+                    <div class="ml-3">
+                      <p class="text-sm text-gray-600">Available Beds</p>
+                      <p class="font-medium">15</p>
+                    </div>
+                  </div>
+
+                  <div class="flex items-center">
+                    <div
+                      class="w-10 h-10 rounded-full bg-medical-100 text-medical-600 flex items-center justify-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                          d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                        </path>
+                      </svg>
+                    </div>
+                    <div class="ml-3">
+                      <p class="text-sm text-gray-600">Contact</p>
+                      <p class="font-medium">+1 (555) 123-4567</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-6 flex justify-end">
+                  <button
+                    class="mr-3 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 rounded-md text-sm font-medium">
+                    View Details
+                  </button>
+                  <button
+                    class="border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 rounded-md text-sm font-medium">
+                    Get Directions
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hospital Card 2 -->
+          <div class="backdrop-blur-md bg-white/50 border border-white/20 shadow-sm rounded-xl overflow-hidden">
+            <div class="flex flex-col md:flex-row">
+              <div class="md:w-1/3 h-48 md:h-auto relative">
+                <img
+                  src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  alt="Westside Hospital" class="w-full h-full object-cover" loading="lazy" />
+                <div
+                  class="absolute top-4 left-4 bg-red-500 text-white px-2 py-1 rounded-md text-xs font-medium flex items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                  </svg>
+                  Emergency Services
+                </div>
+              </div>
+
+              <div class="p-6 flex-grow">
+                <div class="flex flex-col md:flex-row md:items-start md:justify-between">
+                  <div>
+                    <h2 class="text-xl font-bold mb-1">Westside Hospital</h2>
+                    <div class="flex items-center mb-3">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="text-gray-500 mr-1.5">
+                        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                      </svg>
+                      <span class="text-gray-600 text-sm">456 Healthcare Ave, West District</span>
+                    </div>
+                  </div>
+
+                  <div class="flex items-center mt-2 md:mt-0">
+                    <div class="px-3 py-1.5 bg-yellow-50 rounded-md flex items-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                        fill="rgb(234, 179, 8)" stroke="rgb(234, 179, 8)" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="mr-1">
+                        <polygon
+                          points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                        </polygon>
+                      </svg>
+                      <span class="font-medium">4.6</span>
+                      <span class="text-gray-500 text-sm ml-1">(283)</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flex flex-wrap gap-2 my-3">
+                  <span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-xs font-medium text-gray-800">
+                    Pediatrics
+                  </span>
+                  <span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-xs font-medium text-gray-800">
+                    Obstetrics
+                  </span>
+                  <span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-xs font-medium text-gray-800">
+                    General Surgery
+                  </span>
+                  <span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-xs font-medium text-gray-800">
+                    Dermatology
+                  </span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
+                  <div class="flex items-center">
+                    <div class="w-10 h-10 rounded-full bg-green-100 text-green-600 flex items-center justify-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 6h-5a2 2 0 0 0-2 2v10"></path>
+                        <path d="M13 18h-3"></path>
+                        <rect width="8" height="4" x="2" y="6" rx="1"></rect>
+                        <path d="M18 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path>
+                      </svg>
+                    </div>
+                    <div class="ml-3">
+                      <p class="text-sm text-gray-600">Available Beds</p>
+                      <p class="font-medium">8</p>
+                    </div>
+                  </div>
+
+                  <div class="flex items-center">
+                    <div
+                      class="w-10 h-10 rounded-full bg-medical-100 text-medical-600 flex items-center justify-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                          d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                        </path>
+                      </svg>
+                    </div>
+                    <div class="ml-3">
+                      <p class="text-sm text-gray-600">Contact</p>
+                      <p class="font-medium">+1 (555) 987-6543</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-6 flex justify-end">
+                  <button
+                    class="mr-3 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 rounded-md text-sm font-medium">
+                    View Details
+                  </button>
+                  <button
+                    class="border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 rounded-md text-sm font-medium">
+                    Get Directions
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hospital details modal -->
+      <div class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4 animate-fade-in">
+        <div
+          class="backdrop-blur-md bg-white/50 border border-white/20 shadow-sm w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-lg p-6 animate-slide-up">
+          <div class="flex justify-between items-start mb-6">
+            <h2 class="text-2xl font-bold">Central Medical Center</h2>
+            <button class="h-10 w-10 flex items-center justify-center hover:bg-gray-100 rounded-full">
+              ✕
+            </button>
+          </div>
+
+          <div class="aspect-video mb-6 rounded-lg overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+              alt="Central Medical Center" class="w-full h-full object-cover" />
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <h3 class="text-lg font-medium mb-3">Hospital Information</h3>
+              <div class="space-y-4">
+                <div class="flex items-start">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="text-gray-500 mr-2 mt-0.5">
+                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                  <span class="text-gray-700">123 Medical Blvd, Central City</span>
+                </div>
+                <div class="flex items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="text-gray-500 mr-2">
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                    </path>
+                  </svg>
+                  <span class="text-gray-700">+1 (555) 123-4567</span>
+                </div>
+                <div class="flex items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                    fill="rgb(234, 179, 8)" stroke="rgb(234, 179, 8)" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" class="text-yellow-500 fill-yellow-500 mr-2">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                    </polygon>
+                  </svg>
+                  <span class="text-gray-700">4.8 (356 reviews)</span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-medium mb-3">Availability</h3>
+              <div class="space-y-4">
+                <div class="flex items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="text-gray-500 mr-2">
+                    <path d="M18 6h-5a2 2 0 0 0-2 2v10"></path>
+                    <path d="M13 18h-3"></path>
+                    <rect width="8" height="4" x="2" y="6" rx="1"></rect>
+                    <path d="M18 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path>
+                  </svg>
+                  <span class="text-gray-700">
+                    15 beds available
+                  </span>
+                </div>
+                <div class="flex items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="text-gray-500 mr-2">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                  </svg>
+                  <span class="text-gray-700">
+                    Emergency Services: Available
+                  </span>
+                </div>
+                <div class="flex items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="text-gray-500 mr-2">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                  </svg>
+                  <span class="text-gray-700">
+                    24 doctors available
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-6">
+            <h3 class="text-lg font-medium mb-3">Medical Specialties</h3>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+              <div class="flex items-center bg-gray-50 rounded-md p-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="text-medical-600 mr-2">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Cardiology</span>
+              </div>
+              <div class="flex items-center bg-gray-50 rounded-md p-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="text-medical-600 mr-2">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Neurology</span>
+              </div>
+              <div class="flex items-center bg-gray-50 rounded-md p-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="text-medical-600 mr-2">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Orthopedics</span>
+              </div>
+              <div class="flex items-center bg-gray-50 rounded-md p-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="text-medical-600 mr-2">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Oncology</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-6">
+            <h3 class="text-lg font-medium mb-3">About Central Medical Center</h3>
+            <p class="text-gray-700 mb-3">
+              Central Medical Center is a leading healthcare facility providing comprehensive medical services to
+              patients.
+              With state-of-the-art equipment and a team of specialized healthcare professionals, we are committed
+              to delivering high-quality patient care.
+            </p>
+            <p class="text-gray-700">
+              Our hospital features modern facilities including advanced diagnostic and treatment centers,
+              specialized care units, and comfortable patient rooms. We pride ourselves on our patient-centered
+              approach to healthcare and our commitment to excellence in medical services.
+            </p>
+          </div>
+
+          <div class="flex justify-end space-x-3">
+            <button
+              class="border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 rounded-md text-sm font-medium">
+              Close
+            </button>
+            <button
+              class="bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 rounded-md text-sm font-medium">
+              Book Appointment
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+
+  </main>
+  <!-- Footer -->
+  <footer class="bg-gray-50 pt-16 pb-8 border-t">
+    <div class="container mx-auto px-4">
+      <div id="footer-content" class="grid gap-8 mb-12">
+        <div>
+          <a href="/" class="inline-block mb-4">
+            <span class="text-medical-700 font-semibold text-2xl">
+              Medi<span class="text-medical-500">Connect</span>
+            </span>
+          </a>
+          <p class="text-gray-600 leading-relaxed mb-4">
+            Connecting patients with healthcare professionals for better care and outcomes.
+          </p>
+          <div class="footer-socials flex gap-4 transition-all">
+            <a href="#"
+              class="text-gray-500 hover:text-medical-600 hover:bg-medical-50 rounded-full flex justify-center items-center w-10 h-10">
+              <i data-lucide="facebook" class="h-4 w-4"></i>
             </a>
 
-            <!-- Desktop Navigation -->
-            <nav id="desktop-nav" class="hidden items-center gap-4">
-                <a href="/"
-                    class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Home</a>
-                <a href="/doctors"
-                    class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Doctors</a>
-                <a href="/hospitals"
-                    class="text-medical-700 text-sm font-medium hover:text-medical-600 transition-colors">Hospitals</a>
-                <a href="/appointments"
-                    class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Appointments</a>
-                <a href="/dashboard"
-                    class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Dashboard</a>
-            </nav>
-
-            <!-- Header Right Section -->
-            <div class="flex items-center gap-4">
-                <!-- Sign In / Sign Up buttons (hidden by default) -->
-                <a href="/login" id="sign-in"
-                    class="hidden items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all">Sign
-                    In</a>
-                <a href="/signup" id="sign-up"
-                    class="hidden items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all">Sign
-                    Up</a>
-
-                <!-- Mobile Menu Button -->
-                <button id="menu-button"
-                    class="inline-flex items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-0 pointer">
-                    <i data-lucide="menu" class="w-4 h-4"></i>
-                </button>
-            </div>
-
-            <!-- Mobile Navigation (Hidden by default) -->
-            <div id="mobile-nav" class="hidden absolute bg-white-95 backdrop-blur-lg animate-slide-down shadow-lg">
-                <nav class="container mx-auto flex flex-col gap-4 px-4 py-4">
-                    <a href="/"
-                        class="text-medical-700 bg-medical-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Home</a>
-                    <a href="/doctors"
-                        class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Doctors</a>
-                    <a href="/hospitals"
-                        class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
-                    <a href="/appointments"
-                        class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
-                    <a href="/dashboard"
-                        class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Dashboard</a>
-
-                    <!-- Sign In / Sign Up buttons (Mobile view) -->
-                    <div class="flex flex-col pt-2 gap-2 border-t border-solid separator">
-                        <a href="/login"
-                            class="inline-flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-all">Sign
-                            In</a>
-                        <a href="/signup"
-                            class="inline-flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Sign
-                            Up</a>
-                    </div>
-                </nav>
-            </div>
-        </div>
-    </header>
-
-    <main class="overflow-hidden pt-20">
-
-      
-
-  <!-- Main Content -->
-  <main class="pt-20 pb-16 min-h-screen bg-gray-50">
-    <div class="container mx-auto px-4">
-      <div class="py-8">
-        <h1 class="text-3xl font-bold mb-2 tracking-tight text-heading">Hospitals</h1>
-        <p class="text-gray-600">Find hospitals, check bed availability, and view services</p>
-      </div>
-      
-      <div class="input-container flex flex-col lg:flex-row gap-6 mb-8">
-        <div class="flex-grow">
-          <div class="relative">
-           <!-- Search Icon (Lucide) -->
-              <i data-lucide="search" class="absolute text-gray-500"></i>
-            <input
-              placeholder="Search hospitals by name or location"
-              class="pl-10 h-12 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-            />
+            <a href="#"
+              class="text-gray-500 hover:text-medical-600 hover:bg-medical-50 rounded-full flex justify-center items-center w-10 h-10">
+              <i data-lucide="twitter" class="h-4 w-4"></i>
+            </a>
+            <a href="#"
+              class="text-gray-500 hover:text-medical-600 hover:bg-medical-50 rounded-full flex justify-center items-center w-10 h-10">
+              <i data-lucide="instagram" class="h-4 w-4"></i>
+            </a>
           </div>
         </div>
-        
-        <div class="flex flex-col sm:flex-row gap-3">
-          <button
-            class="flex items-center gap-2 rounded-md border border-input h-10 px-4 py-2 bg-white"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
-            <span>Emergency Services</span>
-          </button>
-          
-          <button
-            class="flex items-center gap-2 rounded-md border border-input h-10 px-4 py-2 bg-white"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6h-5a2 2 0 0 0-2 2v10"></path><path d="M13 18h-3"></path><rect width="8" height="4" x="2" y="6" rx="1"></rect><path d="M18 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path></svg>
-            <span>Available Beds</span>
-          </button>
+
+        <div>
+          <h4 class="font-medium text-lg text-heading tracking-tight mb-4">Services</h4>
+          <ul class="flex flex-col gap-2">
+            <li>
+              <a href="/appointments" class="text-gray-600 hover:text-medical-600 transition-colors">
+                Book Appointments
+              </a>
+            </li>
+            <li>
+              <a href="/doctors" class="text-gray-600 hover:text-medical-600 transition-colors">
+                Find Doctors
+              </a>
+            </li>
+            <li>
+              <a href="/hospitals" class="text-gray-600 hover:text-medical-600 transition-colors">
+                Hospital Information
+              </a>
+            </li>
+            <li>
+              <a href="/emergency" class="text-gray-600 hover:text-medical-600 transition-colors">
+                Emergency Services
+              </a>
+            </li>
+            <li>
+              <a href="/pharmacy" class="text-gray-600 hover:text-medical-600 transition-colors">
+                Pharmacy Orders
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-medium text-lg text-heading tracking-tight mb-4">Quick Links</h4>
+          <ul class="flex flex-col gap-2">
+            <li>
+              <a href="/about" class="text-gray-600 hover:text-medical-600 transition-colors">
+                About Us
+              </a>
+            </li>
+            <li>
+              <a href="/privacy" class="text-gray-600 hover:text-medical-600 transition-colors">
+                Privacy Policy
+              </a>
+            </li>
+            <li>
+              <a href="/terms" class="text-gray-600 hover:text-medical-600 transition-colors">
+                Terms of Service
+              </a>
+            </li>
+            <li>
+              <a href="/faq" class="text-gray-600 hover:text-medical-600 transition-colors">
+                FAQs
+              </a>
+            </li>
+            <li>
+              <a href="/contact" class="text-gray-600 hover:text-medical-600 transition-colors">
+                Contact Us
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-medium text-lg text-heading tracking-tight mb-4">Contact</h4>
+          <ul class="flex flex-col gap-3">
+            <li class="flex gap-1">
+              <i data-lucide="map-pin" class="h-7 w-7 text-medical-500 pr-2"></i>
+              <span class="text-gray-600">
+                123 Healthcare Avenue, Medical District, City, Country
+              </span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i data-lucide="phone" class="h-4 w-4 text-medical-500 "></i>
+              <span class="text-gray-600">+1 (555) 123-4567</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i data-lucide="mail" class="h-4 w-4 text-medical-500"></i>
+              <span class="text-gray-600">contact@mediconnect.example</span>
+            </li>
+          </ul>
         </div>
       </div>
-      
-      <div class="grid grid-cols-1 gap-6">
-        <!-- Hospital Card 1 -->
-        <div class="backdrop-blur-md bg-white/50 border border-white/20 shadow-sm rounded-xl overflow-hidden">
-          <div class="flex flex-col md:flex-row">
-            <div class="md:w-1/3 h-48 md:h-auto relative">
-              <img
-                src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                alt="Central Medical Center"
-                class="w-full h-full object-cover"
-                loading="lazy"
-              />
-              <div class="absolute top-4 left-4 bg-red-500 text-white px-2 py-1 rounded-md text-xs font-medium flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
-                Emergency Services
-              </div>
-            </div>
-            
-            <div class="p-6 flex-grow">
-              <div class="flex flex-col md:flex-row md:items-start md:justify-between">
-                <div>
-                  <h2 class="text-xl font-bold mb-1">Central Medical Center</h2>
-                  <div class="flex items-center mb-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-500 mr-1.5"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                    <span class="text-gray-600 text-sm">123 Medical Blvd, Central City</span>
-                  </div>
-                </div>
-                
-                <div class="flex items-center mt-2 md:mt-0">
-                  <div class="px-3 py-1.5 bg-yellow-50 rounded-md flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="rgb(234, 179, 8)" stroke="rgb(234, 179, 8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                    <span class="font-medium">4.8</span>
-                    <span class="text-gray-500 text-sm ml-1">(356)</span>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="flex flex-wrap gap-2 my-3">
-                <span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-xs font-medium text-gray-800">
-                  Cardiology
-                </span>
-                <span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-xs font-medium text-gray-800">
-                  Neurology
-                </span>
-                <span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-xs font-medium text-gray-800">
-                  Orthopedics
-                </span>
-                <span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-xs font-medium text-gray-800">
-                  Oncology
-                </span>
-              </div>
-              
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
-                <div class="flex items-center">
-                  <div class="w-10 h-10 rounded-full bg-green-100 text-green-600 flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6h-5a2 2 0 0 0-2 2v10"></path><path d="M13 18h-3"></path><rect width="8" height="4" x="2" y="6" rx="1"></rect><path d="M18 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path></svg>
-                  </div>
-                  <div class="ml-3">
-                    <p class="text-sm text-gray-600">Available Beds</p>
-                    <p class="font-medium">15</p>
-                  </div>
-                </div>
-                
-                <div class="flex items-center">
-                  <div class="w-10 h-10 rounded-full bg-medical-100 text-medical-600 flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                  </div>
-                  <div class="ml-3">
-                    <p class="text-sm text-gray-600">Contact</p>
-                    <p class="font-medium">+1 (555) 123-4567</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="mt-6 flex justify-end">
-                <button class="mr-3 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 rounded-md text-sm font-medium">
-                  View Details
-                </button>
-                <button class="border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 rounded-md text-sm font-medium">
-                  Get Directions
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Hospital Card 2 -->
-        <div class="backdrop-blur-md bg-white/50 border border-white/20 shadow-sm rounded-xl overflow-hidden">
-          <div class="flex flex-col md:flex-row">
-            <div class="md:w-1/3 h-48 md:h-auto relative">
-              <img
-                src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                alt="Westside Hospital"
-                class="w-full h-full object-cover"
-                loading="lazy"
-              />
-              <div class="absolute top-4 left-4 bg-red-500 text-white px-2 py-1 rounded-md text-xs font-medium flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
-                Emergency Services
-              </div>
-            </div>
-            
-            <div class="p-6 flex-grow">
-              <div class="flex flex-col md:flex-row md:items-start md:justify-between">
-                <div>
-                  <h2 class="text-xl font-bold mb-1">Westside Hospital</h2>
-                  <div class="flex items-center mb-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-500 mr-1.5"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                    <span class="text-gray-600 text-sm">456 Healthcare Ave, West District</span>
-                  </div>
-                </div>
-                
-                <div class="flex items-center mt-2 md:mt-0">
-                  <div class="px-3 py-1.5 bg-yellow-50 rounded-md flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="rgb(234, 179, 8)" stroke="rgb(234, 179, 8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                    <span class="font-medium">4.6</span>
-                    <span class="text-gray-500 text-sm ml-1">(283)</span>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="flex flex-wrap gap-2 my-3">
-                <span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-xs font-medium text-gray-800">
-                  Pediatrics
-                </span>
-                <span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-xs font-medium text-gray-800">
-                  Obstetrics
-                </span>
-                <span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-xs font-medium text-gray-800">
-                  General Surgery
-                </span>
-                <span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-xs font-medium text-gray-800">
-                  Dermatology
-                </span>
-              </div>
-              
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
-                <div class="flex items-center">
-                  <div class="w-10 h-10 rounded-full bg-green-100 text-green-600 flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6h-5a2 2 0 0 0-2 2v10"></path><path d="M13 18h-3"></path><rect width="8" height="4" x="2" y="6" rx="1"></rect><path d="M18 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path></svg>
-                  </div>
-                  <div class="ml-3">
-                    <p class="text-sm text-gray-600">Available Beds</p>
-                    <p class="font-medium">8</p>
-                  </div>
-                </div>
-                
-                <div class="flex items-center">
-                  <div class="w-10 h-10 rounded-full bg-medical-100 text-medical-600 flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                  </div>
-                  <div class="ml-3">
-                    <p class="text-sm text-gray-600">Contact</p>
-                    <p class="font-medium">+1 (555) 987-6543</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="mt-6 flex justify-end">
-                <button class="mr-3 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 rounded-md text-sm font-medium">
-                  View Details
-                </button>
-                <button class="border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 rounded-md text-sm font-medium">
-                  Get Directions
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+
+
+      <div class="pt-8 border-t border-solid separator text-center text-gray-600 text-sm">
+        <p>&copy; 2025 MediConnect. All rights reserved.</p>
       </div>
     </div>
-    
-    <!-- Hospital details modal -->
-    <div class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4 animate-fade-in">
-      <div class="backdrop-blur-md bg-white/50 border border-white/20 shadow-sm w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-lg p-6 animate-slide-up">
-        <div class="flex justify-between items-start mb-6">
-          <h2 class="text-2xl font-bold">Central Medical Center</h2>
-          <button class="h-10 w-10 flex items-center justify-center hover:bg-gray-100 rounded-full">
-            ✕
-          </button>
-        </div>
-        
-        <div class="aspect-video mb-6 rounded-lg overflow-hidden">
-          <img
-            src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            alt="Central Medical Center"
-            class="w-full h-full object-cover"
-          />
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-          <div>
-            <h3 class="text-lg font-medium mb-3">Hospital Information</h3>
-            <div class="space-y-4">
-              <div class="flex items-start">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-500 mr-2 mt-0.5"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                <span class="text-gray-700">123 Medical Blvd, Central City</span>
-              </div>
-              <div class="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-500 mr-2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                <span class="text-gray-700">+1 (555) 123-4567</span>
-              </div>
-              <div class="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="rgb(234, 179, 8)" stroke="rgb(234, 179, 8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-500 fill-yellow-500 mr-2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                <span class="text-gray-700">4.8 (356 reviews)</span>
-              </div>
-            </div>
-          </div>
-          
-          <div>
-            <h3 class="text-lg font-medium mb-3">Availability</h3>
-            <div class="space-y-4">
-              <div class="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-500 mr-2"><path d="M18 6h-5a2 2 0 0 0-2 2v10"></path><path d="M13 18h-3"></path><rect width="8" height="4" x="2" y="6" rx="1"></rect><path d="M18 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path></svg>
-                <span class="text-gray-700">
-                  15 beds available
-                </span>
-              </div>
-              <div class="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-500 mr-2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
-                <span class="text-gray-700">
-                  Emergency Services: Available
-                </span>
-              </div>
-              <div class="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-500 mr-2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                <span class="text-gray-700">
-                  24 doctors available
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="mb-6">
-          <h3 class="text-lg font-medium mb-3">Medical Specialties</h3>
-          <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
-            <div class="flex items-center bg-gray-50 rounded-md p-3">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-medical-600 mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              <span>Cardiology</span>
-            </div>
-            <div class="flex items-center bg-gray-50 rounded-md p-3">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-medical-600 mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              <span>Neurology</span>
-            </div>
-            <div class="flex items-center bg-gray-50 rounded-md p-3">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-medical-600 mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              <span>Orthopedics</span>
-            </div>
-            <div class="flex items-center bg-gray-50 rounded-md p-3">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-medical-600 mr-2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              <span>Oncology</span>
-            </div>
-          </div>
-        </div>
-        
-        <div class="mb-6">
-          <h3 class="text-lg font-medium mb-3">About Central Medical Center</h3>
-          <p class="text-gray-700 mb-3">
-            Central Medical Center is a leading healthcare facility providing comprehensive medical services to patients. 
-            With state-of-the-art equipment and a team of specialized healthcare professionals, we are committed 
-            to delivering high-quality patient care.
-          </p>
-          <p class="text-gray-700">
-            Our hospital features modern facilities including advanced diagnostic and treatment centers, 
-            specialized care units, and comfortable patient rooms. We pride ourselves on our patient-centered 
-            approach to healthcare and our commitment to excellence in medical services.
-          </p>
-        </div>
-        
-        <div class="flex justify-end space-x-3">
-          <button class="border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 rounded-md text-sm font-medium">
-            Close
-          </button>
-          <button class="bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 rounded-md text-sm font-medium">
-            Book Appointment
-          </button>
-        </div>
-      </div>
-    </div>
-  </main>
-  
-  
-    </main>
-    <!-- Footer -->
-    <footer class="bg-gray-50 pt-16 pb-8 border-t">
-        <div class="container mx-auto px-4">
-            <div id="footer-content" class="grid gap-8 mb-12">
-                <div>
-                    <a href="/" class="inline-block mb-4">
-                        <span class="text-medical-700 font-semibold text-2xl">
-                            Medi<span class="text-medical-500">Connect</span>
-                        </span>
-                    </a>
-                    <p class="text-gray-600 leading-relaxed mb-4">
-                        Connecting patients with healthcare professionals for better care and outcomes.
-                    </p>
-                    <div class="footer-socials flex gap-4 transition-all">
-                        <a href="#"
-                            class="text-gray-500 hover:text-medical-600 hover:bg-medical-50 rounded-full flex justify-center items-center w-10 h-10">
-                            <i data-lucide="facebook" class="h-4 w-4"></i>
-                        </a>
+  </footer>
 
-                        <a href="#"
-                            class="text-gray-500 hover:text-medical-600 hover:bg-medical-50 rounded-full flex justify-center items-center w-10 h-10">
-                            <i data-lucide="twitter" class="h-4 w-4"></i>
-                        </a>
-                        <a href="#"
-                            class="text-gray-500 hover:text-medical-600 hover:bg-medical-50 rounded-full flex justify-center items-center w-10 h-10">
-                            <i data-lucide="instagram" class="h-4 w-4"></i>
-                        </a>
-                    </div>
-                </div>
+  <!-- JavaScript -->
+  <script src="main.js"></script>
 
-                <div>
-                    <h4 class="font-medium text-lg text-heading tracking-tight mb-4">Services</h4>
-                    <ul class="flex flex-col gap-2">
-                        <li>
-                            <a href="/appointments" class="text-gray-600 hover:text-medical-600 transition-colors">
-                                Book Appointments
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/doctors" class="text-gray-600 hover:text-medical-600 transition-colors">
-                                Find Doctors
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/hospitals" class="text-gray-600 hover:text-medical-600 transition-colors">
-                                Hospital Information
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/emergency" class="text-gray-600 hover:text-medical-600 transition-colors">
-                                Emergency Services
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/pharmacy" class="text-gray-600 hover:text-medical-600 transition-colors">
-                                Pharmacy Orders
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="font-medium text-lg text-heading tracking-tight mb-4">Quick Links</h4>
-                    <ul class="flex flex-col gap-2">
-                        <li>
-                            <a href="/about" class="text-gray-600 hover:text-medical-600 transition-colors">
-                                About Us
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/privacy" class="text-gray-600 hover:text-medical-600 transition-colors">
-                                Privacy Policy
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/terms" class="text-gray-600 hover:text-medical-600 transition-colors">
-                                Terms of Service
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/faq" class="text-gray-600 hover:text-medical-600 transition-colors">
-                                FAQs
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/contact" class="text-gray-600 hover:text-medical-600 transition-colors">
-                                Contact Us
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="font-medium text-lg text-heading tracking-tight mb-4">Contact</h4>
-                    <ul class="flex flex-col gap-3">
-                        <li class="flex gap-1">
-                            <i data-lucide="map-pin" class="h-7 w-7 text-medical-500 pr-2"></i>
-                            <span class="text-gray-600">
-                                123 Healthcare Avenue, Medical District, City, Country
-                            </span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i data-lucide="phone" class="h-4 w-4 text-medical-500 "></i>
-                            <span class="text-gray-600">+1 (555) 123-4567</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i data-lucide="mail" class="h-4 w-4 text-medical-500"></i>
-                            <span class="text-gray-600">contact@mediconnect.example</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-
-            <div class="pt-8 border-t border-solid separator text-center text-gray-600 text-sm">
-                <p>&copy; 2025 MediConnect. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- JavaScript -->
-    <script src="main.js"></script>
-
-    <!-- Init Lucide Icons -->
-    <script>
-        lucide.createIcons();
-    </script>
+  <!-- Init Lucide Icons -->
+  <script>
+    lucide.createIcons();
+  </script>
 </body>
 
 </html>

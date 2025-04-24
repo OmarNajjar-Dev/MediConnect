@@ -101,44 +101,44 @@
   <main class="pt-20 pb-16 min-h-screen bg-gray-50">
     <div class="container mx-auto px-4">
       <div class="py-8">
-        <h1 class="text-3xl font-bold mb-2">Hospitals</h1>
+        <h1 class="text-3xl font-bold mb-2 tracking-tight text-heading">Hospitals</h1>
         <p class="text-gray-600">Find hospitals, check bed availability, and view services</p>
       </div>
-      
-      <div class="flex flex-col lg:flex-row gap-6 mb-8">
+
+      <div class="input-container flex flex-col lg:flex-row gap-6 mb-8">
         <div class="flex-grow">
           <div class="relative">
-            <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
-            <input
-              placeholder="Search hospitals by name or location"
-              class="pl-10 h-12 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-            />
+            <!-- Search Icon (Lucide) -->
+            <i data-lucide="search" class="absolute text-gray-500"></i>
+            <input id="search-input" type="text" placeholder="Search doctors by name, specialty, or hospital"
+              class="search-input px-10 h-12 flex w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm outline-none"/>
+            
           </div>
         </div>
-        
+
         <div class="flex flex-col sm:flex-row gap-3">
-          <button
-            class="flex items-center gap-2 rounded-md border border-input h-10 px-4 py-2 bg-white"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+          <button class="flex items-center gap-2 rounded-md border border-input h-10 px-4 py-2 bg-white">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+            </svg>
             <span>Emergency Services</span>
           </button>
-          
-          <button
-            class="flex items-center gap-2 rounded-md border border-input h-10 px-4 py-2 bg-white"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6h-5a2 2 0 0 0-2 2v10"></path><path d="M13 18h-3"></path><rect width="8" height="4" x="2" y="6" rx="1"></rect><path d="M18 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path></svg>
+
+          <button class="flex items-center gap-2 rounded-md border border-input h-10 px-4 py-2 bg-white">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 6h-5a2 2 0 0 0-2 2v10"></path>
+              <path d="M13 18h-3"></path>
+              <rect width="8" height="4" x="2" y="6" rx="1"></rect>
+              <path d="M18 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"></path>
+            </svg>
             <span>Available Beds</span>
           </button>
         </div>
       </div>
-      
+
       <div class="grid grid-cols-1 gap-6">
-       
-  </main>
-  
-  
-    </main>
     <!-- Footer -->
     <footer class="bg-gray-50 pt-16 pb-8 border-t">
         <div class="container mx-auto px-4">
