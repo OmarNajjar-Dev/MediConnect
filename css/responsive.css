@@ -75,7 +75,10 @@
     #services-cards-container,
     #rating-cards-container {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
+    } 
+    .input-container {
+        flex-direction: row;
+      }
 }
 
 /* Large Screen */
