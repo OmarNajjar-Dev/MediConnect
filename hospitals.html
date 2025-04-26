@@ -110,18 +110,20 @@
                             <!-- Search Icon (Lucide) -->
                             <i data-lucide="search" class="search-icon absolute text-gray-500"></i>
                             <input id="search-input" type="text"
-                                placeholder="Search doctors by name, specialty, or hospital"
+                                placeholder="Search hospitals by name and location"
                                 class="search-input px-10 h-12 flex w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm outline-none" />
 
                         </div>
                     </div>
 
                     <div class="emergency flex flex-col gap-3">
-                        <button class=" emergency-btn items-center gap-2 rounded-md border border-solid border-input h-10 px-4 py-2 bg-background hover:bg-medical-50 hover:text-medical-600 transition-colors">
-                            <i data-lucide="activity" class="w-4 h-4 stroke-current text-current text-heading"></i>
-
-                            <span>Emergency Services</span>
+                        <button
+                          class="flex items-center gap-2 justify-center whitespace-nowrap rounded-md border border-solid border-input bg-background text-heading px-4 py-2 h-10 text-sm font-medium transition-colors hover:bg-medical-50 hover:text-medical-500  focus-visible:outline-none focus-visible:shadow-lg "
+                        >
+                          <i data-lucide="activity" class="w-4 h-4"></i>
+                          <span>Emergency Services</span>
                         </button>
+                      </div>
 
                         <button class="flex items-center gap-2 rounded-md border border-solid border-input h-10 px-4 py-2 bg-white text-sm font-medium whitespace-nowrap bg-white ">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
