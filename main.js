@@ -47,7 +47,7 @@ const hospitals = [
     rating: 4.6,
     reviews: 283,
     emergencyServices: true,
-    imageUrl: "/mnt/data/second-hospital-image.png"
+    imageUrl:"https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
   }
 ];
 
@@ -64,8 +64,7 @@ const cardsHtml = hospitals.map(h => {
     <div class="grid grid-cols-1 gap-6">
       <div id="hospital-card" class="flex flex-col">
         
-        <div class="glass-card rounded-xl transition-all duration-300 overflow-hidden">
-
+        <div class="glass-card rounded-xl transition-all duration-300 overflow-hidden relative h-80">
           <img
             src="${h.imageUrl}"
             alt="${h.name}"
@@ -73,7 +72,7 @@ const cardsHtml = hospitals.map(h => {
             loading="lazy" />
           ${h.emergencyServices ? `
             <div class="absolute top-4 left-4 bg-red-500 text-white px-2 py-1 rounded-md text-xs font-medium flex items-center">
-              <i data-lucide="siren" class="w-3.5 h-3.5 mr-1"></i>
+              <i data-lucide="activity" class="w-3.5 h-3.5 mr-1"></i>
               Emergency Services
             </div>` : ``}
         </div>
@@ -103,7 +102,7 @@ const cardsHtml = hospitals.map(h => {
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
             <div class="flex items-center">
               <div class="w-10 h-10 rounded-full bg-green-100 text-green-600 flex items-center justify-center">
-                <i data-lucide="bed-single" class="w-5 h-5"></i>
+                <i data-lucide="bed" class="w-5 h-5"></i>
               </div>
               <div class="ml-3">
                 <p class="text-sm text-gray-600">Available Beds</p>
