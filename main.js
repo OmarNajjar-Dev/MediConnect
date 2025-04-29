@@ -78,16 +78,16 @@ const cardsHtml = hospitals.map(h => {
         </div>
   
         <div class="p-6 flex-grow">
-          <div class="flex flex-col md:flex-row md:items-start md:justify-between">
+          <div class="custom-flex-container flex flex-col">
             <div>
-              <h2 class="text-xl font-bold mb-1">${h.name}</h2>
+              <h2 class="text-xl font-bold mb-1 text-heading tracking-tight">${h.name}</h2>
               <div class="flex items-center mb-3">
                 <i data-lucide="map-pin" class="w-4 h-4 text-gray-500 mr-1.5"></i>
                 <span class="text-gray-600 text-sm">${h.address}</span>
               </div>
             </div>
             <div class="flex items-center mt-2 md:mt-0">
-              <div class="px-3 py-1.5 bg-yellow-50 rounded-md flex items-center">
+              <div class="star-icon px-3 py-1-5 rounded-md flex items-center">
                 <i data-lucide="star" class="w-4 h-4 mr-1 text-yellow-500"></i>
                 <span class="font-medium">${h.rating}</span>
                 <span class="text-gray-500 text-sm ml-1">(${h.reviews})</span>

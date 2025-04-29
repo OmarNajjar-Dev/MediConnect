@@ -41,3 +41,6 @@ header {
   transition: all 0.3s ease;
   transform: translateY(-2px);
 }
+.star-icon{
+    background-color: #fefce8;
+  }
