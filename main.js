@@ -36,7 +36,7 @@ const hospitals = [
     rating: 4.8,
     reviews: 356,
     emergencyServices: true,
-    imageUrl:"https:images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    imageUrl: "https:images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
   },
   {
     name: "Westside Hospital",
@@ -47,7 +47,7 @@ const hospitals = [
     rating: 4.6,
     reviews: 283,
     emergencyServices: true,
-    imageUrl:"https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    imageUrl: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
   }
 ];
 
@@ -88,8 +88,8 @@ const cardsHtml = hospitals.map(h => {
             </div>
             <div class="flex items-center mt-2 md:mt-0">
               <div class="star-icon px-3 py-1-5 rounded-md flex items-center">
-                <i data-lucide="star" class="w-4 h-4 mr-1 text-yellow-500"></i>
-                <span class="font-medium">${h.rating}</span>
+                <i data-lucide="star" class="w-4 h-4 mr-1 text-star-500 fill-star-500"></i>
+                <span class=" text-heading font-medium">${h.rating}</span>
                 <span class="text-gray-500 text-sm ml-1">(${h.reviews})</span>
               </div>
             </div>
@@ -99,32 +99,34 @@ const cardsHtml = hospitals.map(h => {
             ${specialtiesHtml}
           </div>
   
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
+          <div class="hospital-details grid grid-cols-1 gap-3 mt-4">
             <div class="flex items-center">
-              <div class="w-10 h-10 rounded-full bg-green-100 text-green-600 flex items-center justify-center">
+              <div class="bed-icon w-10 h-10 rounded-full flex items-center justify-center">
                 <i data-lucide="bed" class="w-5 h-5"></i>
               </div>
               <div class="ml-3">
                 <p class="text-sm text-gray-600">Available Beds</p>
-                <p class="font-medium">${h.availableBeds}</p>
+                <p class="font-medium text-heading">${h.availableBeds}</p>
               </div>
             </div>
 
             <div class="flex items-center">
-              <div class="w-10 h-10 rounded-full bg-teal-100 text-teal-600 flex items-center justify-center">
+              <div class="w-10 h-10 rounded-full bg-medical-100 text-medical-600 flex items-center justify-center">
                 <i data-lucide="phone" class="w-5 h-5"></i>
               </div>
               <div class="ml-3">
                 <p class="text-sm text-gray-600">Contact</p>
-                <p class="font-medium">${h.contact}</p>
+                <p class="font-medium text-heading">${h.contact}</p>
               </div>
             </div>
           </div>
   
           <div class="mt-6 flex justify-end">
-            <button class="mr-3 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 rounded-md text-sm font-medium">
-              View Details
-            </button>
+            <div class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium
+              transition-colors h-10 px-4 py-2 mr-3 bg-medical-600 text-white hover:bg-primary/90">
+  View Details
+</div>
+
             <button class="border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 rounded-md text-sm font-medium">
               Get Directions
             </button>

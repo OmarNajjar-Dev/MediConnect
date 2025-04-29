@@ -26,6 +26,10 @@
         flex-direction: row;
     }
 
+    .hospital-details {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
 }
 
 /* Medium Screen */
