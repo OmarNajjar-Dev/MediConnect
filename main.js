@@ -36,7 +36,8 @@ const hospitals = [
     rating: 4.8,
     reviews: 356,
     emergencyServices: true,
-    imageUrl: "https:images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    imageUrl:
+      "https:images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
   {
     name: "Westside Hospital",
@@ -47,58 +48,72 @@ const hospitals = [
     rating: 4.6,
     reviews: 283,
     emergencyServices: true,
-    imageUrl: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-  }
+    imageUrl:
+      "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+  },
 ];
 
 const container = document.getElementById("hospitals");
 
-const cardsHtml = hospitals.map(h => {
-  const specialtiesHtml = h.specialties
-    .map(s => `
-      <span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-xs font-medium text-gray-800">${s}</span>
-    `)
+const generateSpecialtiesHtml = (specialties) =>
+  specialties
+    .map(
+      (s) => `
+    <span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-xs font-medium text-gray-800">${s}</span>
+  `
+    )
     .join("");
 
-  return `
-    <div class="grid grid-cols-1 gap-6">
-      <div id="hospital-card" class="flex flex-col">
-        
-        <div class="glass-card rounded-xl transition-all duration-300 overflow-hidden relative h-80">
+const cardsHtml = hospitals
+  .map((h) => {
+    const specialtiesHtml = generateSpecialtiesHtml(h.specialties);
+
+    return `
+  <div class="grid grid-cols-1 gap-6">
+    <div class="hospital-card-wrapper bg-card border-card shadow-sm rounded-xl transition-all duration-300 overflow-hidden relative">
+      
+      <div class="hospital-image-section flex flex-col">
+
+        <div class="hospital-image-wrapper relative w-full h-48">
           <img
             src="${h.imageUrl}"
             alt="${h.name}"
             class="w-full h-full object-cover"
-            loading="lazy" />
-          ${h.emergencyServices ? `
-            <div class="absolute top-4 left-4 bg-red-500 text-white px-2 py-1 rounded-md text-xs font-medium flex items-center">
+            loading="lazy"
+          />
+          ${h.emergencyServices
+            ? `
+            <div id="emergency" class="absolute bg-danger text-white px-2 py-1 rounded-full text-xs font-medium flex items-center">
               <i data-lucide="activity" class="w-3.5 h-3.5 mr-1"></i>
               Emergency Services
-            </div>` : ``}
+            </div>`
+            : ""
+          }
         </div>
-  
+
         <div class="p-6 flex-grow">
           <div class="custom-flex-container flex flex-col">
             <div>
               <h2 class="text-xl font-bold mb-1 text-heading tracking-tight">${h.name}</h2>
-              <div class="flex items-center mb-3">
+              <div class="flex items-center gap-2 mb-3 text-sm text-gray-600">
                 <i data-lucide="map-pin" class="w-4 h-4 text-gray-500 mr-1.5"></i>
-                <span class="text-gray-600 text-sm">${h.address}</span>
+                <span>${h.address}</span>
               </div>
             </div>
-            <div class="flex items-center mt-2 md:mt-0">
-              <div class="star-icon px-3 py-1-5 rounded-md flex items-center">
-                <i data-lucide="star" class="w-4 h-4 mr-1 text-star-500 fill-star-500"></i>
-                <span class=" text-heading font-medium">${h.rating}</span>
+
+            <div class="hospital-rating flex items-center mt-2">
+              <div class="hospital-stars px-3 py-1.5 rounded-md flex items-center">
+                <i data-lucide="star" class="w-4.5 h-4.5 mr-1 text-star-500 fill-star-500"></i>
+                <span class="text-heading font-medium py-2">${h.rating}</span>
                 <span class="text-gray-500 text-sm ml-1">(${h.reviews})</span>
               </div>
             </div>
           </div>
-  
+
           <div class="flex flex-wrap gap-2 my-3">
             ${specialtiesHtml}
           </div>
-  
+
           <div class="hospital-details grid grid-cols-1 gap-3 mt-4">
             <div class="flex items-center">
               <div class="bed-icon w-10 h-10 rounded-full flex items-center justify-center">
@@ -120,24 +135,28 @@ const cardsHtml = hospitals.map(h => {
               </div>
             </div>
           </div>
-  
-          <div class="mt-6 flex justify-end">
-            <div class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium
-              transition-colors h-10 px-4 py-2 mr-3 bg-medical-600 text-white hover:bg-primary/90">
-  View Details
-</div>
 
-            <button class="border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 rounded-md text-sm font-medium">
+          <div id="hospital-card-buttons" class="mt-6 flex justify-end">
+            <button class="inline-flex items-center justify-center gap-2 flex-grow whitespace-nowrap rounded-md border border-solid border-input bg-medical-600 text-sm font-medium transition-colors h-10 px-4 py-2 mr-3 text-white hover:bg-medical-400">
+              View Details
+            </button>
+
+            <button class="inline-flex items-center justify-center gap-2 flex-grow whitespace-nowrap rounded-md text-sm font-medium transition-colors text-heading border border-solid border-input bg-background hover:bg-medical-50 hover:text-medical-500 h-10 px-4 py-2">
               Get Directions
             </button>
           </div>
+
         </div>
       </div>
+
     </div>
-  `;
-}).join("");
+  </div>
+`;
 
 
+
+  })
+  .join("");
 
 container.innerHTML = cardsHtml;
 lucide.createIcons();
