@@ -137,5 +137,7 @@ const cardsHtml = hospitals.map(h => {
   `;
 }).join("");
 
+
+
 container.innerHTML = cardsHtml;
 lucide.createIcons();
