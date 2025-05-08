@@ -27,6 +27,8 @@ header {
 /* Service link hover arrow effect */
 .service-link:hover .right-arrow {
   transform: translateX(0.25rem);
+}
+
 input::placeholder {
   color: #6b7280;
 }
