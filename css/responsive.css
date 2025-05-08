@@ -57,9 +57,13 @@
         display: none;
     }
 
+    #doctor-cards-container {
+        grid-template-columns: repeat(2, 1fr); 
+      }
+
     #footer-content {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
+     }
 }
 
 /* Large Screen */
@@ -85,6 +89,15 @@
     }
 
     #services-cards-container,
+    
+    .search-container{
+        flex-direction: row;
+    }
+
+    #doctor-cards-container{
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    
     #footer-content {
         grid-template-columns: repeat(4, minmax(0, 1fr));
     }
