@@ -101,7 +101,7 @@ const container = document.getElementById('doctor-cards-container'); // Make sur
 
 doctors.map(doctor => {
   const doctorCard = `
-    <div class="doctor-card backdrop-blur-md bg-card border border-solid border-card shadow-sm animate-fade-in rounded-lg p-6">
+    <div class="doctor-card transition-transform transition-shadow shadow-sm backdrop-blur-md bg-card border border-solid border-card shadow-sm animate-fade-in rounded-lg p-6">
       <div class="flex flex-col h-full">
         <div class="flex items-start mb-4">
           <div class="w-20 h-20 rounded-full overflow-hidden mr-4 flex-shrink-0">

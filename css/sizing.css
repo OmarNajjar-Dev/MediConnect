@@ -304,6 +304,71 @@
     height: 100vh;
 }
 
+.min-h-screen {
+    min-height: 100vh;
+}
+
+.max-h-screen {
+    max-height: 100vh;
+}
+
+/* ---------- Min-Width Utilities ---------- */
+.min-w-0 {
+    min-width: 0;
+}
+
+.min-w-none {
+    min-width: none;
+}
+
+.min-w-xs {
+    min-width: 20rem;
+}
+
+.min-w-sm {
+    min-width: 24rem;
+}
+
+.min-w-md {
+    min-width: 28rem;
+}
+
+.min-w-lg {
+    min-width: 32rem;
+}
+
+.min-w-xl {
+    min-width: 36rem;
+}
+
+.min-w-2xl {
+    min-width: 42rem;
+}
+
+.min-w-3xl {
+    min-width: 48rem;
+}
+
+.min-w-4xl {
+    min-width: 56rem;
+}
+
+.min-w-5xl {
+    min-width: 64rem;
+}
+
+.min-w-6xl {
+    min-width: 72rem;
+}
+
+.min-w-7xl {
+    min-width: 80rem;
+}
+
+.min-w-full {
+    min-width: 100%;
+}
+
 /* ---------- Max-Width Utilities ---------- */
 .max-w-0 {
     max-width: 0;

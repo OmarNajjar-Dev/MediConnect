@@ -5,11 +5,6 @@ header {
   right: 0;
 }
 
-.search-input {
-  transition: outline 0.2s, ring 0.2s;
-  font-family: inherit;
-}
-
 input::placeholder {
   color: #6b7280;
 }
@@ -24,36 +19,13 @@ input::placeholder {
   opacity: 0.5;
 }
 
-.min-h-screen {
-  min-height: 100vh
-}
-
 [data-lucide="search"] {
   left: 0.75rem;
   top: 50%;
   transform: translateY(-50%);
 }
 
-.specialties-container {
-  overflow-x: auto;
-  scrollbar-width: none; /* Firefox */
-}
-
-.specialties-container::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Edge (new) */
-}
-
-
-.buttons-container{
-  min-width:100%;
-}
-
-.doctor-card {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-}
-
 .doctor-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
