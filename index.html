@@ -335,11 +335,15 @@
     </footer>
 
     <!-- JavaScript -->
-    <script src="main.js"></script>
-
-    <!-- Init Lucide Icons -->
+    <script src="js/main.js"></script>
+    <script type="module" src="js/home.js"></script>
+    <script type="module" src="js/utils.js"></script>
+    
+    <!-- Initialize Lucide Icons -->
     <script>
-        lucide.createIcons();
+        document.addEventListener("DOMContentLoaded", () => {
+            lucide.createIcons();
+        });
     </script>
 </body>
 

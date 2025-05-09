@@ -58,12 +58,12 @@
     }
 
     #doctor-cards-container {
-        grid-template-columns: repeat(2, 1fr); 
-      }
+        grid-template-columns: repeat(2, 1fr);
+    }
 
     #footer-content {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-     }
+    }
 }
 
 /* Large Screen */
@@ -76,7 +76,10 @@
         gap: 32px;
     }
 
-    #services-cards-container,
+    #services-cards-container {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
     #rating-cards-container {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -89,15 +92,14 @@
     }
 
     #services-cards-container,
-    
-    .search-container{
+    .search-container {
         flex-direction: row;
     }
 
-    #doctor-cards-container{
+    #doctor-cards-container {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
-    
+
     #footer-content {
         grid-template-columns: repeat(4, minmax(0, 1fr));
     }

@@ -1,31 +1,4 @@
-// ============================
-// Header Scroll Effect
-// ============================
-// When the page is scrolled, adjust the header classes to shrink it and add a shadow.
-// If scrollY is greater than 20, remove extra padding and add shadow and blur.
-// Otherwise, revert to the original padding and remove shadow/blur.
-const headerElement = document.querySelector("header");
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 20) {
-    headerElement.classList.remove("py-5");
-    headerElement.classList.add("shadow-sm", "backdrop-blur-md", "py-3");
-  } else {
-    headerElement.classList.add("py-5");
-    headerElement.classList.remove("shadow-sm", "backdrop-blur-md", "py-3");
-  }
-});
-
-// ============================
-// Mobile Navigation Toggle
-// ============================
-// This toggles the mobile navigation menu when the menu button is clicked.
-// It also toggles the body overflow to prevent background scrolling.
-const mobileNavElement = document.getElementById("mobile-nav");
-const menuButtonElement = document.getElementById("menu-button");
-menuButtonElement.addEventListener("click", () => {
-  mobileNavElement.classList.toggle("hidden");
-  document.body.classList.toggle("overflow-hidden");
-});
+import { generateRatingStars } from './utils.js';
 
 // ============================
 // Hero Cards Section
@@ -74,12 +47,15 @@ heroCardsHtml.forEach((cardHtml) => (heroCardsContainer.innerHTML += cardHtml));
 // Services Cards Section
 // ============================
 // Data for the services cards section.
-const servicesCardsContainer = document.getElementById("services-cards-container");
+const servicesCardsContainer = document.getElementById(
+  "services-cards-container"
+);
 const servicesCardsData = [
   {
     icon: "<i data-lucide='calendar' class='w-7 h-7'></i>",
     title: "Appointment Booking",
-    description: "Schedule appointments with doctors and receive notifications for any changes.",
+    description:
+      "Schedule appointments with doctors and receive notifications for any changes.",
     linkText: "Book Now",
     linkHref: "/appointments.html",
     animationDelay: "0ms",
@@ -87,7 +63,8 @@ const servicesCardsData = [
   {
     icon: "<i data-lucide='clipboard-list' class='w-7 h-7'></i>",
     title: "Medical Reports",
-    description: "Receive digital medical reports and prescriptions directly from your doctor.",
+    description:
+      "Receive digital medical reports and prescriptions directly from your doctor.",
     linkText: "Learn More",
     linkHref: "/reports.html",
     animationDelay: "100ms",
@@ -95,7 +72,8 @@ const servicesCardsData = [
   {
     icon: "<i data-lucide='hospital' class='w-7 h-7'></i>",
     title: "Hospital Information",
-    description: "Find hospitals with available beds and emergency services in your area.",
+    description:
+      "Find hospitals with available beds and emergency services in your area.",
     linkText: "View Hospitals",
     linkHref: "/hospitals.html",
     animationDelay: "200ms",
@@ -103,7 +81,8 @@ const servicesCardsData = [
   {
     icon: "<i data-lucide='plus-circle' class='w-7 h-7'></i>",
     title: "Pharmacy Orders",
-    description: "Order prescription and over-the-counter medications from registered pharmacies.",
+    description:
+      "Order prescription and over-the-counter medications from registered pharmacies.",
     linkText: "Order Medicines",
     linkHref: "/pharmacy.html",
     animationDelay: "300ms",
@@ -131,7 +110,9 @@ const servicesCardsHtml = servicesCardsData.map(
     </div>
     `
 );
-servicesCardsHtml.forEach((cardHtml) => (servicesCardsContainer.innerHTML += cardHtml));
+servicesCardsHtml.forEach(
+  (cardHtml) => (servicesCardsContainer.innerHTML += cardHtml)
+);
 
 // ============================
 // Rating Cards Section
@@ -142,7 +123,8 @@ const ratingCardsData = [
   {
     title: "Hospital Ratings",
     stars: 4,
-    description: "View and contribute to hospital ratings based on quality of care, facilities, and services.",
+    description:
+      "View and contribute to hospital ratings based on quality of care, facilities, and services.",
     buttonText: "View Hospital Ratings",
     linkHref: "/hospital.html",
     animationDelay: "100ms",
@@ -150,7 +132,8 @@ const ratingCardsData = [
   {
     title: "Doctor Reviews",
     stars: 5,
-    description: "Browse doctor reviews and ratings to find the best healthcare provider for your needs.",
+    description:
+      "Browse doctor reviews and ratings to find the best healthcare provider for your needs.",
     buttonText: "Find Rated Doctors",
     linkHref: "/doctors.html",
     animationDelay: "200ms",
@@ -161,16 +144,23 @@ const ratingCardsData = [
 const ratingCardsHtml = ratingCardsData.map(
   (card) =>
     `
-    <div class="animate-on-scroll" style="animation-delay:${card.animationDelay}">
+    <div class="animate-on-scroll" style="animation-delay:${
+      card.animationDelay
+    }">
       <div class="glass-card rounded-xl p-6 backdrop-blur-md bg-card border border-solid border-card shadow-sm h-full">
         <div class="flex flex-col h-full">
           <div class="flex items-center justify-between mb-6">
             <h3 class="text-xl font-medium text-heading">${card.title}</h3>
-            <div class="flex"> ${generateRatingStars(card.stars, ["w-5", "h-5"])}</div>
+            <div class="flex"> ${generateRatingStars(card.stars, [
+              "w-5",
+              "h-5",
+            ])}</div>
           </div>
           <p class="text-gray-600 mb-6">${card.description}</p>
           <div class="mt-auto">
-            <a href="${card.linkHref}" class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors bg-medical-500 text-white hover:bg-medical-400 h-10 px-4 py-2 w-full">
+            <a href="${
+              card.linkHref
+            }" class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors bg-medical-500 text-white hover:bg-medical-400 h-10 px-4 py-2 w-full">
               ${card.buttonText}
             </a>
           </div>
@@ -179,13 +169,17 @@ const ratingCardsHtml = ratingCardsData.map(
     </div>
     `
 );
-ratingCardsHtml.forEach((cardHtml) => (ratingCardsContainer.innerHTML += cardHtml));
+ratingCardsHtml.forEach(
+  (cardHtml) => (ratingCardsContainer.innerHTML += cardHtml)
+);
 
 // ============================
 // Testimonials Cards Section
 // ============================
 // Data for the testimonials cards section.
-const testimonialsCardsContainer = document.getElementById("testimonials-cards-container");
+const testimonialsCardsContainer = document.getElementById(
+  "testimonials-cards-container"
+);
 const testimonialsCardsData = [
   {
     name: "Sarah Johnson",
@@ -217,15 +211,22 @@ const testimonialsCardsData = [
 const testimonialsCardsHtml = testimonialsCardsData.map(
   (card) =>
     `
-    <div class="animate-on-scroll" style="animation-delay:${card.animationDelay}">
+    <div class="animate-on-scroll" style="animation-delay:${
+      card.animationDelay
+    }">
       <div class="rounded-xl p-6 bg-card border border-solid border-card shadow-sm h-full">
         <div class="flex flex-col h-full">
           <div class="mb-6">
-            <div class="flex mb-1">${generateRatingStars(card.stars, ["w-4", "h-4"])}</div>
+            <div class="flex mb-1">${generateRatingStars(card.stars, [
+              "w-4",
+              "h-4",
+            ])}</div>
           </div>
           <p class="text-gray-600 mb-6 flex-grow italic">${card.quote}</p>
           <div class="flex items-center">
-            <div class="w-10 h-10 rounded-full bg-medical-200 flex items-center justify-center text-medical-700 font-medium">${card.avatar}</div>
+            <div class="w-10 h-10 rounded-full bg-medical-200 flex items-center justify-center text-medical-700 font-medium">${
+              card.avatar
+            }</div>
             <div class="ml-3">
               <p class="font-medium text-heading">${card.name}</p>
               <p class="text-sm text-gray-500">${card.role}</p>
@@ -236,18 +237,6 @@ const testimonialsCardsHtml = testimonialsCardsData.map(
     </div>
     `
 );
-testimonialsCardsHtml.forEach((cardHtml) => (testimonialsCardsContainer.innerHTML += cardHtml));
-
-// ============================
-// Helper Function: generateRatingStars
-// ============================
-// This function generates an HTML string for rating stars.
-// It accepts a rating (number from 1 to 5) and an optional array of additional classes.
-// It returns yellow stars for the rating and gray stars for the remaining out of 5.
-function generateRatingStars(rating, classes = []) {
-  // Yellow star icon with specified classes
-  const yellowStar = `<i data-lucide="star" class="text-star-400 fill-star-400 ${classes.join(" ")}"></i>`;
-  // Gray star icon with specified classes
-  const grayStar = `<i data-lucide="star" class="text-gray-300 ${classes.join(" ")}"></i>`;
-  return yellowStar.repeat(rating) + grayStar.repeat(5 - rating);
-}
+testimonialsCardsHtml.forEach(
+  (cardHtml) => (testimonialsCardsContainer.innerHTML += cardHtml)
+);

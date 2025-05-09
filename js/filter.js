@@ -39,7 +39,7 @@ function addButtonClickListeners() {
             });
 
             // Add active styles to the clicked button
-            button.classList.add("bg-medical-500", "text-white", "border-medical-500","hover:bg-medical-400");
+            button.classList.add("bg-medical-600", "text-white", "border-medical-500","hover:bg-medical-400");
             button.classList.remove("bg-background", "text-black", "hover:bg-medical-50", "hover:text-medical-600");
         });
     });

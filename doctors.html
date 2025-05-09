@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!-- Meta Tags -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-    
+
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/colors.css" />
     <link rel="stylesheet" href="css/typography.css" />
@@ -33,8 +34,7 @@
 
             <!-- Desktop Navigation -->
             <nav id="desktop-nav" class=" hidden items-center gap-4">
-                <a href="/"
-                    class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Home</a>
+                <a href="/" class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Home</a>
                 <a href="/doctors.html"
                     class="text-medical-700 text-sm font-medium hover:text-medical-600 transition-colors">Doctors</a>
                 <a href="/hospitals.html"
@@ -96,7 +96,7 @@
             <div class="py-8">
                 <h1 class="text-3xl font-bold mb-2 tracking-tight">Find Doctors</h1>
                 <p class="text-gray-600">Connect with top specialists in various medical fields</p>
-              </div>
+            </div>
             <!-- Search Section -->
             <div class="search-container flex gap-6 mb-8">
                 <div class="search-input-container text-xl flex-grow">
@@ -104,8 +104,9 @@
                         <!-- Search Icon (Lucide) -->
                         <i data-lucide="search" class="absolute text-gray-500"></i>
                         <!-- Search Input Field -->
-                        <input id="search-input" type="text" placeholder="Search doctors by name, specialty, or hospital"
-                        class="search-input px-10 h-12 flex w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm outline-none"/>
+                        <input id="search-input" type="text"
+                            placeholder="Search doctors by name, specialty, or hospital"
+                            class="search-input px-10 h-12 flex w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm outline-none" />
                     </div>
                 </div>
             </div>
@@ -113,45 +114,52 @@
             <!-- Specialties Section -->
             <div class="specialties-container mb-8 overflow-auto scrollbar-none">
                 <div class="buttons-container inline-flex gap-2 pb-2 min-w-full">
-                
+
                     <!-- All Specialties Button -->
-                    <button class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background
+                    <button id="all-specialties"
+                        class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background pointer
                     rounded-full text-sm font-medium transition-all border border-solid border-input hover:bg-medical-50 hover:text-medical-600 h-10 px-4 py-2">
                         All Specialties
                     </button>
-                    
+
                     <!-- Cardiologist Button -->
-                    <button class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background
+                    <button
+                        class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background pointer
                      rounded-full text-sm font-medium transition-all border border-solid border-input hover:bg-medical-50 hover:text-medical-600 h-10 px-4 py-2">
                         Cardiologist
                     </button>
 
                     <!-- Dermatologist Button -->
-                    <button class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background
+                    <button
+                        class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background pointer
                     rounded-full text-sm font-medium transition-all border border-solid border-input hover:bg-medical-50 hover:text-medical-600 h-10 px-4 py-2">
                         Dermatologist
                     </button>
 
                     <!-- Neurology Button -->
-                    <button class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background
+                    <button
+                        class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background pointer
                     rounded-full text-sm font-medium transition-all border border-solid border-input hover:bg-medical-50 hover:text-medical-600 h-10 px-4 py-2">
                         Neurology
                     </button>
 
                     <!-- Orthopedics Button -->
-                    <button class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background
+                    <button
+                        class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background pointer
                     rounded-full text-sm font-medium transition-all border border-solid border-input hover:bg-medical-50 hover:text-medical-600 h-10 px-4 py-2">
                         Orthopedics
                     </button>
 
                     <!-- Pediatrics Button -->
-                    <button class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background
+                    <button
+                        class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background pointer
                     rounded-full text-sm font-medium transition-all border border-solid border-input hover:bg-medical-50 hover:text-medical-600 h-10 px-4 py-2">
                         Pediatrics
                     </button>
 
                     <!-- Psychiatry Button -->
-                    <button class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background
+                    <button
+                        class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background pointer
                     rounded-full text-sm font-medium transition-all border border-solid border-input hover:bg-medical-50 hover:text-medical-600 h-10 px-4 py-2">
                         Psychiatry
                     </button>
@@ -284,6 +292,12 @@
             </div>
         </div>
     </footer>
+
+    <!-- External JavaScript -->
+    <script defer src="js/main.js"></script>
+    <script defer src="js/doctors.js"></script>
+    <script defer src="js/filter.js"></script>
+
     <!-- Initialize Lucide Icons -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
@@ -291,9 +305,6 @@
         });
     </script>
 
-    <!-- External JavaScript -->
-    <script defer src="js/main.js"></script>
-    <script defer src="js/filter.js"></script>
-
 </body>
+
 </html>
