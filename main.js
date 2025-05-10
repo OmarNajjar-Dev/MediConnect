@@ -160,3 +160,25 @@ const cardsHtml = hospitals
 
 container.innerHTML = cardsHtml;
 lucide.createIcons();
+// ============================
+// Hospital Search Filter Function
+// ============================
+function searchHospitals() {
+  const input = document.getElementById("search-input");
+  const query = input.value.trim().toLowerCase();
+
+  const cards = document.querySelectorAll(".hospital-card-wrapper");
+
+  cards.forEach((card) => {
+    const name = card.querySelector("h2").textContent.toLowerCase();
+    const address = card.querySelector(".text-gray-600").textContent.toLowerCase();
+
+    if (name.includes(query) || address.includes(query)) {
+      card.style.display = "block"; // Show card
+    } else {
+      card.style.display = "none"; // Hide card
+    }
+  });
+}
+
+document.getElementById("search-input").addEventListener("input", searchHospitals);
