@@ -51,6 +51,41 @@ const hospitals = [
     imageUrl:
       "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
+  {
+    name: "Metropolitan Medical Center",
+    address: "789 Wellness St, Downtown",
+    specialties: ["Cardiology", "Gastroenterology", "Pulmonology", "Urology"],
+    availableBeds: 23,
+    contact: "+1 (555) 246-8135",
+    rating: 4.9,
+    reviews: 412,
+    emergencyServices: true,
+    imageUrl: "https://images.unsplash.com/photo-1487958449943-2429e8be8625?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+  },
+
+
+  {
+    name: "Metropolitan Medical Center",
+    address: "789 Wellness St, Downtown",
+    specialties: ["Cardiology", "Gastroenterology", "Pulmonology", "Urology"],
+    availableBeds: 23,
+    contact: "+1 (555) 246-8135",
+    rating: 4.9,
+    reviews: 412,
+    emergencyServices: true,
+    imageUrl: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    name: "Sunrise Health Hospital",
+    address: "321 Sunrise Blvd, East End",
+    specialties: ["Orthopedics", "Neurology", "Dermatology", "Oncology"],
+    availableBeds: 12,
+    contact: "+1 (555) 789-1234",
+    rating: 4.7,
+    reviews: 298,
+    emergencyServices: false,
+    imageUrl: "https://images.unsplash.com/photo-1459767129954-1b1c1f9b9ace?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+  }
 ];
 
 const container = document.getElementById("hospitals");
@@ -82,13 +117,13 @@ const cardsHtml = hospitals
             loading="lazy"
           />
           ${h.emergencyServices
-            ? `
+        ? `
             <div id="emergency" class="absolute bg-danger text-white px-2 py-1 rounded-full text-xs font-medium flex items-center">
               <i data-lucide="activity" class="w-3.5 h-3.5 mr-1"></i>
               Emergency Services
             </div>`
-            : ""
-          }
+        : ""
+      }
         </div>
 
         <div class="p-6 flex-grow">
@@ -182,3 +217,4 @@ function searchHospitals() {
 }
 
 document.getElementById("search-input").addEventListener("input", searchHospitals);
+
