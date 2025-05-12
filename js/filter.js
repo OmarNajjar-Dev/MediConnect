@@ -24,7 +24,7 @@ function setDefaultActiveButton() {
   const allSpecialtiesButton = document.getElementById("all-specialties");
   if (allSpecialtiesButton) {
     allSpecialtiesButton.classList.add(
-      "bg-medical-500",
+      "bg-medical-600",
       "text-white",
       "border-medical-500",
       "hover:bg-medical-400"
