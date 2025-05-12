@@ -11,7 +11,7 @@ export function renderDoctors(container) {
     div.innerHTML = `
       <div class="flex items-start mb-4">
         <div class="w-20 h-20 rounded-full overflow-hidden mr-4 flex-shrink-0">
-          <img src="${card.imageUrl}" alt="${card.name}" class="w-full h-full object-cover" loading="lazy" />
+          <img src="${card.imageUrl}" alt="${card.name}" loading="lazy" class="w-full h-full object-cover" loading="lazy" />
         </div>
         <div>
           <h2 class="text-lg text-heading font-bold tracking-tight">${card.name}</h2>

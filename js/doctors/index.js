@@ -1,5 +1,3 @@
-import "../common/header.js";
-import "../common/mobile-nav.js";
 import { renderDoctors } from "./doctors-render.js";
 import { initDoctorFilters } from "./filter.js";
 

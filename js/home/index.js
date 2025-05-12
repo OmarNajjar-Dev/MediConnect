@@ -3,9 +3,6 @@ import { renderServicesCards } from "./services-cards.js";
 import { renderRatingCards } from "./rating-cards.js";
 import { renderTestimonials } from "./testimonials.js";
 
-import "../common/header.js";
-import "../common/mobile-nav.js";
-
 document.addEventListener("DOMContentLoaded", () => {
   renderHeroCards(document.getElementById("hero-cards-container"));
   renderServicesCards(document.getElementById("services-cards-container"));
