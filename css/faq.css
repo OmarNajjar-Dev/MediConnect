@@ -1,0 +1,23 @@
+#faq-top-section {
+    background: linear-gradient(to bottom,#e6f5f4b3,#ffffffe6);
+}
+
+.faq-question {
+    background-color: transparent;
+}
+
+.faq-question:hover {
+    text-decoration: underline;
+}
+
+.faq-answer {
+    transition: max-height 0.3s;
+}
+
+.faq-toggle-icon {
+    transition: transform 0.3s;
+}
+
+.faq-toggle-icon.rotate {
+    transform: rotate(180deg);
+}

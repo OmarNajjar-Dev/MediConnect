@@ -47,6 +47,7 @@ input,
 optgroup,
 select,
 textarea {
+    font-size: inherit;
     font-family: inherit;
     color: inherit;
     margin: 0;
