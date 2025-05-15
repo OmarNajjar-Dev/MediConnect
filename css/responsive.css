@@ -103,6 +103,11 @@
     #footer-content {
         grid-template-columns: repeat(4, minmax(0, 1fr));
     }
+
+    #privacy-container {
+        padding-right: 24px;
+        padding-left: 24px;
+    }
 }
 
 /* Extra Large Screen */
