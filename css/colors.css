@@ -166,6 +166,10 @@
     background-color: rgb(var(--input));
 }
 
+.bg-transparent {
+  background-color: transparent;
+}
+
 /* ==================================================
      TEXT COLOR CLASSES
      ================================================== */
