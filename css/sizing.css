@@ -39,6 +39,10 @@
     width: 16px;
 }
 
+.w-4\.5 {
+    width: 18px;
+}
+
 .w-5 {
     width: 20px;
 }
@@ -190,6 +194,10 @@
 
 .h-4 {
     height: 16px;
+}
+
+.h-4\.5 {
+    height: 18px;
 }
 
 .h-5 {

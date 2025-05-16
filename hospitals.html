@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/colors.css" />
+    <link rel="stylesheet" href="css/typography.css" />
+    <link rel="stylesheet" href="css/spacing.css" />
+    <link rel="stylesheet" href="css/sizing.css" />
+    <link rel="stylesheet" href="css/borders.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/animations.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+
+    <!-- Page Title -->
+    <title>MediConnect - Bridging Healthcare & Technology</title>
+</head>
+
+<body class="bg-background text-foreground">
+    <!-- Header Section -->
+    <header class="fixed z-50 py-5 bg-background transition-all border-b border-solid separator">
+        <div class="container mx-auto flex items-center justify-between px-4">
+            <a href="/" class="flex items-center">
+                <span class="text-medical-700 text-2xl font-semibold">
+                    Medi<span class="text-medical-500">Connect</span>
+                </span>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav id="desktop-nav" class="hidden items-center gap-4">
+                <a href="/" class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Home</a>
+                <a href="/doctors"
+                    class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Doctors</a>
+                <a href="/hospitals"
+                    class="text-medical-700 text-sm font-medium hover:text-medical-600 transition-colors">Hospitals</a>
+                <a href="/appointments"
+                    class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Appointments</a>
+                <a href="/dashboard"
+                    class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Dashboard</a>
+            </nav>
+
+            <!-- Header Right Section -->
+            <div class="flex items-center gap-4">
+                <!-- Sign In / Sign Up buttons (hidden by default) -->
+                <a href="/login" id="sign-in"
+                    class="hidden items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all">Sign
+                    In</a>
+                <a href="/signup" id="sign-up"
+                    class="hidden items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all">Sign
+                    Up</a>
+
+                <!-- Mobile Menu Button -->
+                <button id="menu-button"
+                    class="inline-flex items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-0 pointer">
+                    <i data-lucide="menu" class="w-4 h-4"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Navigation (Hidden by default) -->
+            <div id="mobile-nav" class="hidden absolute bg-white-95 backdrop-blur-lg animate-slide-down shadow-lg">
+                <nav class="container mx-auto flex flex-col gap-4 px-4 py-4">
+                    <a href="/"
+                        class="text-medical-700 bg-medical-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Home</a>
+                    <a href="/doctors"
+                        class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Doctors</a>
+                    <a href="/hospitals"
+                        class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
+                    <a href="/appointments"
+                        class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
+                    <a href="/dashboard"
+                        class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Dashboard</a>
+
+                    <!-- Sign In / Sign Up buttons (Mobile view) -->
+                    <div class="flex flex-col pt-2 gap-2 border-t border-solid separator">
+                        <a href="/login"
+                            class="inline-flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-all">Sign
+                            In</a>
+                        <a href="/signup"
+                            class="inline-flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Sign
+                            Up</a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-20 pb-16 min-h-screen bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="py-8">
+                <h1 class="text-3xl font-bold mb-2 tracking-tight text-heading">
+                    Hospitals
+                </h1>
+                <p class="text-gray-600">
+                    Find hospitals, check bed availability, and view services
+                </p>
+            </div>
+
+            <div class="input-container flex flex-col lg:flex-row gap-6 mb-8">
+                <div class="flex-grow">
+                    <div class="relative">
+                        <!-- Search Icon (Lucide) -->
+                        <i data-lucide="search" class="search-icon absolute text-gray-500"></i>
+                        <input type="text" id="search-input" placeholder="Search hospitals by name or location"
+                            class="text-heading px-10 h-12 flex w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm outline-none" />
+                    </div>
+                </div>
+
+                <!-- FIXED BUTTONS HERE -->
+                <div class="flex flex-row gap-3">
+                    <button id="emergency-btn"
+                        class="flex items-center gap-2 justify-center whitespace-nowrap rounded-md border border-solid border-input bg-background text-heading px-4 py-2 h-10 text-sm font-medium transition-colors hover:bg-medical-50 hover:text-medical-500">
+                        <i data-lucide="activity" class="w-4 h-4"></i>
+                        <span>Emergency Services</span>
+                    </button>
+
+                    <button id="beds-btn"
+                        class="flex items-center gap-2 rounded-md border border-solid border-input text-heading bg-background h-10 px-4 py-2 text-sm font-medium whitespace-nowrap hover:bg-medical-50 hover:text-medical-500">
+                        <i data-lucide="bed" class="w-4 h-4"></i>
+                        <span>Available Beds</span>
+                    </button>
+                </div>
+                <!-- END FIXED BUTTONS -->
+            </div>
+
+            <div id="hospitals" class="grid grid-cols-1 gap-6">
+                <!-- Rest of your content -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 pt-16 pb-8 border-t border-solid separator">
+        <div class="container mx-auto px-4">
+            <div id="footer-content" class="grid gap-8 mb-12">
+                <div>
+                    <a href="/" class="inline-block mb-4">
+                        <span class="text-medical-700 font-semibold text-2xl">
+                            Medi<span class="text-medical-500">Connect</span>
+                        </span>
+                    </a>
+                    <p class="text-gray-600 leading-relaxed mb-4">
+                        Connecting patients with healthcare professionals for better care
+                        and outcomes.
+                    </p>
+                    <div class="footer-socials flex gap-4 transition-all">
+                        <a href="#"
+                            class="text-gray-500 hover:text-medical-600 hover:bg-medical-50 rounded-full flex justify-center items-center w-10 h-10">
+                            <i data-lucide="facebook" class="h-4 w-4"></i>
+                        </a>
+
+                        <a href="#"
+                            class="text-gray-500 hover:text-medical-600 hover:bg-medical-50 rounded-full flex justify-center items-center w-10 h-10">
+                            <i data-lucide="twitter" class="h-4 w-4"></i>
+                        </a>
+                        <a href="#"
+                            class="text-gray-500 hover:text-medical-600 hover:bg-medical-50 rounded-full flex justify-center items-center w-10 h-10">
+                            <i data-lucide="instagram" class="h-4 w-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-medium text-lg text-heading tracking-tight mb-4">
+                        Services
+                    </h4>
+                    <ul class="flex flex-col gap-2">
+                        <li>
+                            <a href="/appointments" class="text-gray-600 hover:text-medical-600 transition-colors">
+                                Book Appointments
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/doctors" class="text-gray-600 hover:text-medical-600 transition-colors">
+                                Find Doctors
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/hospitals" class="text-gray-600 hover:text-medical-600 transition-colors">
+                                Hospital Information
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/emergency" class="text-gray-600 hover:text-medical-600 transition-colors">
+                                Emergency Services
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/pharmacy" class="text-gray-600 hover:text-medical-600 transition-colors">
+                                Pharmacy Orders
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-medium text-lg text-heading tracking-tight mb-4">
+                        Quick Links
+                    </h4>
+                    <ul class="flex flex-col gap-2">
+                        <li>
+                            <a href="/about" class="text-gray-600 hover:text-medical-600 transition-colors">
+                                About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/privacy" class="text-gray-600 hover:text-medical-600 transition-colors">
+                                Privacy Policy
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/terms" class="text-gray-600 hover:text-medical-600 transition-colors">
+                                Terms of Service
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/faq" class="text-gray-600 hover:text-medical-600 transition-colors">
+                                FAQs
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/contact" class="text-gray-600 hover:text-medical-600 transition-colors">
+                                Contact Us
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-medium text-lg text-heading tracking-tight mb-4">
+                        Contact
+                    </h4>
+                    <ul class="flex flex-col gap-3">
+                        <li class="flex gap-1">
+                            <i data-lucide="map-pin" class="h-7 w-7 text-medical-500 pr-2"></i>
+                            <span class="text-gray-600">
+                                123 Healthcare Avenue, Medical District, City, Country
+                            </span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="phone" class="h-4 w-4 text-medical-500"></i>
+                            <span class="text-gray-600">+1 (555) 123-4567</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="mail" class="h-4 w-4 text-medical-500"></i>
+                            <span class="text-gray-600">contact@mediconnect.example</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-solid separator text-center text-gray-600 text-sm">
+                <p>&copy; 2025 MediConnect. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script type="module" src="js/common/header.js"></script>
+    <script type="module" src="js/common/mobile-nav.js"></script>
+
+    <script type="module" src="js/hospitals/index.js"></script>
+
+    <!-- Init Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
