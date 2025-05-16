@@ -149,12 +149,20 @@
     flex-grow: 0;
 }
 
+.flex-grow-2 {
+    flex-grow: 2;
+}
+
 .flex-shrink {
     flex-shrink: 1;
 }
 
 .flex-shrink-0 {
     flex-shrink: 0;
+}
+
+.flex-shrink-2 {
+    flex-shrink: 2;
 }
 
 /* --- Grid Utilities --- */
