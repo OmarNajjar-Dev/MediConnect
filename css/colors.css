@@ -167,7 +167,7 @@
 }
 
 .bg-transparent {
-  background-color: transparent;
+    background-color: transparent;
 }
 
 /* ==================================================
@@ -503,6 +503,10 @@
 
 .hover\:text-warning:hover {
     color: rgba(var(--warning));
+}
+
+.hover\:text-heading:hover {
+    color: rgba(var(--heading));
 }
 
 /* ==================================================
