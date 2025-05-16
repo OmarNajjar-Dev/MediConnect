@@ -68,7 +68,7 @@ const hospitals = [
     name: "Metropolitan Medical Center",
     address: "789 Wellness St, Downtown",
     specialties: ["Cardiology", "Gastroenterology", "Pulmonology", "Urology"],
-    availableBeds: 23,
+    availableBeds: 0,
     contact: "+1 (555) 246-8135",
     rating: 4.9,
     reviews: 412,
@@ -79,7 +79,7 @@ const hospitals = [
     name: "Sunrise Health Hospital",
     address: "321 Sunrise Blvd, East End",
     specialties: ["Orthopedics", "Neurology", "Dermatology", "Oncology"],
-    availableBeds: 12,
+    availableBeds: 16,
     contact: "+1 (555) 789-1234",
     rating: 4.7,
     reviews: 298,
@@ -218,3 +218,52 @@ function searchHospitals() {
 
 document.getElementById("search-input").addEventListener("input", searchHospitals);
 
+const emergencyBtn = document.getElementById("emergency-btn");
+let emergencyFilterActive = false;
+
+emergencyBtn.addEventListener("click", () => {
+  emergencyFilterActive = !emergencyFilterActive;
+
+  // Toggle styling classes in one go
+  emergencyBtn.classList.toggle("bg-medical-600");
+  emergencyBtn.classList.toggle("text-white");
+  emergencyBtn.classList.toggle("hover:bg-medical-500");
+
+  emergencyBtn.classList.toggle("bg-background");
+  emergencyBtn.classList.toggle("text-heading");
+  emergencyBtn.classList.toggle("hover:bg-medical-50");
+  emergencyBtn.classList.toggle("hover:text-medical-500");
+
+  // Toggle hospital cards based on emergency availability
+  const cards = document.querySelectorAll(".hospital-card-wrapper");
+
+  cards.forEach((card) => {
+    const hasEmergency = card.querySelector("#emergency") !== null;
+    card.parentElement.style.display =
+      emergencyFilterActive && !hasEmergency ? "none" : "block";
+  });
+});
+const availableBedsBtn = document.getElementById("beds-btn");
+let bedsFilterActive = false;
+
+availableBedsBtn.addEventListener("click", () => {
+  bedsFilterActive = !bedsFilterActive;
+
+  availableBedsBtn.classList.toggle("bg-medical-600");
+  availableBedsBtn.classList.toggle("text-white");
+  availableBedsBtn.classList.toggle("hover:bg-medical-500");
+
+  availableBedsBtn.classList.toggle("bg-background");
+  availableBedsBtn.classList.toggle("text-heading");
+  availableBedsBtn.classList.toggle("hover:bg-medical-50");
+  availableBedsBtn.classList.toggle("hover:text-medical-500");
+
+
+  const cards = document.querySelectorAll(".hospital-card-wrapper");
+
+  cards.forEach((card, index) => {
+    const hasBeds = hospitals[index].availableBeds > 0;
+    card.parentElement.style.display =
+      bedsFilterActive && !hasBeds ? "none" : "block";
+  });
+});
