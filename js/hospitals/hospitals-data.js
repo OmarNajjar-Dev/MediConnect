@@ -40,7 +40,7 @@ export const hospitalsCardsData = [
     name: "Metropolitan Medical Center",
     address: "789 Wellness St, Downtown",
     specialties: ["Cardiology", "Gastroenterology", "Pulmonology", "Urology"],
-    availableBeds: 0,
+    availableBeds: 7,
     contact: "+1 (555) 246-8135",
     rating: 4.9,
     reviews: 412,

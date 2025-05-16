@@ -24,7 +24,7 @@ export function renderHospitals(container) {
           <div class="hospital-image-wrapper relative w-full h-48">
             <img src="${h.imageUrl}" alt="${
       h.name
-    }" class="w-full h-full object-cover" loading="lazy" />
+    }" class="w-full h-full object-cover" loading="lazy" style="aspect-ratio:4/3"/>
             ${
               h.emergencyServices
                 ? `

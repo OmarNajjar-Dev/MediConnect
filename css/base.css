@@ -41,6 +41,11 @@ a {
     list-style-type: disc;
 }
 
+/* img styles */
+.object-cover {
+    object-fit: cover;
+}
+
 /* Reset form elements */
 button,
 input,

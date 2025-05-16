@@ -33,16 +33,6 @@ input::placeholder {
   color: #6b7280;
 }
 
-.search-input:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 2px rgb(var(--medical-500)), 0 0 0 4px #e0f2fe;
-}
-
-.search-input:disabled {
-  cursor: not-allowed;
-  opacity: 0.5;
-}
-
 [data-lucide="search"] {
   left: 0.75rem;
   top: 50%;

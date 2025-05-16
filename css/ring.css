@@ -34,7 +34,6 @@
         0 0 0 calc(var(--ring-offset-width) + var(--ring-width)) var(--ring-color);
 }
 
-
 /* ==================================================
    RING WIDTH VARIANTS
    ================================================== */
