@@ -36,12 +36,18 @@ a {
     cursor: pointer;
 }
 
+/* list styles */
+.list-disc {
+    list-style-type: disc;
+}
+
 /* Reset form elements */
 button,
 input,
 optgroup,
 select,
 textarea {
+    font-size: inherit;
     font-family: inherit;
     color: inherit;
     margin: 0;

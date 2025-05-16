@@ -238,6 +238,10 @@
     transition: transform 0.3s ease-in-out;
 }
 
+.transition-shadow {
+    transition: box-shadow 0.3s ease-int-out;
+}
+
 /* Transition Durations */
 .transition-75 {
     transition-duration: 75ms;
