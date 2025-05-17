@@ -1,3 +1,122 @@
+/* ========================================================================
+   Responsive Utility Classes
+   ======================================================================== */
+
+/* Small Screen Utilities (≥640px) */
+@media screen and (min-width: 640px) {
+
+    /* Grid columns */
+    .sm\:grid-cols-1 {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .sm\:grid-cols-2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sm\:grid-cols-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .sm\:grid-cols-4 {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    /* Flex direction */
+    .sm\:flex-col {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sm\:flex-row {
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+/* Medium Screen Utilities (≥768px) */
+@media screen and (min-width: 768px) {
+
+    /* Grid columns */
+    .md\:grid-cols-1 {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .md\:grid-cols-2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .md\:grid-cols-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .md\:grid-cols-4 {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    /* Flex direction */
+    .md\:flex-col {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .md\:flex-row {
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+/* Large Screen Utilities (≥1024px) */
+@media screen and (min-width: 1024px) {
+
+    /* Grid columns */
+    .lg\:grid-cols-1 {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .lg\:grid-cols-2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .lg\:grid-cols-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .lg\:grid-cols-4 {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    /* Flex direction */
+    .lg\:flex-col {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .lg\:flex-row {
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+/* Extra Large Utilities (≥1280px) */
+@media screen and (min-width: 1280px) {
+    /* (no utility classes defined here) */
+}
+
+
+
 /* Small Screen */
 @media screen and (min-width: 640px) {
     .container {
@@ -25,7 +144,6 @@
     .hospital-details {
         grid-template-columns: repeat(2, 1fr);
     }
-
 }
 
 /* Medium Screen */
@@ -62,11 +180,8 @@
         display: none;
     }
 
-    #doctor-cards-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    #footer-content {
+    #footer-content,
+    #doctors-cards-container {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
@@ -98,7 +213,7 @@
         padding-left: 24px;
     }
 
-    #faq-top-section {
+    #faq-top-section{
         padding-top: 80px;
         padding-bottom: 80px;
     }
@@ -107,6 +222,12 @@
         font-size: 3rem;
         line-height: 1;
     }
+
+    #contact-title {
+        font-size: 3rem;
+        line-height: 1;
+    }
+
 }
 
 /* Large Screen */
@@ -136,7 +257,7 @@
         flex-direction: row;
     }
 
-    #doctor-cards-container {
+    #doctors-cards-container {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
@@ -150,7 +271,6 @@
     .container {
         max-width: 1280px;
     }
-
 }
 
 /* Extra Extra Large Screen */
