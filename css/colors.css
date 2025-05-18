@@ -51,6 +51,10 @@
      ================================================== */
 
 /* Medical Backgrounds */
+.bg-medical-50\/50 {
+    background-color: rgba(var(--medical-50), 0.5);
+}
+
 .bg-medical-50 {
     background-color: rgb(var(--medical-50));
 }
@@ -77,6 +81,10 @@
 
 .bg-medical-600 {
     background-color: rgb(var(--medical-600));
+}
+
+.bg-medical-600\/30 {
+    background-color: rgba(var(--medical-600), 0.3);
 }
 
 .bg-medical-700 {
@@ -148,6 +156,14 @@
 /* Custom UI Backgrounds */
 .bg-white {
     background-color: rgb(var(--background));
+}
+
+.bg-white\/10 {
+    background-color: rgba(var(--background), 0.1);
+}
+
+.bg-white\/20 {
+    background-color: rgba(var(--background), 0.2);
 }
 
 .bg-white-95 {
@@ -285,6 +301,10 @@
 /* ==================================================
      BORDER COLOR CLASSES
      ================================================== */
+.border-white {
+    border-color: #ffffff;
+}
+
 .border-input {
     border-color: rgb(var(--border));
 }
@@ -295,6 +315,10 @@
 
 .border-card {
     border-color: rgb(var(--border-card));
+}
+
+.border-medical-100 {
+    border-color: rgb(var(--medical-100));
 }
 
 /* ==================================================

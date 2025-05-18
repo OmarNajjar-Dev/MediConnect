@@ -46,6 +46,10 @@ a {
     object-fit: cover;
 }
 
+.object-center {
+    object-position: center;
+}
+
 /* Reset form elements */
 button,
 input,

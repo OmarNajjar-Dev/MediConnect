@@ -17,7 +17,7 @@ export function renderHospitals(container) {
       .join("");
 
     div.innerHTML = `
-      <div class="hospital-card-wrapper bg-card border-card shadow-sm rounded-xl transition-all duration-300 overflow-hidden relative">
+      <div class="hospital-card-wrapper bg-card border-card shadow-sm rounded-xl transition-all overflow-hidden relative">
         
         <div class="hospital-image-section flex flex-col">
 
@@ -28,7 +28,7 @@ export function renderHospitals(container) {
             ${
               h.emergencyServices
                 ? `
-            <div id="emergency" class="absolute bg-danger text-white px-2 py-1 rounded-full text-xs font-medium flex items-center">
+            <div class="emergency-badge absolute bg-danger text-white px-2 py-1 rounded-full text-xs font-medium flex items-center">
               <i data-lucide="activity" class="w-3.5 h-3.5 mr-1"></i>
               Emergency Services
             </div>`
@@ -49,7 +49,7 @@ export function renderHospitals(container) {
               </div>
 
               <div class="hospital-rating flex items-center mt-2">
-                <div class="hospital-stars px-3 py-1.5 rounded-md flex items-center">
+                <div class="hospital-stars px-3 rounded-md flex items-center">
                   <i data-lucide="star" class="w-4.5 h-4.5 mr-1 text-star-500 fill-star-500"></i>
                   <span class="text-heading font-medium py-2">${h.rating}</span>
                   <span class="text-gray-500 text-sm ml-1">(${h.reviews})</span>

@@ -855,7 +855,7 @@
     padding-top: 4px;
     padding-bottom: 4px;
 }
-.py-1\-5 {
+.py-1\.5 {
     padding-top: 6px;
     padding-bottom: 6px;
   }
@@ -961,6 +961,10 @@
 
 .gap-12 {
     gap: 48px;
+}
+
+.gap-14 {
+    gap: 56px;
 }
 
 .gap-16 {

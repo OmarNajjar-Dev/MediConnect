@@ -55,7 +55,7 @@ input::placeholder {
   color: #41b76c;
 }
 
-#emergency {
+.emergency-badge {
   top: 16px;
   left: 16px;
 }
@@ -63,4 +63,43 @@ input::placeholder {
 .doctor-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#about {
+  background: linear-gradient(to bottom, #f9fafb, #ffffff);
+}
+
+#about-trust {
+  bottom: -2rem;
+  left: -2rem;
+}
+
+#about-image:hover {
+  transform: scale(1.05);
+}
+
+.leadership__leader {
+  background: linear-gradient(to bottom right, #ffffff, #E0F2F1);
+}
+
+.leadership__leader:hover .leadership__leader-name {
+  color: rgb(0, 121, 107);
+}
+
+.leadership__leader-image:hover {
+  transform: scale(1.05);
+}
+
+#background-overlay {
+  background: linear-gradient(to bottom right, #00897B, #00695C);
+}
+
+#background-overlay-image {
+  background-image: url('https://images.unsplash.com/photo-1527613426441-4da17471b66d?q=80&w=2070&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center center;
+}
+
+#leadership-cta:hover svg {
+  transform: translateX(0.25rem);
 }

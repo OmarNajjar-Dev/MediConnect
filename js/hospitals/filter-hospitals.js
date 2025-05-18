@@ -17,7 +17,7 @@ export function filterBySearch(query) {
 export function filterByEmergency(active) {
   const cards = document.querySelectorAll(".hospital-card-wrapper");
   cards.forEach((card) => {
-    const hasEmergency = card.getElementById("emergency") !== null;
+    const hasEmergency = card.querySelector(".emergency-badge") !== null;
     card.parentElement.style.display =
       active && !hasEmergency ? "none" : "block";
   });

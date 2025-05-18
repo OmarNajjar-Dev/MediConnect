@@ -256,3 +256,7 @@
 .z-auto {
     z-index: auto;
 }
+
+.inset-0 {
+    inset: 0px;
+}

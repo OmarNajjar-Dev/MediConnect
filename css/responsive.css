@@ -1,17 +1,183 @@
-/* Small Screen */
+/* ========================================================================
+   Responsive Utility Classes
+   ======================================================================== */
+
+/* Small Screen Utilities (≥640px) */
+@media screen and (min-width: 640px) {
+
+    /* Grid columns */
+    .sm\:grid-cols-1 {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .sm\:grid-cols-2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sm\:grid-cols-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .sm\:grid-cols-4 {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    /* Flex direction */
+    .sm\:flex-col {
+        flex-direction: column;
+    }
+
+    .sm\:flex-row {
+        flex-direction: row;
+    }
+
+    .sm\:text-3xl {
+        font-size: 1.875rem;
+        line-height: 2.25rem;
+    }
+
+    .sm\:max-h-125 {
+        max-height: 500px;
+    }
+
+    .sm\:w-auto {
+        width: auto;
+    }
+}
+
+/* Medium Screen Utilities (≥768px) */
+@media screen and (min-width: 768px) {
+
+    /* Grid columns */
+    .md\:grid-cols-1 {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .md\:grid-cols-2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .md\:grid-cols-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .md\:grid-cols-4 {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    /* Flex direction */
+    .md\:flex-col {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .md\:flex-row {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .md\:px-16 {
+        padding-left: 64px;
+        padding-right: 64px;
+    }
+
+    .md\:py-20 {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    .md\:text-4xl {
+        font-size: 2.25rem;
+        line-height: 2.5rem;
+    }
+}
+
+/* Large Screen Utilities (≥1024px) */
+@media screen and (min-width: 1024px) {
+
+    /* Grid columns */
+    .lg\:grid-cols-1 {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .lg\:grid-cols-2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .lg\:grid-cols-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .lg\:grid-cols-4 {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    /* Flex direction */
+    .lg\:flex-col {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .lg\:flex-row {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .lg\:order-2 {
+        order: 2;
+    }
+
+    .lg\:w-2\/5 {
+        width: 40%;
+    }
+
+    .lg\:w-3\/5 {
+        width: 60%;
+    }
+
+    .lg\:max-h-\[550px\] {
+        max-height: 550px;
+    }
+}
+
+/* Extra Large Utilities (≥1280px) */
+@media screen and (min-width: 1280px) {
+    /* (no utility classes defined here) */
+}
+
+/* ========================================================================
+   Custom Component Styles
+   ======================================================================== */
+
+/* Small Screen Overrides (≥640px) */
 @media screen and (min-width: 640px) {
     .container {
         max-width: 640px;
     }
 
+    /* Hero Section */
     #hero h1 {
         font-size: 3rem;
     }
 
+    /* Call-to-Action Buttons */
     #cta-buttons {
         flex-direction: row;
     }
 
+    /* Section Titles */
     #services-title,
     #rating-title {
         font-size: 2.25rem;
@@ -22,18 +188,19 @@
         line-height: 2.5rem;
     }
 
+    /* Hospital Details Grid */
     .hospital-details {
         grid-template-columns: repeat(2, 1fr);
     }
-
 }
 
-/* Medium Screen */
+/* Medium Screen Overrides (≥768px) */
 @media screen and (min-width: 768px) {
     .container {
         max-width: 768px;
     }
 
+    /* Hero Padding & Typography */
     #hero {
         padding-top: 112px;
         padding-bottom: 112px;
@@ -43,33 +210,31 @@
         font-size: 3.75rem;
     }
 
+    /* Grids with minmax */
     #hero-cards-container,
     #testimonials-cards-container {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
+    /* Desktop Navigation */
     #desktop-nav,
     #sign-in,
     #sign-up {
         display: flex;
     }
 
-    #menu-button {
-        display: none;
-    }
-
+    #menu-button,
     #mobile-nav {
         display: none;
     }
 
+    /* Footer & Doctor Cards */
+    #footer-content,
     #doctor-cards-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    #footer-content {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
+    /* Hospital Section */
     .hospital-image-section {
         flex-direction: row;
     }
@@ -85,7 +250,7 @@
     }
 
     .hospital-image-wrapper {
-        width: 33.3333%;
+        width: calc(100% / 3);
         height: auto;
     }
 
@@ -93,9 +258,10 @@
         flex-grow: 0;
     }
 
+    /* Legal & FAQ */
     #legal-content {
-        padding-right: 24px;
         padding-left: 24px;
+        padding-right: 24px;
     }
 
     #faq-top-section {
@@ -109,56 +275,55 @@
     }
 }
 
-/* Large Screen */
+/* Large Screen Overrides (≥1024px) */
 @media screen and (min-width: 1024px) {
     .container {
         max-width: 1024px;
     }
 
+    /* Desktop Nav Spacing */
     #desktop-nav {
         gap: 32px;
     }
 
-    #services-cards-container {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        flex-direction: row;
-    }
-
-    #rating-cards-container {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .input-container {
-        flex-direction: row;
-    }
-
+    /* Input & Search Layout */
+    .input-container,
     .search-container {
         flex-direction: row;
+    }
+
+    /* Rating & About Vision Grid */
+    #rating-cards-container,
+    #about-vision {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     #doctor-cards-container {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
+    /* Services Cards */
+    #services-cards-container {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        flex-direction: row;
+    }
+
+    /* Footer Layout */
     #footer-content {
         grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 }
 
-/* Extra Large Screen */
+/* Extra Large Screen Overrides (≥1280px) */
 @media screen and (min-width: 1280px) {
     .container {
         max-width: 1280px;
     }
-
 }
 
-/* Extra Extra Large Screen */
+/* 2XL Screen Overrides (≥1400px) */
 @media screen and (min-width: 1400px) {
     .container {
         max-width: 1400px;
     }
 }
-
-/* Custom Screen */
-@media screen and (max-width: 768px) {}

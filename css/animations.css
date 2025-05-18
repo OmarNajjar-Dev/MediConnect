@@ -1,3 +1,7 @@
+:root {
+    --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 /* Durations */
 .duration-75 {
     animation-duration: 75ms;
@@ -182,17 +186,17 @@
 @keyframes slide-up {
     0% {
         transform: translateY(10px);
-        opacity: 0
+        opacity: 0;
     }
 
     to {
         transform: translateY(0);
-        opacity: 1
+        opacity: 1;
     }
 }
 
 .animate-slide-up {
-    animation: slide-up .4s ease-out forwards;
+    animation: slide-up 0.4s ease-out forwards;
 }
 
 /* Slide Down Animation */
@@ -209,7 +213,7 @@
 }
 
 .animate-slide-down {
-    animation: slide-down .4s ease-out forwards;
+    animation: slide-down 0.4s ease-out forwards;
 }
 
 /* Common Animate On Scroll  */
@@ -223,23 +227,25 @@
 
 /* Transition Properties */
 .transition-all {
-    transition: all 0.3s ease-in-out;
+    transition: all 0.3s var(--ease-standard);
 }
 
 .transition-colors {
-    transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+    transition: color 0.3s var(--ease-standard),
+        background-color 0.3s var(--ease-standard),
+        border-color 0.3s var(--ease-standard);
 }
 
 .transition-opacity {
-    transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.3s var(--ease-standard);
 }
 
 .transition-transform {
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s var(--ease-standard);
 }
 
 .transition-shadow {
-    transition: box-shadow 0.3s ease-int-out;
+    transition: box-shadow 0.3s var(--ease-standard);
 }
 
 /* Transition Durations */
@@ -263,6 +269,14 @@
     transition-duration: 300ms;
 }
 
+.transition-700 {
+    transition-duration: 700ms;
+}
+
+.transition-800 {
+    transition-duration: 800ms;
+}
+
 /* Timing Functions */
 .ease-linear {
     animation-timing-function: linear;
@@ -278,4 +292,13 @@
 
 .ease-in-out {
     animation-timing-function: ease-in-out;
+}
+
+/* opacity */
+.opacity-10 {
+    opacity: 0.1;
+}
+
+.opacity-95 {
+    opacity: 0.95;
 }

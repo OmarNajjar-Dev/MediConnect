@@ -44,7 +44,7 @@ export const hospitalsCardsData = [
     contact: "+1 (555) 246-8135",
     rating: 4.9,
     reviews: 412,
-    emergencyServices: true,
+    emergencyServices: false,
     imageUrl:
       "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
@@ -56,7 +56,7 @@ export const hospitalsCardsData = [
     contact: "+1 (555) 789-1234",
     rating: 4.7,
     reviews: 298,
-    emergencyServices: false,
+    emergencyServices: true,
     imageUrl:
       "https://images.unsplash.com/photo-1459767129954-1b1c1f9b9ace?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
