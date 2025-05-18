@@ -135,6 +135,22 @@
             <div id="hospitals" class="grid grid-cols-1 gap-6">
                 <!-- Rest of your content -->
             </div>
+            <!-- No Hospitals Found Message -->
+            <div id="no-results" class="hidden glass-card rounded-xl p-6 py-16 text-center">
+                <div class="mx-auto w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+                    <i data-lucide="triangle-alert" class="w-7 h-7 text-gray-400"></i>
+                </div>
+                <h2 class="text-xl font-medium mb-2 tracking-tight text-heading">No hospitals found</h2>
+                <p class="text-gray-600 mb-4">Try adjusting your search criteria</p>
+                <button id="clear-filters"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md border border-input text-sm font-medium ring-offset-background
+   transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring
+    focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-medical-500 text-white hover:bg-medical-400 h-10 px-4 py-2">
+                    Clear Filters
+                </button>
+
+            </div>
+
         </div>
     </main>
 

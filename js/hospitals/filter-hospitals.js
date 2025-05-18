@@ -11,6 +11,7 @@ export function filterBySearch(query) {
     card.parentElement.style.display =
       name.includes(query) || address.includes(query) ? "block" : "none";
   });
+  updateNoResultsVisibility();
 }
 
 // Toggle emergency filter
@@ -21,6 +22,7 @@ export function filterByEmergency(active) {
     card.parentElement.style.display =
       active && !hasEmergency ? "none" : "block";
   });
+  updateNoResultsVisibility();
 }
 
 // Toggle beds filter
@@ -30,6 +32,7 @@ export function filterByBeds(active) {
     const hasBeds = hospitalsCardsData[index].availableBeds > 0;
     card.parentElement.style.display = active && !hasBeds ? "none" : "block";
   });
+  updateNoResultsVisibility();
 }
 
 // Initialize filters
@@ -71,3 +74,22 @@ export function initHospitalFilters() {
     filterByBeds(bedsActive);
   });
 }
+function updateNoResultsVisibility() {
+  const cards = document.querySelectorAll(".hospital-card-wrapper");
+  const anyVisible = Array.from(cards).some((card) => card.parentElement.style.display !== "none");
+  document.getElementById("no-results").classList.toggle("hidden", anyVisible);
+}
+document.addEventListener("DOMContentLoaded", () => {
+  const clearBtn = document.getElementById("clear-filters");
+
+  if (clearBtn) {
+    clearBtn.addEventListener("click", () => {
+      document.getElementById("search-input").value = "";
+      filterBySearch("");
+      filterByEmergency(false);
+      filterByBeds(false);
+      updateNoResultsVisibility?.(); // Optional chaining in case the function isn't defined
+    });
+  }
+});
+
