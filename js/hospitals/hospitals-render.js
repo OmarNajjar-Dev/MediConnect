@@ -19,9 +19,9 @@ export function renderHospitals(container) {
     div.innerHTML = `
       <div class="hospital-card-wrapper bg-card border-card shadow-sm rounded-xl transition-all overflow-hidden relative">
         
-        <div class="hospital-image-section flex flex-col">
+        <div class="flex flex-col md:flex-row">
 
-          <div class="hospital-image-wrapper relative w-full h-48">
+          <div class="relative w-full h-48 md:w-1/3 md:h-auto">
             <img src="${h.imageUrl}" alt="${
       h.name
     }" class="w-full h-full object-cover" loading="lazy" style="aspect-ratio:4/3"/>
@@ -37,7 +37,7 @@ export function renderHospitals(container) {
           </div>
 
           <div class="p-6 flex-grow">
-            <div class="custom-flex-container flex flex-col">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between">
               <div>
                 <h2 class="text-xl font-bold mb-1 text-heading tracking-tight">${
                   h.name
@@ -48,7 +48,7 @@ export function renderHospitals(container) {
                 </div>
               </div>
 
-              <div class="hospital-rating flex items-center mt-2">
+              <div class="flex items-center mt-2 md:mt-0">
                 <div class="hospital-stars px-3 rounded-md flex items-center">
                   <i data-lucide="star" class="w-4.5 h-4.5 mr-1 text-star-500 fill-star-500"></i>
                   <span class="text-heading font-medium py-2">${h.rating}</span>
@@ -61,7 +61,7 @@ export function renderHospitals(container) {
               ${specialtiesHtml}
             </div>
 
-            <div class="hospital-details grid grid-cols-1 gap-3 mt-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
               <div class="flex items-center">
                 <div class="bed-icon w-10 h-10 rounded-full flex items-center justify-center">
                   <i data-lucide="bed" class="w-5 h-5"></i>
@@ -83,11 +83,11 @@ export function renderHospitals(container) {
               </div>
             </div>
 
-            <div id="hospital-card-buttons" class="mt-6 flex justify-end">
-              <button class="inline-flex items-center justify-center gap-2 flex-grow whitespace-nowrap rounded-md border border-solid border-input bg-medical-600 text-sm font-medium transition-colors h-10 px-4 py-2 mr-3 text-white hover:bg-medical-400">
+            <div class="mt-6 flex justify-end">
+              <button class="inline-flex items-center justify-center gap-2 flex-grow whitespace-nowrap rounded-md border border-solid border-input bg-medical-600 text-sm font-medium transition-colors h-10 px-4 py-2 mr-3 text-white hover:bg-medical-400 md:flex-grow-0">
                 View Details
               </button>
-              <button class="inline-flex items-center justify-center gap-2 flex-grow whitespace-nowrap rounded-md text-sm font-medium transition-colors text-heading border border-solid border-input bg-background hover:bg-medical-50 hover:text-medical-500 h-10 px-4 py-2">
+              <button class="inline-flex items-center justify-center gap-2 flex-grow whitespace-nowrap rounded-md text-sm font-medium transition-colors text-heading border border-solid border-input bg-background hover:bg-medical-50 hover:text-medical-500 h-10 px-4 py-2 md:flex-grow-0">
                 Get Directions
               </button>
             </div>

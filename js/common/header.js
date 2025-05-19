@@ -7,9 +7,9 @@ window.addEventListener("scroll", () => {
   
   if (window.scrollY > 20) {
     header?.classList.remove("bg-transparent", "py-5");
-    header?.classList.add("shadow-sm", "backdrop-blur-md", "py-3");
+    header?.classList.add("bg-background", "shadow-sm", "backdrop-blur-md", "py-3");
   } else {
     header?.classList.add("bg-transparent", "py-5");
-    header?.classList.remove("shadow-sm", "backdrop-blur-md", "py-3");
+    header?.classList.remove("bg-background", "shadow-sm", "backdrop-blur-md", "py-3");
   }
 });

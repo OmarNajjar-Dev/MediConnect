@@ -27,7 +27,7 @@
 
 <body class="bg-background text-foreground">
     <!-- Header Section -->
-    <header class="fixed z-50 py-5 bg-background transition-all border-b border-solid separator">
+    <header class="fixed z-50 py-5 bg-transparent transition-all">
         <div class="container mx-auto flex items-center justify-between px-4">
             <a href="/" class="flex items-center">
                 <span class="text-medical-700 text-2xl font-semibold">
@@ -36,7 +36,7 @@
             </a>
 
             <!-- Desktop Navigation -->
-            <nav id="desktop-nav" class="hidden items-center gap-4">
+            <nav class="hidden md:flex items-center gap-4 lg:gap-8">
                 <a href="/" class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Home</a>
                 <a href="/doctors.html"
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Doctors</a>
@@ -51,22 +51,23 @@
             <!-- Header Right Section -->
             <div class="flex items-center gap-4">
                 <!-- Sign In / Sign Up buttons (hidden by default) -->
-                <a href="/login.html" id="sign-in"
-                    class="hidden items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all">Sign
+                <a href="/login.html"
+                    class="hidden items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all md:flex">Sign
                     In</a>
-                <a href="/signup.html" id="sign-up"
-                    class="hidden items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all">Sign
+                <a href="/signup.html"
+                    class="hidden items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all md:flex">Sign
                     Up</a>
 
                 <!-- Mobile Menu Button -->
-                <button id="menu-button"
-                    class="inline-flex items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-0 pointer">
+                <button
+                    class="inline-flex items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-0 pointer md:hidden">
                     <i data-lucide="menu" class="w-4 h-4"></i>
                 </button>
             </div>
 
             <!-- Mobile Navigation (Hidden by default) -->
-            <div id="mobile-nav" class="hidden absolute bg-white-95 backdrop-blur-lg animate-slide-down shadow-lg">
+            <div id="mobile-nav"
+                class="hidden absolute bg-white-95 backdrop-blur-lg animate-slide-down shadow-lg md:hidden">
                 <nav class="container mx-auto flex flex-col gap-4 px-4 py-4">
                     <a href="/"
                         class="text-medical-700 bg-medical-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Home</a>
@@ -105,7 +106,7 @@
                 </p>
             </div>
 
-            <div class="input-container flex flex-col gap-6 mb-8">
+            <div class="input-container flex flex-col lg:flex-row gap-6 mb-8">
                 <div class="flex-grow">
                     <div class="relative">
                         <!-- Search Icon (Lucide) -->
@@ -141,7 +142,7 @@
     <!-- Footer -->
     <footer class="bg-gray-50 pt-16 pb-8 border-t border-solid separator">
         <div class="container mx-auto px-4">
-            <div id="footer-content" class="grid gap-8 mb-12">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                 <div>
                     <a href="/" class="inline-block mb-4">
                         <span class="text-medical-700 font-semibold text-2xl">

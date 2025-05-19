@@ -7,7 +7,7 @@ export function renderDoctors(container) {
   doctorsCardsData.forEach((card) => {
     const div = document.createElement("div");
     div.className =
-      "doctor-card transition-transform transition-shadow shadow-sm backdrop-blur-md bg-card border border-solid border-card rounded-lg p-6 flex flex-col";
+      "doctor-card transition-all shadow-sm backdrop-blur-md bg-card border border border-solid border-card rounded-lg p-6 flex flex-col";
     div.innerHTML = `
       <div class="flex items-start mb-4">
         <div class="w-20 h-20 rounded-full overflow-hidden mr-4 flex-shrink-0">

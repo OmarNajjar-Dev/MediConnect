@@ -4,7 +4,7 @@ export function renderLeadership(items, container) {
   items.forEach((item) => {
     const div = document.createElement("div");
     div.className =
-      "leadership__leader flex flex-col lg:flex-row rounded-2xl shadow-xl hover:shadow-2xl transition-shadow overflow-hidden min-h-75 lg:max-h-[550px]";
+      "leadership__leader flex flex-col lg:flex-row rounded-2xl shadow-xl hover:shadow-2xl transition-shadow overflow-hidden min-h-75 lg:max-h-137.5";
     div.innerHTML = `
       <div class="lg:w-2/5 w-full h-full overflow-hidden">
         <img src="${item.image}" alt="${item.name}"
