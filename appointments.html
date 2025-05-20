@@ -25,103 +25,9 @@
     <title>MediConnect - Bridging Healthcare & Technology</title>
 </head>
 
-<body class="bg-background text-foreground">
-    <!-- Header Section -->
-    <header class="fixed z-50 py-5 bg-background transition-all border-b border-solid separator">
-        <div class="container mx-auto flex items-center justify-between px-4">
-            <a href="/" class="flex items-center">
-                <span class="text-medical-700 text-2xl font-semibold">
-                    Medi<span class="text-medical-500">Connect</span>
-                </span>
-            </a>
-
-            <!-- Desktop Navigation -->
-            <nav id="desktop-nav" class="hidden items-center gap-4">
-                <a href="/" class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Home</a>
-                <a href="/doctors.html"
-                    class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Doctors</a>
-                <a href="/hospitals.html"
-                    class="text-medical-700 text-sm font-medium hover:text-medical-600 transition-colors">Hospitals</a>
-                <a href="/appointments.html"
-                    class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Appointments</a>
-                <a href="/dashboard"
-                    class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Dashboard</a>
-            </nav>
-
-            <!-- Header Right Section -->
-            <div class="flex items-center gap-4">
-                <!-- Sign In / Sign Up buttons (hidden by default) -->
-                <a href="/login.html" id="sign-in"
-                    class="hidden items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all">Sign
-                    In</a>
-                <a href="/signup.html" id="sign-up"
-                    class="hidden items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all">Sign
-                    Up</a>
-
-                <!-- Mobile Menu Button -->
-                <button id="menu-button"
-                    class="inline-flex items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-0 pointer">
-                    <i data-lucide="menu" class="w-4 h-4"></i>
-                </button>
-            </div>
-
-            <!-- Mobile Navigation (Hidden by default) -->
-            <div id="mobile-nav" class="hidden absolute bg-white-95 backdrop-blur-lg animate-slide-down shadow-lg">
-                <nav class="container mx-auto flex flex-col gap-4 px-4 py-4">
-                    <a href="/"
-                        class="text-medical-700 bg-medical-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Home</a>
-                    <a href="/doctors.html"
-                        class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Doctors</a>
-                    <a href="/hospitals.html"
-                        class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
-                    <a href="/appointments.html"
-                        class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
-                    <a href="/dashboard.html"
-                        class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Dashboard</a>
-
-                    <!-- Sign In / Sign Up buttons (Mobile view) -->
-                    <div class="flex flex-col pt-2 gap-2 border-t border-solid separator">
-                        <a href="/login.html"
-                            class="inline-flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-all">Sign
-                            In</a>
-                        <a href="/signup.html"
-                            class="inline-flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Sign
-                            Up</a>
-                    </div>
-                </nav>
-            </div>
-        </div>
-    </header>
-
-    <!-- Main Content -->
-    <main <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <!-- Meta Tags -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="css/colors.css" />
-    <link rel="stylesheet" href="css/typography.css" />
-    <link rel="stylesheet" href="css/spacing.css" />
-    <link rel="stylesheet" href="css/sizing.css" />
-    <link rel="stylesheet" href="css/borders.css" />
-    <link rel="stylesheet" href="css/layout.css" />
-    <link rel="stylesheet" href="css/animations.css" />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/responsive.css" />
-    <link rel="stylesheet" href="css/base.css" />
-    <link rel="stylesheet" href="css/ring.css">
-</head>
-
 <body class="bg-background text-heading">
     <!-- Header Section -->
-    <header class="fixed z-50 py-5 bg-background transition-all border-b border-solid separator">
+    <header class="fixed z-50 py-5 bg-transparent transition-all">
         <div class="container mx-auto flex items-center justify-between px-4">
             <a href="/" class="flex items-center">
                 <span class="text-medical-700 text-2xl font-semibold">
@@ -130,14 +36,14 @@
             </a>
 
             <!-- Desktop Navigation -->
-            <nav id="desktop-nav" class=" hidden items-center gap-4">
+            <nav class="hidden md:flex items-center gap-4 lg:gap-8">
                 <a href="/" class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Home</a>
                 <a href="/doctors.html"
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Doctors</a>
                 <a href="/hospitals.html"
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Hospitals</a>
                 <a href="/appointments.html"
-                    class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Appointments</a>
+                    class="text-medical-700 text-sm font-medium hover:text-medical-600 transition-colors">Appointments</a>
                 <a href="/dashboard.html"
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Dashboard</a>
             </nav>
@@ -145,38 +51,39 @@
             <!-- Header Right Section -->
             <div class="flex items-center gap-4">
                 <!-- Sign In / Sign Up buttons (hidden by default) -->
-                <a href="/login.html" id="sign-in"
-                    class="hidden items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all">Sign
+                <a href="/login.html"
+                    class="hidden items-center justify-center bg-input text-heading border border-solid border-input focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white outline-none hover:bg-medical-50 hover:text-medical-500 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all md:flex">Sign
                     In</a>
-                <a href="/signup.html" id="sign-up"
-                    class="hidden items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all">Sign
+                <a href="/signup.html"
+                    class="hidden items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all md:flex">Sign
                     Up</a>
 
                 <!-- Mobile Menu Button -->
                 <button id="menu-button"
-                    class="inline-flex items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-0 pointer">
+                    class="inline-flex items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-0 pointer md:hidden">
                     <i data-lucide="menu" class="w-4 h-4"></i>
                 </button>
             </div>
 
             <!-- Mobile Navigation (Hidden by default) -->
-            <div id="mobile-nav" class="hidden absolute bg-white-95 backdrop-blur-lg animate-slide-down shadow-lg">
+            <div id="mobile-nav"
+                class="hidden absolute bg-white-95 backdrop-blur-lg animate-slide-down shadow-lg md:hidden">
                 <nav class="container mx-auto flex flex-col gap-4 px-4 py-4">
                     <a href="/"
-                        class="text-medical-700 bg-medical-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Home</a>
+                        class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Home</a>
                     <a href="/doctors.html"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Doctors</a>
                     <a href="/hospitals.html"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
                     <a href="/appointments.html"
-                        class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
+                        class="text-medical-700 bg-medical-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
                     <a href="/dashboard.html"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Dashboard</a>
 
                     <!-- Sign In / Sign Up buttons (Mobile view) -->
                     <div class="flex flex-col pt-2 gap-2 border-t border-solid separator">
                         <a href="/login.html"
-                            class="inline-flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-all">Sign
+                            class="inline-flex items-center justify-center bg-input text-heading border border-solid border-input focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white outline-none hover:bg-medical-50 hover:text-medical-500 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-all">Sign
                             In</a>
                         <a href="/signup.html"
                             class="inline-flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Sign
@@ -188,117 +95,118 @@
     </header>
 
     <!-- Main Content -->
-    <main class="overflow-hidden flex-grow min-h-screen bg-gray-50 pt-20 pb-16">
+    <main id="appointment" class="min-h-screen bg-gray-50 pt-20 pb-16">
         <div class="container mx-auto px-4">
             <div class="py-8">
-                <h1 class="text-3xl tracking-tight text-center text-heading font-bold mb-2">Schedule an Appointment</h1>
-                <p class="text-gray-600 text-center mb-8">Book an appointment with one of our healthcare professionals</p>
-                <div class="glass-card rounded-xl p-6 max-w-xl mx-auto">
+                <h1 class="text-3xl font-bold mb-2">Schedule an Appointment</h1>
+                <p class="text-gray-600 mb-8">
+                    Book an appointment with one of our healthcare professionals
+                </p>
+
+                <div class="border border-solid border-card bg-card rounded-xl p-6 max-w-xl mx-auto">
                     <form class="flex flex-col gap-6">
-                        <div class="flex flex-col gap-3">
-                            <label for=":r0:-form-item"
-                                class="text-sm font-medium leading-none text-heading peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Specialty</label>
-                            <button type="button" role="combobox" aria-controls="radix-:r1:" aria-expanded="false"
-                                aria-autocomplete="none" dir="ltr"
-                                class="flex h-10 w-full items-center justify-between rounded-md border border-solid border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&amp;>span]:line-clamp-1"
-                                id=":r0:-form-item" aria-describedby=":r0:-form-item-description" aria-invalid="false">
-                                <span style="pointer-events: none;">Select a specialty</span>
+
+                        <!-- Specialty -->
+                        <div class="flex flex-col gap-2">
+                            <label class="text-sm font-medium leading-none">Specialty</label>
+                            <button type="button"
+                                class="flex items-center justify-between h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
+                                <span>Neurology</span>
                                 <i data-lucide="chevron-down" class="h-4 w-4 opacity-50"></i>
                             </button>
-                            <select aria-hidden="true" tabindex="-1"
-                                style="position: absolute; border: 0; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; overflow-wrap: normal;">
-                                <option value=""></option>
-                                <option value="1">Cardiology</option>
-                                <option value="2">Dermatology</option>
-                                <option value="3">Neurology</option>
-                                <option value="4">Orthopedics</option>
-                                <option value="5">Pediatrics</option>
-                                <option value="6">General Medicine</option>
-                            </select>
+                            <ul
+                                class="hidden bg-background border border-solid border-input rounded-md divide-y divide-gray-200">
+                                <li class="px-3 py-2 hover:bg-medical-50 cursor-pointer">Cardiology</li>
+                                <li class="px-3 py-2 hover:bg-medical-50 cursor-pointer">Dermatology</li>
+                                <li class="px-3 py-2 hover:bg-medical-50 cursor-pointer">Neurology</li>
+                                <li class="px-3 py-2 hover:bg-medical-50 cursor-pointer">Orthopedics</li>
+                                <li class="px-3 py-2 hover:bg-medical-50 cursor-pointer">Pediatrics</li>
+                                <li class="px-3 py-2 hover:bg-medical-50 cursor-pointer">General Medicine</li>
+                            </ul>
                         </div>
-                        <div class="flex flex-col gap-3">
-                            <label for=":r2:-form-item"
-                                class="text-sm font-medium leading-none text-heading peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Doctor</label>
-                            <button type="button" role="combobox" aria-controls="radix-:r3:" aria-expanded="false"
-                                aria-autocomplete="none" dir="ltr"
-                                class="flex h-10 w-full items-center justify-between rounded-md border border-solid border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&amp;>span]:line-clamp-1"
-                                id=":r2:-form-item" aria-describedby=":r2:-form-item-description" aria-invalid="false">
-                                <span style="pointer-events: none;">Select a doctor</span>
+
+                        <!-- Doctor -->
+                        <div class="flex flex-col gap-2">
+                            <label class="text-sm font-medium leading-none">Doctor</label>
+                            <button type="button"
+                                class="flex items-center justify-between h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
+                                <span>Select a doctor</span>
                                 <i data-lucide="chevron-down" class="h-4 w-4 opacity-50"></i>
                             </button>
-                            <select aria-hidden="true" tabindex="-1"
-                                style="position: absolute; border: 0; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; overflow-wrap: normal;">
-                                <option value=""></option>
-                                <option value="1">Dr. Sarah Johnson - Cardiology</option>
-                                <option value="2">Dr. Michael Chen - Dermatology</option>
-                                <option value="3">Dr. Emily Patel - Neurology</option>
-                                <option value="4">Dr. Robert Miller - Orthopedics</option>
-                                <option value="5">Dr. Jessica Williams - Pediatrics</option>
-                            </select>
+                            <ul
+                                class="hidden bg-background border border-solid border-input rounded-md divide-y divide-gray-200">
+                                <li class="px-3 py-2 hover:bg-medical-50 cursor-pointer">Dr. Sarah Johnson – Cardiology
+                                </li>
+                                <li class="px-3 py-2 hover:bg-medical-50 cursor-pointer">Dr. Michael Chen – Dermatology
+                                </li>
+                                <li class="px-3 py-2 hover:bg-medical-50 cursor-pointer">Dr. Emily Patel – Neurology
+                                </li>
+                                <li class="px-3 py-2 hover:bg-medical-50 cursor-pointer">Dr. Robert Miller – Orthopedics
+                                </li>
+                                <li class="px-3 py-2 hover:bg-medical-50 cursor-pointer">Dr. Jessica Williams –
+                                    Pediatrics</li>
+                            </ul>
                         </div>
-                        <div class="flex flex-col gap-3">
-                            <label for=":r4:-form-item"
-                                class="text-sm font-medium leading-none text-heading peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Appointment
+
+                        <!-- Appointment Date -->
+                        <div class="flex flex-col gap-2">
+                            <label for="appointment-date" class="text-sm font-medium leading-none">Appointment
                                 Date</label>
-                            <button type="button" aria-haspopup="dialog" aria-expanded="false"
-                                aria-controls="radix-:r5:"
-                                class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input border-solid bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 w-full pl-3 text-left font-normal text-muted-foreground"
-                                id=":r4:-form-item" aria-describedby=":r4:-form-item-description" aria-invalid="false">
-                                <span>Pick a date</span>
-                                <i data-lucide="calendar" class="ml-auto h-4 w-4 opacity-50"></i>
-                            </button>
+                            <input type="date" id="appointment-date"
+                                class="h-10 w-full rounded-md border border-solid border-input outline-none bg-background px-3 py-2 text-sm" />
                         </div>
-                        <div class="flex flex-col gap-3">
-                            <label for=":r6:-form-item"
-                                class="text-sm text-heading font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Time
-                                Slot</label>
-                            <button type="button" role="combobox" aria-controls="radix-:r7:" aria-expanded="false"
-                                aria-autocomplete="none" dir="ltr"
-                                class="flex h-10 w-full items-center justify-between rounded-md border border-solid border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&amp;>span]:line-clamp-1"
-                                id=":r6:-form-item" aria-describedby=":r6:-form-item-description" aria-invalid="false">
-                                <span style="pointer-events: none;">Select a time</span>
+
+                        <!-- Time Slot -->
+                        <div class="flex flex-col gap-2">
+                            <label class="text-sm font-medium leading-none">Time Slot</label>
+                            <button type="button"
+                                class="flex items-center justify-between h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
+                                <span>Select a time</span>
                                 <i data-lucide="chevron-down" class="h-4 w-4 opacity-50"></i>
                             </button>
-                            <select aria-hidden="true" tabindex="-1"
-                                style="position: absolute; border: 0; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; overflow-wrap: normal;">
-                                <option value=""></option>
-                                <option value="9:00 AM">9:00 AM</option>
-                                <option value="9:30 AM">9:30 AM</option>
-                                <option value="10:00 AM">10:00 AM</option>
-                                <option value="10:30 AM">10:30 AM</option>
-                                <option value="11:00 AM">11:00 AM</option>
-                                <option value="11:30 AM">11:30 AM</option>
-                                <option value="1:00 PM">1:00 PM</option>
-                                <option value="1:30 PM">1:30 PM</option>
-                                <option value="2:00 PM">2:00 PM</option>
-                                <option value="2:30 PM">2:30 PM</option>
-                                <option value="3:00 PM">3:00 PM</option>
-                                <option value="3:30 PM">3:30 PM</option>
-                                <option value="4:00 PM">4:00 PM</option>
-                                <option value="4:30 PM">4:30 PM</option>
-                            </select>
+                            <ul
+                                class="hidden bg-background border border-solid border-input rounded-md divide-y divide-gray-200">
+                                <li class="px-3 py-2 hover:bg-medical-50 cursor-pointer">9:00 AM</li>
+                                <li class="px-3 py-2 hover:bg-medical-50 cursor-pointer">9:30 AM</li>
+                                <li class="px-3 py-2 hover:bg-medical-50 cursor-pointer">10:00 AM</li>
+                                <li class="px-3 py-2 hover:bg-medical-50 cursor-pointer">10:30 AM</li>
+                                <li class="px-3 py-2 hover:bg-medical-50 cursor-pointer">11:00 AM</li>
+                                <li class="px-3 py-2 hover:bg-medical-50 cursor-pointer">11:30 AM</li>
+                                <li class="px-3 py-2 hover:bg-medical-50 cursor-pointer">1:00 PM</li>
+                                <li class="px-3 py-2 hover:bg-medical-50 cursor-pointer">1:30 PM</li>
+                                <li class="px-3 py-2 hover:bg-medical-50 cursor-pointer">2:00 PM</li>
+                                <li class="px-3 py-2 hover:bg-medical-50 cursor-pointer">2:30 PM</li>
+                                <li class="px-3 py-2 hover:bg-medical-50 cursor-pointer">3:00 PM</li>
+                                <li class="px-3 py-2 hover:bg-medical-50 cursor-pointer">3:30 PM</li>
+                                <li class="px-3 py-2 hover:bg-medical-50 cursor-pointer">4:00 PM</li>
+                                <li class="px-3 py-2 hover:bg-medical-50 cursor-pointer">4:30 PM</li>
+                            </ul>
                         </div>
-                        <div class="flex flex-col gap-3">
-                            <label for=":r8:-form-item"
-                                class="text-sm text-heading font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Reason
-                                for Visit</label>
-                            <textarea placeholder="Please briefly describe the reason for your visit"
-                                class="flex min-h-[80px] w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground outline-none focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-medical-500 disabled:cursor-not-allowed disabled:opacity-50 resize-none"
-                                rows="3" name="reason" id=":r8:-form-item" aria-describedby=":r8:-form-item-description"
-                                aria-invalid="false"></textarea>
+
+                        <!-- Reason for Visit -->
+                        <div class="flex flex-col gap-2">
+                            <label for="reason" class="text-sm font-medium leading-none">Reason for Visit</label>
+                            <textarea id="reason" name="reason"
+                                placeholder="Please briefly describe the reason for your visit"
+                                class="min-h-[80px] w-full resize-none rounded-md border border-solid border-input focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white outline-none bg-background px-3 py-2 text-sm"
+                                rows="3"></textarea>
                         </div>
-                        <div class="flex flex-col gap-3">
-                            <label for=":r9:-form-item"
-                                class="text-sm text-heading font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Additional
-                                Notes</label>
-                            <textarea placeholder="Any additional information you want to share (optional)"
-                                class="flex min-h-[80px] w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-smoutline-none focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-medical-500 disabled:cursor-not-allowed disabled:opacity-50 resize-none"
-                                rows="2" name="notes" id=":r9:-form-item" aria-describedby=":r9:-form-item-description"
-                                aria-invalid="false"></textarea>
+
+                        <!-- Additional Notes -->
+                        <div class="flex flex-col gap-2">
+                            <label for="notes" class="text-sm font-medium leading-none">Additional Notes</label>
+                            <textarea id="notes" name="notes"
+                                placeholder="Any additional information you want to share (optional)"
+                                class="min-h-[80px] w-full resize-none rounded-md border border-solid border-input focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white outline-none bg-background px-3 py-2 text-sm"
+                                rows="3"></textarea>
                         </div>
+
+                        <!-- Submit Button -->
                         <button type="submit"
-                            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full">Schedule
-                            Appointment</button>
+                            class="h-10 w-full px-4 py-2 border-none text-sm font-medium text-white bg-medical-500 hover:bg-medical-600 rounded-md transition-colors outline-none">
+                            Schedule Appointment
+                        </button>
+
                     </form>
                 </div>
             </div>
@@ -308,7 +216,7 @@
     <!-- Footer -->
     <footer class="bg-gray-50 pt-16 pb-8 border-t border-solid separator">
         <div class="container mx-auto px-4">
-            <div id="footer-content" class="grid gap-8 mb-12">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                 <div>
                     <a href="/" class="inline-block mb-4">
                         <span class="text-medical-700 font-semibold text-2xl">
@@ -407,7 +315,7 @@
                             </span>
                         </li>
                         <li class="flex items-center gap-3">
-                            <i data-lucide="phone" class="h-4 w-4 text-medical-500"></i>
+                            <i data-lucide="phone" class="h-4 w-4 text-medical-500 "></i>
                             <span class="text-gray-600">+1 (555) 123-4567</span>
                         </li>
                         <li class="flex items-center gap-3">
@@ -434,144 +342,79 @@
 </body>
 
 </html>
-    </main>
+</main>
+<!-- JavaScript -->
+<script type="module" src="js/common/header.js"></script>
+<script type="module" src="js/common/mobile-nav.js"></script>
 
-    <!-- Footer -->
-    <footer class="bg-gray-50 pt-16 pb-8 border-t border-solid separator">
-        <div class="container mx-auto px-4">
-            <div id="footer-content" class="grid gap-8 mb-12">
-                <div>
-                    <a href="/" class="inline-block mb-4">
-                        <span class="text-medical-700 font-semibold text-2xl">
-                            Medi<span class="text-medical-500">Connect</span>
-                        </span>
-                    </a>
-                    <p class="text-gray-600 leading-relaxed mb-4">
-                        Connecting patients with healthcare professionals for better care
-                        and outcomes.
-                    </p>
-                    <div class="footer-socials flex gap-4 transition-all">
-                        <a href="#"
-                            class="text-gray-500 hover:text-medical-600 hover:bg-medical-50 rounded-full flex justify-center items-center w-10 h-10">
-                            <i data-lucide="facebook" class="h-4 w-4"></i>
-                        </a>
+<script type="module" src="js/hospitals/index.js"></script>
 
-                        <a href="#"
-                            class="text-gray-500 hover:text-medical-600 hover:bg-medical-50 rounded-full flex justify-center items-center w-10 h-10">
-                            <i data-lucide="twitter" class="h-4 w-4"></i>
-                        </a>
-                        <a href="#"
-                            class="text-gray-500 hover:text-medical-600 hover:bg-medical-50 rounded-full flex justify-center items-center w-10 h-10">
-                            <i data-lucide="instagram" class="h-4 w-4"></i>
-                        </a>
-                    </div>
-                </div>
+<!-- Init Lucide Icons -->
+<script>
+    lucide.createIcons();
+</script>
 
-                <div>
-                    <h4 class="font-medium text-lg text-heading tracking-tight mb-4">
-                        Services
-                    </h4>
-                    <ul class="flex flex-col gap-2">
-                        <li>
-                            <a href="/appointments.html" class="text-gray-600 hover:text-medical-600 transition-colors">
-                                Book Appointments
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/doctors.html" class="text-gray-600 hover:text-medical-600 transition-colors">
-                                Find Doctors
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/hospitals.html" class="text-gray-600 hover:text-medical-600 transition-colors">
-                                Hospital Information
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/emergency.html" class="text-gray-600 hover:text-medical-600 transition-colors">
-                                Emergency Services
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/pharmacy.html" class="text-gray-600 hover:text-medical-600 transition-colors">
-                                Pharmacy Orders
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const main = document.getElementById("appointment");
+    const buttons = main.querySelectorAll("form button[type='button']");
 
-                <div>
-                    <h4 class="font-medium text-lg text-heading tracking-tight mb-4">
-                        Quick Links
-                    </h4>
-                    <ul class="flex flex-col gap-2">
-                        <li>
-                            <a href="/about.html" class="text-gray-600 hover:text-medical-600 transition-colors">
-                                About Us
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/privacy.html" class="text-gray-600 hover:text-medical-600 transition-colors">
-                                Privacy Policy
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/terms.html" class="text-gray-600 hover:text-medical-600 transition-colors">
-                                Terms of Service
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/faq.html" class="text-gray-600 hover:text-medical-600 transition-colors">
-                                FAQs
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/contact.html" class="text-gray-600 hover:text-medical-600 transition-colors">
-                                Contact Us
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+    buttons.forEach((button) => {
+      const dropdown = button.nextElementSibling;
 
-                <div>
-                    <h4 class="font-medium text-lg text-heading tracking-tight mb-4">
-                        Contact
-                    </h4>
-                    <ul class="flex flex-col gap-3">
-                        <li class="flex gap-1">
-                            <i data-lucide="map-pin" class="h-7 w-7 text-medical-500 pr-2"></i>
-                            <span class="text-gray-600">
-                                123 Healthcare Avenue, Medical District, City, Country
-                            </span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i data-lucide="phone" class="h-4 w-4 text-medical-500"></i>
-                            <span class="text-gray-600">+1 (555) 123-4567</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i data-lucide="mail" class="h-4 w-4 text-medical-500"></i>
-                            <span class="text-gray-600">contact@mediconnect.example</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+      if (dropdown && dropdown.tagName === "UL") {
+        dropdown.classList.add("hidden");
 
-            <div class="pt-8 border-t border-solid separator text-center text-gray-600 text-sm">
-                <p>&copy; 2025 MediConnect. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+        button.addEventListener("click", (e) => {
+          e.stopPropagation();
 
-    <!-- JavaScript -->
-    <script type="module" src="js/common/header.js"></script>
-    <script type="module" src="js/common/mobile-nav.js"></script>
+          // إغلاق جميع القوائم الأخرى
+          buttons.forEach((btn) => {
+            const otherDropdown = btn.nextElementSibling;
+            if (otherDropdown !== dropdown && otherDropdown.tagName === "UL") {
+              otherDropdown.classList.add("hidden");
+            }
+          });
 
-    <script type="module" src="js/hospitals/index.js"></script>
+          // تبديل عرض الـ dropdown الحالي
+          const isOpen = !dropdown.classList.contains("hidden");
+          dropdown.classList.toggle("hidden");
 
-    <!-- Init Lucide Icons -->
-    <script>
-        lucide.createIcons();
-    </script>
+          // منع تمرير الصفحة عند فتح القائمة
+          document.body.classList.toggle("overflow-hidden", !isOpen);
+        });
+
+        // عند اختيار عنصر من القائمة
+        dropdown.querySelectorAll("li").forEach((item) => {
+          item.addEventListener("click", () => {
+            const span = button.querySelector("span");
+            if (span) span.textContent = item.textContent;
+            dropdown.classList.add("hidden");
+            document.body.classList.remove("overflow-hidden");
+          });
+        });
+      }
+    });
+
+    // إغلاق القوائم إذا تم الضغط خارجها
+    document.addEventListener("click", (e) => {
+      buttons.forEach((button) => {
+        const dropdown = button.nextElementSibling;
+        if (
+          dropdown &&
+          dropdown.tagName === "UL" &&
+          !button.contains(e.target) &&
+          !dropdown.contains(e.target)
+        ) {
+          dropdown.classList.add("hidden");
+          document.body.classList.remove("overflow-hidden");
+        }
+      });
+    });
+  });
+</script>
+
+
 </body>
 
 </html>
