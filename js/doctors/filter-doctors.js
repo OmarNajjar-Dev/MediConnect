@@ -77,7 +77,7 @@ function addButtonClickListeners() {
 // Search input filter
 function searchDoctors() {
   const query = document
-    .getElementById("search-input")
+    .querySelector(".search-input")
     ?.value.trim()
     .toLowerCase();
   const cards = document.querySelectorAll(".doctor-card");
@@ -104,6 +104,6 @@ export function initDoctorFilters() {
   setDefaultActiveButton();
   addButtonClickListeners();
   document
-    .getElementById("search-input")
+    .querySelector(".search-input")
     ?.addEventListener("input", searchDoctors);
 }
