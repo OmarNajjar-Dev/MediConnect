@@ -28,7 +28,7 @@ export function renderHospitals(container) {
             ${
               h.emergencyServices
                 ? `
-            <div id="emergency" class="absolute bg-danger text-white px-2 py-1 rounded-full text-xs font-medium flex items-center">
+            <div class="emergency-badge absolute bg-danger text-white px-2 py-1 rounded-full text-xs font-medium flex items-center">
               <i data-lucide="activity" class="w-3.5 h-3.5 mr-1"></i>
               Emergency Services
             </div>`

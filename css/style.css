@@ -55,7 +55,7 @@ input::placeholder {
   color: #41b76c;
 }
 
-#emergency {
+.emergency-badge {
   top: 16px;
   left: 16px;
 }
