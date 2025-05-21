@@ -26,14 +26,14 @@ export function initDropdown() {
 
       // Hide all check icons first
       options.forEach((btn) => {
-        const icon = btn.querySelector('svg');
+        const icon = btn.querySelector("svg");
         if (icon) {
           icon.classList.add("hidden");
         }
       });
 
       // Show the icon for the selected option
-      const icon = option.querySelector('svg');
+      const icon = option.querySelector("svg");
       if (icon) {
         icon.classList.remove("hidden");
       }
