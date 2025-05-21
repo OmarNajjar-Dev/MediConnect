@@ -95,19 +95,22 @@
   <!-- Main Content -->
   <main class="overflow-hidden pt-20 flex-grow">
     <!-- Hero Section -->
-    <section id="hero" class="relative py-20 sm:py-28">
+    <section class="relative py-20 sm:py-28">
+      <div class="absolute inset-0 bg-cover bg-center" id="hero-image">
+        <div id="hero-background" class="absolute inset-0 bg-gradient-to-r from-medical-800/90 to-blue-900/70"></div>
+      </div>
       <div class="container mx-auto px-4 relative">
         <!-- Hero Text Content -->
         <div id="hero-content" class="max-w-3xl mx-auto text-center mb-12">
-          <span class="inline-block bg-medical-100 text-medical-800 rounded-full text-sm font-medium px-3 py-1 mb-4">
+          <span class="inline-block bg-white/20 text-white rounded-full text-sm font-medium px-3 py-1 mb-4 backdrop-blur-sm">
             Simplifying Healthcare Access
           </span>
 
-          <h1 class="text-heading text-4xl sm:text-5xl md:text-6xl leading-tight tracking-tight mb-4">
+          <h1 class="text-white text-4xl sm:text-5xl md:text-6xl md:leading-tight drop-shadow-md mb-4">
             Connecting Patients with Healthcare Professionals
           </h1>
 
-          <p class="text-gray-600 text-xl mb-8">
+          <p class="text-white/90 text-xl mb-8 drop-shadow">
             Book appointments, connect with specialists, and access quality
             healthcare services - all in one place.
           </p>
@@ -115,11 +118,11 @@
           <!-- Call-to-Action Buttons -->
           <div class="flex flex-col sm:flex-row justify-center gap-4">
             <a href="/appointments.html"
-              class="inline-flex items-center justify-center bg-medical-500 hover:bg-medical-400 rounded-full text-white text-sm font-medium px-8 h-11 transition-all">
+              class="inline-flex items-center justify-center bg-medical-500 hover:bg-medical-400 rounded-full text-white text-sm font-medium px-8 h-11 transition-colors">
               Book an Appointment
             </a>
             <a href="/doctors.html"
-              class="inline-flex items-center justify-center rounded-full text-heading border border-solid border-input bg-input hover:text-medical-400 hover:bg-medical-50 text-sm font-medium px-8 h-11 transition-all">
+              class="inline-flex items-center justify-center rounded-full text-medical-500 border border-solid border-input bg-input hover:text-medical-400 hover:bg-transparent text-sm font-medium px-8 h-11 transition-colors">
               Find a Doctor
             </a>
           </div>

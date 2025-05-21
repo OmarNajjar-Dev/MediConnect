@@ -23,15 +23,15 @@ export function renderHeroCards(container) {
   const fragment = document.createDocumentFragment();
   heroCardsData.forEach((card) => {
     const div = document.createElement("div");
-    div.className = `bg-card border border-solid border-card rounded-xl backdrop-blur-md shadow-sm animate-on-scroll p-6`;
+    div.className = `text-white bg-white/20 border border-solid border-card rounded-xl backdrop-blur-lg shadow-sm animate-on-scroll p-6`;
     div.style.animationDelay = card.animationDelay;
     div.innerHTML = `
-      <div class="card-container text-center">
-        <div class="flex justify-center items-center text-medical-600 bg-medical-100 rounded-full mx-auto mb-4 w-12 h-12">
+      <div class="text-center">
+        <div class="flex justify-center items-center bg-medical-100/20 rounded-full mx-auto mb-4 w-12 h-12">
           ${card.icon}
         </div>
-        <h3 class="text-heading text-xl font-medium tracking-tight capitalize mb-2">${card.title}</h3>
-        <p class="text-gray-600 leading-relaxed">${card.description}</p>
+        <h3 class="text-xl font-medium tracking-tight capitalize mb-2">${card.title}</h3>
+        <p class="leading-relaxed">${card.description}</p>
       </div>
     `;
     fragment.appendChild(div);

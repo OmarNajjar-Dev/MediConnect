@@ -186,6 +186,13 @@
     background-color: transparent;
 }
 
+.hover\:bg-transparent:hover {
+    background-color: transparent;
+}
+
+.bg-medical-100\/20 {
+    background-color: rgba(var(--medical-100), 0.2);
+}
 /* ==================================================
      TEXT COLOR CLASSES
      ================================================== */
@@ -296,6 +303,10 @@
 
 .text-white {
     color: rgb(var(--background));
+}
+
+.text-white\/90 {
+    color: rgba(var(--background), 0.9);
 }
 
 /* ==================================================

@@ -12,11 +12,6 @@ header {
   right: 0;
 }
 
-/* Hero background gradient */
-#hero {
-  background: linear-gradient(to bottom right, #e0f2f1, #eff6ff);
-}
-
 /* Service card hover effect */
 .service-card:hover {
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
@@ -96,8 +91,6 @@ input::placeholder {
 
 #background-overlay-image {
   background-image: url('https://images.unsplash.com/photo-1527613426441-4da17471b66d?q=80&w=2070&auto=format&fit=crop');
-  background-size: cover;
-  background-position: center center;
 }
 
 #leadership-cta:hover svg {
@@ -106,4 +99,20 @@ input::placeholder {
 
 .resize-none {
   resize: none;
+}
+
+#hero-image {
+  background-image: url('https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?q=80&w=2091&auto=format&fit=crop');
+}
+
+#hero-background {
+  background: linear-gradient(to right, rgb(0 105 92 / .9), rgb(30 58 138 / .7))
+}
+
+.drop-shadow-md {
+  filter: drop-shadow(0 4px 30px rgba(0, 0, 0, 0.1));
+}
+
+.drop-shadow {
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.1));
 }

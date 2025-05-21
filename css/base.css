@@ -50,6 +50,15 @@ a {
     object-position: center;
 }
 
+.bg-cover {
+    background-size: cover;
+}
+
+.bg-center {
+    background-position: center;
+}
+
+
 /* Reset form elements */
 button,
 input,

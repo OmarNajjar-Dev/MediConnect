@@ -194,6 +194,10 @@
         line-height: 1;
     }
 
+    .md\:leading-tight {
+        line-height: 1.25;
+    }
+
     /* Containers */
     .container {
         max-width: 768px;
