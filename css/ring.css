@@ -1,6 +1,6 @@
-/* ==================================================
-   VARIABLES (ROOT CUSTOM PROPERTIES)
-   ================================================== */
+/* ==========================================================================
+   VARIABLES (Root Custom Properties)
+   ========================================================================== */
 :root {
     /* Ring Defaults */
     --ring-color: rgba(59, 130, 246, 0.5);
@@ -8,25 +8,29 @@
     --ring-offset-width: 0px;
     --ring-offset-color: transparent;
 
-    /* Medical Colors */
+    /* Medical Colors (500 & 600) */
     --medical-500: 0, 150, 136;
     --medical-600: 0, 137, 123;
 }
 
-/* ==================================================
+/* ==========================================================================
    BASE RING UTILITIES
-   ================================================== */
+   ========================================================================== */
 
-/* .ring applies the double box-shadow “ring” effect */
+/* .ring
+   Applies the double box-shadow “ring” effect.
+*/
 .ring {
     box-shadow:
-        /* offset shadow */
+        /* Offset shadow */
         0 0 0 var(--ring-offset-width) var(--ring-offset-color),
-        /* main ring shadow */
+        /* Main ring shadow */
         0 0 0 calc(var(--ring-offset-width) + var(--ring-width)) var(--ring-color);
 }
 
-/* .focus:ring reapplies the same shadow on focus (and removes default outline) */
+/* .focus:ring
+   Applies the ring on focus and removes default outline.
+*/
 .focus\:ring:focus {
     outline: none;
     box-shadow:
@@ -34,11 +38,11 @@
         0 0 0 calc(var(--ring-offset-width) + var(--ring-width)) var(--ring-color);
 }
 
-/* ==================================================
+/* ==========================================================================
    RING WIDTH VARIANTS
-   ================================================== */
+   ========================================================================== */
 
-/* Always-on ring width */
+/* Always-on ring widths */
 .ring-0 {
     --ring-width: 0px;
 }
@@ -55,7 +59,7 @@
     --ring-width: 4px;
 }
 
-/* Ring width on focus only */
+/* Focus-only ring widths */
 .focus\:ring-0:focus {
     --ring-width: 0px;
 }
@@ -72,12 +76,11 @@
     --ring-width: 4px;
 }
 
-
-/* ==================================================
+/* ==========================================================================
    RING OFFSET VARIANTS
-   ================================================== */
+   ========================================================================== */
 
-/* Always-on ring offset (gap between element and ring) */
+/* Always-on ring offsets */
 .ring-offset-0 {
     --ring-offset-width: 0px;
 }
@@ -94,7 +97,7 @@
     --ring-offset-width: 4px;
 }
 
-/* Ring offset on focus only */
+/* Focus-only ring offsets */
 .focus\:ring-offset-1:focus {
     --ring-offset-width: 1px;
 }
@@ -107,11 +110,11 @@
     --ring-offset-width: 4px;
 }
 
-/* ==================================================
-   RING COLORS - MEDICAL PALETTE
-   ================================================== */
+/* ==========================================================================
+   RING COLORS — Medical Palette
+   ========================================================================== */
 
-/* Always-on medical‐500 and medical‐600 ring colors */
+/* Always-on medical-500 and medical-600 ring colors */
 .ring-medical-500 {
     --ring-color: rgba(var(--medical-500));
 }
@@ -127,4 +130,15 @@
 
 .focus\:ring-medical-600:focus {
     --ring-color: rgba(var(--medical-600));
+}
+
+/* Always-on medical ring offsets */
+.ring-offset-white {
+    --ring-offset-color: rgba(255, 255, 255);
+}
+
+
+/* Focus-only medical ring offsets */
+.focus\:ring-offset-white:focus {
+    --ring-offset-color: rgba(255, 255, 255);
 }

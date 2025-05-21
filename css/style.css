@@ -55,6 +55,11 @@ input::placeholder {
   color: #41b76c;
 }
 
+.textarea-no-resize-x {
+  resize: vertical;
+  overflow-x: hidden;
+}
+
 #emergency {
   top: 16px;
   left: 16px;

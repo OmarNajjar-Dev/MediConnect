@@ -152,7 +152,7 @@
         max-width: 768px;
     }
 
-    #hero {
+    #hero  {
         padding-top: 112px;
         padding-bottom: 112px;
     }
@@ -213,7 +213,7 @@
         padding-left: 24px;
     }
 
-    #faq-top-section{
+    #faq-top-section , #hero-section{
         padding-top: 80px;
         padding-bottom: 80px;
     }
