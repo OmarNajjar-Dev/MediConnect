@@ -1,18 +1,21 @@
+let currentSpecialty = "all specialties";
+
 // Filter doctors based on specialty selection
 export function filterDoctors(specialty) {
+  currentSpecialty = specialty.trim().toLowerCase();
+
   const cards = document.querySelectorAll(".doctor-card");
   cards.forEach((card) => {
-    const cardSpecialty = card
-      .querySelector(".text-medical-600")
-      ?.textContent.trim()
-      .toLowerCase();
-    const selected = specialty.trim().toLowerCase();
+    const cardSpecialty =
+      card.querySelector(".text-medical-600")?.textContent.trim().toLowerCase() || "";
 
     card.style.display =
-      selected === "all specialties" || cardSpecialty === selected
+      currentSpecialty === "all specialties" || cardSpecialty === currentSpecialty
         ? "block"
         : "none";
   });
+
+  applyDoctorSearchFilter();
 }
 
 // Set "All Specialties" button as active and apply default filter
@@ -31,6 +34,7 @@ function setDefaultActiveButton() {
     "hover:bg-medical-50",
     "hover:text-medical-600"
   );
+
   filterDoctors("All Specialties");
 }
 
@@ -74,12 +78,9 @@ function addButtonClickListeners() {
   });
 }
 
-// Search input filter
-function searchDoctors() {
-  const query = document
-    .querySelector(".search-input")
-    ?.value.trim()
-    .toLowerCase();
+// Apply search + specialty filter together
+function applyDoctorSearchFilter() {
+  const query = document.querySelector(".search-input")?.value.trim().toLowerCase() || "";
   const cards = document.querySelectorAll(".doctor-card");
 
   cards.forEach((card) => {
@@ -87,15 +88,14 @@ function searchDoctors() {
     const specialty =
       card.querySelector(".text-medical-600")?.textContent.toLowerCase() || "";
     const hospital =
-      card.querySelector(".text-gray-600.text-sm")?.textContent.toLowerCase() ||
-      "";
+      card.querySelector(".text-gray-600.text-sm")?.textContent.toLowerCase() || "";
 
-    card.style.display =
-      name.includes(query) ||
-      specialty.includes(query) ||
-      hospital.includes(query)
-        ? "block"
-        : "none";
+    const matchesSearch =
+      name.includes(query) || specialty.includes(query) || hospital.includes(query);
+    const matchesSpecialty =
+      currentSpecialty === "all specialties" || specialty === currentSpecialty;
+
+    card.style.display = matchesSearch && matchesSpecialty ? "block" : "none";
   });
 }
 
@@ -103,7 +103,8 @@ function searchDoctors() {
 export function initDoctorFilters() {
   setDefaultActiveButton();
   addButtonClickListeners();
-  document
-    .querySelector(".search-input")
-    ?.addEventListener("input", searchDoctors);
+
+  document.querySelector(".search-input")?.addEventListener("input", () => {
+    applyDoctorSearchFilter();
+  });
 }
