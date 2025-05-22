@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <!-- Meta Tags -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -91,6 +90,57 @@
                 </nav>
             </div>
         </div>
+
+        <!-- Mobile Navigation (Hidden by default) -->
+        <div
+          id="mobile-nav"
+          class="hidden absolute bg-white-95 backdrop-blur-lg animate-slide-down shadow-lg"
+        >
+          <nav class="container mx-auto flex flex-col gap-4 px-4 py-4">
+            <a
+              href="/"
+              class="text-medical-700 bg-medical-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors"
+              >Home</a
+            >
+            <a
+              href="/doctors.html"
+              class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors"
+              >Doctors</a
+            >
+            <a
+              href="/hospitals.html"
+              class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors"
+              >Hospitals</a
+            >
+            <a
+              href="/appointments.html"
+              class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors"
+              >Appointments</a
+            >
+            <a
+              href="/dashboard.html"
+              class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors"
+              >Dashboard</a
+            >
+
+            <!-- Sign In / Sign Up buttons (Mobile view) -->
+            <div
+              class="flex flex-col pt-2 gap-2 border-t border-solid separator"
+            >
+              <a
+                href="/login.html"
+                class="inline-flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-all"
+                >Sign In</a
+              >
+              <a
+                href="/signup.html"
+                class="inline-flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                >Sign Up</a
+              >
+            </div>
+          </nav>
+        </div>
+      </div>
     </header>
 
     <!-- Main Content -->
@@ -173,6 +223,80 @@
             </div>
 
         </div>
+        <!-- Search Section -->
+        <div class="search-container flex gap-6 mb-8">
+          <div class="search-input-container text-xl flex-grow">
+            <div class="input-wrapper relative">
+              <!-- Search Icon (Lucide) -->
+              <i data-lucide="search" class="absolute text-gray-500"></i>
+              <!-- Search Input Field -->
+              <input
+                type="text"
+                placeholder="Search doctors by name, specialty, or hospital"
+                class="px-10 h-12 flex w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm outline-none focus:ring focus:ring-1 focus:ring-offset-2 focus:ring-medical-500"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Specialties Section -->
+        <div class="specialties-container mb-8 overflow-auto scrollbar-none">
+          <div class="buttons-container inline-flex gap-2 pb-2 min-w-full">
+            <!-- All Specialties Button -->
+            <button
+              id="all-specialties"
+              class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background pointer rounded-full text-sm font-medium transition-all border border-solid border-input hover:bg-medical-50 hover:text-medical-600 h-10 px-4 py-2"
+            >
+              All Specialties
+            </button>
+
+            <!-- Cardiologist Button -->
+            <button
+              class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background pointer rounded-full text-sm font-medium transition-all border border-solid border-input hover:bg-medical-50 hover:text-medical-600 h-10 px-4 py-2"
+            >
+              Cardiologist
+            </button>
+
+            <!-- Dermatologist Button -->
+            <button
+              class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background pointer rounded-full text-sm font-medium transition-all border border-solid border-input hover:bg-medical-50 hover:text-medical-600 h-10 px-4 py-2"
+            >
+              Dermatologist
+            </button>
+
+            <!-- Neurology Button -->
+            <button
+              class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background pointer rounded-full text-sm font-medium transition-all border border-solid border-input hover:bg-medical-50 hover:text-medical-600 h-10 px-4 py-2"
+            >
+              Neurology
+            </button>
+
+            <!-- Orthopedics Button -->
+            <button
+              class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background pointer rounded-full text-sm font-medium transition-all border border-solid border-input hover:bg-medical-50 hover:text-medical-600 h-10 px-4 py-2"
+            >
+              Orthopedics
+            </button>
+
+            <!-- Pediatrics Button -->
+            <button
+              class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background pointer rounded-full text-sm font-medium transition-all border border-solid border-input hover:bg-medical-50 hover:text-medical-600 h-10 px-4 py-2"
+            >
+              Pediatrics
+            </button>
+
+            <!-- Psychiatry Button -->
+            <button
+              class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background pointer rounded-full text-sm font-medium transition-all border border-solid border-input hover:bg-medical-50 hover:text-medical-600 h-10 px-4 py-2"
+            >
+              Psychiatry
+            </button>
+          </div>
+        </div>
+        <div id="doctors-cards-container" class="grid grid-cols-1 gap-6">
+          <!-- Dynamically Generated Doctor Cards will be inserted here -->
+        </div>
+      </div>
     </main>
 
     <!-- Footer -->
@@ -194,105 +318,149 @@
                             <i data-lucide="facebook" class="h-4 w-4"></i>
                         </a>
 
-                        <a href="#"
-                            class="text-gray-500 hover:text-medical-600 hover:bg-medical-50 rounded-full flex justify-center items-center w-10 h-10">
-                            <i data-lucide="twitter" class="h-4 w-4"></i>
-                        </a>
-                        <a href="#"
-                            class="text-gray-500 hover:text-medical-600 hover:bg-medical-50 rounded-full flex justify-center items-center w-10 h-10">
-                            <i data-lucide="instagram" class="h-4 w-4"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div>
-                    <h4 class="font-medium text-lg text-heading tracking-tight mb-4">Services</h4>
-                    <ul class="flex flex-col gap-2">
-                        <li>
-                            <a href="/appointments.html" class="text-gray-600 hover:text-medical-600 transition-colors">
-                                Book Appointments
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/doctors.html" class="text-gray-600 hover:text-medical-600 transition-colors">
-                                Find Doctors
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/hospitals.html" class="text-gray-600 hover:text-medical-600 transition-colors">
-                                Hospital Information
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/emergency.html" class="text-gray-600 hover:text-medical-600 transition-colors">
-                                Emergency Services
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/pharmacy.html" class="text-gray-600 hover:text-medical-600 transition-colors">
-                                Pharmacy Orders
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="font-medium text-lg text-heading tracking-tight mb-4">Quick Links</h4>
-                    <ul class="flex flex-col gap-2">
-                        <li>
-                            <a href="/about.html" class="text-gray-600 hover:text-medical-600 transition-colors">
-                                About Us
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/privacy.html" class="text-gray-600 hover:text-medical-600 transition-colors">
-                                Privacy Policy
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/terms.html" class="text-gray-600 hover:text-medical-600 transition-colors">
-                                Terms of Service
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/faq.html" class="text-gray-600 hover:text-medical-600 transition-colors">
-                                FAQs
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/contact.html" class="text-gray-600 hover:text-medical-600 transition-colors">
-                                Contact Us
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="font-medium text-lg text-heading tracking-tight mb-4">Contact</h4>
-                    <ul class="flex flex-col gap-3">
-                        <li class="flex gap-1">
-                            <i data-lucide="map-pin" class="h-7 w-7 text-medical-500 pr-2"></i>
-                            <span class="text-gray-600">
-                                123 Healthcare Avenue, Medical District, City, Country
-                            </span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i data-lucide="phone" class="h-4 w-4 text-medical-500 "></i>
-                            <span class="text-gray-600">+1 (555) 123-4567</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i data-lucide="mail" class="h-4 w-4 text-medical-500"></i>
-                            <span class="text-gray-600">contact@mediconnect.example</span>
-                        </li>
-                    </ul>
-                </div>
+              <a
+                href="#"
+                class="text-gray-500 hover:text-medical-600 hover:bg-medical-50 rounded-full flex justify-center items-center w-10 h-10"
+              >
+                <i data-lucide="twitter" class="h-4 w-4"></i>
+              </a>
+              <a
+                href="#"
+                class="text-gray-500 hover:text-medical-600 hover:bg-medical-50 rounded-full flex justify-center items-center w-10 h-10"
+              >
+                <i data-lucide="instagram" class="h-4 w-4"></i>
+              </a>
             </div>
+          </div>
 
+          <div>
+            <h4 class="font-medium text-lg text-heading tracking-tight mb-4">
+              Services
+            </h4>
+            <ul class="flex flex-col gap-2">
+              <li>
+                <a
+                  href="/appointments.html"
+                  class="text-gray-600 hover:text-medical-600 transition-colors"
+                >
+                  Book Appointments
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/doctors.html"
+                  class="text-gray-600 hover:text-medical-600 transition-colors"
+                >
+                  Find Doctors
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/hospitals.html"
+                  class="text-gray-600 hover:text-medical-600 transition-colors"
+                >
+                  Hospital Information
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/emergency.html"
+                  class="text-gray-600 hover:text-medical-600 transition-colors"
+                >
+                  Emergency Services
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/pharmacy.html"
+                  class="text-gray-600 hover:text-medical-600 transition-colors"
+                >
+                  Pharmacy Orders
+                </a>
+              </li>
+            </ul>
+          </div>
 
-            <div class="pt-8 border-t border-solid separator text-center text-gray-600 text-sm">
-                <p>&copy; 2025 MediConnect. All rights reserved.</p>
-            </div>
+          <div>
+            <h4 class="font-medium text-lg text-heading tracking-tight mb-4">
+              Quick Links
+            </h4>
+            <ul class="flex flex-col gap-2">
+              <li>
+                <a
+                  href="/about.html"
+                  class="text-gray-600 hover:text-medical-600 transition-colors"
+                >
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/privacy.html"
+                  class="text-gray-600 hover:text-medical-600 transition-colors"
+                >
+                  Privacy Policy
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/terms.html"
+                  class="text-gray-600 hover:text-medical-600 transition-colors"
+                >
+                  Terms of Service
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/faq.html"
+                  class="text-gray-600 hover:text-medical-600 transition-colors"
+                >
+                  FAQs
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/contact.html"
+                  class="text-gray-600 hover:text-medical-600 transition-colors"
+                >
+                  Contact Us
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="font-medium text-lg text-heading tracking-tight mb-4">
+              Contact
+            </h4>
+            <ul class="flex flex-col gap-3">
+              <li class="flex gap-1">
+                <i
+                  data-lucide="map-pin"
+                  class="h-7 w-7 text-medical-500 pr-2"
+                ></i>
+                <span class="text-gray-600">
+                  123 Healthcare Avenue, Medical District, City, Country
+                </span>
+              </li>
+              <li class="flex items-center gap-3">
+                <i data-lucide="phone" class="h-4 w-4 text-medical-500"></i>
+                <span class="text-gray-600">+1 (555) 123-4567</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <i data-lucide="mail" class="h-4 w-4 text-medical-500"></i>
+                <span class="text-gray-600">contact@mediconnect.example</span>
+              </li>
+            </ul>
+          </div>
         </div>
+
+        <div
+          class="pt-8 border-t border-solid separator text-center text-gray-600 text-sm"
+        >
+          <p>&copy; 2025 MediConnect. All rights reserved.</p>
+        </div>
+      </div>
     </footer>
 
     <!-- External JavaScript -->
@@ -300,7 +468,5 @@
     <script type="module" src="js/common/mobile-nav.js"></script>
 
     <script type="module" src="js/doctors/index.js"></script>
-
-</body>
-
+  </body>
 </html>
