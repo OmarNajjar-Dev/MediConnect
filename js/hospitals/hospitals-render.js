@@ -17,14 +17,14 @@ export function renderHospitals(container) {
       .join("");
 
     div.innerHTML = `
-      <div class="hospital-card-wrapper bg-card border-card shadow-sm rounded-xl transition-all overflow-hidden relative">
+      <div class="hospital-card-wrapper bg-card border border-solid border-card shadow-sm rounded-xl transition-all overflow-hidden relative">
         
         <div class="flex flex-col md:flex-row">
 
           <div class="relative w-full h-48 md:w-1/3 md:h-auto">
             <img src="${h.imageUrl}" alt="${
       h.name
-    }" class="w-full h-full object-cover" loading="lazy" style="aspect-ratio:4/3"/>
+    }" class="w-full h-full object-cover" loading="lazy"/>
             ${
               h.emergencyServices
                 ? `
@@ -84,7 +84,7 @@ export function renderHospitals(container) {
             </div>
 
             <div class="mt-6 flex justify-end">
-              <button class="inline-flex items-center justify-center gap-2 flex-grow whitespace-nowrap rounded-md border border-solid border-input bg-medical-600 text-sm font-medium transition-colors h-10 px-4 py-2 mr-3 text-white hover:bg-medical-400 md:flex-grow-0">
+              <button class="inline-flex items-center justify-center gap-2 flex-grow whitespace-nowrap rounded-md border border-solid border-input bg-medical-600 text-sm font-medium transition-colors h-10 px-4 py-2 mr-3 text-white hover:bg-medical-400 md:flex-grow-0 pointer">
                 View Details
               </button>
               <button class="inline-flex items-center justify-center gap-2 flex-grow whitespace-nowrap rounded-md text-sm font-medium transition-colors text-heading border border-solid border-input bg-background hover:bg-medical-50 hover:text-medical-500 h-10 px-4 py-2 md:flex-grow-0">

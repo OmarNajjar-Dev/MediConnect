@@ -119,13 +119,13 @@
                 <!-- FIXED BUTTONS HERE -->
                 <div class="flex flex-row gap-3">
                     <button id="emergency-btn"
-                        class="flex items-center gap-2 justify-center whitespace-nowrap rounded-md border border-solid border-input bg-background text-heading px-4 py-2 h-10 text-sm font-medium transition-colors hover:bg-medical-50 hover:text-medical-500">
+                        class="flex items-center gap-2 justify-center whitespace-nowrap rounded-md border border-solid border-input bg-background text-heading px-4 py-2 h-10 text-sm font-medium transition-colors hover:bg-medical-50 hover:text-medical-500 pointer">
                         <i data-lucide="activity" class="w-4 h-4"></i>
                         <span>Emergency Services</span>
                     </button>
 
                     <button id="beds-btn"
-                        class="flex items-center gap-2 rounded-md border border-solid border-input text-heading bg-background h-10 px-4 py-2 text-sm font-medium whitespace-nowrap hover:bg-medical-50 transition-colors hover:text-medical-500">
+                        class="flex items-center gap-2 rounded-md border border-solid border-input text-heading bg-background h-10 px-4 py-2 text-sm font-medium whitespace-nowrap hover:bg-medical-50 transition-colors hover:text-medical-500 pointer">
                         <i data-lucide="bed" class="w-4 h-4"></i>
                         <span>Available Beds</span>
                     </button>
@@ -134,24 +134,22 @@
             </div>
 
             <!-- No Hospitals Found Message -->
-            <div id="no-results"
-                class="hidden border border-solid border-card bg-card rounded-xl p-6 py-16 text-center">
+            <div class="no-results hidden border border-solid border-card bg-card rounded-xl p-6 py-16 text-center">
                 <div class="mx-auto w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
                     <i data-lucide="triangle-alert" class="w-7 h-7 text-gray-400"></i>
                 </div>
                 <h2 class="text-xl font-medium mb-2 tracking-tight text-heading">No hospitals found</h2>
                 <p class="text-gray-600 mb-4">Try adjusting your search criteria</p>
-                <button id="clear-filters"
-                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md border border-solid border-input text-sm font-medium transition-colors bg-medical-500 text-white hover:bg-medical-400 h-10 px-4 py-2">
+                <button
+                    class="clear-filters inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md border border-solid border-input text-sm font-medium transition-colors bg-medical-500 text-white hover:bg-medical-400 h-10 px-4 py-2 pointer">
                     Clear Filters
                 </button>
-
             </div>
 
+            <!-- Hospitals Cards Container -->
             <div id="hospitals-cards-container" class="grid grid-cols-1 gap-6">
-                <!-- Rest of your content -->
+                <!-- Dynamically Generated Hospital Cards will be inserted here -->
             </div>
-
         </div>
     </main>
 
@@ -284,13 +282,7 @@
     <!-- JavaScript -->
     <script type="module" src="js/common/header.js"></script>
     <script type="module" src="js/common/mobile-nav.js"></script>
-
     <script type="module" src="js/hospitals/index.js"></script>
-
-    <!-- Init Lucide Icons -->
-    <script>
-        lucide.createIcons();
-    </script>
 </body>
 
 </html>

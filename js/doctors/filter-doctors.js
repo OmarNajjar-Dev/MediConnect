@@ -1,110 +1,125 @@
+// Import the utility function to toggle visibility of the "no results" message
+import { updateNoResultsVisibility } from "../utils/updataNoResultsVisibility.js";
+
+// Global state variables
 let currentSpecialty = "all specialties";
+let currentSearchQuery = "";
 
-// Filter doctors based on specialty selection
-export function filterDoctors(specialty) {
-  currentSpecialty = specialty.trim().toLowerCase();
-
-  const cards = document.querySelectorAll(".doctor-card");
-  cards.forEach((card) => {
-    const cardSpecialty =
-      card.querySelector(".text-medical-600")?.textContent.trim().toLowerCase() || "";
-
-    card.style.display =
-      currentSpecialty === "all specialties" || cardSpecialty === currentSpecialty
-        ? "block"
-        : "none";
-  });
-
-  applyDoctorSearchFilter();
-}
-
-// Set "All Specialties" button as active and apply default filter
-function setDefaultActiveButton() {
-  const allBtn = document.getElementById("all-specialties");
-
-  allBtn?.classList.add(
-    "bg-medical-500",
-    "text-white",
-    "border-medical-500",
-    "hover:bg-medical-400"
-  );
-  allBtn?.classList.remove(
-    "bg-background",
-    "text-black",
-    "hover:bg-medical-50",
-    "hover:text-medical-600"
-  );
-
-  filterDoctors("All Specialties");
-}
-
-// Add click listeners to specialty buttons
-function addButtonClickListeners() {
-  const buttons = document.querySelectorAll(".specialty-button");
-
-  buttons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const specialty = btn.textContent.trim();
-      filterDoctors(specialty);
-
-      buttons.forEach((b) => {
-        b.classList.remove(
-          "bg-medical-500",
-          "text-white",
-          "border-medical-500",
-          "hover:bg-medical-400"
-        );
-        b.classList.add(
-          "bg-background",
-          "text-black",
-          "hover:bg-medical-50",
-          "hover:text-medical-600"
-        );
-      });
-
-      btn.classList.add(
-        "bg-medical-600",
-        "text-white",
-        "border-medical-500",
-        "hover:bg-medical-400"
-      );
-      btn.classList.remove(
-        "bg-background",
-        "text-black",
-        "hover:bg-medical-50",
-        "hover:text-medical-600"
-      );
-    });
-  });
-}
-
-// Apply search + specialty filter together
-function applyDoctorSearchFilter() {
-  const query = document.querySelector(".search-input")?.value.trim().toLowerCase() || "";
-  const cards = document.querySelectorAll(".doctor-card");
+/**
+ * Apply combined filters: search text + selected specialty
+ */
+function applyDoctorFilters() {
+  const cards = document.querySelectorAll(".doctor-card-wrapper");
 
   cards.forEach((card) => {
+    // Extract card content
     const name = card.querySelector("h2")?.textContent.toLowerCase() || "";
     const specialty =
       card.querySelector(".text-medical-600")?.textContent.toLowerCase() || "";
     const hospital =
-      card.querySelector(".text-gray-600.text-sm")?.textContent.toLowerCase() || "";
+      card.querySelector(".text-gray-600.text-sm")?.textContent.toLowerCase() ||
+      "";
 
+    // Check if search input matches any of the fields
     const matchesSearch =
-      name.includes(query) || specialty.includes(query) || hospital.includes(query);
+      name.includes(currentSearchQuery) ||
+      specialty.includes(currentSearchQuery) ||
+      hospital.includes(currentSearchQuery);
+
+    // Check if the card matches the selected specialty
     const matchesSpecialty =
       currentSpecialty === "all specialties" || specialty === currentSpecialty;
 
-    card.style.display = matchesSearch && matchesSpecialty ? "block" : "none";
+    // Show or hide the card based on filters
+    const shouldShow = matchesSearch && matchesSpecialty;
+    card.style.display = shouldShow ? "block" : "none";
   });
+
+  // Update the visibility of the "no results" message
+  updateNoResultsVisibility(
+    document.querySelectorAll(".doctor-card-wrapper"),
+    document.querySelector(".no-results")
+  );
 }
 
-// Initialize all doctor filters and search
-export function initDoctorFilters() {
-  setDefaultActiveButton();
-  addButtonClickListeners();
+/**
+ * Handle specialty button click: update state and style
+ */
+function handleSpecialtyClick(btn, buttons) {
+  currentSpecialty = btn.textContent.trim().toLowerCase();
 
-  document.querySelector(".search-input")?.addEventListener("input", () => {
-    applyDoctorSearchFilter();
+  // Reset styles for all buttons
+  buttons.forEach((b) => toggleButtonStyle(b, false));
+
+  // Activate the clicked button
+  toggleButtonStyle(btn, true);
+
+  // Apply filters after selection
+  applyDoctorFilters();
+}
+
+/**
+ * Toggle button appearance (active/inactive)
+ */
+function toggleButtonStyle(button, isActive) {
+  const active = [
+    "bg-medical-600",
+    "text-white",
+    "border-medical-500",
+    "hover:bg-medical-400",
+  ];
+  const inactive = [
+    "bg-background",
+    "text-black",
+    "hover:bg-medical-50",
+    "hover:text-medical-600",
+  ];
+
+  active.forEach((cls) => button.classList.toggle(cls, isActive));
+  inactive.forEach((cls) => button.classList.toggle(cls, !isActive));
+}
+
+/**
+ * Initialize all filters and event listeners
+ */
+export function initDoctorFilters() {
+  const searchInput = document.querySelector(".search-input");
+  const allSpecialtyBtn = document.getElementById("all-specialties");
+  const buttons = document.querySelectorAll(".specialty-button");
+
+  // Set default specialty and style
+  currentSpecialty = "all specialties";
+  toggleButtonStyle(allSpecialtyBtn, true);
+
+  // Add click listeners to each specialty button
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => handleSpecialtyClick(btn, buttons));
   });
+
+  // Search input event listener
+  searchInput?.addEventListener("input", () => {
+    currentSearchQuery = searchInput.value.trim().toLowerCase();
+    applyDoctorFilters();
+  });
+
+  // Clear filters button functionality
+  const clearBtn = document.querySelector(".clear-filters");
+  clearBtn?.addEventListener("click", () => {
+    // Reset inputs and filters
+    document.querySelector(".search-input").value = "";
+    currentSearchQuery = "";
+    currentSpecialty = "all specialties";
+
+    // Reset button styles
+    document.querySelectorAll(".specialty-button").forEach((btn) => {
+      toggleButtonStyle(btn, false);
+    });
+    toggleButtonStyle(document.getElementById("all-specialties"), true);
+
+    // Re-apply filters to show all cards
+    applyDoctorFilters();
+  });
+
+  // Initial filter application on page load
+  applyDoctorFilters();
 }

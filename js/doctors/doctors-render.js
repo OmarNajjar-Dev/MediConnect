@@ -7,7 +7,7 @@ export function renderDoctors(container) {
   doctorsCardsData.forEach((card) => {
     const div = document.createElement("div");
     div.className =
-      "doctor-card transition-all shadow-sm backdrop-blur-md bg-card border border border-solid border-card rounded-lg p-6 flex flex-col";
+      "doctor-card-wrapper transition-all shadow-sm backdrop-blur-md bg-card border border border-solid border-card rounded-lg p-6 flex flex-col";
     div.innerHTML = `
       <div class="flex items-start mb-4">
         <div class="w-20 h-20 rounded-full overflow-hidden mr-4 flex-shrink-0">
@@ -29,7 +29,7 @@ export function renderDoctors(container) {
       </div>
       <div class="text-sm text-gray-600 mb-4 flex-grow">${card.bio}</div>
       <div class="flex gap-2 mt-2">
-        <button class="flex-grow-2 text-sm inline-flex items-center justify-center gap-2 rounded-md font-medium transition-all border border-solid border-input bg-background hover:bg-medical-50 text-heading hover:text-medical-600 h-10 py-2 px-4">
+        <button class="flex-grow-2 text-sm inline-flex items-center justify-center gap-2 rounded-md font-medium transition-all border border-solid border-input bg-background hover:bg-medical-50 text-heading hover:text-medical-600 h-10 py-2 px-4 pointer">
           View Profile
         </button>
         <a href="${card.profileLink}" class="flex-grow text-sm inline-flex items-center justify-center gap-2 rounded-md font-medium transition-all bg-medical-500 text-white hover:bg-medical-400 h-10 py-2 px-4">

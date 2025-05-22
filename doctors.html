@@ -190,6 +190,19 @@
         </div>
       </div>
 
+      <!-- No Doctors Found Message -->
+      <div class="no-results hidden border border-solid border-card bg-card rounded-xl p-6 py-16 text-center">
+        <div class="mx-auto w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+          <i data-lucide="triangle-alert" class="w-7 h-7 text-gray-400"></i>
+        </div>
+        <h2 class="text-xl font-medium mb-2 tracking-tight text-heading">No doctors found</h2>
+        <p class="text-gray-600 mb-4">Try adjusting your search criteria</p>
+        <button
+          class="clear-filters inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md border border-solid border-input text-sm font-medium transition-colors bg-medical-500 text-white hover:bg-medical-400 h-10 px-4 py-2 pointer">
+          Clear Filters
+        </button>
+      </div>
+
       <!-- Doctor Cards Container -->
       <div id="doctors-cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <!-- Dynamically Generated Doctor Cards will be inserted here -->
