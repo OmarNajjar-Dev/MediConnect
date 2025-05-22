@@ -1,5 +1,3 @@
-import { showAlert } from "./showAlert.js";
-
 export async function sendEmail() {
   const emailEndpoint = "https://api.emailjs.com/api/v1.0/email/send";
 
@@ -27,11 +25,13 @@ export async function sendEmail() {
     const responseText = await response.text();
 
     if (response.ok) {
-      showAlert("Message sent successfully!");
+      alert("✅ Your message was sent successfully. Thank you!");
     } else {
-      showAlert("Message failed. See console for details.", "error");
+      console.error("❌ Email sending failed. Response body:", responseText);
+      alert("❌ Something went wrong while sending your message. Please try again later.");
     }
   } catch (error) {
-    showAlert("A network error occurred: " + error.message, "error");
+    console.error("❌ Network error while sending email:", error);
+    alert("❌ Network error. Please check your internet connection and try again.");
   }
 }
