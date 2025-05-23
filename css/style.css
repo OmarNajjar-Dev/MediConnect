@@ -55,7 +55,7 @@ input::placeholder {
   left: 16px;
 }
 
-.doctor-card:hover {
+.doctor-card-wrapper:hover {
   transform: translateY(-2px);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -122,6 +122,13 @@ input::placeholder {
 }
 
 #contact-section-top {
-    background: linear-gradient(to bottom, #b2e3dd, #ffffff);
+  background: linear-gradient(to bottom, #b2e3dd, #ffffff);
 }
 
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}

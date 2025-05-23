@@ -7,7 +7,7 @@ export const doctorsCardsData = [
     hospital: "Central Medical Center",
     rating: 4.9,
     reviews: 124,
-    bio: "Dr. Sarah Johnson is a board-certified cardiologist with over 12 years of experience in treating cardiovascular diseases...",
+    bio: "Dr. Sarah Johnson is a board-certified cardiologist with over 12 years of experience in treating cardiovascular diseases. She completed her medical training at Harvard Medical School and residency at Massachusetts General Hospital.",
     profileLink: "/appointments?doctor=1",
   },
   {
@@ -18,7 +18,7 @@ export const doctorsCardsData = [
     hospital: "Westside Hospital",
     rating: 4.7,
     reviews: 98,
-    bio: "Dr. Michael Chen specializes in medical, surgical, and cosmetic dermatology. He has expertise in treating skin conditions...",
+    bio: "Dr. Michael Chen specializes in medical, surgical, and cosmetic dermatology. He has expertise in treating skin conditions like acne, eczema, psoriasis, and skin cancer.",
     profileLink: "/appointments?doctor=2",
   },
   {
@@ -29,7 +29,7 @@ export const doctorsCardsData = [
     hospital: "Metropolitan Medical Center",
     rating: 4.8,
     reviews: 156,
-    bio: "Dr. Emily Rodriguez is a neurologist with expertise in headache disorders, multiple sclerosis, and neurodegenerative diseases...",
+    bio: "Dr. Emily Rodriguez is a neurologist with expertise in headache disorders, multiple sclerosis, and neurodegenerative diseases. She is dedicated to providing compassionate care for patients with complex neurological conditions.",
     profileLink: "/appointments?doctor=3",
   },
   {
@@ -40,7 +40,7 @@ export const doctorsCardsData = [
     hospital: "Central Medical Center",
     rating: 4.6,
     reviews: 87,
-    bio: "Dr. James Wilson is an orthopedic surgeon specializing in sports medicine, joint replacement, and trauma. With 20 years...",
+    bio: "Dr. James Wilson is an orthopedic surgeon specializing in sports medicine, joint replacement, and trauma. With 20 years of experience, he has helped thousands of patients recover from orthopedic injuries and conditions.",
     profileLink: "/appointments?doctor=4",
   },
   {
@@ -51,7 +51,7 @@ export const doctorsCardsData = [
     hospital: "Children's Health Center",
     rating: 4.9,
     reviews: 142,
-    bio: "Dr. Lisa Kim is a dedicated pediatrician who provides comprehensive healthcare for children from birth through adolescence...",
+    bio: "Dr. Lisa Kim is a dedicated pediatrician who provides comprehensive healthcare for children from birth through adolescence. She is known for her gentle approach and ability to connect with young patients.",
     profileLink: "/appointments?doctor=5",
   },
   {
@@ -62,7 +62,7 @@ export const doctorsCardsData = [
     hospital: "Behavioral Health Institute",
     rating: 4.8,
     reviews: 73,
-    bio: "Dr. Robert Taylor is a psychiatrist specializing in mood disorders, anxiety, and PTSD. He takes a holistic approach to mental health...",
+    bio: "Dr. Robert Taylor is a psychiatrist specializing in mood disorders, anxiety, and PTSD. He takes a holistic approach to mental health, combining medication management with psychotherapy when appropriate.",
     profileLink: "/appointments?doctor=6",
   },
 ];
