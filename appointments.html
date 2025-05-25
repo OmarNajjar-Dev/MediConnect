@@ -110,12 +110,12 @@
                         <div class="flex flex-col gap-3">
                             <label class="text-sm font-medium leading-none">Specialty</label>
                             <button type="button" role="combobox" aria-controls="subject-options" aria-expanded="false"
-                                class=" bg-white flex items-center justify-between pointer h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
+                                class="bg-white flex items-center justify-between pointer h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
                                 <span class="selected-value">Select a speciality</span>
                                 <i data-lucide="chevron-down" class="h-4 w-4 opacity-50"></i>
                             </button>
                             <ul
-                                class=" hidden p-1.5 bg-background border border-solid border-input shadow-xl rounded-md">
+                                class="hidden p-1.5 bg-background border border-solid border-input shadow-xl rounded-md">
                                 <li>
                                     <button type="button"
                                         class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md"><span>Cardiology</span>
@@ -158,12 +158,12 @@
                         <div class="flex flex-col gap-3">
                             <label class="text-sm font-medium leading-none">Doctor</label>
                             <button type="button" role="combobox"
-                                class=" bg-white flex items-center justify-between h-10 pointer w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
+                                class="bg-white flex items-center justify-between h-10 pointer w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
                                 <span class="selected-value">Select a doctor</span>
                                 <i data-lucide="chevron-down" class="h-4 w-4 opacity-50"></i>
                             </button>
                             <ul
-                                class=" hidden p-1.5 bg-background border border-solid border-input rounded-md shadow-xl">
+                                class="hidden p-1.5 bg-background border border-solid border-input rounded-md shadow-xl">
                                 <li>
                                     <button type="button"
                                         class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md"><span>Dr.
@@ -205,12 +205,12 @@
                             <label for="appointment-date" class="text-sm font-medium leading-none">Appointment
                                 Date</label>
                             <button id="appointment-date" type="button" role="combobox"
-                                class=" inline-flex items-center pointer justify-center gap-2 whitespace-nowrap rounded-md text-sm transition-colors border border-solid border-input bg-background h-10 px-4 py-2 w-full pl-3 text-left font-normal hover:bg-medical-50 hover:text-medical-500">
+                                class="inline-flex items-center pointer justify-center gap-2 whitespace-nowrap rounded-md text-sm transition-colors border border-solid border-input bg-background h-10 px-4 py-2 w-full pl-3 text-left font-normal hover:bg-medical-50 hover:text-medical-500">
                                 <span class="selected-value">Pick a date</span>
                                 <i data-lucide="calendar" class="ml-auto w-4 opacity-50"></i>
                             </button>
 
-                            <div class=" hidden rounded-md border bg-popover text-popover-foreground shadow-md outline-none w-auto p-0"
+                            <div class="hidden rounded-md border bg-popover text-popover-foreground shadow-md outline-none w-auto p-0"
                                 role="dialog" id="radix-popover-content" tabindex="-1">
                                 <div class="rounded-md p-3">
                                     <div class="flex flex-col sm:flex-col gap-4 sm:space-x-4 sm:space-y-0">
@@ -283,12 +283,12 @@
                         <div class="flex flex-col gap-3">
                             <label class="text-sm font-medium leading-none">Time Slot</label>
                             <button type="button" role="combobox"
-                                class=" bg-white flex items-center justify-between pointer h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white"">
+                                class="bg-white flex items-center justify-between pointer h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white"">
                                 <span class=" selected-value">Select a time</span>
                                 <i data-lucide="chevron-down" class="h-4 w-4 opacity-50"></i>
                             </button>
                             <ul
-                                class=" hidden p-1.5 bg-background border border-solid border-input rounded-md shadow-xl">
+                                class="hidden p-1.5 bg-background border border-solid border-input rounded-md shadow-xl">
                                 <li>
                                     <button type="button"
                                         class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md">9:00
@@ -556,14 +556,14 @@
 
                         // Deselect all options
                         options.forEach((btn) => {
-                            const icon = btn.querySelector("i");
+                            const icon = btn.querySelector("svg");
                             icon?.classList.add("hidden");
                             btn.classList.remove("bg-gray-100");
                             btn.classList.add("bg-white");
                         });
 
                         // Select current option
-                        const icon = option.querySelector("i");
+                        const icon = option.querySelector("svg");
                         icon?.classList.remove("hidden");
                         option.classList.remove("bg-white");
                         option.classList.add("bg-gray-100");
