@@ -109,37 +109,44 @@
                         <!-- Specialty -->
                         <div class="flex flex-col gap-3">
                             <label class="text-sm font-medium leading-none">Specialty</label>
-                            <button type="button"
-                                class="select-btn flex items-center justify-between pointer h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
+                            <button id="tony" type="button" role="combobox" aria-controls="subject-options"
+                                aria-expanded="false"
+                                class="select-btn bg-white flex items-center justify-between pointer h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
                                 <span>Select a speciality</span>
                                 <i data-lucide="chevron-down" class="h-4 w-4 opacity-50"></i>
                             </button>
-                            <ul
+                            <ul id="hanna"
                                 class="hidden p-1.5 bg-background border border-solid border-input shadow-xl rounded-md">
                                 <li>
                                     <button type="button"
-                                        class="select-btn px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md">Cardiology</button>
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md"><span>Cardiology</span>
+                                        <i data-lucide="check" class="w-4 h-4 text-medical-700 hidden"></i></button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md">Dermatology</button>
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md"><span>Dermatology</span>
+                                        <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i></button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md">Neurology</button>
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md"><span>Neurology</span>
+                                        <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i></button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md">Orthopedics</button>
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md"><span>Orthopedics</span>
+                                        <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i></button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md">Pediatrics</button>
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md"><span>Pediatrics</span>
+                                        <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i></button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md">General
-                                        Medicine</button>
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md"><span>General
+                                            Medicine</span> <i data-lucide="check"
+                                            class="w-4 h-4 text-gray-700 hidden"></i></button>
                                 </li>
                             </ul>
 
@@ -152,7 +159,7 @@
                         <div class="flex flex-col gap-3">
                             <label class="text-sm font-medium leading-none">Doctor</label>
                             <button type="button"
-                                class="select-btn flex items-center justify-between h-10 pointer w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
+                                class="select-btn bg-white flex items-center justify-between h-10 pointer w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
                                 <span>Select a doctor</span>
                                 <i data-lucide="chevron-down" class="h-4 w-4 opacity-50"></i>
                             </button>
@@ -160,27 +167,27 @@
                                 class="hidden p-1.5 bg-background border border-solid border-input rounded-md shadow-xl">
                                 <li>
                                     <button type="button"
-                                        class="select-btn px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md">Dr.
-                                        Sarah Johnson – Cardiology</button>
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md"><span>Dr.
+                                        Sarah Johnson – Cardiology</span></button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md">Dr.
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md">Dr.
                                         Michael Chen – Dermatology</button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md">Dr.
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md">Dr.
                                         Emily Patel – Neurology</button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md">Dr.
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md">Dr.
                                         Robert Miller – Orthopedics</button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md">Dr.
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md">Dr.
                                         Jessica Williams – Pediatrics</button>
                                 </li>
                             </ul>
@@ -210,7 +217,7 @@
                                                 id="react-day-picker-1">May 2025</div>
                                             <div class="flex gap-1 items-center">
                                                 <button name="previous-month" aria-label="Go to previous month"
-                                                    class="reset-btn rdp-button_reset cursor-pointer py-1 py-2 h-7 w-7 absolute left-1 opacity-95 hover:opacity-95"
+                                                    class="reset-btn rdp-button_reset pointer py-1 py-2 h-7 w-7 absolute left-1 opacity-95 hover:opacity-95"
                                                     type="button">
                                                     <i data-lucide="chevron-left" class="h-4 w-4"></i>
                                                 </button>
@@ -271,7 +278,7 @@
                         <div class="flex flex-col gap-3">
                             <label class="text-sm font-medium leading-none">Time Slot</label>
                             <button type="button"
-                                class="select-btn flex items-center justify-between pointer h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white"">
+                                class="select-btn bg-white flex items-center justify-between pointer h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white"">
                                 <span>Select a time</span>
                                  <i data-lucide=" check" class="w-4 h-4 text-gray-700 hidden"></i>
                                 <i data-lucide="chevron-down" class="h-4 w-4 opacity-50"></i>
@@ -280,72 +287,72 @@
                                 class="hidden p-1.5 bg-background border border-solid border-input rounded-md shadow-xl">
                                 <li>
                                     <button type="button"
-                                        class="select-btn px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md">9:00
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md">9:00
                                         AM</button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md">9:30
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md">9:30
                                         AM</button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md">10:00
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md">10:00
                                         AM</button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md">10:30
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md">10:30
                                         AM</button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md">11:00
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md">11:00
                                         AM</button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md">11:30
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md">11:30
                                         AM</button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md">1:00
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md">1:00
                                         PM</button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md">1:30
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md">1:30
                                         PM</button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md">2:00
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md">2:00
                                         PM</button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md">2:30
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md">2:30
                                         PM</button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md">3:00
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md">3:00
                                         PM</button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md">3:30
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md">3:30
                                         PM</button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md">4:00
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md">4:00
                                         PM</button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md">4:30
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md">4:30
                                         PM</button>
                                 </li>
                             </ul>
@@ -522,61 +529,64 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            const main = document.getElementById("appointment");
-            const buttons = main.querySelectorAll(".select-btn");
 
-            buttons.forEach((button) => {
-                const dropdown = button.nextElementSibling;
+            const button = document.getElementById("tony");
+            const menu = document.getElementById("hanna");
+            const selectedText = button.querySelector("span");
 
-                if (dropdown && dropdown.tagName === "UL") {
-                    dropdown.classList.add("hidden");
+            if (!button || !menu || !selectedText) return;
 
-                    button.addEventListener("click", (e) => {
-                        e.stopPropagation();
+            let selectedOption = null;
 
-                        // إغلاق جميع القوائم الأخرى
-                        buttons.forEach((btn) => {
-                            const otherDropdown = btn.nextElementSibling;
-                            if (otherDropdown !== dropdown && otherDropdown.tagName === "UL") {
-                                otherDropdown.classList.add("hidden");
-                            }
-                        });
+            button.addEventListener("click", () => {
+                menu.classList.toggle("hidden");
+            });
 
-                        // تبديل عرض الـ dropdown الحالي
-                        const isOpen = !dropdown.classList.contains("hidden");
-                        dropdown.classList.toggle("hidden");
+            const options = menu.querySelectorAll("button.select-btn");
 
-                        // منع تمرير الصفحة عند فتح القائمة
-                        document.body.classList.toggle("overflow-hidden", !isOpen);
+            options.forEach((option) => {
+                option.addEventListener("click", () => {
+                    const label = option.textContent.trim();
+                    selectedText.textContent = label;
+
+                    options.forEach((btn) => {
+                        const icon = btn.querySelector("svg");
+                        icon?.classList.add("hidden");
+                        btn.classList.remove("bg-gray-100");
+                        btn.classList.add("bg-white");
                     });
 
-                    // عند اختيار عنصر من القائمة
-                    dropdown.querySelectorAll("li").forEach((item) => {
-                        item.addEventListener("click", () => {
-                            const span = button.querySelector("span");
-                            if (span) span.textContent = item.textContent;
-                            dropdown.classList.add("hidden");
-                            document.body.classList.remove("overflow-hidden");
-                        });
-                    });
+                    const icon = option.querySelector("svg");
+                    icon?.classList.remove("hidden");
+
+                    option.classList.remove("bg-white");
+                    option.classList.add("bg-gray-100");
+
+                    selectedOption = option;
+
+                    menu.classList.add("hidden");
+                });
+
+                option.addEventListener("mouseenter", () => {
+                    if (selectedOption && selectedOption !== option) {
+                        selectedOption.classList.remove("bg-gray-100");
+                        selectedOption.classList.add("bg-white");
+                    }
+                });
+
+                option.addEventListener("mouseleave", () => {
+                    selectedOption?.classList.remove("bg-white");
+                    selectedOption?.classList.add("bg-gray-100");
+                });
+            });
+
+            document.addEventListener("click", (e) => {
+                if (!button.contains(e.target) && !menu.contains(e.target)) {
+                    menu.classList.add("hidden");
                 }
             });
 
-            // إغلاق القوائم إذا تم الضغط خارجها
-            document.addEventListener("click", (e) => {
-                buttons.forEach((button) => {
-                    const dropdown = button.nextElementSibling;
-                    if (
-                        dropdown &&
-                        dropdown.tagName === "UL" &&
-                        !button.contains(e.target) &&
-                        !dropdown.contains(e.target)
-                    ) {
-                        dropdown.classList.add("hidden");
-                        document.body.classList.remove("overflow-hidden");
-                    }
-                });
-            });
+
         });
 
         function validateForm() {
@@ -619,10 +629,10 @@
     </script>
 
     <!-- Create Lucide Icons -->
-    <script>
-        lucide.createIcons();
-    </script>
 
+    <script>document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });</script>
 </body>
 
 </html>
