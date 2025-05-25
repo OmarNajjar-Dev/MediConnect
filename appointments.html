@@ -140,7 +140,7 @@
                                     class="px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md">
                                     General Medicine
                                 </li>
-                                 <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i>
+                                <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i>
                             </ul>
                             <p id="error-speciality" class="text-sm font-medium text-danger hidden">Please select a
                                 speciality</p>
@@ -178,7 +178,7 @@
                                     Dr. Jessica Williams – Pediatrics
                                 </li>
                             </ul>
-                             <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i>
+                            <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i>
                             <p id="error-doctor" class="text-sm font-medium text-danger hidden">Please select a doctor
                             </p>
                         </div>
@@ -266,7 +266,7 @@
                             <button type="button"
                                 class="select-btn flex items-center justify-between pointer h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white"">
                                 <span>Select a time</span>
-                                 <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i>
+                                 <i data-lucide=" check" class="w-4 h-4 text-gray-700 hidden"></i>
                                 <i data-lucide="chevron-down" class="h-4 w-4 opacity-50"></i>
                             </button>
                             <ul
@@ -554,7 +554,9 @@
                     }
                 });
             });
-        }); function validateForm() {
+        });
+        
+        function validateForm() {
             let isValid = true;
 
             // Helper to show/hide error
@@ -590,7 +592,7 @@
 
             return isValid;
         }
-        
+
     </script>
 
     <!-- Create Lucide Icons -->
@@ -601,3 +603,4 @@
 </body>
 
 </html>
+
