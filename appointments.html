@@ -109,14 +109,13 @@
                         <!-- Specialty -->
                         <div class="flex flex-col gap-3">
                             <label class="text-sm font-medium leading-none">Specialty</label>
-                            <button id="tony" type="button" role="combobox" aria-controls="subject-options"
-                                aria-expanded="false"
-                                class="select-btn bg-white flex items-center justify-between pointer h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
-                                <span>Select a speciality</span>
+                            <button type="button" role="combobox" aria-controls="subject-options" aria-expanded="false"
+                                class=" bg-white flex items-center justify-between pointer h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
+                                <span class="selected-value">Select a speciality</span>
                                 <i data-lucide="chevron-down" class="h-4 w-4 opacity-50"></i>
                             </button>
-                            <ul id="hanna"
-                                class="hidden p-1.5 bg-background border border-solid border-input shadow-xl rounded-md">
+                            <ul
+                                class=" hidden p-1.5 bg-background border border-solid border-input shadow-xl rounded-md">
                                 <li>
                                     <button type="button"
                                         class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md"><span>Cardiology</span>
@@ -158,41 +157,45 @@
                         <!-- Doctor -->
                         <div class="flex flex-col gap-3">
                             <label class="text-sm font-medium leading-none">Doctor</label>
-                            <button type="button"
-                                class="select-btn bg-white flex items-center justify-between h-10 pointer w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
-                                <span>Select a doctor</span>
+                            <button type="button" role="combobox"
+                                class=" bg-white flex items-center justify-between h-10 pointer w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
+                                <span class="selected-value">Select a doctor</span>
                                 <i data-lucide="chevron-down" class="h-4 w-4 opacity-50"></i>
                             </button>
                             <ul
-                                class="hidden p-1.5 bg-background border border-solid border-input rounded-md shadow-xl">
+                                class=" hidden p-1.5 bg-background border border-solid border-input rounded-md shadow-xl">
                                 <li>
                                     <button type="button"
                                         class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md"><span>Dr.
-                                        Sarah Johnson – Cardiology</span></button>
+                                            Sarah Johnson - Cardiology</span><i data-lucide="check"
+                                            class="w-4 h-4 text-gray-700 hidden"></i></button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md">Dr.
-                                        Michael Chen – Dermatology</button>
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md"><span>Dr.
+                                            Michael Chen - Dermatology</span><i data-lucide="check"
+                                            class="w-4 h-4 text-gray-700 hidden"></i></button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md">Dr.
-                                        Emily Patel – Neurology</button>
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md"><span>Dr.
+                                            Emily Patel - Neurology</span><i data-lucide="check"
+                                            class="w-4 h-4 text-gray-700 hidden"></i></button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md">Dr.
-                                        Robert Miller – Orthopedics</button>
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md"><span>Dr.
+                                            Robert Miller - Orthopedics</span><i data-lucide="check"
+                                            class="w-4 h-4 text-gray-700 hidden"></i></button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md">Dr.
-                                        Jessica Williams – Pediatrics</button>
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md"><span>Dr.
+                                            Jessica Williams - Pediatrics</span><i data-lucide="check"
+                                            class="w-4 h-4 text-gray-700 hidden"></i></button>
                                 </li>
                             </ul>
 
-                            <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i>
                             <p id="error-doctor" class="text-sm font-medium text-danger hidden">Please select a doctor
                             </p>
                         </div>
@@ -201,90 +204,91 @@
                         <div class="flex flex-col gap-3">
                             <label for="appointment-date" class="text-sm font-medium leading-none">Appointment
                                 Date</label>
-                            <button id="appointment-date" type="button"
-                                class="inline-flex items-center pointer justify-center gap-2 whitespace-nowrap rounded-md text-sm transition-colors focus-visible:outline-none border border-solid border-input bg-background h-10 px-4 py-2 w-full pl-3 text-left font-normal hover:bg-medical-50 hover:text-medical-500">
-                                <span>Pick a date</span>
+                            <button id="appointment-date" type="button" role="combobox"
+                                class=" inline-flex items-center pointer justify-center gap-2 whitespace-nowrap rounded-md text-sm transition-colors border border-solid border-input bg-background h-10 px-4 py-2 w-full pl-3 text-left font-normal hover:bg-medical-50 hover:text-medical-500">
+                                <span class="selected-value">Pick a date</span>
                                 <i data-lucide="calendar" class="ml-auto w-4 opacity-50"></i>
                             </button>
-                        </div>
-                        <div class="hidden rounded-md border bg-popover text-popover-foreground shadow-md outline-none w-auto p-0"
-                            role="dialog" id="radix-popover-content" tabindex="-1">
-                            <div class="rounded-md p-3">
-                                <div class="flex flex-col sm:flex-col gap-4 sm:space-x-4 sm:space-y-0">
-                                    <div class="flex flex-col gap-4 items-start items-end">
-                                        <div class="flex justify-center pt-1 relative items-center">
-                                            <div class="text-sm font-medium" aria-live="polite" role="presentation"
-                                                id="react-day-picker-1">May 2025</div>
-                                            <div class="flex gap-1 items-center">
-                                                <button name="previous-month" aria-label="Go to previous month"
-                                                    class="reset-btn rdp-button_reset pointer py-1 py-2 h-7 w-7 absolute left-1 opacity-95 hover:opacity-95"
-                                                    type="button">
-                                                    <i data-lucide="chevron-left" class="h-4 w-4"></i>
-                                                </button>
-                                                <button name="next-month" aria-label="Go to next month"
-                                                    class="rdp-button_reset rdp-button h-7 w-7 absolute opacity-50 hover:opacity-100"
-                                                    type="button">
-                                                    <i data-lucide="chevron-right" class="h-4 w-4"></i>
-                                                </button>
+
+                            <div class=" hidden rounded-md border bg-popover text-popover-foreground shadow-md outline-none w-auto p-0"
+                                role="dialog" id="radix-popover-content" tabindex="-1">
+                                <div class="rounded-md p-3">
+                                    <div class="flex flex-col sm:flex-col gap-4 sm:space-x-4 sm:space-y-0">
+                                        <div class="flex flex-col gap-4 items-start items-end">
+                                            <div class="flex justify-center pt-1 relative items-center">
+                                                <div class="text-sm font-medium" aria-live="polite" role="presentation"
+                                                    id="react-day-picker-1">May 2025</div>
+                                                <div class="flex gap-1 items-center">
+                                                    <button name="previous-month" aria-label="Go to previous month"
+                                                        class="reset-btn rdp-button_reset pointer py-1 py-2 h-7 w-7 absolute left-1 opacity-95 hover:opacity-95"
+                                                        type="button">
+                                                        <i data-lucide="chevron-left" class="h-4 w-4"></i>
+                                                    </button>
+                                                    <button name="next-month" aria-label="Go to next month"
+                                                        class="rdp-button_reset rdp-button h-7 w-7 absolute opacity-50 hover:opacity-100"
+                                                        type="button">
+                                                        <i data-lucide="chevron-right" class="h-4 w-4"></i>
+                                                    </button>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <table class="w-full border-collapse flex flex-colg gap-1" role="grid"
-                                            aria-labelledby="react-day-picker-1">
-                                            <thead class="rdp-head">
-                                                <tr class="flex">
-                                                    <th scope="col" class="text-gray-500 w-9 text-sm"
-                                                        aria-label="Sunday">Su</th>
-                                                    <th scope="col" class="text-gray-500 w-9 text-sm"
-                                                        aria-label="Monday">Mo</th>
-                                                    <th scope="col" class="text-gray-500 w-9 text-sm"
-                                                        aria-label="Tuesday">Tu</th>
-                                                    <th scope="col" class="text-gray-500 w-9 text-sm"
-                                                        aria-label="Wednesday">We</th>
-                                                    <th scope="col" class="text-gray-500 w-9 text-sm"
-                                                        aria-label="Thursday">Th</th>
-                                                    <th scope="col" class="text-gray-500 w-9 text-sm"
-                                                        aria-label="Friday">Fr</th>
-                                                    <th scope="col" class="text-gray-500 w-9 text-sm"
-                                                        aria-label="Saturday">Sa</th>
+                                            <table class="w-full border-collapse flex flex-colg gap-1" role="grid"
+                                                aria-labelledby="react-day-picker-1">
+                                                <thead class="rdp-head">
+                                                    <tr class="flex">
+                                                        <th scope="col" class="text-gray-500 w-9 text-sm"
+                                                            aria-label="Sunday">Su</th>
+                                                        <th scope="col" class="text-gray-500 w-9 text-sm"
+                                                            aria-label="Monday">Mo</th>
+                                                        <th scope="col" class="text-gray-500 w-9 text-sm"
+                                                            aria-label="Tuesday">Tu</th>
+                                                        <th scope="col" class="text-gray-500 w-9 text-sm"
+                                                            aria-label="Wednesday">We</th>
+                                                        <th scope="col" class="text-gray-500 w-9 text-sm"
+                                                            aria-label="Thursday">Th</th>
+                                                        <th scope="col" class="text-gray-500 w-9 text-sm"
+                                                            aria-label="Friday">Fr</th>
+                                                        <th scope="col" class="text-gray-500 w-9 text-sm"
+                                                            aria-label="Saturday">Sa</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="rdp-tbody flex flex-col gap-1"></tbody>
+                                                <!-- Sample week row -->
+                                                <tr class="flex w-full mt-2">
+                                                    <td class="h-9 w-9 text-center text-sm relative">
+                                                        <button name="day"
+                                                            class="rdp-button_reset rdp-button h-9 w-9 text-muted-foreground opacity-50"
+                                                            type="button" disabled>27</button>
+                                                    </td>
+                                                    <!-- Highlighted day -->
+                                                    <td class="h-9 w-9 text-center text-sm relative">
+                                                        <button name="day"
+                                                            class="rdp-button_reset rdp-button h-9 w-9 bg-accent text-accent-foreground"
+                                                            type="button" tabindex="0">23</button>
+                                                    </td>
+                                                    <!-- Add more td as needed -->
                                                 </tr>
-                                            </thead>
-                                            <tbody class="rdp-tbody flex flex-col gap-1"></tbody>
-                                            <!-- Sample week row -->
-                                            <tr class="flex w-full mt-2">
-                                                <td class="h-9 w-9 text-center text-sm relative">
-                                                    <button name="day"
-                                                        class="rdp-button_reset rdp-button h-9 w-9 text-muted-foreground opacity-50"
-                                                        type="button" disabled>27</button>
-                                                </td>
-                                                <!-- Highlighted day -->
-                                                <td class="h-9 w-9 text-center text-sm relative">
-                                                    <button name="day"
-                                                        class="rdp-button_reset rdp-button h-9 w-9 bg-accent text-accent-foreground"
-                                                        type="button" tabindex="0">23</button>
-                                                </td>
-                                                <!-- Add more td as needed -->
-                                            </tr>
-                                            <!-- Additional rows here -->
-                                            </tbody>
-                                        </table>
+                                                <!-- Additional rows here -->
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <p id="error-date" class="text-sm font-medium text-danger hidden">Please select a date</p>
-
+                            <p id="error-date" class="text-sm font-medium text-danger hidden">Please select a date
+                            </p>
                         </div>
+
 
                         <!-- Time Slot -->
                         <div class="flex flex-col gap-3">
                             <label class="text-sm font-medium leading-none">Time Slot</label>
-                            <button type="button"
-                                class="select-btn bg-white flex items-center justify-between pointer h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white"">
-                                <span>Select a time</span>
-                                 <i data-lucide=" check" class="w-4 h-4 text-gray-700 hidden"></i>
+                            <button type="button" role="combobox"
+                                class=" bg-white flex items-center justify-between pointer h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white"">
+                                <span class=" selected-value">Select a time</span>
                                 <i data-lucide="chevron-down" class="h-4 w-4 opacity-50"></i>
                             </button>
                             <ul
-                                class="hidden p-1.5 bg-background border border-solid border-input rounded-md shadow-xl">
+                                class=" hidden p-1.5 bg-background border border-solid border-input rounded-md shadow-xl">
                                 <li>
                                     <button type="button"
                                         class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md">9:00
@@ -357,8 +361,8 @@
                                 </li>
                             </ul>
 
-
-                            <p id="error-timeSlot" class="text-sm font-medium text-danger hidden">Please select a time
+                            <p id="error-timeSlot" class="text-sm font-medium text-danger hidden">Please select a
+                                time
                                 slot
                             </p>
 
@@ -529,64 +533,65 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+            const dropdownButtons = document.querySelectorAll("button[role='combobox']");
 
-            const button = document.getElementById("tony");
-            const menu = document.getElementById("hanna");
-            const selectedText = button.querySelector("span");
+            dropdownButtons.forEach((button) => {
+                const menu = button.nextElementSibling; // assumes the <ul> follows the <button>
+                const selectedText = button.querySelector("span.selected-value");
+                let selectedOption = null;
 
-            if (!button || !menu || !selectedText) return;
+                if (!menu || !selectedText) return;
 
-            let selectedOption = null;
+                // Toggle menu
+                button.addEventListener("click", () => {
+                    menu.classList.toggle("hidden");
+                });
 
-            button.addEventListener("click", () => {
-                menu.classList.toggle("hidden");
-            });
+                // Handle clicks on menu options
+                const options = menu.querySelectorAll("button.select-btn");
+                options.forEach((option) => {
+                    option.addEventListener("click", () => {
+                        const label = option.textContent.trim();
+                        selectedText.textContent = label;
 
-            const options = menu.querySelectorAll("button.select-btn");
+                        // Deselect all options
+                        options.forEach((btn) => {
+                            const icon = btn.querySelector("i");
+                            icon?.classList.add("hidden");
+                            btn.classList.remove("bg-gray-100");
+                            btn.classList.add("bg-white");
+                        });
 
-            options.forEach((option) => {
-                option.addEventListener("click", () => {
-                    const label = option.textContent.trim();
-                    selectedText.textContent = label;
+                        // Select current option
+                        const icon = option.querySelector("i");
+                        icon?.classList.remove("hidden");
+                        option.classList.remove("bg-white");
+                        option.classList.add("bg-gray-100");
 
-                    options.forEach((btn) => {
-                        const icon = btn.querySelector("svg");
-                        icon?.classList.add("hidden");
-                        btn.classList.remove("bg-gray-100");
-                        btn.classList.add("bg-white");
+                        selectedOption = option;
+                        menu.classList.add("hidden");
                     });
 
-                    const icon = option.querySelector("svg");
-                    icon?.classList.remove("hidden");
+                    option.addEventListener("mouseenter", () => {
+                        if (selectedOption && selectedOption !== option) {
+                            selectedOption.classList.remove("bg-gray-100");
+                            selectedOption.classList.add("bg-white");
+                        }
+                    });
 
-                    option.classList.remove("bg-white");
-                    option.classList.add("bg-gray-100");
-
-                    selectedOption = option;
-
-                    menu.classList.add("hidden");
+                    option.addEventListener("mouseleave", () => {
+                        selectedOption?.classList.remove("bg-white");
+                        selectedOption?.classList.add("bg-gray-100");
+                    });
                 });
 
-                option.addEventListener("mouseenter", () => {
-                    if (selectedOption && selectedOption !== option) {
-                        selectedOption.classList.remove("bg-gray-100");
-                        selectedOption.classList.add("bg-white");
+                // Close menu on outside click
+                document.addEventListener("click", (e) => {
+                    if (!button.contains(e.target) && !menu.contains(e.target)) {
+                        menu.classList.add("hidden");
                     }
                 });
-
-                option.addEventListener("mouseleave", () => {
-                    selectedOption?.classList.remove("bg-white");
-                    selectedOption?.classList.add("bg-gray-100");
-                });
             });
-
-            document.addEventListener("click", (e) => {
-                if (!button.contains(e.target) && !menu.contains(e.target)) {
-                    menu.classList.add("hidden");
-                }
-            });
-
-
         });
 
         function validateForm() {
@@ -604,19 +609,19 @@
             }
 
             // Validate Specialty
-            const specialtyText = document.querySelectorAll(".select-btn span")[0].textContent.trim();
+            const specialtyText = document.querySelectorAll(".selected-value")[0].textContent.trim();
             toggleError(specialtyText === "" || specialtyText.toLowerCase().includes("select"), "error-speciality");
 
             // Validate Doctor
-            const doctorText = document.querySelectorAll(".select-btn span")[1].textContent.trim();
+            const doctorText = document.querySelectorAll(".selected-value")[1].textContent.trim();
             toggleError(doctorText === "" || doctorText === "Select a doctor", "error-doctor");
 
             // Validate Date
-            const dateText = document.getElementById("appointment-date").querySelector("span").textContent.trim();
+            const dateText = document.querySelectorAll(".selected-value")[2].textContent.trim();
             toggleError(dateText === "" || dateText === "Pick a date", "error-date");
 
             // Validate Time
-            const timeText = document.querySelectorAll(".select-btn span")[2].textContent.trim();
+            const timeText = document.querySelectorAll(".selected-value")[3].textContent.trim();
             toggleError(timeText === "" || timeText === "Select a time", "error-timeSlot");
 
             // Validate Reason for Visit
