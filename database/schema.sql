@@ -7,7 +7,7 @@ CREATE TABLE users (
     last_name VARCHAR(100) NOT NULL,
     phone_number VARCHAR(20) NOT NULL,
     city VARCHAR(100) NOT NULL,
-    address_line1 VARCHAR(255) NOT NULL,
+    address_line VARCHAR(255) NOT NULL,
     is_active BOOLEAN DEFAULT TRUE,
     email_verified BOOLEAN
 );
