@@ -26,7 +26,7 @@
     <!-- Header Section -->
     <header class="fixed z-50 py-5 bg-transparent transition-all">
         <div class="container mx-auto flex items-center justify-between px-4">
-            <a href="/" class="flex items-center">
+            <a href="./" class="flex items-center">
                 <span class="text-medical-700 text-2xl font-semibold">
                     Medi<span class="text-medical-500">Connect</span>
                 </span>
@@ -34,24 +34,24 @@
 
             <!-- Desktop Navigation -->
             <nav class="hidden md:flex items-center gap-4 lg:gap-8">
-                <a href="/" class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Home</a>
-                <a href="/doctors.html"
+                <a href="./" class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Home</a>
+                <a href="./doctors.html"
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Doctors</a>
-                <a href="/hospitals.html"
+                <a href="./hospitals.html"
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Hospitals</a>
-                <a href="/appointments.html"
+                <a href="./appointments.html"
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Appointments</a>
-                <a href="/dashboard.html"
+                <a href="./dashboard.html"
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Dashboard</a>
             </nav>
 
             <!-- Header Right Section -->
             <div class="flex items-center gap-4">
                 <!-- Sign In / Sign Up buttons (hidden by default) -->
-                <a href="/login.html"
+                <a href="./login.html"
                     class="hidden items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all md:flex">Sign
                     In</a>
-                <a href="/signup.html"
+                <a href="./signup.html"
                     class="hidden items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all md:flex">Sign
                     Up</a>
 
@@ -66,23 +66,23 @@
             <div id="mobile-nav"
                 class="hidden absolute bg-white-95 backdrop-blur-lg animate-slide-down shadow-lg md:hidden">
                 <nav class="container mx-auto flex flex-col gap-4 px-4 py-4">
-                    <a href="/"
+                    <a href="./"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Home</a>
-                    <a href="/doctors.html"
+                    <a href="./doctors.html"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Doctors</a>
-                    <a href="/hospitals.html"
+                    <a href="./hospitals.html"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
-                    <a href="/appointments.html"
+                    <a href="./appointments.html"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
-                    <a href="/dashboard.html"
+                    <a href="./dashboard.html"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Dashboard</a>
 
                     <!-- Sign In / Sign Up buttons (Mobile view) -->
                     <div class="flex flex-col pt-2 gap-2 border-t border-solid separator">
-                        <a href="/login.html"
+                        <a href="./login.html"
                             class="inline-flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-all">Sign
                             In</a>
-                        <a href="/signup.html"
+                        <a href="./signup.html"
                             class="inline-flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Sign
                             Up</a>
                     </div>
@@ -95,134 +95,149 @@
     <main class="overflow-hidden pt-20 flex-grow">
         <div class="container mx-auto px-4 py-12 md:px-6">
             <div class="max-w-3xl mx-auto">
-                <h1 class="text-3xl font-bold mb-6">Terms of Service</h1>
+                <h1 class="text-3xl font-bold mb-6">Privacy Policy</h1>
                 <div class="text-sm text-gray-500 mb-8">
                     Last updated: May 1, 2025
                 </div>
                 <div class="max-w-none">
                     <p class="mb-6">
-                        Please read these Terms of Service ("Terms", "Terms of Service")
-                        carefully before using the MediConnect platform operated by
-                        MediConnect, Inc. ("us", "we", "our").
+                        At MediConnect, we take your privacy seriously. This Privacy
+                        Policy describes how we collect, use, and share your personal
+                        information when you use our platform.
                     </p>
-                    <p class="mb-6">
-                        By accessing or using our service, you agree to be bound by these
-                        Terms. If you disagree with any part of the terms, you may not
-                        access the service.
-                    </p>
-                    <h2 class="text-2xl font-bold mt-8 mb-4">1. Service Description</h2>
-                    <p class="mb-6">
-                        MediConnect is a healthcare platform designed to connect patients
-                        with medical professionals, hospitals, pharmacies, and emergency
-                        services. Our platform facilitates appointment booking, medical
-                        report sharing, healthcare provider ratings, and other
-                        healthcare-related services.
-                    </p>
-                    <h2 class="text-2xl font-bold mt-8 mb-4">2. User Accounts</h2>
+
+                    <h2 class="text-2xl font-bold mt-8 mb-4">Information We Collect</h2>
                     <p class="mb-4">
-                        When you create an account with us, you must provide information
-                        that is accurate, complete, and current at all times.
+                        We collect several types of information from and about users of
+                        our platform, including:
                     </p>
-                    <p class="mb-6">
-                        You are responsible for maintaining the confidentiality of your
-                        account and password and for restricting access to your computer
-                        or device. You agree to accept responsibility for all activities
-                        that occur under your account or password.
-                    </p>
-                    <h2 class="text-2xl font-bold mt-8 mb-4">3. User Conduct</h2>
-                    <p class="mb-4">As a user, you agree not to:</p>
                     <ul class="list-disc pl-8 mb-6">
                         <li class="mb-2">
-                            Use the service for any illegal purpose or in violation of any
-                            laws.
+                            Personal information such as your name, email address, phone
+                            number, and date of birth.
                         </li>
                         <li class="mb-2">
-                            Impersonate any person or entity or falsely state or
-                            misrepresent your affiliation with a person or entity.
+                            Medical information necessary for scheduling appointments and
+                            maintaining your health profile.
                         </li>
                         <li class="mb-2">
-                            Interfere with or disrupt the service or servers or networks
-                            connected to the service.
+                            Information about your interactions with our platform, including
+                            your browsing history and usage patterns.
                         </li>
                         <li class="mb-2">
-                            Post false, misleading, or dishonest reviews of healthcare
-                            providers or services.
-                        </li>
-                        <li class="mb-2">
-                            Use the service to distribute unsolicited promotional or
-                            commercial content.
+                            Device information including IP address, browser type, and
+                            operating system.
                         </li>
                     </ul>
+
                     <h2 class="text-2xl font-bold mt-8 mb-4">
-                        4. Healthcare Provider Relationships
+                        How We Use Your Information
                     </h2>
-                    <p class="mb-6">
-                        MediConnect is a platform that facilitates connections between
-                        patients and healthcare providers. We are not a healthcare
-                        provider and do not provide medical advice, diagnosis, or
-                        treatment.
-                    </p>
-                    <p class="mb-6">
-                        All medical information, advice, and services are provided solely
-                        by the healthcare providers you connect with through our platform.
-                        We are not responsible for the quality, accuracy, or
-                        appropriateness of any medical care or advice you receive.
-                    </p>
+                    <p class="mb-4">We use the information we collect to:</p>
+                    <ul class="list-disc pl-8 mb-6">
+                        <li class="mb-2">Provide, maintain, and improve our services.</li>
+                        <li class="mb-2">
+                            Process and manage appointments with healthcare providers.
+                        </li>
+                        <li class="mb-2">
+                            Communicate with you about your account, appointments, and other
+                            service-related matters.
+                        </li>
+                        <li class="mb-2">
+                            Personalize your experience and deliver content relevant to your
+                            interests.
+                        </li>
+                        <li class="mb-2">
+                            Monitor and analyze usage patterns and trends to improve our
+                            platform.
+                        </li>
+                    </ul>
+
                     <h2 class="text-2xl font-bold mt-8 mb-4">
-                        5. Appointments and Cancellations
+                        Data Sharing and Disclosure
                     </h2>
-                    <p class="mb-6">
-                        By booking an appointment through our platform, you agree to
-                        attend the appointment or cancel it within the timeframe specified
-                        by the healthcare provider. Repeated no-shows or late
-                        cancellations may result in restrictions on your ability to book
-                        future appointments.
-                    </p>
-                    <h2 class="text-2xl font-bold mt-8 mb-4">6. Ratings and Reviews</h2>
-                    <p class="mb-6">
-                        When you submit ratings or reviews on our platform, you grant us a
-                        non-exclusive, royalty-free, perpetual, irrevocable right to use,
-                        reproduce, modify, adapt, publish, translate, create derivative
-                        works from, distribute, and display such content throughout the
-                        world in any media.
-                    </p>
-                    <p class="mb-6">
-                        You represent and warrant that your ratings and reviews are
-                        accurate, honest, and based on your personal experience with the
-                        healthcare provider or service.
-                    </p>
-                    <h2 class="text-2xl font-bold mt-8 mb-4">
-                        7. Limitation of Liability
-                    </h2>
-                    <p class="mb-6">
-                        To the maximum extent permitted by law, MediConnect, its
-                        affiliates, and their directors, employees, agents, and licensors
-                        shall not be liable for any indirect, incidental, special,
-                        consequential, or punitive damages, including without limitation,
-                        loss of profits, data, use, goodwill, or other intangible losses,
-                        resulting from your access to or use of or inability to access or
-                        use the service.
-                    </p>
-                    <h2 class="text-2xl font-bold mt-8 mb-4">
-                        8. Modifications to the Service
-                    </h2>
-                    <p class="mb-6">
-                        We reserve the right, at our sole discretion, to modify or replace
-                        these Terms at any time. We will provide notice of any changes by
-                        posting the new Terms on this page and updating the "Last updated"
-                        date.
-                    </p>
-                    <p class="mb-6">
-                        Your continued use of the service after any such changes
-                        constitutes your acceptance of the new Terms.
-                    </p>
-                    <h2 class="text-2xl font-bold mt-8 mb-4">9. Contact Us</h2>
+                    <p class="mb-4">We may share your personal information with:</p>
+                    <ul class="list-disc pl-8 mb-6">
+                        <li class="mb-2">
+                            Healthcare providers with whom you schedule appointments.
+                        </li>
+                        <li class="mb-2">
+                            Third-party service providers who perform services on our
+                            behalf.
+                        </li>
+                        <li class="mb-2">
+                            Legal authorities when required by law or to protect our rights.
+                        </li>
+                    </ul>
                     <p>
-                        If you have any questions about these Terms, please contact us at:
+                        We will not sell your personal information to third parties for
+                        marketing purposes without your explicit consent.
+                    </p>
+
+                    <h2 class="text-2xl font-bold mt-8 mb-4">Data Security</h2>
+                    <p class="mb-6">
+                        We implement appropriate security measures to protect your
+                        personal information from unauthorized access, alteration,
+                        disclosure, or destruction. These measures include:
+                    </p>
+                    <ul class="list-disc pl-8 mb-6">
+                        <li class="mb-2">
+                            Encryption of sensitive data both in transit and at rest.
+                        </li>
+                        <li class="mb-2">
+                            Regular security assessments and vulnerability testing.
+                        </li>
+                        <li class="mb-2">
+                            Access controls to limit data access to authorized personnel
+                            only.
+                        </li>
+                        <li class="mb-2">
+                            Employee training on data protection and privacy practices.
+                        </li>
+                    </ul>
+
+                    <h2 class="text-2xl font-bold mt-8 mb-4">
+                        Your Rights and Choices
+                    </h2>
+                    <p class="mb-4">
+                        Depending on your location, you may have certain rights regarding
+                        your personal information, including:
+                    </p>
+                    <ul class="list-disc pl-8 mb-6">
+                        <li class="mb-2">Access to your personal information.</li>
+                        <li class="mb-2">
+                            Correction of inaccurate or incomplete information.
+                        </li>
+                        <li class="mb-2">Deletion of your personal information.</li>
+                        <li class="mb-2">
+                            Restriction or objection to certain processing activities.
+                        </li>
+                        <li class="mb-2">Data portability.</li>
+                    </ul>
+                    <p>
+                        To exercise any of these rights, please contact us using the
+                        information provided in the "Contact Us" section.
+                    </p>
+
+                    <h2 class="text-2xl font-bold mt-8 mb-4">
+                        Changes to this Privacy Policy
+                    </h2>
+                    <p class="mb-6">
+                        We may update this Privacy Policy from time to time. We will
+                        notify you of any changes by posting the new Privacy Policy on
+                        this page and updating the "Last updated" date at the top of this
+                        policy.
+                    </p>
+
+                    <h2 class="text-2xl font-bold mt-8 mb-4">Contact Us</h2>
+                    <p>
+                        If you have any questions about this Privacy Policy, please
+                        contact us at:
                     </p>
                     <p class="mt-2">
-                        <strong>Email:</strong> legal@mediconnect.com<br /><strong>Postal Address:</strong>
-                        123 Health Street, Medical District, MD 12345
+                        <strong>Email:</strong> privacy@mediconnect.com<br />
+                        <strong>Postal Address:</strong> 123 Health Street, Medical
+                        District, MD 12345
                     </p>
                 </div>
             </div>
@@ -234,7 +249,7 @@
         <div class="container mx-auto px-4">
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                 <div>
-                    <a href="/" class="inline-block mb-4">
+                    <a href="./" class="inline-block mb-4">
                         <span class="text-medical-700 font-semibold text-2xl">
                             Medi<span class="text-medical-500">Connect</span>
                         </span>
@@ -266,27 +281,27 @@
                     </h4>
                     <ul class="flex flex-col gap-2">
                         <li>
-                            <a href="/appointments.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="./appointments.html" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Book Appointments
                             </a>
                         </li>
                         <li>
-                            <a href="/doctors.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="./doctors.html" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Find Doctors
                             </a>
                         </li>
                         <li>
-                            <a href="/hospitals.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="./hospitals.html" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Hospital Information
                             </a>
                         </li>
                         <li>
-                            <a href="/emergency.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="./emergency.html" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Emergency Services
                             </a>
                         </li>
                         <li>
-                            <a href="/pharmacy.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="./pharmacy.html" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Pharmacy Orders
                             </a>
                         </li>
@@ -299,27 +314,27 @@
                     </h4>
                     <ul class="flex flex-col gap-2">
                         <li>
-                            <a href="/about.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="./about.html" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 About Us
                             </a>
                         </li>
                         <li>
-                            <a href="/privacy.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="./privacy.html" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Privacy Policy
                             </a>
                         </li>
                         <li>
-                            <a href="/terms.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="./terms.html" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Terms of Service
                             </a>
                         </li>
                         <li>
-                            <a href="/faq.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="./faq.html" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 FAQs
                             </a>
                         </li>
                         <li>
-                            <a href="/contact.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="./contact.html" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Contact Us
                             </a>
                         </li>

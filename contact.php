@@ -30,7 +30,7 @@
   <!-- Header Section -->
   <header class="fixed z-50 py-5 bg-transparent transition-all">
     <div class="container mx-auto flex items-center justify-between px-4">
-      <a href="/" class="flex items-center">
+      <a href="./" class="flex items-center">
         <span class="text-medical-700 text-2xl font-semibold">
           Medi<span class="text-medical-500">Connect</span>
         </span>
@@ -38,24 +38,24 @@
 
       <!-- Desktop Navigation -->
       <nav class="hidden md:flex items-center gap-4 lg:gap-8">
-        <a href="/" class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Home</a>
-        <a href="/doctors.html"
+        <a href="./" class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Home</a>
+        <a href="./doctors.html"
           class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Doctors</a>
-        <a href="/hospitals.html"
+        <a href="./hospitals.html"
           class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Hospitals</a>
-        <a href="/appointments.html"
+        <a href="./appointments.html"
           class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Appointments</a>
-        <a href="/dashboard.html"
+        <a href="./dashboard.html"
           class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Dashboard</a>
       </nav>
 
       <!-- Header Right Section -->
       <div class="flex items-center gap-4">
         <!-- Sign In / Sign Up buttons (hidden by default) -->
-        <a href="/login.html"
+        <a href="./login.html"
           class="hidden items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all md:flex">Sign
           In</a>
-        <a href="/signup.html"
+        <a href="./signup.html"
           class="hidden items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all md:flex">Sign
           Up</a>
 
@@ -69,23 +69,23 @@
       <!-- Mobile Navigation (Hidden by default) -->
       <div id="mobile-nav" class="hidden absolute bg-white-95 backdrop-blur-lg animate-slide-down shadow-lg md:hidden">
         <nav class="container mx-auto flex flex-col gap-4 px-4 py-4">
-          <a href="/"
+          <a href="./"
             class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Home</a>
-          <a href="/doctors.html"
+          <a href="./doctors.html"
             class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Doctors</a>
-          <a href="/hospitals.html"
+          <a href="./hospitals.html"
             class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
-          <a href="/appointments.html"
+          <a href="./appointments.html"
             class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
-          <a href="/dashboard.html"
+          <a href="./dashboard.html"
             class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Dashboard</a>
 
           <!-- Sign In / Sign Up buttons (Mobile view) -->
           <div class="flex flex-col pt-2 gap-2 border-t border-solid separator">
-            <a href="/login.html"
+            <a href="./login.html"
               class="inline-flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-all">Sign
               In</a>
-            <a href="/signup.html"
+            <a href="./signup.html"
               class="inline-flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Sign
               Up</a>
           </div>
@@ -96,23 +96,23 @@
     <!-- Mobile Navigation (Hidden by default) -->
     <div id="mobile-nav" class="hidden absolute bg-white-95 backdrop-blur-lg animate-slide-down shadow-lg">
       <nav class="container mx-auto flex flex-col gap-4 px-4 py-4">
-        <a href="/"
+        <a href="./"
           class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Home</a>
-        <a href="/doctors.html"
+        <a href="./doctors.html"
           class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Doctors</a>
-        <a href="/hospitals.html"
+        <a href="./hospitals.html"
           class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
-        <a href="/appointments.html"
+        <a href="./appointments.html"
           class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
-        <a href="/dashboard.html"
+        <a href="./dashboard.html"
           class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Dashboard</a>
 
         <!-- Sign In / Sign Up buttons (Mobile view) -->
         <div class="flex flex-col pt-2 gap-2 border-t border-solid separator">
-          <a href="/login.html"
+          <a href="./login.html"
             class="inline-flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-all">Sign
             In</a>
-          <a href="/signup.html"
+          <a href="./signup.html"
             class="inline-flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Sign
             Up</a>
         </div>
@@ -313,7 +313,7 @@
     <div class="container mx-auto px-4">
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
         <div>
-          <a href="/" class="inline-block mb-4">
+          <a href="./" class="inline-block mb-4">
             <span class="text-medical-700 font-semibold text-2xl">
               Medi<span class="text-medical-500">Connect</span>
             </span>
@@ -345,27 +345,27 @@
           </h4>
           <ul class="flex flex-col gap-2">
             <li>
-              <a href="/appointments.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+              <a href="./appointments.html" class="text-gray-600 hover:text-medical-600 transition-colors">
                 Book Appointments
               </a>
             </li>
             <li>
-              <a href="/doctors.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+              <a href="./doctors.html" class="text-gray-600 hover:text-medical-600 transition-colors">
                 Find Doctors
               </a>
             </li>
             <li>
-              <a href="/hospitals.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+              <a href="./hospitals.html" class="text-gray-600 hover:text-medical-600 transition-colors">
                 Hospital Information
               </a>
             </li>
             <li>
-              <a href="/emergency.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+              <a href="./emergency.html" class="text-gray-600 hover:text-medical-600 transition-colors">
                 Emergency Services
               </a>
             </li>
             <li>
-              <a href="/pharmacy.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+              <a href="./pharmacy.html" class="text-gray-600 hover:text-medical-600 transition-colors">
                 Pharmacy Orders
               </a>
             </li>
@@ -378,27 +378,27 @@
           </h4>
           <ul class="flex flex-col gap-2">
             <li>
-              <a href="/about.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+              <a href="./about.html" class="text-gray-600 hover:text-medical-600 transition-colors">
                 About Us
               </a>
             </li>
             <li>
-              <a href="/privacy.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+              <a href="./privacy.html" class="text-gray-600 hover:text-medical-600 transition-colors">
                 Privacy Policy
               </a>
             </li>
             <li>
-              <a href="/terms.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+              <a href="./terms.html" class="text-gray-600 hover:text-medical-600 transition-colors">
                 Terms of Service
               </a>
             </li>
             <li>
-              <a href="/faq.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+              <a href="./faq.html" class="text-gray-600 hover:text-medical-600 transition-colors">
                 FAQs
               </a>
             </li>
             <li>
-              <a href="/contact.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+              <a href="./contact.html" class="text-gray-600 hover:text-medical-600 transition-colors">
                 Contact Us
               </a>
             </li>
