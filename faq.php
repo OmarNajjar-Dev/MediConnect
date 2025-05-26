@@ -37,23 +37,23 @@
             <!-- Desktop Navigation -->
             <nav class="hidden md:flex items-center gap-4 lg:gap-8">
                 <a href="./" class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Home</a>
-                <a href="./doctors.html"
+                <a href="./doctors.php"
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Doctors</a>
-                <a href="./hospitals.html"
+                <a href="./hospitals.php"
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Hospitals</a>
-                <a href="./appointments.html"
+                <a href="./appointments.php"
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Appointments</a>
-                <a href="./dashboard.html"
+                <a href="./dashboard.php"
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Dashboard</a>
             </nav>
 
             <!-- Header Right Section -->
             <div class="flex items-center gap-4">
                 <!-- Sign In / Sign Up buttons (hidden by default) -->
-                <a href="./login.html"
+                <a href="./login.php"
                     class="hidden items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all md:flex">Sign
                     In</a>
-                <a href="./signup.html"
+                <a href="./signup.php"
                     class="hidden items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all md:flex">Sign
                     Up</a>
 
@@ -70,21 +70,21 @@
                 <nav class="container mx-auto flex flex-col gap-4 px-4 py-4">
                     <a href="./"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Home</a>
-                    <a href="./doctors.html"
+                    <a href="./doctors.php"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Doctors</a>
-                    <a href="./hospitals.html"
+                    <a href="./hospitals.php"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
-                    <a href="./appointments.html"
+                    <a href="./appointments.php"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
-                    <a href="./dashboard.html"
+                    <a href="./dashboard.php"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Dashboard</a>
 
                     <!-- Sign In / Sign Up buttons (Mobile view) -->
                     <div class="flex flex-col pt-2 gap-2 border-t border-solid separator">
-                        <a href="./login.html"
+                        <a href="./login.php"
                             class="inline-flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-all">Sign
                             In</a>
-                        <a href="./signup.html"
+                        <a href="./signup.php"
                             class="inline-flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Sign
                             Up</a>
                     </div>
@@ -296,7 +296,7 @@
                     <p class="max-w-2xl mx-auto text-gray-600 mb-6">Our support team is here to help. Contact us with
                         any questions or
                         concerns you may have.</p>
-                    <a href="./contact.html"
+                    <a href="./contact.php"
                         class="inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium h-10 px-4 py-2 bg-medical-500 text-white hover:bg-medical-600">Contact
                         Support</a>
                 </div>
@@ -339,27 +339,27 @@
                     <h4 class="font-medium text-lg text-heading tracking-tight mb-4">Services</h4>
                     <ul class="flex flex-col gap-2">
                         <li>
-                            <a href="./appointments.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="./appointments.php" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Book Appointments
                             </a>
                         </li>
                         <li>
-                            <a href="./doctors.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="./doctors.php" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Find Doctors
                             </a>
                         </li>
                         <li>
-                            <a href="./hospitals.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="./hospitals.php" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Hospital Information
                             </a>
                         </li>
                         <li>
-                            <a href="./emergency.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="./emergency.php" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Emergency Services
                             </a>
                         </li>
                         <li>
-                            <a href="./pharmacy.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="./pharmacy.php" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Pharmacy Orders
                             </a>
                         </li>
@@ -370,27 +370,27 @@
                     <h4 class="font-medium text-lg text-heading tracking-tight mb-4">Quick Links</h4>
                     <ul class="flex flex-col gap-2">
                         <li>
-                            <a href="./about.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="./about.php" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 About Us
                             </a>
                         </li>
                         <li>
-                            <a href="./privacy.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="./privacy.php" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Privacy Policy
                             </a>
                         </li>
                         <li>
-                            <a href="./terms.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="./terms.php" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Terms of Service
                             </a>
                         </li>
                         <li>
-                            <a href="./faq.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="./faq.php" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 FAQs
                             </a>
                         </li>
                         <li>
-                            <a href="./contact.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="./contact.php" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Contact Us
                             </a>
                         </li>
