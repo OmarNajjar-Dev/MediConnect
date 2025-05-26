@@ -73,6 +73,16 @@ CREATE TABLE hospitals (
     image_url VARCHAR(255)
 ) ENGINE = InnoDB;
 
+CREATE TABLE hospital_specialties (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    hospital_id INT NOT NULL,
+    specialty_id INT NOT NULL,
+    FOREIGN KEY (hospital_id) REFERENCES hospitals(hospital_id) 
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (specialty_id) REFERENCES specialties(specialty_id)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    UNIQUE (hospital_id, specialty_id)
+) ENGINE = InnoDB;
 
 CREATE TABLE pharmacies (
     pharmacy_id INT PRIMARY KEY AUTO_INCREMENT,

@@ -45,6 +45,14 @@
   }
 
   /* Spacing */
+  .sm\:gap-0 {
+    gap: 0;
+  }
+
+  .sm\:gap-4 {
+    gap: 16px;
+  }
+
   .sm\:px-6 {
     padding-left: 24px;
     padding-right: 24px;
