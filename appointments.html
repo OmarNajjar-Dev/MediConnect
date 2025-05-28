@@ -210,74 +210,61 @@
                                 <i data-lucide="calendar" class="ml-auto w-4 opacity-50"></i>
                             </button>
 
-                            <div class="hidden rounded-md border bg-popover text-popover-foreground shadow-md outline-none w-auto p-0"
+                            <div class="rounded-md border border-input bg-white text-popover-foreground shadow-md w-auto p-4"
                                 role="dialog" id="radix-popover-content" tabindex="-1">
-                                <div class="rounded-md p-3">
-                                    <div class="flex flex-col sm:flex-col gap-4 sm:space-x-4 sm:space-y-0">
-                                        <div class="flex flex-col gap-4 items-start items-end">
-                                            <div class="flex justify-center pt-1 relative items-center">
-                                                <div class="text-sm font-medium" aria-live="polite" role="presentation"
-                                                    id="react-day-picker-1">May 2025</div>
-                                                <div class="flex gap-1 items-center">
-                                                    <button name="previous-month" aria-label="Go to previous month"
-                                                        class="reset-btn rdp-button_reset pointer py-1 py-2 h-7 w-7 absolute left-1 opacity-95 hover:opacity-95"
-                                                        type="button">
-                                                        <i data-lucide="chevron-left" class="h-4 w-4"></i>
-                                                    </button>
-                                                    <button name="next-month" aria-label="Go to next month"
-                                                        class="rdp-button_reset rdp-button h-7 w-7 absolute opacity-50 hover:opacity-100"
-                                                        type="button">
-                                                        <i data-lucide="chevron-right" class="h-4 w-4"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <table class="w-full border-collapse flex flex-colg gap-1" role="grid"
-                                                aria-labelledby="react-day-picker-1">
-                                                <thead class="rdp-head">
-                                                    <tr class="flex">
-                                                        <th scope="col" class="text-gray-500 w-9 text-sm"
-                                                            aria-label="Sunday">Su</th>
-                                                        <th scope="col" class="text-gray-500 w-9 text-sm"
-                                                            aria-label="Monday">Mo</th>
-                                                        <th scope="col" class="text-gray-500 w-9 text-sm"
-                                                            aria-label="Tuesday">Tu</th>
-                                                        <th scope="col" class="text-gray-500 w-9 text-sm"
-                                                            aria-label="Wednesday">We</th>
-                                                        <th scope="col" class="text-gray-500 w-9 text-sm"
-                                                            aria-label="Thursday">Th</th>
-                                                        <th scope="col" class="text-gray-500 w-9 text-sm"
-                                                            aria-label="Friday">Fr</th>
-                                                        <th scope="col" class="text-gray-500 w-9 text-sm"
-                                                            aria-label="Saturday">Sa</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody class="rdp-tbody flex flex-col gap-1"></tbody>
-                                                <!-- Sample week row -->
-                                                <tr class="flex w-full mt-2">
-                                                    <td class="h-9 w-9 text-center text-sm relative">
-                                                        <button name="day"
-                                                            class="rdp-button_reset rdp-button h-9 w-9 text-muted-foreground opacity-50"
-                                                            type="button" disabled>27</button>
-                                                    </td>
-                                                    <!-- Highlighted day -->
-                                                    <td class="h-9 w-9 text-center text-sm relative">
-                                                        <button name="day"
-                                                            class="rdp-button_reset rdp-button h-9 w-9 bg-accent text-accent-foreground"
-                                                            type="button" tabindex="0">23</button>
-                                                    </td>
-                                                    <!-- Add more td as needed -->
-                                                </tr>
-                                                <!-- Additional rows here -->
-                                                </tbody>
-                                            </table>
+                                <div class="rounded-md space-y-4">
+                                    <!-- Header: Month + Navigation -->
+                                    <div class="flex items-center justify-between">
+                                        <button type="button" id="prev" name="previous-month" aria-label="Go to previous month"
+                                            class="rdp-button_reset h-8 w-8 flex items-center justify-center text-gray-600 hover:text-black transition">
+                                            <i data-lucide="chevron-left" class="h-4 w-4"></i>
+                                        </button>
+
+                                        <div class="text-base font-semibold" aria-live="polite" role="presentation"
+                                            id="month-yearJ">
+                                            May 2025
                                         </div>
+
+                                        <button type="button" id="next" name="next-month" aria-label="Go to next month"
+                                            class="rdp-button_reset h-8 w-8 flex items-center justify-center text-gray-600 hover:text-black transition">
+                                            <i data-lucide="chevron-right" class="h-4 w-4"></i>
+                                        </button>
+                                    </div>
+
+                                    <!-- Weekday Headers -->
+                                    <div id="days" class="grid grid-cols-7 text-center text-gray-500 text-sm font-medium">
+                                        <div>Su</div>
+                                        <div>Mo</div>
+                                        <div>Tu</div>
+                                        <div>We</div>
+                                        <div>Th</div>
+                                        <div>Fr</div>
+                                        <div>Sa</div>
+                                    </div>
+
+                                    <!-- Calendar Days -->
+                                    <div class="grid grid-cols-7 gap-1 text-sm">
+                                        <!-- Previous Month Day (disabled) -->
+                                        <button class="h-9 w-9 text-gray-400 cursor-not-allowed" disabled>27</button>
+
+                                        <!-- Example Day (highlighted current day) -->
+                                        <button
+                                            class="h-9 w-9 bg-blue-500 text-white rounded-full hover:bg-blue-600">23</button>
+
+                                        <!-- Other Days -->
+                                        <button class="h-9 w-9 hover:bg-gray-100 rounded">24</button>
+                                        <button class="h-9 w-9 hover:bg-gray-100 rounded">25</button>
+                                        <button class="h-9 w-9 hover:bg-gray-100 rounded">26</button>
+                                        <button class="h-9 w-9 hover:bg-gray-100 rounded">28</button>
+                                        <button class="h-9 w-9 hover:bg-gray-100 rounded">29</button>
+                                        <!-- Add more days as needed -->
                                     </div>
                                 </div>
                             </div>
+
                             <p id="error-date" class="text-sm font-medium text-danger hidden">Please select a date
                             </p>
                         </div>
-
 
                         <!-- Time Slot -->
                         <div class="flex flex-col gap-3">
@@ -528,116 +515,7 @@
     <!-- External JavaScript -->
     <script type="module" src="js/common/header.js"></script>
     <script type="module" src="js/common/mobile-nav.js"></script>
-
-
-
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const dropdownButtons = document.querySelectorAll("button[role='combobox']");
-
-            dropdownButtons.forEach((button) => {
-                const menu = button.nextElementSibling; // assumes the <ul> follows the <button>
-                const selectedText = button.querySelector("span.selected-value");
-                let selectedOption = null;
-
-                if (!menu || !selectedText) return;
-
-                // Toggle menu
-                button.addEventListener("click", () => {
-                    menu.classList.toggle("hidden");
-                });
-
-                // Handle clicks on menu options
-                const options = menu.querySelectorAll("button.select-btn");
-                options.forEach((option) => {
-                    option.addEventListener("click", () => {
-                        const label = option.textContent.trim();
-                        selectedText.textContent = label;
-
-                        // Deselect all options
-                        options.forEach((btn) => {
-                            const icon = btn.querySelector("svg");
-                            icon?.classList.add("hidden");
-                            btn.classList.remove("bg-gray-100");
-                            btn.classList.add("bg-white");
-                        });
-
-                        // Select current option
-                        const icon = option.querySelector("svg");
-                        icon?.classList.remove("hidden");
-                        option.classList.remove("bg-white");
-                        option.classList.add("bg-gray-100");
-
-                        selectedOption = option;
-                        menu.classList.add("hidden");
-                    });
-
-                    option.addEventListener("mouseenter", () => {
-                        if (selectedOption && selectedOption !== option) {
-                            selectedOption.classList.remove("bg-gray-100");
-                            selectedOption.classList.add("bg-white");
-                        }
-                    });
-
-                    option.addEventListener("mouseleave", () => {
-                        selectedOption?.classList.remove("bg-white");
-                        selectedOption?.classList.add("bg-gray-100");
-                    });
-                });
-
-                // Close menu on outside click
-                document.addEventListener("click", (e) => {
-                    if (!button.contains(e.target) && !menu.contains(e.target)) {
-                        menu.classList.add("hidden");
-                    }
-                });
-            });
-        });
-
-        function validateForm() {
-            let isValid = true;
-
-            // Helper to show/hide error
-            function toggleError(condition, errorId) {
-                const errorEl = document.getElementById(errorId);
-                if (condition) {
-                    errorEl.classList.remove("hidden");
-                    isValid = false;
-                } else {
-                    errorEl.classList.add("hidden");
-                }
-            }
-
-            // Validate Specialty
-            const specialtyText = document.querySelectorAll(".selected-value")[0].textContent.trim();
-            toggleError(specialtyText === "" || specialtyText.toLowerCase().includes("select"), "error-speciality");
-
-            // Validate Doctor
-            const doctorText = document.querySelectorAll(".selected-value")[1].textContent.trim();
-            toggleError(doctorText === "" || doctorText === "Select a doctor", "error-doctor");
-
-            // Validate Date
-            const dateText = document.querySelectorAll(".selected-value")[2].textContent.trim();
-            toggleError(dateText === "" || dateText === "Pick a date", "error-date");
-
-            // Validate Time
-            const timeText = document.querySelectorAll(".selected-value")[3].textContent.trim();
-            toggleError(timeText === "" || timeText === "Select a time", "error-timeSlot");
-
-            // Validate Reason for Visit
-            const reasonText = document.getElementById("reason").value.trim();
-            toggleError(reasonText === "", "error-required");
-
-            return isValid;
-        }
-
-    </script>
-
-    <!-- Create Lucide Icons -->
-
-    <script>document.addEventListener('DOMContentLoaded', () => {
-            lucide.createIcons();
-        });</script>
+    <script type="module" src="js/appointments/index.js"></script>
 </body>
 
 </html>

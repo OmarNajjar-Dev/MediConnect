@@ -552,3 +552,9 @@
 .fill-star-500 {
     fill: rgb(var(--rating-500));
 }
+.text-muted-foreground {
+  color: #6b7280;
+}
+.text-popover-foreground{
+color: #0f1729;
+}
