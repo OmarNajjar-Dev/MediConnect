@@ -321,6 +321,9 @@
     border-color: rgb(var(--medical-100));
 }
 
+.border-gray-200 {
+    border-color: rgb(var(--gray-200));
+}
 /* ==================================================
      HOVER STATE CLASSES
      ================================================== */

@@ -210,29 +210,26 @@
                                 <i data-lucide="calendar" class="ml-auto w-4 opacity-50"></i>
                             </button>
 
-                            <div class="rounded-md border border-input bg-white text-popover-foreground shadow-md w-auto p-4"
-                                role="dialog" id="radix-popover-content" tabindex="-1">
-                                <div class="rounded-md space-y-4">
+                            <div class="rounded-md border border-solid border-gray-200 bg-white text-gray-800 shadow-md w-auto p-4"
+                                role="dialog" tabindex="-1">
+                                <div class="flex flex-col gap-4">
                                     <!-- Header: Month + Navigation -->
                                     <div class="flex items-center justify-between">
-                                        <button type="button" id="prev" name="previous-month" aria-label="Go to previous month"
-                                            class="rdp-button_reset h-8 w-8 flex items-center justify-center text-gray-600 hover:text-black transition">
+                                        <button type="button" aria-label="Go to previous month"
+                                            class="h-8 w-8 flex items-center justify-center text-gray-500 hover:text-black transition">
                                             <i data-lucide="chevron-left" class="h-4 w-4"></i>
                                         </button>
 
-                                        <div class="text-base font-semibold" aria-live="polite" role="presentation"
-                                            id="month-yearJ">
-                                            May 2025
-                                        </div>
+                                        <div class="text-base font-semibold" aria-live="polite">May 2025</div>
 
-                                        <button type="button" id="next" name="next-month" aria-label="Go to next month"
-                                            class="rdp-button_reset h-8 w-8 flex items-center justify-center text-gray-600 hover:text-black transition">
+                                        <button type="button" aria-label="Go to next month"
+                                            class="h-8 w-8 flex items-center justify-center text-gray-500 hover:text-black transition">
                                             <i data-lucide="chevron-right" class="h-4 w-4"></i>
                                         </button>
                                     </div>
 
                                     <!-- Weekday Headers -->
-                                    <div id="days" class="grid grid-cols-7 text-center text-gray-500 text-sm font-medium">
+                                    <div class="grid grid-cols-7 text-center text-gray-500 text-sm font-medium">
                                         <div>Su</div>
                                         <div>Mo</div>
                                         <div>Tu</div>
@@ -244,20 +241,24 @@
 
                                     <!-- Calendar Days -->
                                     <div class="grid grid-cols-7 gap-1 text-sm">
-                                        <!-- Previous Month Day (disabled) -->
-                                        <button class="h-9 w-9 text-gray-400 cursor-not-allowed" disabled>27</button>
+                                        <!-- Previous Month Days (disabled) -->
+                                        <button class="h-9 w-9 text-gray-400 not-allowed" disabled>27</button>
+                                        <button class="h-9 w-9 text-gray-400 not-allowed" disabled>28</button>
+                                        <button class="h-9 w-9 text-gray-400 not-allowed" disabled>29</button>
+                                        <button class="h-9 w-9 text-gray-400 not-allowed" disabled>30</button>
 
-                                        <!-- Example Day (highlighted current day) -->
+                                        <!-- Current Month Days -->
+                                        <button class="h-9 w-9 hover:bg-gray-100 rounded">1</button>
+                                        <button class="h-9 w-9 hover:bg-gray-100 rounded">2</button>
+                                        <button class="h-9 w-9 hover:bg-gray-100 rounded">3</button>
+
+                                        <!-- مثال لليوم الحالي -->
                                         <button
-                                            class="h-9 w-9 bg-blue-500 text-white rounded-full hover:bg-blue-600">23</button>
+                                            class="h-9 w-9 bg-cyan-100 text-black font-semibold rounded-full">28</button>
 
-                                        <!-- Other Days -->
-                                        <button class="h-9 w-9 hover:bg-gray-100 rounded">24</button>
-                                        <button class="h-9 w-9 hover:bg-gray-100 rounded">25</button>
-                                        <button class="h-9 w-9 hover:bg-gray-100 rounded">26</button>
-                                        <button class="h-9 w-9 hover:bg-gray-100 rounded">28</button>
+                                        <!-- أيام لاحقة -->
                                         <button class="h-9 w-9 hover:bg-gray-100 rounded">29</button>
-                                        <!-- Add more days as needed -->
+                                        <button class="h-9 w-9 hover:bg-gray-100 rounded">30</button>
                                     </div>
                                 </div>
                             </div>
@@ -364,7 +365,6 @@
                                 rows="3"></textarea>
                             <p id="error-required" class="text-sm font-medium text-danger hidden">required</p>
                         </div>
-
 
                         <!-- Additional Notes -->
                         <div class="flex flex-col gap-3">
@@ -516,6 +516,10 @@
     <script type="module" src="js/common/header.js"></script>
     <script type="module" src="js/common/mobile-nav.js"></script>
     <script type="module" src="js/appointments/index.js"></script>
+
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 
 </html>
