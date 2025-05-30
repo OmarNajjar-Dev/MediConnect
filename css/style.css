@@ -132,14 +132,11 @@ input::placeholder {
 
 
 .custom-checkbox {
-  
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
 
-  width: 20px;
-  height: 20px;
-  border: 2px solid #22c55e;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border: 1px solid #009688;
   border-radius: 4px;
   background-color: white;
   cursor: pointer;
@@ -147,39 +144,24 @@ input::placeholder {
   display: inline-block;
 }
 
-/* When checked: green background */ 
+/* When checked: green background */
 .custom-checkbox:checked {
- background-color: #68D391; 
-  border-color: #68D391; 
+  background-color: #009688;
 }
+
 /* 
 /* Draw the checkmark */
 .custom-checkbox:checked::after {
   content: "";
   position: absolute;
-  top: 2px;
-  left: 6px;
+  top: 1px;
+  left: 4px;
   width: 4px;
-  height: 10px;
+  height: 8px;
   border: solid white;
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* Parent button container */
 .eye-toggle-button {
