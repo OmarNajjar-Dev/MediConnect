@@ -1,4 +1,4 @@
-export function setupPasswordToggle(passwordId, buttonId) {
+export function setupPasswordToggle() {
   const passwordInput = document.getElementById("password");
   const toggleBtn = document.getElementById("togglePassword");
 
