@@ -122,5 +122,73 @@ input::placeholder {
 }
 
 #contact-section-top {
-    background: linear-gradient(to bottom,#e6f5f4b3,#ffffffe6);
+  background: linear-gradient(to bottom, #e6f5f4b3, #ffffffe6);
+}
+
+
+
+
+
+
+
+.custom-checkbox {
+  
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  width: 20px;
+  height: 20px;
+  border: 2px solid #22c55e;
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+}
+
+/* When checked: green background */ 
+.custom-checkbox:checked {
+ background-color: #68D391; 
+  border-color: #68D391; 
+}
+/* 
+/* Draw the checkmark */
+.custom-checkbox:checked::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 6px;
+  width: 4px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Parent button container */
+.eye-toggle-button {
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+
+/* Icon itself */
+.eye-toggle-icon {
+  pointer-events: none;
 }

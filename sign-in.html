@@ -101,7 +101,6 @@
         <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
             <div class="max-w-md w-full flex flex-col gap-6">
                 <div class="text-center">
-                    <a href="/" class="text-3xl font-bold text-medical-500">MediConnect</a>
                     <h2 class="mt-6 text-3xl font-bold text-heading text-gray-900">Sign in to your account</h2>
                     <p class="mt-2 text-sm text-gray-600">Access your healthcare platform to manage appointments and
                         more</p>
@@ -123,17 +122,19 @@
                             <div class="mt-1 relative">
                                 <input type="password" id="password" name="password" autocomplete="current-password"
                                     required placeholder="*******"
-                                    class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white md:text-sm">
-                                <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center">
-                                    <i data-lucide="eye" class="h-5 w-5 text-gray-400"></i>
+                                    class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 pr-10 py-2 text-base focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white md:text-sm" />
+                                <button type="button" id="togglePassword"
+                                    class="eye-toggle-button absolute inset-y-0 right-0 flex items-center pr-3 z-10 pointer bg-transparent border-none"
+                                    aria-label="Toggle password visibility">
+                                    <i data-lucide="eye" class="eye-toggle-icon h-5 w-5 text-gray-400"></i>
                                 </button>
                             </div>
                         </div>
 
+
                         <div class="flex items-center justify-between">
                             <div class="flex items-center">
-                                <input type="checkbox" id="remember-me"
-                                    class="h-4 w-4 rounded-sm border border-solid border-input">
+                                <input type="checkbox" id="remember-me" class="custom-checkbox">
                                 <label for="remember-me" class="ml-2 block text-sm text-gray-900">Remember me</label>
                             </div>
                             <div class="text-sm">
@@ -178,7 +179,7 @@
                     <div class="mt-6 text-center">
                         <p class="text-sm text-gray-600">
                             Don't have an account?
-                            <a href="/sign-up" class="font-medium text-medical-500 hover:text-medical-700">Sign
+                            <a href="/sign-up.html" class="font-medium text-medical-500 hover:text-medical-700">Sign
                                 up</a>
                         </p>
                     </div>
@@ -316,12 +317,12 @@
     <!-- JavaScript -->
     <script type="module" src="js/common/header.js"></script>
     <script type="module" src="js/common/mobile-nav.js"></script>
-    <script type="module" src="js/about/index.js"></script>
+    <script type="module" src="./js/auth/index.js"></script>
     <script>
-  window.addEventListener('DOMContentLoaded', () => {
-    lucide.createIcons();
-  });
-</script>
+        window.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
+    </script>
 </body>
 
 </html>

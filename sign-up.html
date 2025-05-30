@@ -24,7 +24,6 @@
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/responsive.css" />
     <link rel="stylesheet" href="css/ring.css" />
-
 </head>
 
 <body class="bg-background text-foreground">
@@ -101,13 +100,16 @@
         <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
             <div class="max-w-md w-full flex flex-col gap-8">
                 <div class="text-center">
-                    <a href="/" class="text-3xl font-bold text-medical-500">MediConnect</a>
-                    <h2 class="mt-6 text-3xl text-heading font-bold text-gray-900">Create your account</h2>
-                    <p class="mt-2 text-sm text-gray-600">Join our healthcare platform to access better medical care</p>
+                    <h2 class="mt-6 text-3xl text-heading font-bold text-gray-900">
+                        Create your account
+                    </h2>
+                    <p class="mt-2 text-sm text-gray-600">
+                        Join our healthcare platform to access better medical care
+                    </p>
                 </div>
 
                 <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-                    <form class="flex flex-col gap-6">
+                    <form onsubmit="return setupPasswordMatchCheck()" class="flex flex-col gap-6">
                         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
                             <div>
                                 <label for="firstName" class="block text-sm font-medium text-gray-700">First
@@ -115,7 +117,7 @@
                                 <div class="mt-1">
                                     <input type="text" id="firstName" name="firstName" autocomplete="given-name"
                                         required
-                                        class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white md:text-sm">
+                                        class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white md:text-sm" />
                                 </div>
                             </div>
 
@@ -123,7 +125,7 @@
                                 <label for="lastName" class="block text-sm font-medium text-gray-700">Last Name</label>
                                 <div class="mt-1">
                                     <input type="text" id="lastName" name="lastName" autocomplete="family-name" required
-                                        class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white md:text-sm">
+                                        class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white md:text-sm" />
                                 </div>
                             </div>
                         </div>
@@ -133,51 +135,61 @@
                             <div class="mt-1">
                                 <input type="email" id="email" name="email" autocomplete="email" required
                                     placeholder="you@example.com"
-                                    class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white md:text-sm">
+                                    class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white md:text-sm" />
                             </div>
                         </div>
 
                         <div>
                             <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
                             <div class="mt-1 relative">
-                                <input type="password" id="password" name="password" autocomplete="new-password"
-                                    required placeholder="********"
-                                    class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white md:text-sm">
-                                <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center">
-                                    <i data-lucide="eye" class="h-5 w-5 text-gray-400"></i>
+                                <input type="password" id="password" name="password" autocomplete="current-password"
+                                    required placeholder="*******"
+                                    class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 pr-10 py-2 text-base focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white md:text-sm" />
+                                <button type="button" id="togglePassword"
+                                    class="eye-toggle-button absolute inset-y-0 right-0 flex items-center pr-3 z-10 pointer bg-transparent border-none"
+                                    aria-label="Toggle password visibility">
+                                    <i data-lucide="eye" class="eye-toggle-icon h-5 w-5 text-gray-400"></i>
                                 </button>
                             </div>
-                            <p class="mt-1 text-xs text-gray-500">Password must be at least 8 characters long with at
-                                least one number and one special character.</p>
+                            <p class="mt-1 text-xs text-gray-500">
+                                Password must be at least 8 characters long with at least one
+                                number and one special character.
+                            </p>
                         </div>
 
                         <div>
-                            <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Confirm
+                            <label for="confirm-password" class="block text-sm font-medium text-gray-700">Confirm
                                 Password</label>
                             <div class="mt-1">
-                                <input type="password" id="confirmPassword" name="confirmPassword"
+                                <input type="password" id="confirm-password" name="confirm-password"
                                     autocomplete="new-password" required placeholder="********"
-                                    class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white md:text-sm">
+                                    class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white md:text-sm" />
                             </div>
                         </div>
 
                         <div class="flex items-center">
                             <input type="checkbox" id="agree-terms"
-                                class="peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+                                class="peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" />
                             <label for="agree-terms" class="ml-2 block text-sm text-gray-900">
-                                I agree to the <a href="/terms-of-service"
-                                    class="text-medical-500 hover:text-medical-700">Terms of Service</a> and <a
-                                    href="/privacy-policy" class="text-medical-500 hover:text-medical-700">Privacy
+                                I agree to the
+                                <a href="/terms-of-service" class="text-medical-500 hover:text-medical-700">Terms of
+                                    Service</a>
+                                and
+                                <a href="/privacy-policy" class="text-medical-500 hover:text-medical-700">Privacy
                                     Policy</a>
                             </label>
                         </div>
 
                         <div>
-                            <button type="submit"
+                            <button id="signup-btn" type="submit"
                                 class="h-10 px-4 py-2 w-full border border-solid border-input bg-medical-300 hover:bg-medical-400 text-primary-foreground rounded-md text-sm text-white font-medium flex items-center justify-center gap-2">
                                 <i data-lucide="user-plus" class="h-5 w-5"></i>
                                 Sign up
                             </button>
+                            <!-- Optional Error Message -->
+                            <p id="password-error" class="text-red-500 text-sm mt-1 hidden">
+                                Passwords do not match.
+                            </p>
                         </div>
                     </form>
 
@@ -193,12 +205,12 @@
 
                         <div class="mt-6 grid grid-cols-2 gap-3">
                             <button type="button"
-                                class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                class="w-full inline-flex justify-center py-2 px-4 border border-solid border-input rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
                                 <i data-lucide="globe" class="w-5 h-5"></i>
                             </button>
 
                             <button type="button"
-                                class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                class="w-full inline-flex justify-center py-2 px-4 border border-solid border-input rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
                                 <i data-lucide="facebook" class="w-5 h-5"></i>
                             </button>
                         </div>
@@ -207,7 +219,7 @@
                     <div class="mt-6 text-center">
                         <p class="text-sm text-gray-600">
                             Already have an account?
-                            <a href="/sign-in" class="font-medium text-medical-500 hover:text-medical-700">Sign
+                            <a href="/sign-in.html" class="font-medium text-medical-500 hover:text-medical-700">Sign
                                 in</a>
                         </p>
                     </div>
@@ -345,13 +357,13 @@
     <!-- JavaScript -->
     <script type="module" src="js/common/header.js"></script>
     <script type="module" src="js/common/mobile-nav.js"></script>
-    <script type="module" src="js/about/index.js"></script>
+    <script type="module" src="./js/auth/index.js"></script>
 
     <script>
-  window.addEventListener('DOMContentLoaded', () => {
-    lucide.createIcons();
-  });
-</script>
+        window.addEventListener("DOMContentLoaded", () => {
+            lucide.createIcons();
+        });
+    </script>
 </body>
 
 </html>
