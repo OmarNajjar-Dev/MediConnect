@@ -18,10 +18,10 @@ export function renderLeadership(items, container) {
           <p class="text-medical-700 font-medium text-sm">${item.degrees}</p>
         </div>
         <div class="flex gap-4 mt-6">
-          <button class="flex items-center gap-2 border border-solid border-input bg-background font-medium pointer px-3 h-9 rounded-full text-sm text-heading hover:bg-medical-50 hover:text-medical-500 transition-colors">
+          <button type="button" class="flex items-center gap-2 border border-solid border-input bg-background font-medium pointer px-3 h-9 rounded-full text-sm text-heading hover:bg-medical-50 hover:text-medical-500 transition-colors">
             <i data-lucide="linkedin" class="w-4 h-4 mr-2"></i>Connect
           </button>
-          <button class="flex items-center gap-2 border border-solid border-input bg-background font-medium pointer px-3 h-9 rounded-full text-sm text-heading hover:bg-medical-50 hover:text-medical-500 transition-colors">
+          <button type="button" class="flex items-center gap-2 border border-solid border-input bg-background font-medium pointer px-3 h-9 rounded-full text-sm text-heading hover:bg-medical-50 hover:text-medical-500 transition-colors">
             <i data-lucide="mail" class="w-4 h-4 mr-2"></i>Contact
           </button>
         </div>
