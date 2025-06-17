@@ -134,8 +134,8 @@ input::placeholder {
 .custom-checkbox {
 
   appearance: none;
-  width: 15px;
-  height: 15px;
+  width: 16px;
+  height: 16px;
   border: 1px solid #009688;
   border-radius: 4px;
   background-color: white;
