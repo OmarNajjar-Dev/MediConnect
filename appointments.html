@@ -109,9 +109,10 @@
                         <!-- Specialty -->
                         <div class="flex flex-col gap-3">
                             <label class="text-sm font-medium leading-none">Specialty</label>
-                            <button type="button" role="combobox" aria-controls="subject-options" aria-expanded="false"
+                            <button id="speciality-button" type="button" role="combobox" aria-controls="subject-options"
+                                aria-expanded="false"
                                 class="bg-white flex items-center justify-between pointer h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
-                                <span class="selected-value">Select a speciality</span>
+                                <span id="selected-speciality" class="selected-value">Select a speciality</span>
                                 <i data-lucide="chevron-down" class="h-4 w-4 opacity-50"></i>
                             </button>
                             <ul
@@ -206,63 +207,68 @@
                                 Date</label>
                             <button id="appointment-date" type="button" role="combobox"
                                 class="inline-flex items-center pointer justify-center gap-2 whitespace-nowrap rounded-md text-sm transition-colors border border-solid border-input bg-background h-10 px-4 py-2 w-full pl-3 text-left font-normal hover:bg-medical-50 hover:text-medical-500">
-                                <span class="selected-value">Pick a date</span>
+                                <span id="selected-date" class="selected-value">Pick a date</span>
+
                                 <i data-lucide="calendar" class="ml-auto w-4 opacity-50"></i>
                             </button>
 
-                            <div class="rounded-md border border-solid border-gray-200 bg-white text-gray-800 shadow-md w-auto p-4"
+                            <div class="rounded-md border border-solid border-gray-200 bg-white text-gray-800 shadow-md w-auto p-4 max-w-70"
                                 role="dialog" tabindex="-1">
                                 <div class="flex flex-col gap-4">
                                     <!-- Header: Month + Navigation -->
-                                    <div class="flex items-center justify-between">
-                                        <button type="button" aria-label="Go to previous month"
-                                            class="h-8 w-8 flex items-center justify-center text-gray-500 hover:text-black transition">
-                                            <i data-lucide="chevron-left" class="h-4 w-4"></i>
-                                        </button>
+                                    <div class="flex items-center justify-center pt-1">
 
-                                        <div class="text-base font-semibold" aria-live="polite">May 2025</div>
+                                        <div class="flex items-center gap-1">
+                                            <!-- Previous Button -->
+                                            <button id="prev" type="button" aria-label="Go to previous month"
+                                                class="h-7 w-7 mr-12 p-0 opacity-50 hover:opacity-100 rounded-md border border-solid border-input bg-transparent hover:bg-medical-50 hover:text-medical-700 flex items-center justify-center">
+                                                <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                                            </button>
 
-                                        <button type="button" aria-label="Go to next month"
-                                            class="h-8 w-8 flex items-center justify-center text-gray-500 hover:text-black transition">
-                                            <i data-lucide="chevron-right" class="h-4 w-4"></i>
-                                        </button>
+                                            <!-- Month and Year -->
+                                            <div id="month-year" class="text-sm font-semibold mx-1 whitespace-nowrap">
+                                                June 2025
+                                            </div>
+                                            
+                                            <!-- Next Button -->
+                                            <button id="next" type="button" aria-label="Go to next month"
+                                                class="h-7 w-7 ml-12 p-0 opacity-50 hover:opacity-100 rounded-md border border-solid border-input bg-transparent hover:bg-medical-50 hover:text-medical-700 flex items-center justify-center">
+                                                <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                                            </button>
+                                        </div>
                                     </div>
 
                                     <!-- Weekday Headers -->
-                                    <div class="grid grid-cols-7 text-center text-gray-500 text-sm font-medium">
-                                        <div>Su</div>
-                                        <div>Mo</div>
-                                        <div>Tu</div>
-                                        <div>We</div>
-                                        <div>Th</div>
-                                        <div>Fr</div>
-                                        <div>Sa</div>
+                                    <div class="grid grid-cols-7 text-center text-sm font-medium w-full">
+                                        <div class="w-9 text-grey-500 font-normal text-sm">Su</div>
+                                        <div class="w-9 text-grey-500 font-normal text-sm">Mo</div>
+                                        <div class="w-9 text-grey-500 font-normal text-sm">Tu</div>
+                                        <div class="w-9 text-grey-500 font-normal text-sm">We</div>
+                                        <div class="w-9 text-grey-500 font-normal text-sm">Th</div>
+                                        <div class="w-9 text-grey-500 font-normal text-sm">Fr</div>
+                                        <div class="w-9 text-grey-500 font-normal text-sm">Sa</div>
                                     </div>
 
                                     <!-- Calendar Days -->
-                                    <div class="grid grid-cols-7 gap-1 text-sm">
+                                    <div id="days" class="grid grid-cols-7 gap-1 text-sm">
                                         <!-- Previous Month Days (disabled) -->
-                                        <button type="button" class="h-9 w-9 text-gray-400 not-allowed"
-                                            disabled>27</button>
-                                        <button type="button" class="h-9 w-9 text-gray-400 not-allowed"
-                                            disabled>28</button>
-                                        <button type="button" class="h-9 w-9 text-gray-400 not-allowed"
-                                            disabled>29</button>
-                                        <button type="button" class="h-9 w-9 text-gray-400 not-allowed"
-                                            disabled>30</button>
+                                        <button class="w-9 h-9 text-gray-400 not-allowed" disabled>27</button>
+                                        <button class="w-9 h-9 text-gray-400 not-allowed" disabled>28</button>
+                                        <button class="w-9 h-9 text-gray-400 not-allowed" disabled>29</button>
+                                        <button class="w-9 h-9 text-gray-400 not-allowed" disabled>30</button>
 
                                         <!-- Current Month Days -->
-                                        <button type="button" class="h-9 w-9 hover:bg-gray-100 rounded">1</button>
-                                        <button type="button" class="h-9 w-9 hover:bg-gray-100 rounded">2</button>
-                                        <button type="button" class="h-9 w-9 hover:bg-gray-100 rounded">3</button>
+                                        <button class="w-9 h-9 hover:bg-gray-100 rounded">1</button>
+                                        <button class="w-9 h-9 hover:bg-gray-100 rounded">2</button>
+                                        <button class="w-9 h-9 hover:bg-gray-100 rounded">3</button>
 
                                         <!-- مثال لليوم الحالي -->
                                         <button
-                                            class="h-9 w-9 bg-cyan-100 text-black font-semibold rounded-full">28</button>
+                                            class="w-9 h-9 bg-cyan-100 text-black font-semibold rounded-full">28</button>
 
                                         <!-- أيام لاحقة -->
-                                        <button type="button" class="h-9 w-9 hover:bg-gray-100 rounded">29</button>
-                                        <button type="button" class="h-9 w-9 hover:bg-gray-100 rounded">30</button>
+                                        <button class="w-9 h-9 hover:bg-gray-100 rounded">29</button>
+                                        <button class="w-9 h-9 hover:bg-gray-100 rounded">30</button>
                                     </div>
                                 </div>
                             </div>
@@ -272,14 +278,14 @@
                         </div>
 
                         <!-- Time Slot -->
-                        <div class="flex flex-col gap-3">
+                        <div class="flex flex-col gap-3  relative" id="timeSlotContainer">
                             <label class="text-sm font-medium leading-none">Time Slot</label>
-                            <button type="button" role="combobox"
+                            <button type="button" role="combobox" id="timeSlotButton" onclick="toggleTimeSlotDropdown()"
                                 class="bg-white flex items-center justify-between pointer h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white"">
                                 <span class=" selected-value">Select a time</span>
                                 <i data-lucide="chevron-down" class="h-4 w-4 opacity-50"></i>
                             </button>
-                            <ul
+                            <ul id="timeSlotDropdown"
                                 class="hidden p-1.5 bg-background border border-solid border-input rounded-md shadow-xl">
                                 <li>
                                     <button type="button"
@@ -352,6 +358,7 @@
                                         PM</button>
                                 </li>
                             </ul>
+
 
                             <p id="error-timeSlot" class="text-sm font-medium text-danger hidden">Please select a
                                 time
@@ -524,6 +531,7 @@
     <script>
         lucide.createIcons();
     </script>
+
 </body>
 
 </html>
