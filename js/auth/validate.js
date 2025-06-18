@@ -1,16 +1,24 @@
 export function setupPasswordMatchCheck() {
-  const password = document.getElementById("password");
+  const password = document.querySelector(".password");
   const confirmPassword = document.getElementById("confirm-password");
-  const errorText = document.getElementById("password-error");
+  const errorToast = document.getElementById("password-error-toast");
   const submitButton = document.getElementById("signup-btn");
 
   submitButton.addEventListener("click", (e) => {
     if (password.value !== confirmPassword.value) {
       e.preventDefault();
-      errorText.classList.remove("hidden");
+
+      // Show the toast
+      errorToast.classList.remove("hidden");
+
+      // Hide after 5 seconds
+      setTimeout(() => {
+        errorToast.classList.add("hidden");
+      }, 5000);
+
       return false;
     } else {
-      errorText.classList.add("hidden");
+      errorToast.classList.add("hidden");
       return true;
     }
   });

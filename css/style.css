@@ -174,3 +174,8 @@ input::placeholder {
 .eye-toggle-icon {
   pointer-events: none;
 }
+
+#password-error-toast {
+  bottom: 20px; 
+  right: 20px;  
+}

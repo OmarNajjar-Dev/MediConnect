@@ -96,10 +96,15 @@
     </header>
 
     <!-- ====================== Main Content ====================== -->
-    <main id="about" class="overflow-hidden pt-20 flex-grow min-h-screen pb-16">
-        <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <main class="overflow-hidden pt-20 flex-grow min-h-screen bg-gray-50 pb-16">
+        <div class="min-h-screen flex items-center justify-center bg-transparent py-12 px-4 sm:px-6 lg:px-8">
             <div class="max-w-md w-full flex flex-col gap-8">
                 <div class="text-center">
+                    <a href="./" class="flex justify-center items-center">
+                        <span class="text-medical-700 text-3xl font-semibold">
+                            Medi<span class="text-medical-500">Connect</span>
+                        </span>
+                    </a>
                     <h2 class="mt-6 text-3xl text-heading font-bold text-gray-900">
                         Create your account
                     </h2>
@@ -142,9 +147,9 @@
                         <div>
                             <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
                             <div class="mt-1 relative">
-                                <input type="password" id="password" name="password" autocomplete="current-password"
-                                    required placeholder="*******"
-                                    class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 pr-10 py-2 text-base focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white md:text-sm" />
+                                <input type="password" name="password" autocomplete="current-password" required
+                                    placeholder="*******"
+                                    class="password flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 pr-10 py-2 text-base focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white md:text-sm" />
                                 <button type="button" id="togglePassword"
                                     class="eye-toggle-button absolute inset-y-0 right-0 flex items-center pr-3 z-10 pointer bg-transparent border-none"
                                     aria-label="Toggle password visibility">
@@ -167,10 +172,11 @@
                             </div>
                         </div>
 
+
+
                         <div class="flex items-center">
-                            <input type="checkbox" id="agree-terms"
-                                class="peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" />
-                            <label for="agree-terms" class="ml-2 block text-sm text-gray-900">
+                            <input type="checkbox" id="agree-checkbox" class="custom-checkbox" />
+                            <label for="agree-checkbox" class="ml-2 block text-sm text-gray-900">
                                 I agree to the
                                 <a href="/terms-of-service" class="text-medical-500 hover:text-medical-700">Terms of
                                     Service</a>
@@ -182,15 +188,13 @@
 
                         <div>
                             <button id="signup-btn" type="submit"
-                                class="h-10 px-4 py-2 w-full border border-solid border-input bg-medical-300 hover:bg-medical-400 text-primary-foreground rounded-md text-sm text-white font-medium flex items-center justify-center gap-2">
-                                <i data-lucide="user-plus" class="h-5 w-5"></i>
+                                class="h-10 px-4 py-2 w-full border border-solid border-input bg-medical-200 text-white rounded-sm text-sm font-medium flex items-center justify-center gap-2 pointer-events-none">
+                                <i data-lucide="user-plus" class="h-4 w-4"></i>
                                 Sign up
                             </button>
-                            <!-- Optional Error Message -->
-                            <p id="password-error" class="text-danger text-sm mt-1 hidden">
-                                Passwords do not match.
-                            </p>
+
                         </div>
+
                     </form>
 
                     <div class="mt-6">
@@ -198,20 +202,46 @@
                             <div class="absolute inset-0 flex items-center">
                                 <div class="w-full border-t border-gray-300"></div>
                             </div>
-                            <div class="relative flex justify-center text-sm">
+                            <div class="relative flex items-center text-sm">
+                                <hr class="flex-grow border-t border-gray-500">
                                 <span class="px-2 bg-white text-gray-500">Or sign up with</span>
+                                <hr class="flex-grow border-t border-gray-500">
                             </div>
                         </div>
 
                         <div class="mt-6 grid grid-cols-2 gap-3">
+                            <!-- Google Button -->
                             <button type="button"
-                                class="w-full inline-flex justify-center py-2 px-4 border border-solid border-input rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-                                <i data-lucide="globe" class="w-5 h-5"></i>
+                                class="w-full inline-flex justify-center py-2 px-4 border border-solid border-input rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 pointer">
+                                <svg data-lov-id="src/pages/SignIn.tsx:151:16" data-lov-name="svg"
+                                    data-component-path="src/pages/SignIn.tsx" data-component-line="151"
+                                    data-component-file="SignIn.tsx" data-component-name="svg"
+                                    data-component-content="%7B%22className%22%3A%22w-5%20h-5%22%7D" class="w-5 h-5"
+                                    fill="currentColor" viewBox="0 0 24 24">
+                                    <path data-lov-id="src/pages/SignIn.tsx:152:18" data-lov-name="path"
+                                        data-component-path="src/pages/SignIn.tsx" data-component-line="152"
+                                        data-component-file="SignIn.tsx" data-component-name="path"
+                                        data-component-content="%7B%7D"
+                                        d="M12.545,10.239v3.821h5.445c-0.712,2.315-2.647,3.972-5.445,3.972c-3.332,0-6.033-2.701-6.033-6.032s2.701-6.032,6.033-6.032c1.498,0,2.866,0.549,3.921,1.453l2.814-2.814C17.503,2.988,15.139,2,12.545,2C7.021,2,2.543,6.477,2.543,12s4.478,10,10.002,10c8.396,0,10.249-7.85,9.426-11.748L12.545,10.239z">
+                                    </path>
+                                </svg>
                             </button>
 
+                            <!-- Facebook Button -->
                             <button type="button"
-                                class="w-full inline-flex justify-center py-2 px-4 border border-solid border-input rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-                                <i data-lucide="facebook" class="w-5 h-5"></i>
+                                class="w-full inline-flex justify-center py-2 px-4 border border-solid border-input rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 pointer">
+                                <svg data-lov-id="src/pages/SignIn.tsx:162:16" data-lov-name="svg"
+                                    data-component-path="src/pages/SignIn.tsx" data-component-line="162"
+                                    data-component-file="SignIn.tsx" data-component-name="svg"
+                                    data-component-content="%7B%22className%22%3A%22w-5%20h-5%22%7D" class="w-5 h-5"
+                                    fill="currentColor" viewBox="0 0 24 24">
+                                    <path data-lov-id="src/pages/SignIn.tsx:163:18" data-lov-name="path"
+                                        data-component-path="src/pages/SignIn.tsx" data-component-line="163"
+                                        data-component-file="SignIn.tsx" data-component-name="path"
+                                        data-component-content="%7B%7D"
+                                        d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z">
+                                    </path>
+                                </svg>
                             </button>
                         </div>
                     </div>
@@ -225,6 +255,10 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div id="password-error-toast" class="hidden fixed max-w-xs bg-danger text-white p-5 rounded-md">
+            <p class="font-semibold">Passwords do not match.</p>
+            <p class="text-sm">Please make sure your passwords match.</p>
         </div>
     </main>
 
