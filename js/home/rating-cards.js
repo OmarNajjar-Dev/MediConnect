@@ -16,7 +16,7 @@ export const ratingCardsData = [
     description:
       "Browse doctor reviews and ratings to find the best healthcare provider for your needs.",
     buttonText: "Find Rated Doctors",
-    linkHref: "/doctors.php",
+    linkHref: "/doctors.html",
     animationDelay: "200ms",
   },
 ];

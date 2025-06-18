@@ -1,6 +1,6 @@
 export async function renderHospitals(container) {
   try {
-    const response = await fetch("./backend/get-hospitals.php");
+    const response = await fetch("/MediConnect/backend/get-hospitals.php");
     const hospitals = await response.json();
 
     hospitals.forEach((h) => {
