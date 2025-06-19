@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-MediConnect is a comprehensive healthcare web platform that connects patients with medical professionals, hospitals, pharmacies, and emergency services. Built using pure HTML, CSS, and JavaScript, it offers a streamlined and accessible interface for healthcare service delivery.
+MediConnect is a lightweight healthcare web platform that connects patients with hospitals, doctors, and emergency services. Built using plain HTML, CSS, JavaScript, and PHP, it delivers a fast, accessible, and framework-free experience for managing healthcare services.
 
 ---
 
@@ -14,8 +14,6 @@ MediConnect is a comprehensive healthcare web platform that connects patients wi
 - **Hospital Directory**: Locate hospitals and healthcare facilities
 - **Appointment Booking**: Schedule and manage medical appointments
 - **Emergency Services**: Access COVID-19-focused emergency care
-- **Pharmacy Orders**: Order prescriptions and medications online
-- **Blood Donation**: Redirect to official donation centers (e.g., Red Cross)
 
 ### Healthcare Provider Tools
 
@@ -25,10 +23,10 @@ MediConnect is a comprehensive healthcare web platform that connects patients wi
 
 ### Platform Features
 
-- **Responsive Design**: Optimized for both desktop and mobile devices
+- **Responsive Design**: Optimized for desktop and mobile
 - **Live Updates**: Real-time status tracking for appointments and emergencies
 - **Rating System**: Patients can rate doctors, hospitals, and services
-- **Multi-language Support**: Accessible to a diverse global audience
+- **Multi-language Support**: Accessible to a global audience
 
 ---
 
@@ -39,24 +37,20 @@ MediConnect is a comprehensive healthcare web platform that connects patients wi
 | Super Admin    | Full Access         | Full platform management                                      |
 | Admin          | Hospital Management | Manage users, doctors, appointments                           |
 | Doctor         | Medical Services    | Access to patient records, prescriptions, and scheduling      |
-| Nurse          | Patient Care        | Update patient status and view medical records                |
 | Patient        | Personal Health     | Book appointments, view prescriptions, manage profile         |
 | Staff          | Reception Services  | Schedule appointments, handle patient registration            |
-| Pharmacist     | Medication Services | Verify prescriptions and manage medication records            |
 | Ambulance Team | Emergency Response  | Handle real-time emergency tracking and response coordination |
-| Viewer         | Read-Only           | View reports and statistics                                   |
-
-> 🔔 Note: The **Blood Donation** page does **not** support direct donations. It redirects users to an external site (such as the official Red Cross platform) to complete the process.
 
 ---
 
 ## 🛠 Technologies Used
 
 - HTML5
-- CSS3 (with custom utility classes)
+- CSS3
 - JavaScript (ES6+)
-- DOM APIs and localStorage for dynamic behavior
-- Fetch API for backend integration
+- PHP (for backend logic and basic routing)
+- DOM APIs and localStorage
+- No external frameworks
 
 ---
 
@@ -64,23 +58,21 @@ MediConnect is a comprehensive healthcare web platform that connects patients wi
 
 ### Core Pages
 
-- `/` — Home (Landing page with overview and services)
-- `/dashboard` — User-specific dashboard based on role
-- `/doctors` — List of available doctors and specialists
-- `/hospitals` — Hospital directory and details
-- `/appointments` — Appointment booking and management
-- `/emergency` — COVID-19 emergency services
-- `/pharmacy` — Order prescriptions and medication
-- `/blood-donation` — Redirect to official blood donation website
+- `/` — Home
+- `/dashboard` — Role-based dashboard
+- `/doctors` — Doctor listings
+- `/hospitals` — Hospital directory
+- `/appointments` — Appointment booking
+- `/emergency` — Emergency services
 
 ### Informational Pages
 
-- `/about` — About the platform and mission
+- `/about` — Platform mission
 - `/privacy` — Privacy policy
 - `/terms` — Terms of service
-- `/contact` — Contact form and support info
+- `/contact` — Contact form
 - `/faq` — Frequently asked questions
-- `/accessibility` — Accessibility statement
+- `/accessibility` — Accessibility commitment
 
 ---
 
@@ -88,31 +80,24 @@ MediConnect is a comprehensive healthcare web platform that connects patients wi
 
 ### Color Palette
 
-- **Primary Theme**: Medical green and clean neutrals
-- **Contrast**: Compliant with WCAG accessibility guidelines
+- **Primary**: Medical green with clean neutral tones
+- **Contrast**: WCAG-compliant color ratios
 
 ### Components
 
-- **Modular Structure**: Header, Footer, Cards, Forms, Tables, etc.
-- **Responsive Layout**: Grid and flexbox-based responsive design
-- **Icon Integration**: SVG icons for clarity and performance
-- **Smooth Interactions**: Basic animations and transitions using CSS & JS
+- **Modular Layout**: Reusable header, footer, forms, cards, and tables
+- **Responsive Grid**: Built with pure CSS (flexbox and grid)
+- **SVG Icons**: Clean and scalable interface
+- **Smooth UX**: Minimal JS-based animations and transitions
 
 ---
 
 ## 🔒 Security & Permissions
 
-### Access Control
-
-- Role-based visibility for UI elements and actions
-- Custom permission checks per feature
-- Data protection via backend authentication logic
-
-### Validation & Protection
-
-- Input validation using JavaScript
-- Basic error handling and feedback messages
-- Session handling through tokens or localStorage
+- Role-based visibility for UI and actions
+- Input validation using plain JavaScript
+- Simple session and access control via PHP
+- Basic error handling and user feedback
 
 ---
 
@@ -121,17 +106,18 @@ MediConnect is a comprehensive healthcare web platform that connects patients wi
 ### Requirements
 
 - A modern web browser
-- Node.js (optional, for development utilities)
-- A simple backend or API (if dynamic data is used)
+- A local or remote PHP server (e.g., XAMPP, WAMP, or Apache)
 
 ### Installation
 
 ```sh
 # Clone the repository
-git clone <https://github.com/OmarNajjar-Dev/MediConnect.git>
+git clone https://github.com/OmarNajjar-Dev/MediConnect.git
 
 # Navigate into the project folder
 cd mediconnect
 
-# Open index.php in your browser
+# Launch using a local PHP server
+# Example:
+php -S localhost:8000
 ```
