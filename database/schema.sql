@@ -1,6 +1,3 @@
--- Best Practice Beginner-Friendly MediConnect Database (Balanced Version)
--- Includes core functionality and useful extensibility without overcomplicating
-
 -- USERS & AUTHENTICATION
 CREATE TABLE users (
     user_id INT PRIMARY KEY AUTO_INCREMENT,
