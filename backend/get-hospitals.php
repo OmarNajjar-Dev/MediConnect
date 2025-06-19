@@ -1,7 +1,7 @@
 <?php
 require_once 'db.php';
 
-$sql = "SELECT h.*, GROUP_CONCAT(s.name) AS specialties
+$sql = "SELECT h.*, GROUP_CONCAT(s.label_for_hospital) AS specialties
         FROM hospitals h
         LEFT JOIN hospital_specialties hs ON h.hospital_id = hs.hospital_id
         LEFT JOIN specialties s ON hs.specialty_id = s.specialty_id

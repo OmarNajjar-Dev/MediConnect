@@ -11,11 +11,12 @@ $sql = "SELECT
             u.first_name,
             u.last_name,
             u.city,
-            u.address_line,
-            s.name AS specialty
+            h.name AS hospital_name,
+            s.label_for_doctor AS specialty
         FROM doctors d
         INNER JOIN users u ON d.user_id = u.user_id
-        LEFT JOIN specialties s ON d.specialty_id = s.specialty_id";
+        LEFT JOIN specialties s ON d.specialty_id = s.specialty_id
+        LEFT JOIN hospitals h ON d.hospital_id = h.hospital_id";
 
 $result = $conn->query($sql);
 
