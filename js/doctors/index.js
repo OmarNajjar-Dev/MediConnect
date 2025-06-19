@@ -1,4 +1,4 @@
-import { renderDoctors } from "./doctors-render.js";
+import { renderDoctors } from "./renderDoctors.js";
 import { initDoctorFilters } from "./filter-doctors.js";
 
 document.addEventListener("DOMContentLoaded", () => {

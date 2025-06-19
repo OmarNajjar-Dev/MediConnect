@@ -119,7 +119,4 @@ export function initDoctorFilters() {
     // Re-apply filters to show all cards
     applyDoctorFilters();
   });
-
-  // Initial filter application on page load
-  applyDoctorFilters();
 }
