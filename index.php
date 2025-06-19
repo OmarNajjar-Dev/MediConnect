@@ -264,11 +264,6 @@
                 Emergency Services
               </a>
             </li>
-            <li>
-              <a href="./pharmacy.php" class="text-gray-600 hover:text-medical-600 transition-colors">
-                Pharmacy Orders
-              </a>
-            </li>
           </ul>
         </div>
 
