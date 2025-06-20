@@ -144,6 +144,75 @@
                             </div>
                         </div>
 
+                        <div class="flex flex-col gap-2">
+                            <label for="role-input" class="block text-sm font-medium text-gray-700">Choose Your
+                                Role</label>
+                            <div class="relative">
+                                <button id="role-trigger" type="button"
+                                    class="flex h-10 w-full items-center justify-between rounded-md border border-solid border-input bg-background px-3 py-2 text-sm focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white">
+                                    <span id="selected-role" class="text-gray-700">Select your role</span>
+                                    <i data-lucide="chevron-down" class="w-4 h-4 opacity-50"></i>
+                                </button>
+
+                                <input type="hidden" id="role-input" name="role" value="" />
+
+                                <ul id="role-options"
+                                    class="absolute z-50 mt-1.5 p-1 border border-solid border-input w-full bg-white rounded-md shadow-xl hidden">
+                                    <li>
+                                        <button type="button"
+                                            class="option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm border-none bg-white text-gray-700 hover:bg-gray-100"
+                                            data-value="super-admin">
+                                            <span>Super Admin</span>
+                                            <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i>
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button type="button"
+                                            class="option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm border-none bg-white text-gray-700 hover:bg-gray-100"
+                                            data-value="hospital-admin">
+                                            <span>Hospital Admin</span>
+                                            <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i>
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button type="button"
+                                            class="option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm border-none bg-white text-gray-700 hover:bg-gray-100"
+                                            data-value="doctor">
+                                            <span>Doctor</span>
+                                            <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i>
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button type="button"
+                                            class="option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm border-none bg-white text-gray-700 hover:bg-gray-100"
+                                            data-value="patient">
+                                            <span>Patient</span>
+                                            <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i>
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button type="button"
+                                            class="option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm border-none bg-white text-gray-700 hover:bg-gray-100"
+                                            data-value="ambulance-team">
+                                            <span>Ambulance Team</span>
+                                            <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i>
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button type="button"
+                                            class="option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm border-none bg-white text-gray-700 hover:bg-gray-100"
+                                            data-value="staff">
+                                            <span>Staff</span>
+                                            <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i>
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                            <p class="text-xs text-gray-500">
+                                Select the role that best describes your position in the healthcare system.
+                            </p>
+                        </div>
+
                         <div>
                             <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
                             <div class="mt-1 relative">
@@ -259,6 +328,12 @@
         <div id="password-error-toast" class="hidden fixed max-w-xs bg-danger text-white p-5 rounded-md">
             <p class="font-semibold">Passwords do not match.</p>
             <p class="text-sm">Please make sure your passwords match.</p>
+        </div>
+
+        <div id="role-error-toast"
+            class="hidden fixed max-w-xs bg-danger text-white p-5 rounded-md">
+            <p class="font-semibold">Please select your role.</p>
+            <p class="text-sm">You must choose your position in the healthcare system.</p>
         </div>
     </main>
 

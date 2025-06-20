@@ -1,9 +1,11 @@
 import { setupPasswordToggle } from "./pass.js";
-import { setupPasswordMatchCheck } from "./validate.js";
+import { validateForm } from "./validateForm.js";
 import { handleCheckboxToggle } from "./checkbox.js";
+import { initRoleDropdown } from "./select.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   setupPasswordToggle();
-  setupPasswordMatchCheck();
+  validateForm();
   handleCheckboxToggle();
+  initRoleDropdown();
 });

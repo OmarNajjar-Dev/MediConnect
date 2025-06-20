@@ -175,7 +175,8 @@ input::placeholder {
   pointer-events: none;
 }
 
-#password-error-toast {
+#password-error-toast,#role-error-toast {
   bottom: 20px; 
   right: 20px;  
 }
+
