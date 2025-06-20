@@ -53,7 +53,7 @@
         <a href="./login.php"
           class="hidden items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all md:flex">Sign
           In</a>
-        <a href="./signup.php"
+        <a href="./register.php"
           class="hidden items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all md:flex">Sign
           Up</a>
 
@@ -83,7 +83,7 @@
             <a href="./login.php"
               class="inline-flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-all">Sign
               In</a>
-            <a href="./signup.php"
+            <a href="./register.php"
               class="inline-flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Sign
               Up</a>
           </div>

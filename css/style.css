@@ -132,3 +132,54 @@ input::placeholder {
   -webkit-line-clamp: 2;
   line-clamp: 2;
 }
+
+#contact-section-top {
+  background: linear-gradient(to bottom, #e6f5f4b3, #ffffffe6);
+}
+
+.custom-checkbox {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #009688;
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+}
+
+/* When checked: green background */
+.custom-checkbox:checked {
+  background-color: #009688;
+}
+
+/* Draw the checkmark */
+.custom-checkbox:checked::after {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 4px;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* Parent button container */
+.eye-toggle-button {
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+
+/* Icon itself */
+.eye-toggle-icon {
+  pointer-events: none;
+}
+
+#password-error-toast,#role-error-toast {
+  bottom: 20px; 
+  right: 20px;  
+}

@@ -43,7 +43,7 @@ export async function renderDoctors(container) {
           <button type="button" class="flex-grow-2 whitespace-nowrap text-sm inline-flex items-center justify-center gap-2 rounded-md font-medium transition-all border border-solid border-input bg-background hover:bg-medical-50 text-heading hover:text-medical-600 h-10 py-2 px-4 pointer">
             View Profile
           </button>
-          <a href="/appointments.php?doctor=${
+          <a href="./appointments.php?doctor=${
             card.doctor_id
           }" class="flex-grow whitespace-nowrap text-sm inline-flex items-center justify-center gap-2 rounded-md font-medium transition-all bg-medical-500 text-white hover:bg-medical-400 h-10 py-2 px-4">
             Book Appointment

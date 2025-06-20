@@ -2,9 +2,12 @@
 <html lang="en">
 
 <head>
-    <!-- Meta Tags -->
+    <!-- Meta Settings -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Page Title -->
+    <title>MediConnect - Bridging Healthcare & Technology</title>
 
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
@@ -20,9 +23,11 @@
     <link rel="stylesheet" href="css/animations.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/ring.css" />
+
 </head>
 
-<body class="bg-background text-heading">
+<body class="bg-background text-foreground">
     <!-- Header Section -->
     <header class="fixed z-50 py-5 bg-transparent transition-all">
         <div class="container mx-auto flex items-center justify-between px-4">
@@ -39,9 +44,9 @@
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Doctors</a>
                 <a href="./hospitals.html"
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Hospitals</a>
-                <a href="./appointments.php"
+                <a href="./appointments.html"
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Appointments</a>
-                <a href="./dashboard.php"
+                <a href="./dashboard.html"
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Dashboard</a>
             </nav>
 
@@ -72,9 +77,9 @@
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Doctors</a>
                     <a href="./hospitals.html"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
-                    <a href="./appointments.php"
+                    <a href="./appointments.html"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
-                    <a href="./dashboard.php"
+                    <a href="./dashboard.html"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Dashboard</a>
 
                     <!-- Sign In / Sign Up buttons (Mobile view) -->
@@ -91,154 +96,125 @@
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="overflow-hidden pt-20 flex-grow">
-        <div class="container mx-auto px-4 py-12 md:px-6">
-            <div class="max-w-3xl mx-auto">
-                <h1 class="text-3xl font-bold mb-6">Privacy Policy</h1>
-                <div class="text-sm text-gray-500 mb-8">
-                    Last updated: May 1, 2025
+    <!-- ====================== Main Content ====================== -->
+    <main class="overflow-hidden pt-20 flex-grow min-h-screen bg-gray-50 pb-16">
+        <div class="min-h-screen flex items-center justify-center bg-transparent py-12 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-md w-full flex flex-col gap-6">
+                <div class="text-center">
+                    <a href="./" class="flex justify-center items-center">
+                        <span class="text-medical-700 text-3xl font-semibold">
+                            Medi<span class="text-medical-500">Connect</span>
+                        </span>
+                    </a>
+                    <h2 class="mt-6 text-3xl font-bold text-heading text-gray-900">Sign in to your account</h2>
+                    <p class="mt-2 text-sm text-gray-600">Access your healthcare platform to manage appointments and
+                        more</p>
                 </div>
-                <div class="max-w-none">
-                    <p class="mb-6">
-                        At MediConnect, we take your privacy seriously. This Privacy
-                        Policy describes how we collect, use, and share your personal
-                        information when you use our platform.
-                    </p>
 
-                    <h2 class="text-2xl font-bold mt-8 mb-4">Information We Collect</h2>
-                    <p class="mb-4">
-                        We collect several types of information from and about users of
-                        our platform, including:
-                    </p>
-                    <ul class="list-disc pl-8 mb-6">
-                        <li class="mb-2">
-                            Personal information such as your name, email address, phone
-                            number, and date of birth.
-                        </li>
-                        <li class="mb-2">
-                            Medical information necessary for scheduling appointments and
-                            maintaining your health profile.
-                        </li>
-                        <li class="mb-2">
-                            Information about your interactions with our platform, including
-                            your browsing history and usage patterns.
-                        </li>
-                        <li class="mb-2">
-                            Device information including IP address, browser type, and
-                            operating system.
-                        </li>
-                    </ul>
+                <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+                    <form class="flex flex-col gap-6">
+                        <div>
+                            <label for="email" class="text-sm font-medium text-gray-700">Email</label>
+                            <div class="mt-1">
+                                <input type="email" id="email" name="email" autocomplete="email" required
+                                    placeholder="you@example.com"
+                                    class="flex h-10 w-full rounded-sm border border-solid border-input bg-background px-3 py-2 text-base focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white md:text-sm">
+                            </div>
+                        </div>
 
-                    <h2 class="text-2xl font-bold mt-8 mb-4">
-                        How We Use Your Information
-                    </h2>
-                    <p class="mb-4">We use the information we collect to:</p>
-                    <ul class="list-disc pl-8 mb-6">
-                        <li class="mb-2">Provide, maintain, and improve our services.</li>
-                        <li class="mb-2">
-                            Process and manage appointments with healthcare providers.
-                        </li>
-                        <li class="mb-2">
-                            Communicate with you about your account, appointments, and other
-                            service-related matters.
-                        </li>
-                        <li class="mb-2">
-                            Personalize your experience and deliver content relevant to your
-                            interests.
-                        </li>
-                        <li class="mb-2">
-                            Monitor and analyze usage patterns and trends to improve our
-                            platform.
-                        </li>
-                    </ul>
+                        <div>
+                            <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                            <div class="mt-1 relative">
+                                <input type="password" name="password" autocomplete="current-password" required
+                                    placeholder="*******"
+                                    class="password flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 pr-10 py-2 text-base focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white md:text-sm" />
+                                <button type="button" id="togglePassword"
+                                    class="eye-toggle-button absolute inset-y-0 right-0 flex items-center pr-3 z-10 pointer bg-transparent border-none"
+                                    aria-label="Toggle password visibility">
+                                    <i data-lucide="eye" class="eye-toggle-icon h-5 w-5 text-gray-400"></i>
+                                </button>
+                            </div>
+                        </div>
 
-                    <h2 class="text-2xl font-bold mt-8 mb-4">
-                        Data Sharing and Disclosure
-                    </h2>
-                    <p class="mb-4">We may share your personal information with:</p>
-                    <ul class="list-disc pl-8 mb-6">
-                        <li class="mb-2">
-                            Healthcare providers with whom you schedule appointments.
-                        </li>
-                        <li class="mb-2">
-                            Third-party service providers who perform services on our
-                            behalf.
-                        </li>
-                        <li class="mb-2">
-                            Legal authorities when required by law or to protect our rights.
-                        </li>
-                    </ul>
-                    <p>
-                        We will not sell your personal information to third parties for
-                        marketing purposes without your explicit consent.
-                    </p>
 
-                    <h2 class="text-2xl font-bold mt-8 mb-4">Data Security</h2>
-                    <p class="mb-6">
-                        We implement appropriate security measures to protect your
-                        personal information from unauthorized access, alteration,
-                        disclosure, or destruction. These measures include:
-                    </p>
-                    <ul class="list-disc pl-8 mb-6">
-                        <li class="mb-2">
-                            Encryption of sensitive data both in transit and at rest.
-                        </li>
-                        <li class="mb-2">
-                            Regular security assessments and vulnerability testing.
-                        </li>
-                        <li class="mb-2">
-                            Access controls to limit data access to authorized personnel
-                            only.
-                        </li>
-                        <li class="mb-2">
-                            Employee training on data protection and privacy practices.
-                        </li>
-                    </ul>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <input type="checkbox" class="custom-checkbox">
+                                <label for="remember-me" class="ml-2 block text-sm text-gray-900">Remember me</label>
+                            </div>
+                            <div class="text-sm">
+                                <a href="./forgot-password"
+                                    class="font-medium text-medical-500 hover:text-medical-700">Forgot your
+                                    password?</a>
+                            </div>
+                        </div>
 
-                    <h2 class="text-2xl font-bold mt-8 mb-4">
-                        Your Rights and Choices
-                    </h2>
-                    <p class="mb-4">
-                        Depending on your location, you may have certain rights regarding
-                        your personal information, including:
-                    </p>
-                    <ul class="list-disc pl-8 mb-6">
-                        <li class="mb-2">Access to your personal information.</li>
-                        <li class="mb-2">
-                            Correction of inaccurate or incomplete information.
-                        </li>
-                        <li class="mb-2">Deletion of your personal information.</li>
-                        <li class="mb-2">
-                            Restriction or objection to certain processing activities.
-                        </li>
-                        <li class="mb-2">Data portability.</li>
-                    </ul>
-                    <p>
-                        To exercise any of these rights, please contact us using the
-                        information provided in the "Contact Us" section.
-                    </p>
+                        <div>
+                            <button type="submit"
+                                class="h-10 px-4 py-2 w-full border border-solid border-input bg-medical-500 hover:bg-medical-700 text-white rounded-sm text-sm font-medium flex items-center justify-center gap-2">
+                                <i data-lucide="log-in" class="h-4 w-4"></i>
+                                Sign in
+                            </button>
+                        </div>
+                    </form>
 
-                    <h2 class="text-2xl font-bold mt-8 mb-4">
-                        Changes to this Privacy Policy
-                    </h2>
-                    <p class="mb-6">
-                        We may update this Privacy Policy from time to time. We will
-                        notify you of any changes by posting the new Privacy Policy on
-                        this page and updating the "Last updated" date at the top of this
-                        policy.
-                    </p>
+                    <div class="mt-6">
+                        <div class="relative">
+                            <div class="absolute inset-0 flex items-center">
+                                <div class="w-full border-t border-gray-300"></div>
+                            </div>
+                            <div class="relative flex items-center text-sm">
+                                <hr class="flex-grow border-t border-gray-500">
+                                <span class="px-2 bg-white text-gray-500">Or continue with</span>
+                                <hr class="flex-grow border-t border-gray-500">
+                            </div>
+                        </div>
 
-                    <h2 class="text-2xl font-bold mt-8 mb-4">Contact Us</h2>
-                    <p>
-                        If you have any questions about this Privacy Policy, please
-                        contact us at:
-                    </p>
-                    <p class="mt-2">
-                        <strong>Email:</strong> privacy@mediconnect.com<br />
-                        <strong>Postal Address:</strong> 123 Health Street, Medical
-                        District, MD 12345
-                    </p>
+                        <div class="mt-6 grid grid-cols-2 gap-3">
+                            <!-- Google Button -->
+                            <button type="button"
+                                class="w-full inline-flex justify-center py-2 px-4 border border-solid border-input rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 pointer">
+                                <svg data-lov-id="src/pages/SignIn.tsx:151:16" data-lov-name="svg"
+                                    data-component-path="src/pages/SignIn.tsx" data-component-line="151"
+                                    data-component-file="SignIn.tsx" data-component-name="svg"
+                                    data-component-content="%7B%22className%22%3A%22w-5%20h-5%22%7D" class="w-5 h-5"
+                                    fill="currentColor" viewBox="0 0 24 24">
+                                    <path data-lov-id="src/pages/SignIn.tsx:152:18" data-lov-name="path"
+                                        data-component-path="src/pages/SignIn.tsx" data-component-line="152"
+                                        data-component-file="SignIn.tsx" data-component-name="path"
+                                        data-component-content="%7B%7D"
+                                        d="M12.545,10.239v3.821h5.445c-0.712,2.315-2.647,3.972-5.445,3.972c-3.332,0-6.033-2.701-6.033-6.032s2.701-6.032,6.033-6.032c1.498,0,2.866,0.549,3.921,1.453l2.814-2.814C17.503,2.988,15.139,2,12.545,2C7.021,2,2.543,6.477,2.543,12s4.478,10,10.002,10c8.396,0,10.249-7.85,9.426-11.748L12.545,10.239z">
+                                    </path>
+                                </svg>
+                            </button>
+
+                            <!-- Facebook Button -->
+                            <button type="button"
+                                class="w-full inline-flex justify-center py-2 px-4 border border-solid border-input rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 pointer">
+                                <svg data-lov-id="src/pages/SignIn.tsx:162:16" data-lov-name="svg"
+                                    data-component-path="src/pages/SignIn.tsx" data-component-line="162"
+                                    data-component-file="SignIn.tsx" data-component-name="svg"
+                                    data-component-content="%7B%22className%22%3A%22w-5%20h-5%22%7D" class="w-5 h-5"
+                                    fill="currentColor" viewBox="0 0 24 24">
+                                    <path data-lov-id="src/pages/SignIn.tsx:163:18" data-lov-name="path"
+                                        data-component-path="src/pages/SignIn.tsx" data-component-line="163"
+                                        data-component-file="SignIn.tsx" data-component-name="path"
+                                        data-component-content="%7B%7D"
+                                        d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z">
+                                    </path>
+                                </svg>
+                            </button>
+                        </div>
+
+                    </div>
+
+                    <div class="mt-6 text-center">
+                        <p class="text-sm text-gray-600">
+                            Don't have an account?
+                            <a href="./register.php" class="font-medium text-medical-500 hover:text-medical-700">Sign
+                                up</a>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -281,7 +257,8 @@
                     </h4>
                     <ul class="flex flex-col gap-2">
                         <li>
-                            <a href="./appointments.php" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="./appointments.html"
+                                class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Book Appointments
                             </a>
                         </li>
@@ -296,8 +273,13 @@
                             </a>
                         </li>
                         <li>
-                            <a href="./emergency.php" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="./emergency.html" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Emergency Services
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./pharmacy.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+                                Pharmacy Orders
                             </a>
                         </li>
                     </ul>
@@ -309,27 +291,27 @@
                     </h4>
                     <ul class="flex flex-col gap-2">
                         <li>
-                            <a href="./about.php" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="./about.html" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 About Us
                             </a>
                         </li>
                         <li>
-                            <a href="./privacy.php" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="./privacy.html" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Privacy Policy
                             </a>
                         </li>
                         <li>
-                            <a href="./terms.php" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="./terms.html" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Terms of Service
                             </a>
                         </li>
                         <li>
-                            <a href="./faq.php" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="./faq.html" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 FAQs
                             </a>
                         </li>
                         <li>
-                            <a href="./contact.php" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="./contact.html" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Contact Us
                             </a>
                         </li>
@@ -365,13 +347,14 @@
         </div>
     </footer>
 
-    <!-- External JavaScript -->
+    <!-- JavaScript -->
     <script type="module" src="js/common/header.js"></script>
     <script type="module" src="js/common/mobile-nav.js"></script>
-
-    <!-- Create Lucide Icons -->
+    <script type="module" src="./js/auth/index.js"></script>
     <script>
-        lucide.createIcons();
+        window.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
     </script>
 </body>
 
