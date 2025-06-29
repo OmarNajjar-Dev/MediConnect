@@ -5,7 +5,7 @@ export const servicesCardsData = [
     description:
       "Schedule appointments with doctors and receive notifications for any changes.",
     linkText: "Book Now",
-    linkHref: "/appointments.php",
+    linkHref: "./appointments.php",
     animationDelay: "0ms",
   },
   {
@@ -14,7 +14,7 @@ export const servicesCardsData = [
     description:
       "Receive digital medical reports and prescriptions directly from your doctor.",
     linkText: "Learn More",
-    linkHref: "/reports.php",
+    linkHref: "./reports.php",
     animationDelay: "100ms",
   },
   {
@@ -32,7 +32,7 @@ export const servicesCardsData = [
     description:
       "Order prescription and over-the-counter medications from registered pharmacies.",
     linkText: "Order Medicines",
-    linkHref: "/pharmacy.php",
+    linkHref: "./pharmacy.php",
     animationDelay: "300ms",
   },
 ];
