@@ -12,8 +12,8 @@
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/colors.css" />
   <link rel="stylesheet" href="css/typography.css" />
-  <link rel="stylesheet" href="css/spacing.css" />
-  <link rel="stylesheet" href="css/sizing.css" />
+  <link rel="stylesheet" href="css/spacing.min.css" />
+  <link rel="stylesheet" href="css/sizing.min.css" />
   <link rel="stylesheet" href="css/borders.css" />
   <link rel="stylesheet" href="css/layout.css" />
   <link rel="stylesheet" href="css/animations.css" />

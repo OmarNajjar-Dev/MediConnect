@@ -133,10 +133,6 @@ input::placeholder {
   line-clamp: 2;
 }
 
-#contact-section-top {
-  background: linear-gradient(to bottom, #e6f5f4b3, #ffffffe6);
-}
-
 .custom-checkbox {
   appearance: none;
   width: 16px;
@@ -179,7 +175,8 @@ input::placeholder {
   pointer-events: none;
 }
 
-#password-error-toast,#role-error-toast {
-  bottom: 20px; 
-  right: 20px;  
+#password-error-toast,
+#role-error-toast {
+  bottom: 20px;
+  right: 20px;
 }
