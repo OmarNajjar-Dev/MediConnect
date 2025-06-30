@@ -44,12 +44,12 @@ export function initDropdown() {
     });
 
     option.addEventListener("mouseleave", () => {
-        selectedOption?.classList.remove("bg-white");
-        selectedOption?.classList.add("bg-gray-100");
+      selectedOption?.classList.remove("bg-white");
+      selectedOption?.classList.add("bg-gray-100");
     });
   });
 
-  document.addEventListener("click", (e) => {
+  window.addEventListener("click", (e) => {
     if (!button.contains(e.target) && !menu.contains(e.target)) {
       menu.classList.add("hidden");
     }

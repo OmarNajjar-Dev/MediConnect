@@ -1,8 +1,8 @@
-import { initDropdown } from './select.js';
-import { validateForm } from './validateForm.js';
-import { sendEmail } from './sendEmail.js';
+import { initDropdown } from "./select.js";
+import { validateForm } from "./validateForm.js";
+import { sendEmail } from "./sendEmail.js";
 
-document.addEventListener('DOMContentLoaded', () => {
+window.addEventListener("DOMContentLoaded", () => {
   initDropdown();
 
   const form = document.querySelector("form");
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const isValid = validateForm();
       if (isValid) {
         await sendEmail(); // Send the email after validation passes
-        form.reset();      // Reset the form after sending
+        form.reset(); // Reset the form after sending
       }
     });
   }

@@ -3,7 +3,7 @@ import { renderServicesCards } from "./services-cards.js";
 import { renderRatingCards } from "./rating-cards.js";
 import { renderTestimonials } from "./testimonials.js";
 
-document.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("DOMContentLoaded", () => {
   renderHeroCards(document.getElementById("hero-cards-container"));
   renderServicesCards(document.getElementById("services-cards-container"));
   renderRatingCards(document.getElementById("rating-cards-container"));
