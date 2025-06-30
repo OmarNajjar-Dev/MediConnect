@@ -347,15 +347,17 @@
         </div>
     </footer>
 
-    <!-- JavaScript -->
+    <!-- External JavaScript -->
     <script type="module" src="js/common/header.js"></script>
     <script type="module" src="js/common/mobile-nav.js"></script>
+
     <script type="module" src="./js/auth/index.js"></script>
+
+    <!-- Create Lucide Icons -->
     <script>
-        window.addEventListener('DOMContentLoaded', () => {
-            lucide.createIcons();
-        });
+        lucide.createIcons()
     </script>
+
 </body>
 
 </html>
