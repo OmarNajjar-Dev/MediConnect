@@ -120,7 +120,7 @@
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
                     <!-- Vision Image + Stats -->
                     <div class="order-1 lg:order-2 relative">
-                        <div class="border border-solid border-card rounded-xl overflow-hidden">
+                        <div class="glass-card rounded-xl overflow-hidden">
                             <div class="relative w-full max-h-62.5 sm:max-h-125 overflow-hidden">
                                 <img id="about-image"
                                     src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=880&auto=format&fit=crop"

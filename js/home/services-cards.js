@@ -44,7 +44,7 @@ export function renderServicesCards(container) {
     div.className = "animate-on-scroll";
     div.style.animationDelay = card.animationDelay;
     div.innerHTML = `
-      <div class="service-card rounded-xl p-6 bg-card shadow-sm transition-all backdrop-blur-md border border-solid border-card h-full">
+      <div class="service-card glass-card rounded-xl p-6 transition-all backdrop-blur-md h-full">
         <div class="flex flex-col h-full">
           <div class="mb-6 w-14 h-14 bg-medical-100 text-medical-600 rounded-md flex items-center justify-center">
             ${card.icon}

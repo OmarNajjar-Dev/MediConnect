@@ -14,7 +14,7 @@ export async function renderHospitals(container) {
       const div = document.createElement("div");
       div.className = "grid grid-cols-1 gap-6";
       div.innerHTML = `
-        <div class="hospital-card-wrapper bg-card border border-solid border-card shadow-sm rounded-xl transition-all overflow-hidden relative">
+        <div class="hospital-card-wrapper glass-card rounded-xl transition-all overflow-hidden relative">
           <div class="flex flex-col md:flex-row">
 
             <div class="relative w-full h-48 md:w-1/3 md:h-auto">

@@ -34,7 +34,7 @@ export function renderTestimonials(container) {
     div.className = "animate-on-scroll";
     div.style.animationDelay = card.animationDelay;
     div.innerHTML = `
-      <div class="rounded-xl p-6 bg-card border border-solid border-card shadow-sm h-full">
+      <div class="glass-card rounded-xl p-6 h-full">
         <div class="flex flex-col h-full">
           <div class="mb-6">
             <div class="flex mb-1">${generateRatingStars(card.stars, [
