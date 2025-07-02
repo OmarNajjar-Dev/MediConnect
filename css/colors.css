@@ -26,16 +26,44 @@
     --gray-800: 31, 41, 55;
     --gray-900: 17, 24, 39;
 
+    --green-50: 240, 253, 244;
+    --green-100: 220, 252, 231;
+    --green-400: 74, 222, 128;
+    --green-500: 34, 197, 94;
+    --green-600: 22, 163, 74;
+    --green-700: 21, 128, 61;
+    --green-800: 22, 101, 52;
+
+    --yellow-100: 254, 249, 195;
+    --yellow-800: 133, 77, 14;
+
+    --red-600: 220, 38, 38;
+    --red-800: 153, 27, 27;
+
+    --blue-50: 239, 246, 255;
+    --blue-500: 59, 130, 246;
+    --blue-600: 37, 99, 235;
+    --blue-700: 29, 78, 216;
+
+
+    --purple-500: 168, 85, 247;
+    --purple-600: 147, 51, 234;
+
     /* Status Colors */
     --success: 22, 163, 74;
     --danger: 240, 68, 64;
     --warning: 133, 77, 14;
+    --accent: 231, 249, 247;
 
     /* Custom UI Colors */
     --background: 255, 255, 255;
     --heading: 2, 8, 23;
     --card-background: 255, 255, 255;
+    --primary-foreground: 255, 255, 255;
+    --secondary: 186, 225, 242;
+    --secondary-foreground: 39, 71, 84;
     --foreground: 75, 85, 99;
+    --muted-foreground: 101, 117, 139;
     --border-card: 255, 255, 255, 0.2;
     --border: 209, 213, 219;
     --input: 252, 253, 253;
@@ -60,7 +88,7 @@
 }
 
 .bg-medical-100\/65 {
-  background-color: rgba(var(--medical-100), 0.65);
+    background-color: rgba(var(--medical-100), 0.65);
 }
 
 .bg-medical-100 {
@@ -194,6 +222,8 @@
     background-color: transparent;
 }
 
+
+
 .hover\:bg-transparent:hover {
     background-color: transparent;
 }
@@ -302,8 +332,16 @@
     color: rgb(var(--foreground));
 }
 
+.text-muted-foreground {
+    color: rgb(var(--muted-foreground));
+}
+
 .text-heading {
     color: rgb(var(--heading));
+}
+
+.text-primary-foreground {
+    color: rgb(var(--primary-foreground));
 }
 
 .text-white {
@@ -319,6 +357,18 @@
    ================================================== */
 .border-white {
     border-color: #ffffff;
+}
+
+.bg-secondary {
+    background-color: rgb(var(--secondary));
+}
+
+.text-secondary-foreground {
+    color: rgb(var(--secondary-foreground));
+}
+
+.hover\:bg-secondary\/80:hover {
+    background-color: rgba(var(--secondary), 0.8);
 }
 
 .border-input {
@@ -337,11 +387,19 @@
     border-color: rgb(var(--medical-100));
 }
 
+.border-transparent {
+    border-color: transparent;
+}
+
 /* ==================================================
    HOVER STATE CLASSES
    ================================================== */
 
 /* Hover - Medical Backgrounds */
+.hover\:bg-medical-50\/50:hover {
+    background-color: rgba(var(--medical-50), 0.5);
+}
+
 .hover\:bg-medical-50:hover {
     background-color: rgba(var(--medical-50));
 }
@@ -421,6 +479,86 @@
 
 .hover\:bg-gray-900:hover {
     background-color: rgba(var(--gray-900));
+}
+
+.bg-green-50 {
+    background-color: rgb(var(--green-50));
+}
+
+.bg-green-100 {
+    background-color: rgb(var(--green-100));
+}
+
+.text-green-400 {
+    color: rgb(var(--green-400));
+}
+
+.text-green-500 {
+    color: rgb(var(--green-500));
+}
+
+.text-green-600 {
+    color: rgb(var(--green-600));
+}
+
+.text-green-700 {
+  color: rgb(var(--green-700));
+}
+
+.text-green-800 {
+    color: rgb(var(--green-800));
+}
+
+.bg-yellow-100 {
+    background-color: rgb(var(--yellow-100));
+}
+
+.text-yellow-800 {
+    color: rgb(var(--yellow-800));
+}
+
+.bg-red-100 {
+    background-color: #fee2e2;
+}
+
+.text-red-600 {
+    color: rgb(var(--red-600));
+}
+
+.bg-blue-50 {
+    background-color: rgb(var(--blue-50));
+}
+
+.text-blue-500 {
+    color: rgb(var(--blue-500));
+}
+
+.text-blue-600 {
+    color: rgb(var(--blue-600));
+}
+
+.text-blue-700 {
+  color: rgb(var(--blue-700));
+}
+
+.text-purple-500 {
+    color: rgb(var(--purple-500));
+}
+
+.text-purple-600 {
+    color: rgb(var(--purple-600));
+}
+
+.hover\:text-red-800:hover {
+    color: rgb(var(--red-800));
+}
+
+.bg-accent {
+    background-color: rgb(var(--accent));
+}
+
+.hover\:bg-accent:hover {
+    background-color: rgb(var(--accent));
 }
 
 /* Hover - Status Backgrounds */

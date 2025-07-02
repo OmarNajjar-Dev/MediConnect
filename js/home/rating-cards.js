@@ -28,7 +28,7 @@ export function renderRatingCards(container) {
     div.className = "animate-on-scroll";
     div.style.animationDelay = card.animationDelay;
     div.innerHTML = `
-      <div class="glass-card rounded-xl p-6 backdrop-blur-md bg-card border border-solid border-card shadow-sm h-full">
+      <div class="border-card bg-card rounded-xl p-6 backdrop-blur-md bg-card border border-solid border-card shadow-sm h-full">
         <div class="flex flex-col h-full">
           <div class="flex items-center justify-between mb-6">
             <h3 class="text-xl font-medium text-heading">${card.title}</h3>
