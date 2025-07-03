@@ -15,11 +15,12 @@
     <link rel="stylesheet" href="css/spacing.min.css" />
     <link rel="stylesheet" href="css/sizing.min.css" />
     <link rel="stylesheet" href="css/borders.css" />
-    <link rel="stylesheet" href="css/ring.css" />
     <link rel="stylesheet" href="css/layout.css" />
     <link rel="stylesheet" href="css/animations.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/ring.css" />
+    <link rel="stylesheet" href="css/faq.css" />
 
     <!-- Page Title -->
     <title>MediConnect - Bridging Healthcare & Technology</title>
@@ -41,10 +42,10 @@
                 <a href="./doctors.html"
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Doctors</a>
                 <a href="./hospitals.html"
-                    class="text-medical-700 text-sm font-medium hover:text-medical-600 transition-colors">Hospitals</a>
+                    class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Hospitals</a>
                 <a href="./appointments.php"
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Appointments</a>
-                <a href="./dashboard"
+                <a href="./dashboard.php"
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Dashboard</a>
             </nav>
 
@@ -74,7 +75,7 @@
                     <a href="./doctors.html"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Doctors</a>
                     <a href="./hospitals.html"
-                        class="text-medical-700 bg-medical-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
+                        class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
                     <a href="./appointments.php"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
                     <a href="./dashboard.php"
@@ -92,66 +93,157 @@
                 </nav>
             </div>
         </div>
+
+        <!-- Mobile Navigation (Hidden by default) -->
+        <div id="mobile-nav" class="hidden absolute bg-white-95 backdrop-blur-lg animate-slide-down shadow-lg">
+            <nav class="container mx-auto flex flex-col gap-4 px-4 py-4">
+                <a href="./"
+                    class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Home</a>
+                <a href="./doctors.html"
+                    class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Doctors</a>
+                <a href="./hospitals.html"
+                    class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
+                <a href="./appointments.php"
+                    class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
+                <a href="./dashboard.php"
+                    class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Dashboard</a>
+
+                <!-- Sign In / Sign Up buttons (Mobile view) -->
+                <div class="flex flex-col pt-2 gap-2 border-t border-solid separator">
+                    <a href="./login.php"
+                        class="inline-flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-all">Sign
+                        In</a>
+                    <a href="./register.php"
+                        class="inline-flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Sign
+                        Up</a>
+                </div>
+            </nav>
+        </div>
     </header>
 
     <!-- Main Content -->
-    <main class="overflow-hidden pt-20 pb-16 min-h-screen bg-gray-50">
-        <div class="container mx-auto px-4">
-            <div class="py-8">
-                <h1 class="text-3xl font-bold mb-2 tracking-tight text-heading">
-                    Hospitals
-                </h1>
-                <p clas s="text-gray-600">
-                    Find hospitals, check bed availability, and view services
-                </p>
-            </div>
-
-            <div class="input-container flex flex-col lg:flex-row gap-6 mb-8">
-                <div class="flex-grow">
-                    <div class="relative">
-                        <!-- Search Icon (Lucide) -->
-                        <i data-lucide="search" class="search-icon absolute text-gray-500"></i>
-                        <input type="text" placeholder="Search hospitals by name or location"
-                            class="search-input text-heading px-10 h-12 flex w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white" />
+    <main class="overflow-hidden pt-20 flex-grow">
+        <div class="flex flex-col">
+            <section class="bg-red-50 py-8 md:py-12">
+                <div class="container mx-auto px-4 md:px-6">
+                    <div class="max-w-4xl mx-auto text-center">
+                        <h1 class="text-heading text-3xl md:text-4xl font-bold mb-4">
+                            COVID-19 Emergency Response
+                        </h1>
+                        <p class="text-lg text-gray-700 mb-8">
+                            Request immediate medical assistance for COVID-19 related emergencies
+                        </p>
+                        <div class="flex flex-col gap-6">
+                            <button
+                                class="gap-2 whitespace-nowrap h-10 bg-red-500 hover:bg-red-700 text-white border border-solid border-input font-bold py-4 px-8 rounded-lg text-lg shadow-lg flex items-center justify-center w-full pointer md:w-auto md:min-w-[300px]">
+                                <i data-lucide="ambulance" class="mr-2 h-6 w-6"></i>
+                                Request Emergency Help
+                            </button>
+                            <p class="text-sm text-gray-600">
+                                For COVID-19 emergencies only. Tap above to connect with specialized medical responders.
+                            </p>
+                        </div>
                     </div>
                 </div>
+            </section>
 
-                <!-- FIXED BUTTONS HERE -->
-                <div class="flex flex-row gap-3">
-                    <button id="emergency-btn"
-                        class="flex items-center gap-2 justify-center whitespace-nowrap rounded-md border border-solid border-input bg-background text-heading px-4 py-2 h-10 text-sm font-medium transition-colors hover:bg-medical-50 hover:text-medical-500 pointer">
-                        <i data-lucide="activity" class="w-4 h-4"></i>
-                        <span>Emergency Services</span>
-                    </button>
+            <section class="py-8 md:py-12">
+                <div class="container mx-auto px-4 md:px-6">
+                    <div class="max-w-4xl mx-auto">
+                        <div class="grid gap-6 md:grid-cols-2">
 
-                    <button id="beds-btn"
-                        class="flex items-center gap-2 rounded-md border border-solid border-input text-heading bg-background h-10 px-4 py-2 text-sm font-medium whitespace-nowrap hover:bg-medical-50 transition-colors hover:text-medical-500 pointer">
-                        <i data-lucide="bed" class="w-4 h-4"></i>
-                        <span>Available Beds</span>
-                    </button>
+                            <!-- Emergency Signs Card -->
+                            <div class="flex flex-col gap-6 p-6 rounded-lg border bg-card border border-solid border-input shadow-sm">
+
+                                <h3 class="text-heading text-2xl font-semibold leading-none tracking-tight">COVID-19 Emergency
+                                    Signs</h3>
+
+                                <ul class="flex flex-col gap-2">
+                                    <li class="flex">
+                                        <i data-lucide="arrow-right"
+                                            class="lucide lucide-arrow-right mr-2 text-red-500 flex-shrink-0 mt-0.5"></i>
+                                        <p class="text-heading">Severe difficulty breathing</p>
+                                    </li>
+                                    <li class="flex">
+                                        <i data-lucide="arrow-right"
+                                            class="lucide lucide-arrow-right mr-2 text-red-500 flex-shrink-0 mt-0.5"></i>
+                                        <p class="text-heading">Persistent chest pain or pressure</p>
+                                    </li>
+                                    <li class="flex">
+                                        <i data-lucide="arrow-right"
+                                            class="lucide lucide-arrow-right mr-2 text-red-500 flex-shrink-0 mt-0.5"></i>
+                                        <p class="text-heading">Bluish lips or face</p>
+                                    </li>
+                                    <li class="flex">
+                                        <i data-lucide="arrow-right"
+                                            class="lucide lucide-arrow-right mr-2 text-red-500 flex-shrink-0 mt-0.5"></i>
+                                        <p class="text-heading">Confusion or inability to wake/stay awake</p>
+                                    </li>
+                                </ul>
+
+                                <p class="text-sm">If experiencing these symptoms, request
+                                    emergency help immediately</p>
+
+                            </div>
+
+                            <!-- Preparation Card -->
+                            <div class="flex flex-col gap-6 p-6 rounded-lg border bg-card border border-solid border-input shadow-sm">
+
+                                <h3 class="text-heading text-2xl font-semibold leading-none tracking-tight">What To Prepare</h3>
+
+                                <ul class="flex flex-col gap-2">
+                                    <li class="flex">
+                                        <i data-lucide="arrow-right"
+                                            class="lucide lucide-arrow-right mr-2 text-medical-500 flex-shrink-0 mt-0.5"></i>
+                                        <p class="text-heading">ID and insurance information (if available)</p>
+                                    </li>
+                                    <li class="flex">
+                                        <i data-lucide="arrow-right"
+                                            class="lucide lucide-arrow-right mr-2 text-medical-500 flex-shrink-0 mt-0.5"></i>
+                                        <p class="text-heading">List of current medications</p>
+                                    </li>
+                                    <li class="flex">
+                                        <i data-lucide="arrow-right"
+                                            class="lucide lucide-arrow-right mr-2 text-medical-500 flex-shrink-0 mt-0.5"></i>
+                                        <p class="text-heading">Mask or face covering</p>
+                                    </li>
+                                    <li class="flex">
+                                        <i data-lucide="arrow-right"
+                                            class="lucide lucide-arrow-right mr-2 text-medical-500 flex-shrink-0 mt-0.5"></i>
+                                        <p class="text-heading">Phone and charger</p>
+                                    </li>
+                                </ul>
+
+                                <p class="text-sm">Having these items ready helps speed up the
+                                    admission process</p>
+
+                            </div>
+                        </div>
+
+                        <!-- Alternative Contact -->
+                        <div class="mt-8 p-6 border border-solid border-input rounded-lg bg-gray-50">
+                            <h3 class="text-heading text-lg font-semibold mb-4 text-center">Alternative Contact Options</h3>
+                            <div class="grid gap-4 sm:grid-cols-2">
+                                <button
+                                    class="gap-2 whitespace-nowrap rounded-md text-sm font-medium text-heading border border-solid border-input bg-background hover:bg-accent px-4 py-2 flex items-center justify-center h-16 pointer">
+                                    <i data-lucide="phone" class="w-4 h-4 text-heading mr-2"></i>
+                                    Emergency COVID-19 Hotline<br />
+                                    <span class="font-bold text-heading">800-COVID-19</span>
+                                </button>
+
+                                <button
+                                    class="gap-2 whitespace-nowrap rounded-md text-sm font-medium text-heading border border-solid border-input bg-background hover:bg-accent px-4 py-2 flex items-center justify-center h-16 pointer">
+                                    <i data-lucide="map-pin" class="w-4 h-4 text-heading mr-2"></i>
+                                    Find Nearest<br />COVID-19 Treatment Center
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <!-- END FIXED BUTTONS -->
-            </div>
-
-            <!-- No Hospitals Found Message -->
-            <div class="no-results hidden border border-solid border-card bg-card rounded-xl p-6 py-16 text-center">
-                <div class="mx-auto w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
-                    <i data-lucide="triangle-alert" class="w-7 h-7 text-gray-400"></i>
-                </div>
-                <h2 class="text-xl font-medium mb-2 tracking-tight text-heading">No hospitals found</h2>
-                <p class="text-gray-600 mb-4">Try adjusting your search criteria</p>
-                <button
-                    class="clear-filters inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md border border-solid border-input text-sm font-medium transition-colors bg-medical-500 text-white hover:bg-medical-400 h-10 px-4 py-2 pointer">
-                    Clear Filters
-                </button>
-            </div>
-
-            <!-- Hospitals Cards Container -->
-            <div id="hospitals-cards-container" class="grid grid-cols-1 gap-6">
-                <!-- Dynamically Generated Hospital Cards will be inserted here -->
-            </div>
+            </section>
         </div>
     </main>
+
 
     <!-- Footer -->
     <footer class="bg-gray-50 pt-16 pb-8 border-t border-solid separator">
@@ -277,7 +369,11 @@
     <!-- JavaScript -->
     <script type="module" src="js/common/header.js"></script>
     <script type="module" src="js/common/mobile-nav.js"></script>
-    <script type="module" src="js/hospitals/index.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
+    </script>
 </body>
 
 </html>

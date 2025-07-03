@@ -180,3 +180,23 @@ input::placeholder {
   bottom: 20px;
   right: 20px;
 }
+
+
+
+
+.bg-red-50 {
+  background-color: #fef2f2; 
+}
+
+
+.bg-red-500 {
+  background-color: #ef4444;
+}
+
+.hover\:bg-red-700:hover {
+  background-color: #b91c1c; 
+}
+
+.text-red-500 {
+  color: #ef4444; 
+}
