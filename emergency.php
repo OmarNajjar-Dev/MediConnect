@@ -135,8 +135,8 @@
                         </p>
                         <div class="flex flex-col gap-6">
                             <button
-                                class="gap-2 whitespace-nowrap h-10 bg-red-500 hover:bg-red-700 text-white border border-solid border-input font-bold py-4 px-8 rounded-lg text-lg shadow-lg flex items-center justify-center w-full pointer md:w-auto md:min-w-[300px]">
-                                <i data-lucide="ambulance" class="mr-2 h-6 w-6"></i>
+                                class="gap-2 whitespace-nowrap border border-solid border-input disabled:pointer-events-none disabled:opacity-50 h-10 bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-sm text-lg shadow-lg flex items-center justify-center w-full md:w-auto md:max-w-[300px]">
+                                <i data-lucide="ambulance" class="mr-2 h-4 w-4"></i>
                                 Request Emergency Help
                             </button>
                             <p class="text-sm text-gray-600">
@@ -153,7 +153,7 @@
                         <div class="grid gap-6 md:grid-cols-2">
 
                             <!-- Emergency Signs Card -->
-                            <div class="flex flex-col gap-6 p-6 rounded-lg border bg-card border border-solid border-input shadow-sm">
+                            <div class="flex flex-col gap-6 p-6 border border-solid border-input rounded-lg">
 
                                 <h3 class="text-heading text-2xl font-semibold leading-none tracking-tight">COVID-19 Emergency
                                     Signs</h3>
