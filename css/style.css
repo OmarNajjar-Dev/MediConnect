@@ -181,6 +181,14 @@ input::placeholder {
   right: 20px;
 }
 
+.align-middle {
+    vertical-align: middle
+}
+
+.quick-action-dash:hover span {
+  color: rgb(0, 150, 136);
+}
+
 .bg-red-50 {
   background-color: #fef2f2;
 }
