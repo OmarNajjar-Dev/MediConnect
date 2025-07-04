@@ -46,7 +46,7 @@
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Hospitals</a>
                 <a href="./appointments.html"
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Appointments</a>
-                <a href="./dashboard.html"
+                <a href="./dashboard.php"
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Dashboard</a>
             </nav>
 
@@ -79,7 +79,7 @@
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
                     <a href="./appointments.html"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
-                    <a href="./dashboard.html"
+                    <a href="./dashboard.php"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Dashboard</a>
 
                     <!-- Sign In / Sign Up buttons (Mobile view) -->
@@ -291,27 +291,27 @@
                     </h4>
                     <ul class="flex flex-col gap-2">
                         <li>
-                            <a href="./about.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="./about.php" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 About Us
                             </a>
                         </li>
                         <li>
-                            <a href="./privacy.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="./privacy.php" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Privacy Policy
                             </a>
                         </li>
                         <li>
-                            <a href="./terms.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="./terms.php" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Terms of Service
                             </a>
                         </li>
                         <li>
-                            <a href="./faq.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="./faq.php" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 FAQs
                             </a>
                         </li>
                         <li>
-                            <a href="./contact.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="./contact.php" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Contact Us
                             </a>
                         </li>
@@ -347,15 +347,17 @@
         </div>
     </footer>
 
-    <!-- JavaScript -->
+    <!-- External JavaScript -->
     <script type="module" src="js/common/header.js"></script>
     <script type="module" src="js/common/mobile-nav.js"></script>
+
     <script type="module" src="./js/auth/index.js"></script>
+
+    <!-- Create Lucide Icons -->
     <script>
-        window.addEventListener('DOMContentLoaded', () => {
-            lucide.createIcons();
-        });
+        lucide.createIcons()
     </script>
+
 </body>
 
 </html>

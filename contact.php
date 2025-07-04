@@ -429,10 +429,12 @@
     </div>
   </footer>
 
-  <!-- JavaScript -->
+  <!-- External JavaScript -->
   <script type="module" src="js/common/header.js"></script>
   <script type="module" src="js/common/mobile-nav.js"></script>
+
   <script type="module" src="./js/contact/index.js"></script>
+
 </body>
 
 </html>
