@@ -23,7 +23,7 @@ export function renderHeroCards(container) {
   const fragment = document.createDocumentFragment();
   heroCardsData.forEach((card) => {
     const div = document.createElement("div");
-    div.className = `text-white bg-white/20 border border-solid border-card rounded-xl backdrop-blur-lg shadow-sm animate-on-scroll p-6`;
+    div.className = `text-white bg-white/20 border border-solid border-card-light rounded-xl backdrop-blur-lg shadow-sm animate-on-scroll p-6`;
     div.style.animationDelay = card.animationDelay;
     div.innerHTML = `
       <div class="text-center">

@@ -185,7 +185,7 @@
                     </div>
                 </div>
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-                    <div class="rounded-lg glass-card border-card-dash text-card-foreground animate-fade-in opacity-0">
+                    <div class="rounded-lg glass-card border-card-light-soft text-card-foreground animate-fade-in opacity-0">
                         <div class="flex flex-col gap-1.5 p-6 pb-3">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center gap-3">
@@ -579,7 +579,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="rounded-lg glass-card border-card-dash text-card-foreground shadow-sm mb-8 animate-fade-in opacity-0">
+                <div class="rounded-lg glass-card border-card-light-soft text-card-foreground shadow-sm mb-8 animate-fade-in opacity-0">
                     <div class="flex flex-col gap-1.5 p-6 pb-3">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center gap-3">
@@ -597,22 +597,22 @@
                     </div>
                     <div class="p-6 pt-0">
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                            <div class="p-4 glass-card border-card-dash rounded-lg hover:bg-gray-50 pointer">
+                            <div class="p-4 glass-card border-card-light-soft rounded-lg hover:bg-gray-50 pointer">
                                 <div class="text-medical-600 mb-2"><i data-lucide="shield" class="w-5 h-5"></i></div>
                                 <div class="font-medium text-sm">Security</div>
                                 <div class="text-xs text-muted-foreground">User permissions</div>
                             </div>
-                            <div class="p-4 glass-card border-card-dash rounded-lg hover:bg-gray-50 pointer">
+                            <div class="p-4 glass-card border-card-light-soft rounded-lg hover:bg-gray-50 pointer">
                                 <div class="text-medical-600 mb-2"><i data-lucide="activity" class="w-5 h-5"></i></div>
                                 <div class="font-medium text-sm">System Health</div>
                                 <div class="text-xs text-muted-foreground">Monitor performance</div>
                             </div>
-                            <div class="p-4 glass-card border-card-dash rounded-lg hover:bg-gray-50 pointer">
+                            <div class="p-4 glass-card border-card-light-soft rounded-lg hover:bg-gray-50 pointer">
                                 <div class="text-medical-600 mb-2"><i data-lucide="users" class="w-5 h-5"></i></div>
                                 <div class="font-medium text-sm">Departments</div>
                                 <div class="text-xs text-muted-foreground">Manage departments</div>
                             </div>
-                            <div class="p-4 glass-card border-card-dash rounded-lg hover:bg-gray-50 pointer">
+                            <div class="p-4 glass-card border-card-light-soft rounded-lg hover:bg-gray-50 pointer">
                                 <div class="text-medical-600 mb-2"><i data-lucide="settings" class="w-5 h-5"></i></div>
                                 <div class="font-medium text-sm">General</div>
                                 <div class="text-xs text-muted-foreground">System preferences</div>

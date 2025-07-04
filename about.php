@@ -233,7 +233,7 @@
                                 <!-- Right Features -->
                                 <div class="flex flex-col gap-6 w-full max-w-full sm:max-w-md mx-auto lg:mx-0">
                                     <div
-                                        class="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-solid border-card shadow-xl">
+                                        class="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-solid border-card-light shadow-xl">
                                         <div class="flex items-start">
                                             <div
                                                 class="flex items-center justify-center bg-white/20 rounded-full p-3 mr-4">
@@ -252,7 +252,7 @@
                                         </div>
                                     </div>
                                     <div
-                                        class="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-solid border-card shadow-xl">
+                                        class="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-solid border-card-light shadow-xl">
                                         <div class="flex items-start">
                                             <div
                                                 class="flex items-center justify-center bg-white/20 rounded-full p-3 mr-4">

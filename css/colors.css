@@ -63,8 +63,8 @@
   --secondary-foreground: 39, 71, 84;
   --foreground: 75, 85, 99;
   --muted-foreground: 101, 117, 139;
-  --border-card: 255, 255, 255, 0.2;
-  --border-card-dash: 225, 234, 234;
+  --border-card-light: 255, 255, 255, 0.2;
+  --border-card-light-soft: 225, 234, 234;
   --border: 209, 213, 219;
   --input: 252, 253, 253;
   --separator: 229, 231, 235;
@@ -377,12 +377,12 @@
   border-color: rgb(var(--separator));
 }
 
-.border-card {
-  border-color: rgb(var(--border-card));
+.border-card-light {
+  border-color: rgb(var(--border-card-light));
 }
 
-.border-card-dash {
-  border-color: rgb(var(--border-card-dash));
+.border-card-light-soft {
+  border-color: rgb(var(--border-card-light-soft));
 }
 
 .border-medical-100 {
