@@ -140,10 +140,8 @@
     }
 }
 
-.fade-in {
-    animation-name: fadeIn;
-    animation-duration: 300ms;
-    animation-timing-function: ease-out;
+.animate-fade-in {
+    animation: fadeIn 0.3s ease-out forwards;
 }
 
 /* Fade Out */
@@ -157,10 +155,8 @@
     }
 }
 
-.fade-out {
-    animation-name: fadeOut;
-    animation-duration: 300ms;
-    animation-timing-function: ease-in;
+.animate-fade-out {
+    animation: fadeOut 0.3s ease-in forwards;
 }
 
 /* Slide In Right */
@@ -177,9 +173,7 @@
 }
 
 .slide-in-right {
-    animation-name: slideInRight;
-    animation-duration: 500ms;
-    animation-timing-function: ease-out;
+    animation: slideInRight 0.5s ease-out forwards;
 }
 
 /* Slide In Up */
@@ -295,8 +289,16 @@
 }
 
 /* opacity */
+.opacity-0 {
+    opacity: 0;
+}
+
 .opacity-10 {
     opacity: 0.1;
+}
+
+.opacity-50 {
+    opacity: 0.5;
 }
 
 .opacity-95 {
