@@ -125,8 +125,8 @@
     width: auto;
   }
 
-  .md\:min-w-\[300px\] {
-    min-width: 300px;
+  .md\:max-w-\[300px\] {
+    max-width: 310px;
   }
 
   .md\:w-1\/3 {

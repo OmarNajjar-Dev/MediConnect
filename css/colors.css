@@ -64,7 +64,7 @@
   --foreground: 75, 85, 99;
   --muted-foreground: 101, 117, 139;
   --border-card-light: 255, 255, 255, 0.2;
-  --border-card-light-soft: 225, 234, 234;
+  --border-card-soft: 225, 234, 234;
   --border: 209, 213, 219;
   --input: 252, 253, 253;
   --separator: 229, 231, 235;
@@ -334,8 +334,16 @@
   color: rgb(var(--muted-foreground));
 }
 
+.text-muted-foreground {
+  color: rgb(var(--muted-foreground));
+}
+
 .text-heading {
   color: rgb(var(--heading));
+}
+
+.text-primary-foreground {
+  color: rgb(var(--primary-foreground));
 }
 
 .text-primary-foreground {
@@ -369,6 +377,18 @@
   background-color: rgba(var(--secondary), 0.8);
 }
 
+.bg-secondary {
+  background-color: rgb(var(--secondary));
+}
+
+.text-secondary-foreground {
+  color: rgb(var(--secondary-foreground));
+}
+
+.hover\:bg-secondary\/80:hover {
+  background-color: rgba(var(--secondary), 0.8);
+}
+
 .border-input {
   border-color: rgb(var(--border));
 }
@@ -381,12 +401,16 @@
   border-color: rgb(var(--border-card-light));
 }
 
-.border-card-light-soft {
-  border-color: rgb(var(--border-card-light-soft));
+.border-card-soft {
+  border-color: rgb(var(--border-card-soft));
 }
 
 .border-medical-100 {
   border-color: rgb(var(--medical-100));
+}
+
+.border-transparent {
+  border-color: transparent;
 }
 
 .border-transparent {
@@ -481,6 +505,86 @@
 
 .hover\:bg-gray-900:hover {
   background-color: rgba(var(--gray-900));
+}
+
+.bg-green-50 {
+  background-color: rgb(var(--green-50));
+}
+
+.bg-green-100 {
+  background-color: rgb(var(--green-100));
+}
+
+.text-green-400 {
+  color: rgb(var(--green-400));
+}
+
+.text-green-500 {
+  color: rgb(var(--green-500));
+}
+
+.text-green-600 {
+  color: rgb(var(--green-600));
+}
+
+.text-green-700 {
+  color: rgb(var(--green-700));
+}
+
+.text-green-800 {
+  color: rgb(var(--green-800));
+}
+
+.bg-yellow-100 {
+  background-color: rgb(var(--yellow-100));
+}
+
+.text-yellow-800 {
+  color: rgb(var(--yellow-800));
+}
+
+.bg-red-100 {
+  background-color: #fee2e2;
+}
+
+.text-red-600 {
+  color: rgb(var(--red-600));
+}
+
+.bg-blue-50 {
+  background-color: rgb(var(--blue-50));
+}
+
+.text-blue-500 {
+  color: rgb(var(--blue-500));
+}
+
+.text-blue-600 {
+  color: rgb(var(--blue-600));
+}
+
+.text-blue-700 {
+  color: rgb(var(--blue-700));
+}
+
+.text-purple-500 {
+  color: rgb(var(--purple-500));
+}
+
+.text-purple-600 {
+  color: rgb(var(--purple-600));
+}
+
+.hover\:text-red-800:hover {
+  color: rgb(var(--red-800));
+}
+
+.bg-accent {
+  background-color: rgb(var(--accent));
+}
+
+.hover\:bg-accent:hover {
+  background-color: rgb(var(--accent));
 }
 
 .bg-green-50 {
