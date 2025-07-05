@@ -181,11 +181,7 @@ input::placeholder {
   right: 20px;
 }
 
-.align-middle {
-    vertical-align: middle
-}
-
-.quick-action-dash:hover span {
+.quick-links-dashboard:hover span {
   color: rgb(0, 150, 136);
 }
 
