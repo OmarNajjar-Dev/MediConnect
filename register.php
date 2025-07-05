@@ -1,3 +1,73 @@
+<?php
+require_once './backend/db.php';
+
+// عرض كل الأخطاء على الشاشة
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    echo "🚀 Form submitted.<br>";
+
+    // استخراج القيم من POST
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+    $firstName = $_POST["first_name"];
+    $lastName = $_POST["last_name"];
+    $city = $_POST["city"] ?? '';
+    $address = $_POST["address"] ?? '';
+    $roleName = $_POST["role"];
+
+    // تشفير كلمة المرور
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+    // الخطوة 1: جلب role_id من جدول roles
+    $role_stmt = $conn->prepare("SELECT role_id FROM roles WHERE role_name = ?");
+    $role_stmt->bind_param("s", $roleName);
+    $role_stmt->execute();
+    $role_result = $role_stmt->get_result();
+
+    if ($role_result->num_rows === 1) {
+        $role_row = $role_result->fetch_assoc();
+        $role_id = $role_row["role_id"];
+        echo "✅ Role found: $role_id<br>";
+
+        // الخطوة 2: إدخال المستخدم في جدول users
+        $user_stmt = $conn->prepare("INSERT INTO users (email, password, first_name, last_name, city, address_line) VALUES (?, ?, ?, ?, ?, ?)");
+        $user_stmt->bind_param("ssssss", $email, $hashedPassword, $firstName, $lastName, $city, $address);
+
+        if ($user_stmt->execute()) {
+            $user_id = $user_stmt->insert_id;
+            echo "✅ User inserted with ID: $user_id<br>";
+
+            // الخطوة 3: ربط المستخدم بالدور في user_roles
+            $link_stmt = $conn->prepare("INSERT INTO user_roles (user_id, role_id) VALUES (?, ?)");
+            $link_stmt->bind_param("ii", $user_id, $role_id);
+            if ($link_stmt->execute()) {
+                echo "✅ User-role link created successfully.<br>";
+
+                // ✅ توجيه بعد النجاح
+                header("Location: login.php?registered=1");
+                exit();
+            } else {
+                echo "❌ Error inserting into user_roles: " . $link_stmt->error . "<br>";
+            }
+            $link_stmt->close();
+        } else {
+            echo "❌ Error inserting user: " . $user_stmt->error . "<br>";
+        }
+
+        $user_stmt->close();
+    } else {
+        echo "❌ Role not found in database: " . htmlspecialchars($roleName) . "<br>";
+    }
+
+    $role_stmt->close();
+} else {
+    echo "Invalid request.";
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -114,22 +184,22 @@
                 </div>
 
                 <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-                    <form class="flex flex-col gap-6">
+                    <form class="flex flex-col gap-6" method="POST">
                         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
                             <div>
-                                <label for="firstName" class="block text-sm font-medium text-gray-700">First
+                                <label for="first_name" class="block text-sm font-medium text-gray-700">First
                                     Name</label>
                                 <div class="mt-1">
-                                    <input type="text" id="firstName" name="firstName" autocomplete="given-name"
+                                    <input type="text" id="first_name" name="first_name" autocomplete="given-name"
                                         required
                                         class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white md:text-sm" />
                                 </div>
                             </div>
 
                             <div>
-                                <label for="lastName" class="block text-sm font-medium text-gray-700">Last Name</label>
+                                <label for="last_name" class="block text-sm font-medium text-gray-700">Last Name</label>
                                 <div class="mt-1">
-                                    <input type="text" id="lastName" name="lastName" autocomplete="family-name" required
+                                    <input type="text" id="last_name" name="last_name" autocomplete="family-name" required
                                         class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white md:text-sm" />
                                 </div>
                             </div>
@@ -161,7 +231,7 @@
                                     <li>
                                         <button type="button"
                                             class="option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm border-none bg-white text-gray-700 hover:bg-gray-100"
-                                            data-value="super-admin">
+                                            data-value="Super Admin">
                                             <span>Super Admin</span>
                                             <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i>
                                         </button>
@@ -169,7 +239,7 @@
                                     <li>
                                         <button type="button"
                                             class="option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm border-none bg-white text-gray-700 hover:bg-gray-100"
-                                            data-value="hospital-admin">
+                                            data-value="Hospital Admin">
                                             <span>Hospital Admin</span>
                                             <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i>
                                         </button>
@@ -177,7 +247,7 @@
                                     <li>
                                         <button type="button"
                                             class="option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm border-none bg-white text-gray-700 hover:bg-gray-100"
-                                            data-value="doctor">
+                                            data-value="Doctor">
                                             <span>Doctor</span>
                                             <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i>
                                         </button>
@@ -185,7 +255,7 @@
                                     <li>
                                         <button type="button"
                                             class="option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm border-none bg-white text-gray-700 hover:bg-gray-100"
-                                            data-value="patient">
+                                            data-value="Patient">
                                             <span>Patient</span>
                                             <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i>
                                         </button>
@@ -193,7 +263,7 @@
                                     <li>
                                         <button type="button"
                                             class="option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm border-none bg-white text-gray-700 hover:bg-gray-100"
-                                            data-value="ambulance-team">
+                                            data-value="Ambulance Team">
                                             <span>Ambulance Team</span>
                                             <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i>
                                         </button>
@@ -201,7 +271,7 @@
                                     <li>
                                         <button type="button"
                                             class="option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm border-none bg-white text-gray-700 hover:bg-gray-100"
-                                            data-value="staff">
+                                            data-value="Staff">
                                             <span>Staff</span>
                                             <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i>
                                         </button>
@@ -239,9 +309,10 @@
                                     autocomplete="new-password" required placeholder="********"
                                     class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white md:text-sm" />
                             </div>
+
+                            <input type="text" name="city" id="city" class="hidden" />
+                            <input type="text" name="address" id="address" class="hidden" />
                         </div>
-
-
 
                         <div class="flex items-center">
                             <input type="checkbox" id="agree-checkbox" class="custom-checkbox" />
@@ -257,13 +328,12 @@
 
                         <div>
                             <button id="signup-btn" type="submit"
-                                class="h-10 px-4 py-2 w-full border border-solid border-input bg-medical-200 text-white rounded-sm text-sm font-medium flex items-center justify-center gap-2 pointer-events-none">
+                                class="h-10 px-4 py-2 w-full border border-solid border-transparent bg-medical-200 text-white rounded-sm text-sm font-medium flex items-center justify-center gap-2 pointer">
                                 <i data-lucide="user-plus" class="h-4 w-4"></i>
                                 Sign up
                             </button>
 
                         </div>
-
                     </form>
 
                     <div class="mt-6">
@@ -466,7 +536,7 @@
     <!-- External JavaScript -->
     <script type="module" src="js/common/header.js"></script>
     <script type="module" src="js/common/mobile-nav.js"></script>
-    
+
     <script type="module" src="js/auth/index.js"></script>
 
     <!-- Create Lucide Icons -->
