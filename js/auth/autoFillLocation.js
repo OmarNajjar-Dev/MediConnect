@@ -6,19 +6,25 @@ export function autoFillLocation() {
         const lon = position.coords.longitude;
 
         try {
-          const response = await fetch(`/MediConnect/backend/get-location.php?lat=${lat}&lon=${lon}`);
+          const response = await fetch(
+            `/MediConnect/backend/get-location.php?lat=${lat}&lon=${lon}`
+          );
           const data = await response.json();
 
           if (data.address) {
             const city =
               data.address.city || data.address.town || data.address.village;
-            if (city) {
-              document.querySelector('input[name="city"]').value = city;
+            const cityInput = document.querySelector('input[name="city"]');
+            const addressInput = document.querySelector(
+              'input[name="address"]'
+            );
+
+            if (cityInput && city) {
+              cityInput.value = city;
             }
 
-            if (data.display_name) {
-              document.querySelector('input[name="address"]').value =
-                data.display_name;
+            if (addressInput && data.display_name) {
+              addressInput.value = data.display_name;
             }
           }
         } catch (error) {
@@ -26,10 +32,10 @@ export function autoFillLocation() {
         }
       },
       function (error) {
-        console.warn("Failed to locate:", error.message);
+        console.log("Failed to locate:", error.message);
       }
     );
   } else {
-    console.warn("Geolocation not supported.");
+    console.log("The browser does not support geolocation.");
   }
 }

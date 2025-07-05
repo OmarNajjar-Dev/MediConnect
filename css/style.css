@@ -176,7 +176,8 @@ input::placeholder {
 }
 
 #password-error-toast,
-#role-error-toast {
+#role-error-toast,
+#email-error-toast {
   bottom: 20px;
   right: 20px;
 }

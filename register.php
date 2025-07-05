@@ -1,26 +1,35 @@
 <?php
 require_once './backend/db.php';
 
-// عرض كل الأخطاء على الشاشة
+// Show all errors during development (remove in production)
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    echo "🚀 Form submitted.<br>";
 
-    // استخراج القيم من POST
-    $email = $_POST["email"];
-    $password = $_POST["password"];
-    $firstName = $_POST["first_name"];
-    $lastName = $_POST["last_name"];
+
+    // Get POST data
+    $email = $_POST["email"] ?? '';
+    $password = $_POST["password"] ?? '';
+    $firstName = $_POST["first_name"] ?? '';
+    $lastName = $_POST["last_name"] ?? '';
     $city = $_POST["city"] ?? '';
     $address = $_POST["address"] ?? '';
-    $roleName = $_POST["role"];
+    $roleName = $_POST["role"] ?? '';
 
-    // تشفير كلمة المرور
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    // Step 0: Check if email already exists
+    $check_stmt = $conn->prepare("SELECT user_id FROM users WHERE email = ?");
+    $check_stmt->bind_param("s", $email);
+    $check_stmt->execute();
+    $check_result = $check_stmt->get_result();
 
-    // الخطوة 1: جلب role_id من جدول roles
+    if ($check_result->num_rows > 0) {
+        header("Location: register.php?error=email_exists");
+        exit();
+    }
+    $check_stmt->close();
+
+    // Step 1: Get role_id
     $role_stmt = $conn->prepare("SELECT role_id FROM roles WHERE role_name = ?");
     $role_stmt->bind_param("s", $roleName);
     $role_stmt->execute();
@@ -29,44 +38,40 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($role_result->num_rows === 1) {
         $role_row = $role_result->fetch_assoc();
         $role_id = $role_row["role_id"];
-        echo "✅ Role found: $role_id<br>";
+        $role_stmt->close();
 
-        // الخطوة 2: إدخال المستخدم في جدول users
+        // Step 2: Insert user
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         $user_stmt = $conn->prepare("INSERT INTO users (email, password, first_name, last_name, city, address_line) VALUES (?, ?, ?, ?, ?, ?)");
         $user_stmt->bind_param("ssssss", $email, $hashedPassword, $firstName, $lastName, $city, $address);
 
         if ($user_stmt->execute()) {
             $user_id = $user_stmt->insert_id;
-            echo "✅ User inserted with ID: $user_id<br>";
+            $user_stmt->close();
 
-            // الخطوة 3: ربط المستخدم بالدور في user_roles
+            // Step 3: Link user to role
             $link_stmt = $conn->prepare("INSERT INTO user_roles (user_id, role_id) VALUES (?, ?)");
             $link_stmt->bind_param("ii", $user_id, $role_id);
             if ($link_stmt->execute()) {
-                echo "✅ User-role link created successfully.<br>";
-
-                // ✅ توجيه بعد النجاح
+                $link_stmt->close();
                 header("Location: login.php?registered=1");
                 exit();
             } else {
-                echo "❌ Error inserting into user_roles: " . $link_stmt->error . "<br>";
+                $link_stmt->close();
+                $error = 'link_failed';
             }
-            $link_stmt->close();
         } else {
-            echo "❌ Error inserting user: " . $user_stmt->error . "<br>";
+            $user_stmt->close();
+            $error = 'insert_failed';
         }
-
-        $user_stmt->close();
     } else {
-        echo "❌ Role not found in database: " . htmlspecialchars($roleName) . "<br>";
+        $role_stmt->close();
+        $error = 'invalid_role';
     }
 
-    $role_stmt->close();
-} else {
-    echo "Invalid request.";
+    // If there is an error, fall through to display the form with error message
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -289,7 +294,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                 <input type="password" name="password" autocomplete="current-password" required
                                     placeholder="*******"
                                     class="password flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 pr-10 py-2 text-base focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white md:text-sm" />
-                                <button type="button" id="togglePassword"
+                                <button type="button" id="toggle-password"
                                     class="eye-toggle-button absolute inset-y-0 right-0 flex items-center pr-3 z-10 pointer bg-transparent border-none"
                                     aria-label="Toggle password visibility">
                                     <i data-lucide="eye" class="eye-toggle-icon h-5 w-5 text-gray-400"></i>
@@ -403,6 +408,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <div id="role-error-toast" class="hidden fixed max-w-xs bg-danger text-white p-5 rounded-md">
             <p class="font-semibold">Please select your role.</p>
             <p class="text-sm">You must choose your position in the healthcare system.</p>
+        </div>
+
+        <div id="email-error-toast" class="hidden fixed bottom-4 right-4 max-w-xs bg-danger text-white p-5 rounded-md z-50 shadow-lg">
+            <p class="font-semibold">Email already exists.</p>
+            <p class="text-sm">Please use another email or login instead.</p>
         </div>
     </main>
 

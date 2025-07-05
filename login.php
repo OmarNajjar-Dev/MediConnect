@@ -128,7 +128,7 @@
                                 <input type="password" name="password" autocomplete="current-password" required
                                     placeholder="*******"
                                     class="password flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 pr-10 py-2 text-base focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white md:text-sm" />
-                                <button type="button" id="togglePassword"
+                                <button type="button" id="toggle-password"
                                     class="eye-toggle-button absolute inset-y-0 right-0 flex items-center pr-3 z-10 pointer bg-transparent border-none"
                                     aria-label="Toggle password visibility">
                                     <i data-lucide="eye" class="eye-toggle-icon h-5 w-5 text-gray-400"></i>
