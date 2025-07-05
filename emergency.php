@@ -66,31 +66,31 @@
                 </button>
             </div>
 
-        <!-- Mobile Navigation (Hidden by default) -->
-        <div id="mobile-nav" class="hidden absolute bg-white-95 backdrop-blur-lg animate-slide-down shadow-lg">
-            <nav class="container mx-auto flex flex-col gap-4 px-4 py-4">
-                <a href="./"
-                    class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Home</a>
-                <a href="./doctors.html"
-                    class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Doctors</a>
-                <a href="./hospitals.html"
-                    class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
-                <a href="./appointments.php"
-                    class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
-                <a href="./dashboard.php"
-                    class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Dashboard</a>
+            <!-- Mobile Navigation (Hidden by default) -->
+            <div id="mobile-nav" class="hidden absolute bg-white-95 backdrop-blur-lg animate-slide-down shadow-lg">
+                <nav class="container mx-auto flex flex-col gap-4 px-4 py-4">
+                    <a href="./"
+                        class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Home</a>
+                    <a href="./doctors.html"
+                        class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Doctors</a>
+                    <a href="./hospitals.html"
+                        class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
+                    <a href="./appointments.php"
+                        class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
+                    <a href="./dashboard.php"
+                        class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Dashboard</a>
 
-                <!-- Sign In / Sign Up buttons (Mobile view) -->
-                <div class="flex flex-col pt-2 gap-2 border-t border-solid separator">
-                    <a href="./login.php"
-                        class="inline-flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-all">Sign
-                        In</a>
-                    <a href="./register.php"
-                        class="inline-flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Sign
-                        Up</a>
-                </div>
-            </nav>
-        </div>
+                    <!-- Sign In / Sign Up buttons (Mobile view) -->
+                    <div class="flex flex-col pt-2 gap-2 border-t border-solid separator">
+                        <a href="./login.php"
+                            class="inline-flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-all">Sign
+                            In</a>
+                        <a href="./register.php"
+                            class="inline-flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Sign
+                            Up</a>
+                    </div>
+                </nav>
+            </div>
     </header>
 
     <!-- Main Content -->
@@ -118,23 +118,6 @@
                     </div>
                 </div>
             </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             <section class="py-8 md:py-12">
                 <div class="container mx-auto px-4 md:px-6">
@@ -189,11 +172,11 @@
                                     </div>
                                     <div class="pt-4 border-t">
                                         <h4 class="font-semibold text-heading text-center">Emergency Contact Options</h4>
-                                        <div class="flex justify-center space-x-4 mt-4"><button
-                                                class="justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium disabled:pointer-events-none disabled:opacity-50 border border-solid border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 flex items-center">
+                                        <div class="flex justify-center gap-4 mt-4"><button
+                                                class="justify-center gap-2 whitespace-nowrap rounded-md text-sm text-heading font-medium disabled:pointer-events-none disabled:opacity-50 border border-solid border-card-soft bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 flex items-center pointer">
                                                 <i data-lucide="phone" class="mr-2 h-4 w-4"></i>
                                                 Call Dispatch</button><button
-                                                class="justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 flex items-center">Cancel
+                                                class="justify-center gap-2 whitespace-nowrap rounded-md text-sm text-heading font-medium disabled:pointer-events-none disabled:opacity-50 border border-solid border-card-soft bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 flex items-center pointer">Cancel
                                                 Request</button></div>
                                     </div>
                                 </div>
@@ -202,6 +185,53 @@
                     </div>
                 </div>
             </section>
+
+
+
+
+
+
+            <!-- Drawer (location access UI) -->
+            <div id="drawer" class="fixed inset-0 bg-opacity-50 flex items-center justify-center z-50">
+                <div class="bg-white w-full max-w-md mx-auto rounded-lg overflow-hidden shadow-lg">
+                    <!-- Drawer Header -->
+                    <div class="p-4 border-b">
+                        <h2 class="text-lg text-heading font-semibold">Requesting Emergency Help</h2>
+                        <p class="text-sm text-gray-500">Please wait while we access your location</p>
+                    </div>
+
+                    <!-- Drawer Body -->
+                    <div class="p-4 text-center">
+                        <div class="animate-pulse">
+                            <i data-lucide="map-pin" class="h-16 w-16 mx-auto text-medical-500"></i>
+                        </div>
+                        <p class="mt-4 text-heading">Accessing your location to send help...</p>
+                        <p class="text-sm text-gray-500 mt-2">
+                            This helps our emergency teams find you quickly
+                        </p>
+                    </div>
+
+                    <!-- Drawer Footer -->
+                    <div class="p-4 border-t text-right">
+                        <button onclick="closeDrawer()" class="px-4 py-2 border border-solid border-card-soft rounded-sm bg-transparent text-heading rounded text-sm font-medium hover:bg-gray-100 pointer">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
