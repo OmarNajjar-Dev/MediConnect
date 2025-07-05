@@ -95,9 +95,9 @@
   <!-- Main Content -->
   <main class="overflow-hidden pt-20 flex-grow">
     <!-- Hero Section -->
-    <section class="relative py-20 sm:py-28">
+    <section class="relative py-20 sm:py-28 m-0">
       <div class="absolute inset-0 bg-cover bg-center" id="hero-image">
-        <div id="hero-background" class="absolute inset-0 bg-gradient-to-r from-medical-800/90 to-blue-900/70"></div>
+        <div id="hero-background" class="absolute inset-0"></div>
       </div>
       <div class="container mx-auto px-4 relative">
         <!-- Hero Text Content -->

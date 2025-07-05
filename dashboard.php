@@ -289,7 +289,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="rounded-lg border bg-card text-card-foreground shadow-sm animate-fade-in opacity-0">
+                    <div class="rounded-lg glass-card border-card-soft text-card-foreground animate-fade-in opacity-0">
                         <div class="flex flex-col gap-1.5 p-6 pb-3">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center gap-3">
@@ -369,7 +369,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="rounded-lg border bg-card text-card-foreground shadow-sm animate-fade-in opacity-0">
+                    <div class="rounded-lg glass-card border-card-soft text-card-foreground animate-fade-in opacity-0">
                         <div class="flex flex-col gap-1.5 p-6 pb-3">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center gap-3">
@@ -463,7 +463,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="rounded-lg border bg-card text-card-foreground shadow-sm animate-fade-in opacity-0">
+                    <div class="rounded-lg glass-card border-card-soft text-card-foreground animate-fade-in opacity-0">
                         <div class="flex flex-col gap-1.5 p-6 pb-3">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center gap-3">
@@ -508,7 +508,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="rounded-lg border bg-card text-card-foreground shadow-sm animate-fade-in opacity-0">
+                    <div class="rounded-lg glass-card border-card-soft text-card-foreground animate-fade-in opacity-0">
                         <div class="flex flex-col gap-1.5 p-6 pb-3">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center gap-3">
@@ -538,7 +538,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="rounded-lg border bg-card text-card-foreground shadow-sm animate-fade-in opacity-0">
+                    <div class="rounded-lg glass-card border-card-soft text-card-foreground animate-fade-in opacity-0">
                         <div class="flex flex-col gap-1.5 p-6 pb-3">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center gap-3">
