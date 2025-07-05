@@ -147,6 +147,268 @@
                 </div>
             </section>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <section class="py-8 md:py-12">
+                <div class="container mx-auto px-4 md:px-6">
+                    <div class="max-w-4xl mx-auto">
+                        <div class="rounded-lg border bg-card text-card-foreground shadow-sm mb-8">
+                            <div class="flex flex-col gap-1.5 p-6">
+                                <h3 class="text-2xl font-semibold leading-none text-heading tracking-tight flex items-center">
+                                    <i data-lucide="ambulance" class="mr-2 text-medical-500"></i>
+                                    Emergency Response Status
+                                </h3>
+                                <p class="text-sm text-muted-foreground">COVID-19 specialized medical team status and location</p>
+                            </div>
+                            <div class="p-6 pt-0">
+                                <div class="flex flex-col gap-6">
+                                    <div class="flex flex-col items-center gap-4">
+                                        <div class="text-center">
+                                            <div
+                                                class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors border border-solid border-transparent text-primary-foreground hover:bg-medical-400 bg-medical-500 mb-2">
+                                                EN ROUTE TO YOUR LOCATION</div>
+                                            <div class="mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                    class="lucide lucide-ambulance h-16 w-16 mx-auto text-mediconnect">
+                                                    <path d="M10 10H6"></path>
+                                                    <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"></path>
+                                                    <path
+                                                        d="M19 18h2a1 1 0 0 0 1-1v-3.28a1 1 0 0 0-.684-.948l-1.923-.641a1 1 0 0 1-.578-.502l-1.539-3.076A1 1 0 0 0 16.382 8H14">
+                                                    </path>
+                                                    <path d="M8 8v4"></path>
+                                                    <path d="M9 18h6"></path>
+                                                    <circle cx="17" cy="18" r="2"></circle>
+                                                    <circle cx="7" cy="18" r="2"></circle>
+                                                </svg></div>
+                                            <h3 class="text-xl text-heading font-bold">COVID-19 Response Team En Route</h3>
+                                            <div class="flex items-center justify-center mt-2"><svg
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round" class="lucide lucide-clock mr-2 text-mediconnect">
+                                                    <circle cx="12" cy="12" r="10"></circle>
+                                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                                </svg>
+                                                <p class="text-gray-800 font-semibold">Estimated arrival: 10 minutes</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="border rounded-lg overflow-hidden h-62.5">
+                                        <div class="h-full flex items-center justify-center bg-gray-100 p-4">
+                                            <p class="text-center text-gray-600">Please set your Mapbox token in the Contact page
+                                                to enable emergency map tracking.</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col gap-4">
+                                        <h4 class="font-semibold text-lg">What to expect:</h4>
+                                        <ul class="space-y-2">
+                                            <li class="flex"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                    class="lucide lucide-shield mr-2 text-mediconnect flex-shrink-0 mt-0.5">
+                                                    <path
+                                                        d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z">
+                                                    </path>
+                                                </svg>
+                                                <p>
+                                                    Ambulance staff will be wearing full COVID-19 protective equipment</p>
+                                            </li>
+                                            <li class="flex"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                    class="lucide lucide-shield mr-2 text-mediconnect flex-shrink-0 mt-0.5">
+                                                    <path
+                                                        d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z">
+                                                    </path>
+                                                </svg>
+                                                <p>
+                                                    You may be asked screening questions about your symptoms</p>
+                                            </li>
+                                            <li class="flex"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                    class="lucide lucide-shield mr-2 text-mediconnect flex-shrink-0 mt-0.5">
+                                                    <path
+                                                        d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z">
+                                                    </path>
+                                                </svg>
+                                                <p>
+                                                    Please wear a mask if available</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="pt-4 border-t">
+                                        <h4 class="font-semibold text-center">Emergency Contact Options</h4>
+                                        <div class="flex justify-center space-x-4 mt-4"><button
+                                                class="justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 flex items-center"><svg
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round" class="lucide lucide-phone mr-2 h-4 w-4">
+                                                    <path
+                                                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                                    </path>
+                                                </svg>Call Dispatch</button><button
+                                                class="justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 flex items-center">Cancel
+                                                Request</button></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid gap-6 md:grid-cols-2">
+                            <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
+                                <div class="flex flex-col space-y-1.5 p-6">
+                                    <h3 class="text-2xl font-semibold leading-none tracking-tight">COVID-19 Emergency Signs</h3>
+                                </div>
+                                <div class="p-6 pt-0">
+                                    <ul class="space-y-2">
+                                        <li class="flex"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-arrow-right mr-2 text-red-500 flex-shrink-0 mt-0.5">
+                                                <path d="M5 12h14"></path>
+                                                <path d="m12 5 7 7-7 7"></path>
+                                            </svg>
+                                            <p>
+                                                Severe difficulty breathing</p>
+                                        </li>
+                                        <li class="flex"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-arrow-right mr-2 text-red-500 flex-shrink-0 mt-0.5">
+                                                <path d="M5 12h14"></path>
+                                                <path d="m12 5 7 7-7 7"></path>
+                                            </svg>
+                                            <p>
+                                                Persistent chest pain or pressure</p>
+                                        </li>
+                                        <li class="flex"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-arrow-right mr-2 text-red-500 flex-shrink-0 mt-0.5">
+                                                <path d="M5 12h14"></path>
+                                                <path d="m12 5 7 7-7 7"></path>
+                                            </svg>
+                                            <p>Bluish
+                                                lips or face</p>
+                                        </li>
+                                        <li class="flex"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-arrow-right mr-2 text-red-500 flex-shrink-0 mt-0.5">
+                                                <path d="M5 12h14"></path>
+                                                <path d="m12 5 7 7-7 7"></path>
+                                            </svg>
+                                            <p>
+                                                Confusion or inability to wake/stay awake</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="flex items-center p-6 pt-0">
+                                    <p class="text-sm text-muted-foreground">If experiencing these symptoms, request emergency help
+                                        immediately</p>
+                                </div>
+                            </div>
+                            <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
+                                <div class="flex flex-col space-y-1.5 p-6">
+                                    <h3 class="text-2xl font-semibold leading-none tracking-tight">What To Prepare</h3>
+                                </div>
+                                <div class="p-6 pt-0">
+                                    <ul class="space-y-2">
+                                        <li class="flex"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-arrow-right mr-2 text-mediconnect flex-shrink-0 mt-0.5">
+                                                <path d="M5 12h14"></path>
+                                                <path d="m12 5 7 7-7 7"></path>
+                                            </svg>
+                                            <p>
+                                                ID and insurance information (if available)</p>
+                                        </li>
+                                        <li class="flex"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-arrow-right mr-2 text-mediconnect flex-shrink-0 mt-0.5">
+                                                <path d="M5 12h14"></path>
+                                                <path d="m12 5 7 7-7 7"></path>
+                                            </svg>
+                                            <p>
+                                                List of current medications</p>
+                                        </li>
+                                        <li class="flex"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-arrow-right mr-2 text-mediconnect flex-shrink-0 mt-0.5">
+                                                <path d="M5 12h14"></path>
+                                                <path d="m12 5 7 7-7 7"></path>
+                                            </svg>
+                                            <p>Mask
+                                                or face covering</p>
+                                        </li>
+                                        <li class="flex"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-arrow-right mr-2 text-mediconnect flex-shrink-0 mt-0.5">
+                                                <path d="M5 12h14"></path>
+                                                <path d="m12 5 7 7-7 7"></path>
+                                            </svg>
+                                            <p>Phone and
+                                                charger</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="flex items-center p-6 pt-0">
+                                    <p class="text-sm text-muted-foreground">Having these items ready helps speed up the admission
+                                        process</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-8 p-6 border rounded-lg bg-gray-50">
+                            <h3 class="text-lg font-semibold mb-4 text-center">Alternative Contact Options</h3>
+                            <div class="grid gap-4 sm:grid-cols-2"><button
+                                    class="gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground px-4 py-2 flex items-center justify-center h-16"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-phone mr-2">
+                                        <path
+                                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                        </path>
+                                    </svg>Emergency COVID-19 Hotline<br><span class="font-bold">800-COVID-19</span></button><button
+                                    class="gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground px-4 py-2 flex items-center justify-center h-16"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-map-pin mr-2">
+                                        <path
+                                            d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0">
+                                        </path>
+                                        <circle cx="12" cy="10" r="3"></circle>
+                                    </svg>Find Nearest<br>COVID-19 Treatment Center</button></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+
+
+
+
+
+
             <section class="py-8 md:py-12">
                 <div class="container mx-auto px-4 md:px-6">
                     <div class="max-w-4xl mx-auto">
