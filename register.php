@@ -7,7 +7,6 @@ ini_set('display_errors', 1);
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-
     // Get POST data
     $email = $_POST["email"] ?? '';
     $password = $_POST["password"] ?? '';
@@ -17,7 +16,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $address = $_POST["address"] ?? '';
     $roleName = $_POST["role"] ?? '';
 
-    // Step 0: Check if email already exists
+    // Step 0-A: Validate email format
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        header("Location: register.php?error=invalid_email");
+        exit();
+    }
+
+    // Step 0-B: Check if email already exists
     $check_stmt = $conn->prepare("SELECT user_id FROM users WHERE email = ?");
     $check_stmt->bind_param("s", $email);
     $check_stmt->execute();
@@ -58,18 +63,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 exit();
             } else {
                 $link_stmt->close();
-                $error = 'link_failed';
+                header("Location: register.php?error=link_failed");
+                exit();
             }
         } else {
             $user_stmt->close();
-            $error = 'insert_failed';
+            header("Location: register.php?error=insert_failed");
+            exit();
         }
     } else {
         $role_stmt->close();
-        $error = 'invalid_role';
+        header("Location: register.php?error=invalid_role");
+        exit();
     }
-
-    // If there is an error, fall through to display the form with error message
 }
 ?>
 
