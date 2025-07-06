@@ -49,6 +49,11 @@
   --purple-500: 168, 85, 247;
   --purple-600: 147, 51, 234;
 
+
+  --text-slate-500: 100, 116, 139;
+  --text-slate-600: 71, 85, 105;
+  --text-slate-700: 51, 65, 85;
+
   /* Status Colors */
   --success: 22, 163, 74;
   --danger: 240, 68, 64;
@@ -398,6 +403,10 @@
   border-color: rgb(var(--separator));
 }
 
+.border-gray-100 {
+  border-color: rgb(var(--gray-100));
+}
+
 .border-card-light {
   border-color: rgb(var(--border-card-light));
 }
@@ -586,6 +595,18 @@
 
 .text-purple-600 {
   color: rgb(var(--purple-600));
+}
+
+.text-slate-700 {
+  color: rgb(var(--text-slate-700));
+}
+
+.text-slate-500 {
+  color: rgb(var(--text-slate-500));
+}
+
+.text-slate-600 {
+  color: rgb(var(--text-slate-600));
 }
 
 .hover\:text-red-800:hover {
