@@ -107,6 +107,7 @@
                         </p>
                         <div class="flex flex-col gap-6">
                             <button
+                                id="requestHelpBtn"
                                 class="gap-2 whitespace-nowrap border border-solid border-input disabled:pointer-events-none disabled:opacity-50 h-10 bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-sm text-lg shadow-lg flex items-center justify-center w-full md:w-auto md:max-w-[300px]">
                                 <i data-lucide="ambulance" class="mr-2 h-4 w-4"></i>
                                 Request Emergency Help
@@ -118,6 +119,14 @@
                     </div>
                 </div>
             </section>
+
+
+
+
+
+
+
+
 
             <section class="py-8 md:py-12">
                 <div class="container mx-auto px-4 md:px-6">
@@ -208,7 +217,7 @@
 
 
             <!-- Drawer (location access UI) -->
-            <div id="drawer" class="fixed inset-0 bg-opacity-50 flex items-center justify-center z-50">
+            <div id="drawer" class="fixed inset-0 bg-opacity-50 flex items-center justify-center z-50 hidden">
                 <div class="bg-white w-full max-w-md mx-auto rounded-lg overflow-hidden shadow-lg">
                     <!-- Drawer Header -->
                     <div class="p-4 relative border-b">
@@ -216,7 +225,7 @@
                         <p class="text-sm text-gray-500">Please wait while we access your location</p>
 
                         <!-- X Close Button -->
-                        <button onclick="closeDrawer()" class="close-button absolute border-none bg-transparent text-gray-500 hover:text-heading">
+                        <button onclick="closeDrawer()" class="absolute right-4 top-4 border-none bg-transparent text-gray-500 hover:text-heading">
                             <i data-lucide="x" class="w-4 h-4"></i>
                         </button>
 
@@ -490,6 +499,14 @@
             lucide.createIcons();
         });
     </script>
+    <script type="module" src="js/emergency/emergency.js"></script>
+
+    <!-- Confirmation Message -->
+    <div id="confirmationMessage" class="fixed bottom-6 right-6 z-50 px-6 py-4 bg-white border border-solid border-card-soft shadow-md rounded-lg text-sm max-w-sm">
+        <p class="font-semibold text-heading mb-1">Emergency request sent.</p>
+        <p class="text-heading" >Help is on the way.Please stay where you are!</p>
+    </div>
+
 </body>
 
 </html>

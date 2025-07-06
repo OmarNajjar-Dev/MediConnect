@@ -205,11 +205,22 @@ input::placeholder {
   color: #ef4444;
 }
 
-.close-button{
+.right-4{
   right:1rem;
+}
+
+.top-4{
   top:1rem;
 }
 
 .border-green-200{
   border-color: #bbf7d0;
+}
+
+.bottom-6{
+  bottom: 1.5rem;
+}
+
+.right-6{
+  right:1.5rem;
 }
