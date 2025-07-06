@@ -67,7 +67,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $link_stmt->bind_param("ii", $user_id, $role_id);
             if ($link_stmt->execute()) {
                 $link_stmt->close();
-                header("Location: login.php?registered=1");
+
+                $_SESSION["user_id"] = $user_id;
+
+                header("Location: dashboard.php");
                 exit();
             } else {
                 $link_stmt->close();

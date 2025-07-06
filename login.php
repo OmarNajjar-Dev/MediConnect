@@ -123,7 +123,7 @@ if (isset($_SESSION["user_id"])) {
                 </div>
 
                 <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-                    <form id="login-form" class="flex flex-col gap-6" method="POST" action="backend/login-handler.php">
+                    <form id="login-form" class="flex flex-col gap-6" method="POST">
                         <div>
                             <label for="email" class="text-sm font-medium text-gray-700">Email</label>
                             <div class="mt-1">

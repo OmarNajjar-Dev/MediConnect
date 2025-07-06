@@ -8,49 +8,53 @@ export function validateRegisterForm() {
   const roleErrorToast = document.getElementById("role-error-toast");
   const emailErrorToast = document.getElementById("email-error-toast");
 
+  // Helper to hide all toasts
+  const hideAllToasts = () => {
+    passwordErrorToast.classList.add("hidden");
+    roleErrorToast.classList.add("hidden");
+    emailErrorToast.classList.add("hidden");
+  };
+
   form.addEventListener("submit", async (e) => {
-    e.preventDefault(); // Always prevent default submission first
+    e.preventDefault();
     let hasError = false;
 
-    // Check role selection
+    hideAllToasts(); // Hide all before checks
+
+    // Check role
     if (!roleInput.value) {
       roleErrorToast.classList.remove("hidden");
       hasError = true;
-      setTimeout(() => roleErrorToast.classList.add("hidden"), 5000);
     }
 
-    // Check password match
-    if (password.value !== confirmPassword.value) {
+    // Check password
+    else if (password.value !== confirmPassword.value) {
       passwordErrorToast.classList.remove("hidden");
       hasError = true;
-      setTimeout(() => passwordErrorToast.classList.add("hidden"), 5000);
-    } else {
-      passwordErrorToast.classList.add("hidden");
     }
-
-    // Check if email is already taken
-    let emailTaken = false;
-    try {
-      const res = await fetch("/MediConnect/backend/check-email.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: `email=${encodeURIComponent(emailInput.value)}`,
-      });
-      const data = await res.json();
-      if (data.exists) {
-        emailErrorToast.classList.remove("hidden");
-        emailTaken = true;
-        hasError = true;
-        setTimeout(() => emailErrorToast.classList.add("hidden"), 5000);
-      } else {
-        emailErrorToast.classList.add("hidden");
+    
+    // Check email
+    else {
+      try {
+        const res = await fetch("/MediConnect/backend/check-email.php", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: `email=${encodeURIComponent(emailInput.value)}`,
+        });
+        const data = await res.json();
+        if (data.exists) {
+          emailErrorToast.classList.remove("hidden");
+          hasError = true;
+        }
+      } catch (err) {
+        console.error("Email verification failed:", err);
       }
-    } catch (err) {
-      console.error("Email verification failed:", err);
     }
 
-    // Submit only if there are no errors
-    if (!hasError && !emailTaken) {
+    // Hide toast after 5 seconds (if shown)
+    setTimeout(hideAllToasts, 5000);
+
+    if (!hasError) {
       form.submit();
     }
   });

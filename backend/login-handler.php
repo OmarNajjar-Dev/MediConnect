@@ -1,7 +1,8 @@
 <?php
-
 session_start();
 require_once './db.php';
+
+header('Content-Type: application/json'); // Important for AJAX
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = $_POST["email"] ?? '';
@@ -18,10 +19,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (password_verify($password, $user["password"])) {
             $_SESSION["user_id"] = $user["user_id"];
 
-            // Handle "Remember Me"
+            // Handle Remember Me
             if ($rememberMe) {
                 $token = bin2hex(random_bytes(32));
-                setcookie("remember_token", $token, time() + 86400 * 30, "/"); // valid for 30 days
+                setcookie("remember_token", $token, time() + 86400 * 30, "/");
 
                 $updateStmt = $conn->prepare("UPDATE users SET remember_token = ? WHERE user_id = ?");
                 $updateStmt->bind_param("si", $token, $user["user_id"]);
@@ -29,17 +30,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $updateStmt->close();
             }
 
-            // Redirect to dashboard
-            header("Location: dashboard.php");
+            echo json_encode(["success" => true]);
             exit();
         }
     }
 
     // Failed login
-    header("Location: login.php?error=1");
+    echo json_encode(["success" => false]);
     exit();
 }
 
-// Invalid request (non-POST)
-header("Location: login.php");
+echo json_encode(["success" => false]);
 exit();

@@ -3,17 +3,25 @@ export function validateLoginForm() {
   const loginBtn = document.getElementById("login-btn");
   const emailInput = document.getElementById("email");
   const passwordInput = document.querySelector(".password");
+  const rememberMeCheckbox = document.getElementById("remember-me");
   const errorToast = document.getElementById("login-error-toast");
 
-  if (!form || !loginBtn) return; // Prevents the TypeError
+  if (!form || !loginBtn) return;
 
   loginBtn.addEventListener("click", async (e) => {
     e.preventDefault();
 
+    const formData = new URLSearchParams();
+    formData.append("email", emailInput.value);
+    formData.append("password", passwordInput.value);
+    if (rememberMeCheckbox.checked) {
+      formData.append("remember_me", "1");
+    }
+
     const res = await fetch("backend/login-handler.php", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: `email=${encodeURIComponent(emailInput.value)}&password=${encodeURIComponent(passwordInput.value)}`
+      body: formData.toString(),
     });
 
     const data = await res.json();
