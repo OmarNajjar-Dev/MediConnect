@@ -1,3 +1,7 @@
+<?php
+require_once './backend/auth.php';
+?>
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -41,9 +45,9 @@
             <!-- Desktop Navigation -->
             <nav class="hidden md:flex items-center gap-4 lg:gap-8">
                 <a href="./" class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Home</a>
-                <a href="./doctors.html"
+                <a href="./doctors.php"
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Doctors</a>
-                <a href="./hospitals.html"
+                <a href="./hospitals.php"
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Hospitals</a>
                 <a href="./appointments.php"
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Appointments</a>
@@ -73,9 +77,9 @@
                 <nav class="container mx-auto flex flex-col gap-4 px-4 py-4">
                     <a href="./"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Home</a>
-                    <a href="./doctors.html"
+                    <a href="./doctors.php"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Doctors</a>
-                    <a href="./hospitals.html"
+                    <a href="./hospitals.php"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
                     <a href="./appointments.php"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
@@ -186,19 +190,19 @@
                 <div class="glass-card rounded-xl p-6 mb-8">
                     <h2 class="text-xl tracking-tight font-bold mb-4">Quick Actions</h2>
                     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-                        <a class="quick-links-dashboard whitespace-nowrap rounded-md text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50 border border-solid border-input bg-background hover:bg-accent px-4 h-auto py-4 flex flex-col items-center justify-center gap-1" href="/appointments">
+                        <a class="quick-links-dashboard whitespace-nowrap rounded-md text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50 border border-solid border-input bg-background hover:bg-accent px-4 h-auto py-4 flex flex-col items-center justify-center gap-1" href="./appointments.php">
                             <div class="text-medical-600"><i data-lucide="calendar" class="w-4 h-4"></i></div>
                             <span class="text-sm font-normal text-gray-900">Book Appointment</span>
                         </a>
-                        <a class="quick-links-dashboard whitespace-nowrap rounded-md text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50 border border-solid border-input bg-background hover:bg-accent px-4 h-auto py-4 flex flex-col items-center justify-center gap-1" href="/doctors">
+                        <a class="quick-links-dashboard whitespace-nowrap rounded-md text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50 border border-solid border-input bg-background hover:bg-accent px-4 h-auto py-4 flex flex-col items-center justify-center gap-1" href="./doctors.php">
                             <div class="text-medical-600"><i data-lucide="user" class="w-4 h-4"></i></div>
                             <span class="text-sm font-normal text-gray-900">Find Doctor</span>
                         </a>
-                        <a class="quick-links-dashboard whitespace-nowrap rounded-md text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50 border border-solid border-input bg-background hover:bg-accent px-4 h-auto py-4 flex flex-col items-center justify-center gap-1" href="/hospitals">
+                        <a class="quick-links-dashboard whitespace-nowrap rounded-md text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50 border border-solid border-input bg-background hover:bg-accent px-4 h-auto py-4 flex flex-col items-center justify-center gap-1" href="./hospitals.php">
                             <div class="text-medical-600"><i data-lucide="star" class="w-4 h-4"></i></div>
                             <span class="text-sm font-normal text-gray-900">Find Hospitals</span>
                         </a>
-                        <a class="quick-links-dashboard whitespace-nowrap rounded-md text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50 border border-solid border-input bg-background hover:bg-accent px-4 h-auto py-4 flex flex-col items-center justify-center gap-1" href="/emergency">
+                        <a class="quick-links-dashboard whitespace-nowrap rounded-md text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50 border border-solid border-input bg-background hover:bg-accent px-4 h-auto py-4 flex flex-col items-center justify-center gap-1" href="./emergency.php">
                             <div class="text-red-600"><i data-lucide="plus" class="w-4 h-4"></i></div>
                             <span class="text-sm font-normal text-gray-900">Emergency Service</span>
                         </a>
@@ -206,7 +210,7 @@
                             <div class="text-medical-600"><i data-lucide="settings" class="w-4 h-4"></i></div>
                             <span class="text-sm font-normal text-gray-900">Profile</span>
                         </button>
-                        <a class="whitespace-nowrap rounded-md text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50 border border-solid border-input bg-background hover:bg-accent px-4 h-auto py-4 flex flex-col items-center justify-center gap-1" href="/blood-donation">
+                        <a class="whitespace-nowrap rounded-md text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50 border border-solid border-input bg-background hover:bg-accent px-4 h-auto py-4 flex flex-col items-center justify-center gap-1" href="./blood-donation.php">
                             <div class="text-red-600"><i data-lucide="activity" class="w-4 h-4"></i></div>
                             <span class="text-sm font-normal text-gray-900">Blood Donation</span>
                         </a>
@@ -258,12 +262,12 @@
                             </a>
                         </li>
                         <li>
-                            <a href="./doctors.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="./doctors.php" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Find Doctors
                             </a>
                         </li>
                         <li>
-                            <a href="./hospitals.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="./hospitals.php" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Hospital Information
                             </a>
                         </li>

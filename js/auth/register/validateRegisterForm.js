@@ -1,5 +1,5 @@
-export function validateForm() {
-  const form = document.querySelector("form");
+export function validateRegisterForm() {
+  const form = document.getElementById("register-form");
   const password = document.querySelector(".password");
   const confirmPassword = document.getElementById("confirm-password");
   const roleInput = document.getElementById("role-input");

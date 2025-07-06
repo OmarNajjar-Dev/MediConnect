@@ -1,3 +1,14 @@
+<?php
+
+require_once './backend/auth.php'; // handles autologin via cookie
+
+// Redirect logged-in users away from this page
+if (isset($_SESSION["user_id"])) {
+    header("Location: 404.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,9 +51,9 @@
             <!-- Desktop Navigation -->
             <nav class="hidden md:flex items-center gap-4 lg:gap-8">
                 <a href="./" class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Home</a>
-                <a href="./doctors.html"
+                <a href="./doctors.php"
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Doctors</a>
-                <a href="./hospitals.html"
+                <a href="./hospitals.php"
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Hospitals</a>
                 <a href="./appointments.html"
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Appointments</a>
@@ -73,9 +84,9 @@
                 <nav class="container mx-auto flex flex-col gap-4 px-4 py-4">
                     <a href="./"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Home</a>
-                    <a href="./doctors.html"
+                    <a href="./doctors.php"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Doctors</a>
-                    <a href="./hospitals.html"
+                    <a href="./hospitals.php"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
                     <a href="./appointments.html"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
@@ -112,7 +123,7 @@
                 </div>
 
                 <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-                    <form class="flex flex-col gap-6" method="POST">
+                    <form id="login-form" class="flex flex-col gap-6" method="POST" action="backend/login-handler.php">
                         <div>
                             <label for="email" class="text-sm font-medium text-gray-700">Email</label>
                             <div class="mt-1">
@@ -138,7 +149,7 @@
 
                         <div class="flex items-center justify-between">
                             <div class="flex items-center">
-                                <input type="checkbox" class="custom-checkbox">
+                                <input type="checkbox" id="remember-me" name="remember_me" class="custom-checkbox">
                                 <label for="remember-me" class="ml-2 block text-sm text-gray-900">Remember me</label>
                             </div>
                             <div class="text-sm">
@@ -149,8 +160,8 @@
                         </div>
 
                         <div>
-                            <button type="submit"
-                                class="h-10 px-4 py-2 w-full border border-solid border-input bg-medical-500 hover:bg-medical-700 text-white rounded-sm text-sm font-medium flex items-center justify-center gap-2">
+                            <button id="login-btn" type="submit"
+                                class="h-10 px-4 py-2 w-full border border-solid border-transparent pointer bg-medical-500 hover:bg-medical-700 text-white rounded-sm text-sm font-medium flex items-center justify-center gap-2">
                                 <i data-lucide="log-in" class="h-4 w-4"></i>
                                 Sign in
                             </button>
@@ -217,6 +228,12 @@
                 </div>
             </div>
         </div>
+
+        <div id="login-error-toast" class="hidden fixed max-w-xs bg-danger text-white p-5 rounded-md" role="alert">
+            <p class="font-semibold">Error: </p>
+            <span class="text-md">Invalid email or password.</span>
+        </div>
+
     </main>
 
     <!-- Footer -->
@@ -262,12 +279,12 @@
                             </a>
                         </li>
                         <li>
-                            <a href="./doctors.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="./doctors.php" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Find Doctors
                             </a>
                         </li>
                         <li>
-                            <a href="./hospitals.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="./hospitals.php" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Hospital Information
                             </a>
                         </li>
@@ -350,7 +367,7 @@
     <script type="module" src="js/common/header.js"></script>
     <script type="module" src="js/common/mobile-nav.js"></script>
 
-    <script type="module" src="./js/auth/index.js"></script>
+    <script type="module" src="./js/auth/login/index.js"></script>
 
     <!-- Create Lucide Icons -->
     <script>

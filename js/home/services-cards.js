@@ -23,7 +23,7 @@ export const servicesCardsData = [
     description:
       "Find hospitals with available beds and emergency services in your area.",
     linkText: "View Hospitals",
-    linkHref: "./hospitals.html",
+    linkHref: "./hospitals.php",
     animationDelay: "200ms",
   },
   {

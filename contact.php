@@ -1,3 +1,7 @@
+<?php
+require_once './backend/auth.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,9 +43,9 @@
       <!-- Desktop Navigation -->
       <nav class="hidden md:flex items-center gap-4 lg:gap-8">
         <a href="./" class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Home</a>
-        <a href="./doctors.html"
+        <a href="./doctors.php"
           class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Doctors</a>
-        <a href="./hospitals.html"
+        <a href="./hospitals.php"
           class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Hospitals</a>
         <a href="./appointments.php"
           class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Appointments</a>
@@ -66,31 +70,31 @@
         </button>
       </div>
 
-    <!-- Mobile Navigation (Hidden by default) -->
-    <div id="mobile-nav" class="hidden absolute bg-white-95 backdrop-blur-lg animate-slide-down shadow-lg">
-      <nav class="container mx-auto flex flex-col gap-4 px-4 py-4">
-        <a href="./"
-          class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Home</a>
-        <a href="./doctors.html"
-          class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Doctors</a>
-        <a href="./hospitals.html"
-          class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
-        <a href="./appointments.php"
-          class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
-        <a href="./dashboard.php"
-          class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Dashboard</a>
+      <!-- Mobile Navigation (Hidden by default) -->
+      <div id="mobile-nav" class="hidden absolute bg-white-95 backdrop-blur-lg animate-slide-down shadow-lg">
+        <nav class="container mx-auto flex flex-col gap-4 px-4 py-4">
+          <a href="./"
+            class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Home</a>
+          <a href="./doctors.php"
+            class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Doctors</a>
+          <a href="./hospitals.php"
+            class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
+          <a href="./appointments.php"
+            class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
+          <a href="./dashboard.php"
+            class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Dashboard</a>
 
-        <!-- Sign In / Sign Up buttons (Mobile view) -->
-        <div class="flex flex-col pt-2 gap-2 border-t border-solid separator">
-          <a href="./login.php"
-            class="inline-flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-all">Sign
-            In</a>
-          <a href="./register.php"
-            class="inline-flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Sign
-            Up</a>
-        </div>
-      </nav>
-    </div>
+          <!-- Sign In / Sign Up buttons (Mobile view) -->
+          <div class="flex flex-col pt-2 gap-2 border-t border-solid separator">
+            <a href="./login.php"
+              class="inline-flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-all">Sign
+              In</a>
+            <a href="./register.php"
+              class="inline-flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Sign
+              Up</a>
+          </div>
+        </nav>
+      </div>
   </header>
 
   <!-- Main Content -->
@@ -323,12 +327,12 @@
               </a>
             </li>
             <li>
-              <a href="./doctors.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+              <a href="./doctors.php" class="text-gray-600 hover:text-medical-600 transition-colors">
                 Find Doctors
               </a>
             </li>
             <li>
-              <a href="./hospitals.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+              <a href="./hospitals.php" class="text-gray-600 hover:text-medical-600 transition-colors">
                 Hospital Information
               </a>
             </li>

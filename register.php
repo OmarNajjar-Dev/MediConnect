@@ -1,5 +1,13 @@
 <?php
+
+require_once './backend/auth.php'; // handles autologin via cookie
 require_once './backend/db.php';
+
+// Redirect logged-in users away from this page
+if (isset($_SESSION["user_id"])) {
+    header("Location: 404.php");
+    exit();
+}
 
 // Show all errors during development (remove in production)
 error_reporting(E_ALL);
@@ -120,9 +128,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <!-- Desktop Navigation -->
             <nav class="hidden md:flex items-center gap-4 lg:gap-8">
                 <a href="./" class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Home</a>
-                <a href="./doctors.html"
+                <a href="./doctors.php"
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Doctors</a>
-                <a href="./hospitals.html"
+                <a href="./hospitals.php"
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Hospitals</a>
                 <a href="./appointments.html"
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Appointments</a>
@@ -153,9 +161,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <nav class="container mx-auto flex flex-col gap-4 px-4 py-4">
                     <a href="./"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Home</a>
-                    <a href="./doctors.html"
+                    <a href="./doctors.php"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Doctors</a>
-                    <a href="./hospitals.html"
+                    <a href="./hospitals.php"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
                     <a href="./appointments.html"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
@@ -195,7 +203,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 </div>
 
                 <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-                    <form class="flex flex-col gap-6" method="POST">
+                    <form id="register-form" method="POST" class="flex flex-col gap-6">
                         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
                             <div>
                                 <label for="first_name" class="block text-sm font-medium text-gray-700">First
@@ -329,10 +337,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             <input type="checkbox" id="agree-checkbox" class="custom-checkbox" />
                             <label for="agree-checkbox" class="ml-2 block text-sm text-gray-900">
                                 I agree to the
-                                <a href="./terms-of-service" class="text-medical-500 hover:text-medical-700">Terms of
+                                <a href="./terms.php" class="text-medical-500 hover:text-medical-700">Terms of
                                     Service</a>
                                 and
-                                <a href="./privacy-policy" class="text-medical-500 hover:text-medical-700">Privacy
+                                <a href="./privacy.php" class="text-medical-500 hover:text-medical-700">Privacy
                                     Policy</a>
                             </label>
                         </div>
@@ -465,12 +473,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             </a>
                         </li>
                         <li>
-                            <a href="./doctors.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="./doctors.php" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Find Doctors
                             </a>
                         </li>
                         <li>
-                            <a href="./hospitals.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="./hospitals.php" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Hospital Information
                             </a>
                         </li>
@@ -553,7 +561,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <script type="module" src="js/common/header.js"></script>
     <script type="module" src="js/common/mobile-nav.js"></script>
 
-    <script type="module" src="js/auth/index.js"></script>
+    <script type="module" src="js/auth/register/index.js"></script>
 
     <!-- Create Lucide Icons -->
     <script>

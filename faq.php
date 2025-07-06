@@ -1,3 +1,7 @@
+<?php
+require_once './backend/auth.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,9 +43,9 @@
             <!-- Desktop Navigation -->
             <nav class="hidden md:flex items-center gap-4 lg:gap-8">
                 <a href="./" class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Home</a>
-                <a href="./doctors.html"
+                <a href="./doctors.php"
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Doctors</a>
-                <a href="./hospitals.html"
+                <a href="./hospitals.php"
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Hospitals</a>
                 <a href="./appointments.php"
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Appointments</a>
@@ -72,9 +76,9 @@
                 <nav class="container mx-auto flex flex-col gap-4 px-4 py-4">
                     <a href="./"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Home</a>
-                    <a href="./doctors.html"
+                    <a href="./doctors.php"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Doctors</a>
-                    <a href="./hospitals.html"
+                    <a href="./hospitals.php"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
                     <a href="./appointments.php"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
@@ -346,12 +350,12 @@
                             </a>
                         </li>
                         <li>
-                            <a href="./doctors.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="./doctors.php" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Find Doctors
                             </a>
                         </li>
                         <li>
-                            <a href="./hospitals.html" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="./hospitals.php" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Hospital Information
                             </a>
                         </li>
@@ -432,7 +436,7 @@
     <script>
         lucide.createIcons()
     </script>
-    
+
 </body>
 
 </html>
