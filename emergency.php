@@ -191,14 +191,37 @@
 
 
 
+
+            <div class="relative mx-auto mt-6 w-full max-w-4xl rounded-lg border border-solid border-green-200 bg-green-50 px-6 py-4 text-center">
+                <h4 class="font-semibold text-green-800">
+                    Emergency request active
+                </h4>
+                <p class="text-sm text-green-700">
+                    Help is on the way. You can view the status below.
+                </p>
+            </div>
+
+
+
+
+
+
+
             <!-- Drawer (location access UI) -->
             <div id="drawer" class="fixed inset-0 bg-opacity-50 flex items-center justify-center z-50">
                 <div class="bg-white w-full max-w-md mx-auto rounded-lg overflow-hidden shadow-lg">
                     <!-- Drawer Header -->
-                    <div class="p-4 border-b">
+                    <div class="p-4 relative border-b">
                         <h2 class="text-lg text-heading font-semibold">Requesting Emergency Help</h2>
                         <p class="text-sm text-gray-500">Please wait while we access your location</p>
+
+                        <!-- X Close Button -->
+                        <button onclick="closeDrawer()" class="close-button absolute border-none bg-transparent text-gray-500 hover:text-heading">
+                            <i data-lucide="x" class="w-4 h-4"></i>
+                        </button>
+
                     </div>
+
 
                     <!-- Drawer Body -->
                     <div class="p-4 text-center">

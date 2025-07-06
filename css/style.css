@@ -204,3 +204,12 @@ input::placeholder {
 .text-red-500 {
   color: #ef4444;
 }
+
+.close-button{
+  right:1rem;
+  top:1rem;
+}
+
+.border-green-200{
+  border-color: #bbf7d0;
+}
