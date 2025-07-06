@@ -1,9 +1,8 @@
--- phpMyAdmin SQL Dump
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 19, 2025 at 09:10 PM
+-- Generation Time: Jul 06, 2025 at 04:56 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -131,6 +130,29 @@ INSERT INTO `hospital_specialties` (`id`, `hospital_id`, `specialty_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `roles`
+--
+
+CREATE TABLE `roles` (
+  `role_id` int(11) NOT NULL,
+  `role_name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`role_id`, `role_name`) VALUES
+(2, 'Admin'),
+(6, 'Ambulance Team'),
+(3, 'Doctor'),
+(4, 'Patient'),
+(5, 'Staff'),
+(1, 'Super Admin');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `specialties`
 --
 
@@ -181,20 +203,33 @@ CREATE TABLE `users` (
   `first_name` varchar(100) NOT NULL,
   `last_name` varchar(100) NOT NULL,
   `city` varchar(100) NOT NULL,
-  `address_line` varchar(255) NOT NULL
+  `address_line` varchar(255) NOT NULL,
+  `remember_token` varchar(64) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `email`, `password`, `first_name`, `last_name`, `city`, `address_line`) VALUES
-(1, 'sarah.johnson@gmail.com', 'sarahjohson@123', 'Sarah', 'Johnson', 'Tripoli', 'Hay Al Ramlet'),
-(2, 'michael.chen@example.com', 'password2', 'Michael', 'Chen', 'New York', '123 Skin St'),
-(3, 'emily.rodriguez@example.com', 'password3', 'Emily', 'Rodriguez', 'Los Angeles', '456 Neuro Rd'),
-(4, 'james.wilson@example.com', 'password4', 'James', 'Wilson', 'Chicago', '789 Ortho Ave'),
-(5, 'lisa.kim@example.com', 'password5', 'Lisa', 'Kim', 'Houston', '321 Pediatric Blvd'),
-(6, 'robert.taylor@example.com', 'password6', 'Robert', 'Taylor', 'Phoenix', '654 Mental Way');
+INSERT INTO `users` (`user_id`, `email`, `password`, `first_name`, `last_name`, `city`, `address_line`, `remember_token`) VALUES
+(1, 'sarah.johnson@gmail.com', 'sarahjohson@123', 'Sarah', 'Johnson', 'Tripoli', 'Hay Al Ramlet', NULL),
+(2, 'michael.chen@example.com', 'password2', 'Michael', 'Chen', 'New York', '123 Skin St', NULL),
+(3, 'emily.rodriguez@example.com', 'password3', 'Emily', 'Rodriguez', 'Los Angeles', '456 Neuro Rd', NULL),
+(4, 'james.wilson@example.com', 'password4', 'James', 'Wilson', 'Chicago', '789 Ortho Ave', NULL),
+(5, 'lisa.kim@example.com', 'password5', 'Lisa', 'Kim', 'Houston', '321 Pediatric Blvd', NULL),
+(6, 'robert.taylor@example.com', 'password6', 'Robert', 'Taylor', 'Phoenix', '654 Mental Way', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_roles`
+--
+
+CREATE TABLE `user_roles` (
+  `user_role_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `role_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables
@@ -224,6 +259,13 @@ ALTER TABLE `hospital_specialties`
   ADD KEY `specialty_id` (`specialty_id`);
 
 --
+-- Indexes for table `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`role_id`),
+  ADD UNIQUE KEY `role_name` (`role_name`);
+
+--
 -- Indexes for table `specialties`
 --
 ALTER TABLE `specialties`
@@ -236,6 +278,14 @@ ALTER TABLE `specialties`
 ALTER TABLE `users`
   ADD PRIMARY KEY (`user_id`),
   ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Indexes for table `user_roles`
+--
+ALTER TABLE `user_roles`
+  ADD PRIMARY KEY (`user_role_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `role_id` (`role_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -260,6 +310,12 @@ ALTER TABLE `hospital_specialties`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
+-- AUTO_INCREMENT for table `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `specialties`
 --
 ALTER TABLE `specialties`
@@ -270,6 +326,12 @@ ALTER TABLE `specialties`
 --
 ALTER TABLE `users`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `user_roles`
+--
+ALTER TABLE `user_roles`
+  MODIFY `user_role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables
@@ -289,6 +351,13 @@ ALTER TABLE `doctors`
 ALTER TABLE `hospital_specialties`
   ADD CONSTRAINT `hospital_specialties_ibfk_1` FOREIGN KEY (`hospital_id`) REFERENCES `hospitals` (`hospital_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `hospital_specialties_ibfk_2` FOREIGN KEY (`specialty_id`) REFERENCES `specialties` (`specialty_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `user_roles`
+--
+ALTER TABLE `user_roles`
+  ADD CONSTRAINT `user_roles_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `user_roles_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `roles` (`role_id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
