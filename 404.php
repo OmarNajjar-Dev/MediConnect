@@ -28,6 +28,7 @@ require_once './backend/auth.php';
 </head>
 
 <body class="bg-background text-heading">
+    
     <!-- Header Section -->
     <header class="fixed z-50 py-5 bg-transparent transition-all">
         <div class="container mx-auto flex items-center justify-between px-4">
@@ -62,7 +63,7 @@ require_once './backend/auth.php';
 
                 <!-- Mobile Menu Button -->
                 <button id="menu-button"
-                    class="inline-flex items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-0 pointer md:hidden">
+                    class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-0 pointer">
                     <i data-lucide="menu" class="w-4 h-4"></i>
                 </button>
             </div>
@@ -250,10 +251,8 @@ require_once './backend/auth.php';
     </footer>
 
     <!-- External JavaScript -->
-    <script type="module" src="js/common/header.js"></script>
-    <script type="module" src="js/common/mobile-nav.js"></script>
-
-    <script src="js/faq.js"></script>
+    <script type="module" src="./js/common/index.js"></script>
+    <script type="module" src="./js/faq.js"></script>
 
     <!-- Create Lucide Icons -->
     <script>

@@ -6,6 +6,7 @@ require_once './backend/auth.php';
 <html lang="en">
 
 <head>
+    <!-- Meta Tags -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -31,6 +32,7 @@ require_once './backend/auth.php';
 </head>
 
 <body class="bg-background text-foreground">
+
     <!-- Header Section -->
     <header class="fixed z-50 py-5 bg-transparent transition-all">
         <div class="container mx-auto flex items-center justify-between px-4">
@@ -65,7 +67,7 @@ require_once './backend/auth.php';
 
                 <!-- Mobile Menu Button -->
                 <button id="menu-button"
-                    class="inline-flex items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-0 pointer md:hidden">
+                    class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-0 pointer">
                     <i data-lucide="menu" class="w-4 h-4"></i>
                 </button>
             </div>
@@ -220,7 +222,6 @@ require_once './backend/auth.php';
         </div>
     </main>
 
-
     <!-- Footer -->
     <footer class="bg-gray-50 pt-16 pb-8 border-t border-solid separator">
         <div class="container mx-auto px-4">
@@ -342,14 +343,14 @@ require_once './backend/auth.php';
         </div>
     </footer>
 
-    <!-- JavaScript -->
-    <script type="module" src="js/common/header.js"></script>
-    <script type="module" src="js/common/mobile-nav.js"></script>
+    <!-- External JavaScript -->
+    <script type="module" src="./js/common/index.js"></script>
+
+    <!-- Create Lucide Icons -->
     <script>
-        window.addEventListener('DOMContentLoaded', () => {
-            lucide.createIcons();
-        });
+        lucide.createIcons()
     </script>
+
 </body>
 
 </html>

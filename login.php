@@ -13,7 +13,7 @@ if (isset($_SESSION["user_id"])) {
 <html lang="en">
 
 <head>
-    <!-- Meta Settings -->
+    <!-- Meta Tags -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -39,6 +39,7 @@ if (isset($_SESSION["user_id"])) {
 </head>
 
 <body class="bg-background text-foreground">
+
     <!-- Header Section -->
     <header class="fixed z-50 py-5 bg-transparent transition-all">
         <div class="container mx-auto flex items-center justify-between px-4">
@@ -73,7 +74,7 @@ if (isset($_SESSION["user_id"])) {
 
                 <!-- Mobile Menu Button -->
                 <button id="menu-button"
-                    class="inline-flex items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-0 pointer md:hidden">
+                    class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-0 pointer">
                     <i data-lucide="menu" class="w-4 h-4"></i>
                 </button>
             </div>
@@ -107,7 +108,7 @@ if (isset($_SESSION["user_id"])) {
         </div>
     </header>
 
-    <!-- ====================== Main Content ====================== -->
+    <!-- Main Content -->
     <main class="overflow-hidden pt-20 flex-grow min-h-screen bg-gray-50 pb-16">
         <div class="min-h-screen flex items-center justify-center bg-transparent py-12 px-4 sm:px-6 lg:px-8">
             <div class="max-w-md w-full flex flex-col gap-6">
@@ -364,9 +365,7 @@ if (isset($_SESSION["user_id"])) {
     </footer>
 
     <!-- External JavaScript -->
-    <script type="module" src="js/common/header.js"></script>
-    <script type="module" src="js/common/mobile-nav.js"></script>
-
+    <script type="module" src="./js/common/index.js"></script>
     <script type="module" src="./js/auth/login/index.js"></script>
 
     <!-- Create Lucide Icons -->
