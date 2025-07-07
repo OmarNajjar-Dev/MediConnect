@@ -98,32 +98,50 @@ require_once './backend/auth.php';
   </header>
 
   <!-- Main Content -->
-  <main class="pt-20 pb-16 min-h-screen bg-gray-50">
+  <main class="min-h-screen pt-20 pb-16 bg-gray-50">
     <div class="container mx-auto px-4">
       <div class="py-8">
         <div class="flex flex-col mb-8">
-
-          <p class="text-sm text-gray-600 mb-1">Logged in as: <span class="font-medium">SUPER ADMIN</span></p>
-          <h1 class="text-2xl font-bold text-gray-900 tracking-tight">Welcome back, System Administrator</h1>
-
+          <p class="mb-1 text-sm text-gray-600">
+            Logged in as: <span class="font-medium">SUPER ADMIN</span>
+          </p>
+          <h1 class="text-2xl font-bold tracking-tight text-gray-900">
+            Welcome back, System Administrator
+          </h1>
         </div>
         <div class="min-h-screen bg-gray-50">
-          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
             <div class="mb-8">
-              <div class="flex items-center gap-3 mb-2">
+              <div class="mb-2 flex items-center gap-3">
                 <i data-lucide="shield" class="h-8 w-8 text-blue-600"></i>
-                <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Super Admin Control Panel</h1>
+                <h1 class="text-3xl font-bold tracking-tight text-gray-900">
+                  Super Admin Control Panel
+                </h1>
               </div>
-              <p class="text-gray-600">Welcome, Super Admin. Manage all system entities and monitor platform health.</p>
+              <p class="text-gray-600">
+                Welcome, Super Admin. Manage all system entities and monitor platform health.
+              </p>
             </div>
             <div class="flex flex-col gap-6">
-              <div class="outline-none h-10 items-center justify-center rounded-md p-1 text-muted-foreground grid w-full grid-cols-3 lg:grid-cols-6 bg-white border border-solid border-card-soft">
-                <button type="button" class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all border-none bg-transparent pointer bg-blue-50 text-blue-700">Overview</button>
-                <button type="button" class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all border-none bg-transparent pointer">Hospitals</button>
-                <button type="button" class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all border-none bg-transparent pointer">Admins</button>
-                <button type="button" class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all border-none bg-transparent pointer">Doctors</button>
-                <button type="button" class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all border-none bg-transparent pointer">Patients</button>
-                <button type="button" class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all border-none bg-transparent pointer">Staff &amp; Teams</button>
+              <div class="grid h-10 w-full grid-cols-3 items-center justify-center rounded-md border border-solid border-card-soft bg-white p-1 text-muted-foreground outline-none lg:grid-cols-6">
+                <button type="button" class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium text-blue-700 transition-all bg-blue-50 pointer border-none">
+                  Overview
+                </button>
+                <button type="button" class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all bg-transparent pointer border-none">
+                  Hospitals
+                </button>
+                <button type="button" class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all bg-transparent pointer border-none">
+                  Admins
+                </button>
+                <button type="button" class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all bg-transparent pointer border-none">
+                  Doctors
+                </button>
+                <button type="button" class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all bg-transparent pointer border-none">
+                  Patients
+                </button>
+                <button type="button" class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all bg-transparent pointer border-none">
+                  Staff &amp; Teams
+                </button>
               </div>
 
               <!-- Overview -->
@@ -268,7 +286,7 @@ require_once './backend/auth.php';
                         </thead>
 
                         <tbody class="table-no-border-last">
-                          
+
                           <!-- Row 1 -->
                           <tr class="border-b border-solid border-card-soft transition-colors hover:bg-gray-50">
                             <td class="p-4 py-4 align-middle">Central Medical Center</td>
