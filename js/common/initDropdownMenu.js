@@ -3,11 +3,12 @@ export function initDropdownMenu() {
   const dropdownToggle = dropdown?.querySelector("button");
   const dropdownMenu = dropdown?.querySelector(".dropdown-content");
 
+  if (!dropdown || !dropdownToggle || !dropdownMenu) return;
+
   let isClicked = false;
   
   // Toggle menu on click (persistent)
   dropdownToggle.addEventListener("click", (e) => {
-    e.stopPropagation(); // Prevent closing when clicking inside
     isClicked = !isClicked;
     dropdownMenu.classList.toggle("hidden", !isClicked);
   });

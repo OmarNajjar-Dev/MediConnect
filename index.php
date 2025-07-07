@@ -99,10 +99,10 @@ $userEmail = "omarnajjar10.on@gmai.com";
                   <i data-lucide="user" class="w-4 h-4"></i>Dashboard
                 </a>
 
-                <button
-                  class="flex items-center gap-2 px-3 py-2 text-sm border-none bg-transparent pointer text-red-600 hover:bg-red-50 w-full text-left transition-colors transition-200">
+                <a href="./backend/logout.php"
+                  class="flex items-center gap-2 px-3 py-2 text-sm text-red-600 hover:text-red-700 hover:bg-red-50 w-full transition-colors transition-200">
                   <i data-lucide="log-out" class="w-4 h-4"></i>Sign Out
-                </button>
+                </a>
               </div>
             </div>
           </div>

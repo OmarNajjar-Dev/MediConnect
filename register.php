@@ -210,19 +210,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <form id="register-form" method="POST" class="flex flex-col gap-6">
                         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
                             <div>
-                                <label for="first_name" class="block text-sm font-medium text-gray-700">First
+                                <label for="first-name" class="block text-sm font-medium text-gray-700">First
                                     Name</label>
                                 <div class="mt-1">
-                                    <input type="text" id="first_name" name="first_name" autocomplete="given-name"
+                                    <input type="text" id="first-name" name="first_name" autocomplete="given-name"
                                         required
                                         class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white md:text-sm" />
                                 </div>
                             </div>
 
                             <div>
-                                <label for="last_name" class="block text-sm font-medium text-gray-700">Last Name</label>
+                                <label for="last-name" class="block text-sm font-medium text-gray-700">Last Name</label>
                                 <div class="mt-1">
-                                    <input type="text" id="last_name" name="last_name" autocomplete="family-name" required
+                                    <input type="text" id="last-name" name="last_name" autocomplete="family-name" required
                                         class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white md:text-sm" />
                                 </div>
                             </div>
