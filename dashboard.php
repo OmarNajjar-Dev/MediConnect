@@ -1,35 +1,36 @@
 <?php
+
 require_once './backend/auth.php';
+
 ?>
 
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
+
     <!-- Meta Tags -->
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
     <!-- Stylesheets -->
-    <link href="css/base.css" rel="stylesheet" />
-    <link href="css/colors.css" rel="stylesheet" />
-    <link href="css/typography.css" rel="stylesheet" />
-    <link href="css/spacing.min.css" rel="stylesheet" />
-    <link href="css/sizing.min.css" rel="stylesheet" />
-    <link href="css/borders.css" rel="stylesheet" />
-    <link href="css/layout.css" rel="stylesheet" />
-    <link href="css/animations.css" rel="stylesheet" />
-    <link href="css/style.css" rel="stylesheet" />
-    <link href="css/responsive.css" rel="stylesheet" />
-    <link href="css/ring.css" rel="stylesheet" />
-    <link href="css/faq.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/colors.css" />
+    <link rel="stylesheet" href="css/typography.css" />
+    <link rel="stylesheet" href="css/spacing.min.css" />
+    <link rel="stylesheet" href="css/sizing.min.css" />
+    <link rel="stylesheet" href="css/borders.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/animations.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
 
     <!-- Page Title -->
     <title>MediConnect - Bridging Healthcare &amp; Technology</title>
+
 </head>
 
 <body class="bg-background">

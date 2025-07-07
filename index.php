@@ -1,35 +1,40 @@
 <?php
+
 require_once './backend/auth.php';
+
 $isLoggedIn = true;
 $userName = "Omar Najjar";
 $userEmail = "omarnajjar10.on@gmai.com";
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <!-- Meta Tags -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/colors.css" />
-  <link rel="stylesheet" href="css/typography.css" />
-  <link rel="stylesheet" href="css/spacing.min.css" />
-  <link rel="stylesheet" href="css/sizing.min.css" />
-  <link rel="stylesheet" href="css/borders.css" />
-  <link rel="stylesheet" href="css/layout.css" />
-  <link rel="stylesheet" href="css/animations.css" />
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/responsive.css" />
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
-  <!-- Page Title -->
-  <title>MediConnect - Bridging Healthcare & Technology</title>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/colors.css" />
+    <link rel="stylesheet" href="css/typography.css" />
+    <link rel="stylesheet" href="css/spacing.min.css" />
+    <link rel="stylesheet" href="css/sizing.min.css" />
+    <link rel="stylesheet" href="css/borders.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/animations.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+
+    <!-- Page Title -->
+    <title>MediConnect - Bridging Healthcare & Technology</title>
+
 </head>
 
 <body class="bg-background text-foreground">

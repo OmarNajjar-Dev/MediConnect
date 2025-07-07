@@ -1,11 +1,14 @@
 <?php
+
 require_once './backend/auth.php';
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
     <!-- Meta Tags -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -20,11 +23,14 @@ require_once './backend/auth.php';
     <link rel="stylesheet" href="css/spacing.min.css" />
     <link rel="stylesheet" href="css/sizing.min.css" />
     <link rel="stylesheet" href="css/borders.css" />
-    <link rel="stylesheet" href="css/ring.css" />
     <link rel="stylesheet" href="css/layout.css" />
     <link rel="stylesheet" href="css/animations.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/responsive.css" />
+
+    <!-- Page Title -->
+    <title>MediConnect - Bridging Healthcare & Technology</title>
+
 </head>
 
 <body class="bg-background text-heading">

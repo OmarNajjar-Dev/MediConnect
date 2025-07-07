@@ -13,6 +13,7 @@ if (isset($_SESSION["user_id"])) {
 <html lang="en">
 
 <head>
+
     <!-- Meta Tags -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -30,11 +31,14 @@ if (isset($_SESSION["user_id"])) {
     <link rel="stylesheet" href="css/spacing.min.css" />
     <link rel="stylesheet" href="css/sizing.min.css" />
     <link rel="stylesheet" href="css/borders.css" />
+    <link rel="stylesheet" href="css/ring.css" />
     <link rel="stylesheet" href="css/layout.css" />
     <link rel="stylesheet" href="css/animations.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/responsive.css" />
-    <link rel="stylesheet" href="css/ring.css" />
+
+    <!-- Page Title -->
+    <title>MediConnect - Bridging Healthcare & Technology</title>
 
 </head>
 
