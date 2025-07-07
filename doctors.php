@@ -1,6 +1,6 @@
 <?php
 
-require_once './backend/auth.php';
+require_once './backend/auth.php'; // handles autologin via cookie
 
 ?>
 
@@ -9,25 +9,28 @@ require_once './backend/auth.php';
 
 <head>
 
-    <!-- Meta Tags -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Meta Tags -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="css/base.css" />
-    <link rel="stylesheet" href="css/colors.css" />
-    <link rel="stylesheet" href="css/typography.css" />
-    <link rel="stylesheet" href="css/spacing.min.css" />
-    <link rel="stylesheet" href="css/sizing.min.css" />
-    <link rel="stylesheet" href="css/borders.css" />
-    <link rel="stylesheet" href="css/ring.css" />
-    <link rel="stylesheet" href="css/layout.css" />
-    <link rel="stylesheet" href="css/animations.css" />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/responsive.css" />
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/colors.css" />
+  <link rel="stylesheet" href="css/typography.css" />
+  <link rel="stylesheet" href="css/spacing.min.css" />
+  <link rel="stylesheet" href="css/sizing.min.css" />
+  <link rel="stylesheet" href="css/borders.css" />
+  <link rel="stylesheet" href="css/ring.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+
+  <!-- Page Title -->
+  <title>MediConnect - Bridging Healthcare & Technology</title>
 
 </head>
 
@@ -51,7 +54,7 @@ require_once './backend/auth.php';
           class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Hospitals</a>
         <a href="./appointments.php"
           class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Appointments</a>
-        <a href="./dashboard.php"
+        <a href="././dashboard/superadmin.php"
           class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Dashboard</a>
       </nav>
 
@@ -83,7 +86,7 @@ require_once './backend/auth.php';
             class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
           <a href="./appointments.php"
             class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
-          <a href="./dashboard.php"
+          <a href="././dashboard/superadmin.php"
             class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Dashboard</a>
 
           <!-- Sign In / Sign Up buttons (Mobile view) -->

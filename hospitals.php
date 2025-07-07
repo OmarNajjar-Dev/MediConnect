@@ -1,6 +1,6 @@
 <?php
 
-require_once './backend/auth.php';
+require_once './backend/auth.php'; // handles autologin via cookie
 
 ?>
 
@@ -31,6 +31,7 @@ require_once './backend/auth.php';
 
     <!-- Page Title -->
     <title>MediConnect - Bridging Healthcare & Technology</title>
+    
 </head>
 
 <body class="bg-background text-foreground">
@@ -53,7 +54,7 @@ require_once './backend/auth.php';
                     class="text-medical-700 text-sm font-medium hover:text-medical-600 transition-colors">Hospitals</a>
                 <a href="./appointments.php"
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Appointments</a>
-                <a href="./dashboard.php"
+                <a href="././dashboard/superadmin.php"
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Dashboard</a>
             </nav>
 
@@ -86,7 +87,7 @@ require_once './backend/auth.php';
                         class="text-medical-700 bg-medical-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
                     <a href="./appointments.php"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
-                    <a href="./dashboard.php"
+                    <a href="././dashboard/superadmin.php"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Dashboard</a>
 
                     <!-- Sign In / Sign Up buttons (Mobile view) -->

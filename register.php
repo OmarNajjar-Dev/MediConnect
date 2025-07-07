@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                 $_SESSION["user_id"] = $user_id;
 
-                header("Location: dashboard.php");
+                header("Location: ./dashboard/superadmin.php");
                 exit();
             } else {
                 $link_stmt->close();
@@ -144,7 +144,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Hospitals</a>
                 <a href="./appointments.html"
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Appointments</a>
-                <a href="./dashboard.php"
+                <a href="././dashboard/superadmin.php"
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Dashboard</a>
             </nav>
 
@@ -177,7 +177,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
                     <a href="./appointments.html"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
-                    <a href="./dashboard.php"
+                    <a href="././dashboard/superadmin.php"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Dashboard</a>
 
                     <!-- Sign In / Sign Up buttons (Mobile view) -->
