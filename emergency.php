@@ -105,7 +105,7 @@
                         <p class="text-lg text-gray-700 mb-8">
                             Request immediate medical assistance for COVID-19 related emergencies
                         </p>
-                        <div class="flex flex-col gap-6">
+                        <div  id="requestHelpWrapper" class="flex flex-col gap-6">
                             <button
                                 id="requestHelpBtn"
                                 class="gap-2 whitespace-nowrap border border-solid border-input disabled:pointer-events-none disabled:opacity-50 h-10 bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-sm text-lg shadow-lg flex items-center justify-center w-full md:w-auto md:max-w-[300px]">
@@ -195,27 +195,6 @@
                 </div>
             </section>
 
-
-
-
-
-
-
-            <div class="relative mx-auto mt-6 w-full max-w-4xl rounded-lg border border-solid border-green-200 bg-green-50 px-6 py-4 text-center">
-                <h4 class="font-semibold text-green-800">
-                    Emergency request active
-                </h4>
-                <p class="text-sm text-green-700">
-                    Help is on the way. You can view the status below.
-                </p>
-            </div>
-
-
-
-
-
-
-
             <!-- Drawer (location access UI) -->
             <div id="drawer" class="fixed inset-0 bg-opacity-50 flex items-center justify-center z-50 hidden">
                 <div class="bg-white w-full max-w-md mx-auto rounded-lg overflow-hidden shadow-lg">
@@ -245,7 +224,7 @@
 
                     <!-- Drawer Footer -->
                     <div class="p-4 border-t text-right">
-                        <button onclick="closeDrawer()" class="px-4 py-2 border border-solid border-card-soft rounded-sm bg-transparent text-heading rounded text-sm font-medium hover:bg-gray-100 pointer">
+                        <button onclick="cancelRequest()" class="px-4 py-2 border border-solid border-card-soft rounded-sm bg-transparent text-heading rounded text-sm font-medium hover:bg-gray-100 pointer">
                             Cancel
                         </button>
                     </div>
