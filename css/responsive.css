@@ -12,6 +12,14 @@
     flex-direction: row;
   }
 
+  .sm\:justify-between {
+    justify-content: space-between;
+  }
+
+  .sm\:items-center {
+    align-items: center;
+  }
+
   .sm\:w-auto {
     width: auto;
   }

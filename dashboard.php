@@ -68,7 +68,7 @@ require_once './backend/auth.php';
 
                 <!-- Mobile Menu Button -->
                 <button id="menu-button"
-                    class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-0 pointer">
+                    class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none pointer">
                     <i data-lucide="menu" class="w-4 h-4"></i>
                 </button>
             </div>
@@ -112,7 +112,7 @@ require_once './backend/auth.php';
                         <p class="text-sm text-medical-600">Department: Cardiology</p>
                     </div>
                     <div class="flex items-center gap-4">
-                        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap border border-solid border-transparent text-sm font-medium disabled:pointer-events-none disabled:opacity-50 h-11 rounded-md px-8 bg-blue-600 hover:bg-blue-700 text-white pointer">
+                        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap border border-solid border-transparent text-sm font-medium h-11 rounded-md px-8 bg-blue-600 hover:bg-blue-700 text-white pointer">
                             <i data-lucide="settings" class="h-4 w-4 mr-2"></i>Manage Profile
                         </button>
                     </div>
@@ -133,7 +133,7 @@ require_once './backend/auth.php';
                             </div>
                         </div>
                         <div class="mt-4">
-                            <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium border border-solid border-transparent transition-colors disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white pointer">Manage Your Profile →</button>
+                            <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium border border-solid border-transparent transition-colors h-10 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white pointer">Manage Your Profile →</button>
                         </div>
                     </div>
                 </div>
@@ -191,27 +191,27 @@ require_once './backend/auth.php';
                 <div class="glass-card rounded-xl p-6 mb-8">
                     <h2 class="text-xl tracking-tight font-bold mb-4">Quick Actions</h2>
                     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-                        <a class="quick-links-dashboard whitespace-nowrap rounded-md text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50 border border-solid border-input bg-background hover:bg-accent px-4 h-auto py-4 flex flex-col items-center justify-center gap-1" href="./appointments.php">
+                        <a class="quick-links-dashboard whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-input bg-background hover:bg-accent px-4 h-auto py-4 flex flex-col items-center justify-center gap-1" href="./appointments.php">
                             <div class="text-medical-600"><i data-lucide="calendar" class="w-4 h-4"></i></div>
                             <span class="text-sm font-normal text-gray-900">Book Appointment</span>
                         </a>
-                        <a class="quick-links-dashboard whitespace-nowrap rounded-md text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50 border border-solid border-input bg-background hover:bg-accent px-4 h-auto py-4 flex flex-col items-center justify-center gap-1" href="./doctors.php">
+                        <a class="quick-links-dashboard whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-input bg-background hover:bg-accent px-4 h-auto py-4 flex flex-col items-center justify-center gap-1" href="./doctors.php">
                             <div class="text-medical-600"><i data-lucide="user" class="w-4 h-4"></i></div>
                             <span class="text-sm font-normal text-gray-900">Find Doctor</span>
                         </a>
-                        <a class="quick-links-dashboard whitespace-nowrap rounded-md text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50 border border-solid border-input bg-background hover:bg-accent px-4 h-auto py-4 flex flex-col items-center justify-center gap-1" href="./hospitals.php">
+                        <a class="quick-links-dashboard whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-input bg-background hover:bg-accent px-4 h-auto py-4 flex flex-col items-center justify-center gap-1" href="./hospitals.php">
                             <div class="text-medical-600"><i data-lucide="star" class="w-4 h-4"></i></div>
                             <span class="text-sm font-normal text-gray-900">Find Hospitals</span>
                         </a>
-                        <a class="quick-links-dashboard whitespace-nowrap rounded-md text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50 border border-solid border-input bg-background hover:bg-accent px-4 h-auto py-4 flex flex-col items-center justify-center gap-1" href="./emergency.php">
+                        <a class="quick-links-dashboard whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-input bg-background hover:bg-accent px-4 h-auto py-4 flex flex-col items-center justify-center gap-1" href="./emergency.php">
                             <div class="text-red-600"><i data-lucide="plus" class="w-4 h-4"></i></div>
                             <span class="text-sm font-normal text-gray-900">Emergency Service</span>
                         </a>
-                        <button class="quick-links-dashboard whitespace-nowrap rounded-md text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50 border border-solid border-input bg-background hover:bg-accent px-4 h-auto py-4 flex flex-col items-center justify-center gap-1">
+                        <button class="quick-links-dashboard whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-input bg-background hover:bg-accent px-4 h-auto py-4 flex flex-col items-center justify-center gap-1">
                             <div class="text-medical-600"><i data-lucide="settings" class="w-4 h-4"></i></div>
                             <span class="text-sm font-normal text-gray-900">Profile</span>
                         </button>
-                        <a class="whitespace-nowrap rounded-md text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50 border border-solid border-input bg-background hover:bg-accent px-4 h-auto py-4 flex flex-col items-center justify-center gap-1" href="./blood-donation.php">
+                        <a class="whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-input bg-background hover:bg-accent px-4 h-auto py-4 flex flex-col items-center justify-center gap-1" href="./blood-donation.php">
                             <div class="text-red-600"><i data-lucide="activity" class="w-4 h-4"></i></div>
                             <span class="text-sm font-normal text-gray-900">Blood Donation</span>
                         </a>

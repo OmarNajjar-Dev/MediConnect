@@ -74,7 +74,7 @@ if (isset($_SESSION["user_id"])) {
 
                 <!-- Mobile Menu Button -->
                 <button id="menu-button"
-                    class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-0 pointer">
+                    class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none pointer">
                     <i data-lucide="menu" class="w-4 h-4"></i>
                 </button>
             </div>

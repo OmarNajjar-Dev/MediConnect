@@ -110,11 +110,9 @@ input::placeholder {
 }
 
 #hero-background {
-  background: linear-gradient(
-    to right,
-    rgb(0 105 92 / 0.9),
-    rgb(30 58 138 / 0.7)
-  );
+  background: linear-gradient(to right,
+      rgb(0 105 92 / 0.9),
+      rgb(30 58 138 / 0.7));
 }
 
 .drop-shadow-md {
@@ -224,4 +222,12 @@ input::placeholder {
 
 .text-red-500 {
   color: #ef4444;
+}
+
+.table-no-border-last tr:last-child {
+  border: none;
+}
+
+.border-collapse {
+  border-collapse: collapse;
 }
