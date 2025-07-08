@@ -98,172 +98,298 @@ require_once './backend/auth.php';
         </div>
     </header>
 
-    <main class="flex-1">
-        <div class="page-transition page-enter-active">
-            <main class="pt-20 pb-16 min-h-screen bg-gray-50">
-                <div class="container mx-auto px-4">
-                    <div class="py-8">
-                        <div class="flex justify-between items-center mb-8">
+    <main class="pt-20 pb-16 min-h-screen bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="py-8">
+
+                <!-- Header Section -->
+                <div class="mb-8">
+                    <p class="mb-1 text-sm text-gray-600">
+                        Logged in as: <span class="font-medium">AMBULANCE TEAM</span>
+                    </p>
+                    <h1 class="text-2xl font-bold text-gray-900">
+                        Welcome back, Emergency Response Team Alpha
+                    </h1>
+                    <p class="mt-1 text-sm text-medical-600">
+                        City Emergency Services
+                    </p>
+                </div>
+
+
+                <!-- Panel Title -->
+                <div class="mb-6 flex items-center gap-3">
+                    <i data-lucide="truck" class="h-8 w-8 text-red-600"></i>
+                    <div>
+                        <h1 class="text-3xl font-bold text-heading">
+                            Emergency Response Panel
+                        </h1>
+                        <p class="text-gray-600">Ambulance Team Dashboard</p>
+                    </div>
+                </div>
+
+
+                <!-- Emergency Alert Box -->
+                <div class="mb-6 rounded-xl border border-red-200 bg-red-50 p-6 glass-card">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="circle-alert" class="h-6 w-6 text-red-600"></i>
                             <div>
-                                <p class="text-sm text-gray-600 mb-1">Logged in as: <span class="font-medium">AMBULANCE TEAM</span></p>
-                                <h1 class="text-2xl font-bold text-gray-900">Welcome back, Emergency Response Team Alpha</h1>
-                                <p class="text-sm text-medical-600 mt-1">City Emergency Services</p>
+                                <h1 class="font-bold text-red-900">2 New Emergency Alert(s)</h1>
+                                <p class="text-red-700">Immediate attention required</p>
                             </div>
-                            <div class="flex items-center gap-4">
+                        </div>
+                        <button class="pointer rounded-md border border-solid border-red-300 bg-white px-4 py-2 text-sm font-medium text-red-700 hover:bg-red-100">
+                            View Alerts
+                        </button>
+                    </div>
+                </div>
+
+
+                <!-- Tab Navigation -->
+                <div
+                    role="tablist"
+                    aria-orientation="horizontal"
+                    class="mb-2 grid h-10 w-full grid-cols-3 items-center justify-center rounded-md bg-gray-150 p-1 text-muted-foreground">
+                    <button
+                        id="tab-trigger-emergencies"
+                        role="tab"
+                        aria-selected="true"
+                        aria-controls="tab-content-emergencies"
+                        class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-white px-3 py-1.5 text-sm font-medium">
+                        Active Emergencies
+                    </button>
+
+                    <button
+                        id="tab-trigger-notifications"
+                        role="tab"
+                        aria-selected="false"
+                        aria-controls="tab-content-notifications"
+                        class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-gray-150 px-3 py-1.5 text-sm font-medium">
+                        Notifications
+                        <div
+                            class="ml-2 inline-flex items-center rounded-full border border-transparent bg-red-500 px-2.5 py-0.5 text-xs font-semibold text-white">
+                            2
+                        </div>
+                    </button>
+
+                    <button
+                        id="tab-trigger-status"
+                        role="tab"
+                        aria-selected="false"
+                        aria-controls="tab-content-status"
+                        class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-gray-150 px-3 py-1.5 text-sm font-medium">
+                        Team Status
+                    </button>
+                </div>
+
+
+                <!-- Dashboard Stats -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+
+                    <div class="glass-card rounded-xl p-6">
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="text-sm font-medium text-gray-600">Total Requests</p>
+                                <p class="text-2xl font-bold text-heading">2</p>
+                            </div>
+                            <i data-lucide="circle-alert" class="h-8 w-8 text-red-600"></i>
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-xl p-6">
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="text-sm font-medium text-gray-600">Pending</p>
+                                <p class="text-2xl font-bold text-heading">1</p>
+                            </div>
+                            <i data-lucide="clock" class="h-8 w-8 text-orange-600"></i>
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-xl p-6">
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="text-sm font-medium text-gray-600">In Progress</p>
+                                <p class="text-2xl font-bold text-heading">0</p>
+                            </div>
+                            <i data-lucide="truck" class="h-8 w-8 text-blue-600"></i>
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-xl p-6">
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="text-sm font-medium text-gray-600">Resolved</p>
+                                <p class="text-2xl font-bold text-heading">0</p>
+                            </div>
+                            <i data-lucide="check-circle" class="h-8 w-8 text-green-600"></i>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- Emergency Requests List -->
+                <div id="tab-content-emergencies" class="glass-card rounded-xl p-6">
+                    <h3 class="mb-4 text-xl font-bold text-heading">Emergency Requests</h3>
+
+                    <!-- Request Card -->
+                    <div class="mb-4 rounded-lg border border-solid border-card-soft bg-gray-50 p-4">
+
+                        <div class="mb-3">
+                            <div class="mb-2 flex items-center gap-2">
+                                <h4 class="font-medium text-heading">Ahmed Al-Rashid</h4>
+                                <span class="rounded-full border border-solid border-red-200 bg-red-100 px-2.5 py-0.5 text-xs font-semibold text-red-800">CRITICAL</span>
+                                <span class="rounded-full bg-orange-100 px-2.5 py-0.5 text-xs font-semibold text-orange-800">PENDING</span>
+                            </div>
+
+                            <div class="mb-2 flex items-center gap-2 text-sm text-gray-600">
+                                <i data-lucide="map-pin" class="h-4 w-4"></i>
+                                <span>123 Main Street, Downtown</span>
+                            </div>
+                            <p class="mb-2 text-gray-700">Chest pain and difficulty breathing</p>
+                            <div class="text-xs text-gray-500">Reported: 18h ago</div>
+                        </div>
+
+                        <div class="mt-3 flex gap-2">
+                            <button class="pointer rounded-md border border-solid border-input bg-medical-600 px-3 py-2 text-sm font-medium text-white hover:bg-medical-500">Accept & Assign</button>
+                            <button class="pointer rounded-md border border-solid border-input bg-white px-3 py-2 text-sm font-medium text-heading hover:bg-accent hover:text-medical-600">Update Status</button>
+                            <button class="pointer flex items-center gap-1 rounded-md border border-solid border-input bg-white px-3 py-2 text-sm font-medium text-heading hover:bg-accent hover:text-medical-600">
+                                <i data-lucide="map-pin" class="h-4 w-4"></i> View Location
+                            </button>
+                            <button class="pointer flex items-center gap-1 rounded-md border border-solid border-input bg-white px-3 py-2 text-sm font-medium text-heading hover:bg-accent hover:text-medical-600">
+                                <i data-lucide="phone" class="h-4 w-4"></i> Call Patient
+                            </button>
+                        </div>
+                        
+                    </div>
+
+
+                    <!-- Second Request Card -->
+                    <div class="rounded-lg border border-solid border-card-soft bg-gray-50 p-4">
+
+                        <div class="mb-3">
+                            <div class="mb-2 flex items-center gap-2">
+                                <h4 class="font-medium text-heading">Fatima Hassan</h4>
+                                <span class="rounded-full border border-solid border-orange-200 bg-orange-100 px-2.5 py-0.5 text-xs font-semibold text-orange-800">HIGH</span>
+                                <span class="rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-semibold text-blue-800">ASSIGNED</span>
+                            </div>
+
+                            <div class="mb-2 flex items-center gap-2 text-sm text-gray-600">
+                                <i data-lucide="map-pin" class="h-4 w-4"></i>
+                                <span>456 Oak Avenue, North District</span>
+                            </div>
+                            <p class="mb-2 text-gray-700">Severe allergic reaction</p>
+                            <div class="text-xs text-gray-500">Reported: 19h ago &nbsp; | &nbsp; ETA: 6:00 PM</div>
+                        </div>
+                        
+                        <div class="mt-3 flex gap-2">
+                            <button class="pointer rounded-md border border-solid border-input bg-medical-600 px-3 py-2 text-sm font-medium text-white hover:bg-medical-500">Start Response</button>
+                            <button class="pointer rounded-md border border-solid border-input bg-white px-3 py-2 text-sm font-medium text-heading hover:bg-accent hover:text-medical-600">Update Status</button>
+                            <button class="pointer flex items-center gap-1 rounded-md border border-solid border-input bg-white px-3 py-2 text-sm font-medium text-heading hover:bg-accent hover:text-medical-600">
+                                <i data-lucide="map-pin" class="h-4 w-4"></i> View Location
+                            </button>
+                            <button class="pointer flex items-center gap-1 rounded-md border border-solid border-input bg-white px-3 py-2 text-sm font-medium text-heading hover:bg-accent hover:text-medical-600">
+                                <i data-lucide="phone" class="h-4 w-4"></i> Call Patient
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Emergency Notifications -->
+                <div id="tab-content-notifications" class="hidden glass-card rounded-xl p-6">
+                    <h3 class="mb-4 text-xl font-bold text-heading">Emergency Notifications</h3>
+
+                    <div class="flex flex-col gap-3">
+                        <!-- Notification 1 -->
+                        <div class="p-4 rounded-lg border border-solid border-red-200 bg-red-50 cursor-pointer">
+                            <div class="flex items-start justify-between">
+                                <div class="flex-1">
+                                    <h4 class="font-medium text-heading">Critical Emergency Alert</h4>
+                                    <p class="mt-1 text-gray-700">New critical emergency reported at 123 Main Street</p>
+                                    <p class="mt-2 text-xs text-gray-500">18h ago</p>
+                                </div>
+
                                 <div class="flex items-center gap-2">
-                                    <div class="rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-foreground flex items-center gap-1">
-                                        <div class="w-2 h-2 rounded-full bg-red-600"></div>Ambulance Team
-                                    </div><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground rounded-md px-3 h-8" type="button" id="radix-:r2:" aria-haspopup="menu" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-check h-4 w-4 mr-1">
-                                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-                                            <circle cx="9" cy="7" r="4"></circle>
-                                            <polyline points="16 11 18 13 22 9"></polyline>
-                                        </svg>Switch Role<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down h-4 w-4 ml-1">
-                                            <path d="m6 9 6 6 6-6"></path>
-                                        </svg></button>
+                                    <div class="w-2 h-2 rounded-full bg-red-600"></div>
+                                    <div class="inline-flex items-center rounded-full border border-transparent bg-red-600 px-2.5 py-0.5 text-xs font-semibold text-white transition-colors hover:bg-red-500">
+                                        NEW
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="space-y-6">
-                            <div class="flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-truck h-8 w-8 text-red-600">
-                                    <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"></path>
-                                    <path d="M15 18H9"></path>
-                                    <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"></path>
-                                    <circle cx="17" cy="18" r="2"></circle>
-                                    <circle cx="7" cy="18" r="2"></circle>
-                                </svg>
-                                <div>
-                                    <h1 class="text-3xl font-bold">Emergency Response Panel</h1>
-                                    <p class="text-gray-600">Ambulance Team Dashboard</p>
+
+
+                        <!-- Notification 2 -->
+                        <div class="p-4 rounded-lg border border-solid border-red-200 bg-red-50 cursor-pointer">
+                            <div class="flex items-start justify-between">
+                                <div class="flex-1">
+                                    <h4 class="font-medium text-heading">Emergency Assignment</h4>
+                                    <p class="mt-1 text-gray-700">You have been assigned to emergency case #2</p>
+                                    <p class="mt-2 text-xs text-gray-500">19h ago</p>
                                 </div>
-                            </div>
-                            <div class="glass-card rounded-xl p-6 border-2 border-red-200 bg-red-50">
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-alert h-6 w-6 text-red-600">
-                                            <circle cx="12" cy="12" r="10"></circle>
-                                            <line x1="12" x2="12" y1="8" y2="12"></line>
-                                            <line x1="12" x2="12.01" y1="16" y2="16"></line>
-                                        </svg>
-                                        <div>
-                                            <h3 class="font-bold text-red-900">2 New Emergency Alert(s)</h3>
-                                            <p class="text-red-700">Immediate attention required</p>
-                                        </div>
-                                    </div><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border bg-background hover:text-accent-foreground h-10 px-4 py-2 border-red-300 text-red-700 hover:bg-red-100">View Alerts</button>
-                                </div>
-                            </div>
-                            <div dir="ltr">
-                                <div role="tablist" aria-orientation="horizontal" class="h-10 items-center justify-center rounded-md bg-muted p-1 text-muted-foreground grid w-full grid-cols-3" tabindex="0" style="outline: none;"><button type="button" role="tab" aria-selected="true" aria-controls="radix-:r8j:-content-emergencies" id="radix-:r8j:-trigger-emergencies" class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm" tabindex="-1">Active Emergencies</button><button type="button" role="tab" aria-selected="false" aria-controls="radix-:r8j:-content-notifications" id="radix-:r8j:-trigger-notifications" class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm" tabindex="-1">Notifications <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80 ml-2">2</div></button><button type="button" role="tab" aria-selected="false" aria-controls="radix-:r8j:-content-status" id="radix-:r8j:-trigger-status" class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm" tabindex="-1">Team Status</button></div>
-                                <div role="tabpanel" aria-labelledby="radix-:r8j:-trigger-emergencies" id="radix-:r8j:-content-emergencies" tabindex="0" class="mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 space-y-6" style="animation-duration: 0s;">
-                                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                                        <div class="glass-card rounded-xl p-6">
-                                            <div class="flex items-center justify-between">
-                                                <div>
-                                                    <p class="text-sm font-medium text-gray-600">Total Requests</p>
-                                                    <p class="text-2xl font-bold">2</p>
-                                                </div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-alert h-8 w-8 text-red-600">
-                                                    <circle cx="12" cy="12" r="10"></circle>
-                                                    <line x1="12" x2="12" y1="8" y2="12"></line>
-                                                    <line x1="12" x2="12.01" y1="16" y2="16"></line>
-                                                </svg>
-                                            </div>
-                                        </div>
-                                        <div class="glass-card rounded-xl p-6">
-                                            <div class="flex items-center justify-between">
-                                                <div>
-                                                    <p class="text-sm font-medium text-gray-600">Pending</p>
-                                                    <p class="text-2xl font-bold">1</p>
-                                                </div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock h-8 w-8 text-orange-600">
-                                                    <circle cx="12" cy="12" r="10"></circle>
-                                                    <polyline points="12 6 12 12 16 14"></polyline>
-                                                </svg>
-                                            </div>
-                                        </div>
-                                        <div class="glass-card rounded-xl p-6">
-                                            <div class="flex items-center justify-between">
-                                                <div>
-                                                    <p class="text-sm font-medium text-gray-600">In Progress</p>
-                                                    <p class="text-2xl font-bold">0</p>
-                                                </div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-truck h-8 w-8 text-blue-600">
-                                                    <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"></path>
-                                                    <path d="M15 18H9"></path>
-                                                    <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"></path>
-                                                    <circle cx="17" cy="18" r="2"></circle>
-                                                    <circle cx="7" cy="18" r="2"></circle>
-                                                </svg>
-                                            </div>
-                                        </div>
-                                        <div class="glass-card rounded-xl p-6">
-                                            <div class="flex items-center justify-between">
-                                                <div>
-                                                    <p class="text-sm font-medium text-gray-600">Resolved</p>
-                                                    <p class="text-2xl font-bold">0</p>
-                                                </div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-big h-8 w-8 text-green-600">
-                                                    <path d="M21.801 10A10 10 0 1 1 17 3.335"></path>
-                                                    <path d="m9 11 3 3L22 4"></path>
-                                                </svg>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="glass-card rounded-xl p-6">
-                                        <h3 class="text-xl font-bold mb-4">Emergency Requests</h3>
-                                        <div class="space-y-4">
-                                            <div class="p-4 bg-gray-50 rounded-lg border">
-                                                <div class="flex items-start justify-between mb-3">
-                                                    <div class="flex-1">
-                                                        <div class="flex items-center gap-2 mb-2">
-                                                            <h4 class="font-medium">Ahmed Al-Rashid</h4>
-                                                            <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 hover:bg-primary/80 bg-red-100 text-red-800 border-red-200">CRITICAL</div>
-                                                            <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent hover:bg-primary/80 bg-orange-100 text-orange-800">PENDING</div>
-                                                        </div>
-                                                        <div class="flex items-center gap-2 text-sm text-gray-600 mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin h-4 w-4">
-                                                                <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
-                                                                <circle cx="12" cy="10" r="3"></circle>
-                                                            </svg><span>123 Main Street, Downtown</span></div>
-                                                        <p class="text-gray-700 mb-2">Chest pain and difficulty breathing</p>
-                                                        <div class="flex items-center gap-4 text-xs text-gray-500"><span>Reported: 18h ago</span></div>
-                                                    </div>
-                                                </div>
-                                                <div class="flex gap-2"><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-9 rounded-md px-3">Accept &amp; Assign</button><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">Update Status</button><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin h-4 w-4 mr-1">
-                                                            <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
-                                                            <circle cx="12" cy="10" r="3"></circle>
-                                                        </svg>View Location</button><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone h-4 w-4 mr-1">
-                                                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                                                        </svg>Call Patient</button></div>
-                                            </div>
-                                            <div class="p-4 bg-gray-50 rounded-lg border">
-                                                <div class="flex items-start justify-between mb-3">
-                                                    <div class="flex-1">
-                                                        <div class="flex items-center gap-2 mb-2">
-                                                            <h4 class="font-medium">Fatima Hassan</h4>
-                                                            <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 hover:bg-primary/80 bg-orange-100 text-orange-800 border-orange-200">HIGH</div>
-                                                            <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent hover:bg-primary/80 bg-blue-100 text-blue-800">ASSIGNED</div>
-                                                        </div>
-                                                        <div class="flex items-center gap-2 text-sm text-gray-600 mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin h-4 w-4">
-                                                                <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
-                                                                <circle cx="12" cy="10" r="3"></circle>
-                                                            </svg><span>456 Oak Avenue, North District</span></div>
-                                                        <p class="text-gray-700 mb-2">Severe allergic reaction</p>
-                                                        <div class="flex items-center gap-4 text-xs text-gray-500"><span>Reported: 19h ago</span><span>ETA: 6:00:00 PM</span></div>
-                                                    </div>
-                                                </div>
-                                                <div class="flex gap-2"><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-9 rounded-md px-3">Start Response</button><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">Update Status</button><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin h-4 w-4 mr-1">
-                                                            <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
-                                                            <circle cx="12" cy="10" r="3"></circle>
-                                                        </svg>View Location</button><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone h-4 w-4 mr-1">
-                                                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                                                        </svg>Call Patient</button></div>
-                                            </div>
-                                        </div>
+
+                                <div class="flex items-center gap-2">
+                                    <div class="w-2 h-2 rounded-full bg-red-600"></div>
+                                    <div class="inline-flex items-center rounded-full border border-transparent bg-red-600 px-2.5 py-0.5 text-xs font-semibold text-white transition-colors hover:bg-red-500">
+                                        NEW
                                     </div>
                                 </div>
-                                <div role="tabpanel" aria-labelledby="radix-:r8j:-trigger-notifications" hidden="" id="radix-:r8j:-content-notifications" tabindex="0" class="mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"></div>
-                                <div role="tabpanel" aria-labelledby="radix-:r8j:-trigger-status" hidden="" id="radix-:r8j:-content-status" tabindex="0" class="mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"></div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </main>
+
+
+                <!-- Team Status -->
+                <div id="tab-content-status" class="hidden glass-card rounded-xl p-6">
+                    <h3 class="mb-4 text-xl font-bold text-heading">Team Status</h3>
+
+                    <div class="flex flex-col gap-4">
+                        <!-- Team Alpha -->
+                        <div class="flex items-center justify-between rounded-lg border border-solid border-green-200 bg-green-50 p-4">
+                            <div>
+                                <p class="font-medium text-green-900">Team Alpha (Your Team)</p>
+                                <p class="text-sm text-green-700">Available - On Standby</p>
+                            </div>
+
+                            <div class="inline-flex items-center rounded-full border bg-green-100 px-2.5 py-0.5 text-xs font-semibold text-green-800 transition-colors hover:bg-primary/80">
+                                READY
+                            </div>
+                        </div>
+
+                        <!-- Team Beta -->
+                        <div class="flex items-center justify-between rounded-lg border border-solid border-blue-200 bg-blue-50 p-4">
+                            <div>
+                                <p class="font-medium text-blue-900">Team Beta</p>
+                                <p class="text-sm text-blue-700">En Route - ETA 8 minutes</p>
+                            </div>
+
+                            <div class="inline-flex items-center rounded-full border bg-blue-100 px-2.5 py-0.5 text-xs font-semibold text-blue-800 transition-colors hover:bg-primary/80">
+                                ACTIVE
+                            </div>
+                        </div>
+
+                        <!-- Team Gamma -->
+                        <div class="flex items-center justify-between rounded-lg border border-solid border-gray-200 bg-gray-50 p-4">
+                            <div>
+                                <p class="font-medium text-gray-900">Team Gamma</p>
+                                <p class="text-sm text-gray-700">Off Duty - Maintenance</p>
+                            </div>
+                            
+                            <div class="inline-flex items-center rounded-full border bg-gray-100 px-2.5 py-0.5 text-xs font-semibold text-gray-800 transition-colors hover:bg-primary/80">
+                                OFFLINE
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
         </div>
     </main>
+
 
     <!-- Footer -->
     <footer class="bg-gray-50 pt-16 pb-8 border-t border-solid separator">
@@ -389,6 +515,13 @@ require_once './backend/auth.php';
     <!-- External JavaScript -->
     <script type="module" src="./js/common/index.js"></script>
     <script type="module" src="./js/home/index.js"></script>
+    <script type="module" src="./js/dashboard/ambulance/ambulance.js"></script>
+    <script type="module" src="./js/dashboard/ambulance/content.js"></script>
+
+    <!-- Create Lucide Icons -->
+    <script>
+        lucide.createIcons()
+    </script>
 
 </body>
 

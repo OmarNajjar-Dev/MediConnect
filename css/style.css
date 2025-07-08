@@ -199,6 +199,84 @@ input::placeholder {
   background-color: #b91c1c;
 }
 
+.hover\:bg-red-500:hover{
+  background-color: #ef4444;
+}
+
+.bg-red-500{
+  background-color:#ef4444;
+}
+
 .text-red-500 {
   color: #ef4444;
 }
+
+.text-red-700 {
+  color: #b91c1c;
+}
+
+.text-red-900 {
+  color: #7f1d1d;
+}
+
+.border-red-200 {
+  border-color: #fecaca;
+}
+
+.hover\:bg-red-100:hover {
+  background-color: #fee2e2;
+}
+
+.border-red-300 {
+  border-color: #fca5a5; 
+}
+
+.text-orange-600 {
+  color: #ea580c; 
+}
+
+.text-red-800 {
+  color: #991b1b; /* Tailwind red-800 */
+}
+
+.bg-orange-100 {
+  background-color: #ffedd5; /* Tailwind orange-100 */
+}
+
+.text-orange-800 {
+  color: #9a3412; /* Tailwind orange-800 */
+}
+
+.bg-blue-100 {
+  background-color: #dbeafe; /* Tailwind blue-100 */
+}
+
+.text-blue-800 {
+  color: #1e40af; /* Tailwind blue-800 */
+}
+
+.border-orange-200 {
+  border-color: #fed7aa; /* Tailwind orange-200 */
+}
+
+.bg-gray-150 {
+  background-color: #f0f0f0; 
+}
+
+.border-green-200 {
+  border-color: #bbf7d0; /* Tailwind green-200 */
+}
+
+.text-green-900 {
+  color: #14532d; /* Tailwind green-900 */
+}
+
+.border-blue-200 {
+  border-color: #bfdbfe; /* Tailwind blue-200 */
+}
+
+.border-gray-200 {
+  border-color: #e5e7eb; /* Tailwind gray-200 */
+}
+
+
