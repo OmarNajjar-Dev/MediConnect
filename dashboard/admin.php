@@ -143,13 +143,13 @@ require_once '../backend/auth.php'; // handles autologin via cookie
                         <button
                             type="button"
                             data-target="our-doctors"
-                            class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-transparent px-3 py-1.5 text-sm font-medium transition-all pointer">
+                            class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none px-3 py-1.5 text-sm font-medium transition-all pointer">
                             Our Doctors
                         </button>
                         <button
                             type="button"
                             data-target="hospital-settings"
-                            class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-transparent px-3 py-1.5 text-sm font-medium transition-all pointer">
+                            class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none px-3 py-1.5 text-sm font-medium transition-all pointer">
                             Hospital Settings
                         </button>
                     </div>
