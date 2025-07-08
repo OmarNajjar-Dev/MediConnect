@@ -102,6 +102,7 @@ require_once '../backend/auth.php';  // handles autologin via cookie
         </div>
     </header>
 
+    <!-- Main Content -->
     <main class="pt-20 pb-16 min-h-screen bg-gray-50">
         <div class="container mx-auto px-4">
             <div class="py-8">

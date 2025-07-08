@@ -106,7 +106,9 @@ require_once '../backend/auth.php'; // handles autologin via cookie
   <main class="min-h-screen pt-20 pb-16 bg-gray-50">
     <div class="container mx-auto px-4">
       <div class="py-8">
-        <div class="flex flex-col mb-8">
+
+        <!-- Header Section -->
+        <div class="mb-8 flex flex-col">
           <p class="mb-1 text-sm text-gray-600">
             Logged in as: <span class="font-medium">SUPER ADMIN</span>
           </p>
@@ -114,8 +116,12 @@ require_once '../backend/auth.php'; // handles autologin via cookie
             Welcome back, System Administrator
           </h1>
         </div>
+
+        <!-- Inner Content -->
         <div class="min-h-screen bg-gray-50">
           <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+
+            <!-- Title & Subtitle -->
             <div class="mb-8">
               <div class="mb-2 flex items-center gap-3">
                 <i data-lucide="shield" class="h-8 w-8 text-blue-600"></i>
@@ -127,26 +133,53 @@ require_once '../backend/auth.php'; // handles autologin via cookie
                 Welcome, Super Admin. Manage all system entities and monitor platform health.
               </p>
             </div>
+
+            <!-- Navigation Tabs -->
             <div class="flex flex-col gap-6">
               <div class="grid h-10 w-full grid-cols-3 items-center justify-center rounded-md border border-solid border-card-soft bg-white p-1 text-muted-foreground outline-none lg:grid-cols-6">
-                <button type="button" data-target="overview" class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium text-blue-700 transition-all bg-blue-50 bg-transparent pointer border-none">
+
+                <button
+                  type="button"
+                  data-target="overview"
+                  class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-blue-50 px-3 py-1.5 text-sm font-medium text-blue-700 transition-all">
                   Overview
                 </button>
-                <button type="button" data-target="hospitals" class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all bg-transparent pointer border-none">
+
+                <button
+                  type="button"
+                  data-target="hospitals"
+                  class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-transparent px-3 py-1.5 text-sm font-medium transition-all">
                   Hospitals
                 </button>
-                <button type="button" data-target="admins" class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all bg-transparent pointer border-none">
+
+                <button
+                  type="button"
+                  data-target="admins"
+                  class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-transparent px-3 py-1.5 text-sm font-medium transition-all">
                   Admins
                 </button>
-                <button type="button" data-target="doctors" class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all bg-transparent pointer border-none">
+
+                <button
+                  type="button"
+                  data-target="doctors"
+                  class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-transparent px-3 py-1.5 text-sm font-medium transition-all">
                   Doctors
                 </button>
-                <button type="button" data-target="patients" class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all bg-transparent pointer border-none">
+
+                <button
+                  type="button"
+                  data-target="patients"
+                  class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-transparent px-3 py-1.5 text-sm font-medium transition-all">
                   Patients
                 </button>
-                <button type="button" data-target="staff-ambulance" class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all bg-transparent pointer border-none">
+
+                <button
+                  type="button"
+                  data-target="staff-ambulance"
+                  class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-transparent px-3 py-1.5 text-sm font-medium transition-all">
                   Staff &amp; Teams
                 </button>
+
               </div>
 
               <!-- Overview -->
