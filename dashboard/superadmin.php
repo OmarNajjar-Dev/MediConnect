@@ -160,7 +160,7 @@ require_once '../backend/auth.php'; // handles autologin via cookie
                           <p class="text-sm font-medium text-gray-600">Total Hospitals</p>
                           <p class="mt-2 text-3xl font-bold text-gray-900">3</p>
                         </div>
-                        <div class="rounded-full bg-blue-50 p-3">
+                        <div class="flex justify-center items-center rounded-full bg-blue-50 p-3">
                           <i data-lucide="building2" class="h-6 w-6 text-blue-600"></i>
                         </div>
                       </div>
@@ -174,7 +174,7 @@ require_once '../backend/auth.php'; // handles autologin via cookie
                           <p class="text-sm font-medium text-gray-600">Total Users</p>
                           <p class="mt-2 text-3xl font-bold text-gray-900">5</p>
                         </div>
-                        <div class="rounded-full bg-green-50 p-3">
+                        <div class="flex justify-center items-center rounded-full bg-green-50 p-3">
                           <i data-lucide="users" class="h-6 w-6 text-green-600"></i>
                         </div>
                       </div>
@@ -188,7 +188,7 @@ require_once '../backend/auth.php'; // handles autologin via cookie
                           <p class="text-sm font-medium text-gray-600">Active Doctors</p>
                           <p class="mt-2 text-3xl font-bold text-gray-900">1</p>
                         </div>
-                        <div class="rounded-full bg-purple-50 p-3">
+                        <div class="flex justify-center items-center rounded-full bg-purple-50 p-3">
                           <i data-lucide="user-check" class="h-6 w-6 text-purple-600"></i>
                         </div>
                       </div>
@@ -202,7 +202,7 @@ require_once '../backend/auth.php'; // handles autologin via cookie
                           <p class="text-sm font-medium text-gray-600">Available Beds</p>
                           <p class="mt-2 text-3xl font-bold text-gray-900">135</p>
                         </div>
-                        <div class="rounded-full bg-orange-50 p-3">
+                        <div class="flex justify-center items-center rounded-full bg-orange-50 p-3">
                           <i data-lucide="activity" class="h-6 w-6 text-orange-600"></i>
                         </div>
                       </div>
