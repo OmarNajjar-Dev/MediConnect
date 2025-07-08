@@ -232,7 +232,6 @@ input::placeholder {
   color: #ef4444;
 }
 
-<<<<<<< HEAD
 .text-red-700 {
   color: #b91c1c;
 }
@@ -302,7 +301,6 @@ input::placeholder {
 }
 
 
-=======
 .table-no-border-last tr:last-child {
   border: none;
 }
@@ -310,4 +308,3 @@ input::placeholder {
 .border-collapse {
   border-collapse: collapse;
 }
->>>>>>> main
