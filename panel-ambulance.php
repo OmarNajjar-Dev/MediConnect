@@ -115,7 +115,6 @@ require_once './backend/auth.php';
                     </p>
                 </div>
 
-
                 <!-- Panel Title -->
                 <div class="mb-6 flex items-center gap-3">
                     <i data-lucide="truck" class="h-8 w-8 text-red-600"></i>
@@ -126,7 +125,6 @@ require_once './backend/auth.php';
                         <p class="text-gray-600">Ambulance Team Dashboard</p>
                     </div>
                 </div>
-
 
                 <!-- Emergency Alert Box -->
                 <div class="mb-6 rounded-xl border border-red-200 bg-red-50 p-6 glass-card">
@@ -144,26 +142,17 @@ require_once './backend/auth.php';
                     </div>
                 </div>
 
-
                 <!-- Tab Navigation -->
                 <div
-                    role="tablist"
-                    aria-orientation="horizontal"
                     class="mb-2 grid h-10 w-full grid-cols-3 items-center justify-center rounded-md bg-gray-150 p-1 text-muted-foreground">
                     <button
                         id="tab-trigger-emergencies"
-                        role="tab"
-                        aria-selected="true"
-                        aria-controls="tab-content-emergencies"
                         class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-white px-3 py-1.5 text-sm font-medium">
                         Active Emergencies
                     </button>
 
                     <button
                         id="tab-trigger-notifications"
-                        role="tab"
-                        aria-selected="false"
-                        aria-controls="tab-content-notifications"
                         class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-gray-150 px-3 py-1.5 text-sm font-medium">
                         Notifications
                         <div
@@ -174,14 +163,10 @@ require_once './backend/auth.php';
 
                     <button
                         id="tab-trigger-status"
-                        role="tab"
-                        aria-selected="false"
-                        aria-controls="tab-content-status"
                         class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-gray-150 px-3 py-1.5 text-sm font-medium">
                         Team Status
                     </button>
                 </div>
-
 
                 <!-- Dashboard Stats -->
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
@@ -227,7 +212,6 @@ require_once './backend/auth.php';
                     </div>
 
                 </div>
-
 
                 <!-- Emergency Requests List -->
                 <div id="tab-content-emergencies" class="glass-card rounded-xl p-6">
@@ -296,7 +280,6 @@ require_once './backend/auth.php';
                     </div>
                 </div>
 
-
                 <!-- Emergency Notifications -->
                 <div id="tab-content-notifications" class="hidden glass-card rounded-xl p-6">
                     <h3 class="mb-4 text-xl font-bold text-heading">Emergency Notifications</h3>
@@ -341,7 +324,6 @@ require_once './backend/auth.php';
                     </div>
                 </div>
 
-
                 <!-- Team Status -->
                 <div id="tab-content-status" class="hidden glass-card rounded-xl p-6">
                     <h3 class="mb-4 text-xl font-bold text-heading">Team Status</h3>
@@ -385,11 +367,9 @@ require_once './backend/auth.php';
                     </div>
                 </div>
 
-
             </div>
         </div>
     </main>
-
 
     <!-- Footer -->
     <footer class="bg-gray-50 pt-16 pb-8 border-t border-solid separator">
