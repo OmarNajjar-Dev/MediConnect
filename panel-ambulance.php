@@ -303,7 +303,7 @@ require_once './backend/auth.php';
 
                     <div class="flex flex-col gap-3">
                         <!-- Notification 1 -->
-                        <div class="p-4 rounded-lg border border-solid border-red-200 bg-red-50 cursor-pointer">
+                        <div class="notification-card p-4 rounded-lg border border-solid border-red-200 bg-red-50 pointer">
                             <div class="flex items-start justify-between">
                                 <div class="flex-1">
                                     <h4 class="font-medium text-heading">Critical Emergency Alert</h4>
@@ -312,8 +312,8 @@ require_once './backend/auth.php';
                                 </div>
 
                                 <div class="flex items-center gap-2">
-                                    <div class="w-2 h-2 rounded-full bg-red-600"></div>
-                                    <div class="inline-flex items-center rounded-full border border-transparent bg-red-600 px-2.5 py-0.5 text-xs font-semibold text-white transition-colors hover:bg-red-500">
+                                    <div class="red-dot w-2 h-2 rounded-full bg-red-600"></div>
+                                    <div class="new-badge inline-flex items-center rounded-full border border-transparent bg-red-600 px-2.5 py-0.5 text-xs font-semibold text-white transition-colors hover:bg-red-500">
                                         NEW
                                     </div>
                                 </div>
@@ -322,7 +322,7 @@ require_once './backend/auth.php';
 
 
                         <!-- Notification 2 -->
-                        <div class="p-4 rounded-lg border border-solid border-red-200 bg-red-50 cursor-pointer">
+                        <div class="notification-card p-4 rounded-lg border border-solid border-red-200 bg-red-50 pointer">
                             <div class="flex items-start justify-between">
                                 <div class="flex-1">
                                     <h4 class="font-medium text-heading">Emergency Assignment</h4>
@@ -331,8 +331,8 @@ require_once './backend/auth.php';
                                 </div>
 
                                 <div class="flex items-center gap-2">
-                                    <div class="w-2 h-2 rounded-full bg-red-600"></div>
-                                    <div class="inline-flex items-center rounded-full border border-transparent bg-red-600 px-2.5 py-0.5 text-xs font-semibold text-white transition-colors hover:bg-red-500">
+                                    <div class="red-dot w-2 h-2 rounded-full bg-red-600"></div>
+                                    <div class="new-badge inline-flex items-center rounded-full border border-transparent bg-red-600 px-2.5 py-0.5 text-xs font-semibold text-white transition-colors hover:bg-red-500">
                                         NEW
                                     </div>
                                 </div>
@@ -517,6 +517,7 @@ require_once './backend/auth.php';
     <script type="module" src="./js/home/index.js"></script>
     <script type="module" src="./js/dashboard/ambulance/ambulance.js"></script>
     <script type="module" src="./js/dashboard/ambulance/content.js"></script>
+    <script type="module" src="./js/dashboard/ambulance/notif.js"></script>
 
     <!-- Create Lucide Icons -->
     <script>
