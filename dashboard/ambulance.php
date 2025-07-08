@@ -1,11 +1,14 @@
 <?php
-require_once './backend/auth.php';
+
+require_once '../backend/auth.php';  // handles autologin via cookie
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
     <!-- Meta Tags -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,19 +17,20 @@ require_once './backend/auth.php';
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="css/base.css" />
-    <link rel="stylesheet" href="css/colors.css" />
-    <link rel="stylesheet" href="css/typography.css" />
-    <link rel="stylesheet" href="css/spacing.min.css" />
-    <link rel="stylesheet" href="css/sizing.min.css" />
-    <link rel="stylesheet" href="css/borders.css" />
-    <link rel="stylesheet" href="css/layout.css" />
-    <link rel="stylesheet" href="css/animations.css" />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/colors.css" />
+    <link rel="stylesheet" href="../css/typography.css" />
+    <link rel="stylesheet" href="../css/spacing.min.css" />
+    <link rel="stylesheet" href="../css/sizing.min.css" />
+    <link rel="stylesheet" href="../css/borders.css" />
+    <link rel="stylesheet" href="../css/layout.css" />
+    <link rel="stylesheet" href="../css/animations.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/responsive.css" />
 
     <!-- Page Title -->
     <title>MediConnect - Bridging Healthcare & Technology</title>
+
 </head>
 
 <body class="bg-background text-foreground">
@@ -146,23 +150,23 @@ require_once './backend/auth.php';
                 <div
                     class="mb-2 grid h-10 w-full grid-cols-3 items-center justify-center rounded-md bg-gray-150 p-1 text-muted-foreground">
                     <button
-                        id="tab-trigger-emergencies"
+                        data-target="active-emergencies"
                         class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-white px-3 py-1.5 text-sm font-medium">
                         Active Emergencies
                     </button>
 
                     <button
-                        id="tab-trigger-notifications"
+                        data-target="notifications"
                         class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-gray-150 px-3 py-1.5 text-sm font-medium">
                         Notifications
                         <div
-                            class="ml-2 inline-flex items-center rounded-full border border-transparent bg-red-500 px-2.5 py-0.5 text-xs font-semibold text-white">
+                            class="ml-2 inline-flex items-center rounded-full border-none bg-red-500 px-2.5 py-0.5 text-xs font-semibold text-white">
                             2
                         </div>
                     </button>
 
                     <button
-                        id="tab-trigger-status"
+                        data-target="team-status"
                         class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-gray-150 px-3 py-1.5 text-sm font-medium">
                         Team Status
                     </button>
@@ -214,7 +218,7 @@ require_once './backend/auth.php';
                 </div>
 
                 <!-- Emergency Requests List -->
-                <div id="tab-content-emergencies" class="glass-card rounded-xl p-6">
+                <div data-section="active-emergencies" class="glass-card rounded-xl p-6">
                     <h3 class="mb-4 text-xl font-bold text-heading">Emergency Requests</h3>
 
                     <!-- Request Card -->
@@ -281,7 +285,7 @@ require_once './backend/auth.php';
                 </div>
 
                 <!-- Emergency Notifications -->
-                <div id="tab-content-notifications" class="hidden glass-card rounded-xl p-6">
+                <div data-section="notifications" class="hidden glass-card rounded-xl p-6">
                     <h3 class="mb-4 text-xl font-bold text-heading">Emergency Notifications</h3>
 
                     <div class="flex flex-col gap-3">
@@ -325,7 +329,7 @@ require_once './backend/auth.php';
                 </div>
 
                 <!-- Team Status -->
-                <div id="tab-content-status" class="hidden glass-card rounded-xl p-6">
+                <div data-section="team-status" class="hidden glass-card rounded-xl p-6">
                     <h3 class="mb-4 text-xl font-bold text-heading">Team Status</h3>
 
                     <div class="flex flex-col gap-4">
@@ -493,11 +497,8 @@ require_once './backend/auth.php';
     </footer>
 
     <!-- External JavaScript -->
-    <script type="module" src="./js/common/index.js"></script>
-    <script type="module" src="./js/home/index.js"></script>
-    <script type="module" src="./js/dashboard/ambulance/ambulance.js"></script>
-    <script type="module" src="./js/dashboard/ambulance/content.js"></script>
-    <script type="module" src="./js/dashboard/ambulance/notif.js"></script>
+    <script type="module" src="../js/common/index.js"></script>
+    <script type="module" src="../js/dashboard/ambulance/index.js"></script>
 
     <!-- Create Lucide Icons -->
     <script>

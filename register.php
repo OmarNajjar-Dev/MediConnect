@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                 $_SESSION["user_id"] = $user_id;
 
-                header("Location: dashboard.php");
+                header("Location: ./dashboard/superadmin.php");
                 exit();
             } else {
                 $link_stmt->close();
@@ -94,6 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <html lang="en">
 
 <head>
+
     <!-- Meta Tags -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -105,17 +106,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
     <!-- Stylesheets -->
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/colors.css" />
     <link rel="stylesheet" href="css/typography.css" />
     <link rel="stylesheet" href="css/spacing.min.css" />
     <link rel="stylesheet" href="css/sizing.min.css" />
     <link rel="stylesheet" href="css/borders.css" />
+    <link rel="stylesheet" href="css/ring.css" />
     <link rel="stylesheet" href="css/layout.css" />
     <link rel="stylesheet" href="css/animations.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/responsive.css" />
-    <link rel="stylesheet" href="css/ring.css" />
+
+    <!-- Page Title -->
+    <title>MediConnect - Bridging Healthcare & Technology</title>
+
 </head>
 
 <body class="bg-background text-foreground">
@@ -138,7 +144,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Hospitals</a>
                 <a href="./appointments.html"
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Appointments</a>
-                <a href="./dashboard.php"
+                <a href="././dashboard/superadmin.php"
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Dashboard</a>
             </nav>
 
@@ -154,7 +160,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                 <!-- Mobile Menu Button -->
                 <button id="menu-button"
-                    class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-0 pointer">
+                    class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none pointer">
                     <i data-lucide="menu" class="w-4 h-4"></i>
                 </button>
             </div>
@@ -171,7 +177,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
                     <a href="./appointments.html"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
-                    <a href="./dashboard.php"
+                    <a href="././dashboard/superadmin.php"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Dashboard</a>
 
                     <!-- Sign In / Sign Up buttons (Mobile view) -->
@@ -210,19 +216,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <form id="register-form" method="POST" class="flex flex-col gap-6">
                         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
                             <div>
-                                <label for="first_name" class="block text-sm font-medium text-gray-700">First
+                                <label for="first-name" class="block text-sm font-medium text-gray-700">First
                                     Name</label>
                                 <div class="mt-1">
-                                    <input type="text" id="first_name" name="first_name" autocomplete="given-name"
+                                    <input type="text" id="first-name" name="first_name" autocomplete="given-name"
                                         required
                                         class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white md:text-sm" />
                                 </div>
                             </div>
 
                             <div>
-                                <label for="last_name" class="block text-sm font-medium text-gray-700">Last Name</label>
+                                <label for="last-name" class="block text-sm font-medium text-gray-700">Last Name</label>
                                 <div class="mt-1">
-                                    <input type="text" id="last_name" name="last_name" autocomplete="family-name" required
+                                    <input type="text" id="last-name" name="last_name" autocomplete="family-name" required
                                         class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white md:text-sm" />
                                 </div>
                             </div>

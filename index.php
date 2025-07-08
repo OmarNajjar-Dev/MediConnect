@@ -1,11 +1,18 @@
 <?php
-require_once './backend/auth.php';
+
+require_once './backend/auth.php'; // handles autologin via cookie
+
+$isLoggedIn = true;
+$userName = "Omar Najjar";
+$userEmail = "omarnajjar10.on@gmai.com";
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
   <!-- Meta Tags -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -27,6 +34,7 @@ require_once './backend/auth.php';
 
   <!-- Page Title -->
   <title>MediConnect - Bridging Healthcare & Technology</title>
+
 </head>
 
 <body class="bg-background text-foreground">
@@ -34,6 +42,8 @@ require_once './backend/auth.php';
   <!-- Header Section -->
   <header class="fixed z-50 py-5 bg-transparent transition-all">
     <div class="container mx-auto flex items-center justify-between px-4">
+
+      <!-- Logo -->
       <a href="./" class="flex items-center">
         <span class="text-medical-700 text-2xl font-semibold">
           Medi<span class="text-medical-500">Connect</span>
@@ -41,7 +51,7 @@ require_once './backend/auth.php';
       </a>
 
       <!-- Desktop Navigation -->
-      <nav class="hidden md:flex items-center gap-4 lg:gap-8">
+      <nav class="hidden md:flex items-center gap-4 lg:gap-8 xl:ml-28">
         <a href="./" class="text-medical-700 text-sm font-medium hover:text-medical-600 transition-colors">Home</a>
         <a href="./doctors.php"
           class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Doctors</a>
@@ -49,23 +59,71 @@ require_once './backend/auth.php';
           class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Hospitals</a>
         <a href="./appointments.php"
           class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Appointments</a>
-        <a href="./dashboard.php"
+        <a href="././dashboard/superadmin.php"
           class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Dashboard</a>
       </nav>
 
       <!-- Header Right Section -->
       <div class="flex items-center gap-4">
+
         <!-- Sign In / Sign Up buttons (hidden by default) -->
-        <a href="./login.php"
-          class="hidden md:flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all">Sign
-          In</a>
-        <a href="./register.php"
-          class="hidden md:flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all">Sign
-          Up</a>
+        <?php if (!$isLoggedIn): ?>
+          <a href="./login.php"
+            class="hidden md:flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all">
+            Sign In
+          </a>
+
+          <a href="./register.php"
+            class="hidden md:flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all">
+            Sign Up
+          </a>
+        <?php else: ?>
+
+          <div class="flex items-center gap-3">
+            <div class="dropdown relative">
+              <button class="flex items-center gap-2 py-1.5 px-2 border-none bg-transparent hover:bg-medical-50 transition-colors transition-200 pointer rounded-lg">
+                <div class="w-8 h-8 rounded-full bg-medical-100 flex items-center justify-center text-medical-700 text-sm font-medium">
+                  <?= strtoupper(substr($userName, 0, 2)) ?>
+                </div>
+
+                <span class="hidden lg:block text-sm font-medium text-slate-700 max-w-24 truncate">
+                  <?= htmlspecialchars($userName) ?>
+                </span>
+
+                <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500"></i>
+              </button>
+
+              <div class="dropdown-content overflow-hidden hidden animate-fade-in absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-solid border-gray-100 z-50">
+                <div class="px-3 py-2 border-b border-solid border-medical-100">
+                  <p class="text-sm font-medium text-slate-700"><?= htmlspecialchars($userName) ?></p>
+                  <p class="text-xs text-slate-500"><?= htmlspecialchars($userEmail) ?></p>
+                </div>
+
+                <a href="././dashboard/superadmin.php"
+                  class="flex items-center gap-2 px-3 py-2 text-sm text-slate-600 hover:text-medical-600 hover:bg-medical-50 transition-colors transition-200">
+                  <i data-lucide="user" class="w-4 h-4"></i>Dashboard
+                </a>
+
+                <a href="./backend/logout.php"
+                  class="flex items-center gap-2 px-3 py-2 text-sm text-red-600 hover:text-red-700 hover:bg-red-50 w-full transition-colors transition-200">
+                  <i data-lucide="log-out" class="w-4 h-4"></i>Sign Out
+                </a>
+              </div>
+            </div>
+          </div>
+
+        <?php endif; ?>
+
+        <!-- Emergency Button -->
+        <a href="./emergency.php"
+          class="hidden md:inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-sm font-medium px-2 lg:px-4 py-2 lg:ml-2 rounded-lg transition-colors transition-200">
+          <i data-lucide="ambulance" class="w-4 h-4"></i>
+          Emergency
+        </a>
 
         <!-- Mobile Menu Button -->
         <button id="menu-button"
-          class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-0 pointer">
+          class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none pointer">
           <i data-lucide="menu" class="w-4 h-4"></i>
         </button>
       </div>
@@ -81,7 +139,7 @@ require_once './backend/auth.php';
             class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
           <a href="./appointments.php"
             class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
-          <a href="./dashboard.php"
+          <a href="././dashboard/superadmin.php"
             class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Dashboard</a>
 
           <!-- Sign In / Sign Up buttons (Mobile view) -->
@@ -100,12 +158,14 @@ require_once './backend/auth.php';
 
   <!-- Main Content -->
   <main class="overflow-hidden pt-20 flex-grow">
+
     <!-- Hero Section -->
     <section class="relative py-20 sm:py-28 m-0">
       <div class="absolute inset-0 bg-cover bg-center" id="hero-image">
         <div id="hero-background" class="absolute inset-0"></div>
       </div>
       <div class="container mx-auto px-4 relative">
+
         <!-- Hero Text Content -->
         <div id="hero-content" class="max-w-3xl mx-auto text-center mb-12">
           <span
@@ -145,6 +205,7 @@ require_once './backend/auth.php';
     <!-- Services Section -->
     <section id="services" class="py-20">
       <div class="container mx-auto px-4">
+
         <!-- Services Section Header -->
         <div class="max-w-3xl mx-auto text-center mb-16">
           <span class="inline-block px-3 py-1 mb-4 text-sm font-medium rounded-full bg-medical-100 text-medical-800">
@@ -169,6 +230,7 @@ require_once './backend/auth.php';
     <!-- Rating Section -->
     <section id="rating" class="py-20 bg-medical-50">
       <div class="container mx-auto px-4">
+
         <!-- Rating Section Header -->
         <div class="max-w-3xl mx-auto text-center mb-16">
           <span class="inline-block px-3 py-1 mb-4 text-sm font-medium rounded-full bg-medical-100 text-medical-800">
@@ -192,6 +254,7 @@ require_once './backend/auth.php';
     <!-- Testimonials Section -->
     <section class="py-20">
       <div class="container mx-auto px-4">
+
         <!-- Testimonials Section Header -->
         <div id="testimonials-header" class="max-w-3xl mx-auto text-center mb-16">
           <span class="inline-block px-3 py-1 mb-4 text-sm font-medium rounded-full bg-medical-100 text-medical-800">

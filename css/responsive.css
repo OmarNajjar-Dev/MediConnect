@@ -12,6 +12,14 @@
     flex-direction: row;
   }
 
+  .sm\:justify-between {
+    justify-content: space-between;
+  }
+
+  .sm\:items-center {
+    align-items: center;
+  }
+
   .sm\:w-auto {
     width: auto;
   }
@@ -97,6 +105,14 @@
     display: flex;
   }
 
+  .md\:hidden {
+    display: none;
+  }
+
+  .md\:inline-flex {
+    display: inline-flex;
+  }
+
   .md\:flex-col {
     flex-direction: column;
   }
@@ -115,10 +131,6 @@
 
   .md\:justify-between {
     justify-content: space-between;
-  }
-
-  .md\:hidden {
-    display: none;
   }
 
   .md\:w-auto {
@@ -242,6 +254,10 @@
     order: 2;
   }
 
+  .lg\:block {
+    display: block;
+  }
+
   .lg\:w-2\/5 {
     width: 40%;
   }
@@ -257,6 +273,15 @@
   .lg\:mx-0 {
     margin-left: 0;
     margin-right: 0;
+  }
+
+  .lg\:px-4 {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .lg\:ml-2 {
+    margin-left: 8px;
   }
 
   /* Grid */
@@ -306,6 +331,10 @@
 @media screen and (min-width: 1280px) {
   .container {
     max-width: 1280px;
+  }
+
+  .xl\:ml-28 {
+    margin-left: 112px;
   }
 }
 

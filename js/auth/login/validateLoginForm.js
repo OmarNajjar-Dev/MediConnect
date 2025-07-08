@@ -27,7 +27,7 @@ export function validateLoginForm() {
     const data = await res.json();
 
     if (data.success) {
-      window.location.href = "dashboard.php";
+      window.location.href = "./dashboard/superadmin.php";
     } else {
       errorToast.classList.remove("hidden");
       setTimeout(() => errorToast.classList.add("hidden"), 5000);

@@ -1,11 +1,14 @@
 <?php
-require_once './backend/auth.php';
+
+require_once './backend/auth.php'; // handles autologin via cookie
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
     <!-- Meta Tags -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -28,10 +31,8 @@ require_once './backend/auth.php';
 
 </head>
 
-<?php require_once './backend/db.php'; ?>
-
 <body class="bg-background text-heading">
-    
+
     <!-- Header Section -->
     <header class="fixed z-50 py-5 bg-transparent transition-all">
         <div class="container mx-auto flex items-center justify-between px-4">
@@ -50,7 +51,7 @@ require_once './backend/auth.php';
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Hospitals</a>
                 <a href="./appointments.php"
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Appointments</a>
-                <a href="./dashboard.php"
+                <a href="././dashboard/superadmin.php"
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Dashboard</a>
             </nav>
 
@@ -66,7 +67,7 @@ require_once './backend/auth.php';
 
                 <!-- Mobile Menu Button -->
                 <button id="menu-button"
-                    class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-0 pointer">
+                    class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none pointer">
                     <i data-lucide="menu" class="w-4 h-4"></i>
                 </button>
             </div>
@@ -83,7 +84,7 @@ require_once './backend/auth.php';
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
                     <a href="./appointments.php"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
-                    <a href="./dashboard.php"
+                    <a href="././dashboard/superadmin.php"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Dashboard</a>
 
                     <!-- Sign In / Sign Up buttons (Mobile view) -->

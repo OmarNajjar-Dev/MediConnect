@@ -1,17 +1,17 @@
 <?php
-require_once './backend/auth.php';
+
+require_once './backend/auth.php'; // handles autologin via cookie
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
     <!-- Meta Tags -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- Page Title -->
-    <title>MediConnect - Bridging Healthcare & Technology</title>
 
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
@@ -27,6 +27,9 @@ require_once './backend/auth.php';
     <link rel="stylesheet" href="css/animations.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/responsive.css" />
+
+    <!-- Page Title -->
+    <title>MediConnect - Bridging Healthcare & Technology</title>
 
 </head>
 
@@ -50,7 +53,7 @@ require_once './backend/auth.php';
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Hospitals</a>
                 <a href="./appointments.php"
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Appointments</a>
-                <a href="./dashboard.php"
+                <a href="././dashboard/superadmin.php"
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Dashboard</a>
             </nav>
 
@@ -66,7 +69,7 @@ require_once './backend/auth.php';
 
                 <!-- Mobile Menu Button -->
                 <button id="menu-button"
-                    class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-0 pointer">
+                    class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none pointer">
                     <i data-lucide="menu" class="w-4 h-4"></i>
                 </button>
             </div>
@@ -83,7 +86,7 @@ require_once './backend/auth.php';
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
                     <a href="./appointments.php"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
-                    <a href="./dashboard.php"
+                    <a href="././dashboard/superadmin.php"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Dashboard</a>
 
                     <!-- Sign In / Sign Up buttons (Mobile view) -->
@@ -225,11 +228,11 @@ require_once './backend/auth.php';
                                     </p>
                                     <div class="flex flex-col sm:flex-row flex-wrap gap-4">
                                         <button
-                                            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors outline-none disabled:opacity-50 border border-solid border-white h-11 rounded-lg px-8 bg-white text-medical-700 hover:bg-gray-100 shadow-lg pointer">
+                                            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors outline-none border border-solid border-white h-11 rounded-lg px-8 bg-white text-medical-700 hover:bg-gray-100 shadow-lg pointer">
                                             Become a Partner
                                         </button>
                                         <button
-                                            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors outline-none disabled:opacity-50 border border-solid border-white h-11 rounded-lg px-8 text-white bg-medical-600/30 pointer">
+                                            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors outline-none border border-solid border-white h-11 rounded-lg px-8 text-white bg-medical-600/30 pointer">
                                             Learn More About Our Mission
                                         </button>
                                     </div>
