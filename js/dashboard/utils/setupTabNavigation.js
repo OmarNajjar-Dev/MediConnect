@@ -8,19 +8,26 @@ export function setupTabNavigation() {
     button.addEventListener("click", () => {
       const target = button.dataset.target;
 
-      // Reset all buttons
-      tabButtons.forEach((btn) =>
-        btn.classList.remove("bg-white", "text-gray-900")
-      );
+      // Reset all buttons: gray bg, remove white bg and text-gray-900
+      tabButtons.forEach((btn) => {
+        btn.classList.remove("bg-white", "text-gray-900");
+        btn.classList.add("bg-gray-150");
+      });
 
       // Hide all sections
       tabSections.forEach((section) => section.classList.add("hidden"));
 
-      // Activate current
+      // Activate clicked button: white bg, text-gray-900
       button.classList.add("bg-white", "text-gray-900");
-      document
-        .querySelector(`div[data-section="${target}"]`)
-        ?.classList.remove("hidden");
+      button.classList.remove("bg-gray-150");
+
+      // Show corresponding section
+      document.querySelector(`div[data-section="${target}"]`)?.classList.remove("hidden");
     });
   });
+
+  // Activate the first tab by default
+  if (tabButtons.length > 0) {
+    tabButtons[0].click();
+  }
 }

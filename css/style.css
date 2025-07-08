@@ -300,6 +300,11 @@ input::placeholder {
   border-color: #e5e7eb; /* Tailwind gray-200 */
 }
 
+.bg-red-800 {
+  background-color: #991b1b; /* Tailwind's red-800 */
+}
+
+
 
 .table-no-border-last tr:last-child {
   border: none;
