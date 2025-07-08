@@ -140,7 +140,7 @@ require_once '../backend/auth.php';  // handles autologin via cookie
                                 <p class="text-red-700">Immediate attention required</p>
                             </div>
                         </div>
-                        <button class="pointer rounded-md border border-solid border-red-300 bg-white px-4 py-2 text-sm font-medium text-red-700 hover:bg-red-100">
+                        <button class="pointer rounded-md border border-solid border-input bg-red-800 px-4 py-2 text-sm font-medium text-white hover:bg-red-700">
                             View Alerts
                         </button>
                     </div>
@@ -148,7 +148,7 @@ require_once '../backend/auth.php';  // handles autologin via cookie
 
                 <!-- Tab Navigation -->
                 <div
-                    class="mb-2 grid h-10 w-full grid-cols-3 items-center justify-center rounded-md bg-gray-150 p-1 text-muted-foreground">
+                    class="mb-2 grid h-10 w-full grid-cols-3 items-center justify-center rounded-md bg-gray-150 p-1 text-muted-foreground pointer">
                     <button
                         type="button"
                         data-target="active-emergencies"
@@ -159,9 +159,9 @@ require_once '../backend/auth.php';  // handles autologin via cookie
                     <button
                         type="button"
                         data-target="notifications"
-                        class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-gray-150 px-3 py-1.5 text-sm font-medium">
+                        class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-gray-150 px-3 py-1.5 text-sm font-medium pointer">
                         Notifications
-                        <div
+                        <div id="notification-count"
                             class="ml-2 inline-flex items-center rounded-full border-none bg-red-500 px-2.5 py-0.5 text-xs font-semibold text-white">
                             2
                         </div>
@@ -170,7 +170,7 @@ require_once '../backend/auth.php';  // handles autologin via cookie
                     <button
                         type="button"
                         data-target="team-status"
-                        class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-gray-150 px-3 py-1.5 text-sm font-medium">
+                        class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-gray-150 px-3 py-1.5 text-sm font-medium pointer">
                         Team Status
                     </button>
                 </div>
