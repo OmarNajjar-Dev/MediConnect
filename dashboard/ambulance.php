@@ -33,7 +33,7 @@ require_once '../backend/auth.php';  // handles autologin via cookie
 
 </head>
 
-<body class="bg-background text-foreground">
+<body class="bg-background">
 
     <!-- Header Section -->
     <header class="fixed z-50 py-5 bg-transparent transition-all">
@@ -150,12 +150,14 @@ require_once '../backend/auth.php';  // handles autologin via cookie
                 <div
                     class="mb-2 grid h-10 w-full grid-cols-3 items-center justify-center rounded-md bg-gray-150 p-1 text-muted-foreground">
                     <button
+                        type="button"
                         data-target="active-emergencies"
                         class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-white px-3 py-1.5 text-sm font-medium">
                         Active Emergencies
                     </button>
 
                     <button
+                        type="button"
                         data-target="notifications"
                         class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-gray-150 px-3 py-1.5 text-sm font-medium">
                         Notifications
@@ -166,6 +168,7 @@ require_once '../backend/auth.php';  // handles autologin via cookie
                     </button>
 
                     <button
+                        type="button"
                         data-target="team-status"
                         class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-gray-150 px-3 py-1.5 text-sm font-medium">
                         Team Status
@@ -249,7 +252,7 @@ require_once '../backend/auth.php';  // handles autologin via cookie
                                 <i data-lucide="phone" class="h-4 w-4"></i> Call Patient
                             </button>
                         </div>
-                        
+
                     </div>
 
 
@@ -270,7 +273,7 @@ require_once '../backend/auth.php';  // handles autologin via cookie
                             <p class="mb-2 text-gray-700">Severe allergic reaction</p>
                             <div class="text-xs text-gray-500">Reported: 19h ago &nbsp; | &nbsp; ETA: 6:00 PM</div>
                         </div>
-                        
+
                         <div class="mt-3 flex gap-2">
                             <button class="pointer rounded-md border border-solid border-input bg-medical-600 px-3 py-2 text-sm font-medium text-white hover:bg-medical-500">Start Response</button>
                             <button class="pointer rounded-md border border-solid border-input bg-white px-3 py-2 text-sm font-medium text-heading hover:bg-accent hover:text-medical-600">Update Status</button>
@@ -363,7 +366,7 @@ require_once '../backend/auth.php';  // handles autologin via cookie
                                 <p class="font-medium text-gray-900">Team Gamma</p>
                                 <p class="text-sm text-gray-700">Off Duty - Maintenance</p>
                             </div>
-                            
+
                             <div class="inline-flex items-center rounded-full border bg-gray-100 px-2.5 py-0.5 text-xs font-semibold text-gray-800 transition-colors hover:bg-primary/80">
                                 OFFLINE
                             </div>

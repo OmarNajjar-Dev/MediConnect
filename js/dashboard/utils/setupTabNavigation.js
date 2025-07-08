@@ -10,14 +10,14 @@ export function setupTabNavigation() {
 
       // Reset all buttons
       tabButtons.forEach((btn) =>
-        btn.classList.remove("bg-blue-50", "text-blue-700")
+        btn.classList.remove("bg-white", "text-gray-900")
       );
 
       // Hide all sections
       tabSections.forEach((section) => section.classList.add("hidden"));
 
       // Activate current
-      button.classList.add("bg-blue-50", "text-blue-700");
+      button.classList.add("bg-white", "text-gray-900");
       document
         .querySelector(`div[data-section="${target}"]`)
         ?.classList.remove("hidden");

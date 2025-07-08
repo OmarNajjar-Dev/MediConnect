@@ -33,7 +33,7 @@ require_once '../backend/auth.php'; // handles autologin via cookie
 
 </head>
 
-<body class="bg-background text-foreground">
+<body class="bg-background">
 
     <!-- Header Section -->
     <header class="fixed z-50 py-5 bg-transparent transition-all">
@@ -123,13 +123,13 @@ require_once '../backend/auth.php'; // handles autologin via cookie
                     </div>
 
                     <div class="h-10 items-center justify-center rounded-md p-1 text-muted-foreground grid w-full grid-cols-3 outline-none bg-gray-150">
-                        <button type="button" class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all bg-transparent border-none bg-white">Overview</button>
-                        <button type="button" class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all bg-transparent border-none bg-gray-150">Our Doctors</button>
-                        <button type="button" class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all bg-transparent border-none bg-gray-150">Hospital Settings</button>
+                        <button type="button" data-target="overview" class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all border-none bg-white text-gray-900 pointer">Overview</button>
+                        <button type="button" data-target="our-doctors" class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all border-none pointer">Our Doctors</button>
+                        <button type="button" data-target="hospital-settings" class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all border-none pointer">Hospital Settings</button>
                     </div>
 
                     <!-- Overview  -->
-                    <div class="mt-2 flex flex-col gap-6">
+                    <div data-section="overview" class="mt-2 flex flex-col gap-6">
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                             <div class="glass-card rounded-xl p-6">
                                 <div class="flex items-center justify-between">
@@ -180,12 +180,12 @@ require_once '../backend/auth.php'; // handles autologin via cookie
                             <div class="glass-card rounded-xl p-6">
                                 <h3 class="text-xl font-bold mb-4">Quick Actions</h3>
                                 <div class="flex flex-col gap-3">
-                                    <button class="inline-flex items-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 w-full justify-start">
+                                    <button class="inline-flex items-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 w-full pointer">
                                         <i data-lucide="user-check" class="h-4 w-4 mr-2"></i>
 
                                         Add New Doctor
                                     </button>
-                                    <button class="inline-flex items-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 w-full justify-start">
+                                    <button class="inline-flex items-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 w-full pointer">
                                         <i data-lucide="building2" class="h-4 w-4 mr-2"></i>
                                         Update Hospital Info</button>
                                 </div>
@@ -214,96 +214,86 @@ require_once '../backend/auth.php'; // handles autologin via cookie
                     </div>
 
                     <!-- Our Doctors  -->
-                    <div class="mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
+                    <div data-section="our-doctors" class="hidden mt-2">
                         <div class="glass-card rounded-xl p-6">
                             <div class="flex justify-between items-center mb-6">
                                 <div>
                                     <h3 class="text-xl font-bold">Doctor Management</h3>
                                     <p class="text-gray-600">Manage doctors in Al Noor Medical Center</p>
-                                </div><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus h-4 w-4 mr-2">
-                                        <path d="M5 12h14"></path>
-                                        <path d="M12 5v14"></path>
-                                    </svg>Add Doctor</button>
+                                </div>
+                                <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors bg-medical-500 text-white hover:bg-medical-400 h-10 px-4 py-2 border-none pointer">
+                                    <i data-lucide="plus" class="h-4 w-4 mr-2"></i>
+
+                                    Add Doctor</button>
                             </div>
                             <div class="overflow-x-auto">
                                 <div class="relative w-full overflow-auto">
                                     <table class="w-full caption-bottom text-sm">
                                         <thead class="[&amp;_tr]:border-b">
-                                            <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                                                <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">Name</th>
-                                                <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">Email</th>
-                                                <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">Specialization</th>
-                                                <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">Phone</th>
-                                                <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">License</th>
-                                                <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">Status</th>
-                                                <th class="h-12 px-4 align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 text-right">Actions</th>
+                                            <tr class="border-b transition-colors hover:bg-muted/50">
+                                                <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground">Name</th>
+                                                <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground">Email</th>
+                                                <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground">Specialization</th>
+                                                <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground">Phone</th>
+                                                <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground">License</th>
+                                                <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground">Status</th>
+                                                <th class="h-12 px-4 align-middle font-medium text-muted-foreground text-right">Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody class="[&amp;_tr:last-child]:border-0">
-                                            <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-medium">Dr. Sarah Johnson</td>
-                                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">sarah.johnson@alnoor.hospital</td>
-                                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Cardiology</td>
-                                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">+1-555-0101</td>
-                                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">MD-12345</td>
-                                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
-                                                    <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80">active</div>
+                                            <tr class="border-b transition-colors hover:bg-muted/50">
+                                                <td class="p-4 align-middle font-medium">Dr. Sarah Johnson</td>
+                                                <td class="p-4 align-middle">sarah.johnson@alnoor.hospital</td>
+                                                <td class="p-4 align-middle">Cardiology</td>
+                                                <td class="p-4 align-middle">+1-555-0101</td>
+                                                <td class="p-4 align-middle">MD-12345</td>
+                                                <td class="p-4 align-middle">
+                                                    <div class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold transition-colors border border-solid border-transparent bg-medical-500 text-white hover:bg-medical-400">active</div>
                                                 </td>
-                                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 text-right">
-                                                    <div class="flex gap-2 justify-end"><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-pen h-4 w-4">
-                                                                <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                                                                <path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"></path>
-                                                            </svg></button><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent h-9 rounded-md px-3 text-red-600 hover:text-red-800"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash2 h-4 w-4">
-                                                                <path d="M3 6h18"></path>
-                                                                <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
-                                                                <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
-                                                                <line x1="10" x2="10" y1="11" y2="17"></line>
-                                                                <line x1="14" x2="14" y1="11" y2="17"></line>
-                                                            </svg></button></div>
+                                                <td class="p-4 align-middle text-right">
+                                                    <div class="flex gap-2 justify-end">
+                                                        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3 bg-transparent pointer border-none">
+                                                            <i data-lucide="square-pen" class="h-4 w-4"></i>
+                                                        </button><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors hover:bg-red-50 h-9 rounded-md px-3 text-red-600 hover:text-red-800 bg-transparent pointer border-none">
+                                                            <i data-lucide="trash2" class="h-4 w-4"></i>
+                                                        </button>
+                                                    </div>
                                                 </td>
                                             </tr>
-                                            <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-medium">Dr. Ahmed Hassan</td>
-                                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">ahmed.hassan@alnoor.hospital</td>
-                                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Neurology</td>
-                                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">+1-555-0102</td>
-                                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">MD-12346</td>
-                                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
-                                                    <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80">active</div>
+                                            <tr class="transition-colors hover:bg-muted/50">
+                                                <td class="p-4 align-middle font-medium">Dr. Ahmed Hassan</td>
+                                                <td class="p-4 align-middle">ahmed.hassan@alnoor.hospital</td>
+                                                <td class="p-4 align-middle">Neurology</td>
+                                                <td class="p-4 align-middle">+1-555-0102</td>
+                                                <td class="p-4 align-middle">MD-12346</td>
+                                                <td class="p-4 align-middle">
+                                                    <div class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold transition-colors border border-solid border-transparent bg-medical-500 text-white hover:bg-medical-400">active</div>
                                                 </td>
-                                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 text-right">
-                                                    <div class="flex gap-2 justify-end"><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-pen h-4 w-4">
-                                                                <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                                                                <path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"></path>
-                                                            </svg></button><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent h-9 rounded-md px-3 text-red-600 hover:text-red-800"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash2 h-4 w-4">
-                                                                <path d="M3 6h18"></path>
-                                                                <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
-                                                                <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
-                                                                <line x1="10" x2="10" y1="11" y2="17"></line>
-                                                                <line x1="14" x2="14" y1="11" y2="17"></line>
-                                                            </svg></button></div>
+                                                <td class="p-4 align-middle text-right">
+                                                    <div class="flex gap-2 justify-end"><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3 bg-transparent pointer border-none">
+                                                            <i data-lucide="square-pen" class="h-4 w-4"></i>
+                                                        </button><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors hover:bg-red-50 h-9 rounded-md px-3 text-red-600 hover:text-red-800 bg-transparent pointer border-none">
+                                                            <i data-lucide="trash2" class="h-4 w-4"></i>
+
+                                                        </button></div>
                                                 </td>
                                             </tr>
-                                            <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-medium">Dr. Maria Rodriguez</td>
-                                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">maria.rodriguez@alnoor.hospital</td>
-                                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Pediatrics</td>
-                                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">+1-555-0103</td>
-                                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">MD-12347</td>
-                                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
-                                                    <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80">active</div>
+                                            <tr class="border-b transition-colors hover:bg-muted/50">
+                                                <td class="p-4 align-middle font-medium">Dr. Maria Rodriguez</td>
+                                                <td class="p-4 align-middle">maria.rodriguez@alnoor.hospital</td>
+                                                <td class="p-4 align-middle">Pediatrics</td>
+                                                <td class="p-4 align-middle">+1-555-0103</td>
+                                                <td class="p-4 align-middle">MD-12347</td>
+                                                <td class="p-4 align-middle">
+                                                    <div class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold transition-colors border border-solid border-transparent bg-medical-500 text-white hover:bg-medical-400">active</div>
                                                 </td>
-                                                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 text-right">
-                                                    <div class="flex gap-2 justify-end"><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-pen h-4 w-4">
-                                                                <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                                                                <path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"></path>
-                                                            </svg></button><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent h-9 rounded-md px-3 text-red-600 hover:text-red-800"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash2 h-4 w-4">
-                                                                <path d="M3 6h18"></path>
-                                                                <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
-                                                                <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
-                                                                <line x1="10" x2="10" y1="11" y2="17"></line>
-                                                                <line x1="14" x2="14" y1="11" y2="17"></line>
-                                                            </svg></button></div>
+                                                <td class="p-4 align-middle text-right">
+                                                    <div class="flex gap-2 justify-end"><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3 bg-transparent pointer border-none">
+                                                            <i data-lucide="square-pen" class="h-4 w-4"></i>
+
+                                                        </button><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors hover:bg-red-50 h-9 rounded-md px-3 text-red-600 hover:text-red-800 bg-transparent pointer border-none">
+                                                            <i data-lucide="trash2" class="h-4 w-4"></i>
+                                                        </button></div>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -314,16 +304,15 @@ require_once '../backend/auth.php'; // handles autologin via cookie
                     </div>
 
                     <!-- Hospital Settings  -->
-                    <div class="mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
+                    <div data-section="hospital-settings" class="hidden mt-2">
                         <div class="glass-card rounded-xl p-6">
                             <div class="flex justify-between items-center mb-6">
                                 <div>
                                     <h3 class="text-xl font-bold">Hospital Settings</h3>
                                     <p class="text-gray-600">Update information for Al Noor Medical Center</p>
-                                </div><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-pen h-4 w-4 mr-2">
-                                        <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                                        <path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"></path>
-                                    </svg>Edit Details</button>
+                                </div><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors bg-medical-500 text-white hover:bg-medical-400 h-10 px-4 py-2 border-none pointer">
+                                    <i data-lucide="square-pen" class="h-4 w-4"></i>
+                                    Edit Details</button>
                             </div>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div><label class="text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 font-medium">Hospital Name</label>

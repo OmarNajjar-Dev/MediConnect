@@ -33,7 +33,7 @@ require_once './backend/auth.php'; // handles autologin via cookie
 
 </head>
 
-<body class="bg-background text-foreground">
+<body class="bg-background">
 
     <!-- Header Section -->
     <header class="fixed z-50 py-5 bg-transparent transition-all">

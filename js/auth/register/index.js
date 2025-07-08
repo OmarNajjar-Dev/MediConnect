@@ -1,5 +1,5 @@
-import { setupPasswordToggle } from "../setupPasswordToggle.js";
-import { handleCheckboxToggle } from "../handleCheckboxToggle.js";
+import { setupPasswordToggle } from "../utils/setupPasswordToggle.js";
+import { handleCheckboxToggle } from "../utils/handleCheckboxToggle.js";
 
 import { initRoleDropdown } from "./select.js";
 import { autoFillLocation } from "./autoFillLocation.js";
