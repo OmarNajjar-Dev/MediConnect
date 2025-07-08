@@ -100,6 +100,7 @@ require_once './backend/auth.php'; // handles autologin via cookie
           </div>
         </nav>
       </div>
+    </div>
   </header>
 
   <!-- Main Content -->

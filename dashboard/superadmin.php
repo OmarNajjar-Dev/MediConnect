@@ -99,6 +99,7 @@ require_once '../backend/auth.php'; // handles autologin via cookie
           </div>
         </nav>
       </div>
+    </div>
   </header>
 
   <!-- Main Content -->
@@ -723,7 +724,11 @@ require_once '../backend/auth.php'; // handles autologin via cookie
                 </div>
 
               </div>
-
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 
   <!-- Footer -->
