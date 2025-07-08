@@ -698,12 +698,12 @@
   color: rgb(var(--red-800));
 }
 
-.bg-accent {
-  background-color: rgb(var(--accent));
+.text-accent-foreground {
+  color: rgb(var(--accent));
 }
 
-.hover\:bg-accent:hover {
-  background-color: rgb(var(--accent));
+.hover\:text-accent-foreground:hover {
+  color: rgb(var(--accent));
 }
 
 /* Hover - Status Backgrounds */
