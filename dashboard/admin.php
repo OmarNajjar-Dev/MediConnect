@@ -122,10 +122,10 @@ require_once '../backend/auth.php'; // handles autologin via cookie
                         </div>
                     </div>
 
-                    <div class="h-10 items-center justify-center rounded-md p-1 text-muted-foreground grid w-full grid-cols-3 outline-none">
-                        <button type="button" class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all bg-transparent border-none">Overview</button>
-                        <button type="button" class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all bg-transparent border-none">Our Doctors</button>
-                        <button type="button" class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all bg-transparent border-none">Hospital Settings</button>
+                    <div class="h-10 items-center justify-center rounded-md p-1 text-muted-foreground grid w-full grid-cols-3 outline-none bg-gray-150">
+                        <button type="button" class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all bg-transparent border-none bg-white">Overview</button>
+                        <button type="button" class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all bg-transparent border-none bg-gray-150">Our Doctors</button>
+                        <button type="button" class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all bg-transparent border-none bg-gray-150">Hospital Settings</button>
                     </div>
 
                     <!-- Overview  -->
@@ -214,7 +214,7 @@ require_once '../backend/auth.php'; // handles autologin via cookie
                     </div>
 
                     <!-- Our Doctors  -->
-                    <div id="radix-:r6b:-content-doctors" tabindex="0" class="mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
+                    <div class="mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
                         <div class="glass-card rounded-xl p-6">
                             <div class="flex justify-between items-center mb-6">
                                 <div>
@@ -314,7 +314,7 @@ require_once '../backend/auth.php'; // handles autologin via cookie
                     </div>
 
                     <!-- Hospital Settings  -->
-                    <div  id="radix-:r6b:-content-hospital" tabindex="0" class="mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
+                    <div class="mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
                         <div class="glass-card rounded-xl p-6">
                             <div class="flex justify-between items-center mb-6">
                                 <div>

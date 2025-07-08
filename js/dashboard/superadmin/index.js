@@ -1,4 +1,4 @@
-import { setupTabNavigation } from "../utils/setupTabNavigation.js";
+import { setupTabNavigation } from "./setupTabNavigation.js";
 
 window.addEventListener("DOMContentLoaded", () => {
   setupTabNavigation();
