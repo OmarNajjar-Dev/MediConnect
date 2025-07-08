@@ -313,3 +313,11 @@ input::placeholder {
 .border-collapse {
   border-collapse: collapse;
 }
+
+.bg-red-700 {
+  background-color: #b91c1c;
+}
+
+.hover\:bg-red-600:hover {
+  background-color: #dc2626;
+}

@@ -16,6 +16,7 @@ export function handleNotifications() {
 
   notifications.forEach((notification) => {
     notification.addEventListener("click", () => {
+      
       // If already marked as read, skip
       if (notification.classList.contains("bg-gray-50")) return;
 
