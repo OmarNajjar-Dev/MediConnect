@@ -285,10 +285,10 @@ require_once './backend/auth.php'; // handles autologin via cookie
                             </p>
                         </div>
                         <!-- Time Slot -->
-                        <div class="flex flex-col gap-3  relative" id="timeSlotContainer">
+                        <div class="flex flex-col gap-3 relative" id="timeSlotContainer">
                             <label class="text-sm font-medium leading-none">Time Slot</label>
                             <button type="button" role="combobox" id="timeSlotButton"
-                                class="dropdown-trigger bg-white flex items-center justify-between pointer h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white"">
+                                class="dropdown-trigger bg-white flex items-center justify-between pointer h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
                                 <span class=" selected-value">Select a time</span>
                                 <i data-lucide="chevron-down" class="h-4 w-4 opacity-50"></i>
                             </button>

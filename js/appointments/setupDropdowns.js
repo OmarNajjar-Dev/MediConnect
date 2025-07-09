@@ -15,13 +15,23 @@ export function setupDropdowns(dropdownButtons) {
         }
 
         // Toggle dropdown visibility
-        button.addEventListener("click", () => {
+        button.addEventListener("click", (e) => {
+            e.stopPropagation();
+
             const isOpen = !menu.classList.contains("hidden");
+
+            // Close all other dropdowns
+            document.querySelectorAll("ul[id$='Dropdown']").forEach((el) => {
+                if (el !== menu) el.classList.add("hidden");
+            });
+
             menu.classList.toggle("hidden");
 
             if (!isOpen) {
-                // Re-apply float position in case layout changes
                 makeDropdownFloat(button, menu);
+                document.body.style.overflow = "hidden"; // ✅ Disable page scroll
+            } else {
+                document.body.style.overflow = ""; // ✅ Re-enable page scroll
             }
         });
 
@@ -46,6 +56,7 @@ export function setupDropdowns(dropdownButtons) {
 
                 selectedOption = option;
                 menu.classList.add("hidden");
+                document.body.style.overflow = ""; // ✅ Re-enable scroll after selection
             });
 
             option.addEventListener("mouseenter", () => {
@@ -61,10 +72,11 @@ export function setupDropdowns(dropdownButtons) {
             });
         });
 
-        // Close dropdown when clicking outside
+        // ✅ Close dropdown when clicking outside
         document.addEventListener("click", (e) => {
             if (!button.contains(e.target) && !menu.contains(e.target)) {
                 menu.classList.add("hidden");
+                document.body.style.overflow = "";
             }
         });
     });
@@ -81,26 +93,41 @@ function makeDropdownFloat(button, dropdown) {
 
     // Float the dropdown
     dropdown.style.position = "absolute";
-    dropdown.style.top = `${button.offsetHeight + 4}px`;
     dropdown.style.left = "0";
     dropdown.style.zIndex = "1000";
     dropdown.style.width = "100%";
-
-    // ✅ Prevent background from showing through
     dropdown.style.backgroundColor = "#ffffff";
     dropdown.style.boxShadow = "0 4px 12px rgba(0, 0, 0, 0.1)";
+
+    // Determine space available
+    const buttonRect = button.getBoundingClientRect();
+    const dropdownHeight = dropdown.offsetHeight || 240; // fallback height
+    const spaceBelow = window.innerHeight - buttonRect.bottom;
+    const spaceAbove = buttonRect.top;
+
+    if (spaceBelow >= dropdownHeight || spaceBelow >= spaceAbove) {
+        // Show below
+        dropdown.style.top = `${button.offsetHeight + 4}px`;
+        dropdown.style.bottom = "auto";
+    } else {
+        // Show above
+        dropdown.style.top = "auto";
+        dropdown.style.bottom = `${button.offsetHeight + 4}px`;
+    }
 }
 
-// ✅ Enables scroll only when hovered (for Time Slot dropdown)
+// ✅ Enables scroll only inside dropdown (Time Slot)
 function setupDropdownScroll(dropdownElement, maxHeight = 240) {
     dropdownElement.style.maxHeight = `${maxHeight}px`;
-    dropdownElement.style.overflowY = "hidden";
+    dropdownElement.style.overflowY = "auto";
 
-    dropdownElement.addEventListener("mouseenter", () => {
-        dropdownElement.style.overflowY = "scroll";
-    });
+    // Optional: prevent body scroll while scrolling inside dropdown
+    dropdownElement.addEventListener("wheel", (e) => {
+        const atTop = dropdownElement.scrollTop === 0;
+        const atBottom = dropdownElement.scrollHeight - dropdownElement.scrollTop === dropdownElement.clientHeight;
 
-    dropdownElement.addEventListener("mouseleave", () => {
-        dropdownElement.style.overflowY = "hidden";
-    });
+        if ((atTop && e.deltaY < 0) || (atBottom && e.deltaY > 0)) {
+            e.preventDefault(); // prevent page scroll
+        }
+    }, { passive: false });
 }
