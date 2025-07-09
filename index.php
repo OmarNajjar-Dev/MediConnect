@@ -126,7 +126,7 @@ if (isset($_SESSION['user_id'])) {
             Sign In
           </a>
 
-          <a href="./register.php" class="hidden md:flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all">
+          <a href="./register.php" class="hidden md:flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all mr-4">
             Sign Up
           </a>
         <?php else: ?>

@@ -299,7 +299,7 @@ require_once '../backend/auth.php'; // handles autologin via cookie
                                             </tr>
                                         </thead>
 
-                                        <tbody class="[&_tr:last-child]:border-0">
+                                        <tbody class="[&_tr:last-child]:border-none">
 
                                             <!-- Doctor 1 -->
                                             <tr class="border-b transition-colors hover:bg-muted/50">

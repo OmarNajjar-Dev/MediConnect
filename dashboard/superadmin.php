@@ -186,7 +186,7 @@ require_once '../backend/auth.php'; // handles autologin via cookie
               <div data-section="overview" class="flex flex-col gap-6 mt-2 outline-none">
                 <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
 
-                  <div class="rounded-lg bg-card text-card-foreground shadow-sm">
+                  <div class="rounded-lg glass-card text-card-foreground">
                     <div class="p-6">
                       <div class="flex items-center justify-between">
                         <div>
@@ -200,7 +200,7 @@ require_once '../backend/auth.php'; // handles autologin via cookie
                     </div>
                   </div>
 
-                  <div class="rounded-lg bg-card text-card-foreground shadow-sm">
+                  <div class="rounded-lg glass-card text-card-foreground">
                     <div class="p-6">
                       <div class="flex items-center justify-between">
                         <div>
@@ -214,7 +214,7 @@ require_once '../backend/auth.php'; // handles autologin via cookie
                     </div>
                   </div>
 
-                  <div class="rounded-lg bg-card text-card-foreground shadow-sm">
+                  <div class="rounded-lg glass-card text-card-foreground">
                     <div class="p-6">
                       <div class="flex items-center justify-between">
                         <div>
@@ -228,7 +228,7 @@ require_once '../backend/auth.php'; // handles autologin via cookie
                     </div>
                   </div>
 
-                  <div class="rounded-lg bg-card text-card-foreground shadow-sm">
+                  <div class="rounded-lg glass-card text-card-foreground">
                     <div class="p-6">
                       <div class="flex items-center justify-between">
                         <div>
@@ -246,7 +246,7 @@ require_once '../backend/auth.php'; // handles autologin via cookie
 
                 <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
 
-                  <div class="rounded-lg bg-card text-card-foreground shadow-sm">
+                  <div class="rounded-lg glass-card text-card-foreground">
                     <div class="p-6">
                       <h3 class="mb-4 text-lg font-semibold text-gray-800">Recent Activity</h3>
                       <div class="flex flex-col gap-3">
@@ -266,7 +266,7 @@ require_once '../backend/auth.php'; // handles autologin via cookie
                     </div>
                   </div>
 
-                  <div class="rounded-lg bg-card text-card-foreground shadow-sm">
+                  <div class="rounded-lg glass-card text-card-foreground">
                     <div class="p-6">
                       <h3 class="mb-4 text-lg font-semibold text-gray-800">System Health</h3>
                       <div class="flex flex-col gap-4">
@@ -290,7 +290,7 @@ require_once '../backend/auth.php'; // handles autologin via cookie
               </div>
 
               <!-- Hospitals -->
-              <div data-section="hospitals" class="hidden rounded-lg bg-card text-card-foreground shadow-sm">
+              <div data-section="hospitals" class="hidden rounded-lg glass-card text-card-foreground">
                 <div class="p-6">
                   <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                     <div class="flex items-center gap-3">
@@ -406,7 +406,7 @@ require_once '../backend/auth.php'; // handles autologin via cookie
               </div>
 
               <!-- Admins -->
-              <div data-section="admins" class="hidden rounded-lg bg-card text-card-foreground shadow-sm">
+              <div data-section="admins" class="hidden rounded-lg glass-card text-card-foreground">
                 <div class="p-6">
                   <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                     <div class="flex items-center gap-3">
@@ -475,7 +475,7 @@ require_once '../backend/auth.php'; // handles autologin via cookie
               </div>
 
               <!-- Doctors -->
-              <div data-section="doctors" class="hidden rounded-lg bg-card text-card-foreground shadow-sm">
+              <div data-section="doctors" class="hidden rounded-lg glass-card text-card-foreground">
                 <div class="p-6">
                   <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                     <div class="flex items-center gap-3">
@@ -546,7 +546,7 @@ require_once '../backend/auth.php'; // handles autologin via cookie
               </div>
 
               <!-- Patients -->
-              <div data-section="patients" class="hidden rounded-lg bg-card text-card-foreground shadow-sm">
+              <div data-section="patients" class="hidden rounded-lg glass-card text-card-foreground">
                 <div class="p-6">
                   <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                     <div class="flex items-center gap-3">
@@ -618,7 +618,7 @@ require_once '../backend/auth.php'; // handles autologin via cookie
               <div data-section="staff-ambulance" class="hidden grid gap-6">
 
                 <!-- Staff Members -->
-                <div class="rounded-lg bg-card text-card-foreground shadow-sm">
+                <div class="rounded-lg glass-card text-card-foreground">
                   <div class="p-6">
                     <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                       <div class="flex items-center gap-3">
@@ -688,7 +688,7 @@ require_once '../backend/auth.php'; // handles autologin via cookie
                 </div>
 
                 <!-- Ambulance Teams -->
-                <div class="rounded-lg border-0 bg-card text-card-foreground shadow-sm">
+                <div class="rounded-lg glass-card text-card-foreground">
                   <div class="p-6">
                     <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                       <div class="flex items-center gap-3">
