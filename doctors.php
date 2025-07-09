@@ -101,67 +101,108 @@ if (isset($_SESSION['user_id'])) {
   <!-- Header Section -->
   <header class="fixed z-50 py-5 bg-transparent transition-all">
     <div class="container mx-auto flex items-center justify-between px-4">
+
+      <!-- Logo -->
       <a href="./" class="flex items-center">
         <span class="text-medical-700 text-2xl font-semibold">
           Medi<span class="text-medical-500">Connect</span>
         </span>
       </a>
 
-      <!-- Desktop Navigation -->
-      <nav class="hidden md:flex items-center gap-4 lg:gap-8">
-        <a href="./" class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Home</a>
-        <a href="./doctors.php"
-          class="text-medical-700 text-sm font-medium hover:text-medical-600 transition-colors">Doctors</a>
-        <a href="./hospitals.php"
-          class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Hospitals</a>
-        <a href="./appointments.php"
-          class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Appointments</a>
-        <a href="././dashboard/superadmin.php"
-          class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Dashboard</a>
+      <!-- Desktop Navigation (hidden on mobile) -->
+      <nav class="hidden md:flex items-center gap-4 lg:gap-8 xl:ml-28">
+        <a href="./" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Home</a>
+        <a href="./doctors.php" class="text-medical-700 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Doctors</a>
+        <a href="./hospitals.php" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Hospitals</a>
+        <a href="./appointments.php" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Appointments</a>
       </nav>
 
-      <!-- Header Right Section -->
+      <!-- Right section: Auth / Dropdown / Emergency / Menu -->
       <div class="flex items-center gap-4">
-        <!-- Sign In / Sign Up buttons (hidden by default) -->
-        <a href="./login.php"
-          class="hidden md:flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all">Sign
-          In</a>
-        <a href="./register.php"
-          class="hidden md:flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all">Sign
-          Up</a>
 
-        <!-- Mobile Menu Button -->
-        <button id="menu-button"
-          class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none pointer">
+        <!-- Sign In / Sign Up (visible if not logged in) -->
+        <?php if (!$isLoggedIn): ?>
+          <a href="./login.php" class="hidden md:flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all">
+            Sign In
+          </a>
+
+          <a href="./register.php" class="hidden md:flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all mr-4">
+            Sign Up
+          </a>
+        <?php else: ?>
+
+          <!-- User dropdown (visible if logged in) -->
+          <div class="hidden md:flex items-center gap-3">
+            <div class="dropdown relative">
+              <button class="flex items-center gap-2 md:py-2 px-2 border-none bg-transparent hover:bg-medical-50 transition-colors transition-200 pointer rounded-lg">
+                <div class="w-8 h-8 rounded-full bg-medical-100 flex items-center justify-center text-medical-700 text-sm lg:text-base font-medium">
+                  <?= strtoupper(substr($userName, 0, 2)) ?>
+                </div>
+                <span class="hidden lg:block text-sm lg:text-base font-medium text-slate-700 max-w-24 truncate">
+                  <?= htmlspecialchars($userName) ?>
+                </span>
+                <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500"></i>
+              </button>
+
+              <!-- Dropdown menu content -->
+              <div class="dropdown-content overflow-hidden hidden animate-fade-in absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-solid border-gray-100 z-50">
+                <div class="px-3 py-2 border-b border-solid border-medical-100">
+                  <p class="text-sm font-medium text-slate-700"><?= htmlspecialchars($userName) ?></p>
+                  <p class="text-xs text-slate-500"><?= htmlspecialchars($userEmail) ?></p>
+                </div>
+
+                <a href="<?= htmlspecialchars($dashboardLink) ?>" class="flex items-center gap-2 px-3 py-2 text-sm text-slate-600 hover:text-medical-600 hover:bg-medical-50 transition-colors transition-200">
+                  <i data-lucide="user" class="w-4 h-4"></i>Dashboard
+                </a>
+
+                <a href="./backend/logout.php" class="flex items-center gap-2 px-3 py-2 text-sm text-red-600 hover:text-red-700 hover:bg-red-50 w-full transition-colors transition-200">
+                  <i data-lucide="log-out" class="w-4 h-4"></i>Sign Out
+                </a>
+              </div>
+            </div>
+          </div>
+
+        <?php endif; ?>
+
+        <!-- Emergency button (always visible) -->
+        <a href="./emergency.php" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-sm lg:text-base font-medium px-2 lg:px-4 py-2 md:py-3 lg:ml-2 rounded-lg transition-colors transition-200">
+          <i data-lucide="ambulance" class="w-4 h-4"></i>
+          Emergency
+        </a>
+
+        <!-- Mobile menu toggle button -->
+        <button id="menu-button" class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none pointer">
           <i data-lucide="menu" class="w-4 h-4"></i>
         </button>
       </div>
 
-      <!-- Mobile Navigation (Hidden by default) -->
-      <div id="mobile-nav" class="hidden absolute bg-white/95 backdrop-blur-lg animate-slide-down shadow-lg">
+      <!-- Mobile Navigation Panel (visible only on mobile) -->
+      <div id="mobile-nav" class="hidden absolute bg-white/95 backdrop-blur-lg animate-slide-down shadow-lg md:hidden">
         <nav class="container mx-auto flex flex-col gap-4 px-4 py-4">
-          <a href="./"
-            class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Home</a>
-          <a href="./doctors.php"
-            class="text-medical-700 bg-medical-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Doctors</a>
-          <a href="./hospitals.php"
-            class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
-          <a href="./appointments.php"
-            class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
-          <a href="././dashboard/superadmin.php"
-            class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Dashboard</a>
+          <a href="./" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Home</a>
+          <a href="./doctors.php" class="text-medical-700 bg-medical-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Doctors</a>
+          <a href="./hospitals.php" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
+          <a href="./appointments.php" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
 
-          <!-- Sign In / Sign Up buttons (Mobile view) -->
-          <div class="flex flex-col pt-2 gap-2 border-t border-solid separator">
-            <a href="./login.php"
-              class="inline-flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-all">Sign
-              In</a>
-            <a href="./register.php"
-              class="inline-flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Sign
-              Up</a>
-          </div>
+          <!-- Mobile: Sign In / Sign Out depending on session -->
+          <?php if (!$isLoggedIn): ?>
+            <div class="flex flex-col pt-2 gap-2 border-t border-solid separator">
+              <a href="./login.php" class="inline-flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-all">Sign In</a>
+              <a href="./register.php" class="inline-flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Sign Up</a>
+            </div>
+          <?php else: ?>
+            <div class="flex flex-col pt-2 gap-2 bg-transparent border-t border-solid separator">
+              <a href="<?= htmlspecialchars($dashboardLink) ?>" class="inline-flex items-center gap-2 justify-start text-gray-700 hover:bg-medical-50 hover:text-medical-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                <i data-lucide="user" class="w-4 h-4"></i> Dashboard
+              </a>
+              <a href="./backend/logout.php" class="inline-flex items-center gap-2 justify-start text-red-600 hover:bg-red-50 hover:text-red-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                <i data-lucide="log-out" class="w-4 h-4"></i> Sign Out
+              </a>
+            </div>
+          <?php endif; ?>
         </nav>
       </div>
+
     </div>
   </header>
 
