@@ -1,7 +1,7 @@
 <?php
 
-require_once './backend/auth.php'; // handles autologin via cookie
-require_once './backend/db.php';
+require_once './backend/auth.php'; // Handles session & auto-login if cookie exists
+require_once './backend/db.php'; // Includes MySQLi DB connection as $conn
 
 // Redirect logged-in users away from this page
 if (isset($_SESSION["user_id"])) {
@@ -167,7 +167,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             <!-- Mobile Navigation (Hidden by default) -->
             <div id="mobile-nav"
-                class="hidden absolute bg-white-95 backdrop-blur-lg animate-slide-down shadow-lg md:hidden">
+                class="hidden absolute bg-white/95 backdrop-blur-lg animate-slide-down shadow-lg md:hidden">
                 <nav class="container mx-auto flex flex-col gap-4 px-4 py-4">
                     <a href="./"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Home</a>
