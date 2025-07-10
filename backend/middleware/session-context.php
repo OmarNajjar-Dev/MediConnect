@@ -3,12 +3,12 @@
 require_once __DIR__ . '/../auth/auth.php'; // Handles session & auto-login if cookie exists
 require_once __DIR__ . '/../config/db.php';   // Includes MySQLi DB connection as $conn
 
-$paths = require_once __DIR__ . '/../config/path.php';
+require_once __DIR__ . '/../config/path.php';
 
 $isLoggedIn = false;
 $userName = '';
 $userEmail = '';
-$dashboardLink = $paths['login']; // Default link if not authenticated
+$dashboardLink = $paths['auth']['login']; // Default link if not authenticated
 
 if (isset($_SESSION['user_id'])) {
     $userId = $_SESSION['user_id'];
@@ -38,7 +38,7 @@ if (isset($_SESSION['user_id'])) {
 
         if ($roleRow = $roleResult->fetch_assoc()) {
             $normalizedRole = strtolower(str_replace(' ', '', $roleRow['role_name']));
-            $dashboardLink = $paths['roles'][$normalizedRole] ?? './';
+            $dashboardLink = $paths['dashboard'][$normalizedRole] ?? './';
         }
     }
 }

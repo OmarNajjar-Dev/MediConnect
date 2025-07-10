@@ -81,7 +81,7 @@ require_once '../backend/middleware/protect-dashboard.php';
                                 <p class="text-xs text-slate-500"><?= htmlspecialchars($userEmail) ?></p>
                             </div>
 
-                            <a href="./" class="flex items-center gap-2 px-3 py-2 text-sm text-slate-600 hover:text-medical-600 hover:bg-medical-50 transition-colors transition-200">
+                            <a href="#" class="flex items-center gap-2 px-3 py-2 text-sm text-slate-600 hover:text-medical-600 hover:bg-medical-50 transition-colors transition-200">
                                 <i data-lucide="user" class="w-4 h-4"></i>Dashboard
                             </a>
 
@@ -113,7 +113,7 @@ require_once '../backend/middleware/protect-dashboard.php';
                     <a href="../appointments.php" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
 
                     <div class="flex flex-col pt-2 gap-2 bg-transparent border-t border-solid separator">
-                        <a href="./" class="inline-flex items-center gap-2 justify-start text-gray-700 hover:bg-medical-50 hover:text-medical-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                        <a href="#" class="inline-flex items-center gap-2 justify-start text-gray-700 hover:bg-medical-50 hover:text-medical-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
                             <i data-lucide="user" class="w-4 h-4"></i> Dashboard
                         </a>
                         <a href="../backend/auth/logout.php" class="inline-flex items-center gap-2 justify-start text-red-600 hover:bg-red-50 hover:text-red-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors">

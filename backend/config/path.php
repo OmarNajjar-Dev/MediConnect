@@ -1,20 +1,25 @@
 <?php
 
-$host = $_SERVER['HTTP_HOST'];
 $basePath = '/mediconnect';
+const BASE_URL = '/mediconnect';
 
-define('BASE_URL', "/mediconnect");
+$paths = [
+    'home' => BASE_URL . '/',
 
-return [
-    'base'         => BASE_URL,
-    'home'         => BASE_URL . '/',
-    'doctors'      => BASE_URL . '/doctors.php',
-    'hospitals'    => BASE_URL . '/hospitals.php',
-    'appointments' => BASE_URL . '/appointments.php',
-    'login'        => BASE_URL . '/login.php',
-    'register'     => BASE_URL . '/register.php',
+    'auth' => [
+        'login'    => BASE_URL . '/login.php',
+        'logout'   => BASE_URL . '/backend/auth/logout.php',
+        'register' => BASE_URL . '/register.php',
+    ],
 
-    'roles' => [
+    'services' => [
+        'doctors'      => BASE_URL . '/doctors.php',
+        'hospitals'    => BASE_URL . '/hospitals.php',
+        'appointments' => BASE_URL . '/appointments.php',
+        'emergency'    => BASE_URL . '/emergency.php'
+    ],
+
+    'dashboard' => [
         'superadmin' => BASE_URL . '/dashboard/superadmin.php',
         'admin'      => BASE_URL . '/dashboard/admin.php',
         'doctor'     => BASE_URL . '/dashboard/doctor.php',
@@ -24,8 +29,8 @@ return [
     ],
 
     'errors' => [
-        'unauthorized' => BASE_URL . '/unauthorized.php',
-        'notfound'     => BASE_URL . '/404.php',
-        'server'       => BASE_URL . '/500.php',
-    ]
+        'unauthorized' => BASE_URL . '/errors/401.php',
+        'notfound'     => BASE_URL . '/errors/404.php',
+        'server'       => BASE_URL . '/errors/500.php',
+    ],
 ];

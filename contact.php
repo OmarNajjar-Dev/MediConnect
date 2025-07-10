@@ -2,6 +2,7 @@
 
 // Loads user session context: sets $isLoggedIn, $userName, $userEmail, $dashboardLink
 require_once "./backend/middleware/session-context.php";
+require_once "./backend/config/path.php";
 
 ?>
 
@@ -51,7 +52,7 @@ require_once "./backend/middleware/session-context.php";
       <!-- Desktop Navigation (hidden on mobile) -->
       <nav class="hidden md:flex items-center gap-4 lg:gap-8 xl:ml-28">
         <a href="./" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Home</a>
-        <a href="./doctors.php" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Doctors</a>
+        <a href="<?= $paths['services']['doctors']?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Doctors</a>
         <a href="./hospitals.php" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Hospitals</a>
         <a href="./appointments.php" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Appointments</a>
       </nav>

@@ -36,10 +36,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             if ($roleResult->num_rows === 1) {
                 $roleData = $roleResult->fetch_assoc();
-                $_SESSION["user_role"] = $roleData["role_name"]; // e.g., "superadmin", "doctor"
+                $_SESSION['user_role'] = $roleData["role_name"]; // e.g., "superadmin", "doctor"
             } else {
                 // Role not found, fallback
-                $_SESSION["user_role"] = null;
+                $_SESSION['user_role'] = null;
             }
 
             $roleStmt->close();

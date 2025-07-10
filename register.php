@@ -9,11 +9,7 @@ require_once __DIR__ . '/backend/middleware/redirect-if-logged-in.php';
 // 3. Load essential config and DB connection
 require_once './backend/config/db.php';
 
-// Redirect logged-in users away from this page
-if (isset($_SESSION["user_id"])) {
-    header("Location: 404.php");
-    exit();
-}
+require_once './backend/config/path.php';
 
 // Show all errors during development (remove in production)
 error_reporting(E_ALL);
@@ -75,8 +71,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $link_stmt->close();
 
                 $_SESSION["user_id"] = $user_id;
+                $_SESSION["role_name"] = $roleName;
 
-                header("Location: ./dashboard/superadmin.php");
+                $slug = strtolower(str_replace(' ', '', $roleName));
+                $rolePath = $paths['dashboard'][$slug] ?? $paths['errors']['unauthorized'];
+                header("Location: $rolePath");
                 exit();
             } else {
                 $link_stmt->close();

@@ -1,14 +1,14 @@
 <?php
 
-$paths = require_once __DIR__ . '/../config/path.php';
+require_once __DIR__ . '/../config/path.php';
 
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_role'])) {
-    $role = $_SESSION['user_role'];
+    $role = strtolower(str_replace(" ", "", $_SESSION['user_role']));
 
-    if (isset($paths['roles'][$role])) {
-        header("Location: " . $paths['roles'][$role]);
+    if (isset($paths['dashboard'][$role])) {
+        header("Location: " . $paths['dashboard'][$role]);
     } else {
-        header("Location: " . $paths['base']);
+        header("Location: " . $paths['home']);
     }
     exit;
 }
