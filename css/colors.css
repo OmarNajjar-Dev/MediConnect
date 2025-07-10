@@ -454,7 +454,7 @@
 }
 
 .hover\:bg-medical-500:hover {
-  background-color: rgba(var(--medical-500));
+  background-color: rgb(var(--medical-500));
 }
 
 .hover\:bg-medical-600:hover {
