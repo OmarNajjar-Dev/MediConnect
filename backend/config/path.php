@@ -28,6 +28,14 @@ $paths = [
         'staff'      => BASE_URL . '/dashboard/staff.php',
     ],
 
+    'static' => [
+        'about'    => BASE_URL . '/about.php',
+        'privacy'  => BASE_URL . '/privacy.php',
+        'terms'    => BASE_URL . '/terms.php',
+        'faq'      => BASE_URL . '/faq.php',
+        'contact'  => BASE_URL . '/contact.php',
+    ],
+
     'errors' => [
         'unauthorized' => BASE_URL . '/errors/401.php',
         'notfound'     => BASE_URL . '/errors/404.php',

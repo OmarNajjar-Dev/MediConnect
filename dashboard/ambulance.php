@@ -417,7 +417,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
         <div class="container mx-auto px-4">
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                 <div>
-                    <a href="./" class="inline-block mb-4">
+                    <a href="<?= $paths['home'] ?>" class="inline-block mb-4">
                         <span class="text-medical-700 font-semibold text-2xl">
                             Medi<span class="text-medical-500">Connect</span>
                         </span>
@@ -449,22 +449,22 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                     </h4>
                     <ul class="flex flex-col gap-2">
                         <li>
-                            <a href="./appointments.php" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['services']['appointments'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Book Appointments
                             </a>
                         </li>
                         <li>
-                            <a href="./doctors.php" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['services']['doctors'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Find Doctors
                             </a>
                         </li>
                         <li>
-                            <a href="./hospitals.php" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['services']['hospitals'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Hospital Information
                             </a>
                         </li>
                         <li>
-                            <a href="./emergency.php" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['services']['emergency'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Emergency Services
                             </a>
                         </li>
@@ -477,27 +477,27 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                     </h4>
                     <ul class="flex flex-col gap-2">
                         <li>
-                            <a href="./about.php" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['static']['about'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 About Us
                             </a>
                         </li>
                         <li>
-                            <a href="./privacy.php" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['static']['privacy'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Privacy Policy
                             </a>
                         </li>
                         <li>
-                            <a href="./terms.php" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['static']['terms'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Terms of Service
                             </a>
                         </li>
                         <li>
-                            <a href="./faq.php" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['static']['faq'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 FAQs
                             </a>
                         </li>
                         <li>
-                            <a href="./contact.php" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['static']['contact'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Contact Us
                             </a>
                         </li>
