@@ -321,3 +321,15 @@ input::placeholder {
 .hover\:bg-red-600:hover {
   background-color: #dc2626;
 }
+.icon-badge{
+  position: absolute; 
+  top: -0.25rem;   
+  right: -0.25rem;    
+}
+.centered-vertical-line {
+  position: absolute;   
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
