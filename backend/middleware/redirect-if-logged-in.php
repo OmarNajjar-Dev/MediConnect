@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 $paths = require_once __DIR__ . '/../config/path.php';
 
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_role'])) {

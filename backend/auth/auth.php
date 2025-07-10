@@ -3,7 +3,7 @@
 session_start();
 
 if (!isset($_SESSION["user_id"]) && isset($_COOKIE["remember_token"])) {
-    require_once __DIR__ . '/db.php';
+    require_once __DIR__ . '/../config/db.php';
     $token = $_COOKIE["remember_token"];
 
     $stmt = $conn->prepare("SELECT user_id FROM users WHERE remember_token = ?");
