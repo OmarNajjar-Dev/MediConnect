@@ -1,15 +1,16 @@
 <?php
 
-// 1. Start session and auto-login logic
-require_once './backend/auth/auth.php';
+// 1. Load system configuration
+require_once __DIR__ . "/backend/config/path.php";
 
-// 2. Redirect if already logged in
-require_once __DIR__ . '/backend/middleware/redirect-if-logged-in.php';
+// 2. Load database connection
+require_once __DIR__ . "/backend/config/db.php";
 
-// 3. Load essential config and DB connection
-require_once './backend/config/db.php';
+// 3. Start session and auto-login logic
+require_once __DIR__ . "/backend/auth/auth.php";
 
-require_once './backend/config/path.php';
+// 4. Redirect if already logged in
+require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
 
 // Show all errors during development (remove in production)
 error_reporting(E_ALL);

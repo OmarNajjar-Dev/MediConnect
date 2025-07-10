@@ -1,12 +1,19 @@
 <?php
 
-// Loads user session context: sets $isLoggedIn, $userName, $userEmail, $dashboardLink
+// === Load system configuration (paths, routes, etc.) ===
+require_once "../backend/config/path.php";
+
+// === Load authentication logic (login state, remember me, etc.) ===
+require_once "../backend/auth/auth.php";
+
+// === Load user session context (sets $isLoggedIn, $userName, $userEmail, $dashboardLink) ===
 require_once "../backend/middleware/session-context.php";
 
+// === Define required role for this dashboard ===
 $requiredRole = 'Super Admin';
-require_once '../backend/middleware/protect-dashboard.php';
 
-require_once "../backend/config/path.php";
+// === Protect the dashboard: redirects if user role does not match ===
+require_once "../backend/middleware/protect-dashboard.php";
 
 ?>
 

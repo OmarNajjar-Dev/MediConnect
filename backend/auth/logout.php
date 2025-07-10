@@ -1,5 +1,6 @@
 <?php
 
+// Load system configuration
 require_once __DIR__ . "/../config/path.php";
 
 session_start();

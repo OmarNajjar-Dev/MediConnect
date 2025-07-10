@@ -1,10 +1,13 @@
 <?php
 
-// 1. Start session and auto-login logic
-require_once './backend/auth/auth.php';
+// 1. Load system configuration
+require_once __DIR__ . "/backend/config/path.php";
 
-// 2. Redirect if already logged in
-require_once __DIR__ . '/backend/middleware/redirect-if-logged-in.php';
+// 2. Start session and auto-login logic
+require_once __DIR__ . "/backend/auth/auth.php";
+
+// 3. Redirect if already logged in
+require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
 
 ?>
 
