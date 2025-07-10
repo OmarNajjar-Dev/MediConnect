@@ -321,3 +321,17 @@ input::placeholder {
 .hover\:bg-red-600:hover {
   background-color: #dc2626;
 }
+
+.text-blue-600 {
+  color: #2563eb; /* Tailwind's blue-600 */
+}
+
+.bg-green-600 {
+  background-color: #16a34a; /* Tailwind's green-600 */
+}
+
+.bg-orange-600 {
+  background-color: #ea580c; /* Tailwind's orange-600 */
+}
+
+
