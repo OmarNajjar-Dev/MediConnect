@@ -18,7 +18,7 @@ export function validateLoginForm() {
       formData.append("remember_me", "1");
     }
 
-    const res = await fetch("backend/login-handler.php", {
+    const res = await fetch("/MediConnect/backend/auth/login-handler.php", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: formData.toString(),

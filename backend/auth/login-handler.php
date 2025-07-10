@@ -1,6 +1,7 @@
 <?php
+
 session_start();
-require_once './db.php';
+require_once __DIR__ . '/../config/db.php';
 
 header('Content-Type: application/json'); // Important for AJAX
 
@@ -9,6 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $password = $_POST["password"] ?? '';
     $rememberMe = !empty($_POST["remember_me"]);
 
+    // Get user and password from users table
     $stmt = $conn->prepare("SELECT user_id, password FROM users WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
@@ -16,8 +18,31 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if ($result->num_rows === 1) {
         $user = $result->fetch_assoc();
+
         if (password_verify($password, $user["password"])) {
             $_SESSION["user_id"] = $user["user_id"];
+
+            // Fetch user role
+            $roleStmt = $conn->prepare("
+                SELECT r.role_name AS role_name
+                FROM user_roles ur
+                JOIN roles r ON ur.role_id = r.role_id
+                WHERE ur.user_id = ?
+                LIMIT 1
+            ");
+            $roleStmt->bind_param("i", $user["user_id"]);
+            $roleStmt->execute();
+            $roleResult = $roleStmt->get_result();
+
+            if ($roleResult->num_rows === 1) {
+                $roleData = $roleResult->fetch_assoc();
+                $_SESSION["user_role"] = $roleData["role_name"]; // e.g., "superadmin", "doctor"
+            } else {
+                // Role not found, fallback
+                $_SESSION["user_role"] = null;
+            }
+
+            $roleStmt->close();
 
             // Handle Remember Me
             if ($rememberMe) {

@@ -1,6 +1,6 @@
 export async function renderDoctors(container) {
   try {
-    const res = await fetch("/MediConnect/backend/get-doctors.php");
+    const res = await fetch("/MediConnect/backend/api/get-doctors.php");
     const doctorsCardsData = await res.json();
 
     const fragment = document.createDocumentFragment();

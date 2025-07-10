@@ -1,6 +1,9 @@
 <?php
 
-require_once '../backend/auth.php'; // handles autologin via cookie
+require_once '../backend/auth/auth.php'; // handles autologin via cookie
+
+$requiredRole = 'Admin';
+require_once '../backend/middleware/protect-dashboard.php';
 
 ?>
 
@@ -53,15 +56,13 @@ require_once '../backend/auth.php'; // handles autologin via cookie
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Hospitals</a>
                 <a href="./appointments.php"
                     class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Appointments</a>
-                <a href="././dashboard/superadmin.php"
-                    class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Dashboard</a>
             </nav>
 
             <!-- Header Right Section -->
             <div class="flex items-center gap-4">
                 <!-- Sign In / Sign Up buttons (hidden by default) -->
                 <a href="./login.php"
-                    class="hidden md:flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all">Sign
+                    class="hidden md:flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-3 rounded-lg text-sm lg:text-base font-medium whitespace-nowrap transition-all">Sign
                     In</a>
                 <a href="./register.php"
                     class="hidden md:flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all">Sign
@@ -85,8 +86,6 @@ require_once '../backend/auth.php'; // handles autologin via cookie
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
                     <a href="./appointments.php"
                         class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
-                    <a href="././dashboard/superadmin.php"
-                        class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Dashboard</a>
 
                     <!-- Sign In / Sign Up buttons (Mobile view) -->
                     <div class="flex flex-col pt-2 gap-2 border-t border-solid separator">

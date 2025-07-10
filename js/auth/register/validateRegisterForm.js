@@ -36,7 +36,7 @@ export function validateRegisterForm() {
     // Check email
     else {
       try {
-        const res = await fetch("/MediConnect/backend/check-email.php", {
+        const res = await fetch("/MediConnect/backend/auth/check-email.php", {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
           body: `email=${encodeURIComponent(emailInput.value)}`,

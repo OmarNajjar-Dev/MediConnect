@@ -1,7 +1,13 @@
 <?php
 
-require_once './backend/auth.php'; // Handles session & auto-login if cookie exists
-require_once './backend/db.php'; // Includes MySQLi DB connection as $conn
+// 1. Start session and auto-login logic
+require_once './backend/auth/auth.php';
+
+// 2. Redirect if already logged in
+require_once __DIR__ . '/backend/middleware/redirect-if-logged-in.php';
+
+// 3. Load essential config and DB connection
+require_once './backend/config/db.php';
 
 // Redirect logged-in users away from this page
 if (isset($_SESSION["user_id"])) {
@@ -88,6 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         exit();
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -149,11 +156,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <div class="flex items-center gap-4">
 
                 <!-- Sign In / Sign Up (visible) -->
-                <a href="./login.php" class="hidden md:flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all">
+                <a href="./login.php" class="hidden md:flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-3 rounded-lg text-sm lg:text-base font-medium whitespace-nowrap transition-all">
                     Sign In
                 </a>
 
-                <a href="./register.php" class="hidden md:flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all mr-4">
+                <a href="./register.php" class="hidden md:flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-3 rounded-lg text-sm lg:text-base font-medium whitespace-nowrap transition-all mr-4">
                     Sign Up
                 </a>
 
@@ -176,6 +183,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <a href="./doctors.php" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Doctors</a>
                     <a href="./hospitals.php" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
                     <a href="./appointments.php" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
+
+                    <!-- Mobile: Sign In / Sign Out -->
+                    <div class="flex flex-col pt-2 gap-2 border-t border-solid separator">
+                        <a href="./login.php" class="inline-flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-all">Sign In</a>
+                        <a href="./register.php" class="inline-flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Sign Up</a>
+                    </div>
                 </nav>
             </div>
 

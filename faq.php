@@ -1,70 +1,8 @@
 <?php
 
-require_once './backend/auth.php'; // Handles session & auto-login if cookie exists
-require_once './backend/db.php';   // Includes MySQLi DB connection as $conn
+// Loads user session context: sets $isLoggedIn, $userName, $userEmail, $dashboardLink
+require_once "./backend/middleware/session-context.php";
 
-// Default state (not logged in)
-$isLoggedIn = false;
-$userName = '';
-$userEmail = '';
-$dashboardLink = './login.php'; // Fallback if user is not authenticated
-
-// Check if user is logged in via session
-if (isset($_SESSION['user_id'])) {
-    $userId = $_SESSION['user_id'];
-
-    // Fetch user's basic information
-    $stmt = $conn->prepare("SELECT first_name, last_name, email FROM users WHERE user_id = ?");
-    $stmt->bind_param("i", $userId);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($user = $result->fetch_assoc()) {
-        $isLoggedIn = true;
-        $userName = $user['first_name'] . ' ' . $user['last_name'];
-        $userEmail = $user['email'];
-
-        // Fetch user's role from user_roles → roles
-        $roleStmt = $conn->prepare("
-      SELECT r.role_name 
-      FROM roles r
-      JOIN user_roles ur ON ur.role_id = r.role_id
-      WHERE ur.user_id = ?
-      LIMIT 1
-    ");
-        $roleStmt->bind_param("i", $userId);
-        $roleStmt->execute();
-        $roleResult = $roleStmt->get_result();
-
-        if ($roleRow = $roleResult->fetch_assoc()) {
-            $role = $roleRow['role_name'];
-
-            // Set dashboard link based on user's role
-            switch ($role) {
-                case 'Super Admin':
-                    $dashboardLink = './dashboard/superadmin.php';
-                    break;
-                case 'Admin':
-                    $dashboardLink = './dashboard/admin.php';
-                    break;
-                case 'Doctor':
-                    $dashboardLink = './dashboard/doctor.php';
-                    break;
-                case 'Patient':
-                    $dashboardLink = './dashboard/patient.php';
-                    break;
-                case 'Staff':
-                    $dashboardLink = './dashboard/staff.php';
-                    break;
-                case 'Ambulance Team':
-                    $dashboardLink = './dashboard/ambulance.php';
-                    break;
-                default:
-                    $dashboardLink = './dashboard/index.php'; // Fallback for unknown roles
-            }
-        }
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -120,11 +58,11 @@ if (isset($_SESSION['user_id'])) {
 
                 <!-- Sign In / Sign Up (visible if not logged in) -->
                 <?php if (!$isLoggedIn): ?>
-                    <a href="./login.php" class="hidden md:flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all">
+                    <a href="./login.php" class="hidden md:flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-3 rounded-lg text-sm lg:text-base font-medium whitespace-nowrap transition-all">
                         Sign In
                     </a>
 
-                    <a href="./register.php" class="hidden md:flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all mr-4">
+                    <a href="./register.php" class="hidden md:flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-3 rounded-lg text-sm lg:text-base font-medium whitespace-nowrap transition-all mr-4">
                         Sign Up
                     </a>
                 <?php else: ?>
@@ -153,7 +91,7 @@ if (isset($_SESSION['user_id'])) {
                                     <i data-lucide="user" class="w-4 h-4"></i>Dashboard
                                 </a>
 
-                                <a href="./backend/logout.php" class="flex items-center gap-2 px-3 py-2 text-sm text-red-600 hover:text-red-700 hover:bg-red-50 w-full transition-colors transition-200">
+                                <a href="./backend/auth/logout.php" class="flex items-center gap-2 px-3 py-2 text-sm text-red-600 hover:text-red-700 hover:bg-red-50 w-full transition-colors transition-200">
                                     <i data-lucide="log-out" class="w-4 h-4"></i>Sign Out
                                 </a>
                             </div>
@@ -193,7 +131,7 @@ if (isset($_SESSION['user_id'])) {
                             <a href="<?= htmlspecialchars($dashboardLink) ?>" class="inline-flex items-center gap-2 justify-start text-gray-700 hover:bg-medical-50 hover:text-medical-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
                                 <i data-lucide="user" class="w-4 h-4"></i> Dashboard
                             </a>
-                            <a href="./backend/logout.php" class="inline-flex items-center gap-2 justify-start text-red-600 hover:bg-red-50 hover:text-red-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                            <a href="./backend/auth/logout.php" class="inline-flex items-center gap-2 justify-start text-red-600 hover:bg-red-50 hover:text-red-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
                                 <i data-lucide="log-out" class="w-4 h-4"></i> Sign Out
                             </a>
                         </div>
