@@ -1,19 +1,19 @@
 <?php
 
-// === Load system configuration (paths, routes, etc.) ===
-require_once "../backend/config/path.php";
+// 1. Load system configuration (paths, constants, routes, etc.)
+require_once __DIR__ . "/../backend/config/path.php";
 
-// === Load authentication logic (login state, remember me, etc.) ===
-require_once "../backend/auth/auth.php";
+// 2. Load authentication logic (login state, remember me, etc.)
+require_once __DIR__ . "/../backend/auth/auth.php";
 
-// === Load user session context (sets $isLoggedIn, $userName, $userEmail, $dashboardLink) ===
-require_once "../backend/middleware/session-context.php";
+// 3. Load user session context (sets $isLoggedIn, $userName, $userEmail, $dashboardLink)
+require_once __DIR__ . "/../backend/middleware/session-context.php";
 
-// === Define required role for this dashboard ===
+// 4. Define required role for this dashboard
 $requiredRole = 'Super Admin';
 
-// === Protect the dashboard: redirects if user role does not match ===
-require_once "../backend/middleware/protect-dashboard.php";
+// 5. Protect the dashboard: redirect if user role does not match
+require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
 
 ?>
 

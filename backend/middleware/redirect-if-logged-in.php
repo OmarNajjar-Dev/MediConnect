@@ -1,7 +1,5 @@
 <?php
 
-require_once __DIR__ . '/../config/path.php';
-
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_role'])) {
     $role = strtolower(str_replace(" ", "", $_SESSION['user_role']));
 

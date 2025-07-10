@@ -1,7 +1,5 @@
 <?php
 
-require_once __DIR__ . "/../config/path.php";
-
 // Redirect to login page if user is not logged in
 if (!isset($_SESSION['user_id'])) {
     header("Location: " . $paths['auth']["login"]);

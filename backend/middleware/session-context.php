@@ -1,9 +1,10 @@
 <?php
 
-require_once __DIR__ . '/../auth/auth.php'; // Handles session & auto-login if cookie exists
-require_once __DIR__ . '/../config/db.php';   // Includes MySQLi DB connection as $conn
+// 1. Start session and auto-login logic
+require_once __DIR__ . '/../auth/auth.php';
 
-require_once __DIR__ . '/../config/path.php';
+// 2. Load database connection
+require_once __DIR__ . '/../config/db.php';
 
 $isLoggedIn = false;
 $userName = '';
