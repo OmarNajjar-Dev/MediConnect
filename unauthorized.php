@@ -105,7 +105,7 @@ require_once './backend/auth.php'; // handles autologin via cookie
     </header>
 
     <!-- Main Content -->
-    <main class="flex-grow">
+    <main class="overflow-hidden pt-20 flex-grow">
         <div class="page-transition page-enter-active">
             <div class="min-h-screen bg-background flex items-center justify-center p-4">
                 <div class="max-w-md w-full text-center flex flex-col gap-8 transition-all duration-700 opacity-100 translate-y-0">
@@ -127,8 +127,8 @@ require_once './backend/auth.php'; // handles autologin via cookie
                             <div class="centered-vertical-line absolute w-1 h-16 bg-medical-100 rounded-full"></div>
                         </div>
                     </div>
-                    <div class="flex flex-col gap-4 pointer">
-                        <button class="inline-flex items-center justify-center gap-2 whitespace-nowra bg-medical-500 text-white hover:bg-medical-400 border border-solid border-input rounded-md px-8 w-full h-12 text-lg font-medium transition-all transition-200 hover:scale-105 pointer">
+                    <div class="flex flex-col gap-4">
+                        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap bg-medical-500 text-white hover:bg-medical-400 border border-solid border-transparent rounded-md px-8 w-full h-12 text-lg font-medium transition-all transition-200 hover:scale-105 pointer">
                             <i data-lucide="arrow-left" class="w-5 h-5 mr-2"></i>Return to Home</button>
                             <button class="w-full text-muted-foreground hover:text-medical-600 transition-colors transition-200 text-sm flex items-center justify-center gap-2 pointer bg-transparent border-none">
                             <i data-lucide="mail" class="w-4 h-4"></i>Contact support if you believe this is a mistake</button>
