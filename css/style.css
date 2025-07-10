@@ -332,4 +332,13 @@ input::placeholder {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+@media (min-width: 640px) {
+  .UpdateButton {
+    flex: 0 1 auto;
+  }
+}
+.alert-badge{
+  top: -0.25rem;    /* -top-1 */
+  right: -0.25rem;  /* -right-1 */
 
+}
