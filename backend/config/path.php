@@ -8,7 +8,7 @@ $paths = [
 
     'auth' => [
         'login'    => BASE_URL . '/login.php',
-        'logout'   => BASE_URL . '/backend/auth/logout.php',
+        'logout'   => BASE_URL . '/logout.php',
         'register' => BASE_URL . '/register.php',
     ],
 

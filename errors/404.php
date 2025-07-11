@@ -41,7 +41,7 @@ require_once "./backend/middleware/session-context.php";
         <div class="container mx-auto flex items-center justify-between px-4">
 
             <!-- Logo -->
-            <a href="./" class="flex items-center">
+            <a href="<?= $paths['home'] ?>" class="flex items-center">
                 <span class="text-medical-700 text-2xl font-semibold">
                     Medi<span class="text-medical-500">Connect</span>
                 </span>
@@ -49,10 +49,10 @@ require_once "./backend/middleware/session-context.php";
 
             <!-- Desktop Navigation (hidden on mobile) -->
             <nav class="hidden md:flex items-center gap-4 lg:gap-8 xl:ml-28">
-                <a href="./" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Home</a>
-                <a href="./doctors.php" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Doctors</a>
-                <a href="./hospitals.php" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Hospitals</a>
-                <a href="./appointments.php" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Appointments</a>
+                <a href="<?= $paths['home'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Home</a>
+                <a href="<?= $paths['services']['doctors'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Doctors</a>
+                <a href="<?= $paths['services']['hospitals'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Hospitals</a>
+                <a href="<?= $paths['services']['appointments'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Appointments</a>
             </nav>
 
             <!-- Right section: Auth / Dropdown / Emergency / Menu -->
@@ -93,7 +93,7 @@ require_once "./backend/middleware/session-context.php";
                                     <i data-lucide="user" class="w-4 h-4"></i>Dashboard
                                 </a>
 
-                                <a href="./backend/auth/logout.php" class="flex items-center gap-2 px-3 py-2 text-sm text-red-600 hover:text-red-700 hover:bg-red-50 w-full transition-colors transition-200">
+                                <a href="<?= $paths['auth']['logout'] ?>" class="flex items-center gap-2 px-3 py-2 text-sm text-red-600 hover:text-red-700 hover:bg-red-50 w-full transition-colors transition-200">
                                     <i data-lucide="log-out" class="w-4 h-4"></i>Sign Out
                                 </a>
                             </div>
@@ -117,10 +117,10 @@ require_once "./backend/middleware/session-context.php";
             <!-- Mobile Navigation Panel (visible only on mobile) -->
             <div id="mobile-nav" class="hidden absolute bg-white/95 backdrop-blur-lg animate-slide-down shadow-lg md:hidden">
                 <nav class="container mx-auto flex flex-col gap-4 px-4 py-4">
-                    <a href="./" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Home</a>
-                    <a href="./doctors.php" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Doctors</a>
-                    <a href="./hospitals.php" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
-                    <a href="./appointments.php" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
+                    <a href="<?= $paths['home'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Home</a>
+                    <a href="<?= $paths['services']['doctors'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Doctors</a>
+                    <a href="<?= $paths['services']['hospitals'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
+                    <a href="<?= $paths['services']['appointments'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
 
                     <!-- Mobile: Sign In / Sign Out depending on session -->
                     <?php if (!$isLoggedIn): ?>
@@ -133,7 +133,7 @@ require_once "./backend/middleware/session-context.php";
                             <a href="<?= htmlspecialchars($dashboardLink) ?>" class="inline-flex items-center gap-2 justify-start text-gray-700 hover:bg-medical-50 hover:text-medical-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
                                 <i data-lucide="user" class="w-4 h-4"></i> Dashboard
                             </a>
-                            <a href="./backend/auth/logout.php" class="inline-flex items-center gap-2 justify-start text-red-600 hover:bg-red-50 hover:text-red-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                            <a href="<?= $paths['auth']['logout'] ?>" class="inline-flex items-center gap-2 justify-start text-red-600 hover:bg-red-50 hover:text-red-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
                                 <i data-lucide="log-out" class="w-4 h-4"></i> Sign Out
                             </a>
                         </div>
@@ -160,7 +160,7 @@ require_once "./backend/middleware/session-context.php";
                     been moved, deleted, or never existed.
                 </p>
                 <div class="flex flex-col gap-4">
-                    <a href="./"
+                    <a href="<?= $paths['home'] ?>"
                         class="inline-flex items-center justify-center gap-2 bg-medical-500 hover:bg-medical-600 text-white whitespace-nowrap rounded-sm text-sm font-medium transition-colors outline-none h-10 px-4 py-2 w-full">
                         <!-- Lucide icon recommended here if desired -->
                         <i data-lucide="arrow-left" class="mr-2 h-4 w-4"></i>
@@ -181,7 +181,7 @@ require_once "./backend/middleware/session-context.php";
         <div class="container mx-auto px-4">
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                 <div>
-                    <a href="./" class="inline-block mb-4">
+                    <a href="<?= $paths['home'] ?>" class="inline-block mb-4">
                         <span class="text-medical-700 font-semibold text-2xl">
                             Medi<span class="text-medical-500">Connect</span>
                         </span>
@@ -213,17 +213,17 @@ require_once "./backend/middleware/session-context.php";
                     </h4>
                     <ul class="flex flex-col gap-2">
                         <li>
-                            <a href="./appointments.php" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['services']['appointments'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Book Appointments
                             </a>
                         </li>
                         <li>
-                            <a href="./doctors.php" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['services']['doctors'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Find Doctors
                             </a>
                         </li>
                         <li>
-                            <a href="./hospitals.php" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['services']['hospitals'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Hospital Information
                             </a>
                         </li>

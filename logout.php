@@ -1,7 +1,7 @@
 <?php
 
 // Load system configuration (paths, constants, routes, etc.)
-require_once __DIR__ . "/../config/path.php";
+require_once __DIR__ . "/backend/config/path.php";
 
 session_start();
 

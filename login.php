@@ -51,7 +51,7 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
         <div class="container mx-auto flex items-center justify-between px-4">
 
             <!-- Logo -->
-            <a href="./" class="flex items-center">
+            <a href="<?= $paths['home'] ?>" class="flex items-center">
                 <span class="text-medical-700 text-2xl font-semibold">
                     Medi<span class="text-medical-500">Connect</span>
                 </span>
@@ -59,10 +59,10 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
 
             <!-- Desktop Navigation (hidden on mobile) -->
             <nav class="hidden md:flex items-center gap-4 lg:gap-8 xl:ml-28">
-                <a href="./" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Home</a>
-                <a href="./doctors.php" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Doctors</a>
-                <a href="./hospitals.php" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Hospitals</a>
-                <a href="./appointments.php" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Appointments</a>
+                <a href="<?= $paths['home'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Home</a>
+                <a href="<?= $paths['services']['doctors'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Doctors</a>
+                <a href="<?= $paths['services']['hospitals'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Hospitals</a>
+                <a href="<?= $paths['services']['appointments'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Appointments</a>
             </nav>
 
             <!-- Right section: Auth / Dropdown / Emergency / Menu -->
@@ -92,10 +92,10 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
             <!-- Mobile Navigation Panel (visible only on mobile) -->
             <div id="mobile-nav" class="hidden absolute bg-white/95 backdrop-blur-lg animate-slide-down shadow-lg md:hidden">
                 <nav class="container mx-auto flex flex-col gap-4 px-4 py-4">
-                    <a href="./" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Home</a>
-                    <a href="./doctors.php" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Doctors</a>
-                    <a href="./hospitals.php" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
-                    <a href="./appointments.php" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
+                    <a href="<?= $paths['home'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Home</a>
+                    <a href="<?= $paths['services']['doctors'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Doctors</a>
+                    <a href="<?= $paths['services']['hospitals'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
+                    <a href="<?= $paths['services']['appointments'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
 
                     <!-- Mobile: Sign In / Sign Out -->
                     <div class="flex flex-col pt-2 gap-2 border-t border-solid separator">
@@ -113,7 +113,7 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
         <div class="min-h-screen flex items-center justify-center bg-transparent py-12 px-4 sm:px-6 lg:px-8">
             <div class="max-w-md w-full flex flex-col gap-6">
                 <div class="text-center">
-                    <a href="./" class="flex justify-center items-center">
+                    <a href="<?= $paths['home'] ?>" class="flex justify-center items-center">
                         <span class="text-medical-700 text-3xl font-semibold">
                             Medi<span class="text-medical-500">Connect</span>
                         </span>
