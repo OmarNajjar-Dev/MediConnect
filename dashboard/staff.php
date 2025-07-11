@@ -155,7 +155,10 @@ require_once '../backend/auth.php'; // handles autologin via cookie
                     </div>
 
                     <div class="mt-2 flex flex-col gap-6" style="animation-duration: 0s">
-                        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                        <!-- Quick statistics summary cards for today's overview -->
+                        <div class="grid grid-cols-1 gap-6 md:grid-cols-4">
+
+                            <!-- Today's Total -->
                             <div class="glass-card rounded-xl p-6">
                                 <div class="flex items-center justify-between">
                                     <div>
@@ -165,15 +168,19 @@ require_once '../backend/auth.php'; // handles autologin via cookie
                                     <i data-lucide="calendar" class="h-8 w-8 text-blue-600"></i>
                                 </div>
                             </div>
+
+                            <!-- Pending -->
                             <div class="glass-card rounded-xl p-6">
                                 <div class="flex items-center justify-between">
                                     <div>
-                                        <p class="text-sm font-medium text-gray-600">Pending </p>
-                                        <p class="text-2xl font-bold">2 </p>
+                                        <p class="text-sm font-medium text-gray-600">Pending</p>
+                                        <p class="text-2xl font-bold">2</p>
                                     </div>
                                     <i data-lucide="clock" class="h-8 w-8 text-orange-600"></i>
                                 </div>
                             </div>
+
+                            <!-- Completed -->
                             <div class="glass-card rounded-xl p-6">
                                 <div class="flex items-center justify-between">
                                     <div>
@@ -183,6 +190,8 @@ require_once '../backend/auth.php'; // handles autologin via cookie
                                     <i data-lucide="calendar" class="h-8 w-8 text-green-600"></i>
                                 </div>
                             </div>
+
+                            <!-- Available Doctors -->
                             <div class="glass-card rounded-xl p-6">
                                 <div class="flex items-center justify-between">
                                     <div>
@@ -192,194 +201,300 @@ require_once '../backend/auth.php'; // handles autologin via cookie
                                     <i data-lucide="users" class="h-8 w-8 text-purple-600"></i>
                                 </div>
                             </div>
+
                         </div>
 
+
+                        <!-- Section to manage appointments with edit, delete, and assign options -->
                         <div data-section="Manage-Appointments" class="hidden glass-card rounded-xl p-6">
-                            <div class="flex items-center justify-between mb-4">
+                            <!-- Header -->
+                            <div class="mb-4 flex items-center justify-between">
                                 <h3 class="text-xl font-bold">Appointment Management</h3>
-                                <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium  disabled:pointer-events-none disabled:opacity-50 border border-input border-solid bg-medical-500 text-white hover:bg-medical-400 h-10 px-4 py-2 pointer">
-                                    <i data-lucide="plus" class="h-4 w-4 mr-2"></i>
-                                    Create Appointment</button>
+                                <button
+                                    class="pointer inline-flex h-10 items-center justify-center gap-2 rounded-md border border-input border-solid bg-medical-500 px-4 py-2 text-sm font-medium text-white hover:bg-medical-400 disabled:pointer-events-none disabled:opacity-50">
+                                    <i data-lucide="plus" class="mr-2 h-4 w-4"></i>
+                                    Create Appointment
+                                </button>
                             </div>
+
+                            <!-- Appointments List -->
                             <div class="flex flex-col gap-3">
-                                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+
+                                <!-- Appointment: Ahmed Al-Rashid -->
+                                <div class="flex items-center justify-between rounded-lg bg-gray-50 p-4">
                                     <div class="flex items-center gap-4">
-                                        <div class="w-3 h-3 rounded-full bg-green-600"></div>
+                                        <div class="h-3 w-3 rounded-full bg-green-600"></div>
                                         <div>
                                             <p class="font-medium">Ahmed Al-Rashid</p>
                                             <p class="text-sm text-gray-600">consultation • 30 min</p>
                                             <p class="text-sm text-gray-500">Regular checkup - chest pain complaints</p>
                                         </div>
                                     </div>
-                                    <div>
+                                    <div class="text-right">
                                         <p class="font-medium">Dr. Sarah Johnson</p>
                                         <p class="text-sm text-gray-600">2025-07-08 at 09:00</p>
-                                        <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors border-transparent hover:bg-primary/80 bg-green-100 text-green-800">confirmed</div>
+                                        <div
+                                            class="inline-flex items-center rounded-full border border-transparent bg-green-100 px-2.5 py-0.5 text-xs font-semibold text-green-800 transition-colors hover:bg-primary/80">
+                                            confirmed
+                                        </div>
                                     </div>
-                                    <div class="flex gap-2"><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium disabled:pointer-events-none disabled:opacity-50  border border-solid border-input bg-background hover:bg-accent hover:text-medical-600 h-9 rounded-md px-3 pointer">
+                                    <div class="flex gap-2">
+                                        <button
+                                            class="pointer inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium hover:bg-accent hover:text-medical-600 disabled:pointer-events-none disabled:opacity-50">
                                             <i data-lucide="square-pen" class="h-4 w-4"></i>
                                         </button>
-                                        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium disabled:pointer-events-none disabled:opacity-50 border border-solid border-input bg-background hover:bg-accent h-9 rounded-md px-3 text-red-600 hover:text-red-800 pointer">
+                                        <button
+                                            class="pointer inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium text-red-600 hover:bg-accent hover:text-red-800 disabled:pointer-events-none disabled:opacity-50">
                                             <i data-lucide="x" class="h-4 w-4"></i>
-                                        </button></div>
+                                        </button>
+                                    </div>
                                 </div>
-                                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+
+                                <!-- Appointment: Fatima Hassan -->
+                                <div class="flex items-center justify-between rounded-lg bg-gray-50 p-4">
                                     <div class="flex items-center gap-4">
-                                        <div class="w-3 h-3 rounded-full bg-orange-600"></div>
+                                        <div class="h-3 w-3 rounded-full bg-orange-600"></div>
                                         <div>
                                             <p class="font-medium">Fatima Hassan</p>
                                             <p class="text-sm text-gray-600">follow-up • 45 min</p>
                                             <p class="text-sm text-gray-500">Follow-up on previous consultation</p>
                                         </div>
                                     </div>
-                                    <div>
+                                    <div class="text-right">
                                         <p class="font-medium">Dr. Ahmed Hassan</p>
                                         <p class="text-sm text-gray-600">2025-07-08 at 10:30</p>
-                                        <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors border-transparent bg-orange-100 text-orange-800">pending</div>
+                                        <div
+                                            class="inline-flex items-center rounded-full border border-transparent bg-orange-100 px-2.5 py-0.5 text-xs font-semibold text-orange-800 transition-colors">
+                                            pending
+                                        </div>
                                     </div>
-                                    <div class="flex gap-2"><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium disabled:pointer-events-none disabled:opacity-50  border border-solid border-input bg-background hover:bg-accent hover:text-medical-600 h-9 rounded-md px-3 pointer">
-                                            <i data-lucide="square-pen" class="h-4 w-4"></i></button>
-                                        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium disabled:pointer-events-none disabled:opacity-50 border border-solid border-input bg-background hover:bg-accent h-9 rounded-md px-3 text-red-600 hover:text-red-800 pointer">
-                                            <i data-lucide="x" class="h-4 w-4"></i></button>
+                                    <div class="flex gap-2">
+                                        <button
+                                            class="pointer inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium hover:bg-accent hover:text-medical-600 disabled:pointer-events-none disabled:opacity-50">
+                                            <i data-lucide="square-pen" class="h-4 w-4"></i>
+                                        </button>
+                                        <button
+                                            class="pointer inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium text-red-600 hover:bg-accent hover:text-red-800 disabled:pointer-events-none disabled:opacity-50">
+                                            <i data-lucide="x" class="h-4 w-4"></i>
+                                        </button>
                                     </div>
                                 </div>
-                                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+
+                                <!-- Appointment: Mohammed Ali -->
+                                <div class="flex items-center justify-between rounded-lg bg-gray-50 p-4">
                                     <div class="flex items-center gap-4">
-                                        <div class="w-3 h-3 rounded-full bg-blue-600"></div>
+                                        <div class="h-3 w-3 rounded-full bg-blue-600"></div>
                                         <div>
                                             <p class="font-medium">Mohammed Ali</p>
                                             <p class="text-sm text-gray-600">routine-checkup • 60 min</p>
                                             <p class="text-sm text-gray-500">Annual health screening</p>
                                         </div>
                                     </div>
-                                    <div>
+                                    <div class="text-right">
                                         <p class="font-medium">Dr. Sarah Johnson</p>
                                         <p class="text-sm text-gray-600">2025-07-08 at 11:15</p>
-                                        <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors border-transparent bg-blue-100 text-blue-800">in progress</div>
+                                        <div
+                                            class="inline-flex items-center rounded-full border border-transparent bg-blue-100 px-2.5 py-0.5 text-xs font-semibold text-blue-800 transition-colors">
+                                            in progress
+                                        </div>
                                     </div>
-                                    <div class="flex gap-2"><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium disabled:pointer-events-none disabled:opacity-50  border border-solid border-input bg-background hover:bg-accent hover:text-medical-600 h-9 rounded-md px-3 pointer">
-                                            <i data-lucide="square-pen" class="h-4 w-4"></i></button>
-                                        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium disabled:pointer-events-none disabled:opacity-50 border border-solid border-input bg-background hover:bg-accent h-9 rounded-md px-3 text-red-600 hover:text-red-800 pointer">
-                                            <i data-lucide="x" class="h-4 w-4"></i></button>
+                                    <div class="flex gap-2">
+                                        <button
+                                            class="pointer inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium hover:bg-accent hover:text-medical-600 disabled:pointer-events-none disabled:opacity-50">
+                                            <i data-lucide="square-pen" class="h-4 w-4"></i>
+                                        </button>
+                                        <button
+                                            class="pointer inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium text-red-600 hover:bg-accent hover:text-red-800 disabled:pointer-events-none disabled:opacity-50">
+                                            <i data-lucide="x" class="h-4 w-4"></i>
+                                        </button>
                                     </div>
                                 </div>
-                                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+
+                                <!-- Appointment: Layla Ibrahim -->
+                                <div class="flex items-center justify-between rounded-lg bg-gray-50 p-4">
                                     <div class="flex items-center gap-4">
-                                        <div class="w-3 h-3 rounded-full bg-orange-600"></div>
+                                        <div class="h-3 w-3 rounded-full bg-orange-600"></div>
                                         <div>
                                             <p class="font-medium">Layla Ibrahim</p>
                                             <p class="text-sm text-gray-600">consultation • 30 min</p>
                                             <p class="text-sm text-gray-500">New patient - needs doctor assignment</p>
                                         </div>
                                     </div>
-                                    <div>
+                                    <div class="text-right">
                                         <p class="font-medium">Unassigned</p>
                                         <p class="text-sm text-gray-600">2025-07-08 at 14:00</p>
-                                        <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors  border-transparent bg-orange-100 text-orange-800">pending</div>
+                                        <div
+                                            class="inline-flex items-center rounded-full border border-transparent bg-orange-100 px-2.5 py-0.5 text-xs font-semibold text-orange-800 transition-colors">
+                                            pending
+                                        </div>
                                     </div>
-                                    <div class="flex gap-2"><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium disabled:pointer-events-none disabled:opacity-50  border border-solid border-input bg-background hover:bg-accent hover:text-medical-600 h-9 rounded-md px-3 pointer">
-                                            <i data-lucide="square-pen" class="h-4 w-4"></i></button>
-                                        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium disabled:pointer-events-none disabled:opacity-50  border border-solid border-input bg-background hover:bg-accent hover:text-medical-500 h-9 rounded-md px-3 pointer">
-                                            <i data-lucide="user" class="h-4 w-4 mr-1"></i>
-                                            Assign</button><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium disabled:pointer-events-none disabled:opacity-50 border border-solid border-input bg-background hover:bg-accent h-9 rounded-md px-3 text-red-600 hover:text-red-800 pointer"><i data-lucide="x" class="h-4 w-4"></i></button>
+                                    <div class="flex gap-2">
+                                        <button
+                                            class="pointer inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium hover:bg-accent hover:text-medical-600 disabled:pointer-events-none disabled:opacity-50">
+                                            <i data-lucide="square-pen" class="h-4 w-4"></i>
+                                        </button>
+                                        <button
+                                            class="pointer inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium hover:bg-accent hover:text-medical-500 disabled:pointer-events-none disabled:opacity-50">
+                                            <i data-lucide="user" class="mr-1 h-4 w-4"></i>
+                                            Assign
+                                        </button>
+                                        <button
+                                            class="pointer inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium text-red-600 hover:bg-accent hover:text-red-800 disabled:pointer-events-none disabled:opacity-50">
+                                            <i data-lucide="x" class="h-4 w-4"></i>
+                                        </button>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
+                        
+
                     </div>
                 </div>
             </div>
 
 
+            <!-- Section displaying currently available doctors and their specialties -->
             <div data-section="Available-Doctors" class="hidden glass-card rounded-xl p-6">
-                <h3 class="text-xl font-bold mb-4">Available Doctors</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="p-4 bg-gray-50 rounded-lg">
+                <h3 class="mb-4 text-xl font-bold">Available Doctors</h3>
+
+                <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+
+                    <div class="rounded-lg bg-gray-50 p-4">
                         <div class="flex items-center justify-between">
                             <div>
                                 <p class="font-medium">Dr. Sarah Johnson</p>
                                 <p class="text-sm text-gray-600">Cardiology</p>
                             </div>
-                            <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors border-transparent bg-green-100 text-green-800">available</div>
-                        </div><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium  disabled:pointer-events-none disabled:opacity-50  border border-solid border-input bg-background hover:bg-accent hover:text-medical-500 h-9 rounded-md px-3 mt-2 pointer">View Schedule</button>
+                            <div
+                                class="inline-flex items-center rounded-full border border-transparent bg-green-100 px-2.5 py-0.5 text-xs font-semibold text-green-800 transition-colors">
+                                available
+                            </div>
+                        </div>
+                        <button
+                            class="pointer mt-2 inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium text-black hover:bg-accent hover:text-medical-500 disabled:pointer-events-none disabled:opacity-50">
+                            View Schedule
+                        </button>
                     </div>
-                    <div class="p-4 bg-gray-50 rounded-lg">
+
+                    <div class="rounded-lg bg-gray-50 p-4">
                         <div class="flex items-center justify-between">
                             <div>
                                 <p class="font-medium">Dr. Ahmed Hassan</p>
                                 <p class="text-sm text-gray-600">General Medicine</p>
                             </div>
-                            <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-red-100 text-red-800">busy</div>
+                            <div
+                                class="inline-flex items-center rounded-full border border-transparent bg-red-100 px-2.5 py-0.5 text-xs font-semibold text-red-800">
+                                busy
+                            </div>
                         </div>
                     </div>
-                    <div class="p-4 bg-gray-50 rounded-lg">
+
+                    <div class="rounded-lg bg-gray-50 p-4">
                         <div class="flex items-center justify-between">
                             <div>
                                 <p class="font-medium">Dr. Fatima Al-Zahra</p>
                                 <p class="text-sm text-gray-600">Dermatology</p>
                             </div>
-                            <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors border-transparent bg-green-100 text-green-800">available</div>
-                        </div><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium  disabled:pointer-events-none disabled:opacity-50  border border-solid border-input bg-background hover:bg-accent hover:text-medical-500 h-9 rounded-md px-3 mt-2 pointer">View Schedule</button>
+                            <div
+                                class="inline-flex items-center rounded-full border border-transparent bg-green-100 px-2.5 py-0.5 text-xs font-semibold text-green-800 transition-colors">
+                                available
+                            </div>
+                        </div>
+                        <button
+                            class="pointer mt-2 inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium text-black hover:bg-accent hover:text-medical-500 disabled:pointer-events-none disabled:opacity-50">
+                            View Schedule
+                        </button>
                     </div>
-                    <div class="p-4 bg-gray-50 rounded-lg">
+
+                    <div class="rounded-lg bg-gray-50 p-4">
                         <div class="flex items-center justify-between">
                             <div>
                                 <p class="font-medium">Dr. Mohammed Ali</p>
                                 <p class="text-sm text-gray-600">Orthopedics</p>
                             </div>
-                            <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors border-transparent bg-green-100 text-green-800">available</div>
-                        </div><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium  disabled:pointer-events-none disabled:opacity-50  border border-solid border-input bg-background hover:bg-accent hover:text-medical-500 h-9 rounded-md px-3 mt-2 pointer">View Schedule</button>
+                            <div
+                                class="inline-flex items-center rounded-full border border-transparent bg-green-100 px-2.5 py-0.5 text-xs font-semibold text-green-800 transition-colors">
+                                available
+                            </div>
+                        </div>
+                        <button
+                            class="pointer mt-2 inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium text-black hover:bg-accent hover:text-medical-500 disabled:pointer-events-none disabled:opacity-50">
+                            View Schedule
+                        </button>
                     </div>
+
                 </div>
             </div>
 
 
-
-
+            <!-- Section displaying today's scheduled appointments with status and timing -->
             <div data-section="Daily-Schedule" class="hidden glass-card rounded-xl p-6">
-                <h3 class="text-xl font-bold mb-4">Daily Schedule Overview</h3>
+                <h3 class="mb-4 text-xl font-bold">Daily Schedule Overview</h3>
+
                 <div class="flex flex-col gap-4">
                     <div class="grid grid-cols-1 gap-4">
-                        <div class="flex items-center justify-between p-3 border border-solid border-card-soft rounded-lg">
+
+                        <!-- 09:00 Appointment -->
+                        <div class="flex items-center justify-between rounded-lg border border-solid border-card-soft p-3">
                             <div class="flex items-center gap-3">
-                                <div class="text-sm font-medium w-16">09:00</div>
+                                <div class="w-16 text-sm font-medium">09:00</div>
                                 <div>
                                     <p class="font-medium">Ahmed Al-Rashid</p>
                                     <p class="text-sm text-gray-600">Dr. Sarah Johnson</p>
                                 </div>
                             </div>
-                            <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors  border-transparent bg-green-100 text-green-800">confirmed</div>
+                            <div
+                                class="inline-flex items-center rounded-full border border-transparent bg-green-100 px-2.5 py-0.5 text-xs font-semibold text-green-800 transition-colors">
+                                confirmed
+                            </div>
                         </div>
-                        <div class="flex items-center justify-between p-3 border border-solid border-card-soft rounded-lg">
+
+                        <!-- 10:30 Appointment -->
+                        <div class="flex items-center justify-between rounded-lg border border-solid border-card-soft p-3">
                             <div class="flex items-center gap-3">
-                                <div class="text-sm font-medium w-16">10:30</div>
+                                <div class="w-16 text-sm font-medium">10:30</div>
                                 <div>
                                     <p class="font-medium">Fatima Hassan</p>
                                     <p class="text-sm text-gray-600">Dr. Ahmed Hassan</p>
                                 </div>
                             </div>
-                            <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors border-transparent bg-orange-100 text-orange-800">pending</div>
+                            <div
+                                class="inline-flex items-center rounded-full border border-transparent bg-orange-100 px-2.5 py-0.5 text-xs font-semibold text-orange-800 transition-colors">
+                                pending
+                            </div>
                         </div>
-                        <div class="flex items-center justify-between p-3 border border-solid border-card-soft rounded-lg">
+
+                        <!-- 11:15 Appointment -->
+                        <div class="flex items-center justify-between rounded-lg border border-solid border-card-soft p-3">
                             <div class="flex items-center gap-3">
-                                <div class="text-sm font-medium w-16">11:15</div>
+                                <div class="w-16 text-sm font-medium">11:15</div>
                                 <div>
                                     <p class="font-medium">Mohammed Ali</p>
                                     <p class="text-sm text-gray-600">Dr. Sarah Johnson</p>
                                 </div>
                             </div>
-                            <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors border-transparent bg-blue-100 text-blue-800">in progress</div>
+                            <div
+                                class="inline-flex items-center rounded-full border border-transparent bg-blue-100 px-2.5 py-0.5 text-xs font-semibold text-blue-800 transition-colors">
+                                in progress
+                            </div>
                         </div>
-                        <div class="flex items-center justify-between p-3 border border-solid border-card-soft rounded-lg">
+
+                        <!-- 14:00 Appointment -->
+                        <div class="flex items-center justify-between rounded-lg border border-solid border-card-soft p-3">
                             <div class="flex items-center gap-3">
-                                <div class="text-sm font-medium w-16">14:00</div>
+                                <div class="w-16 text-sm font-medium">14:00</div>
                                 <div>
                                     <p class="font-medium">Layla Ibrahim</p>
                                     <p class="text-sm text-gray-600">Unassigned</p>
                                 </div>
                             </div>
-                            <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors border-transparent bg-orange-100 text-orange-800">pending</div>
+                            <div
+                                class="inline-flex items-center rounded-full border border-transparent bg-orange-100 px-2.5 py-0.5 text-xs font-semibold text-orange-800 transition-colors">
+                                pending
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </div>
