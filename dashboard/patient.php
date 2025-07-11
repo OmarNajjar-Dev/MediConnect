@@ -140,7 +140,7 @@ require_once '../backend/auth.php'; // handles autologin via cookie
 
                             <button
                                 type="button"
-                                data-target="My-profile"
+                                data-target="My-Profile"
                                 class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-gray-150 px-3 py-1.5 text-sm font-medium pointer">
                                 My Profile
                             </button>
@@ -229,7 +229,7 @@ require_once '../backend/auth.php'; // handles autologin via cookie
                                 </div>
 
 
-                                <div data-section="Medical-history" class="glass-card rounded-xl p-6">
+                                <div class="glass-card rounded-xl p-6">
                                     <h3 class="text-xl font-bold mb-4">Quick Actions</h3>
                                     <div class="flex flex-col gap-3">
                                         <button class="inline-flex items-center gap-2 whitespace-nowrap rounded-md text-sm font-medium disabled:pointer-events-none disabled:opacity-50  border border-solid border-input bg-background hover:bg-accent hover:text-medical-500 h-10 px-4 py-2 w-full justify-start pointer">
@@ -247,7 +247,7 @@ require_once '../backend/auth.php'; // handles autologin via cookie
                     </div>
 
 
-                    <div data-section="My-profile" class="mt-2">
+                    <div  data-section="Medical-history" class="mt-2">
                         <div class="glass-card rounded-xl p-6">
                             <h3 class="text-xl font-bold mb-4">Appointment History</h3>
                             <div class="flex flex-col gap-3">
@@ -449,7 +449,7 @@ require_once '../backend/auth.php'; // handles autologin via cookie
 
     <!-- External JavaScript -->
     <script type="module" src="../js/common/index.js"></script>
-    <script type="module" src="../js/dashboard/staff/index.js"></script>
+    <script type="module" src="../js/dashboard/patient/index.js"></script>
 
     <!-- Create Lucide Icons -->
     <script>
