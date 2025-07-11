@@ -104,7 +104,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
                 <?php endif; ?>
 
                 <!-- Emergency button (always visible) -->
-                <a href="./emergency.php" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-sm lg:text-base font-medium px-2 lg:px-4 py-2 md:py-3 lg:ml-2 rounded-lg transition-colors transition-200">
+                <a href="<?= $paths['services']['emergency'] ?>" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-sm lg:text-base font-medium px-2 lg:px-4 py-2 md:py-3 lg:ml-2 rounded-lg transition-colors transition-200">
                     <i data-lucide="ambulance" class="w-4 h-4"></i>
                     Emergency
                 </a>
@@ -348,7 +348,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
                     <p class="max-w-2xl mx-auto text-gray-600 mb-6">Our support team is here to help. Contact us with
                         any questions or
                         concerns you may have.</p>
-                    <a href="./contact.php"
+                    <a href="<?= $paths['static']['contact'] ?>"
                         class="inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium h-10 px-4 py-2 bg-medical-500 text-white hover:bg-medical-600">Contact
                         Support</a>
                 </div>

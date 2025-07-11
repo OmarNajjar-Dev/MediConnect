@@ -80,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 storeUserRoleInSession($roleName);
 
                 $slug = strtolower(str_replace(' ', '_', $roleName));
-               
+
                 $rolePath = $paths['dashboard'][$slug] ?? $paths['errors']['unauthorized'];
                 header("Location: $rolePath");
                 exit();
@@ -171,7 +171,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 </a>
 
                 <!-- Emergency button (always visible) -->
-                <a href="./emergency.php" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-sm lg:text-base font-medium px-2 lg:px-4 py-2 md:py-3 lg:ml-2 rounded-lg transition-colors transition-200">
+                <a href="<?= $paths['services']['emergency'] ?>" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-sm lg:text-base font-medium px-2 lg:px-4 py-2 md:py-3 lg:ml-2 rounded-lg transition-colors transition-200">
                     <i data-lucide="ambulance" class="w-4 h-4"></i>
                     Emergency
                 </a>
@@ -298,9 +298,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             <input type="checkbox" id="agree-checkbox" class="custom-checkbox">
                             <label for="agree-checkbox" class="ml-2 block text-sm text-gray-900">
                                 I agree to the
-                                <a href="./terms.php" class="text-medical-500 hover:text-medical-700">Terms of Service</a>
+                                <a href="<?= $paths['static']['terms'] ?>" class="text-medical-500 hover:text-medical-700">Terms of Service</a>
                                 and
-                                <a href="./privacy.php" class="text-medical-500 hover:text-medical-700">Privacy Policy</a>
+                                <a href="<?= $paths['static']['privacy'] ?>" class="text-medical-500 hover:text-medical-700">Privacy Policy</a>
                             </label>
                         </div>
 

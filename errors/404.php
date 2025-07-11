@@ -1,7 +1,10 @@
 <?php
 
-// Loads user session context: sets $isLoggedIn, $userName, $userEmail, $dashboardLink
-require_once "./backend/middleware/session-context.php";
+// 1. Load system configuration (paths, constants, routes, etc.)
+require_once __DIR__ . "/../backend/config/path.php";
+
+// 2. Load user session context (sets $isLoggedIn, $userName, $userEmail, $dashboardLink)
+require_once __DIR__ . "/../backend/middleware/session-context.php";
 
 ?>
 
@@ -18,16 +21,16 @@ require_once "./backend/middleware/session-context.php";
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="css/base.css" />
-    <link rel="stylesheet" href="css/colors.css" />
-    <link rel="stylesheet" href="css/typography.css" />
-    <link rel="stylesheet" href="css/spacing.min.css" />
-    <link rel="stylesheet" href="css/sizing.min.css" />
-    <link rel="stylesheet" href="css/borders.css" />
-    <link rel="stylesheet" href="css/layout.css" />
-    <link rel="stylesheet" href="css/animations.css" />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/colors.css" />
+    <link rel="stylesheet" href="../css/typography.css" />
+    <link rel="stylesheet" href="../css/spacing.min.css" />
+    <link rel="stylesheet" href="../css/sizing.min.css" />
+    <link rel="stylesheet" href="../css/borders.css" />
+    <link rel="stylesheet" href="../css/layout.css" />
+    <link rel="stylesheet" href="../css/animations.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/responsive.css" />
 
     <!-- Page Title -->
     <title>MediConnect - Bridging Healthcare & Technology</title>
@@ -103,7 +106,7 @@ require_once "./backend/middleware/session-context.php";
                 <?php endif; ?>
 
                 <!-- Emergency button (always visible) -->
-                <a href="./emergency.php" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-sm lg:text-base font-medium px-2 lg:px-4 py-2 md:py-3 lg:ml-2 rounded-lg transition-colors transition-200">
+                <a href="<?= $paths['services']['emergency'] ?>" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-sm lg:text-base font-medium px-2 lg:px-4 py-2 md:py-3 lg:ml-2 rounded-lg transition-colors transition-200">
                     <i data-lucide="ambulance" class="w-4 h-4"></i>
                     Emergency
                 </a>
@@ -145,7 +148,7 @@ require_once "./backend/middleware/session-context.php";
     </header>
 
     <!-- Main Content -->
-    <main class="overflow-hidden pt-20 flex-grow">
+    <main class="overflow-hidden pt-20 flex-grow bg-gray-50">
         <div class="min-h-screen flex items-center justify-center bg-gray-50">
             <div class="text-center px-4 max-w-md">
                 <div class="inline-block mx-auto">
@@ -167,7 +170,7 @@ require_once "./backend/middleware/session-context.php";
 
                         Return to Home
                     </a>
-                    <a href="./contact.php"
+                    <a href="<?= $paths['static']['contact'] ?>"
                         class="inline-flex items-center justify-center gap-2 text-medical-500 hover:bg-medical-50 hover:text-heading whitespace-nowrap rounded-sm text-sm font-medium transition-colors outline-none border border-solid h-10 px-4 py-2 w-full">
                         Contact Support
                     </a>
@@ -228,7 +231,7 @@ require_once "./backend/middleware/session-context.php";
                             </a>
                         </li>
                         <li>
-                            <a href="./emergency.php" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['services']['emergency'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Emergency Services
                             </a>
                         </li>
@@ -241,27 +244,27 @@ require_once "./backend/middleware/session-context.php";
                     </h4>
                     <ul class="flex flex-col gap-2">
                         <li>
-                            <a href="./about.php" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['static']['about'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 About Us
                             </a>
                         </li>
                         <li>
-                            <a href="./privacy.php" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['static']['privacy'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Privacy Policy
                             </a>
                         </li>
                         <li>
-                            <a href="./terms.php" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['static']['terms'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Terms of Service
                             </a>
                         </li>
                         <li>
-                            <a href="./faq.php" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['static']['faq'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 FAQs
                             </a>
                         </li>
                         <li>
-                            <a href="./contact.php" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['static']['contact'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Contact Us
                             </a>
                         </li>
