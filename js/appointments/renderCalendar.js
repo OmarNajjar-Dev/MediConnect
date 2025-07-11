@@ -37,7 +37,7 @@ export function renderCalendar() {
   for (let i = firstDay; i > 0; i--) {
     const div = document.createElement("div");
     div.textContent = prevLastDate - i + 1;
-    div.className = "h-9 w-9 text-gray-400 not-allowed cursor-not-allowed flex items-center justify-center";
+    div.className = "h-9 w-9 text-gray-400 not-allowed not-allowed flex items-center justify-center";
     div.setAttribute("disabled", "true");
     daysContainer.appendChild(div);
   }
