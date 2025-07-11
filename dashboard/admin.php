@@ -435,25 +435,25 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
 
                                 <!-- Left Column -->
                                 <div>
-                                    <label class="font-medium text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Hospital Name</label>
+                                    <label class="font-medium text-sm leading-none">Hospital Name</label>
                                     <p class="mb-4 text-gray-700">Al Noor Medical Center</p>
 
-                                    <label class="font-medium text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Location</label>
+                                    <label class="font-medium text-sm leading-none">Location</label>
                                     <p class="mb-4 text-gray-700">North District</p>
 
-                                    <label class="font-medium text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Address</label>
+                                    <label class="font-medium text-sm leading-none">Address</label>
                                     <p class="text-gray-700">123 Medical Plaza, North District</p>
                                 </div>
 
                                 <!-- Right Column -->
                                 <div>
-                                    <label class="font-medium text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Phone</label>
+                                    <label class="font-medium text-sm leading-none">Phone</label>
                                     <p class="mb-4 text-gray-700">+1-555-0100</p>
 
-                                    <label class="font-medium text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Email</label>
+                                    <label class="font-medium text-sm leading-none">Email</label>
                                     <p class="mb-4 text-gray-700">info@alnoor.hospital</p>
 
-                                    <label class="font-medium text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Hospital ID</label>
+                                    <label class="font-medium text-sm leading-none">Hospital ID</label>
                                     <p class="text-gray-700">#2</p>
                                 </div>
 

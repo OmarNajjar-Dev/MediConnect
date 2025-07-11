@@ -156,11 +156,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <div class="flex items-center gap-4">
 
                 <!-- Sign In / Sign Up (visible) -->
-                <a href="<?= $paths['auth']['login'] ?>" class="hidden md:flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-3 rounded-lg text-sm lg:text-base font-medium whitespace-nowrap transition-all">
+                <a href="<?= $paths['auth']['login'] ?>" class="hidden md:flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-10 px-3 rounded-lg text-sm lg:text-base font-medium whitespace-nowrap transition-all">
                     Sign In
                 </a>
 
-                <a href="<?= $paths['auth']['register'] ?>" class="hidden md:flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-3 rounded-lg text-sm lg:text-base font-medium whitespace-nowrap transition-all mr-4">
+                <a href="<?= $paths['auth']['register'] ?>" class="hidden md:flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-10 px-3 rounded-lg text-sm lg:text-base font-medium whitespace-nowrap transition-all mr-4">
                     Sign Up
                 </a>
 
@@ -196,16 +196,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     </header>
 
     <!-- Main Content -->
-    <main class="overflow-hidden pt-20 flex-grow min-h-screen bg-gray-50 pb-16">
-        <div class="min-h-screen flex items-center justify-center bg-transparent py-12 px-4 sm:px-6 lg:px-8">
-            <div class="max-w-md w-full flex flex-col gap-8">
+    <main class="min-h-screen overflow-hidden flex-grow bg-gray-50 pt-20 pb-16">
+        <div class="flex min-h-screen items-center justify-center bg-transparent px-4 py-12 sm:px-6 lg:px-8">
+            <div class="w-full max-w-md flex flex-col gap-8">
+
+                <!-- Logo and Heading -->
                 <div class="text-center">
-                    <a href="<?= $paths['home'] ?>" class="flex justify-center items-center">
-                        <span class="text-medical-700 text-3xl font-semibold">
+                    <a href="<?= $paths['home'] ?>" class="flex items-center justify-center">
+                        <span class="text-3xl font-semibold text-medical-700">
                             Medi<span class="text-medical-500">Connect</span>
                         </span>
                     </a>
-                    <h2 class="mt-6 text-3xl text-heading font-bold text-gray-900">
+                    <h2 class="mt-6 text-3xl font-bold text-gray-900">
                         Create your account
                     </h2>
                     <p class="mt-2 text-sm text-gray-600">
@@ -213,159 +215,101 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     </p>
                 </div>
 
-                <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+                <!-- Register Form Card -->
+                <div class="bg-white px-4 py-8 shadow sm:rounded-lg sm:px-10">
                     <form id="register-form" method="POST" class="flex flex-col gap-6">
+
+                        <!-- Name Fields -->
                         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
                             <div>
-                                <label for="first-name" class="block text-sm font-medium text-gray-700">First
-                                    Name</label>
-                                <div class="mt-1">
-                                    <input type="text" id="first-name" name="first_name" autocomplete="given-name"
-                                        required
-                                        class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white md:text-sm" />
-                                </div>
+                                <label for="first-name" class="block text-sm font-medium text-gray-700">First Name</label>
+                                <input type="text" id="first-name" name="first_name" autocomplete="given-name" required
+                                    class="mt-1 block h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
                             </div>
 
                             <div>
                                 <label for="last-name" class="block text-sm font-medium text-gray-700">Last Name</label>
-                                <div class="mt-1">
-                                    <input type="text" id="last-name" name="last_name" autocomplete="family-name" required
-                                        class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white md:text-sm" />
-                                </div>
+                                <input type="text" id="last-name" name="last_name" autocomplete="family-name" required
+                                    class="mt-1 block h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
                             </div>
                         </div>
 
+                        <!-- Email Field -->
                         <div>
                             <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                            <div class="mt-1">
-                                <input type="email" id="email" name="email" autocomplete="email" required
-                                    placeholder="you@example.com"
-                                    class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white md:text-sm" />
-                            </div>
+                            <input type="email" id="email" name="email" autocomplete="email" required placeholder="you@example.com"
+                                class="mt-1 block h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
                         </div>
 
+                        <!-- Role Selection -->
                         <div class="flex flex-col gap-2">
-                            <label for="role-input" class="block text-sm font-medium text-gray-700">Choose Your
-                                Role</label>
+                            <label for="role-input" class="block text-sm font-medium text-gray-700">Choose Your Role</label>
                             <div class="relative">
                                 <button id="role-trigger" type="button"
-                                    class="flex h-10 w-full items-center justify-between rounded-md border border-solid border-input bg-background px-3 py-2 text-sm focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white">
+                                    class="pointer flex h-10 w-full items-center justify-between rounded-md border border-solid border-input bg-background px-3 py-2 text-sm focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
                                     <span id="selected-role" class="text-gray-700">Select your role</span>
-                                    <i data-lucide="chevron-down" class="w-4 h-4 opacity-50"></i>
+                                    <i data-lucide="chevron-down" class="h-4 w-4 opacity-50"></i>
                                 </button>
-
-                                <input type="hidden" id="role-input" name="role" value="" />
+                                <input type="hidden" id="role-input" name="role" value="">
 
                                 <ul id="role-options"
-                                    class="absolute z-50 mt-1.5 p-1 border border-solid border-input w-full bg-white rounded-md shadow-xl hidden">
-                                    <li>
-                                        <button type="button"
-                                            class="option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm border-none bg-white text-gray-700 hover:bg-gray-100"
-                                            data-value="Super Admin">
-                                            <span>Super Admin</span>
-                                            <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i>
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button type="button"
-                                            class="option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm border-none bg-white text-gray-700 hover:bg-gray-100"
-                                            data-value="Hospital Admin">
-                                            <span>Hospital Admin</span>
-                                            <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i>
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button type="button"
-                                            class="option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm border-none bg-white text-gray-700 hover:bg-gray-100"
-                                            data-value="Doctor">
-                                            <span>Doctor</span>
-                                            <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i>
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button type="button"
-                                            class="option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm border-none bg-white text-gray-700 hover:bg-gray-100"
-                                            data-value="Patient">
-                                            <span>Patient</span>
-                                            <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i>
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button type="button"
-                                            class="option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm border-none bg-white text-gray-700 hover:bg-gray-100"
-                                            data-value="Ambulance Team">
-                                            <span>Ambulance Team</span>
-                                            <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i>
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button type="button"
-                                            class="option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm border-none bg-white text-gray-700 hover:bg-gray-100"
-                                            data-value="Staff">
-                                            <span>Staff</span>
-                                            <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i>
-                                        </button>
-                                    </li>
+                                    class="absolute z-50 mt-1.5 hidden w-full rounded-md border border-solid border-input bg-white p-1 shadow-xl">
+                                    <li><button type="button" data-value="Super Admin" class="pointer option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm text-gray-700 bg-white hover:bg-gray-100 border-none"><span>Super Admin</span><i data-lucide="check" class="h-4 w-4 text-gray-700 hidden"></i></button></li>
+                                    <li><button type="button" data-value="Hospital Admin" class="pointer option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm text-gray-700 bg-white hover:bg-gray-100 border-none"><span>Hospital Admin</span><i data-lucide="check" class="h-4 w-4 text-gray-700 hidden"></i></button></li>
+                                    <li><button type="button" data-value="Doctor" class="pointer option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm text-gray-700 bg-white hover:bg-gray-100 border-none"><span>Doctor</span><i data-lucide="check" class="h-4 w-4 text-gray-700 hidden"></i></button></li>
+                                    <li><button type="button" data-value="Patient" class="pointer option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm text-gray-700 bg-white hover:bg-gray-100 border-none"><span>Patient</span><i data-lucide="check" class="h-4 w-4 text-gray-700 hidden"></i></button></li>
+                                    <li><button type="button" data-value="Ambulance Team" class="pointer option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm text-gray-700 bg-white hover:bg-gray-100 border-none"><span>Ambulance Team</span><i data-lucide="check" class="h-4 w-4 text-gray-700 hidden"></i></button></li>
+                                    <li><button type="button" data-value="Staff" class="pointer option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm text-gray-700 bg-white hover:bg-gray-100 border-none"><span>Staff</span><i data-lucide="check" class="h-4 w-4 text-gray-700 hidden"></i></button></li>
                                 </ul>
                             </div>
-                            <p class="text-xs text-gray-500">
-                                Select the role that best describes your position in the healthcare system.
-                            </p>
+                            <p class="text-xs text-gray-500">Select the role that best describes your position in the healthcare system.</p>
                         </div>
 
+                        <!-- Password Field -->
                         <div>
                             <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                            <div class="mt-1 relative">
-                                <input type="password" name="password" autocomplete="current-password" required
-                                    placeholder="*******"
-                                    class="password flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 pr-10 py-2 text-base focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white md:text-sm" />
-                                <button type="button" id="toggle-password"
-                                    class="eye-toggle-button absolute inset-y-0 right-0 flex items-center pr-3 z-10 pointer bg-transparent border-none"
-                                    aria-label="Toggle password visibility">
-                                    <i data-lucide="eye" class="eye-toggle-icon h-5 w-5 text-gray-400"></i>
+                            <div class="relative mt-1">
+                                <input type="password" name="password" autocomplete="current-password" required placeholder="*******"
+                                    class="password block h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 pr-10 text-base md:text-sm focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
+                                <button type="button" id="toggle-password" class="pointer absolute inset-y-0 right-0 z-10 flex items-center border-none bg-transparent pr-3" aria-label="Toggle password visibility">
+                                    <i data-lucide="eye" class="h-5 w-5 text-gray-400"></i>
                                 </button>
                             </div>
-                            <p class="mt-1 text-xs text-gray-500">
-                                Password must be at least 8 characters long with at least one
-                                number and one special character.
-                            </p>
+                            <p class="mt-1 text-xs text-gray-500">Password must be at least 8 characters long with at least one number and one special character.</p>
                         </div>
 
+                        <!-- Confirm Password -->
                         <div>
-                            <label for="confirm-password" class="block text-sm font-medium text-gray-700">Confirm
-                                Password</label>
-                            <div class="mt-1">
-                                <input type="password" id="confirm-password" name="confirm-password"
-                                    autocomplete="new-password" required placeholder="********"
-                                    class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white md:text-sm" />
-                            </div>
-
-                            <input type="text" name="city" id="city" class="hidden" />
-                            <input type="text" name="address" id="address" class="hidden" />
+                            <label for="confirm-password" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+                            <input type="password" id="confirm-password" name="confirm-password" autocomplete="new-password" required placeholder="********"
+                                class="mt-1 block h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
+                            <input type="text" name="city" id="city" class="hidden">
+                            <input type="text" name="address" id="address" class="hidden">
                         </div>
 
+                        <!-- Terms and Agreement -->
                         <div class="flex items-center">
-                            <input type="checkbox" id="agree-checkbox" class="custom-checkbox" />
+                            <input type="checkbox" id="agree-checkbox" class="custom-checkbox">
                             <label for="agree-checkbox" class="ml-2 block text-sm text-gray-900">
                                 I agree to the
-                                <a href="./terms.php" class="text-medical-500 hover:text-medical-700">Terms of
-                                    Service</a>
+                                <a href="./terms.php" class="text-medical-500 hover:text-medical-700">Terms of Service</a>
                                 and
-                                <a href="./privacy.php" class="text-medical-500 hover:text-medical-700">Privacy
-                                    Policy</a>
+                                <a href="./privacy.php" class="text-medical-500 hover:text-medical-700">Privacy Policy</a>
                             </label>
                         </div>
 
-                        <div>
+                        <!-- Submit Button -->
+                        <div class="not-allowed">
                             <button id="signup-btn" type="submit"
-                                class="h-10 px-4 py-2 w-full border border-solid border-transparent bg-medical-200 text-white rounded-sm text-sm font-medium flex items-center justify-center gap-2 pointer">
+                                class="pointer-events-none transition-colors flex h-10 w-full items-center justify-center gap-2 rounded-sm border border-solid border-transparent bg-medical-200 px-4 py-2 text-sm font-medium text-white">
                                 <i data-lucide="user-plus" class="h-4 w-4"></i>
                                 Sign up
                             </button>
-
                         </div>
+
                     </form>
 
+                    <!-- Divider -->
                     <div class="mt-6">
                         <div class="relative">
                             <div class="absolute inset-0 flex items-center">
@@ -373,69 +317,50 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             </div>
                             <div class="relative flex items-center text-sm">
                                 <hr class="flex-grow border-t border-gray-500">
-                                <span class="px-2 bg-white text-gray-500">Or sign up with</span>
+                                <span class="bg-white px-2 text-gray-500">Or sign up with</span>
                                 <hr class="flex-grow border-t border-gray-500">
                             </div>
                         </div>
 
+                        <!-- Social Buttons -->
                         <div class="mt-6 grid grid-cols-2 gap-3">
-                            <!-- Google Button -->
-                            <button type="button"
-                                class="w-full inline-flex justify-center py-2 px-4 border border-solid border-input rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 pointer">
-                                <svg data-lov-id="src/pages/SignIn.tsx:151:16" data-lov-name="svg"
-                                    data-component-path="src/pages/SignIn.tsx" data-component-line="151"
-                                    data-component-file="SignIn.tsx" data-component-name="svg"
-                                    data-component-content="%7B%22className%22%3A%22w-5%20h-5%22%7D" class="w-5 h-5"
-                                    fill="currentColor" viewBox="0 0 24 24">
-                                    <path data-lov-id="src/pages/SignIn.tsx:152:18" data-lov-name="path"
-                                        data-component-path="src/pages/SignIn.tsx" data-component-line="152"
-                                        data-component-file="SignIn.tsx" data-component-name="path"
-                                        data-component-content="%7B%7D"
-                                        d="M12.545,10.239v3.821h5.445c-0.712,2.315-2.647,3.972-5.445,3.972c-3.332,0-6.033-2.701-6.033-6.032s2.701-6.032,6.033-6.032c1.498,0,2.866,0.549,3.921,1.453l2.814-2.814C17.503,2.988,15.139,2,12.545,2C7.021,2,2.543,6.477,2.543,12s4.478,10,10.002,10c8.396,0,10.249-7.85,9.426-11.748L12.545,10.239z">
-                                    </path>
+                            <button type="button" class="pointer inline-flex w-full justify-center rounded-md border border-solid border-input bg-white px-4 py-2 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50">
+                                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12.545,10.239v3.821h5.445c-0.712,2.315-2.647,3.972-5.445,3.972c-3.332,0-6.033-2.701-6.033-6.032s2.701-6.032,6.033-6.032c1.498,0,2.866,0.549,3.921,1.453l2.814-2.814C17.503,2.988,15.139,2,12.545,2C7.021,2,2.543,6.477,2.543,12s4.478,10,10.002,10c8.396,0,10.249-7.85,9.426-11.748L12.545,10.239z"></path>
                                 </svg>
                             </button>
 
-                            <!-- Facebook Button -->
-                            <button type="button"
-                                class="w-full inline-flex justify-center py-2 px-4 border border-solid border-input rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 pointer">
-                                <svg data-lov-id="src/pages/SignIn.tsx:162:16" data-lov-name="svg"
-                                    data-component-path="src/pages/SignIn.tsx" data-component-line="162"
-                                    data-component-file="SignIn.tsx" data-component-name="svg"
-                                    data-component-content="%7B%22className%22%3A%22w-5%20h-5%22%7D" class="w-5 h-5"
-                                    fill="currentColor" viewBox="0 0 24 24">
-                                    <path data-lov-id="src/pages/SignIn.tsx:163:18" data-lov-name="path"
-                                        data-component-path="src/pages/SignIn.tsx" data-component-line="163"
-                                        data-component-file="SignIn.tsx" data-component-name="path"
-                                        data-component-content="%7B%7D"
-                                        d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z">
-                                    </path>
+                            <button type="button" class="pointer inline-flex w-full justify-center rounded-md border border-solid border-input bg-white px-4 py-2 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50">
+                                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path>
                                 </svg>
                             </button>
                         </div>
                     </div>
 
+                    <!-- Login Link -->
                     <div class="mt-6 text-center">
                         <p class="text-sm text-gray-600">
                             Already have an account?
-                            <a href="<?= $paths['auth']['login'] ?>" class="font-medium text-medical-500 hover:text-medical-700">Sign
-                                in</a>
+                            <a href="<?= $paths['auth']['login'] ?>" class="font-medium text-medical-500 hover:text-medical-700">Sign in</a>
                         </p>
                     </div>
                 </div>
             </div>
         </div>
-        <div id="password-error-toast" class="hidden fixed max-w-xs bg-danger text-white p-5 rounded-md">
+
+        <!-- Error Toasts -->
+        <div id="password-error-toast" class="hidden fixed max-w-xs rounded-md bg-danger p-5 text-white">
             <p class="font-semibold">Passwords do not match.</p>
             <p class="text-sm">Please make sure your passwords match.</p>
         </div>
 
-        <div id="role-error-toast" class="hidden fixed max-w-xs bg-danger text-white p-5 rounded-md">
+        <div id="role-error-toast" class="hidden fixed max-w-xs rounded-md bg-danger p-5 text-white">
             <p class="font-semibold">Please select your role.</p>
             <p class="text-sm">You must choose your position in the healthcare system.</p>
         </div>
 
-        <div id="email-error-toast" class="hidden fixed bottom-4 right-4 max-w-xs bg-danger text-white p-5 rounded-md z-50 shadow-lg">
+        <div id="email-error-toast" class="hidden fixed bottom-4 right-4 z-50 max-w-xs rounded-md bg-danger p-5 text-white shadow-lg">
             <p class="font-semibold">Email already exists.</p>
             <p class="text-sm">Please use another email or login instead.</p>
         </div>
