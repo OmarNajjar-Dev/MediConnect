@@ -5,7 +5,7 @@ const nextBtn = document.getElementById("next");
 const selectedDateValue = document.getElementById("selected-date");
 const dateButton = document.getElementById('appointment-date');
 const calendarPopup = document.getElementById('calendar-popup');
-const timeSlotButton = document.getElementById('timeSlotButton');
+const timeSlotButton = document.getElementById('time-slot-button');
 
 let date = new Date();
 let selectedDay = null;
