@@ -69,11 +69,11 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
             <div class="flex items-center gap-4">
 
                 <!-- Sign In / Sign Up (visible) -->
-                <a href="./login.php" class="hidden md:flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-3 rounded-lg text-sm lg:text-base font-medium whitespace-nowrap transition-all">
+                <a href="<?= $paths['auth']['login'] ?>" class="hidden md:flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-3 rounded-lg text-sm lg:text-base font-medium whitespace-nowrap transition-all">
                     Sign In
                 </a>
 
-                <a href="./register.php" class="hidden md:flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-3 rounded-lg text-sm lg:text-base font-medium whitespace-nowrap transition-all mr-4">
+                <a href="<?= $paths['auth']['register'] ?>" class="hidden md:flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-3 rounded-lg text-sm lg:text-base font-medium whitespace-nowrap transition-all mr-4">
                     Sign Up
                 </a>
 
@@ -99,8 +99,8 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
 
                     <!-- Mobile: Sign In / Sign Out -->
                     <div class="flex flex-col pt-2 gap-2 border-t border-solid separator">
-                        <a href="./login.php" class="inline-flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-all">Sign In</a>
-                        <a href="./register.php" class="inline-flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Sign Up</a>
+                        <a href="<?= $paths['auth']['login'] ?>" class="inline-flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-all">Sign In</a>
+                        <a href="<?= $paths['auth']['register'] ?>" class="inline-flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Sign Up</a>
                     </div>
                 </nav>
             </div>
@@ -222,7 +222,7 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
                     <div class="mt-6 text-center">
                         <p class="text-sm text-gray-600">
                             Don't have an account?
-                            <a href="./register.php" class="font-medium text-medical-500 hover:text-medical-700">Sign
+                            <a href="<?= $paths['auth']['register'] ?>" class="font-medium text-medical-500 hover:text-medical-700">Sign
                                 up</a>
                         </p>
                     </div>
