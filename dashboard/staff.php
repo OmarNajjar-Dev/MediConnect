@@ -193,6 +193,7 @@ require_once '../backend/auth.php'; // handles autologin via cookie
                                 </div>
                             </div>
                         </div>
+
                         <div data-section="Manage-Appointments" class="hidden glass-card rounded-xl p-6">
                             <div class="flex items-center justify-between mb-4">
                                 <h3 class="text-xl font-bold">Appointment Management</h3>
@@ -217,7 +218,8 @@ require_once '../backend/auth.php'; // handles autologin via cookie
                                     </div>
                                     <div class="flex gap-2"><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium disabled:pointer-events-none disabled:opacity-50  border border-solid border-input bg-background hover:bg-accent hover:text-medical-600 h-9 rounded-md px-3 pointer">
                                             <i data-lucide="square-pen" class="h-4 w-4"></i>
-                                        </button><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium disabled:pointer-events-none disabled:opacity-50 border border-solid border-input bg-background hover:bg-accent h-9 rounded-md px-3 text-red-600 hover:text-red-800 pointer">
+                                        </button>
+                                        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium disabled:pointer-events-none disabled:opacity-50 border border-solid border-input bg-background hover:bg-accent h-9 rounded-md px-3 text-red-600 hover:text-red-800 pointer">
                                             <i data-lucide="x" class="h-4 w-4"></i>
                                         </button></div>
                                 </div>
