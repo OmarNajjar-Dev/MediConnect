@@ -20,12 +20,12 @@ $paths = [
     ],
 
     'dashboard' => [
-        'superadmin' => BASE_URL . '/dashboard/superadmin.php',
-        'admin'      => BASE_URL . '/dashboard/admin.php',
-        'doctor'     => BASE_URL . '/dashboard/doctor.php',
-        'patient'    => BASE_URL . '/dashboard/patient.php',
-        'ambulance'  => BASE_URL . '/dashboard/ambulance.php',
-        'staff'      => BASE_URL . '/dashboard/staff.php',
+        'super_admin'     => BASE_URL . '/dashboard/superadmin.php',
+        'hospital_admin'  => BASE_URL . '/dashboard/admin.php',
+        'doctor'          => BASE_URL . '/dashboard/doctor.php',
+        'patient'         => BASE_URL . '/dashboard/patient.php',
+        'ambulance_team'  => BASE_URL . '/dashboard/ambulance.php',
+        'staff'           => BASE_URL . '/dashboard/staff.php',
     ],
 
     'static' => [

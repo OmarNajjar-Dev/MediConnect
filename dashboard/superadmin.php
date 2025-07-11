@@ -10,7 +10,7 @@ require_once __DIR__ . "/../backend/auth/auth.php";
 require_once __DIR__ . "/../backend/middleware/session-context.php";
 
 // 4. Define required role for this dashboard
-$requiredRole = 'Super Admin';
+$requiredRole = 'super_admin';
 
 // 5. Protect the dashboard: redirect if user role does not match
 require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";

@@ -1,5 +1,8 @@
 <?php
 
+// Load helper functions (utilities, formatting, reusable logic)
+require_once __DIR__ . '/helpers.php';
+
 session_start();
 
 if (!isset($_SESSION["user_id"]) && isset($_COOKIE["remember_token"])) {
@@ -31,7 +34,8 @@ if (!isset($_SESSION["user_id"]) && isset($_COOKIE["remember_token"])) {
         $roleResult = $roleStmt->get_result();
 
         if ($roleRow = $roleResult->fetch_assoc()) {
-            $_SESSION["user_role"] = $roleRow["role_name"];
+            $roleName = trim($roleRow['role_name']);
+            storeUserRoleInSession($roleName);
         }
 
         $roleStmt->close();

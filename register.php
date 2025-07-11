@@ -1,6 +1,6 @@
 <?php
 
-// 1. Load system configuration
+// 1. Load system configuration (paths, constants, routes, etc.)
 require_once __DIR__ . "/backend/config/path.php";
 
 // 2. Load database connection
@@ -11,6 +11,9 @@ require_once __DIR__ . "/backend/auth/auth.php";
 
 // 4. Redirect if already logged in
 require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
+
+// 5. Load helper functions (utilities, formatting, reusable logic)
+require_once __DIR__ . "/backend/auth/helpers.php";
 
 // Show all errors during development (remove in production)
 error_reporting(E_ALL);
@@ -25,7 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $lastName = $_POST["last_name"] ?? '';
     $city = $_POST["city"] ?? '';
     $address = $_POST["address"] ?? '';
-    $roleName = $_POST["role"] ?? '';
+    $slugRole = $_POST["role"] ?? '';
+    $roleName = slugToTitle($slugRole);  // Converts "super-admin" → "Super Admin"
 
     // Step 0-A: Validate email format
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -72,9 +76,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $link_stmt->close();
 
                 $_SESSION["user_id"] = $user_id;
-                $_SESSION["role_name"] = $roleName;
+                // Store the role in the session
+                storeUserRoleInSession($roleName);
 
-                $slug = strtolower(str_replace(' ', '', $roleName));
+                $slug = strtolower(str_replace(' ', '_', $roleName));
+               
                 $rolePath = $paths['dashboard'][$slug] ?? $paths['errors']['unauthorized'];
                 header("Location: $rolePath");
                 exit();
@@ -254,12 +260,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                                 <ul id="role-options"
                                     class="absolute z-50 mt-1.5 hidden w-full rounded-md border border-solid border-input bg-white p-1 shadow-xl">
-                                    <li><button type="button" data-value="Super Admin" class="pointer option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm text-gray-700 bg-white hover:bg-gray-100 border-none"><span>Super Admin</span><i data-lucide="check" class="h-4 w-4 text-gray-700 hidden"></i></button></li>
-                                    <li><button type="button" data-value="Hospital Admin" class="pointer option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm text-gray-700 bg-white hover:bg-gray-100 border-none"><span>Hospital Admin</span><i data-lucide="check" class="h-4 w-4 text-gray-700 hidden"></i></button></li>
-                                    <li><button type="button" data-value="Doctor" class="pointer option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm text-gray-700 bg-white hover:bg-gray-100 border-none"><span>Doctor</span><i data-lucide="check" class="h-4 w-4 text-gray-700 hidden"></i></button></li>
-                                    <li><button type="button" data-value="Patient" class="pointer option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm text-gray-700 bg-white hover:bg-gray-100 border-none"><span>Patient</span><i data-lucide="check" class="h-4 w-4 text-gray-700 hidden"></i></button></li>
-                                    <li><button type="button" data-value="Ambulance Team" class="pointer option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm text-gray-700 bg-white hover:bg-gray-100 border-none"><span>Ambulance Team</span><i data-lucide="check" class="h-4 w-4 text-gray-700 hidden"></i></button></li>
-                                    <li><button type="button" data-value="Staff" class="pointer option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm text-gray-700 bg-white hover:bg-gray-100 border-none"><span>Staff</span><i data-lucide="check" class="h-4 w-4 text-gray-700 hidden"></i></button></li>
+                                    <li><button type="button" data-value="super-admin" class="pointer option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm text-gray-700 bg-white hover:bg-gray-100 border-none"><span>Super Admin</span><i data-lucide="check" class="h-4 w-4 text-gray-700 hidden"></i></button></li>
+                                    <li><button type="button" data-value="hospital-admin" class="pointer option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm text-gray-700 bg-white hover:bg-gray-100 border-none"><span>Hospital Admin</span><i data-lucide="check" class="h-4 w-4 text-gray-700 hidden"></i></button></li>
+                                    <li><button type="button" data-value="doctor" class="pointer option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm text-gray-700 bg-white hover:bg-gray-100 border-none"><span>Doctor</span><i data-lucide="check" class="h-4 w-4 text-gray-700 hidden"></i></button></li>
+                                    <li><button type="button" data-value="patient" class="pointer option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm text-gray-700 bg-white hover:bg-gray-100 border-none"><span>Patient</span><i data-lucide="check" class="h-4 w-4 text-gray-700 hidden"></i></button></li>
+                                    <li><button type="button" data-value="ambulance-team" class="pointer option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm text-gray-700 bg-white hover:bg-gray-100 border-none"><span>Ambulance Team</span><i data-lucide="check" class="h-4 w-4 text-gray-700 hidden"></i></button></li>
+                                    <li><button type="button" data-value="staff" class="pointer option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm text-gray-700 bg-white hover:bg-gray-100 border-none"><span>Staff</span><i data-lucide="check" class="h-4 w-4 text-gray-700 hidden"></i></button></li>
                                 </ul>
                             </div>
                             <p class="text-xs text-gray-500">Select the role that best describes your position in the healthcare system.</p>

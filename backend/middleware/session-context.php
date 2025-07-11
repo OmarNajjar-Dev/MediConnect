@@ -38,8 +38,15 @@ if (isset($_SESSION['user_id'])) {
         $roleResult = $roleStmt->get_result();
 
         if ($roleRow = $roleResult->fetch_assoc()) {
-            $normalizedRole = strtolower(str_replace(' ', '', $roleRow['role_name']));
-            $dashboardLink = $paths['dashboard'][$normalizedRole] ?? './';
+            $roleName = trim($roleRow['role_name']);
+
+            if (str_contains($roleName, ' ')) {
+                $normalizedRole = strtolower(str_replace(' ', '_', $roleName));
+            } else {
+                $normalizedRole = strtolower($roleName);
+            }
+
+            $dashboardLink = $paths['dashboard'][$normalizedRole] ?? $paths['errors']['unauthorized'];
         }
     }
 }

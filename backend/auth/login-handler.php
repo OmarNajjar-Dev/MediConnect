@@ -3,6 +3,9 @@
 session_start();
 require_once __DIR__ . '/../config/db.php';
 
+// Load helper functions (utilities, formatting, reusable logic)
+require_once __DIR__ . '/helpers.php';
+
 header('Content-Type: application/json'); // Important for AJAX
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -34,12 +37,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $roleStmt->execute();
             $roleResult = $roleStmt->get_result();
 
+            // Store user role in session
             if ($roleResult->num_rows === 1) {
                 $roleData = $roleResult->fetch_assoc();
-                $_SESSION['user_role'] = $roleData["role_name"]; // e.g., "superadmin", "doctor"
-            } else {
-                // Role not found, fallback
-                $_SESSION['user_role'] = null;
+                storeUserRoleInSession($roleData["role_name"]);  // e.g., "super_admin", "doctor"
             }
 
             $roleStmt->close();
