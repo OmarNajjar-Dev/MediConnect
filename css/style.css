@@ -321,3 +321,11 @@ input::placeholder {
 .hover\:bg-red-600:hover {
   background-color: #dc2626;
 }
+
+.bg-purple-100 {
+  background-color: #f3e8ff; 
+}
+
+.text-purple-800 {
+  color: #6b21a8;
+}
