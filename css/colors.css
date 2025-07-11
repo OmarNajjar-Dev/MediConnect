@@ -122,6 +122,10 @@
   background-color: rgb(var(--medical-400));
 }
 
+.bg-medical-500\/10 {
+  background-color: rgba(var(--medical-500), 0.1);
+}
+
 .bg-medical-500 {
   background-color: rgb(var(--medical-500));
 }
