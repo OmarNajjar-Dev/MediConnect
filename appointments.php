@@ -8,6 +8,8 @@ require_once './backend/auth.php'; // handles autologin via cookie
 <html lang="en">
 
 <head>
+
+    <!-- Meta Tags  -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -29,9 +31,11 @@ require_once './backend/auth.php'; // handles autologin via cookie
 
     <!-- Page Title -->
     <title>MediConnect - Bridging Healthcare & Technology</title>
+
 </head>
 
-<body class="bg-background text-heading">
+<body class="bg-background">
+
     <!-- Header Section -->
     <header class="fixed z-50 py-5 bg-transparent transition-all">
         <div class="container mx-auto flex items-center justify-between px-4">
@@ -66,7 +70,7 @@ require_once './backend/auth.php'; // handles autologin via cookie
 
                 <!-- Mobile Menu Button -->
                 <button id="menu-button"
-                    class="inline-flex items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-0 pointer md:hidden">
+                    class="inline-flex items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-0 pointer md:hidden border-none">
                     <i data-lucide="menu" class="w-4 h-4"></i>
                 </button>
             </div>
@@ -101,7 +105,6 @@ require_once './backend/auth.php'; // handles autologin via cookie
     </header>
 
     <!-- Main Content -->
-
     <main id="appointment" class="min-h-screen bg-gray-50 pt-20 pb-16">
         <div class="container mx-auto px-4 relative">
             <div class="py-8">
@@ -270,11 +273,9 @@ require_once './backend/auth.php'; // handles autologin via cookie
                                         <button class="w-9 h-9 hover:bg-gray-100 rounded">2</button>
                                         <button class="w-9 h-9 hover:bg-gray-100 rounded">3</button>
 
-                                        <!-- مثال لليوم الحالي -->
                                         <button
                                             class="w-9 h-9 bg-cyan-100 text-black font-semibold rounded-full">28</button>
 
-                                        <!-- أيام لاحقة -->
                                         <button class="w-9 h-9 hover:bg-gray-100 rounded">29</button>
                                         <button class="w-9 h-9 hover:bg-gray-100 rounded">30</button>
                                     </div>
