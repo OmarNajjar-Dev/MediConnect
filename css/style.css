@@ -293,6 +293,13 @@ input::placeholder {
   background-color: #991b1b; /* Tailwind's red-800 */
 }
 
+<<<<<<< HEAD
+=======
+.border-gray-100 {
+  border-color: #f3f4f6; /* Tailwind's gray-100 */
+}
+
+>>>>>>> 401
 .table-no-border-last tr:last-child {
   border: none;
 }

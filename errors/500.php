@@ -173,17 +173,17 @@ require_once __DIR__ . "/../backend/middleware/session-context.php";
                     <p class="text-gray-700 text-lg sm:text-xl leading-relaxed font-medium">Oops! Something went wrong on our side.</p>
                     <p class="text-gray-500 text-base leading-relaxed max-w-md mx-auto">Please try again later, or contact support if the issue persists. Our technical team has been notified.</p>
                 </div>
-                <div class="flex flex-col sm:flex-row gap-4 mt-10"><a class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 h-10 px-4 py-2 flex-1 bg-red-600 hover:bg-red-700 text-white shadow-lg hover:shadow-xl transition-all duration-200 inline-flex items-center justify-center gap-2" href="/"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house w-4 h-4">
+                <div class="flex flex-col sm:flex-row gap-4 mt-10"><a class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 h-10 px-4 py-2 flex-1 bg-red-600 hover:bg-red-700 text-white shadow-lg hover:shadow-xl transition-all transition-200 inline-flex items-center justify-center gap-2" href="/"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house w-4 h-4">
                             <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
                             <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                        </svg>Back to Home</a><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border bg-background hover:text-accent-foreground h-10 px-4 py-2 flex-1 border-red-200 text-red-600 hover:bg-red-50 hover:border-red-300 shadow-lg hover:shadow-xl transition-all duration-200"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rotate-ccw w-4 h-4 mr-2">
+                        </svg>Back to Home</a><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border bg-background hover:text-accent-foreground h-10 px-4 py-2 flex-1 border-red-200 text-red-600 hover:bg-red-50 hover:border-red-300 shadow-lg hover:shadow-xl transition-all transition-200"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rotate-ccw w-4 h-4 mr-2">
                             <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
                             <path d="M3 3v5h5"></path>
                         </svg>Try Again</button></div>
             </div>
             <div class="text-center space-y-3 relative z-10">
                 <p class="text-gray-500 text-sm">Error ID: #8L8OO8T63</p>
-                <p class="text-gray-500 text-sm">Need immediate assistance? <a href="mailto:support@mediconnect.com" class="text-red-600 hover:text-red-700 transition-colors duration-200 font-medium story-link">Contact our support team</a></p>
+                <p class="text-gray-500 text-sm">Need immediate assistance? <a href="mailto:support@mediconnect.com" class="text-red-600 hover:text-red-700 transition-colors transition-200 font-medium story-link">Contact our support team</a></p>
             </div>
             <div class="flex justify-center space-x-2 opacity-30">
                 <div class="w-2 h-2 bg-red-400 rounded-full animate-pulse"></div>
@@ -315,7 +315,7 @@ require_once __DIR__ . "/../backend/middleware/session-context.php";
     </footer>
 
     <!-- External JavaScript -->
-    <script type="module" src="./js/common/index.js"></script>
+    <script type="module" src="../js/common/index.js"></script>
 
     <!-- Create Lucide Icons -->
     <script>
