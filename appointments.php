@@ -159,6 +159,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
 
                 <div class="glass-card bg-card rounded-xl p-6 max-w-xl mx-auto">
                     <form onsubmit="return validateForm()" class="flex flex-col gap-6">
+                        
                         <!-- Specialty -->
                         <div class="flex flex-col gap-3">
                             <label class="text-sm font-medium leading-none">Specialty</label>

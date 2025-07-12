@@ -6,18 +6,16 @@ export function setupDropdowns(dropdownButtons) {
 
     if (!menu || !selectedText) return;
 
-    // ✅ Make dropdown float (no layout shift)
+    // Make dropdown float
     makeDropdownFloat(button, menu);
 
-    // ✅ Apply scroll behavior only for Time Slot dropdown
+    // Apply scroll behavior only for Time Slot dropdown
     if (button.id === "time-slot-button") {
-      setupDropdownScroll(menu, 360); // 240px max height
+      setupDropdownScroll(menu, 360);
     }
 
     // Toggle dropdown visibility
-    button.addEventListener("click", (e) => {
-      e.stopPropagation();
-
+    button.addEventListener("click", () => {
       const isOpen = !menu.classList.contains("hidden");
 
       // Close all other dropdowns
@@ -29,9 +27,9 @@ export function setupDropdowns(dropdownButtons) {
 
       if (!isOpen) {
         makeDropdownFloat(button, menu);
-        document.body.style.overflow = "hidden"; // ✅ Disable page scroll
+        document.body.classList.add("overflow-hidden");
       } else {
-        document.body.style.overflow = ""; // ✅ Re-enable page scroll
+        document.body.classList.remove("overflow-hidden"); // Re-enable page scroll
       }
     });
 
@@ -56,7 +54,7 @@ export function setupDropdowns(dropdownButtons) {
 
         selectedOption = option;
         menu.classList.add("hidden");
-        document.body.style.overflow = ""; // ✅ Re-enable scroll after selection
+        document.body.style.overflow = ""; // Re-enable scroll after selection
       });
 
       option.addEventListener("mouseenter", () => {
@@ -72,7 +70,7 @@ export function setupDropdowns(dropdownButtons) {
       });
     });
 
-    // ✅ Close dropdown when clicking outside
+    // Close dropdown when clicking outside
     document.addEventListener("click", (e) => {
       if (!button.contains(e.target) && !menu.contains(e.target)) {
         menu.classList.add("hidden");
@@ -82,7 +80,7 @@ export function setupDropdowns(dropdownButtons) {
   });
 }
 
-// ✅ Makes the dropdown float absolutely without affecting layout
+// Makes the dropdown float absolutely without affecting layout
 function makeDropdownFloat(button, dropdown) {
   const container = button.parentElement;
 
@@ -97,8 +95,7 @@ function makeDropdownFloat(button, dropdown) {
   dropdown.style.zIndex = "1000";
   dropdown.style.width = "100%";
   dropdown.style.backgroundColor = "#ffffff";
-  dropdown.style.boxShadow = "0 4px 12px rgba(0, 0, 0, 0.1)";
-
+ 
   // Determine space available
   const buttonRect = button.getBoundingClientRect();
   const dropdownHeight = dropdown.offsetHeight || 240; // fallback height
@@ -116,7 +113,7 @@ function makeDropdownFloat(button, dropdown) {
   }
 }
 
-// ✅ Enables scroll only inside dropdown (Time Slot)
+// Enables scroll only inside dropdown (Time Slot)
 function setupDropdownScroll(dropdownElement, maxHeight = 200) {
   dropdownElement.style.maxHeight = `${maxHeight}px`;
   dropdownElement.style.overflowY = "auto";
