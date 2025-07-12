@@ -24,13 +24,13 @@ export function initRoleDropdown() {
 
       options.forEach((btn) => {
         const icon = btn.querySelector("svg");
-        if (icon) icon.classList.add("hidden");
+        icon?.classList.add("hidden");
         btn.classList.remove("bg-gray-100");
         btn.classList.add("bg-white");
       });
 
       const icon = option.querySelector("svg");
-      if (icon) icon.classList.remove("hidden");
+      icon?.classList.remove("hidden");
 
       option.classList.remove("bg-white");
       option.classList.add("bg-gray-100");
