@@ -22,7 +22,15 @@
   .sm\:w-auto {
     width: auto;
   }
-
+  
+  .sm\:w-32 {
+    width: 8rem; 
+  }
+  
+  .sm\:h-32 {
+    height: 8rem; /* 128px */
+  }
+  
   .sm\:w-48 {
     width: 192px;
   }
@@ -144,6 +152,11 @@
   .sm\:text-6xl {
     font-size: 3.75rem;
     line-height: 1;
+  }
+
+  .sm\:text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
   }
 
   /* Height / Margin / Visibility */
@@ -427,6 +440,10 @@
   /* Containers */
   .container {
     max-width: 1024px;
+  }
+
+  .lg\:text-left {
+    text-align: left;
   }
 }
 
