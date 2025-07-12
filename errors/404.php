@@ -301,7 +301,7 @@ require_once __DIR__ . "/../backend/middleware/session-context.php";
     </footer>
 
     <!-- External JavaScript -->
-    <script type="module" src="./js/common/index.js"></script>
+    <script type="module" src="../js/common/index.js"></script>
 
     <!-- Create Lucide Icons -->
     <script>

@@ -146,10 +146,10 @@ require_once __DIR__ . "/../backend/middleware/session-context.php";
 
         </div>
     </header>
-  
+
     <!-- Main Content -->
-    <main class="min-h-screen bg-gray-50 flex items-center justify-center px-4 sm:px-6 lg:px-8 flex-grow pt-16">
-        <div class="max-w-md w-full flex flex-col gap-8 text-center">
+    <main class="overflow-hidden flex justify-center flex-grow bg-gray-50 pt-20 pb-16">
+        <div class="max-w-md w-full flex flex-col gap-8 text-center pt-20 pb-16">
             <div class="flex justify-center">
                 <div class="relative">
                     <div class="w-24 h-24 bg-white rounded-full shadow-lg flex items-center justify-center border border-solid border-transparent border-gray-100 -z-10"><i data-lucide="lock" class="w-10 h-10 text-medical-500"></i></div>
@@ -165,11 +165,12 @@ require_once __DIR__ . "/../backend/middleware/session-context.php";
                     <p class="text-gray-600 text-base sm:text-lg leading-relaxed">You don't have permission to access this page.</p>
                     <p class="text-gray-500 text-sm leading-relaxed">Please contact your system administrator if you believe this is a mistake.</p>
                 </div>
-                <div class="flex flex-col sm:flex-row gap-3 mt-8"><a class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors bg-medical-600 text-white hover:bg-medical-400 h-10 px-4 py-2 flex-grow inline-flex items-center justify-center gap-2" href="/contact"><i data-lucide="mail" class="w-4 h-4"></i>Contact Support</a>
-                    <a class="inline-flex text-heading items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-card-soft bg-background hover:bg-gray-100 hover:text-accent-foreground h-10 px-4 py-2 flex-grow inline-flex items-center justify-center gap-2" href="/"><i data-lucide="house" class="w-4 h-4"></i>Back to Home</a></div>
+                <div class="flex flex-col sm:flex-row gap-3 mt-8"><a class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors bg-medical-600 text-white hover:bg-medical-400 h-10 px-4 py-2 flex-grow inline-flex items-center justify-center gap-2" href="<?= $paths['static']['contact'] ?>"><i data-lucide="mail" class="w-4 h-4"></i>Contact Support</a>
+                    <a class="inline-flex text-heading items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-card-soft bg-background hover:bg-gray-100 hover:text-accent-foreground h-10 px-4 py-2 flex-grow inline-flex items-center justify-center gap-2" href="/"><i data-lucide="house" class="w-4 h-4"></i>Back to Home</a>
+                </div>
             </div>
             <div class="text-center">
-                <p class="text-gray-500 text-sm">Need help? Contact <a href="mailto:support@mediconnect.com" class="text-medical-600 hover:text-medical-700 transition-colors duration-200 font-medium">support@mediconnect.com</a></p>
+                <p class="text-gray-500 text-sm">Need help? Contact <a href="mailto:contact@mediconnect.example" class="text-medical-600 hover:text-medical-700 transition-colors transition-200 font-medium">contact@mediconnect.example</a></p>
             </div>
         </div>
     </main>
@@ -296,7 +297,7 @@ require_once __DIR__ . "/../backend/middleware/session-context.php";
     </footer>
 
     <!-- External JavaScript -->
-    <script type="module" src="./js/common/index.js"></script>
+    <script type="module" src="../js/common/index.js"></script>
 
     <!-- Create Lucide Icons -->
     <script>
