@@ -164,10 +164,6 @@ input::placeholder {
   right: 0;
 }
 
-.right-0 {
-  right: 0;
-}
-
 .inset-y-0 {
   top: 0;
   bottom: 0;
@@ -397,4 +393,8 @@ input::placeholder {
 
 .bg-red-400 {
   background-color: #f87171;
+}
+
+.new-image:hover {
+  border-color: rgb(38, 166, 154);
 }

@@ -1,7 +1,9 @@
 <?php
 
 // require_once '../backend/auth.php'; // handles autologin via cookie
-
+$userName = "Elio Faddoul";
+$isLoggedIn = true;
+$userEmail = "elio"
 ?>
 
 <!DOCTYPE html>
@@ -38,67 +40,87 @@
     <!-- Header Section -->
     <header class="fixed z-50 py-5 bg-transparent transition-all">
         <div class="container mx-auto flex items-center justify-between px-4">
-            <a href="./" class="flex items-center">
+
+            <!-- Logo -->
+            <a href="<?= $paths['home'] ?>" class="flex items-center">
                 <span class="text-medical-700 text-2xl font-semibold">
                     Medi<span class="text-medical-500">Connect</span>
                 </span>
             </a>
 
-            <!-- Desktop Navigation -->
-            <nav class="hidden md:flex items-center gap-4 lg:gap-8">
-                <a href="./" class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Home</a>
-                <a href="./doctors.php"
-                    class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Doctors</a>
-                <a href="./hospitals.php"
-                    class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Hospitals</a>
-                <a href="./appointments.php"
-                    class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Appointments</a>
-                <a href="././dashboard/superadmin.php"
-                    class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Dashboard</a>
+            <!-- Desktop Navigation (hidden on mobile) -->
+            <nav class="hidden md:flex items-center gap-4 lg:gap-8 xl:ml-28">
+                <a href="<?= $paths['home'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Home</a>
+                <a href="<?= $paths['services']['doctors'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Doctors</a>
+                <a href="<?= $paths['services']['hospitals'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Hospitals</a>
+                <a href="<?= $paths['services']['appointments'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Appointments</a>
             </nav>
 
-            <!-- Header Right Section -->
+            <!-- Right section: Auth / Dropdown / Emergency / Menu -->
             <div class="flex items-center gap-4">
-                <!-- Sign In / Sign Up buttons (hidden by default) -->
-                <a href="./login.php"
-                    class="hidden md:flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all">Sign
-                    In</a>
-                <a href="./register.php"
-                    class="hidden md:flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all">Sign
-                    Up</a>
 
-                <!-- Mobile Menu Button -->
-                <button id="menu-button"
-                    class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none pointer">
+                <!-- User dropdown (visible if logged in) -->
+                <div class="hidden md:flex items-center gap-3">
+                    <div class="dropdown relative">
+                        <button class="flex items-center gap-2 md:py-2 px-2 border-none bg-transparent hover:bg-medical-50 transition-colors transition-200 pointer rounded-lg">
+                            <div class="w-8 h-8 rounded-full bg-medical-100 flex items-center justify-center text-medical-700 text-sm lg:text-base font-medium">
+                                <?= strtoupper(substr($userName, 0, 2)) ?>
+                            </div>
+                            <span class="hidden lg:block text-sm lg:text-base font-medium text-slate-700 max-w-24 truncate">
+                                <?= htmlspecialchars($userName) ?>
+                            </span>
+                            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500"></i>
+                        </button>
+
+                        <!-- Dropdown menu content -->
+                        <div class="dropdown-content overflow-hidden hidden animate-fade-in absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-solid border-gray-100 z-50">
+                            <div class="px-3 py-2 border-b border-solid border-medical-100">
+                                <p class="text-sm font-medium text-slate-700"><?= htmlspecialchars($userName) ?></p>
+                                <p class="text-xs text-slate-500"><?= htmlspecialchars($userEmail) ?></p>
+                            </div>
+
+                            <a href="#" class="flex items-center gap-2 px-3 py-2 text-sm text-slate-600 hover:text-medical-600 hover:bg-medical-50 transition-colors transition-200">
+                                <i data-lucide="user" class="w-4 h-4"></i>Dashboard
+                            </a>
+
+                            <a href="<?= $paths['auth']['logout'] ?>" class="flex items-center gap-2 px-3 py-2 text-sm text-red-600 hover:text-red-700 hover:bg-red-50 w-full transition-colors transition-200">
+                                <i data-lucide="log-out" class="w-4 h-4"></i>Sign Out
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Emergency button (always visible) -->
+                <a href="<?= $paths['services']['emergency'] ?>" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-sm lg:text-base font-medium px-2 lg:px-4 py-2 md:py-3 lg:ml-2 rounded-lg transition-colors transition-200">
+                    <i data-lucide="ambulance" class="w-4 h-4"></i>
+                    Emergency
+                </a>
+
+                <!-- Mobile menu toggle button -->
+                <button id="menu-button" class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none pointer">
                     <i data-lucide="menu" class="w-4 h-4"></i>
                 </button>
             </div>
 
-            <!-- Mobile Navigation (Hidden by default) -->
-            <div id="mobile-nav" class="hidden absolute bg-white-95 backdrop-blur-lg animate-slide-down shadow-lg">
+            <!-- Mobile Navigation Panel (visible only on mobile) -->
+            <div id="mobile-nav" class="hidden absolute bg-white/95 backdrop-blur-lg animate-slide-down shadow-lg md:hidden">
                 <nav class="container mx-auto flex flex-col gap-4 px-4 py-4">
-                    <a href="./"
-                        class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Home</a>
-                    <a href="./doctors.php"
-                        class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Doctors</a>
-                    <a href="./hospitals.php"
-                        class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
-                    <a href="./appointments.php"
-                        class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
-                    <a href="././dashboard/superadmin.php"
-                        class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Dashboard</a>
+                    <a href="../" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Home</a>
+                    <a href=".<?= $paths['services']['doctors'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Doctors</a>
+                    <a href=".<?= $paths['services']['hospitals'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
+                    <a href=".<?= $paths['services']['appointments'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
 
-                    <!-- Sign In / Sign Up buttons (Mobile view) -->
-                    <div class="flex flex-col pt-2 gap-2 border-t border-solid separator">
-                        <a href="./login.php"
-                            class="inline-flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-all">Sign
-                            In</a>
-                        <a href="./register.php"
-                            class="inline-flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Sign
-                            Up</a>
+                    <div class="flex flex-col pt-2 gap-2 bg-transparent border-t border-solid separator">
+                        <a href="#" class="inline-flex items-center gap-2 justify-start text-gray-700 hover:bg-medical-50 hover:text-medical-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                            <i data-lucide="user" class="w-4 h-4"></i> Dashboard
+                        </a>
+                        <a href="<?= $paths['auth']['logout'] ?>" class="inline-flex items-center gap-2 justify-start text-red-600 hover:bg-red-50 hover:text-red-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                            <i data-lucide="log-out" class="w-4 h-4"></i> Sign Out
+                        </a>
                     </div>
                 </nav>
             </div>
+
         </div>
     </header>
 
@@ -128,21 +150,21 @@
                             class="mb-2 grid h-10 w-full grid-cols-3 items-center justify-center rounded-md bg-gray-150 p-1 text-muted-foreground pointer">
                             <button
                                 type="button"
-                                data-target="My-Appointments"
+                                data-target="my-appointments"
                                 class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-white px-3 py-1.5 text-sm font-medium pointer">
                                 My Appointments
                             </button>
 
                             <button
                                 type="button"
-                                data-target="Schedule"
+                                data-target="schedule"
                                 class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-gray-150 px-3 py-1.5 text-sm font-medium pointer">
                                 Schedule
                             </button>
 
                             <button
                                 type="button"
-                                data-target="Profile"
+                                data-target="profile"
                                 class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-gray-150 px-3 py-1.5 text-sm font-medium pointer">
                                 Profile
                             </button>
@@ -195,8 +217,7 @@
                             </div>
                         </div>
 
-
-                        <div data-section="My-Appointments" class="hidden glass-card rounded-xl p-6">
+                        <div data-section="my-appointments" class="hidden glass-card rounded-xl p-6">
                             <h3 class="text-xl font-bold mb-4">Today's Appointments</h3>
                             <div class="flex flex-col gap-3">
 
@@ -312,9 +333,8 @@
                         </div>
                     </div>
 
-
                     <!-- Weekly Schedule Section -->
-                    <div data-section="Schedule" class="hidden mt-4 sm:mt-6">
+                    <div data-section="schedule" class="hidden mt-4 sm:mt-6">
                         <div class="glass-card rounded-xl p-4 sm:p-6">
                             <h3 class="text-lg sm:text-xl font-bold mb-4">Weekly Schedule</h3>
                             <div class="flex flex-col gap-4">
@@ -407,9 +427,8 @@
                         </div>
                     </div>
 
-
                     <!-- Profile Management Section -->
-                    <div data-section="Profile" class="hidden mt-4 sm:mt-6">
+                    <div data-section="profile" class="hidden mt-4 sm:mt-6">
                         <div class="glass-card rounded-xl p-4 sm:p-6">
 
                             <!-- Header: Title and Edit Button -->
@@ -424,16 +443,35 @@
                             <!-- Profile Content Grid -->
                             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
-                                <!-- Left Column: Image and Info -->
-                                <div class="text-center lg:text-left">
-                                    <div class="relative inline-block mb-4">
-                                        <img src="/api/placeholder/150/150" alt="Profile" class="w-24 h-24 sm:w-32 sm:h-32 mx-auto lg:mx-0 rounded-full object-cover" />
-                                        <button class="absolute bottom-0 right-0 h-9 p-2 rounded-full text-sm font-medium inline-flex items-center justify-center gap-2 border border-input bg-background hover:bg-accent disabled:opacity-50 disabled:pointer-events-none">
-                                            <!-- Icon here -->
-                                        </button>
+                                <!-- Profile Picture Upload -->
+                                <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
+                                    <div class="flex flex-col gap-1.5 p-6">
+                                        <h3 class="text-2xl font-semibold leading-none tracking-tight flex items-center gap-2">
+                                            <i data-lucide="camera" class="h-5 w-5"></i>
+                                            Profile Picture
+                                        </h3>
+                                        <p class="text-sm text-muted-foreground">Update your profile image</p>
                                     </div>
-                                    <h4 class="font-bold text-base sm:text-lg truncate">Dr. Sarah Johnson</h4>
-                                    <p class="text-sm sm:text-base text-gray-600 truncate">Cardiology</p>
+                                    <div class="px-6 pb-6 flex flex-col gap-4">
+                                        <div class="flex flex-col gap-4 items-center">
+                                            <span class="relative flex shrink-0 overflow-hidden rounded-full w-24 h-24">
+                                                <span class="flex h-full w-full items-center justify-center rounded-full text-lg bg-medical-100 text-medical-700">
+                                                    <?= strtoupper(substr($userName, 0, 2)) ?>
+                                                </span>
+                                            </span>
+                                            <div class="w-full">
+                                                <label for="profile-upload" class="text-sm font-medium leading-none pointer">
+                                                    <div class="new-image flex items-center justify-center w-full p-3 border-2 border-dashed border-gray-300 rounded-lg hover:border-medical-400 transition-colors">
+                                                        <div class="flex flex-col text-center">
+                                                            <i data-lucide="camera" class="mx-auto h-6 w-6 text-gray-400 mb-2"></i>
+                                                            <span class="text-sm text-gray-600">Upload new image</span>
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                                <input type="file" id="profile-upload" accept="image/*" class="hidden">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <!-- Right Column: Profile Details -->
@@ -485,12 +523,10 @@
                         </div>
                     </div>
 
-
-
                 </div>
             </div>
         </div>
-        
+
     </main>
 
     <!-- Footer -->
@@ -498,7 +534,7 @@
         <div class="container mx-auto px-4">
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                 <div>
-                    <a href="./" class="inline-block mb-4">
+                    <a href="<?= $paths['home'] ?>" class="inline-block mb-4">
                         <span class="text-medical-700 font-semibold text-2xl">
                             Medi<span class="text-medical-500">Connect</span>
                         </span>
@@ -530,22 +566,22 @@
                     </h4>
                     <ul class="flex flex-col gap-2">
                         <li>
-                            <a href="./appointments.php" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['services']['appointments'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Book Appointments
                             </a>
                         </li>
                         <li>
-                            <a href="./doctors.php" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['services']['doctors'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Find Doctors
                             </a>
                         </li>
                         <li>
-                            <a href="./hospitals.php" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['services']['hospitals'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Hospital Information
                             </a>
                         </li>
                         <li>
-                            <a href="./emergency.php" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['services']['emergency'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Emergency Services
                             </a>
                         </li>
@@ -558,27 +594,27 @@
                     </h4>
                     <ul class="flex flex-col gap-2">
                         <li>
-                            <a href="./about.php" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['static']['about'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 About Us
                             </a>
                         </li>
                         <li>
-                            <a href="./privacy.php" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['static']['privacy'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Privacy Policy
                             </a>
                         </li>
                         <li>
-                            <a href="./terms.php" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['static']['terms'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Terms of Service
                             </a>
                         </li>
                         <li>
-                            <a href="./faq.php" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['static']['faq'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 FAQs
                             </a>
                         </li>
                         <li>
-                            <a href="./contact.php" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['static']['contact'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Contact Us
                             </a>
                         </li>
