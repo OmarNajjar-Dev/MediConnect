@@ -1,6 +1,19 @@
 <?php
 
-require_once '../backend/auth.php'; // handles autologin via cookie
+// 1. Load system configuration (paths, constants, routes, etc.)
+require_once __DIR__ . "/../backend/config/path.php";
+
+// 2. Load authentication logic (login state, remember me, etc.)
+require_once __DIR__ . "/../backend/auth/auth.php";
+
+// 3. Load user session context (sets $isLoggedIn, $userName, $userEmail, $dashboardLink)
+require_once __DIR__ . "/../backend/middleware/session-context.php";
+
+// 4. Define required role for this dashboard
+$requiredRole = 'super_admin';
+
+// 5. Protect the dashboard: redirect if user role does not match
+require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
 
 ?>
 
@@ -23,6 +36,7 @@ require_once '../backend/auth.php'; // handles autologin via cookie
   <link rel="stylesheet" href="../css/spacing.min.css" />
   <link rel="stylesheet" href="../css/sizing.min.css" />
   <link rel="stylesheet" href="../css/borders.css" />
+  <link rel="stylesheet" href="../css/ring.css" />
   <link rel="stylesheet" href="../css/layout.css" />
   <link rel="stylesheet" href="../css/animations.css" />
   <link rel="stylesheet" href="../css/style.css" />
@@ -38,360 +52,589 @@ require_once '../backend/auth.php'; // handles autologin via cookie
   <!-- Header Section -->
   <header class="fixed z-50 py-5 bg-transparent transition-all">
     <div class="container mx-auto flex items-center justify-between px-4">
-      <a href="./" class="flex items-center">
+
+      <!-- Logo -->
+      <a href="<?= $paths['home'] ?>" class="flex items-center">
         <span class="text-medical-700 text-2xl font-semibold">
           Medi<span class="text-medical-500">Connect</span>
         </span>
       </a>
 
-      <!-- Desktop Navigation -->
-      <nav class="hidden md:flex items-center gap-4 lg:gap-8">
-        <a href="./" class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Home</a>
-        <a href="./doctors.php"
-          class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Doctors</a>
-        <a href="./hospitals.php"
-          class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Hospitals</a>
-        <a href="./appointments.php"
-          class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Appointments</a>
-        <a href="././dashboard/superadmin.php"
-          class="text-gray-600 text-sm font-medium hover:text-medical-600 transition-colors">Dashboard</a>
+      <!-- Desktop Navigation (hidden on mobile) -->
+      <nav class="hidden md:flex items-center gap-4 lg:gap-8 xl:ml-28">
+        <a href="<?= $paths['home'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Home</a>
+        <a href="<?= $paths['services']['doctors'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Doctors</a>
+        <a href="<?= $paths['services']['hospitals'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Hospitals</a>
+        <a href="<?= $paths['services']['appointments'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Appointments</a>
       </nav>
 
-      <!-- Header Right Section -->
+      <!-- Right section: Auth / Dropdown / Emergency / Menu -->
       <div class="flex items-center gap-4">
-        <!-- Sign In / Sign Up buttons (hidden by default) -->
-        <a href="./login.php"
-          class="hidden md:flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all">Sign
-          In</a>
-        <a href="./register.php"
-          class="hidden md:flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-3 rounded-lg text-sm font-medium whitespace-nowrap transition-all">Sign
-          Up</a>
 
-        <!-- Mobile Menu Button -->
-        <button id="menu-button"
-          class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none pointer">
+        <!-- User dropdown (visible if logged in) -->
+        <div class="hidden md:flex items-center gap-3">
+          <div class="dropdown relative">
+            <button class="flex items-center gap-2 md:py-2 px-2 border-none bg-transparent hover:bg-medical-50 transition-colors transition-200 pointer rounded-lg">
+              <div class="w-8 h-8 rounded-full bg-medical-100 flex items-center justify-center text-medical-700 text-sm lg:text-base font-medium">
+                <?= strtoupper(substr($userName, 0, 2)) ?>
+              </div>
+              <span class="hidden lg:block text-sm lg:text-base font-medium text-slate-700 max-w-24 truncate">
+                <?= htmlspecialchars($userName) ?>
+              </span>
+              <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500"></i>
+            </button>
+
+            <!-- Dropdown menu content -->
+            <div class="dropdown-content overflow-hidden hidden animate-fade-in absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-solid border-gray-100 z-50">
+              <div class="px-3 py-2 border-b border-solid border-medical-100">
+                <p class="text-sm font-medium text-slate-700"><?= htmlspecialchars($userName) ?></p>
+                <p class="text-xs text-slate-500"><?= htmlspecialchars($userEmail) ?></p>
+              </div>
+
+              <a href="#" class="flex items-center gap-2 px-3 py-2 text-sm text-slate-600 hover:text-medical-600 hover:bg-medical-50 transition-colors transition-200">
+                <i data-lucide="user" class="w-4 h-4"></i>Dashboard
+              </a>
+
+              <a href="<?= $paths['auth']['logout'] ?>" class="flex items-center gap-2 px-3 py-2 text-sm text-red-600 hover:text-red-700 hover:bg-red-50 w-full transition-colors transition-200">
+                <i data-lucide="log-out" class="w-4 h-4"></i>Sign Out
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Emergency button (always visible) -->
+        <a href="<?= $paths['services']['emergency'] ?>" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-sm lg:text-base font-medium px-2 lg:px-4 py-2 md:py-3 lg:ml-2 rounded-lg transition-colors transition-200">
+          <i data-lucide="ambulance" class="w-4 h-4"></i>
+          Emergency
+        </a>
+
+        <!-- Mobile menu toggle button -->
+        <button id="menu-button" class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none pointer">
           <i data-lucide="menu" class="w-4 h-4"></i>
         </button>
       </div>
 
-      <!-- Mobile Navigation (Hidden by default) -->
-      <div id="mobile-nav" class="hidden absolute bg-white-95 backdrop-blur-lg animate-slide-down shadow-lg">
+      <!-- Mobile Navigation Panel (visible only on mobile) -->
+      <div id="mobile-nav" class="hidden absolute bg-white/95 backdrop-blur-lg animate-slide-down shadow-lg md:hidden">
         <nav class="container mx-auto flex flex-col gap-4 px-4 py-4">
-          <a href="./"
-            class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Home</a>
-          <a href="./doctors.php"
-            class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Doctors</a>
-          <a href="./hospitals.php"
-            class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
-          <a href="./appointments.php"
-            class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
-          <a href="././dashboard/superadmin.php"
-            class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Dashboard</a>
+          <a href="../" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Home</a>
+          <a href=".<?= $paths['services']['doctors'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Doctors</a>
+          <a href=".<?= $paths['services']['hospitals'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
+          <a href=".<?= $paths['services']['appointments'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
 
-          <!-- Sign In / Sign Up buttons (Mobile view) -->
-          <div class="flex flex-col pt-2 gap-2 border-t border-solid separator">
-            <a href="./login.php"
-              class="inline-flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-all">Sign
-              In</a>
-            <a href="./register.php"
-              class="inline-flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Sign
-              Up</a>
+          <div class="flex flex-col pt-2 gap-2 bg-transparent border-t border-solid separator">
+            <a href="#" class="inline-flex items-center gap-2 justify-start text-gray-700 hover:bg-medical-50 hover:text-medical-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+              <i data-lucide="user" class="w-4 h-4"></i> Dashboard
+            </a>
+            <a href="<?= $paths['auth']['logout'] ?>" class="inline-flex items-center gap-2 justify-start text-red-600 hover:bg-red-50 hover:text-red-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+              <i data-lucide="log-out" class="w-4 h-4"></i> Sign Out
+            </a>
           </div>
         </nav>
       </div>
+
     </div>
   </header>
 
   <!-- Main Content -->
-  <main class="min-h-screen pt-20 pb-16 bg-gray-50">
+  <main class="pt-20 pb-16 min-h-screen bg-gray-50">
     <div class="container mx-auto px-4">
       <div class="py-8">
+        <div class="flex flex-col gap-6">
 
-        <!-- Header Section -->
-        <div class="mb-8 flex flex-col">
-          <p class="mb-1 text-sm text-gray-600">
-            Logged in as: <span class="font-medium">SUPER ADMIN</span>
-          </p>
-          <h1 class="text-2xl font-bold tracking-tight text-gray-900">
-            Welcome back, System Administrator
-          </h1>
-        </div>
-
-        <!-- Inner Content -->
-        <div class="min-h-screen bg-gray-50">
-          <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-
-            <!-- Title & Subtitle -->
-            <div class="mb-8">
-              <div class="mb-2 flex items-center gap-3">
-                <i data-lucide="shield" class="h-8 w-8 text-blue-600"></i>
-                <h1 class="text-3xl font-bold tracking-tight text-gray-900">
-                  Super Admin Control Panel
-                </h1>
+          <!-- Access Info Card -->
+          <div class="rounded-lg shadow-sm border-2 border-solid border-red-200 bg-red-100 text-red-800">
+            <div class="flex flex-col gap-1.5 p-6 pb-3">
+              <div class="flex items-center gap-3">
+                <i data-lucide="shield" class="h-6 w-6"></i>
+                <div class="flex-grow">
+                  <div class="flex items-center gap-2 mb-1">
+                    <h3 class="text-lg font-semibold tracking-tight">Super Administrator</h3>
+                    <div class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold text-foreground">
+                      SUPER ADMIN
+                    </div>
+                  </div>
+                  <p class="text-sm text-muted-foreground">
+                    Full access to all hospitals, doctors, and administrative functions
+                  </p>
+                </div>
               </div>
-              <p class="text-gray-600">
-                Welcome, Super Admin. Manage all system entities and monitor platform health.
-              </p>
             </div>
+          </div>
 
-            <!-- Navigation Tabs -->
-            <div class="flex flex-col gap-6">
-              <div class="grid h-10 w-full grid-cols-3 items-center justify-center rounded-md border border-solid border-card-soft bg-white p-1 text-muted-foreground outline-none lg:grid-cols-6 pointer">
+          <!-- Dashboard Section -->
+          <div class="min-h-screen bg-gray-50">
+            <div class="flex flex-col gap-6 p-4 sm:p-6">
 
-                <button
-                  type="button"
-                  data-target="overview"
-                  class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-transparent bg-blue-50 px-3 py-1.5 text-sm font-medium text-blue-700 transition-all pointer">
-                  Overview
-                </button>
-
-                <button
-                  type="button"
-                  data-target="hospitals"
-                  class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-transparent px-3 py-1.5 text-sm font-medium transition-all pointer">
-                  Hospitals
-                </button>
-
-                <button
-                  type="button"
-                  data-target="admins"
-                  class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-transparent px-3 py-1.5 text-sm font-medium transition-all pointer">
-                  Admins
-                </button>
-
-                <button
-                  type="button"
-                  data-target="doctors"
-                  class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-transparent px-3 py-1.5 text-sm font-medium transition-all pointer">
-                  Doctors
-                </button>
-
-                <button
-                  type="button"
-                  data-target="patients"
-                  class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-transparent px-3 py-1.5 text-sm font-medium transition-all pointer">
-                  Patients
-                </button>
-
-                <button
-                  type="button"
-                  data-target="staff-ambulance"
-                  class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-transparent px-3 py-1.5 text-sm font-medium transition-all pointer">
-                  Staff &amp; Teams
-                </button>
-
-              </div>
-
-              <!-- Overview -->
-              <div data-section="overview" class="flex flex-col gap-6 mt-2 outline-none">
-                <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-
-                  <div class="rounded-lg bg-card text-card-foreground shadow-sm">
-                    <div class="p-6">
-                      <div class="flex items-center justify-between">
-                        <div>
-                          <p class="text-sm font-medium text-gray-600">Total Hospitals</p>
-                          <p class="mt-2 text-3xl font-bold text-gray-900">3</p>
-                        </div>
-                        <div class="flex justify-center items-center rounded-full bg-blue-50 p-3">
-                          <i data-lucide="building2" class="h-6 w-6 text-blue-600"></i>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="rounded-lg bg-card text-card-foreground shadow-sm">
-                    <div class="p-6">
-                      <div class="flex items-center justify-between">
-                        <div>
-                          <p class="text-sm font-medium text-gray-600">Total Users</p>
-                          <p class="mt-2 text-3xl font-bold text-gray-900">5</p>
-                        </div>
-                        <div class="flex justify-center items-center rounded-full bg-green-50 p-3">
-                          <i data-lucide="users" class="h-6 w-6 text-green-600"></i>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="rounded-lg bg-card text-card-foreground shadow-sm">
-                    <div class="p-6">
-                      <div class="flex items-center justify-between">
-                        <div>
-                          <p class="text-sm font-medium text-gray-600">Active Doctors</p>
-                          <p class="mt-2 text-3xl font-bold text-gray-900">1</p>
-                        </div>
-                        <div class="flex justify-center items-center rounded-full bg-purple-50 p-3">
-                          <i data-lucide="user-check" class="h-6 w-6 text-purple-600"></i>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="rounded-lg bg-card text-card-foreground shadow-sm">
-                    <div class="p-6">
-                      <div class="flex items-center justify-between">
-                        <div>
-                          <p class="text-sm font-medium text-gray-600">Available Beds</p>
-                          <p class="mt-2 text-3xl font-bold text-gray-900">135</p>
-                        </div>
-                        <div class="flex justify-center items-center rounded-full bg-orange-50 p-3">
-                          <i data-lucide="activity" class="h-6 w-6 text-orange-600"></i>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-
-                <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
-
-                  <div class="rounded-lg bg-card text-card-foreground shadow-sm">
-                    <div class="p-6">
-                      <h3 class="mb-4 text-lg font-semibold text-gray-800">Recent Activity</h3>
-                      <div class="flex flex-col gap-3">
-                        <div class="flex items-center justify-between border-b border-solid border-gray-100 py-2">
-                          <span class="text-sm text-gray-600">New hospital registered</span>
-                          <span class="text-xs text-gray-400">2 hours ago</span>
-                        </div>
-                        <div class="flex items-center justify-between border-b border-solid border-gray-100 py-2">
-                          <span class="text-sm text-gray-600">Doctor profile updated</span>
-                          <span class="text-xs text-gray-400">4 hours ago</span>
-                        </div>
-                        <div class="flex items-center justify-between py-2">
-                          <span class="text-sm text-gray-600">Patient registered</span>
-                          <span class="text-xs text-gray-400">6 hours ago</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="rounded-lg bg-card text-card-foreground shadow-sm">
-                    <div class="p-6">
-                      <h3 class="mb-4 text-lg font-semibold text-gray-800">System Health</h3>
-                      <div class="flex flex-col gap-4">
-                        <div class="flex items-center justify-between">
-                          <span class="text-sm text-gray-600">Platform Uptime</span>
-                          <span class="text-sm font-medium text-green-600">99.9%</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                          <span class="text-sm text-gray-600">Active Hospitals</span>
-                          <span class="text-sm font-medium text-blue-600">2</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                          <span class="text-sm text-gray-600">Active Users</span>
-                          <span class="text-sm font-medium text-purple-600">5</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
+              <!-- Header -->
+              <div class="flex items-center gap-3">
+                <i data-lucide="shield" class="h-6 w-6 text-medical-600"></i>
+                <div>
+                  <h1 class="text-2xl sm:text-3xl font-bold text-gray-900">Super Admin Dashboard</h1>
+                  <p class="text-sm sm:text-base text-muted-foreground">
+                    Full system access - Manage all hospitals, users, and system settings
+                  </p>
                 </div>
               </div>
 
-              <!-- Hospitals -->
-              <div data-section="hospitals" class="hidden rounded-lg bg-card text-card-foreground shadow-sm">
-                <div class="p-6">
-                  <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <!-- Navigation Tabs -->
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 bg-muted text-muted-foreground rounded-md p-1">
+                <button type="button" data-target="system-overview"
+                  class="inline-flex items-center justify-center px-2 py-3 text-xs sm:text-sm font-medium rounded-sm border border-transparent transition-all pointer bg-blue-50 text-blue-700">
+                  System Overview
+                </button>
+                <button type="button" data-target="my-profile"
+                  class="inline-flex items-center justify-center px-2 py-3 text-xs sm:text-sm font-medium rounded-sm border border-transparent transition-all pointer">
+                  My Profile
+                </button>
+                <button type="button" data-target="manage-users"
+                  class="inline-flex items-center justify-center px-2 py-3 text-xs sm:text-sm font-medium rounded-sm border border-transparent transition-all pointer">
+                  Manage Users
+                </button>
+                <button type="button" data-target="manage-hospitals"
+                  class="inline-flex items-center justify-center px-2 py-3 text-xs sm:text-sm font-medium rounded-sm border border-transparent transition-all pointer">
+                  Manage Hospitals
+                </button>
+              </div>
+
+              <!-- System Overview Section -->
+              <div data-section="system-overview" class="mt-2 flex flex-col gap-6">
+
+                <!-- Stats Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                  <!-- Total Users -->
+                  <div class="glass-card border-card-soft hover:shadow-md transition-shadow rounded-lg text-card-foreground">
+                    <div class="flex items-center justify-between p-6 pb-2">
+                      <h3 class="text-sm font-medium text-gray-700 tracking-tight">Total Users</h3>
+                      <i data-lucide="users" class="h-4 w-4 text-blue-600"></i>
+                    </div>
+                    <div class="px-6 pt-0 pb-6">
+                      <div class="text-2xl font-bold text-gray-900">3</div>
+                      <p class="text-xs text-muted-foreground mt-1">3 active</p>
+                    </div>
+                  </div>
+
+                  <!-- Hospitals -->
+                  <div class="glass-card border-card-soft hover:shadow-md transition-shadow rounded-lg text-card-foreground">
+                    <div class="flex items-center justify-between p-6 pb-2">
+                      <h3 class="text-sm font-medium text-gray-700 tracking-tight">Hospitals</h3>
+                      <i data-lucide="building-2" class="h-4 w-4 text-green-600"></i>
+                    </div>
+                    <div class="px-6 pt-0 pb-6">
+                      <div class="text-2xl font-bold text-gray-900">2</div>
+                      <p class="text-xs text-muted-foreground mt-1">2 active</p>
+                    </div>
+                  </div>
+
+                  <!-- Doctors -->
+                  <div class="glass-card border-card-soft hover:shadow-md transition-shadow rounded-lg text-card-foreground">
+                    <div class="flex items-center justify-between p-6 pb-2">
+                      <h3 class="text-sm font-medium text-gray-700 tracking-tight">Doctors</h3>
+                      <i data-lucide="user-check" class="h-4 w-4 text-purple-600"></i>
+                    </div>
+                    <div class="px-6 pt-0 pb-6">
+                      <div class="text-2xl font-bold text-gray-900">1</div>
+                      <p class="text-xs text-muted-foreground mt-1">1 active</p>
+                    </div>
+                  </div>
+
+                  <!-- Total Beds -->
+                  <div class="glass-card border-card-soft hover:shadow-md transition-shadow rounded-lg text-card-foreground">
+                    <div class="flex items-center justify-between p-6 pb-2">
+                      <h3 class="text-sm font-medium text-gray-700 tracking-tight">Total Beds</h3>
+                      <i data-lucide="shield" class="h-6 w-6 text-orange-600"></i>
+                    </div>
+                    <div class="px-6 pt-0 pb-6">
+                      <div class="text-2xl font-bold text-gray-900">350</div>
+                      <p class="text-xs text-muted-foreground mt-1">68 available</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Welcome Card -->
+                <div class="rounded-lg shadow-sm bg-medical-50 border border-solid border-medical-200 text-card-foreground">
+                  <div class="flex flex-col gap-1.5 p-6">
+                    <h3 class="text-2xl font-semibold tracking-tight text-medical-800">
+                      Welcome to MediConnect Super Admin
+                    </h3>
+                    <p class="text-sm text-medical-600">
+                      Monitor and manage the entire healthcare platform from this centralized dashboard.
+                    </p>
+                  </div>
+                  <div class="px-6 pt-0 pb-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
+                      <div class="flex items-center gap-2">
+                        <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                        <span>System Status: Online</span>
+                      </div>
+                      <div class="flex items-center gap-2">
+                        <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                        <span>Database: Connected</span>
+                      </div>
+                      <div class="flex items-center gap-2">
+                        <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
+                        <span>Security: Active</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- My Profile -->
+              <div data-section="my-profile" class="hidden mt-2">
+                <div class="flex flex-col gap-6">
+
+                  <!-- Section Title -->
+                  <div class="flex items-center gap-3">
+                    <i data-lucide="user" class="h-6 w-6 text-medical-600"></i>
+                    <div>
+                      <h2 class="text-2xl font-bold text-gray-900">My Profile</h2>
+                      <p class="text-muted-foreground">Manage your personal information and security settings</p>
+                    </div>
+                  </div>
+
+                  <!-- Profile Picture & Personal Info -->
+                  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+                    <!-- Profile Picture Upload -->
+                    <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
+                      <div class="flex flex-col gap-1.5 p-6">
+                        <h3 class="text-2xl font-semibold leading-none tracking-tight flex items-center gap-2">
+                          <i data-lucide="camera" class="h-5 w-5"></i>
+                          Profile Picture
+                        </h3>
+                        <p class="text-sm text-muted-foreground">Update your profile image</p>
+                      </div>
+                      <div class="px-6 pb-6 flex flex-col gap-4">
+                        <div class="flex flex-col gap-4 items-center">
+                          <span class="relative flex shrink-0 overflow-hidden rounded-full w-24 h-24">
+                            <span class="flex h-full w-full items-center justify-center rounded-full text-lg bg-medical-100 text-medical-700">
+                              <?= strtoupper(substr($userName, 0, 2)) ?>
+                            </span>
+                          </span>
+                          <div class="w-full">
+                            <label for="profile-upload" class="text-sm font-medium leading-none pointer">
+                              <div class="flex items-center justify-center w-full p-3 border-2 border-dashed border-gray-300 rounded-lg hover:border-medical-400 transition-colors">
+                                <div class="flex flex-col text-center">
+                                  <i data-lucide="camera" class="mx-auto h-6 w-6 text-gray-400 mb-2"></i>
+                                  <span class="text-sm text-gray-600">Upload new image</span>
+                                </div>
+                              </div>
+                            </label>
+                            <input type="file" id="profile-upload" accept="image/*" class="hidden">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Personal Information -->
+                    <div class="rounded-lg glass-card text-card-foreground lg:col-span-2">
+                      <div class="flex flex-col gap-1.5 p-6">
+                        <h3 class="text-2xl font-semibold leading-none tracking-tight flex items-center gap-2">
+                          <i data-lucide="user" class="h-5 w-5"></i>
+                          Personal Information
+                        </h3>
+                        <p class="text-sm text-muted-foreground">Update your basic information</p>
+                      </div>
+                      <div class="px-6 pb-6 flex flex-col gap-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <div class="flex flex-col gap-2">
+                            <label for="name" class="text-sm font-medium leading-none">Full Name</label>
+                            <input id="name" placeholder="Enter your full name" value="System Administrator"
+                              class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
+                          </div>
+                          <div class="flex flex-col gap-2">
+                            <label for="email" class="text-sm font-medium leading-none">Email Address</label>
+                            <input type="email" id="email" placeholder="Enter your email" value="admin@mediconnect.com"
+                              class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <!-- Change Password Section -->
+                  <div class="rounded-lg glass-card text-card-foreground">
+                    <div class="flex flex-col gap-1.5 p-6">
+                      <h3 class="text-2xl font-semibold leading-none tracking-tight flex items-center gap-2">
+                        <i data-lucide="lock" class="h-5 w-5"></i>
+                        Change Password
+                      </h3>
+                      <p class="text-sm text-muted-foreground">Update your account password for security</p>
+                    </div>
+                    <div class="flex flex-col gap-4 px-6 pb-6">
+                      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="flex flex-col gap-2">
+                          <label for="current-password" class="text-sm font-medium leading-none">Current Password</label>
+                          <input type="password" id="current-password" placeholder="Enter current password"
+                            class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
+                        </div>
+                        <div class="flex flex-col gap-2">
+                          <label for="new-password" class="text-sm font-medium leading-none">New Password</label>
+                          <input type="password" id="new-password" placeholder="Enter new password"
+                            class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
+                        </div>
+                        <div class="flex flex-col gap-2">
+                          <label for="confirm-password" class="text-sm font-medium leading-none">Confirm Password</label>
+                          <input type="password" id="confirm-password" placeholder="Confirm new password"
+                            class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Save Button -->
+                  <div class="flex justify-end">
+                    <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-transparent h-10 py-2 bg-medical-600 hover:bg-medical-700 text-white px-6 pointer">
+                      <i data-lucide="save" class="h-4 w-4 mr-2"></i>
+                      Save Changes
+                    </button>
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- Manage Users -->
+              <div data-section="manage-users" class="hidden mt-2">
+                <div class="flex flex-col gap-4 sm:gap-6">
+
+                  <!-- Section Header -->
+                  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                     <div class="flex items-center gap-3">
-                      <div class="text-blue-600">
-                        <i data-lucide="building2" class="h-6 w-6"></i>
-                      </div>
+                      <i data-lucide="users" class="h-6 w-6 text-medical-600"></i>
                       <div>
-                        <h2 class="text-2xl font-bold text-gray-800">Hospital Management</h2>
-                        <p class="mt-1 text-gray-600">Manage all hospitals in the system</p>
+                        <h2 class="text-xl sm:text-2xl font-bold text-gray-900">User Management</h2>
+                        <p class="text-sm text-muted-foreground">Manage all system users and their roles</p>
                       </div>
                     </div>
-                    <button class="inline-flex items-center justify-center gap-2 rounded-md border-none bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 h-10 pointer whitespace-nowrap">
+                    <button type="button" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors text-white h-10 px-4 py-2 bg-medical-600 hover:bg-medical-700 pointer border border-solid border-transparent">
+                      <i data-lucide="plus" class="h-4 w-4 mr-2"></i>
+                      Add User
+                    </button>
+                  </div>
+
+                  <!-- Filters Section -->
+                  <div class="rounded-lg glass-card text-card-foreground">
+                    <div class="p-4">
+                      <div class="flex flex-col sm:flex-row gap-4">
+
+                        <!-- Search Field -->
+                        <div class="relative flex-grow">
+                          <i data-lucide="search" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4"></i>
+                          <input class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm pl-10 focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white" placeholder="Search users by name or email..." value="">
+                        </div>
+
+                        <!-- Role Filter -->
+                        <div class="flex items-center gap-2">
+                          <i data-lucide="filter" class="h-4 w-4 text-gray-500"></i>
+                          <button type="button" role="combobox" class="flex h-10 items-center justify-between rounded-md border border-solid border-input bg-background px-3 py-2 text-sm w-full sm:w-48 focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white pointer">
+                            <span style="pointer-events: none;">All Roles</span>
+                            <i data-lucide="chevron-down" class="h-4 w-4 opacity-50" aria-hidden="true"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Table Section -->
+                  <div class="rounded-lg glass-card border-card-soft text-card-foreground">
+                    <div class="flex flex-col gap-1.5 p-6">
+                      <h3 class="font-semibold tracking-tight text-lg">All Users (3)</h3>
+                    </div>
+                    <div class="p-0 overflow-x-auto">
+                      <table class="border-collapse w-full text-sm">
+                        <thead class="border-b border-solid border-card-soft">
+                          <tr class="transition-colors hover:bg-muted/50">
+                            <th class="h-12 px-4 text-left font-medium text-muted-foreground min-w-37.5">Name</th>
+                            <th class="h-12 px-4 text-left font-medium text-muted-foreground min-w-50">Email</th>
+                            <th class="h-12 px-4 text-left font-medium text-muted-foreground">Role</th>
+                            <th class="h-12 px-4 text-left font-medium text-muted-foreground hidden sm:table-cell">Hospital</th>
+                            <th class="h-12 px-4 text-left font-medium text-muted-foreground hidden lg:table-cell">Department</th>
+                            <th class="h-12 px-4 text-left font-medium text-muted-foreground">Status</th>
+                            <th class="h-12 px-4 text-right font-medium text-muted-foreground min-w-25">Actions</th>
+                          </tr>
+                        </thead>
+
+                        <tbody class="table-no-border-last">
+
+                          <!-- Row: Doctor -->
+                          <tr class="border-b border-solid border-card-soft hover:bg-gray-50">
+                            <td class="p-4 font-medium">Dr. Sarah Johnson</td>
+                            <td class="p-4 text-sm text-gray-600">sarah.johnson@mediconnect.com</td>
+                            <td class="p-4">
+                              <div class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold bg-green-100 text-green-800">Doctor</div>
+                            </td>
+                            <td class="p-4 hidden sm:table-cell text-sm">Central Medical Center</td>
+                            <td class="p-4 hidden lg:table-cell text-sm">Cardiology</td>
+                            <td class="p-4">
+                              <div class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold bg-medical-500 hover:bg-medical-400 text-white">active</div>
+                            </td>
+                            <td class="p-4 text-right">
+                              <div class="flex gap-1 justify-end">
+                                <button class="rounded-md h-8 w-8 p-0 hover:bg-accent pointer bg-transparent border-none hover:text-medical-500"><i data-lucide="square-pen" class="h-4 w-4"></i></button>
+                                <button class="rounded-md h-8 w-8 p-0 text-red-600 hover:text-red-800 hover:bg-red-50 pointer bg-transparent border-none"><i data-lucide="trash2" class="h-4 w-4"></i></button>
+                              </div>
+                            </td>
+                          </tr>
+
+                          <!-- Row: Staff -->
+                          <tr class="border-b hover:bg-gray-50">
+                            <td class="p-4 font-medium">John Smith</td>
+                            <td class="p-4 text-sm text-gray-600">john.smith@mediconnect.com</td>
+                            <td class="p-4">
+                              <div class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold bg-yellow-100 text-yellow-800">Staff</div>
+                            </td>
+                            <td class="p-4 hidden sm:table-cell text-sm">Westside Hospital</td>
+                            <td class="p-4 hidden lg:table-cell text-sm">Front Desk</td>
+                            <td class="p-4">
+                              <div class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold bg-medical-500 hover:bg-medical-400 text-white">active</div>
+                            </td>
+                            <td class="p-4 text-right">
+                              <div class="flex gap-1 justify-end">
+                                <button class="rounded-md h-8 w-8 p-0 hover:bg-accent pointer bg-transparent border-none hover:text-medical-500"><i data-lucide="square-pen" class="h-4 w-4"></i></button>
+                                <button class="rounded-md h-8 w-8 p-0 text-red-600 hover:text-red-800 hover:bg-red-50 pointer bg-transparent border-none"><i data-lucide="trash2" class="h-4 w-4"></i></button>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Manage Hospitals -->
+              <div data-section="manage-hospitals" class="hidden mt-2">
+                <div class="flex flex-col gap-6">
+
+                  <!-- Header -->
+                  <div class="flex justify-between items-center">
+                    <h2 class="text-2xl font-bold">Hospital Management</h2>
+                    <button
+                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors bg-medical-500 text-white hover:bg-medical-400 h-10 px-4 py-2 pointer border border-solid border-transparent"
+                      type="button">
                       <i data-lucide="plus" class="h-4 w-4 mr-2"></i>
                       Add Hospital
                     </button>
                   </div>
 
-                  <div class="overflow-x-auto rounded-lg border border-solid border-card-soft bg-white">
+                  <!-- Search Field -->
+                  <div class="relative">
+                    <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4"></i>
+                    <input
+                      class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm pl-10"
+                      placeholder="Search hospitals..." value="">
+                  </div>
+
+                  <!-- Table -->
+                  <div class="rounded-md glass-card border-card-soft">
                     <div class="relative w-full overflow-auto">
-                      <table class="w-full border-collapse text-sm">
+                      <table class="border-collapse w-full text-sm">
                         <thead class="border-b border-solid border-card-soft">
-                          <tr class="bg-gray-50 transition-colors hover:bg-muted/50">
-                            <th class="h-12 px-4 text-left align-middle font-semibold text-gray-700">Hospital Name</th>
-                            <th class="h-12 px-4 text-left align-middle font-semibold text-gray-700">Location</th>
-                            <th class="h-12 px-4 text-left align-middle font-semibold text-gray-700">Phone</th>
-                            <th class="h-12 px-4 text-left align-middle font-semibold text-gray-700">Total Beds</th>
-                            <th class="h-12 px-4 text-left align-middle font-semibold text-gray-700">Available Beds</th>
-                            <th class="h-12 px-4 text-left align-middle font-semibold text-gray-700">Status</th>
-                            <th class="h-12 px-4 text-right align-middle font-semibold text-gray-700">Actions</th>
+                          <tr class="transition-colors hover:bg-muted/50">
+                            <th class="h-12 px-4 text-left font-medium text-muted-foreground">Hospital Name</th>
+                            <th class="h-12 px-4 text-left font-medium text-muted-foreground">Location</th>
+                            <th class="h-12 px-4 text-left font-medium text-muted-foreground">Contact</th>
+                            <th class="h-12 px-4 text-left font-medium text-muted-foreground">Capacity</th>
+                            <th class="h-12 px-4 text-left font-medium text-muted-foreground">Departments</th>
+                            <th class="h-12 px-4 text-left font-medium text-muted-foreground">Status</th>
+                            <th class="h-12 px-4 text-right font-medium text-muted-foreground">Actions</th>
                           </tr>
                         </thead>
 
                         <tbody class="table-no-border-last">
 
                           <!-- Row 1 -->
-                          <tr class="border-b border-solid border-card-soft transition-colors hover:bg-gray-50">
-                            <td class="p-4 py-4 align-middle">Central Medical Center</td>
-                            <td class="p-4 py-4 align-middle">123 Medical Blvd, Central City</td>
-                            <td class="p-4 py-4 align-middle">+1 (555) 123-4567</td>
-                            <td class="p-4 py-4 align-middle">200</td>
-                            <td class="p-4 py-4 align-middle">45</td>
-                            <td class="p-4 py-4 align-middle">
-                              <div class="inline-flex items-center rounded-full border border-solid border-transparent bg-medical-500 px-2.5 py-0.5 text-xs font-semibold text-white transition-colors hover:bg-medical-400">
+                          <tr class="border-b border-solid border-card-soft transition-colors hover:bg-muted/50">
+                            <td class="p-4 font-medium">Central Medical Center</td>
+                            <td class="p-4">
+                              <div class="flex items-center">
+                                <i data-lucide="map-pin" class="h-4 w-4 mr-1 text-gray-400"></i>
+                                123 Medical Blvd, Central City
+                              </div>
+                            </td>
+                            <td class="p-4">
+                              <div class="flex items-center">
+                                <i data-lucide="phone" class="h-4 w-4 mr-1 text-gray-400"></i>
+                                +1 (555) 123-4567
+                              </div>
+                            </td>
+                            <td class="p-4">
+                              <div class="flex items-center">
+                                <i data-lucide="building" class="h-4 w-4 mr-1 text-gray-400"></i>
+                                45/200
+                              </div>
+                            </td>
+                            <td class="p-4">
+                              <div class="flex items-center">
+                                <i data-lucide="users" class="h-4 w-4 mr-1 text-gray-400"></i>
+                                4 depts
+                              </div>
+                            </td>
+                            <td class="p-4">
+                              <div class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold transition-colors border border-solid border-transparent bg-medical-500 text-white hover:bg-medical-400">
                                 active
                               </div>
                             </td>
-                            <td class="p-4 py-4 text-right align-middle">
-                              <div class="flex justify-end gap-2">
-                                <button class="inline-flex items-center justify-center gap-2 rounded-md border-none bg-transparent px-3 text-sm font-medium text-blue-600 transition-colors hover:bg-blue-50 hover:text-blue-800 h-9 pointer whitespace-nowrap">
+                            <td class="p-4 text-right">
+                              <div class="flex gap-2 justify-end">
+                                <button
+                                  class="rounded-md h-8 w-8 p-0 hover:bg-accent pointer bg-transparent border-none hover:text-medical-500">
                                   <i data-lucide="square-pen" class="h-4 w-4"></i>
                                 </button>
-                                <button class="inline-flex items-center justify-center gap-2 rounded-md border-none bg-transparent px-3 text-sm font-medium text-red-600 transition-colors hover:bg-red-50 hover:text-red-800 h-9 pointer whitespace-nowrap">
-                                  <i data-lucide="trash2" class="h-4 w-4"></i>
+                                <button
+                                  class="rounded-md h-8 w-8 p-0 text-red-600 hover:text-red-800 hover:bg-red-50 pointer bg-transparent border-none"
+                                  type="button">
+                                  <i data-lucide="trash-2" class="h-4 w-4"></i>
                                 </button>
                               </div>
                             </td>
                           </tr>
 
                           <!-- Row 2 -->
-                          <tr class="border-b border-solid border-card-soft transition-colors hover:bg-gray-50">
-                            <td class="p-4 py-4 align-middle">Al Noor Medical Center</td>
-                            <td class="p-4 py-4 align-middle">456 Healthcare Ave, North District</td>
-                            <td class="p-4 py-4 align-middle">+1 (555) 987-6543</td>
-                            <td class="p-4 py-4 align-middle">150</td>
-                            <td class="p-4 py-4 align-middle">23</td>
-                            <td class="p-4 py-4 align-middle">
-                              <div class="inline-flex items-center rounded-full border border-solid border-transparent bg-medical-500 px-2.5 py-0.5 text-xs font-semibold text-white transition-colors hover:bg-medical-400">
+                          <tr class="border-b border-solid border-card-soft transition-colors hover:bg-muted/50">
+                            <td class="p-4 font-medium">Westside Hospital</td>
+                            <td class="p-4">
+                              <div class="flex items-center">
+                                <i data-lucide="map-pin" class="h-4 w-4 mr-1 text-gray-400"></i>
+                                456 Healthcare Ave, West District
+                              </div>
+                            </td>
+                            <td class="p-4">
+                              <div class="flex items-center">
+                                <i data-lucide="phone" class="h-4 w-4 mr-1 text-gray-400"></i>
+                                +1 (555) 987-6543
+                              </div>
+                            </td>
+                            <td class="p-4">
+                              <div class="flex items-center">
+                                <i data-lucide="building" class="h-4 w-4 mr-1 text-gray-400"></i>
+                                23/150
+                              </div>
+                            </td>
+                            <td class="p-4">
+                              <div class="flex items-center">
+                                <i data-lucide="users" class="h-4 w-4 mr-1 text-gray-400"></i>
+                                3 depts
+                              </div>
+                            </td>
+                            <td class="p-4">
+                              <div class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold transition-colors border border-solid border-transparent bg-medical-500 text-white hover:bg-medical-400">
                                 active
                               </div>
                             </td>
-                            <td class="p-4 py-4 text-right align-middle">
-                              <div class="flex justify-end gap-2">
-                                <button class="inline-flex items-center justify-center gap-2 rounded-md border-none bg-transparent px-3 text-sm font-medium text-blue-600 transition-colors hover:bg-blue-50 hover:text-blue-800 h-9 pointer whitespace-nowrap">
+                            <td class="p-4 text-right">
+                              <div class="flex gap-2 justify-end">
+                                <button
+                                  class="rounded-md h-8 w-8 p-0 hover:bg-accent pointer bg-transparent border-none hover:text-medical-500">
                                   <i data-lucide="square-pen" class="h-4 w-4"></i>
                                 </button>
-                                <button class="inline-flex items-center justify-center gap-2 rounded-md border-none bg-transparent px-3 text-sm font-medium text-red-600 transition-colors hover:bg-red-50 hover:text-red-800 h-9 pointer whitespace-nowrap">
-                                  <i data-lucide="trash2" class="h-4 w-4"></i>
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
-
-                          <!-- Row 3 -->
-                          <tr class="border-b border-solid border-card-soft transition-colors hover:bg-gray-50">
-                            <td class="p-4 py-4 align-middle">Westside Hospital</td>
-                            <td class="p-4 py-4 align-middle">789 Care Street, West Side</td>
-                            <td class="p-4 py-4 align-middle">+1 (555) 456-7890</td>
-                            <td class="p-4 py-4 align-middle">180</td>
-                            <td class="p-4 py-4 align-middle">67</td>
-                            <td class="p-4 py-4 align-middle">
-                              <div class="inline-flex items-center rounded-full border border-solid border-transparent bg-secondary px-2.5 py-0.5 text-xs font-semibold text-secondary-foreground transition-colors hover:bg-secondary/80">
-                                inactive
-                              </div>
-                            </td>
-                            <td class="p-4 py-4 text-right align-middle">
-                              <div class="flex justify-end gap-2">
-                                <button class="inline-flex items-center justify-center gap-2 rounded-md border-none bg-transparent px-3 text-sm font-medium text-blue-600 transition-colors hover:bg-blue-50 hover:text-blue-800 h-9 pointer whitespace-nowrap">
-                                  <i data-lucide="square-pen" class="h-4 w-4"></i>
-                                </button>
-                                <button class="inline-flex items-center justify-center gap-2 rounded-md border-none bg-transparent px-3 text-sm font-medium text-red-600 transition-colors hover:bg-red-50 hover:text-red-800 h-9 pointer whitespace-nowrap">
-                                  <i data-lucide="trash2" class="h-4 w-4"></i>
+                                <button
+                                  class="rounded-md h-8 w-8 p-0 text-red-600 hover:text-red-800 hover:bg-red-50 pointer bg-transparent border-none"
+                                  type="button">
+                                  <i data-lucide="trash-2" class="h-4 w-4"></i>
                                 </button>
                               </div>
                             </td>
@@ -405,358 +648,6 @@ require_once '../backend/auth.php'; // handles autologin via cookie
                 </div>
               </div>
 
-              <!-- Admins -->
-              <div data-section="admins" class="hidden rounded-lg bg-card text-card-foreground shadow-sm">
-                <div class="p-6">
-                  <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                    <div class="flex items-center gap-3">
-                      <div class="text-blue-600">
-                        <i data-lucide="user-check" class="h-6 w-6"></i>
-                      </div>
-                      <div>
-                        <h2 class="text-2xl font-bold text-gray-800">Hospital Administrators</h2>
-                        <p class="mt-1 text-gray-600">Manage hospital administrators</p>
-                      </div>
-                    </div>
-                    <button class="inline-flex items-center justify-center gap-2 rounded-md border-none bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 h-10 pointer whitespace-nowrap">
-                      <i data-lucide="plus" class="h-4 w-4 mr-2"></i>
-                      Add Admin
-                    </button>
-                  </div>
-
-                  <div class="overflow-x-auto rounded-lg border border-solid border-card-soft bg-white">
-                    <div class="relative w-full overflow-auto">
-                      <table class="w-full border-collapse text-sm">
-                        <thead>
-                          <tr class="bg-gray-50 border-b border-solid border-card-soft transition-colors hover:bg-muted/50">
-                            <th class="h-12 px-4 text-left align-middle font-semibold text-gray-700">Name</th>
-                            <th class="h-12 px-4 text-left align-middle font-semibold text-gray-700">Email</th>
-                            <th class="h-12 px-4 text-left align-middle font-semibold text-gray-700">Phone</th>
-                            <th class="h-12 px-4 text-left align-middle font-semibold text-gray-700">Role</th>
-                            <th class="h-12 px-4 text-left align-middle font-semibold text-gray-700">Hospital</th>
-                            <th class="h-12 px-4 text-left align-middle font-semibold text-gray-700">Status</th>
-                            <th class="h-12 px-4 text-right align-middle font-semibold text-gray-700">Actions</th>
-                          </tr>
-                        </thead>
-
-                        <tbody class="table-no-border-last">
-                          <tr class="border-b border-solid border-card-soft transition-colors hover:bg-gray-50">
-                            <td class="p-4 py-4 align-middle">Michael Thompson</td>
-                            <td class="p-4 py-4 align-middle">michael.thompson@alnoor.com</td>
-                            <td class="p-4 py-4 align-middle">+1 (555) 345-6789</td>
-                            <td class="p-4 py-4 align-middle">
-                              <div class="inline-flex items-center rounded-full border border-solid border-card-soft px-2.5 py-0.5 text-xs font-semibold text-foreground capitalize transition-colors">
-                                hospital admin
-                              </div>
-                            </td>
-                            <td class="p-4 py-4 align-middle">Al Noor Medical Center</td>
-                            <td class="p-4 py-4 align-middle">
-                              <div class="inline-flex items-center rounded-full border border-solid border-transparent bg-medical-500 px-2.5 py-0.5 text-xs font-semibold text-white transition-colors hover:bg-medical-400">
-                                active
-                              </div>
-                            </td>
-                            <td class="p-4 py-4 text-right align-middle">
-                              <div class="flex justify-end gap-2">
-                                <button class="inline-flex items-center justify-center gap-2 rounded-md border-none bg-transparent px-3 text-sm font-medium text-blue-600 transition-colors hover:bg-blue-50 hover:text-blue-800 h-9 pointer whitespace-nowrap">
-                                  <i data-lucide="square-pen" class="h-4 w-4"></i>
-                                </button>
-                                <button class="inline-flex items-center justify-center gap-2 rounded-md border-none bg-transparent px-3 text-sm font-medium text-red-600 transition-colors hover:bg-red-50 hover:text-red-800 h-9 pointer whitespace-nowrap">
-                                  <i data-lucide="trash2" class="h-4 w-4"></i>
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
-              <!-- Doctors -->
-              <div data-section="doctors" class="hidden rounded-lg bg-card text-card-foreground shadow-sm">
-                <div class="p-6">
-                  <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                    <div class="flex items-center gap-3">
-                      <div class="text-blue-600">
-                        <i data-lucide="user-check" class="h-6 w-6"></i>
-                      </div>
-                      <div>
-                        <h2 class="text-2xl font-bold text-gray-800">Doctors</h2>
-                        <p class="mt-1 text-gray-600">Manage all doctors in the system</p>
-                      </div>
-                    </div>
-                    <button class="inline-flex items-center justify-center gap-2 rounded-md border-none bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 h-10 pointer whitespace-nowrap">
-                      <i data-lucide="plus" class="h-4 w-4 mr-2"></i>
-                      Add Doctor
-                    </button>
-                  </div>
-
-                  <div class="overflow-x-auto rounded-lg border border-solid border-card-soft bg-white">
-                    <div class="relative w-full overflow-auto">
-                      <table class="w-full border-collapse text-sm">
-                        <thead>
-                          <tr class="bg-gray-50 border-b border-solid border-card-soft transition-colors hover:bg-muted/50">
-                            <th class="h-12 px-4 text-left align-middle font-semibold text-gray-700">Name</th>
-                            <th class="h-12 px-4 text-left align-middle font-semibold text-gray-700">Email</th>
-                            <th class="h-12 px-4 text-left align-middle font-semibold text-gray-700">Phone</th>
-                            <th class="h-12 px-4 text-left align-middle font-semibold text-gray-700">Role</th>
-                            <th class="h-12 px-4 text-left align-middle font-semibold text-gray-700">Hospital</th>
-                            <th class="h-12 px-4 text-left align-middle font-semibold text-gray-700">Status</th>
-                            <th class="h-12 px-4 text-left align-middle font-semibold text-gray-700">Specialization</th>
-                            <th class="h-12 px-4 text-right align-middle font-semibold text-gray-700">Actions</th>
-                          </tr>
-                        </thead>
-
-                        <tbody class="table-no-border-last">
-                          <tr class="border-b border-solid border-card-soft transition-colors hover:bg-gray-50">
-                            <td class="p-4 py-4 align-middle">Dr. Sarah Johnson</td>
-                            <td class="p-4 py-4 align-middle">sarah.johnson@central.com</td>
-                            <td class="p-4 py-4 align-middle">+1 (555) 234-5678</td>
-                            <td class="p-4 py-4 align-middle">
-                              <div class="inline-flex items-center rounded-full border border-solid border-card-soft px-2.5 py-0.5 text-xs font-semibold text-foreground capitalize transition-colors">
-                                doctor
-                              </div>
-                            </td>
-                            <td class="p-4 py-4 align-middle">Central Medical Center</td>
-                            <td class="p-4 py-4 align-middle">
-                              <div class="inline-flex items-center rounded-full border border-solid border-transparent bg-medical-500 px-2.5 py-0.5 text-xs font-semibold text-white transition-colors hover:bg-medical-400">
-                                active
-                              </div>
-                            </td>
-                            <td class="p-4 py-4 align-middle">Interventional Cardiology</td>
-                            <td class="p-4 py-4 text-right align-middle">
-                              <div class="flex justify-end gap-2">
-                                <button class="inline-flex items-center justify-center gap-2 rounded-md border-none bg-transparent px-3 text-sm font-medium text-blue-600 transition-colors hover:bg-blue-50 hover:text-blue-800 h-9 pointer whitespace-nowrap">
-                                  <i data-lucide="square-pen" class="h-4 w-4"></i>
-                                </button>
-                                <button class="inline-flex items-center justify-center gap-2 rounded-md border-none bg-transparent px-3 text-sm font-medium text-red-600 transition-colors hover:bg-red-50 hover:text-red-800 h-9 pointer whitespace-nowrap">
-                                  <i data-lucide="trash2" class="h-4 w-4"></i>
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
-              <!-- Patients -->
-              <div data-section="patients" class="hidden rounded-lg bg-card text-card-foreground shadow-sm">
-                <div class="p-6">
-                  <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                    <div class="flex items-center gap-3">
-                      <div class="text-blue-600">
-                        <i data-lucide="users" class="h-6 w-6"></i>
-                      </div>
-                      <div>
-                        <h2 class="text-2xl font-bold text-gray-800">Patients</h2>
-                        <p class="mt-1 text-gray-600">Manage all patients in the system</p>
-                      </div>
-                    </div>
-                    <button class="inline-flex items-center justify-center gap-2 rounded-md border-none bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 h-10 pointer whitespace-nowrap">
-                      <i data-lucide="plus" class="h-4 w-4 mr-2"></i>
-                      Add Patient
-                    </button>
-                  </div>
-
-                  <div class="overflow-x-auto rounded-lg border border-solid border-card-soft bg-white">
-                    <div class="relative w-full overflow-auto">
-                      <table class="w-full border-collapse text-sm">
-                        <thead class="border-b border-solid border-card-soft">
-                          <tr class="bg-gray-50 transition-colors hover:bg-muted/50">
-                            <th class="h-12 px-4 text-left align-middle font-semibold text-gray-700">Name</th>
-                            <th class="h-12 px-4 text-left align-middle font-semibold text-gray-700">Email</th>
-                            <th class="h-12 px-4 text-left align-middle font-semibold text-gray-700">Phone</th>
-                            <th class="h-12 px-4 text-left align-middle font-semibold text-gray-700">Role</th>
-                            <th class="h-12 px-4 text-left align-middle font-semibold text-gray-700">Hospital</th>
-                            <th class="h-12 px-4 text-left align-middle font-semibold text-gray-700">Status</th>
-                            <th class="h-12 px-4 text-right align-middle font-semibold text-gray-700">Actions</th>
-                          </tr>
-                        </thead>
-
-                        <tbody class="table-no-border-last">
-                          <tr class="border-b border-solid border-card-soft transition-colors hover:bg-gray-50">
-                            <td class="p-4 py-4 align-middle">Emily Davis</td>
-                            <td class="p-4 py-4 align-middle">emily.davis@patient.com</td>
-                            <td class="p-4 py-4 align-middle">+1 (555) 456-7890</td>
-                            <td class="p-4 py-4 align-middle">
-                              <div class="inline-flex items-center rounded-full border border-solid border-card-soft px-2.5 py-0.5 text-xs font-semibold text-foreground capitalize transition-colors">
-                                patient
-                              </div>
-                            </td>
-                            <td class="p-4 py-4 align-middle">Unassigned</td>
-                            <td class="p-4 py-4 align-middle">
-                              <div class="inline-flex items-center rounded-full border border-solid border-transparent bg-medical-500 px-2.5 py-0.5 text-xs font-semibold text-white transition-colors hover:bg-medical-400">
-                                active
-                              </div>
-                            </td>
-                            <td class="p-4 py-4 text-right align-middle">
-                              <div class="flex justify-end gap-2">
-                                <button class="inline-flex items-center justify-center gap-2 rounded-md border-none bg-transparent px-3 text-sm font-medium text-blue-600 transition-colors hover:bg-blue-50 hover:text-blue-800 h-9 pointer whitespace-nowrap">
-                                  <i data-lucide="square-pen" class="h-4 w-4"></i>
-                                </button>
-                                <button class="inline-flex items-center justify-center gap-2 rounded-md border-none bg-transparent px-3 text-sm font-medium text-red-600 transition-colors hover:bg-red-50 hover:text-red-800 h-9 pointer whitespace-nowrap">
-                                  <i data-lucide="trash2" class="h-4 w-4"></i>
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
-              <!-- Staff & Teams -->
-              <div data-section="staff-ambulance" class="hidden grid gap-6">
-
-                <!-- Staff Members -->
-                <div class="rounded-lg bg-card text-card-foreground shadow-sm">
-                  <div class="p-6">
-                    <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                      <div class="flex items-center gap-3">
-                        <div class="text-blue-600">
-                          <i data-lucide="users" class="h-6 w-6"></i>
-                        </div>
-                        <div>
-                          <h2 class="text-2xl font-bold text-gray-800">Staff Members</h2>
-                          <p class="mt-1 text-gray-600">Manage hospital staff</p>
-                        </div>
-                      </div>
-                      <button class="inline-flex items-center justify-center gap-2 rounded-md border-none bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 h-10 pointer whitespace-nowrap">
-                        <i data-lucide="plus" class="h-4 w-4 mr-2"></i>
-                        Add Staff
-                      </button>
-                    </div>
-
-                    <div class="overflow-x-auto rounded-lg border border-solid border-card-soft bg-white">
-                      <div class="relative w-full overflow-auto">
-                        <table class="w-full border-collapse text-sm">
-                          <thead class="border-b border-solid border-card-soft">
-                            <tr class="bg-gray-50 border-b transition-colors hover:bg-muted/50">
-                              <th class="h-12 px-4 text-left align-middle font-semibold text-gray-700">Name</th>
-                              <th class="h-12 px-4 text-left align-middle font-semibold text-gray-700">Email</th>
-                              <th class="h-12 px-4 text-left align-middle font-semibold text-gray-700">Phone</th>
-                              <th class="h-12 px-4 text-left align-middle font-semibold text-gray-700">Role</th>
-                              <th class="h-12 px-4 text-left align-middle font-semibold text-gray-700">Hospital</th>
-                              <th class="h-12 px-4 text-left align-middle font-semibold text-gray-700">Status</th>
-                              <th class="h-12 px-4 text-left align-middle font-semibold text-gray-700">Department</th>
-                              <th class="h-12 px-4 text-right align-middle font-semibold text-gray-700">Actions</th>
-                            </tr>
-                          </thead>
-
-                          <tbody class="table-no-border-last">
-                            <tr class="transition-colors hover:bg-gray-50">
-                              <td class="p-4 py-4 align-middle">James Wilson</td>
-                              <td class="p-4 py-4 align-middle">james.wilson@central.com</td>
-                              <td class="p-4 py-4 align-middle">+1 (555) 567-8901</td>
-                              <td class="p-4 py-4 align-middle">
-                                <div class="inline-flex items-center rounded-full border border-solid border-card-soft px-2.5 py-0.5 text-xs font-semibold text-foreground capitalize transition-colors">
-                                  staff
-                                </div>
-                              </td>
-                              <td class="p-4 py-4 align-middle">Central Medical Center</td>
-                              <td class="p-4 py-4 align-middle">
-                                <div class="inline-flex items-center rounded-full border border-transparent bg-medical-500 px-2.5 py-0.5 text-xs font-semibold text-white transition-colors hover:bg-medical-400">
-                                  active
-                                </div>
-                              </td>
-                              <td class="p-4 py-4 align-middle">Reception</td>
-                              <td class="p-4 py-4 text-right align-middle">
-                                <div class="flex justify-end gap-2">
-                                  <button class="inline-flex items-center justify-center gap-2 rounded-md border-none bg-transparent px-3 text-sm font-medium text-blue-600 transition-colors hover:bg-blue-50 hover:text-blue-800 h-9 pointer whitespace-nowrap">
-                                    <i data-lucide="square-pen" class="h-4 w-4"></i>
-                                  </button>
-                                  <button class="inline-flex items-center justify-center gap-2 rounded-md border-none bg-transparent px-3 text-sm font-medium text-red-600 transition-colors hover:bg-red-50 hover:text-red-800 h-9 pointer whitespace-nowrap">
-                                    <i data-lucide="trash2" class="h-4 w-4"></i>
-                                  </button>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Ambulance Teams -->
-                <div class="rounded-lg border-0 bg-card text-card-foreground shadow-sm">
-                  <div class="p-6">
-                    <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                      <div class="flex items-center gap-3">
-                        <div class="text-blue-600">
-                          <i data-lucide="trash2" class="h-4 w-4"></i>
-                        </div>
-                        <div>
-                          <h2 class="text-2xl font-bold text-gray-800">Ambulance Teams</h2>
-                          <p class="mt-1 text-gray-600">Manage emergency response teams</p>
-                        </div>
-                      </div>
-                      <button class="inline-flex items-center justify-center gap-2 rounded-md border-none bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 h-10 pointer whitespace-nowrap">
-                        <i data-lucide="plus" class="h-4 w-4 mr-2"></i>
-                        Add Team
-                      </button>
-                    </div>
-
-                    <div class="overflow-x-auto rounded-lg border border-solid border-card-soft bg-white">
-                      <div class="relative w-full overflow-auto">
-                        <table class="w-full border-collapse text-sm">
-                          <thead class="border-b border-solid border-card-soft">
-                            <tr class="bg-gray-50 transition-colors hover:bg-muted/50">
-                              <th class="h-12 px-4 text-left align-middle font-semibold text-gray-700">Name</th>
-                              <th class="h-12 px-4 text-left align-middle font-semibold text-gray-700">Email</th>
-                              <th class="h-12 px-4 text-left align-middle font-semibold text-gray-700">Phone</th>
-                              <th class="h-12 px-4 text-left align-middle font-semibold text-gray-700">Role</th>
-                              <th class="h-12 px-4 text-left align-middle font-semibold text-gray-700">Hospital</th>
-                              <th class="h-12 px-4 text-left align-middle font-semibold text-gray-700">Status</th>
-                              <th class="h-12 px-4 text-right align-middle font-semibold text-gray-700">Actions</th>
-                            </tr>
-                          </thead>
-
-                          <tbody class="table-no-border-last">
-                            <tr class="border-b border-solid border-card-soft transition-colors hover:bg-gray-50">
-                              <td class="p-4 py-4 align-middle">Emergency Response Team Alpha</td>
-                              <td class="p-4 py-4 align-middle">team.alpha@emergency.com</td>
-                              <td class="p-4 py-4 align-middle">+1 (555) 678-9012</td>
-                              <td class="p-4 py-4 align-middle">
-                                <div class="inline-flex items-center rounded-full border border-solid border-card-soft px-2.5 py-0.5 text-xs font-semibold text-foreground capitalize transition-colors">
-                                  ambulance team
-                                </div>
-                              </td>
-                              <td class="p-4 py-4 align-middle">Unassigned</td>
-                              <td class="p-4 py-4 align-middle">
-                                <div class="inline-flex items-center rounded-full border border-transparent bg-medical-500 px-2.5 py-0.5 text-xs font-semibold text-white transition-colors hover:bg-medical-400">
-                                  active
-                                </div>
-                              </td>
-                              <td class="p-4 py-4 text-right align-middle">
-                                <div class="flex justify-end gap-2">
-                                  <button class="inline-flex items-center justify-center gap-2 rounded-md border-none bg-transparent px-3 text-sm font-medium text-blue-600 transition-colors hover:bg-blue-50 hover:text-blue-800 h-9 pointer whitespace-nowrap">
-                                    <i data-lucide="square-pen" class="h-4 w-4"></i>
-                                  </button>
-                                  <button class="inline-flex items-center justify-center gap-2 rounded-md border-none bg-transparent px-3 text-sm font-medium text-red-600 transition-colors hover:bg-red-50 hover:text-red-800 h-9 pointer whitespace-nowrap">
-                                    <i data-lucide="trash2" class="h-4 w-4"></i>
-                                  </button>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-
-              </div>
             </div>
           </div>
         </div>
@@ -769,7 +660,7 @@ require_once '../backend/auth.php'; // handles autologin via cookie
     <div class="container mx-auto px-4">
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
         <div>
-          <a href="./" class="inline-block mb-4">
+          <a href="<?= $paths['home'] ?>" class="inline-block mb-4">
             <span class="text-medical-700 font-semibold text-2xl">
               Medi<span class="text-medical-500">Connect</span>
             </span>
@@ -801,22 +692,22 @@ require_once '../backend/auth.php'; // handles autologin via cookie
           </h4>
           <ul class="flex flex-col gap-2">
             <li>
-              <a href="./appointments.php" class="text-gray-600 hover:text-medical-600 transition-colors">
+              <a href="<?= $paths['services']['appointments'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
                 Book Appointments
               </a>
             </li>
             <li>
-              <a href="./doctors.php" class="text-gray-600 hover:text-medical-600 transition-colors">
+              <a href="<?= $paths['services']['doctors'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
                 Find Doctors
               </a>
             </li>
             <li>
-              <a href="./hospitals.php" class="text-gray-600 hover:text-medical-600 transition-colors">
+              <a href="<?= $paths['services']['hospitals'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
                 Hospital Information
               </a>
             </li>
             <li>
-              <a href="./emergency.php" class="text-gray-600 hover:text-medical-600 transition-colors">
+              <a href="<?= $paths['services']['emergency'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
                 Emergency Services
               </a>
             </li>
@@ -829,27 +720,27 @@ require_once '../backend/auth.php'; // handles autologin via cookie
           </h4>
           <ul class="flex flex-col gap-2">
             <li>
-              <a href="./about.php" class="text-gray-600 hover:text-medical-600 transition-colors">
+              <a href="<?= $paths['static']['about'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
                 About Us
               </a>
             </li>
             <li>
-              <a href="./privacy.php" class="text-gray-600 hover:text-medical-600 transition-colors">
+              <a href="<?= $paths['static']['privacy'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
                 Privacy Policy
               </a>
             </li>
             <li>
-              <a href="./terms.php" class="text-gray-600 hover:text-medical-600 transition-colors">
+              <a href="<?= $paths['static']['terms'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
                 Terms of Service
               </a>
             </li>
             <li>
-              <a href="./faq.php" class="text-gray-600 hover:text-medical-600 transition-colors">
+              <a href="<?= $paths['static']['faq'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
                 FAQs
               </a>
             </li>
             <li>
-              <a href="./contact.php" class="text-gray-600 hover:text-medical-600 transition-colors">
+              <a href="<?= $paths['static']['contact'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
                 Contact Us
               </a>
             </li>
