@@ -3,9 +3,6 @@ const monthYear = document.getElementById("month-year");
 const prevBtn = document.getElementById("prev");
 const nextBtn = document.getElementById("next");
 const selectedDateValue = document.getElementById("selected-date");
-const dateButton = document.getElementById('appointment-date');
-const calendarPopup = document.getElementById('calendar-popup');
-const timeSlotButton = document.getElementById('time-slot-button');
 
 let date = new Date();
 let selectedDay = null;
@@ -37,7 +34,7 @@ export function renderCalendar() {
   for (let i = firstDay; i > 0; i--) {
     const div = document.createElement("div");
     div.textContent = prevLastDate - i + 1;
-    div.className = "h-9 w-9 text-gray-400 not-allowed not-allowed flex items-center justify-center";
+    div.className = "h-9 w-9 text-gray-400 not-allowed flex items-center justify-center";
     div.setAttribute("disabled", "true");
     daysContainer.appendChild(div);
   }
@@ -69,14 +66,14 @@ export function renderCalendar() {
 
       div.addEventListener("click", () => {
         if (selectedDay === div) {
-          div.className = defaultClass + " hover:text-medical-600 hover:bg-medical-50 pointer";
+          div.className = defaultClass + "hover:text-medical-600 hover:bg-medical-50 pointer";
           if (isToday) div.classList.add("font-bold", "text-black");
           selectedDay = null;
           selectedDateValue.textContent = "Pick a date";
         } else {
           if (selectedDay) {
             const prevText = selectedDay.textContent;
-            selectedDay.className = defaultClass + " hover:text-medical-600 hover:bg-medical-50 pointer";
+            selectedDay.className = defaultClass + "hover:text-medical-600 hover:bg-medical-50 pointer";
             const wasToday = +prevText === today.getDate() && month === today.getMonth() && year === today.getFullYear();
             if (wasToday) selectedDay.classList.add("font-bold", "text-black");
           }
