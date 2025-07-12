@@ -169,54 +169,56 @@ $userEmail = "elio"
                         </button>
                     </div>
 
-                    <!-- Dashboard Stats Cards Section -->
-                    <div class="mt-2 flex flex-col gap-6">
-                        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-
-                            <div class="glass-card rounded-xl p-6">
-                                <div class="flex items-center justify-between">
-                                    <div>
-                                        <p class="text-sm font-medium text-gray-600">Today's Total</p>
-                                        <p class="text-2xl font-bold">4</p>
-                                    </div>
-                                    <i data-lucide="calendar" class="h-8 w-8 text-blue-600"></i>
-                                </div>
-                            </div>
-
-                            <div class="glass-card rounded-xl p-6">
-                                <div class="flex items-center justify-between">
-                                    <div>
-                                        <p class="text-sm font-medium text-gray-600">Pending</p>
-                                        <p class="text-2xl font-bold">2</p>
-                                    </div>
-                                    <i data-lucide="clock" class="h-8 w-8 text-orange-600"></i>
-                                </div>
-                            </div>
-
-                            <div class="glass-card rounded-xl p-6">
-                                <div class="flex items-center justify-between">
-                                    <div>
-                                        <p class="text-sm font-medium text-gray-600">Completed</p>
-                                        <p class="text-2xl font-bold">0</p>
-                                    </div>
-                                    <i data-lucide="file-text" class="h-8 w-8 text-green-600"></i>
-                                </div>
-                            </div>
-
-                            <div class="glass-card rounded-xl p-6">
-                                <div class="flex items-center justify-between">
-                                    <div>
-                                        <p class="text-sm font-medium text-gray-600">In Progress</p>
-                                        <p class="text-2xl font-bold">1</p>
-                                    </div>
-                                    <i data-lucide="user" class="h-8 w-8 text-purple-600"></i>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
+                    <!-- My Appointments Section -->
                     <div data-section="my-appointments" class="hidden glass-card rounded-xl p-6">
+
+                        <!-- Dashboard Stats Cards Section -->
+                        <div class="mb-6 flex flex-col gap-6">
+                            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+
+                                <div class="glass-card rounded-xl p-6">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <p class="text-sm font-medium text-gray-600">Today's Total</p>
+                                            <p class="text-2xl font-bold">4</p>
+                                        </div>
+                                        <i data-lucide="calendar" class="h-8 w-8 text-blue-600"></i>
+                                    </div>
+                                </div>
+
+                                <div class="glass-card rounded-xl p-6">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <p class="text-sm font-medium text-gray-600">Pending</p>
+                                            <p class="text-2xl font-bold">2</p>
+                                        </div>
+                                        <i data-lucide="clock" class="h-8 w-8 text-orange-600"></i>
+                                    </div>
+                                </div>
+
+                                <div class="glass-card rounded-xl p-6">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <p class="text-sm font-medium text-gray-600">Completed</p>
+                                            <p class="text-2xl font-bold">0</p>
+                                        </div>
+                                        <i data-lucide="file-text" class="h-8 w-8 text-green-600"></i>
+                                    </div>
+                                </div>
+
+                                <div class="glass-card rounded-xl p-6">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <p class="text-sm font-medium text-gray-600">In Progress</p>
+                                            <p class="text-2xl font-bold">1</p>
+                                        </div>
+                                        <i data-lucide="user" class="h-8 w-8 text-purple-600"></i>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
                         <h3 class="text-xl font-bold mb-4">Today's Appointments</h3>
                         <div class="flex flex-col gap-3">
 
