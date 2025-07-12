@@ -252,14 +252,6 @@ input::placeholder {
   border-color: #fca5a5; 
 }
 
-.text-orange-600 {
-  color: #ea580c; 
-}
-
-.text-red-800 {
-  color: #991b1b; /* Tailwind red-800 */
-}
-
 .bg-orange-100 {
   background-color: #ffedd5; /* Tailwind orange-100 */
 }
@@ -296,15 +288,10 @@ input::placeholder {
   border-color: #bfdbfe; /* Tailwind blue-200 */
 }
 
-.border-gray-200 {
-  border-color: #e5e7eb; /* Tailwind gray-200 */
-}
 
 .bg-red-800 {
   background-color: #991b1b; /* Tailwind's red-800 */
 }
-
-
 
 .table-no-border-last tr:last-child {
   border: none;
@@ -328,4 +315,16 @@ input::placeholder {
 
 .not-allowed {
   cursor: not-allowed;
+}
+
+.left-3 {
+  left: 0.75rem; /* 12px */
+}
+
+.top-1\/2 {
+  top: 50%;
+}
+
+.transform.-translate-y-1\/2 {
+  transform: translateY(-50%);
 }

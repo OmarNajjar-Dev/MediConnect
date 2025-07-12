@@ -2,6 +2,7 @@
    Small Screens (≥640px)
    ========================================================================== */
 @media screen and (min-width: 640px) {
+
   /* Layout */
   .sm\:flex-col {
     flex-direction: column;
@@ -21,6 +22,10 @@
 
   .sm\:w-auto {
     width: auto;
+  }
+
+  .sm\:w-48 {
+    width: 192px;
   }
 
   .sm\:max-h-125 {
@@ -57,6 +62,10 @@
     gap: 16px;
   }
 
+  .sm\:gap-6 {
+    gap: 24px;
+  }
+
   .sm\:px-6 {
     padding-left: 24px;
     padding-right: 24px;
@@ -88,6 +97,10 @@
     line-height: 1;
   }
 
+  .sm\:table-cell {
+    display: table-cell;
+  }
+
   /* Containers */
   .container {
     max-width: 640px;
@@ -98,6 +111,7 @@
    Medium Screens (≥768px)
    ========================================================================== */
 @media screen and (min-width: 768px) {
+
   /* Layout */
   .md\:flex {
     display: flex;
@@ -244,6 +258,7 @@
    Large Screens (≥1024px)
    ========================================================================== */
 @media screen and (min-width: 1024px) {
+
   /* Layout */
   .lg\:flex-col {
     flex-direction: column;
@@ -329,6 +344,14 @@
 
   .lg\:gap-12 {
     gap: 48px;
+  }
+
+  .lg\:col-span-2 {
+    grid-column: span 2 / span 2;
+  }
+
+  .lg\:table-cell {
+    display: table-cell;
   }
 
   /* Containers */
