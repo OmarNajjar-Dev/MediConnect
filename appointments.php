@@ -334,11 +334,11 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
                             <label class="text-sm font-medium leading-none">Time Slot</label>
                             <button type="button" role="combobox" id="time-slot-button"
                                 class="dropdown-trigger bg-white flex items-center justify-between pointer h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
-                                <span class=" selected-value">Select a time</span>
+                                <span class="selected-value">Select a time</span>
                                 <i data-lucide="chevron-down" class="h-4 w-4 opacity-50"></i>
                             </button>
-                            <ul id="timeSlotDropdown"
-                                class="hidden p-1.5 mt-7.5 bg-background border border-solid border-input rounded-md shadow-xl">
+                            <ul
+                                class="hidden p-1.5 mt-7.5 bg-background scrollbar-none border border-solid border-input rounded-md shadow-xl">
                                 <li>
                                     <button type="button"
                                         class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md">9:00
@@ -424,7 +424,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
                             <label for="reason" class="text-sm font-medium leading-none">Reason for Visit</label>
                             <textarea id="reason" name="reason"
                                 placeholder="Please briefly describe the reason for your visit"
-                                class="min-h-[80px] w-full resize-none rounded-md border border-solid border-input focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white outline-none bg-background px-3 py-2 text-sm"
+                                class="min-h-20 w-full resize-none scrollbar-none rounded-md border border-solid border-input focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white outline-none bg-background px-3 py-2 text-sm"
                                 rows="3"></textarea>
                             <p id="error-required" class="text-sm font-medium text-danger hidden">required</p>
                         </div>
@@ -434,7 +434,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
                             <label for="notes" class="text-sm font-medium leading-none">Additional Notes</label>
                             <textarea id="notes" name="notes"
                                 placeholder="Any additional information you want to share (optional)"
-                                class="min-h-[80px] w-full resize-none rounded-md border border-solid border-input focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white outline-none bg-background px-3 py-2 text-sm"
+                                class="min-h-20 w-full resize-none scrollbar-none rounded-md border border-solid border-input focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white outline-none bg-background px-3 py-2 text-sm"
                                 rows="3"></textarea>
                         </div>
 
