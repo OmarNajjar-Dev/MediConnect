@@ -122,10 +122,6 @@
   background-color: rgb(var(--medical-400));
 }
 
-.bg-medical-500\/10 {
-  background-color: rgba(var(--medical-500), 0.1);
-}
-
 .bg-medical-500 {
   background-color: rgb(var(--medical-500));
 }
@@ -412,6 +408,14 @@
   border-color: rgb(var(--gray-100));
 }
 
+.border-gray-200 {
+  border-color: rgb(var(--gray-200));
+}
+
+.border-gray-300 {
+  border-color: rgb(var(--gray-300));
+}
+
 .border-card-light {
   border-color: rgb(var(--border-card-light));
 }
@@ -422,6 +426,10 @@
 
 .border-medical-100 {
   border-color: rgb(var(--medical-100));
+}
+
+.border-medical-200 {
+  border-color: rgb(var(--medical-200));
 }
 
 .border-transparent {
@@ -522,12 +530,12 @@
   background-color: rgb(var(--purple-50));
 }
 
-.bg-orange-50 {
-  background-color: rgb(var(--orange-50));
+.bg-purple-500 {
+  background-color: rgb(var(--purple-500));
 }
 
-.bg-green-100 {
-  background-color: rgb(var(--green-100));
+.bg-orange-50 {
+  background-color: rgb(var(--orange-50));
 }
 
 .text-green-400 {
@@ -558,10 +566,6 @@
   color: rgb(var(--yellow-800));
 }
 
-.bg-red-100 {
-  background-color: #fee2e2;
-}
-
 .bg-blue-50 {
   background-color: rgb(var(--blue-50));
 }
@@ -576,6 +580,10 @@
 
 .hover\:text-blue-800:hover {
   color: rgb(var(--blue-800));
+}
+
+.bg-blue-500 {
+  background-color: rgb(var(--blue-500));
 }
 
 .bg-blue-600 {
@@ -632,6 +640,10 @@
 
 .bg-green-100 {
   background-color: rgb(var(--green-100));
+}
+
+.bg-green-500 {
+  background-color: rgb(var(--green-500));
 }
 
 .text-green-400 {
@@ -696,6 +708,10 @@
 
 .text-purple-600 {
   color: rgb(var(--purple-600));
+}
+
+.text-red-800 {
+  color: rgb(var(--red-800));
 }
 
 .hover\:text-red-800:hover {

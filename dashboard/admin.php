@@ -319,9 +319,9 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                             <!-- Doctors Table -->
                             <div class="overflow-x-auto">
                                 <div class="relative w-full overflow-auto">
-                                    <table class="w-full caption-bottom text-sm">
-                                        <thead class="[&_tr]:border-b">
-                                            <tr class="border-b transition-colors hover:bg-muted/50">
+                                    <table class="border-collapse w-full text-sm">
+                                        <thead class="border-b border-solid border-card-soft">
+                                            <tr class="transition-colors hover:bg-muted/50">
                                                 <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground">Name</th>
                                                 <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground">Email</th>
                                                 <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground">Specialization</th>
@@ -332,10 +332,10 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                                             </tr>
                                         </thead>
 
-                                        <tbody class="[&_tr:last-child]:border-none">
+                                        <tbody class="table-no-border-last">
 
                                             <!-- Doctor 1 -->
-                                            <tr class="border-b transition-colors hover:bg-muted/50">
+                                            <tr class="border-b border-solid border-card-soft transition-colors hover:bg-muted/50">
                                                 <td class="p-4 align-middle font-medium">Dr. Sarah Johnson</td>
                                                 <td class="p-4 align-middle">sarah.johnson@alnoor.hospital</td>
                                                 <td class="p-4 align-middle">Cardiology</td>

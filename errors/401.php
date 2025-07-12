@@ -37,7 +37,7 @@ require_once __DIR__ . "/../backend/middleware/session-context.php";
 
 </head>
 
-<body class="bg-background text-heading">
+<body class="bg-background">
 
     <!-- Header Section -->
     <header class="fixed z-50 py-5 bg-transparent transition-all">
@@ -146,39 +146,75 @@ require_once __DIR__ . "/../backend/middleware/session-context.php";
 
         </div>
     </header>
-  
-    <!-- Main Content -->
-    <main class="min-h-screen bg-gray-50 flex items-center justify-center px-4 sm:px-6 lg:px-8 flex-grow">
-        <div class="max-w-md w-full space-y-8 text-center">
+
+    <!-- Unauthorized Access Page Wrapper -->
+    <main class="overflow-hidden flex justify-center flex-grow bg-gray-50 pt-20 pb-16">
+        <!-- Centered Content Container -->
+        <div class="max-w-md w-full flex flex-col gap-8 text-center pt-20 pb-16">
+
+            <!-- Lock Icon Section -->
             <div class="flex justify-center">
                 <div class="relative">
-                    <div class="w-24 h-24 bg-white rounded-full shadow-lg flex items-center justify-center border border-solid border-gray-100"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-lock w-10 h-10 text-medical-500">
-                            <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
-                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                        </svg></div>
-                    <div class="absolute inset-0 w-24 h-24 bg-medical-500/10 rounded-full blur-xl -z-10"></div>
+                    <!-- Icon Circle -->
+                    <div class="w-24 h-24 bg-white rounded-full shadow-lg flex items-center justify-center border border-solid border-transparent border-gray-100 -z-10">
+                        <i data-lucide="lock" class="w-10 h-10 text-medical-500"></i>
+                    </div>
+                    <!-- Optional Blurred Background (non-visible effect here) -->
+                    <div class="absolute inset-0 w-24 h-24 rounded-full blur-xl"></div>
                 </div>
             </div>
+
+            <!-- Message Box -->
             <div class="bg-white rounded-2xl shadow-xl border border-solid border-gray-100 p-8 sm:p-10">
-                <div class="space-y-4">
+
+                <!-- Title and Subtitle -->
+                <div class="flex flex-col gap-4">
                     <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 tracking-tight">401</h1>
                     <h2 class="text-xl sm:text-2xl font-semibold text-gray-800">Unauthorized Access</h2>
                 </div>
-                <div class="space-y-3 mt-6">
-                    <p class="text-gray-600 text-base sm:text-lg leading-relaxed">You don't have permission to access this page.</p>
-                    <p class="text-gray-500 text-sm leading-relaxed">Please contact your system administrator if you believe this is a mistake.</p>
+
+                <!-- Description -->
+                <div class="flex flex-col gap-3 mt-6">
+                    <p class="text-gray-600 text-base sm:text-lg leading-relaxed">
+                        You don't have permission to access this page.
+                    </p>
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        Please contact your system administrator if you believe this is a mistake.
+                    </p>
                 </div>
-                <div class="flex flex-col sm:flex-row gap-3 mt-8"><a class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 flex-1 inline-flex items-center justify-center gap-2" href="/contact"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail w-4 h-4">
-                            <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-                        </svg>Contact Support</a><a class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 flex-1 inline-flex items-center justify-center gap-2" href="/"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house w-4 h-4">
-                            <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
-                            <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                        </svg>Back to Home</a></div>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row gap-3 mt-8">
+                    <!-- Contact Support Button -->
+                    <a
+                        class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors bg-medical-600 text-white hover:bg-medical-400 h-10 px-4 py-2 flex-grow"
+                        href="<?= $paths['static']['contact'] ?>">
+                        <i data-lucide="mail" class="w-4 h-4"></i>
+                        Contact Support
+                    </a>
+
+                    <!-- Back to Home Button -->
+                    <a
+                        class="inline-flex text-heading items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-card-soft bg-background hover:bg-gray-100 hover:text-accent-foreground h-10 px-4 py-2 flex-grow"
+                        href="<?= $paths['home'] ?>">
+                        <i data-lucide="house" class="w-4 h-4"></i>
+                        Back to Home
+                    </a>
+                </div>
             </div>
+
+            <!-- Contact Note -->
             <div class="text-center">
-                <p class="text-gray-500 text-sm">Need help? Contact <a href="mailto:support@mediconnect.com" class="text-mediconnect-600 hover:text-mediconnect-700 transition-colors duration-200 font-medium">support@mediconnect.com</a></p>
+                <p class="text-gray-500 text-sm">
+                    Need help? Contact
+                    <a
+                        href="mailto:contact@mediconnect.example"
+                        class="text-medical-600 hover:text-medical-700 transition-colors transition-200 font-medium">
+                        contact@mediconnect.example
+                    </a>
+                </p>
             </div>
+
         </div>
     </main>
 
@@ -304,7 +340,7 @@ require_once __DIR__ . "/../backend/middleware/session-context.php";
     </footer>
 
     <!-- External JavaScript -->
-    <script type="module" src="./js/common/index.js"></script>
+    <script type="module" src="../js/common/index.js"></script>
 
     <!-- Create Lucide Icons -->
     <script>
