@@ -1,5 +1,6 @@
 <?php
-require_once 'db.php';
+
+require_once __DIR__ . '/../config/db.php';
 
 $sql = "SELECT h.*, GROUP_CONCAT(s.label_for_hospital) AS specialties
         FROM hospitals h

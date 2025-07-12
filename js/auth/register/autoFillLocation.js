@@ -7,7 +7,7 @@ export function autoFillLocation() {
 
         try {
           const response = await fetch(
-            `/MediConnect/backend/get-location.php?lat=${lat}&lon=${lon}`
+            `/MediConnect/backend/api/get-location.php?lat=${lat}&lon=${lon}`
           );
           const data = await response.json();
 

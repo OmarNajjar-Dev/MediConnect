@@ -1,10 +1,10 @@
 <?php
 
 // 1. Load system configuration (paths, constants, routes, etc.)
-require_once __DIR__ . "/backend/config/path.php";
+require_once __DIR__ . "/../backend/config/path.php";
 
 // 2. Load user session context (sets $isLoggedIn, $userName, $userEmail, $dashboardLink)
-require_once __DIR__ . "/backend/middleware/session-context.php";
+require_once __DIR__ . "/../backend/middleware/session-context.php";
 
 ?>
 
@@ -21,16 +21,16 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="css/base.css" />
-    <link rel="stylesheet" href="css/colors.css" />
-    <link rel="stylesheet" href="css/typography.css" />
-    <link rel="stylesheet" href="css/spacing.min.css" />
-    <link rel="stylesheet" href="css/sizing.min.css" />
-    <link rel="stylesheet" href="css/borders.css" />
-    <link rel="stylesheet" href="css/layout.css" />
-    <link rel="stylesheet" href="css/animations.css" />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/colors.css" />
+    <link rel="stylesheet" href="../css/typography.css" />
+    <link rel="stylesheet" href="../css/spacing.min.css" />
+    <link rel="stylesheet" href="../css/sizing.min.css" />
+    <link rel="stylesheet" href="../css/borders.css" />
+    <link rel="stylesheet" href="../css/layout.css" />
+    <link rel="stylesheet" href="../css/animations.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/responsive.css" />
 
     <!-- Page Title -->
     <title>MediConnect - Bridging Healthcare & Technology</title>
@@ -148,139 +148,47 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
     </header>
 
     <!-- Main Content -->
-    <main class="overflow-hidden pt-20 flex-grow">
-        <div class="container mx-auto px-4 py-12 md:px-6">
-            <div class="max-w-3xl mx-auto">
-                <h1 class="text-3xl font-bold mb-6">Terms of Service</h1>
-                <div class="text-sm text-gray-500 mb-8">
-                    Last updated: May 1, 2025
+    <main class="min-h-screen bg-gradient-to-br from-gray-50 to-red-50 flex items-center justify-center px-4 sm:px-6 lg:px-8 flex-grow">
+        <div class="max-w-lg w-full space-y-8 text-center animate-fade-in">
+            <div class="absolute inset-0 overflow-hidden pointer-events-none">
+                <div class="absolute top-20 left-10 w-32 h-32 bg-red-100 rounded-full opacity-20 blur-3xl"></div>
+                <div class="absolute bottom-20 right-10 w-40 h-40 bg-green-100 rounded-full opacity-20 blur-3xl"></div>
+            </div>
+            <div class="flex justify-center relative z-10">
+                <div class="relative">
+                    <div class="w-28 h-28 bg-white rounded-full shadow-xl flex items-center justify-center border border-red-100 hover-scale"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-triangle-alert w-12 h-12 text-red-500">
+                            <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path>
+                            <path d="M12 9v4"></path>
+                            <path d="M12 17h.01"></path>
+                        </svg></div>
+                    <div class="absolute inset-0 w-28 h-28 bg-red-500/10 rounded-full blur-xl -z-10 pulse"></div>
                 </div>
-                <div class="max-w-none">
-                    <p class="mb-6">
-                        Please read these Terms of Service ("Terms", "Terms of Service")
-                        carefully before using the MediConnect platform operated by
-                        MediConnect, Inc. ("us", "we", "our").
-                    </p>
-                    <p class="mb-6">
-                        By accessing or using our service, you agree to be bound by these
-                        Terms. If you disagree with any part of the terms, you may not
-                        access the service.
-                    </p>
-                    <h2 class="text-2xl font-bold mt-8 mb-4">1. Service Description</h2>
-                    <p class="mb-6">
-                        MediConnect is a healthcare platform designed to connect patients
-                        with medical professionals, hospitals, pharmacies, and emergency
-                        services. Our platform facilitates appointment booking, medical
-                        report sharing, healthcare provider ratings, and other
-                        healthcare-related services.
-                    </p>
-                    <h2 class="text-2xl font-bold mt-8 mb-4">2. User Accounts</h2>
-                    <p class="mb-4">
-                        When you create an account with us, you must provide information
-                        that is accurate, complete, and current at all times.
-                    </p>
-                    <p class="mb-6">
-                        You are responsible for maintaining the confidentiality of your
-                        account and password and for restricting access to your computer
-                        or device. You agree to accept responsibility for all activities
-                        that occur under your account or password.
-                    </p>
-                    <h2 class="text-2xl font-bold mt-8 mb-4">3. User Conduct</h2>
-                    <p class="mb-4">As a user, you agree not to:</p>
-                    <ul class="list-disc pl-8 mb-6">
-                        <li class="mb-2">
-                            Use the service for any illegal purpose or in violation of any
-                            laws.
-                        </li>
-                        <li class="mb-2">
-                            Impersonate any person or entity or falsely state or
-                            misrepresent your affiliation with a person or entity.
-                        </li>
-                        <li class="mb-2">
-                            Interfere with or disrupt the service or servers or networks
-                            connected to the service.
-                        </li>
-                        <li class="mb-2">
-                            Post false, misleading, or dishonest reviews of healthcare
-                            providers or services.
-                        </li>
-                        <li class="mb-2">
-                            Use the service to distribute unsolicited promotional or
-                            commercial content.
-                        </li>
-                    </ul>
-                    <h2 class="text-2xl font-bold mt-8 mb-4">
-                        4. Healthcare Provider Relationships
-                    </h2>
-                    <p class="mb-6">
-                        MediConnect is a platform that facilitates connections between
-                        patients and healthcare providers. We are not a healthcare
-                        provider and do not provide medical advice, diagnosis, or
-                        treatment.
-                    </p>
-                    <p class="mb-6">
-                        All medical information, advice, and services are provided solely
-                        by the healthcare providers you connect with through our platform.
-                        We are not responsible for the quality, accuracy, or
-                        appropriateness of any medical care or advice you receive.
-                    </p>
-                    <h2 class="text-2xl font-bold mt-8 mb-4">
-                        5. Appointments and Cancellations
-                    </h2>
-                    <p class="mb-6">
-                        By booking an appointment through our platform, you agree to
-                        attend the appointment or cancel it within the timeframe specified
-                        by the healthcare provider. Repeated no-shows or late
-                        cancellations may result in restrictions on your ability to book
-                        future appointments.
-                    </p>
-                    <h2 class="text-2xl font-bold mt-8 mb-4">6. Ratings and Reviews</h2>
-                    <p class="mb-6">
-                        When you submit ratings or reviews on our platform, you grant us a
-                        non-exclusive, royalty-free, perpetual, irrevocable right to use,
-                        reproduce, modify, adapt, publish, translate, create derivative
-                        works from, distribute, and display such content throughout the
-                        world in any media.
-                    </p>
-                    <p class="mb-6">
-                        You represent and warrant that your ratings and reviews are
-                        accurate, honest, and based on your personal experience with the
-                        healthcare provider or service.
-                    </p>
-                    <h2 class="text-2xl font-bold mt-8 mb-4">
-                        7. Limitation of Liability
-                    </h2>
-                    <p class="mb-6">
-                        To the maximum extent permitted by law, MediConnect, its
-                        affiliates, and their directors, employees, agents, and licensors
-                        shall not be liable for any indirect, incidental, special,
-                        consequential, or punitive damages, including without limitation,
-                        loss of profits, data, use, goodwill, or other intangible losses,
-                        resulting from your access to or use of or inability to access or
-                        use the service.
-                    </p>
-                    <h2 class="text-2xl font-bold mt-8 mb-4">
-                        8. Modifications to the Service
-                    </h2>
-                    <p class="mb-6">
-                        We reserve the right, at our sole discretion, to modify or replace
-                        these Terms at any time. We will provide notice of any changes by
-                        posting the new Terms on this page and updating the "Last updated"
-                        date.
-                    </p>
-                    <p class="mb-6">
-                        Your continued use of the service after any such changes
-                        constitutes your acceptance of the new Terms.
-                    </p>
-                    <h2 class="text-2xl font-bold mt-8 mb-4">9. Contact Us</h2>
-                    <p>
-                        If you have any questions about these Terms, please contact us at:
-                    </p>
-                    <p class="mt-2">
-                        <strong>Email:</strong> legal@mediconnect.com<br /><strong>Postal Address:</strong>
-                        123 Health Street, Medical District, MD 12345
-                    </p>
+            </div>
+            <div class="bg-white rounded-3xl shadow-2xl border border-gray-100 p-8 sm:p-12 relative z-10">
+                <div class="space-y-5">
+                    <h1 class="text-5xl sm:text-6xl font-bold text-gray-900 tracking-tight">500</h1>
+                    <h2 class="text-2xl sm:text-3xl font-semibold text-gray-800 leading-tight">Server Error</h2>
                 </div>
+                <div class="space-y-4 mt-8">
+                    <p class="text-gray-700 text-lg sm:text-xl leading-relaxed font-medium">Oops! Something went wrong on our side.</p>
+                    <p class="text-gray-500 text-base leading-relaxed max-w-md mx-auto">Please try again later, or contact support if the issue persists. Our technical team has been notified.</p>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-4 mt-10"><a class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 h-10 px-4 py-2 flex-1 bg-red-600 hover:bg-red-700 text-white shadow-lg hover:shadow-xl transition-all transition-200 inline-flex items-center justify-center gap-2" href="/"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house w-4 h-4">
+                            <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
+                            <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        </svg>Back to Home</a><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border bg-background hover:text-accent-foreground h-10 px-4 py-2 flex-1 border-red-200 text-red-600 hover:bg-red-50 hover:border-red-300 shadow-lg hover:shadow-xl transition-all transition-200"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rotate-ccw w-4 h-4 mr-2">
+                            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                            <path d="M3 3v5h5"></path>
+                        </svg>Try Again</button></div>
+            </div>
+            <div class="text-center space-y-3 relative z-10">
+                <p class="text-gray-500 text-sm">Error ID: #8L8OO8T63</p>
+                <p class="text-gray-500 text-sm">Need immediate assistance? <a href="mailto:support@mediconnect.com" class="text-red-600 hover:text-red-700 transition-colors transition-200 font-medium story-link">Contact our support team</a></p>
+            </div>
+            <div class="flex justify-center space-x-2 opacity-30">
+                <div class="w-2 h-2 bg-red-400 rounded-full animate-pulse"></div>
+                <div class="w-2 h-2 bg-red-400 rounded-full animate-pulse" style="animation-delay: 0.2s;"></div>
+                <div class="w-2 h-2 bg-red-400 rounded-full animate-pulse" style="animation-delay: 0.4s;"></div>
             </div>
         </div>
     </main>
@@ -407,7 +315,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
     </footer>
 
     <!-- External JavaScript -->
-    <script type="module" src="./js/common/index.js"></script>
+    <script type="module" src="../js/common/index.js"></script>
 
     <!-- Create Lucide Icons -->
     <script>
