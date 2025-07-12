@@ -71,6 +71,9 @@
     padding-top: 112px;
     padding-bottom: 112px;
   }
+  .sm\:p-10 {
+    padding: 2.5rem; 
+  }
 
   /* Typography */
   .sm\:text-3xl {
@@ -87,12 +90,24 @@
     font-size: 3rem;
     line-height: 1;
   }
+  
+  .sm\:text-2xl {
+    font-size: 1.5rem; 
+    line-height: 2rem; 
+  }
+  .sm\:text-lg {
+    font-size: 1.125rem; 
+    line-height: 1.75rem; 
+  }
 
   /* Containers */
   .container {
     max-width: 640px;
   }
+
 }
+
+
 
 /* ==========================================================================
    Medium Screens (≥768px)

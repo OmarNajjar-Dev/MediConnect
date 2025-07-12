@@ -304,7 +304,9 @@ input::placeholder {
   background-color: #991b1b; /* Tailwind's red-800 */
 }
 
-
+.border-gray-100 {
+  border-color: #f3f4f6; /* Tailwind's gray-100 */
+}
 
 .table-no-border-last tr:last-child {
   border: none;
@@ -329,3 +331,12 @@ input::placeholder {
 .not-allowed {
   cursor: not-allowed;
 }
+
+.-z-10 {
+  z-index: -10;
+}
+.leading-relaxed {
+  line-height: 1.625;
+}
+
+
