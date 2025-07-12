@@ -144,192 +144,190 @@ $userEmail = "elio"
                         </div>
                     </div>
 
-                    <div>
-                        <!-- Tab Navigation -->
-                        <div
-                            class="mb-2 grid h-10 w-full grid-cols-3 items-center justify-center rounded-md bg-gray-150 p-1 text-muted-foreground pointer">
-                            <button
-                                type="button"
-                                data-target="my-appointments"
-                                class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-white px-3 py-1.5 text-sm font-medium pointer">
-                                My Appointments
-                            </button>
+                    <!-- Tab Navigation -->
+                    <div
+                        class="mb-2 grid h-10 w-full grid-cols-3 items-center justify-center rounded-md bg-gray-150 p-1 text-muted-foreground pointer">
+                        <button
+                            type="button"
+                            data-target="my-appointments"
+                            class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-white px-3 py-1.5 text-sm font-medium pointer">
+                            My Appointments
+                        </button>
 
-                            <button
-                                type="button"
-                                data-target="schedule"
-                                class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-gray-150 px-3 py-1.5 text-sm font-medium pointer">
-                                Schedule
-                            </button>
+                        <button
+                            type="button"
+                            data-target="schedule"
+                            class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-gray-150 px-3 py-1.5 text-sm font-medium pointer">
+                            Schedule
+                        </button>
 
-                            <button
-                                type="button"
-                                data-target="profile"
-                                class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-gray-150 px-3 py-1.5 text-sm font-medium pointer">
-                                Profile
-                            </button>
-                        </div>
+                        <button
+                            type="button"
+                            data-target="profile"
+                            class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-gray-150 px-3 py-1.5 text-sm font-medium pointer">
+                            Profile
+                        </button>
+                    </div>
 
-                        <!-- Dashboard Stats Cards Section -->
-                        <div class="mt-2 flex flex-col gap-6">
-                            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <!-- Dashboard Stats Cards Section -->
+                    <div class="mt-2 flex flex-col gap-6">
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
 
-                                <div class="glass-card rounded-xl p-6">
-                                    <div class="flex items-center justify-between">
-                                        <div>
-                                            <p class="text-sm font-medium text-gray-600">Today's Total</p>
-                                            <p class="text-2xl font-bold">4</p>
-                                        </div>
-                                        <i data-lucide="calendar" class="h-8 w-8 text-blue-600"></i>
+                            <div class="glass-card rounded-xl p-6">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-600">Today's Total</p>
+                                        <p class="text-2xl font-bold">4</p>
                                     </div>
+                                    <i data-lucide="calendar" class="h-8 w-8 text-blue-600"></i>
                                 </div>
-
-                                <div class="glass-card rounded-xl p-6">
-                                    <div class="flex items-center justify-between">
-                                        <div>
-                                            <p class="text-sm font-medium text-gray-600">Pending</p>
-                                            <p class="text-2xl font-bold">2</p>
-                                        </div>
-                                        <i data-lucide="clock" class="h-8 w-8 text-orange-600"></i>
-                                    </div>
-                                </div>
-
-                                <div class="glass-card rounded-xl p-6">
-                                    <div class="flex items-center justify-between">
-                                        <div>
-                                            <p class="text-sm font-medium text-gray-600">Completed</p>
-                                            <p class="text-2xl font-bold">0</p>
-                                        </div>
-                                        <i data-lucide="file-text" class="h-8 w-8 text-green-600"></i>
-                                    </div>
-                                </div>
-
-                                <div class="glass-card rounded-xl p-6">
-                                    <div class="flex items-center justify-between">
-                                        <div>
-                                            <p class="text-sm font-medium text-gray-600">In Progress</p>
-                                            <p class="text-2xl font-bold">1</p>
-                                        </div>
-                                        <i data-lucide="user" class="h-8 w-8 text-purple-600"></i>
-                                    </div>
-                                </div>
-
                             </div>
-                        </div>
 
-                        <div data-section="my-appointments" class="hidden glass-card rounded-xl p-6">
-                            <h3 class="text-xl font-bold mb-4">Today's Appointments</h3>
-                            <div class="flex flex-col gap-3">
-
-                                <!-- Appointment 1 -->
-                                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                                    <div class="flex items-center gap-4">
-                                        <div class="w-2 h-2 rounded-full bg-blue-600"></div>
-                                        <div>
-                                            <p class="font-medium">John Smith</p>
-                                            <p class="text-sm text-gray-600">consultation • 30 min</p>
-                                            <p class="text-sm text-gray-500">Regular checkup - chest pain complaints</p>
-                                        </div>
+                            <div class="glass-card rounded-xl p-6">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-600">Pending</p>
+                                        <p class="text-2xl font-bold">2</p>
                                     </div>
-                                    <div class="flex items-center gap-4">
-                                        <div class="text-right">
-                                            <p class="font-medium">09:00</p>
-                                            <span class="text-xs px-2 py-1 rounded-full bg-green-100 text-green-800">confirmed</span>
-                                        </div>
-                                        <div class="flex gap-2">
-                                            <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium border border-input border-solid bg-background hover:bg-accent hover:text-medical-500 h-9 rounded-md px-3 pointer">
-                                                <i data-lucide="square-pen" class="h-4 w-4 mr-1"></i>
-                                                Update
-                                            </button>
-                                            <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm border border-transparent font-medium bg-medical-500 text-white hover:bg-medical-400 h-9 rounded-md px-3 pointer">
-                                                Complete
-                                            </button>
-                                        </div>
-                                    </div>
+                                    <i data-lucide="clock" class="h-8 w-8 text-orange-600"></i>
                                 </div>
-
-                                <!-- Appointment 2 -->
-                                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                                    <div class="flex items-center gap-4">
-                                        <div class="w-2 h-2 rounded-full bg-blue-600"></div>
-                                        <div>
-                                            <p class="font-medium">Mary Johnson</p>
-                                            <p class="text-sm text-gray-600">follow-up • 45 min</p>
-                                            <p class="text-sm text-gray-500">Follow-up on ECG results</p>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-center gap-4">
-                                        <div class="text-right">
-                                            <p class="font-medium">10:30</p>
-                                            <span class="text-xs px-2 py-1 rounded-full bg-blue-100 text-blue-800">in progress</span>
-                                        </div>
-                                        <div class="flex gap-2">
-                                            <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium border border-input border-solid bg-background hover:bg-accent hover:text-medical-500 h-9 rounded-md px-3 pointer">
-                                                <i data-lucide="square-pen" class="h-4 w-4 mr-1"></i>
-                                                Update
-                                            </button>
-                                            <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm border border-transparent font-medium bg-medical-500 text-white hover:bg-medical-400 h-9 rounded-md px-3 pointer">
-                                                Complete
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Appointment 3 -->
-                                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                                    <div class="flex items-center gap-4">
-                                        <div class="w-2 h-2 rounded-full bg-blue-600"></div>
-                                        <div>
-                                            <p class="font-medium">Ahmed Al-Rashid</p>
-                                            <p class="text-sm text-gray-600">consultation • 30 min</p>
-                                            <p class="text-sm text-gray-500">New patient - hypertension concerns</p>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-center gap-4">
-                                        <div class="text-right">
-                                            <p class="font-medium">11:15</p>
-                                            <span class="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-800">scheduled</span>
-                                        </div>
-                                        <div class="flex gap-2">
-                                            <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium border border-input border-solid bg-background hover:bg-accent hover:text-medical-500 h-9 rounded-md px-3 pointer">
-                                                <i data-lucide="square-pen" class="h-4 w-4 mr-1"></i>
-                                                Update
-                                            </button>
-                                            <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm border border-transparent font-medium bg-medical-500 text-white hover:bg-medical-400 h-9 rounded-md px-3 pointer">
-                                                Complete
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Appointment 4 -->
-                                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                                    <div class="flex items-center gap-4">
-                                        <div class="w-2 h-2 rounded-full bg-blue-600"></div>
-                                        <div>
-                                            <p class="font-medium">Fatima Hassan</p>
-                                            <p class="text-sm text-gray-600">routine-checkup • 60 min</p>
-                                            <p class="text-sm text-gray-500">Annual cardiac screening</p>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-center gap-4">
-                                        <div class="text-right">
-                                            <p class="font-medium">14:00</p>
-                                            <span class="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-800">scheduled</span>
-                                        </div>
-                                        <div class="flex gap-2">
-                                            <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium border border-input border-solid bg-background hover:bg-accent hover:text-medical-500 h-9 rounded-md px-3 pointer">
-                                                <i data-lucide="square-pen" class="h-4 w-4 mr-1"></i>
-                                                Update
-                                            </button>
-                                            <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm border border-transparent font-medium bg-medical-500 text-white hover:bg-medical-400 h-9 rounded-md px-3 pointer">
-                                                Complete
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-
                             </div>
+
+                            <div class="glass-card rounded-xl p-6">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-600">Completed</p>
+                                        <p class="text-2xl font-bold">0</p>
+                                    </div>
+                                    <i data-lucide="file-text" class="h-8 w-8 text-green-600"></i>
+                                </div>
+                            </div>
+
+                            <div class="glass-card rounded-xl p-6">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-600">In Progress</p>
+                                        <p class="text-2xl font-bold">1</p>
+                                    </div>
+                                    <i data-lucide="user" class="h-8 w-8 text-purple-600"></i>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div data-section="my-appointments" class="hidden glass-card rounded-xl p-6">
+                        <h3 class="text-xl font-bold mb-4">Today's Appointments</h3>
+                        <div class="flex flex-col gap-3">
+
+                            <!-- Appointment 1 -->
+                            <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-2 h-2 rounded-full bg-blue-600"></div>
+                                    <div>
+                                        <p class="font-medium">John Smith</p>
+                                        <p class="text-sm text-gray-600">consultation • 30 min</p>
+                                        <p class="text-sm text-gray-500">Regular checkup - chest pain complaints</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <div class="text-right">
+                                        <p class="font-medium">09:00</p>
+                                        <span class="text-xs px-2 py-1 rounded-full bg-green-100 text-green-800">confirmed</span>
+                                    </div>
+                                    <div class="flex gap-2">
+                                        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium border border-input border-solid bg-background hover:bg-accent hover:text-medical-500 h-9 rounded-md px-3 pointer">
+                                            <i data-lucide="square-pen" class="h-4 w-4 mr-1"></i>
+                                            Update
+                                        </button>
+                                        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm border border-transparent font-medium bg-medical-500 text-white hover:bg-medical-400 h-9 rounded-md px-3 pointer">
+                                            Complete
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Appointment 2 -->
+                            <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-2 h-2 rounded-full bg-blue-600"></div>
+                                    <div>
+                                        <p class="font-medium">Mary Johnson</p>
+                                        <p class="text-sm text-gray-600">follow-up • 45 min</p>
+                                        <p class="text-sm text-gray-500">Follow-up on ECG results</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <div class="text-right">
+                                        <p class="font-medium">10:30</p>
+                                        <span class="text-xs px-2 py-1 rounded-full bg-blue-100 text-blue-800">in progress</span>
+                                    </div>
+                                    <div class="flex gap-2">
+                                        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium border border-input border-solid bg-background hover:bg-accent hover:text-medical-500 h-9 rounded-md px-3 pointer">
+                                            <i data-lucide="square-pen" class="h-4 w-4 mr-1"></i>
+                                            Update
+                                        </button>
+                                        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm border border-transparent font-medium bg-medical-500 text-white hover:bg-medical-400 h-9 rounded-md px-3 pointer">
+                                            Complete
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Appointment 3 -->
+                            <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-2 h-2 rounded-full bg-blue-600"></div>
+                                    <div>
+                                        <p class="font-medium">Ahmed Al-Rashid</p>
+                                        <p class="text-sm text-gray-600">consultation • 30 min</p>
+                                        <p class="text-sm text-gray-500">New patient - hypertension concerns</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <div class="text-right">
+                                        <p class="font-medium">11:15</p>
+                                        <span class="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-800">scheduled</span>
+                                    </div>
+                                    <div class="flex gap-2">
+                                        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium border border-input border-solid bg-background hover:bg-accent hover:text-medical-500 h-9 rounded-md px-3 pointer">
+                                            <i data-lucide="square-pen" class="h-4 w-4 mr-1"></i>
+                                            Update
+                                        </button>
+                                        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm border border-transparent font-medium bg-medical-500 text-white hover:bg-medical-400 h-9 rounded-md px-3 pointer">
+                                            Complete
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Appointment 4 -->
+                            <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-2 h-2 rounded-full bg-blue-600"></div>
+                                    <div>
+                                        <p class="font-medium">Fatima Hassan</p>
+                                        <p class="text-sm text-gray-600">routine-checkup • 60 min</p>
+                                        <p class="text-sm text-gray-500">Annual cardiac screening</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <div class="text-right">
+                                        <p class="font-medium">14:00</p>
+                                        <span class="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-800">scheduled</span>
+                                    </div>
+                                    <div class="flex gap-2">
+                                        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium border border-input border-solid bg-background hover:bg-accent hover:text-medical-500 h-9 rounded-md px-3 pointer">
+                                            <i data-lucide="square-pen" class="h-4 w-4 mr-1"></i>
+                                            Update
+                                        </button>
+                                        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm border border-transparent font-medium bg-medical-500 text-white hover:bg-medical-400 h-9 rounded-md px-3 pointer">
+                                            Complete
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
 
