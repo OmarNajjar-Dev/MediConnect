@@ -11,7 +11,7 @@ export function setupDropdowns(dropdownButtons) {
 
     // ✅ Apply scroll behavior only for Time Slot dropdown
     if (button.id === "time-slot-button") {
-      setupDropdownScroll(menu, 240); // 240px max height
+      setupDropdownScroll(menu, 360); // 240px max height
     }
 
     // Toggle dropdown visibility
@@ -117,7 +117,7 @@ function makeDropdownFloat(button, dropdown) {
 }
 
 // ✅ Enables scroll only inside dropdown (Time Slot)
-function setupDropdownScroll(dropdownElement, maxHeight = 240) {
+function setupDropdownScroll(dropdownElement, maxHeight = 200) {
   dropdownElement.style.maxHeight = `${maxHeight}px`;
   dropdownElement.style.overflowY = "auto";
 

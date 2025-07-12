@@ -338,7 +338,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
                                 <i data-lucide="chevron-down" class="h-4 w-4 opacity-50"></i>
                             </button>
                             <ul
-                                class="hidden p-1.5 mt-7.5 bg-background scrollbar-none border border-solid border-input rounded-md shadow-xl">
+                                class="hidden p-1.5 mt-7.5 mb-1 bg-background scrollbar-none border border-solid max-h-72 border-input rounded-md shadow-xl">
                                 <li>
                                     <button type="button"
                                         class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md">9:00
