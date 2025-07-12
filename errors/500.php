@@ -148,44 +148,32 @@ require_once __DIR__ . "/../backend/middleware/session-context.php";
     </header>
 
     <!-- Main Content -->
-    <main class="min-h-screen bg-gradient-to-br from-gray-50 to-red-50 flex items-center justify-center px-4 sm:px-6 lg:px-8 flex-grow">
-        <div class="max-w-lg w-full space-y-8 text-center animate-fade-in">
-            <div class="absolute inset-0 overflow-hidden pointer-events-none">
-                <div class="absolute top-20 left-10 w-32 h-32 bg-red-100 rounded-full opacity-20 blur-3xl"></div>
-                <div class="absolute bottom-20 right-10 w-40 h-40 bg-green-100 rounded-full opacity-20 blur-3xl"></div>
-            </div>
+    <main class="min-h-screen custom-gradient flex items-center justify-center px-4 sm:px-6 lg:px-8 flex-grow pt-16">
+        <div class="max-w-lg w-full flex flex-col gap-8 text-center animate-fade-in">
+        
             <div class="flex justify-center relative z-10">
                 <div class="relative">
-                    <div class="w-28 h-28 bg-white rounded-full shadow-xl flex items-center justify-center border border-red-100 hover-scale"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-triangle-alert w-12 h-12 text-red-500">
-                            <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path>
-                            <path d="M12 9v4"></path>
-                            <path d="M12 17h.01"></path>
-                        </svg></div>
-                    <div class="absolute inset-0 w-28 h-28 bg-red-500/10 rounded-full blur-xl -z-10 pulse"></div>
+                    <div class="w-28 h-28 bg-white rounded-full shadow-xl flex items-center justify-center border border-solid border-transparent border-red-100 hover-scale hover-scale:hover"><i data-lucide="triangle-alert" class="w-12 h-12 text-red-500"></i></div>
+                    <div class="absolute inset-0 w-28 h-28 rounded-full blur-xl -z-10 pulse"></div>
                 </div>
             </div>
-            <div class="bg-white rounded-3xl shadow-2xl border border-gray-100 p-8 sm:p-12 relative z-10">
-                <div class="space-y-5">
+            <div class="bg-white rounded-3xl shadow-2xl border border-solid border-gray-100 p-8 sm:p-12 relative z-10">
+                <div class="flex flex-col gap-5">
                     <h1 class="text-5xl sm:text-6xl font-bold text-gray-900 tracking-tight">500</h1>
                     <h2 class="text-2xl sm:text-3xl font-semibold text-gray-800 leading-tight">Server Error</h2>
                 </div>
-                <div class="space-y-4 mt-8">
+                <div class="flex flex-col gap-4 mt-8">
                     <p class="text-gray-700 text-lg sm:text-xl leading-relaxed font-medium">Oops! Something went wrong on our side.</p>
                     <p class="text-gray-500 text-base leading-relaxed max-w-md mx-auto">Please try again later, or contact support if the issue persists. Our technical team has been notified.</p>
                 </div>
-                <div class="flex flex-col sm:flex-row gap-4 mt-10"><a class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 h-10 px-4 py-2 flex-1 bg-red-600 hover:bg-red-700 text-white shadow-lg hover:shadow-xl transition-all transition-200 inline-flex items-center justify-center gap-2" href="/"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house w-4 h-4">
-                            <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
-                            <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                        </svg>Back to Home</a><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border bg-background hover:text-accent-foreground h-10 px-4 py-2 flex-1 border-red-200 text-red-600 hover:bg-red-50 hover:border-red-300 shadow-lg hover:shadow-xl transition-all transition-200"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rotate-ccw w-4 h-4 mr-2">
-                            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
-                            <path d="M3 3v5h5"></path>
-                        </svg>Try Again</button></div>
+                <div class="flex flex-col sm:flex-row gap-4 mt-10"><a class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium disabled:pointer-events-none h-10 px-4 py-2 flex-grow bg-red-600 hover:bg-red-700 text-white shadow-lg hover:shadow-xl transition-all transition-200 inline-flex items-center justify-center gap-2" href="<?= $paths['home'] ?>"><i data-lucide="house" class="w-4 h-4"></i>Back to Home</a>
+                    <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium pointer border border-solid border-transparent bg-background hover:text-accent-foreground h-10 px-4 py-2 flex-grow border-red-200 text-red-600 hover:bg-red-50 hover:border-red-300 shadow-lg hover:shadow-xl transition-all transition-200"><i data-lucide="rotate-ccw" class="w-4 h-4 mr-2"></i>Try Again</button>
+                </div>
             </div>
-            <div class="text-center space-y-3 relative z-10">
-                <p class="text-gray-500 text-sm">Error ID: #8L8OO8T63</p>
-                <p class="text-gray-500 text-sm">Need immediate assistance? <a href="mailto:support@mediconnect.com" class="text-red-600 hover:text-red-700 transition-colors transition-200 font-medium story-link">Contact our support team</a></p>
+            <div class="text-center flex flex-col gap-3 relative z-10">
+                <p class="text-gray-500 text-sm">Need immediate assistance? <a href="mailto:support@mediconnect.com" class="text-red-600 hover:text-red-700 transition-colors transition-200 font-medium">Contact our support team</a></p>
             </div>
-            <div class="flex justify-center space-x-2 opacity-30">
+            <div class="flex justify-center flex gap-3 opacity-30">
                 <div class="w-2 h-2 bg-red-400 rounded-full animate-pulse"></div>
                 <div class="w-2 h-2 bg-red-400 rounded-full animate-pulse" style="animation-delay: 0.2s;"></div>
                 <div class="w-2 h-2 bg-red-400 rounded-full animate-pulse" style="animation-delay: 0.4s;"></div>
