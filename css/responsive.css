@@ -23,6 +23,10 @@
     width: auto;
   }
 
+  .sm\:w-48 {
+    width: 192px;
+  }
+
   .sm\:max-h-125 {
     max-height: 500px;
   }
@@ -53,8 +57,37 @@
     gap: 0;
   }
 
+  .sm\:gap-2 {
+    gap: 8px;
+  }
+
   .sm\:gap-4 {
     gap: 16px;
+  }
+
+  .sm\:gap-6 {
+    gap: 24px;
+  }
+
+  .sm\:p-3 {
+    padding: 0.75rem;
+  }
+
+  .sm\:p-6 {
+    padding: 1.5rem;
+  }
+
+  .sm\:p-10 {
+    padding: 2.5rem;
+  }
+
+  .sm\:p-12 {
+    padding: 3rem;
+  }
+
+  .sm\:px-2 {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 
   .sm\:px-6 {
@@ -73,6 +106,26 @@
   }
 
   /* Typography */
+  .sm\:text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+
+  .sm\:text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+
+  .sm\:text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+
+  .sm\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
   .sm\:text-3xl {
     font-size: 1.875rem;
     line-height: 2.25rem;
@@ -88,6 +141,32 @@
     line-height: 1;
   }
 
+  .sm\:text-6xl {
+    font-size: 3.75rem;
+    line-height: 1;
+  }
+
+  /* Height / Margin / Visibility */
+  .sm\:h-32 {
+    height: 8rem;
+  }
+
+  .sm\:mb-2 {
+    margin-bottom: 0.5rem;
+  }
+
+  .sm\:hidden {
+    display: none;
+  }
+
+  .sm\:inline {
+    display: inline;
+  }
+
+  .sm\:table-cell {
+    display: table-cell;
+  }
+
   /* Containers */
   .container {
     max-width: 640px;
@@ -98,6 +177,7 @@
    Medium Screens (≥768px)
    ========================================================================== */
 @media screen and (min-width: 768px) {
+
   /* Layout */
   .md\:flex {
     display: flex;
@@ -244,6 +324,7 @@
    Large Screens (≥1024px)
    ========================================================================== */
 @media screen and (min-width: 1024px) {
+
   /* Layout */
   .lg\:flex-col {
     flex-direction: column;
@@ -317,6 +398,10 @@
     grid-template-columns: repeat(6, 1fr);
   }
 
+   .lg\:grid-cols-7 {
+    grid-template-columns: repeat(7, 1fr);
+  }
+
   /* Spacing */
   .lg\:px-8 {
     padding-left: 32px;
@@ -329,6 +414,14 @@
 
   .lg\:gap-12 {
     gap: 48px;
+  }
+
+  .lg\:col-span-2 {
+    grid-column: span 2 / span 2;
+  }
+
+  .lg\:table-cell {
+    display: table-cell;
   }
 
   /* Containers */
