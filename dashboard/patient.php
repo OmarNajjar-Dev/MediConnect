@@ -226,7 +226,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                                     <div class="mb-4 flex items-center justify-between">
                                         <h3 class="text-xl font-bold">Upcoming Appointments</h3>
 
-                                        <button class="inline-flex items-center justify-center h-9 rounded-md border border-solid border-input bg-medical-500 px-3 text-sm font-medium text-white hover:bg-medical-400 disabled:pointer-events-none disabled:opacity-50 pointer gap-2 whitespace-nowrap">
+                                        <button class="inline-flex items-center justify-center h-9 rounded-md border border-solid border-transparent transition-colors bg-medical-500 px-3 text-sm font-medium text-white hover:bg-medical-400 pointer gap-2 whitespace-nowrap">
                                             <i data-lucide="plus" class="mr-2 h-4 w-4"></i>
                                             Book New
                                         </button>
@@ -250,12 +250,12 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                                             </div>
 
                                             <div class="flex gap-2">
-                                                <button class="inline-flex items-center justify-center h-9 rounded-md border border-solid border-input bg-background px-3 text-sm font-medium hover:bg-accent hover:text-medical-500 disabled:pointer-events-none disabled:opacity-50 pointer gap-2 whitespace-nowrap">
+                                                <button class="inline-flex items-center justify-center h-9 rounded-md border border-solid border-input bg-background px-3 text-sm font-medium hover:bg-accent hover:text-medical-500 pointer gap-2 whitespace-nowrap transition-200">
                                                     <i data-lucide="square-pen" class="mr-1 h-4 w-4"></i>
                                                     Reschedule
                                                 </button>
 
-                                                <button class="inline-flex items-center justify-center h-9 rounded-md border border-solid border-red-200 bg-background px-3 text-sm font-medium text-red-600 hover:bg-red-50 disabled:pointer-events-none disabled:opacity-50 pointer gap-2 whitespace-nowrap">
+                                                <button class="inline-flex items-center justify-center h-9 rounded-md border border-solid border-red-200 bg-background px-3 text-sm font-medium text-red-600 hover:bg-red-50 pointer gap-2 whitespace-nowrap transition-200">
                                                     <i data-lucide="x" class="mr-1 h-4 w-4"></i>
                                                     Cancel
                                                 </button>
@@ -277,12 +277,12 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                                             </div>
 
                                             <div class="flex gap-2">
-                                                <button class="inline-flex items-center justify-center h-9 rounded-md border border-solid border-input bg-background px-3 text-sm font-medium hover:bg-accent hover:text-medical-500 disabled:pointer-events-none disabled:opacity-50 pointer gap-2 whitespace-nowrap">
+                                                <button class="inline-flex items-center justify-center h-9 rounded-md border border-solid border-input bg-background px-3 text-sm font-medium hover:bg-accent hover:text-medical-500 pointer gap-2 whitespace-nowrap transition-colors transition-200">
                                                     <i data-lucide="square-pen" class="mr-1 h-4 w-4"></i>
                                                     Reschedule
                                                 </button>
 
-                                                <button class="inline-flex items-center justify-center h-9 rounded-md border border-solid border-red-200 bg-background px-3 text-sm font-medium text-red-600 hover:bg-red-50 disabled:pointer-events-none disabled:opacity-50 pointer gap-2 whitespace-nowrap">
+                                                <button class="inline-flex items-center justify-center h-9 rounded-md border border-solid border-red-200 bg-background px-3 text-sm font-medium text-red-600 hover:bg-red-50 pointer gap-2 whitespace-nowrap transition-colors transition-200">
                                                     <i data-lucide="square-pen" class="mr-1 h-4 w-4"></i>
                                                     Cancel
                                                 </button>
@@ -299,17 +299,17 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
 
                                     <div class="flex flex-col gap-3">
 
-                                        <button class="inline-flex w-full items-center justify-start h-10 rounded-md border border-solid border-input bg-background px-4 py-2 text-sm font-medium hover:bg-accent hover:text-medical-500 disabled:pointer-events-none disabled:opacity-50 pointer gap-2 whitespace-nowrap">
+                                        <button class="inline-flex w-full items-center justify-start h-10 rounded-md border border-solid border-input bg-background px-4 py-2 text-sm font-medium hover:bg-accent hover:text-medical-500 pointer gap-2 whitespace-nowrap transition-colors transition-200">
                                             <i data-lucide="calendar" class="mr-2 h-4 w-4"></i>
                                             Book New Appointment
                                         </button>
 
-                                        <button class="inline-flex w-full items-center justify-start h-10 rounded-md border border-solid border-input bg-background px-4 py-2 text-sm font-medium hover:bg-accent hover:text-medical-500 disabled:pointer-events-none disabled:opacity-50 pointer gap-2 whitespace-nowrap">
+                                        <button class="inline-flex w-full items-center justify-start h-10 rounded-md border border-solid border-input bg-background px-4 py-2 text-sm font-medium hover:bg-accent hover:text-medical-500 pointer gap-2 whitespace-nowrap transition-colors transition-200">
                                             <i data-lucide="file-text" class="mr-2 h-4 w-4"></i>
                                             View Test Results
                                         </button>
 
-                                        <button class="inline-flex w-full items-center justify-start h-10 rounded-md border border-solid border-input bg-background px-4 py-2 text-sm font-medium hover:bg-accent hover:text-medical-500 disabled:pointer-events-none disabled:opacity-50 pointer gap-2 whitespace-nowrap">
+                                        <button class="inline-flex w-full items-center justify-start h-10 rounded-md border border-solid border-input bg-background px-4 py-2 text-sm font-medium hover:bg-accent hover:text-medical-500 pointer gap-2 whitespace-nowrap transition-colors transition-200">
                                             <i data-lucide="clock" class="mr-2 h-4 w-4"></i>
                                             Request Prescription Refill
                                         </button>
@@ -382,7 +382,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                             <div class="mb-6 flex items-center justify-between">
                                 <h3 class="text-xl font-bold">My Profile</h3>
                                 <button
-                                    class="pointer inline-flex items-center justify-center gap-2 rounded-md border border-input border-solid bg-medical-500 px-4 py-2 text-sm font-medium text-white disabled:opacity-50 disabled:pointer-events-none hover:bg-medical-400 h-10 whitespace-nowrap">
+                                    class="pointer inline-flex items-center justify-center gap-2 rounded-md border border-solid border-transparent bg-medical-500 px-4 py-2 text-sm font-medium text-white hover:bg-medical-400 h-10 whitespace-nowrap transition-colors">
                                     <i data-lucide="square-pen" class="mr-2 h-4 w-4"></i>
                                     Edit Profile
                                 </button>
