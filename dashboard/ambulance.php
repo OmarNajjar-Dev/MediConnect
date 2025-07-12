@@ -209,8 +209,6 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                     </button>
                 </div>
 
-
-
                 <!-- Dashboard Stats -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-6 mt-2">
                     <div class="glass-card rounded-xl p-6">
@@ -317,7 +315,6 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                     </div>
                 </div>
 
-
                 <!-- Emergency Notifications -->
                 <div data-section="notifications" class="hidden glass-card rounded-xl p-6">
                     <h3 class="mb-4 text-xl font-bold text-heading">Emergency Notifications</h3>
@@ -340,7 +337,6 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                                 </div>
                             </div>
                         </div>
-
 
                         <!-- Notification 2 -->
                         <div class="notification-card p-4 rounded-lg border border-solid border-red-200 bg-red-50 pointer">
@@ -405,11 +401,9 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                     </div>
                 </div>
 
-
             </div>
         </div>
     </main>
-
 
     <!-- Footer -->
     <footer class="bg-gray-50 pt-16 pb-8 border-t border-solid separator">
