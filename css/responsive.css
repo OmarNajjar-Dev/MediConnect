@@ -83,6 +83,9 @@
   .sm\:p-10 {
     padding: 2.5rem; 
   }
+   .sm\:p-12 {
+    padding: 3rem; 
+  }
 
   /* Typography */
   .sm\:text-3xl {
@@ -106,6 +109,18 @@
   }
   .sm\:text-lg {
     font-size: 1.125rem; 
+    line-height: 1.75rem; 
+  }
+  .sm\:text-6xl {
+    font-size: 3.75rem; 
+    line-height: 1;
+  }
+  .sm\:text-3xl {
+    font-size: 1.875rem; 
+    line-height: 2.25rem; 
+  }
+  .sm\:text-xl {
+    font-size: 1.25rem; 
     line-height: 1.75rem; 
   }
 

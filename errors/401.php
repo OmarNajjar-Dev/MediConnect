@@ -37,7 +37,7 @@ require_once __DIR__ . "/../backend/middleware/session-context.php";
 
 </head>
 
-<body class="bg-background text-heading">
+<body class="bg-background">
 
     <!-- Header Section -->
     <header class="fixed z-50 py-5 bg-transparent transition-all">
@@ -147,31 +147,74 @@ require_once __DIR__ . "/../backend/middleware/session-context.php";
         </div>
     </header>
 
-    <!-- Main Content -->
+    <!-- Unauthorized Access Page Wrapper -->
     <main class="overflow-hidden flex justify-center flex-grow bg-gray-50 pt-20 pb-16">
+        <!-- Centered Content Container -->
         <div class="max-w-md w-full flex flex-col gap-8 text-center pt-20 pb-16">
+
+            <!-- Lock Icon Section -->
             <div class="flex justify-center">
                 <div class="relative">
-                    <div class="w-24 h-24 bg-white rounded-full shadow-lg flex items-center justify-center border border-solid border-transparent border-gray-100 -z-10"><i data-lucide="lock" class="w-10 h-10 text-medical-500"></i></div>
+                    <!-- Icon Circle -->
+                    <div class="w-24 h-24 bg-white rounded-full shadow-lg flex items-center justify-center border border-solid border-transparent border-gray-100 -z-10">
+                        <i data-lucide="lock" class="w-10 h-10 text-medical-500"></i>
+                    </div>
+                    <!-- Optional Blurred Background (non-visible effect here) -->
                     <div class="absolute inset-0 w-24 h-24 rounded-full blur-xl"></div>
                 </div>
             </div>
-            <div class="bg-white rounded-2xl shadow-xl border border-solid border-transparent border-gray-100 p-8 sm:p-10">
+
+            <!-- Message Box -->
+            <div class="bg-white rounded-2xl shadow-xl border border-solid border-gray-100 p-8 sm:p-10">
+
+                <!-- Title and Subtitle -->
                 <div class="flex flex-col gap-4">
                     <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 tracking-tight">401</h1>
                     <h2 class="text-xl sm:text-2xl font-semibold text-gray-800">Unauthorized Access</h2>
                 </div>
+
+                <!-- Description -->
                 <div class="flex flex-col gap-3 mt-6">
-                    <p class="text-gray-600 text-base sm:text-lg leading-relaxed">You don't have permission to access this page.</p>
-                    <p class="text-gray-500 text-sm leading-relaxed">Please contact your system administrator if you believe this is a mistake.</p>
+                    <p class="text-gray-600 text-base sm:text-lg leading-relaxed">
+                        You don't have permission to access this page.
+                    </p>
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        Please contact your system administrator if you believe this is a mistake.
+                    </p>
                 </div>
-                <div class="flex flex-col sm:flex-row gap-3 mt-8"><a class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors bg-medical-600 text-white hover:bg-medical-400 h-10 px-4 py-2 flex-grow inline-flex items-center justify-center gap-2" href="<?= $paths['static']['contact'] ?>"><i data-lucide="mail" class="w-4 h-4"></i>Contact Support</a>
-                    <a class="inline-flex text-heading items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-card-soft bg-background hover:bg-gray-100 hover:text-accent-foreground h-10 px-4 py-2 flex-grow inline-flex items-center justify-center gap-2" href="/"><i data-lucide="house" class="w-4 h-4"></i>Back to Home</a>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row gap-3 mt-8">
+                    <!-- Contact Support Button -->
+                    <a
+                        class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors bg-medical-600 text-white hover:bg-medical-400 h-10 px-4 py-2 flex-grow"
+                        href="<?= $paths['static']['contact'] ?>">
+                        <i data-lucide="mail" class="w-4 h-4"></i>
+                        Contact Support
+                    </a>
+
+                    <!-- Back to Home Button -->
+                    <a
+                        class="inline-flex text-heading items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-card-soft bg-background hover:bg-gray-100 hover:text-accent-foreground h-10 px-4 py-2 flex-grow"
+                        href="<?= $paths['home'] ?>">
+                        <i data-lucide="house" class="w-4 h-4"></i>
+                        Back to Home
+                    </a>
                 </div>
             </div>
+
+            <!-- Contact Note -->
             <div class="text-center">
-                <p class="text-gray-500 text-sm">Need help? Contact <a href="mailto:contact@mediconnect.example" class="text-medical-600 hover:text-medical-700 transition-colors transition-200 font-medium">contact@mediconnect.example</a></p>
+                <p class="text-gray-500 text-sm">
+                    Need help? Contact
+                    <a
+                        href="mailto:contact@mediconnect.example"
+                        class="text-medical-600 hover:text-medical-700 transition-colors transition-200 font-medium">
+                        contact@mediconnect.example
+                    </a>
+                </p>
             </div>
+
         </div>
     </main>
 
