@@ -543,7 +543,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                             <th class="h-12 px-4 text-right font-medium text-muted-foreground">Actions</th>
                           </tr>
                         </thead>
-                        
+
                         <tbody class="table-no-border-last">
 
                           <!-- Row 1 -->
