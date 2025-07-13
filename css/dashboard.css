@@ -1,0 +1,7 @@
+.table-no-border-last tr:last-child {
+  border: none;
+}
+
+.border-collapse {
+  border-collapse: collapse;
+}

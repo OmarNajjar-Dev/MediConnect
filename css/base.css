@@ -1,47 +1,70 @@
-/* Global Reset */
+/* ==================================================
+   Global Reset
+   ================================================== */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-/* HTML Styles */
+/* ==================================================
+   HTML & Body Styles
+   ================================================== */
 html {
     scroll-behavior: smooth;
 }
 
-/* Body Styles */
 body {
     font-family: ui-sans-serif, system-ui, sans-serif;
     line-height: 1.5;
 }
 
-/* Remove list styles */
+/* ==================================================
+   Basic Elements Reset
+   ================================================== */
 ul {
     list-style: none;
 }
 
-/* Remove link underline */
 a {
     text-decoration: none;
 }
 
-/* Full width container */
+button,
+input,
+optgroup,
+select,
+textarea {
+    font-size: inherit;
+    font-family: inherit;
+    color: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+/* ==================================================
+   Utility Classes
+   ================================================== */
 .container {
     width: 100%;
 }
 
-/* Pointer cursor */
 .pointer {
     cursor: pointer;
 }
 
-/* list styles */
+.not-allowed {
+    cursor: not-allowed;
+}
+
+.pointer-events-none {
+    pointer-events: none;
+}
+
 .list-disc {
     list-style-type: disc;
 }
 
-/* img styles */
 .object-cover {
     object-fit: cover;
 }
@@ -58,24 +81,89 @@ a {
     background-position: center;
 }
 
-
-/* Reset form elements */
-button,
-input,
-optgroup,
-select,
-textarea {
-    font-size: inherit;
-    font-family: inherit;
-    color: inherit;
-    margin: 0;
-    padding: 0;
+.resize-none {
+    resize: none;
 }
 
+.resize-y {
+    resize: vertical;
+}
+
+.truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.line-clamp-2 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+}
+
+/* ==================================================
+   Positioning Utilities
+   ================================================== */
+.bottom-0 {
+    bottom: 0;
+}
+
+.top-1\/2 {
+    top: 50%;
+}
+
+.top-1 {
+    top: 0.25rem;
+    /* 4px */
+}
+
+.left-3 {
+    left: 0.75rem;
+    /* 12px */
+}
+
+.right-0 {
+    right: 0;
+}
+
+.inset-y-0 {
+    top: 0;
+    bottom: 0;
+}
+
+/* ==================================================
+   Transform Utilities
+   ================================================== */
+.transform {
+    transform: translateZ(0);
+}
+
+.transform.-translate-y-1\/2 {
+    transform: translateY(-50%);
+}
+
+.-translate-y-1 {
+    transform: translateY(-0.25rem);
+    /* -4px */
+}
+
+/* ==================================================
+   Effects & Components
+   ================================================== */
 .glass-card {
     border: solid 1px rgba(255, 255, 255, 0.2);
     background-color: rgba(255, 255, 255, 0.5);
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+}
+
+.hover-scale {
+    transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+    transform: scale(1.05);
 }

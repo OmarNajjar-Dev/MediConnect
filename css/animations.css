@@ -391,6 +391,10 @@
   opacity: 0.1;
 }
 
+.opacity-30 {
+  opacity: 0.3;
+}
+
 .opacity-50 {
   opacity: 0.5;
 }

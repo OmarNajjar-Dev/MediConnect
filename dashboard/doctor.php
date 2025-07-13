@@ -31,6 +31,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
     <link rel="stylesheet" href="/mediconnect/css/animations.css" />
     <link rel="stylesheet" href="/mediconnect/css/style.css" />
     <link rel="stylesheet" href="/mediconnect/css/responsive.css" />
+    <link rel="stylesheet" href="/mediconnect/css/dashboard.css">
 
     <!-- Page Title -->
     <title>MediConnect - Bridging Healthcare & Technology</title>
@@ -68,20 +69,20 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                             <div class="w-8 h-8 rounded-full bg-medical-100 flex items-center justify-center text-medical-700 text-sm lg:text-base font-medium">
                                 <?= strtoupper(substr($userName, 0, 2)) ?>
                             </div>
-                            <span class="hidden lg:block text-sm lg:text-base font-medium text-slate-700 max-w-24 truncate">
+                            <span class="hidden lg:block text-sm lg:text-base font-medium slate-700 max-w-24 truncate">
                                 <?= htmlspecialchars($userName) ?>
                             </span>
-                            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500"></i>
+                            <i data-lucide="chevron-down" class="w-4 h-4 slate-500"></i>
                         </button>
 
                         <!-- Dropdown menu content -->
                         <div class="dropdown-content overflow-hidden hidden animate-fade-in absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-solid border-gray-100 z-50">
                             <div class="px-3 py-2 border-b border-solid border-medical-100">
-                                <p class="text-sm font-medium text-slate-700"><?= htmlspecialchars($userName) ?></p>
-                                <p class="text-xs text-slate-500"><?= htmlspecialchars($userEmail) ?></p>
+                                <p class="text-sm font-medium slate-700"><?= htmlspecialchars($userName) ?></p>
+                                <p class="text-xs slate-500"><?= htmlspecialchars($userEmail) ?></p>
                             </div>
 
-                            <a href="#" class="flex items-center gap-2 px-3 py-2 text-sm text-slate-600 hover:text-medical-600 hover:bg-medical-50 transition-colors transition-200">
+                            <a href="#" class="flex items-center gap-2 px-3 py-2 text-sm slate-600 hover:text-medical-600 hover:bg-medical-50 transition-colors transition-200">
                                 <i data-lucide="user" class="w-4 h-4"></i>Dashboard
                             </a>
 
