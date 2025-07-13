@@ -466,7 +466,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                                             </span>
                                             <div class="w-full">
                                                 <label for="profile-upload" class="text-sm font-medium leading-none pointer">
-                                                    <div class="new-image flex items-center justify-center w-full p-3 border-2 border-dashed border-gray-300 rounded-lg hover:border-medical-400 transition-colors">
+                                                    <div id="new-image-profile" class="flex items-center justify-center w-full p-3 border-2 border-dashed border-gray-300 rounded-lg hover:border-medical-400 transition-colors">
                                                         <div class="flex flex-col text-center">
                                                             <i data-lucide="camera" class="mx-auto h-6 w-6 text-gray-400 mb-2"></i>
                                                             <span class="text-sm text-gray-600">Upload new image</span>

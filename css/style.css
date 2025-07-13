@@ -1,37 +1,29 @@
-/* Header positioning */
+/* =============================
+   Header & Navigation Positioning
+   ============================= */
 header {
   top: 0;
   left: 0;
   right: 0;
 }
 
-/* Mobile navigation positioning */
 #mobile-nav {
   top: 100%;
   left: 0;
   right: 0;
 }
 
-/* Service card hover effect */
+/* =============================
+   Hover Effects
+   ============================= */
 .service-card:hover {
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
     0 4px 6px -4px rgba(0, 0, 0, 0.1);
   transform: translateY(-2px);
 }
 
-/* Service link hover arrow effect */
 .service-link:hover .right-arrow {
   transform: translateX(0.25rem);
-}
-
-input::placeholder {
-  color: #6b7280;
-}
-
-[data-lucide="search"] {
-  left: 0.75rem;
-  top: 50%;
-  transform: translateY(-50%);
 }
 
 .hospital-card-wrapper:hover {
@@ -41,6 +33,55 @@ input::placeholder {
   transition: all 0.2s ease-in-out;
 }
 
+.doctor-card-wrapper:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#about-image:hover,
+.leadership__leader-image:hover,
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+#leadership-cta:hover svg {
+  transform: translateX(0.25rem);
+}
+
+.quick-links-dashboard:hover span {
+  color: rgb(0, 150, 136);
+}
+
+/* =============================
+   Backgrounds
+   ============================= */
+#about {
+  background: linear-gradient(to bottom, #f9fafb, #ffffff);
+}
+
+#background-overlay {
+  background: linear-gradient(to bottom right, #00897b, #00695c);
+}
+
+#background-overlay-image {
+  background-image: url("https://images.unsplash.com/photo-1527613426441-4da17471b66d?q=80&w=2070&auto=format&fit=crop");
+}
+
+#hero-image {
+  background-image: url("https://images.unsplash.com/photo-1504439468489-c8920d796a29?q=80&w=2071&auto=format&fit=crop");
+}
+
+#hero-background {
+  background: linear-gradient(to right, rgb(0 105 92 / 0.9), rgb(30 58 138 / 0.7));
+}
+
+#contact-section-top {
+  background: linear-gradient(to bottom, #b2e3dd, #ffffff);
+}
+
+/* =============================
+   Cards & Components Styling
+   ============================= */
 .hospital-stars {
   background-color: #fefce8;
 }
@@ -55,24 +96,6 @@ input::placeholder {
   left: 16px;
 }
 
-.doctor-card-wrapper:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-#about {
-  background: linear-gradient(to bottom, #f9fafb, #ffffff);
-}
-
-#about-trust {
-  bottom: -2rem;
-  left: -2rem;
-}
-
-#about-image:hover {
-  transform: scale(1.05);
-}
-
 .leadership__leader {
   background: linear-gradient(to bottom right, #ffffff, #e0f2f1);
 }
@@ -81,52 +104,9 @@ input::placeholder {
   color: rgb(0, 121, 107);
 }
 
-.leadership__leader-image:hover {
-  transform: scale(1.05);
-}
-
-#background-overlay {
-  background: linear-gradient(to bottom right, #00897b, #00695c);
-}
-
-#background-overlay-image {
-  background-image: url("https://images.unsplash.com/photo-1527613426441-4da17471b66d?q=80&w=2070&auto=format&fit=crop");
-}
-
-#leadership-cta:hover svg {
-  transform: translateX(0.25rem);
-}
-
-.resize-none {
-  resize: none;
-}
-
-.resize-y {
-  resize: vertical;
-}
-
-#hero-image {
-  background-image: url("https://images.unsplash.com/photo-1504439468489-c8920d796a29?q=80&w=2071&auto=format&fit=crop");
-}
-
-#hero-background {
-  background: linear-gradient(to right,
-      rgb(0 105 92 / 0.9),
-      rgb(30 58 138 / 0.7));
-}
-
-#contact-section-top {
-  background: linear-gradient(to bottom, #b2e3dd, #ffffff);
-}
-
-.line-clamp-2 {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
-}
-
+/* =============================
+   Custom Checkbox Styling
+   ============================= */
 .custom-checkbox {
   appearance: none;
   width: 16px;
@@ -139,12 +119,10 @@ input::placeholder {
   display: inline-block;
 }
 
-/* When checked: green background */
 .custom-checkbox:checked {
   background-color: #009688;
 }
 
-/* Draw the checkmark */
 .custom-checkbox:checked::after {
   content: "";
   position: absolute;
@@ -157,23 +135,35 @@ input::placeholder {
   transform: rotate(45deg);
 }
 
-/* Parent button container */
+/* =============================
+   Placeholder & Icons
+   ============================= */
+input::placeholder {
+  color: #6b7280;
+}
+
+[data-lucide="search"] {
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* =============================
+   Eye Toggle for Password Fields
+   ============================= */
 .eye-toggle-button {
   top: 0;
   bottom: 0;
   right: 0;
 }
 
-.inset-y-0 {
-  top: 0;
-  bottom: 0;
-}
-
-/* Icon itself */
 .eye-toggle-icon {
   pointer-events: none;
 }
 
+/* =============================
+   Toast Notifications
+   ============================= */
 #password-error-toast,
 #role-error-toast,
 #email-error-toast,
@@ -182,175 +172,9 @@ input::placeholder {
   right: 20px;
 }
 
-.quick-links-dashboard:hover span {
-  color: rgb(0, 150, 136);
-}
-
-.truncate {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.bg-red-50 {
-  background-color: #fef2f2;
-}
-
-.hover\:bg-red-50:hover {
-  background-color: #fef2f2;
-}
-
-.bg-red-600 {
-  background-color: #dc2626;
-}
-
-.hover\:bg-red-700:hover {
-  background-color: #b91c1c;
-}
-
-.hover\:bg-red-500:hover {
-  background-color: #ef4444;
-}
-
-.bg-red-500 {
-  background-color: #ef4444;
-}
-
-.text-red-500 {
-  color: #ef4444;
-}
-
-.text-red-700 {
-  color: #b91c1c;
-}
-
-.text-red-900 {
-  color: #7f1d1d;
-}
-
-.border-red-200 {
-  border-color: #fecaca;
-}
-
-.hover\:bg-red-100:hover {
-  background-color: #fee2e2;
-}
-
-.border-red-300 {
-  border-color: #fca5a5;
-}
-
-.bg-orange-100 {
-  background-color: #ffedd5;
-  /* Tailwind orange-100 */
-}
-
-.text-orange-800 {
-  color: #9a3412;
-  /* Tailwind orange-800 */
-}
-
-.bg-blue-100 {
-  background-color: #dbeafe;
-  /* Tailwind blue-100 */
-}
-
-.text-blue-800 {
-  color: #1e40af;
-  /* Tailwind blue-800 */
-}
-
-.border-orange-200 {
-  border-color: #fed7aa;
-  /* Tailwind orange-200 */
-}
-
-.bg-gray-150 {
-  background-color: #f0f0f0;
-}
-
-.border-green-200 {
-  border-color: #bbf7d0;
-  /* Tailwind green-200 */
-}
-
-.text-green-900 {
-  color: #14532d;
-  /* Tailwind green-900 */
-}
-
-.border-blue-200 {
-  border-color: #bfdbfe;
-  /* Tailwind blue-200 */
-}
-
-.bg-red-800 {
-  background-color: #991b1b;
-  /* Tailwind's red-800 */
-}
-
-.border-gray-100 {
-  border-color: #f3f4f6;
-  /* Tailwind's gray-100 */
-}
-
-.bg-red-700 {
-  background-color: #b91c1c;
-}
-
-.hover\:bg-red-600:hover {
-  background-color: #dc2626;
-}
-
-.bg-purple-100 {
-  background-color: #f3e8ff; 
-}
-
-.text-purple-800 {
-  color: #6b21a8;
-}
-
-.text-blue-600 {
-  color: #2563eb; /* Tailwind's blue-600 */
-}
-
-.bg-green-600 {
-  background-color: #16a34a; /* Tailwind's green-600 */
-}
-
-.bg-orange-600 {
-  background-color: #ea580c; /* Tailwind's orange-600 */
-}
-
-
-.pointer-events-none {
-  pointer-events: none;
-}
-
-.not-allowed {
-  cursor: not-allowed;
-}
-
-.bottom-0 {
-  bottom: 0;
-}
-
-.right-0 {
-  right: 0;
-}
-
-.left-3 {
-  left: 0.75rem; /* 12px */
-}
-
-.top-1\/2 {
-  top: 50%;
-}
-
-.transform.-translate-y-1\/2 {
-  transform: translateY(-50%);
-}
-
+/* =============================
+   Error Pages Backgrounds
+   ============================= */
 #server-error {
   background-image: linear-gradient(to bottom right, #f9fafb, #fef2f2);
 }
@@ -363,30 +187,24 @@ input::placeholder {
   background-image: linear-gradient(to bottom right, #f9fafb, #fff7ed);
 }
 
-.border-red-100 {
-  border-color: #fee2e2;
-}
-
+/* =============================
+   Transitions
+   ============================= */
 .hover-scale {
   transition: transform 0.3s ease;
 }
 
-.hover-scale:hover {
-  transform: scale(1.05);
-}
-
-.hover\:border-red-300:hover {
-  border-color: #fca5a5;
-}
-
-.hover\:text-red-700:hover {
-  color: #b91c1c;
-}
-
-.bg-red-400 {
-  background-color: #f87171;
-}
-
-.new-image:hover {
+/* =============================
+   Profile Image Hover
+   ============================= */
+#new-image-profile:hover {
   border-color: rgb(38, 166, 154);
+}
+
+/* =============================
+   Trust Icon in About Section
+   ============================= */
+#about-trust {
+  bottom: -2rem;
+  left: -2rem;
 }

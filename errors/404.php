@@ -185,7 +185,7 @@ require_once __DIR__ . "/../backend/middleware/session-context.php";
                     <!-- Contact Support Button -->
                     <a
                         href="<?= $paths['static']['contact'] ?>"
-                        class="inline-flex items-center justify-center gap-2 text-medical-500 hover:bg-medical-50 hover:text-heading whitespace-nowrap rounded-sm text-sm font-medium transition-colors outline-none border border-solid h-10 px-4 py-2 w-full">
+                        class="inline-flex items-center justify-center gap-2 text-medical-500 hover:bg-medical-50 hover:text-gray-900 whitespace-nowrap rounded-sm text-sm font-medium transition-colors outline-none border border-solid h-10 px-4 py-2 w-full">
                         Contact Support
                     </a>
 
