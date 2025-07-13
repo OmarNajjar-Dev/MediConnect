@@ -314,6 +314,14 @@ input::placeholder {
   background-color: #dc2626;
 }
 
+.bg-purple-100 {
+  background-color: #f3e8ff; 
+}
+
+.text-purple-800 {
+  color: #6b21a8;
+}
+
 .text-blue-600 {
   color: #2563eb; /* Tailwind's blue-600 */
 }
