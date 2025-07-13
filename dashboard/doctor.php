@@ -333,99 +333,97 @@ $userEmail = "elio"
                         </div>
                     </div>
 
-                    <!-- Weekly Schedule Section -->
-                    <div data-section="schedule" class="hidden mt-4 sm:mt-6">
+                    
+                    <!-- 📅 Schedule Section - July 8 -->
+                    <div data-section="schedule" class="mt-4 sm:mt-6">
                         <div class="glass-card rounded-xl p-4 sm:p-6">
-                            <h3 class="text-lg sm:text-xl font-bold mb-4">Weekly Schedule</h3>
-                            <div class="flex flex-col gap-4">
+                            <div class="mb-6">
+                                <h3 class="text-lg sm:text-xl font-bold mb-2">Today's Schedule</h3>
+                                <p class="text-sm text-gray-600">July 8, 2025</p>
+                            </div>
 
-                                <div class="grid lg:grid-cols-7 gap-1 sm:gap-2 text-center text-xs sm:text-sm font-medium">
-                                    <div class="truncate">Mon</div>
-                                    <div class="truncate">Tue</div>
-                                    <div class="truncate">Wed</div>
-                                    <div class="truncate">Thu</div>
-                                    <div class="truncate">Fri</div>
-                                    <div class="truncate">Sat</div>
-                                    <div class="truncate">Sun</div>
-                                </div>
-
-                                <div class="overflow-x-auto">
-                                    <div class="grid lg:grid-cols-7 gap-1 sm:gap-2">
-
-                                        <div class="border border-solid border-card-soft rounded-lg p-2 sm:p-3 h-24 sm:h-32 bg-gray-50 min-w-0">
-                                            <div class="text-xs sm:text-sm font-medium mb-1 sm:mb-2">7</div>
-                                            <div class="flex flex-col gap-1">
-                                                <div class="text-xs bg-blue-100 text-blue-800 px-1 sm:px-2 py-1 rounded-sm text-center">
-                                                    <span class="hidden sm:inline">9:00 - 12:00</span><span class="sm:hidden">9-12</span>
-                                                </div>
-                                                <div class="text-xs bg-green-100 text-green-800 px-1 sm:px-2 py-1 rounded-sm text-center">
-                                                    <span class="hidden sm:inline">14:00 - 17:00</span><span class="sm:hidden">2-5</span>
-                                                </div>
+                            <div class="flex flex-col gap-3">
+                                <!-- Morning Clinic -->
+                                <div class="rounded-lg border-2 border-solid border-green-200 bg-green-100 p-4 text-green-800">
+                                    <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                                        <div class="flex-1">
+                                            <div class="mb-1 flex items-center gap-3">
+                                                <i data-lucide="clock" class="w-4 h-4 text-current"></i>
+                                                <span class="text-sm sm:text-base font-medium">09:00 - 12:00</span>
                                             </div>
+                                            <p class="ml-7 text-sm text-gray-700">Morning Clinic</p>
                                         </div>
-
-                                        <div class="border border-solid border-card-soft rounded-lg p-2 sm:p-3 h-24 sm:h-32 bg-gray-50 min-w-0">
-                                            <div class="text-xs sm:text-sm font-medium mb-1 sm:mb-2">8</div>
-                                            <div class="flex flex-col gap-1">
-                                                <div class="text-xs bg-blue-100 text-blue-800 px-1 sm:px-2 py-1 rounded-sm text-center">
-                                                    <span class="hidden sm:inline">9:00 - 12:00</span><span class="sm:hidden">9-12</span>
-                                                </div>
-                                                <div class="text-xs bg-green-100 text-green-800 px-1 sm:px-2 py-1 rounded-sm text-center">
-                                                    <span class="hidden sm:inline">14:00 - 17:00</span><span class="sm:hidden">2-5</span>
-                                                </div>
-                                            </div>
+                                        <div class="ml-7 text-right sm:ml-0">
+                                            <p class="text-xs text-gray-600">Patients</p>
+                                            <p class="text-lg font-bold">8</p>
                                         </div>
-
-                                        <div class="border border-solid border-card-soft rounded-lg p-2 sm:p-3 h-24 sm:h-32 bg-gray-50 min-w-0">
-                                            <div class="text-xs sm:text-sm font-medium mb-1 sm:mb-2">9</div>
-                                            <div class="flex flex-col gap-1">
-                                                <div class="text-xs bg-blue-100 text-blue-800 px-1 sm:px-2 py-1 rounded-sm text-center">
-                                                    <span class="hidden sm:inline">9:00 - 12:00</span><span class="sm:hidden">9-12</span>
-                                                </div>
-                                                <div class="text-xs bg-green-100 text-green-800 px-1 sm:px-2 py-1 rounded-sm text-center">
-                                                    <span class="hidden sm:inline">14:00 - 17:00</span><span class="sm:hidden">2-5</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="border border-solid border-card-soft rounded-lg p-2 sm:p-3 h-24 sm:h-32 bg-gray-50 min-w-0">
-                                            <div class="text-xs sm:text-sm font-medium mb-1 sm:mb-2">10</div>
-                                            <div class="flex flex-col gap-1">
-                                                <div class="text-xs bg-blue-100 text-blue-800 px-1 sm:px-2 py-1 rounded-sm text-center">
-                                                    <span class="hidden sm:inline">9:00 - 12:00</span><span class="sm:hidden">9-12</span>
-                                                </div>
-                                                <div class="text-xs bg-green-100 text-green-800 px-1 sm:px-2 py-1 rounded-sm text-center">
-                                                    <span class="hidden sm:inline">14:00 - 17:00</span><span class="sm:hidden">2-5</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="border border-solid border-card-soft rounded-lg p-2 sm:p-3 h-24 sm:h-32 bg-gray-50 min-w-0">
-                                            <div class="text-xs sm:text-sm font-medium mb-1 sm:mb-2">11</div>
-                                            <div class="flex flex-col gap-1">
-                                                <div class="text-xs bg-blue-100 text-blue-800 px-1 sm:px-2 py-1 rounded-sm text-center">
-                                                    <span class="hidden sm:inline">9:00 - 12:00</span><span class="sm:hidden">9-12</span>
-                                                </div>
-                                                <div class="text-xs bg-green-100 text-green-800 px-1 sm:px-2 py-1 rounded-sm text-center">
-                                                    <span class="hidden sm:inline">14:00 - 17:00</span><span class="sm:hidden">2-5</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="border border-solid border-card-soft rounded-lg p-2 sm:p-3 h-24 sm:h-32 bg-gray-50 min-w-0">
-                                            <div class="text-xs sm:text-sm font-medium mb-1 sm:mb-2">12</div>
-                                        </div>
-
-                                        <div class="border border-solid border-card-soft rounded-lg p-2 sm:p-3 h-24 sm:h-32 bg-gray-50 min-w-0">
-                                            <div class="text-xs sm:text-sm font-medium mb-1 sm:mb-2">13</div>
-                                        </div>
-
                                     </div>
                                 </div>
 
+                                <!-- Lunch Break -->
+                                <div class="rounded-lg border-2 border-solid border-gray-200 bg-gray-100 p-4 text-gray-600">
+                                    <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                                        <div class="flex-1">
+                                            <div class="mb-1 flex items-center gap-3">
+                                                <i data-lucide="clock" class="w-4 h-4 text-current"></i>
+                                                <span class="text-sm sm:text-base font-medium">12:00 - 13:00</span>
+                                            </div>
+                                            <p class="ml-7 text-sm text-gray-700">Lunch Break</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Afternoon Clinic -->
+                                <div class="rounded-lg border-2 border-solid border-blue-200 bg-blue-100 p-4 text-blue-800">
+                                    <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                                        <div class="flex-1">
+                                            <div class="mb-1 flex items-center gap-3">
+                                                <i data-lucide="clock" class="w-4 h-4 text-current"></i>
+                                                <span class="text-sm sm:text-base font-medium">13:00 - 17:00</span>
+                                            </div>
+                                            <p class="ml-7 text-sm text-gray-700">Afternoon Clinic</p>
+                                        </div>
+                                        <div class="ml-7 text-right sm:ml-0">
+                                            <p class="text-xs text-gray-600">Patients</p>
+                                            <p class="text-lg font-bold">6</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Administrative Work -->
+                                <div class="rounded-lg border-2 border-solid border-blue-200 bg-blue-100 p-4 text-blue-800">
+                                    <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                                        <div class="flex-1">
+                                            <div class="mb-1 flex items-center gap-3">
+                                                <i data-lucide="clock" class="w-4 h-4 text-current"></i>
+                                                <span class="text-sm sm:text-base font-medium">17:00 - 18:00</span>
+                                            </div>
+                                            <p class="ml-7 text-sm text-gray-700">Administrative Work</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Summary Section -->
+                            <div class="mt-6 rounded-lg bg-blue-50 p-4">
+                                <div class="grid grid-cols-2 gap-4 text-center sm:grid-cols-3">
+                                    <div>
+                                        <p class="text-lg font-bold text-blue-600">14</p>
+                                        <p class="text-xs text-gray-600">Total Patients</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-lg font-bold text-green-600">8</p>
+                                        <p class="text-xs text-gray-600">Working Hours</p>
+                                    </div>
+                                    <div class="col-span-2 sm:col-span-1">
+                                        <p class="text-lg font-bold text-purple-600">1</p>
+                                        <p class="text-xs text-gray-600">Break Hour</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
+
 
                     <!-- Profile Management Section -->
                     <div data-section="profile" class="hidden mt-4 sm:mt-6">
