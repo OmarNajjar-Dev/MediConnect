@@ -160,30 +160,30 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                             class="mb-2 grid h-10 w-full grid-cols-3 items-center justify-center rounded-md bg-gray-150 p-1 text-muted-foreground pointer">
                             <button
                                 type="button"
-                                data-target="Appointments"
+                                data-target="appointments"
                                 class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-white px-3 py-1.5 text-sm font-medium pointer">
                                 Appointments
                             </button>
 
                             <button
                                 type="button"
-                                data-target="Medical-history"
+                                data-target="medical-history"
                                 class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-gray-150 px-3 py-1.5 text-sm font-medium pointer">
                                 Medical history
                             </button>
 
                             <button
                                 type="button"
-                                data-target="My-Profile"
+                                data-target="my-profile"
                                 class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-gray-150 px-3 py-1.5 text-sm font-medium pointer">
                                 My Profile
                             </button>
                         </div>
 
-                        <div class="mt-2 flex flex-col gap-6" style="animation-duration: 0s">
+                        <!-- Appointments Section -->
+                        <div data-section="appointments" class="mt-2">
                             <!-- Appointment Summary Cards: Upcoming, Completed, This Month -->
-                            <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
-
+                            <div class="mb-6 grid grid-cols-1 gap-6 md:grid-cols-3">
                                 <div class="glass-card rounded-xl p-6">
                                     <div class="flex items-center justify-between">
                                         <div>
@@ -213,28 +213,21 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                                         <i data-lucide="clock" class="h-8 w-8 text-purple-600"></i>
                                     </div>
                                 </div>
-
                             </div>
 
-
-
-                            <div data-section="Appointments" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                                <!-- Upcoming Appointments Section with Booking & Action Buttons -->
+                            <!-- Upcoming Appointments + Quick Actions -->
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                <!-- Upcoming Appointments -->
                                 <div class="glass-card rounded-xl p-6">
-
-                                    <!-- Header: Title + Book Button -->
                                     <div class="mb-4 flex items-center justify-between">
                                         <h3 class="text-xl font-bold">Upcoming Appointments</h3>
-
                                         <button class="inline-flex items-center justify-center h-9 rounded-md border border-solid border-transparent transition-colors bg-medical-500 px-3 text-sm font-medium text-white hover:bg-medical-400 pointer gap-2 whitespace-nowrap">
                                             <i data-lucide="plus" class="mr-2 h-4 w-4"></i>
                                             Book New
                                         </button>
                                     </div>
 
-                                    <!-- Appointments List -->
                                     <div class="flex flex-col gap-3">
-
                                         <!-- Appointment Card 1 -->
                                         <div class="rounded-lg bg-gray-50 p-4">
                                             <div class="mb-3 flex items-start justify-between">
@@ -248,13 +241,11 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                                                     confirmed
                                                 </div>
                                             </div>
-
                                             <div class="flex gap-2">
                                                 <button class="inline-flex items-center justify-center h-9 rounded-md border border-solid border-input bg-background px-3 text-sm font-medium hover:bg-accent hover:text-medical-500 pointer gap-2 whitespace-nowrap transition-200">
                                                     <i data-lucide="square-pen" class="mr-1 h-4 w-4"></i>
                                                     Reschedule
                                                 </button>
-
                                                 <button class="inline-flex items-center justify-center h-9 rounded-md border border-solid border-red-200 bg-background px-3 text-sm font-medium text-red-600 hover:bg-red-50 pointer gap-2 whitespace-nowrap transition-200">
                                                     <i data-lucide="x" class="mr-1 h-4 w-4"></i>
                                                     Cancel
@@ -275,54 +266,136 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                                                     scheduled
                                                 </div>
                                             </div>
-
                                             <div class="flex gap-2">
                                                 <button class="inline-flex items-center justify-center h-9 rounded-md border border-solid border-input bg-background px-3 text-sm font-medium hover:bg-accent hover:text-medical-500 pointer gap-2 whitespace-nowrap transition-colors transition-200">
                                                     <i data-lucide="square-pen" class="mr-1 h-4 w-4"></i>
                                                     Reschedule
                                                 </button>
-
                                                 <button class="inline-flex items-center justify-center h-9 rounded-md border border-solid border-red-200 bg-background px-3 text-sm font-medium text-red-600 hover:bg-red-50 pointer gap-2 whitespace-nowrap transition-colors transition-200">
-                                                    <i data-lucide="square-pen" class="mr-1 h-4 w-4"></i>
+                                                    <i data-lucide="x" class="mr-1 h-4 w-4"></i>
                                                     Cancel
                                                 </button>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
 
-                                <!-- Quick Actions Section with Utility Buttons -->
+                                <!-- Quick Actions -->
                                 <div class="glass-card rounded-xl p-6">
-
                                     <h3 class="mb-4 text-xl font-bold">Quick Actions</h3>
-
                                     <div class="flex flex-col gap-3">
-
                                         <button class="inline-flex w-full items-center justify-start h-10 rounded-md border border-solid border-input bg-background px-4 py-2 text-sm font-medium hover:bg-accent hover:text-medical-500 pointer gap-2 whitespace-nowrap transition-colors transition-200">
                                             <i data-lucide="calendar" class="mr-2 h-4 w-4"></i>
                                             Book New Appointment
                                         </button>
-
                                         <button class="inline-flex w-full items-center justify-start h-10 rounded-md border border-solid border-input bg-background px-4 py-2 text-sm font-medium hover:bg-accent hover:text-medical-500 pointer gap-2 whitespace-nowrap transition-colors transition-200">
                                             <i data-lucide="file-text" class="mr-2 h-4 w-4"></i>
                                             View Test Results
                                         </button>
-
                                         <button class="inline-flex w-full items-center justify-start h-10 rounded-md border border-solid border-input bg-background px-4 py-2 text-sm font-medium hover:bg-accent hover:text-medical-500 pointer gap-2 whitespace-nowrap transition-colors transition-200">
                                             <i data-lucide="clock" class="mr-2 h-4 w-4"></i>
                                             Request Prescription Refill
                                         </button>
-
                                     </div>
                                 </div>
+                            </div>
+                        </div>
 
+                        <!-- Medical History Section -->
+                        <div data-section="medical-history" class="mt-2">
+                            <div class="glass-card rounded-xl p-6">
+                                <h3 class="mb-4 text-xl font-bold">Appointment History</h3>
+                                <div class="flex flex-col gap-3">
+                                    <div class="flex items-center justify-between rounded-lg bg-gray-50 p-4">
+                                        <div>
+                                            <p class="font-medium">Dr. Sarah Johnson</p>
+                                            <p class="mt-1 text-sm text-gray-600">Cardiology</p>
+                                            <p class="mt-1 text-sm text-gray-500">ECG normal, continue medication</p>
+                                        </div>
+                                        <div class="text-right">
+                                            <p class="font-medium">2025-06-15</p>
+                                            <div class="inline-flex items-center rounded-full border border-transparent bg-purple-100 px-2.5 py-0.5 text-xs font-semibold text-purple-800 transition-colors hover:bg-primary/80">
+                                                completed
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-center justify-between rounded-lg bg-gray-50 p-4">
+                                        <div>
+                                            <p class="font-medium">Dr. Fatima Al-Zahra</p>
+                                            <p class="mt-1 text-sm text-gray-600">Dermatology</p>
+                                            <p class="mt-1 text-sm text-gray-500">Skin condition treated successfully</p>
+                                        </div>
+                                        <div class="text-right">
+                                            <p class="font-medium">2025-05-20</p>
+                                            <div class="inline-flex items-center rounded-full border border-transparent bg-purple-100 px-2.5 py-0.5 text-xs font-semibold text-purple-800 transition-colors">
+                                                completed
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-center justify-between rounded-lg bg-gray-50 p-4">
+                                        <div>
+                                            <p class="font-medium">Dr. Mohammed Ali</p>
+                                            <p class="mt-1 text-sm text-gray-600">Orthopedics</p>
+                                            <p class="mt-1 text-sm text-gray-500">Joint pain assessment, recommended PT</p>
+                                        </div>
+                                        <div class="text-right">
+                                            <p class="font-medium">2025-04-10</p>
+                                            <div class="inline-flex items-center rounded-full border border-transparent bg-purple-100 px-2.5 py-0.5 text-xs font-semibold text-purple-800 transition-colors">
+                                                completed
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- My Profile Section -->
+                        <div data-section="my-profile" class="mt-2">
+                            <div class="glass-card rounded-xl p-6">
+                                <div class="mb-6 flex items-center justify-between">
+                                    <h3 class="text-xl font-bold">My Profile</h3>
+                                    <button class="pointer inline-flex items-center justify-center gap-2 rounded-md border border-solid border-transparent bg-medical-500 px-4 py-2 text-sm font-medium text-white hover:bg-medical-400 h-10 whitespace-nowrap transition-colors">
+                                        <i data-lucide="square-pen" class="mr-2 h-4 w-4"></i>
+                                        Edit Profile
+                                    </button>
+                                </div>
+                                <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+                                    <div>
+                                        <label class="mb-1 block text-sm font-medium leading-none">Full Name</label>
+                                        <p class="mb-4 text-gray-700">John Doe</p>
+
+                                        <label class="mb-1 block text-sm font-medium leading-none">Email</label>
+                                        <p class="mb-4 text-gray-700">john.doe@email.com</p>
+
+                                        <label class="mb-1 block text-sm font-medium leading-none">Phone</label>
+                                        <p class="mb-4 text-gray-700">+1-555-2001</p>
+
+                                        <label class="block text-sm font-medium leading-none">Address</label>
+                                        <p class="text-gray-700">123 Main Street, Downtown</p>
+                                    </div>
+
+                                    <div>
+                                        <label class="mb-1 block text-sm font-medium leading-none">Date of Birth</label>
+                                        <p class="mb-4 text-gray-700">1985-06-15</p>
+
+                                        <label class="mb-1 block text-sm font-medium leading-none">Blood Type</label>
+                                        <p class="mb-4 text-gray-700">A+</p>
+
+                                        <label class="mb-1 block text-sm font-medium leading-none">Emergency Contact</label>
+                                        <p class="mb-4 text-gray-700">Jane Doe - +1-555-2002</p>
+
+                                        <label class="block text-sm font-medium leading-none">Patient ID</label>
+                                        <p class="text-gray-700">#4</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Medical history section showing past appointment details -->
-                    <div data-section="Medical-history" class="mt-2">
+                    <div data-section="medical-history" class="mt-2">
                         <div class="glass-card rounded-xl p-6">
                             <h3 class="mb-4 text-xl font-bold">Appointment History</h3>
                             <div class="flex flex-col gap-3">
@@ -377,7 +450,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                     </div>
 
                     <!-- User profile section displaying personal and contact information -->
-                    <div data-section="My-Profile" class="mt-2">
+                    <div data-section="my-profile" class="mt-2">
                         <div class="glass-card rounded-xl p-6">
                             <div class="mb-6 flex items-center justify-between">
                                 <h3 class="text-xl font-bold">My Profile</h3>
