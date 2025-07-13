@@ -261,7 +261,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
 
         <!-- Testimonials Cards Grid Container -->
         <div id="testimonials-cards-container"
-          class="grid grid-cols-1 grid-cols-3 gap-6 max-w-5xl mx-auto leading-relaxed">
+          class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto leading-relaxed">
           <!-- Testimonials will be dynamically added here using JavaScript -->
         </div>
       </div>
@@ -355,6 +355,11 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
             <li>
               <a href="<?= $paths['static']['contact'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
                 Contact Us
+              </a>
+            </li>
+            <li>
+              <a href="<?= $paths['static']['blood_donation'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+                Blood Donation
               </a>
             </li>
           </ul>

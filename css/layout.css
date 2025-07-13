@@ -269,6 +269,10 @@
     z-index: 50;
 }
 
+.z-1000 {
+    z-index: 1000;
+}
+
 .z-auto {
     z-index: auto;
 }

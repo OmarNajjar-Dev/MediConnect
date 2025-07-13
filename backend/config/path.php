@@ -29,11 +29,12 @@ $paths = [
     ],
 
     'static' => [
-        'about'    => BASE_URL . '/about.php',
-        'privacy'  => BASE_URL . '/privacy.php',
-        'terms'    => BASE_URL . '/terms.php',
-        'faq'      => BASE_URL . '/faq.php',
-        'contact'  => BASE_URL . '/contact.php',
+        'about'           => BASE_URL . '/about.php',
+        'privacy'         => BASE_URL . '/privacy.php',
+        'terms'           => BASE_URL . '/terms.php',
+        'faq'             => BASE_URL . '/faq.php',
+        'contact'         => BASE_URL . '/contact.php',
+        'blood_donation'  => BASE_URL . '/blood-donation.php'
     ],
 
     'errors' => [

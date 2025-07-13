@@ -136,8 +136,8 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
     </header>
 
     <!-- Main Content -->
-    <main class="pt-20 pb-16 min-h-screen bg-gray-50">
-        <div class="container mx-auto px-4">
+    <main class="pt-16 sm:pt-20 pb-16 min-h-screen bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
             <div class="py-8">
 
                 <!-- Header Section -->
@@ -145,7 +145,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                     <p class="mb-1 text-sm text-gray-600">
                         Logged in as: <span class="font-medium">AMBULANCE TEAM</span>
                     </p>
-                    <h1 class="text-2xl font-bold text-gray-900">
+                    <h1 class="text-2xl sm:text-3xl font-bold text-gray-900">
                         Welcome back, Emergency Response Team Alpha
                     </h1>
                     <p class="mt-1 text-sm text-medical-600">
@@ -154,10 +154,10 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                 </div>
 
                 <!-- Panel Title -->
-                <div class="mb-6 flex items-center gap-3">
+                <div class="mb-6 flex flex-col sm:flex-row items-start sm:items-center gap-3">
                     <i data-lucide="truck" class="h-8 w-8 text-red-600"></i>
                     <div>
-                        <h1 class="text-3xl font-bold text-heading">
+                        <h1 class="text-2xl sm:text-3xl font-bold text-heading">
                             Emergency Response Panel
                         </h1>
                         <p class="text-gray-600">Ambulance Team Dashboard</p>
@@ -166,7 +166,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
 
                 <!-- Emergency Alert Box -->
                 <div class="mb-6 rounded-xl border border-red-200 bg-red-50 p-6 glass-card">
-                    <div class="flex items-center justify-between">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                         <div class="flex items-center gap-3">
                             <i data-lucide="circle-alert" class="h-6 w-6 text-red-600"></i>
                             <div>
@@ -174,29 +174,29 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                                 <p class="text-red-700">Immediate attention required</p>
                             </div>
                         </div>
-                        <button class="pointer rounded-md border border-solid border-input bg-red-600 transition-colors px-4 py-2 text-sm font-medium text-white hover:bg-red-500">
+                        <button
+                            class="pointer rounded-md border border-solid border-input bg-red-600 transition-colors px-4 py-2 text-sm font-medium text-white hover:bg-red-500 w-full sm:w-auto">
                             View Alerts
                         </button>
                     </div>
                 </div>
 
                 <!-- Tab Navigation -->
-                <div
-                    class="mb-2 grid h-10 w-full grid-cols-3 items-center justify-center rounded-md bg-gray-150 p-1 text-muted-foreground pointer">
+                <div class="grid grid-cols-1 md:grid-cols-3 w-full gap-2 md:gap-0 md:h-10 items-center justify-center rounded-md bg-gray-150 p-1 text-muted-foreground outline-none">
                     <button
                         type="button"
                         data-target="active-emergencies"
-                        class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-white px-3 py-1.5 text-sm font-medium pointer">
+                        class="inline-flex h-9 w-full items-center justify-center whitespace-nowrap rounded-sm border-none bg-white px-3 text-sm font-medium text-gray-900 transition-all pointer">
                         Active Emergencies
                     </button>
 
                     <button
                         type="button"
                         data-target="notifications"
-                        class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-gray-150 px-3 py-1.5 text-sm font-medium pointer">
+                        class="inline-flex h-9 w-full items-center justify-center whitespace-nowrap rounded-sm border-none bg-gray-150 px-3 text-sm font-medium transition-all pointer">
                         Notifications
                         <div id="notification-count"
-                            class="ml-2 inline-flex items-center rounded-full border-none bg-red-500 px-2.5 py-0.5 text-xs font-semibold text-white">
+                            class="ml-2 inline-flex items-center rounded-full bg-red-500 px-2.5 py-0.5 text-xs font-semibold text-white">
                             2
                         </div>
                     </button>
@@ -204,14 +204,13 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                     <button
                         type="button"
                         data-target="team-status"
-                        class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-gray-150 px-3 py-1.5 text-sm font-medium pointer">
+                        class="inline-flex h-9 w-full items-center justify-center whitespace-nowrap rounded-sm border-none bg-gray-150 px-3 text-sm font-medium transition-all pointer">
                         Team Status
                     </button>
                 </div>
 
                 <!-- Dashboard Stats -->
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-6 mt-2">
                     <div class="glass-card rounded-xl p-6">
                         <div class="flex justify-between">
                             <div>
@@ -251,23 +250,22 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                             <i data-lucide="check-circle" class="h-8 w-8 text-green-600"></i>
                         </div>
                     </div>
-
                 </div>
 
                 <!-- Emergency Requests List -->
                 <div data-section="active-emergencies" class="glass-card rounded-xl p-6">
                     <h3 class="mb-4 text-xl font-bold text-heading">Emergency Requests</h3>
 
-                    <!-- Request Card -->
+                    <!-- Request Card 1 -->
                     <div class="mb-4 rounded-lg border border-solid border-card-soft bg-gray-50 p-4">
-
                         <div class="mb-3">
-                            <div class="mb-2 flex items-center gap-2">
+                            <div class="mb-2 flex flex-wrap items-center gap-2">
                                 <h4 class="font-medium text-heading">Ahmed Al-Rashid</h4>
-                                <span class="rounded-full border border-solid border-red-200 bg-red-100 px-2.5 py-0.5 text-xs font-semibold text-red-800">CRITICAL</span>
-                                <span class="rounded-full bg-orange-100 px-2.5 py-0.5 text-xs font-semibold text-orange-800">PENDING</span>
+                                <span
+                                    class="rounded-full border border-solid border-red-200 bg-red-100 px-2.5 py-0.5 text-xs font-semibold text-red-800">CRITICAL</span>
+                                <span
+                                    class="rounded-full bg-orange-100 px-2.5 py-0.5 text-xs font-semibold text-orange-800">PENDING</span>
                             </div>
-
                             <div class="mb-2 flex items-center gap-2 text-sm text-gray-600">
                                 <i data-lucide="map-pin" class="h-4 w-4"></i>
                                 <span>123 Main Street, Downtown</span>
@@ -275,8 +273,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                             <p class="mb-2 text-gray-700">Chest pain and difficulty breathing</p>
                             <div class="text-xs text-gray-500">Reported: 18h ago</div>
                         </div>
-
-                        <div class="mt-3 flex gap-2">
+                        <div class="mt-3 flex flex-wrap gap-2">
                             <button class="pointer rounded-md border border-solid border-input bg-medical-600 px-3 py-2 text-sm font-medium text-white hover:bg-medical-500">Accept & Assign</button>
                             <button class="pointer rounded-md border border-solid border-input bg-white px-3 py-2 text-sm font-medium text-heading hover:bg-accent hover:text-medical-600">Update Status</button>
                             <button class="pointer flex items-center gap-1 rounded-md border border-solid border-input bg-white px-3 py-2 text-sm font-medium text-heading hover:bg-accent hover:text-medical-600">
@@ -286,20 +283,18 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                                 <i data-lucide="phone" class="h-4 w-4"></i> Call Patient
                             </button>
                         </div>
-
                     </div>
 
-
-                    <!-- Second Request Card -->
+                    <!-- Request Card 2 -->
                     <div class="rounded-lg border border-solid border-card-soft bg-gray-50 p-4">
-
                         <div class="mb-3">
-                            <div class="mb-2 flex items-center gap-2">
+                            <div class="mb-2 flex flex-wrap items-center gap-2">
                                 <h4 class="font-medium text-heading">Fatima Hassan</h4>
-                                <span class="rounded-full border border-solid border-orange-200 bg-orange-100 px-2.5 py-0.5 text-xs font-semibold text-orange-800">HIGH</span>
-                                <span class="rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-semibold text-blue-800">ASSIGNED</span>
+                                <span
+                                    class="rounded-full border border-solid border-orange-200 bg-orange-100 px-2.5 py-0.5 text-xs font-semibold text-orange-800">HIGH</span>
+                                <span
+                                    class="rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-semibold text-blue-800">ASSIGNED</span>
                             </div>
-
                             <div class="mb-2 flex items-center gap-2 text-sm text-gray-600">
                                 <i data-lucide="map-pin" class="h-4 w-4"></i>
                                 <span>456 Oak Avenue, North District</span>
@@ -307,8 +302,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                             <p class="mb-2 text-gray-700">Severe allergic reaction</p>
                             <div class="text-xs text-gray-500">Reported: 19h ago &nbsp; | &nbsp; ETA: 6:00 PM</div>
                         </div>
-
-                        <div class="mt-3 flex gap-2">
+                        <div class="mt-3 flex flex-wrap gap-2">
                             <button class="pointer rounded-md border border-solid border-input bg-medical-600 px-3 py-2 text-sm font-medium text-white hover:bg-medical-500">Start Response</button>
                             <button class="pointer rounded-md border border-solid border-input bg-white px-3 py-2 text-sm font-medium text-heading hover:bg-accent hover:text-medical-600">Update Status</button>
                             <button class="pointer flex items-center gap-1 rounded-md border border-solid border-input bg-white px-3 py-2 text-sm font-medium text-heading hover:bg-accent hover:text-medical-600">
@@ -343,7 +337,6 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                                 </div>
                             </div>
                         </div>
-
 
                         <!-- Notification 2 -->
                         <div class="notification-card p-4 rounded-lg border border-solid border-red-200 bg-red-50 pointer">
@@ -499,6 +492,11 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                         <li>
                             <a href="<?= $paths['static']['contact'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
                                 Contact Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= $paths['static']['blood_donation'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+                                Blood Donation
                             </a>
                         </li>
                     </ul>
