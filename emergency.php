@@ -108,7 +108,7 @@
                         <div  id="requestHelpWrapper" class="flex flex-col gap-6">
                             <button
                                 id="requestHelpBtn"
-                                class="gap-2 whitespace-nowrap border border-solid border-input disabled:pointer-events-none disabled:opacity-50 h-10 bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-sm text-lg shadow-lg flex items-center justify-center w-full md:w-auto md:max-w-[300px]">
+                                class="gap-2 whitespace-nowrap border border-solid border-input disabled:pointer-events-none disabled:opacity-50 h-10 bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-sm text-lg shadow-lg flex items-center justify-center w-full md:w-auto md:max-w-[300px] pointer">
                                 <i data-lucide="ambulance" class="mr-2 h-4 w-4"></i>
                                 Request Emergency Help
                             </button>
@@ -122,13 +122,7 @@
 
 
 
-
-
-
-
-
-
-            <section class="py-8 md:py-12">
+            <section id="statusSection" class="hidden py-8 md:py-12">
                 <div class="container mx-auto px-4 md:px-6">
                     <div class="max-w-4xl mx-auto">
                         <div class="rounded-lg border bg-card text-card-foreground shadow-sm mb-8">
@@ -195,6 +189,8 @@
                 </div>
             </section>
 
+
+
             <!-- Drawer (location access UI) -->
             <div id="drawer" class="fixed inset-0 bg-opacity-50 flex items-center justify-center z-50 hidden">
                 <div class="bg-white w-full max-w-md mx-auto rounded-lg overflow-hidden shadow-lg">
@@ -230,23 +226,6 @@
                     </div>
                 </div>
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

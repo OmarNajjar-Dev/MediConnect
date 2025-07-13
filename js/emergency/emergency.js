@@ -3,13 +3,15 @@ const requestHelpBtn = document.getElementById("requestHelpBtn");
 const drawer = document.getElementById("drawer");
 const confirmationMessage = document.getElementById("confirmationMessage");
 const helpSectionWrapper = document.getElementById("requestHelpWrapper");
+const statusSection = document.getElementById("statusSection"); // ✅ New Section
 
 let drawerTimeout = null;
 let messageTimeout = null;
 let requestCancelled = false;
 
-// ✅ Ensure confirmation message is hidden on load
+// ✅ Ensure confirmation and status sections are hidden on load
 confirmationMessage.classList.add("hidden");
+statusSection.classList.add("hidden"); // ✅ Hide initially
 
 // ✅ Handle click on "Request Emergency Help"
 requestHelpBtn.addEventListener("click", () => {
@@ -36,6 +38,9 @@ requestHelpBtn.addEventListener("click", () => {
       drawer.classList.add("hidden");
       showConfirmationMessage();
       replaceHelpButtonSection();
+
+      // ✅ Show the previously hidden section
+      statusSection.classList.remove("hidden");
     }
   }, 4000);
 });
