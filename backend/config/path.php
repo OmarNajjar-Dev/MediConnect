@@ -39,6 +39,7 @@ $paths = [
 
     'errors' => [
         'unauthorized' => BASE_URL . '/errors/401.php',
+        'forbidden'    => BASE_URL . '/errors/403.php',
         'notfound'     => BASE_URL . '/errors/404.php',
         'server'       => BASE_URL . '/errors/500.php',
     ],

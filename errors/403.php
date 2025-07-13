@@ -147,78 +147,77 @@ require_once __DIR__ . "/../backend/middleware/session-context.php";
         </div>
     </header>
 
-    <!-- Server Error Page Wrapper -->
-    <main id="server-error" class="overflow-hidden flex justify-center flex-grow bg-gray-50 pt-20 pb-16">
+    <!-- Forbidden Access Page Wrapper -->
+    <main id="forbidden-error" class="overflow-hidden flex justify-center flex-grow bg-gray-50 pt-20 pb-16">
         <!-- Centered Content Container -->
         <div class="max-w-lg w-full flex flex-col gap-8 text-center animate-fade-in pt-20 pb-16">
 
-            <!-- Error Icon Section -->
-            <div class="flex justify-center relative z-10">
+            <!-- Shield Icon Section -->
+            <div class="flex justify-center">
                 <div class="relative">
                     <!-- Icon Circle -->
-                    <div class="w-28 h-28 bg-white rounded-full shadow-xl flex items-center justify-center border border-solid border-transparent border-red-100 hover-scale hover-scale:hover">
-                        <i data-lucide="triangle-alert" class="w-12 h-12 text-red-500"></i>
+                    <div class="w-28 h-28 bg-white rounded-full shadow-xl flex items-center justify-center border border-solid border-transparent border-orange-100 hover-scale hover-scale:hover">
+                        <i data-lucide="shield" class="w-12 h-12 text-orange-500"></i>
                     </div>
                     <!-- Blurred Pulse Background -->
                     <div class="absolute inset-0 w-28 h-28 rounded-full blur-xl -z-10 pulse"></div>
                 </div>
             </div>
 
-            <!-- Error Message Box -->
+            <!-- Message Box -->
             <div class="bg-white rounded-3xl shadow-2xl border border-solid border-gray-100 p-8 sm:p-12 relative z-10">
+
+                <!-- Title and Subtitle -->
                 <div class="flex flex-col gap-5">
-                    <!-- Error Code -->
-                    <h1 class="text-5xl sm:text-6xl font-bold text-gray-900 tracking-tight">500</h1>
-                    <!-- Error Title -->
-                    <h2 class="text-2xl sm:text-3xl font-semibold text-gray-800 leading-tight">Server Error</h2>
+                    <h1 class="text-5xl sm:text-6xl font-bold text-gray-900 tracking-tight">403</h1>
+                    <h2 class="text-2xl sm:text-3xl font-semibold text-gray-800 leading-tight">Access Denied</h2>
                 </div>
 
-                <!-- Description Paragraphs -->
+                <!-- Description -->
                 <div class="flex flex-col gap-4 mt-8">
                     <p class="text-gray-700 text-lg sm:text-xl leading-relaxed font-medium">
-                        Oops! Something went wrong on our side.
+                        You don't have permission to view this page.
                     </p>
                     <p class="text-gray-500 text-base leading-relaxed max-w-md mx-auto">
-                        Please try again later, or contact support if the issue persists. Our technical team has been notified.
+                        This content may require special permissions or a different user role. Please log in with an authorized account or contact support.
                     </p>
                 </div>
 
                 <!-- Action Buttons -->
                 <div class="flex flex-col sm:flex-row gap-4 mt-10">
+                    <!-- Contact Support Button -->
+                    <a
+                        href="<?= $paths['static']['contact'] ?>"
+                        class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium h-10 px-4 py-2 flex-grow bg-orange-600 hover:bg-orange-700 text-white shadow-lg hover:shadow-xl transition-all transition-200">
+                        <i data-lucide="mail" class="w-4 h-4"></i>
+                        Contact Support
+                    </a>
+
                     <!-- Back to Home Button -->
                     <a
                         href="<?= $paths['home'] ?>"
-                        class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium h-10 px-4 py-2 flex-grow bg-red-600 hover:bg-red-700 text-white shadow-lg hover:shadow-xl transition-all transition-200">
+                        class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium border border-solid border-card-soft bg-background hover:bg-gray-100 hover:text-accent-foreground h-10 px-4 py-2 flex-grow text-heading transition-all transition-200">
                         <i data-lucide="house" class="w-4 h-4"></i>
                         Back to Home
                     </a>
-
-                    <!-- Retry Button -->
-                    <button
-                        class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium pointer border border-solid border-transparent bg-background hover:text-accent-foreground h-10 px-4 py-2 flex-grow border-red-200 text-red-600 hover:bg-red-50 hover:border-red-300 shadow-lg hover:shadow-xl transition-all transition-200">
-                        <i data-lucide="rotate-ccw" class="w-4 h-4 mr-2"></i>
-                        Try Again
-                    </button>
                 </div>
             </div>
 
-            <!-- Support Contact -->
+            <!-- Contact Note -->
             <div class="text-center flex flex-col gap-3 relative z-10">
                 <p class="text-gray-500 text-sm">
-                    Need immediate assistance?
-                    <a
-                        href="mailto:contact@mediconnect.example"
-                        class="text-red-600 hover:text-red-700 transition-colors transition-200 font-medium">
-                        Contact our support team
+                    Need help?
+                    <a href="mailto:contact@mediconnect.example" class="text-orange-600 hover:text-orange-700 transition-colors transition-200 font-medium">
+                        contact@mediconnect.example
                     </a>
                 </p>
             </div>
 
             <!-- Animated Pulsing Dots -->
             <div class="flex justify-center gap-3 opacity-30">
-                <div class="w-2 h-2 bg-red-400 rounded-full pulse"></div>
-                <div class="w-2 h-2 bg-red-400 rounded-full pulse delay-200"></div>
-                <div class="w-2 h-2 bg-red-400 rounded-full pulse delay-400"></div>
+                <div class="w-2 h-2 bg-orange-400 rounded-full pulse"></div>
+                <div class="w-2 h-2 bg-orange-400 rounded-full pulse delay-200"></div>
+                <div class="w-2 h-2 bg-orange-400 rounded-full pulse delay-400"></div>
             </div>
 
         </div>

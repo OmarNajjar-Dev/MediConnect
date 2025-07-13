@@ -1,13 +1,13 @@
-# Enable rewrite engine
 RewriteEngine On
 RewriteBase /mediconnect/
 
-# If the file or directory does NOT exist
+# Show 404 if file or folder doesn't exist
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^.*$ errors/404.php [L]
 
-# Rewrite /dashboard to dashboard/index.php
-RewriteRule ^dashboard/?$ dashboard/index.php [L]
-
-# Custom 404 page
+# Fallback custom 404
 ErrorDocument 404 /mediconnect/errors/404.php
+ErrorDocument 401 /mediconnect/errors/401.php
+ErrorDocument 403 /mediconnect/errors/403.php
+ErrorDocument 500 /mediconnect/errors/500.php

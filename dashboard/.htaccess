@@ -1,0 +1,5 @@
+# Only allow direct access to index.php
+<FilesMatch "^(?!index\.php$).+\.php$">
+    RewriteEngine On
+    RewriteRule ^.*$ /mediconnect/dashboard/ [R=302,L]
+</FilesMatch>

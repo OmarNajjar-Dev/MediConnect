@@ -21,17 +21,17 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/colors.css" />
-  <link rel="stylesheet" href="css/typography.css" />
-  <link rel="stylesheet" href="css/spacing.min.css" />
-  <link rel="stylesheet" href="css/sizing.min.css" />
-  <link rel="stylesheet" href="css/borders.css" />
-  <link rel="stylesheet" href="css/ring.css" />
-  <link rel="stylesheet" href="css/layout.css" />
-  <link rel="stylesheet" href="css/animations.css" />
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="/mediconnect/css/base.css" />
+  <link rel="stylesheet" href="/mediconnect/css/colors.css" />
+  <link rel="stylesheet" href="/mediconnect/css/typography.css" />
+  <link rel="stylesheet" href="/mediconnect/css/spacing.min.css" />
+  <link rel="stylesheet" href="/mediconnect/css/sizing.min.css" />
+  <link rel="stylesheet" href="/mediconnect/css/borders.css" />
+  <link rel="stylesheet" href="/mediconnect/css/ring.css" />
+  <link rel="stylesheet" href="/mediconnect/css/layout.css" />
+  <link rel="stylesheet" href="/mediconnect/css/animations.css" />
+  <link rel="stylesheet" href="/mediconnect/css/style.css" />
+  <link rel="stylesheet" href="/mediconnect/css/responsive.css" />
 
   <!-- Page Title -->
   <title>MediConnect - Bridging Healthcare & Technology</title>
@@ -192,15 +192,14 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
                     </label>
 
                     <!-- Button that toggles dropdown -->
-                    <button id="dropdownButton" type="button" role="combobox" aria-controls="subject-options"
-                      aria-expanded="false"
+                    <button id="dropdown-button" type="button" role="combobox"
                       class="flex h-10 w-full items-center justify-between pointer rounded-sm border border-solid border-input bg-background px-3 py-2 text-base text-left focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white md:text-sm">
                       <span>Select a subject</span>
                       <i data-lucide="chevron-down" class="w-4 h-4"></i>
                     </button>
 
                     <!-- Custom Dropdown Menu -->
-                    <ul id="dropdownMenu"
+                    <ul id="dropdown-menu"
                       class="absolute z-10 mt-1.5 p-1 border border-solid border-input w-full bg-white rounded-md shadow-xl hidden">
                       <li>
                         <button type="button"
@@ -463,8 +462,8 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
   </footer>
 
   <!-- External JavaScript -->
-  <script type="module" src="./js/common/index.js"></script>
-  <script type="module" src="./js/contact/index.js"></script>
+  <script type="module" src="/mediconnect/js/common/index.js"></script>
+  <script type="module" src="/mediconnect/js/contact/index.js"></script>
 
 </body>
 

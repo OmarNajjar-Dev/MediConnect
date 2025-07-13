@@ -31,6 +31,6 @@ switch ($role) {
         include 'ambulance.php';
         break;
     default:
-        header("Location: " . $paths['auth']['login']);
+        header("Location: " . $paths['errors']['unauthorized']);
         exit;
 }

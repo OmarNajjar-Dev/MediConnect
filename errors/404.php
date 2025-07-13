@@ -21,16 +21,16 @@ require_once __DIR__ . "/../backend/middleware/session-context.php";
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="../css/base.css" />
-    <link rel="stylesheet" href="../css/colors.css" />
-    <link rel="stylesheet" href="../css/typography.css" />
-    <link rel="stylesheet" href="../css/spacing.min.css" />
-    <link rel="stylesheet" href="../css/sizing.min.css" />
-    <link rel="stylesheet" href="../css/borders.css" />
-    <link rel="stylesheet" href="../css/layout.css" />
-    <link rel="stylesheet" href="../css/animations.css" />
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/responsive.css" />
+    <link rel="stylesheet" href="/mediconnect/css/base.css" />
+    <link rel="stylesheet" href="/mediconnect/css/colors.css" />
+    <link rel="stylesheet" href="/mediconnect/css/typography.css" />
+    <link rel="stylesheet" href="/mediconnect/css/spacing.min.css" />
+    <link rel="stylesheet" href="/mediconnect/css/sizing.min.css" />
+    <link rel="stylesheet" href="/mediconnect/css/borders.css" />
+    <link rel="stylesheet" href="/mediconnect/css/layout.css" />
+    <link rel="stylesheet" href="/mediconnect/css/animations.css" />
+    <link rel="stylesheet" href="/mediconnect/css/style.css" />
+    <link rel="stylesheet" href="/mediconnect/css/responsive.css" />
 
     <!-- Page Title -->
     <title>MediConnect - Bridging Healthcare & Technology</title>
@@ -156,7 +156,7 @@ require_once __DIR__ . "/../backend/middleware/session-context.php";
 
                 <!-- Icon Section -->
                 <div class="inline-block mx-auto">
-                    <i data-lucide="help-circle" class="w-20 h-20 mx-auto mb-6 text-medical-500"></i>
+                    <i data-lucide="help-circle" class="w-24 h-24 mx-auto mb-6 text-medical-500"></i>
                 </div>
 
                 <!-- Error Code & Title -->
@@ -323,7 +323,7 @@ require_once __DIR__ . "/../backend/middleware/session-context.php";
     </footer>
 
     <!-- External JavaScript -->
-    <script type="module" src="../js/common/index.js"></script>
+    <script type="module" src="/mediconnect/js/common/index.js"></script>
 
     <!-- Create Lucide Icons -->
     <script>

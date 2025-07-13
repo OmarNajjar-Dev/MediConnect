@@ -21,16 +21,16 @@ require_once __DIR__ . "/../backend/middleware/session-context.php";
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="../css/base.css" />
-    <link rel="stylesheet" href="../css/colors.css" />
-    <link rel="stylesheet" href="../css/typography.css" />
-    <link rel="stylesheet" href="../css/spacing.min.css" />
-    <link rel="stylesheet" href="../css/sizing.min.css" />
-    <link rel="stylesheet" href="../css/borders.css" />
-    <link rel="stylesheet" href="../css/layout.css" />
-    <link rel="stylesheet" href="../css/animations.css" />
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/responsive.css" />
+    <link rel="stylesheet" href="/mediconnect/css/base.css" />
+    <link rel="stylesheet" href="/mediconnect/css/colors.css" />
+    <link rel="stylesheet" href="/mediconnect/css/typography.css" />
+    <link rel="stylesheet" href="/mediconnect/css/spacing.min.css" />
+    <link rel="stylesheet" href="/mediconnect/css/sizing.min.css" />
+    <link rel="stylesheet" href="/mediconnect/css/borders.css" />
+    <link rel="stylesheet" href="/mediconnect/css/layout.css" />
+    <link rel="stylesheet" href="/mediconnect/css/animations.css" />
+    <link rel="stylesheet" href="/mediconnect/css/style.css" />
+    <link rel="stylesheet" href="/mediconnect/css/responsive.css" />
 
     <!-- Page Title -->
     <title>MediConnect - Bridging Healthcare & Technology</title>
@@ -150,53 +150,53 @@ require_once __DIR__ . "/../backend/middleware/session-context.php";
     <!-- Unauthorized Access Page Wrapper -->
     <main class="overflow-hidden flex justify-center flex-grow bg-gray-50 pt-20 pb-16">
         <!-- Centered Content Container -->
-        <div class="max-w-md w-full flex flex-col gap-8 text-center pt-20 pb-16">
+        <div class="max-w-lg w-full flex flex-col gap-8 text-center animate-fade-in pt-20 pb-16">
 
             <!-- Lock Icon Section -->
             <div class="flex justify-center">
                 <div class="relative">
                     <!-- Icon Circle -->
-                    <div class="w-24 h-24 bg-white rounded-full shadow-lg flex items-center justify-center border border-solid border-transparent border-gray-100 -z-10">
-                        <i data-lucide="lock" class="w-10 h-10 text-medical-500"></i>
+                    <div class="w-28 h-28 bg-white rounded-full shadow-xl flex items-center justify-center border border-solid border-transparent border-gray-100 hover-scale hover-scale:hover">
+                        <i data-lucide="lock" class="w-12 h-12 text-medical-500"></i>
                     </div>
-                    <!-- Optional Blurred Background (non-visible effect here) -->
-                    <div class="absolute inset-0 w-24 h-24 rounded-full blur-xl"></div>
+                    <!-- Optional Blurred Background -->
+                    <div class="absolute inset-0 w-28 h-28 rounded-full blur-xl -z-10 pulse"></div>
                 </div>
             </div>
 
             <!-- Message Box -->
-            <div class="bg-white rounded-2xl shadow-xl border border-solid border-gray-100 p-8 sm:p-10">
+            <div class="bg-white rounded-3xl shadow-2xl border border-solid border-gray-100 p-8 sm:p-12 relative z-10">
 
                 <!-- Title and Subtitle -->
-                <div class="flex flex-col gap-4">
-                    <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 tracking-tight">401</h1>
-                    <h2 class="text-xl sm:text-2xl font-semibold text-gray-800">Unauthorized Access</h2>
+                <div class="flex flex-col gap-5">
+                    <h1 class="text-5xl sm:text-6xl font-bold text-gray-900 tracking-tight">401</h1>
+                    <h2 class="text-2xl sm:text-3xl font-semibold text-gray-800 leading-tight">Unauthorized Access</h2>
                 </div>
 
                 <!-- Description -->
-                <div class="flex flex-col gap-3 mt-6">
-                    <p class="text-gray-600 text-base sm:text-lg leading-relaxed">
+                <div class="flex flex-col gap-4 mt-8">
+                    <p class="text-gray-700 text-lg sm:text-xl leading-relaxed font-medium">
                         You don't have permission to access this page.
                     </p>
-                    <p class="text-gray-500 text-sm leading-relaxed">
+                    <p class="text-gray-500 text-base leading-relaxed max-w-md mx-auto">
                         Please contact your system administrator if you believe this is a mistake.
                     </p>
                 </div>
 
                 <!-- Action Buttons -->
-                <div class="flex flex-col sm:flex-row gap-3 mt-8">
+                <div class="flex flex-col sm:flex-row gap-4 mt-10">
                     <!-- Contact Support Button -->
                     <a
-                        class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors bg-medical-600 text-white hover:bg-medical-400 h-10 px-4 py-2 flex-grow"
-                        href="<?= $paths['static']['contact'] ?>">
-                        <i data-lucide="mail" class="w-4 h-4"></i>
-                        Contact Support
+                        href="<?= $paths['auth']['login'] ?>"
+                        class="inline-flex items-center justify-center gap-2 whitespace-nowrap flex-grow rounded-md text-sm font-medium h-10 px-5 py-2 flex-grow bg-medical-500 hover:bg-medical-400 text-white shadow-lg hover:shadow-xl transition-all transition-200">
+                        <i data-lucide="log-in" class="w-4 h-4"></i>
+                        Go to Login
                     </a>
 
                     <!-- Back to Home Button -->
                     <a
-                        class="inline-flex text-heading items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-card-soft bg-background hover:bg-gray-100 hover:text-accent-foreground h-10 px-4 py-2 flex-grow"
-                        href="<?= $paths['home'] ?>">
+                        href="<?= $paths['home'] ?>"
+                        class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium border border-solid border-card-soft bg-background hover:bg-gray-100 hover:text-accent-foreground h-10 px-4 py-2 flex-grow text-heading transition-all transition-200">
                         <i data-lucide="house" class="w-4 h-4"></i>
                         Back to Home
                     </a>
@@ -204,22 +204,27 @@ require_once __DIR__ . "/../backend/middleware/session-context.php";
             </div>
 
             <!-- Contact Note -->
-            <div class="text-center">
+            <div class="text-center flex flex-col gap-3 relative z-10">
                 <p class="text-gray-500 text-sm">
-                    Need help? Contact
-                    <a
-                        href="mailto:contact@mediconnect.example"
-                        class="text-medical-600 hover:text-medical-700 transition-colors transition-200 font-medium">
+                    Need help?
+                    <a href="mailto:contact@mediconnect.example" class="text-medical-600 hover:text-medical-700 transition-colors transition-200 font-medium">
                         contact@mediconnect.example
                     </a>
                 </p>
+            </div>
+
+            <!-- Animated Pulsing Dots -->
+            <div class="flex justify-center gap-3 opacity-30">
+                <div class="w-2 h-2 bg-medical-400 rounded-full pulse"></div>
+                <div class="w-2 h-2 bg-medical-400 rounded-full pulse delay-200"></div>
+                <div class="w-2 h-2 bg-medical-400 rounded-full pulse delay-400"></div>
             </div>
 
         </div>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-50 pt-16 pb-8 border-t border-solid separator">
+    <footer id="unauthorized-error" class="bg-gray-50 pt-16 pb-8 border-t border-solid separator">
         <div class="container mx-auto px-4">
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                 <div>
@@ -345,7 +350,7 @@ require_once __DIR__ . "/../backend/middleware/session-context.php";
     </footer>
 
     <!-- External JavaScript -->
-    <script type="module" src="../js/common/index.js"></script>
+    <script type="module" src="/mediconnect/js/common/index.js"></script>
 
     <!-- Create Lucide Icons -->
     <script>
