@@ -446,6 +446,11 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
                                 Contact Us
                             </a>
                         </li>
+                        <li>
+                            <a href="<?= $paths['static']['blood_donation'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+                                Blood Donation
+                            </a>
+                        </li>
                     </ul>
                 </div>
 

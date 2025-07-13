@@ -159,7 +159,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
 
                 <div class="glass-card bg-card rounded-xl p-6 max-w-xl mx-auto">
                     <form onsubmit="return validateForm()" class="flex flex-col gap-6">
-                        
+
                         <!-- Specialty -->
                         <div class="flex flex-col gap-3">
                             <label class="text-sm font-medium leading-none">Specialty</label>
@@ -539,6 +539,11 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
                                 Contact Us
                             </a>
                         </li>
+                        <li>
+                            <a href="<?= $paths['static']['blood_donation'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+                                Blood Donation
+                            </a>
+                        </li>
                     </ul>
                 </div>
 
@@ -569,7 +574,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
                 <p>&copy; 2025 MediConnect. All rights reserved.</p>
             </div>
         </div>
-    </footer>>
+    </footer>
 
     <!-- External JavaScript -->
     <script type="module" src="./js/common/index.js"></script>
