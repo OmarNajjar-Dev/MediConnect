@@ -1,9 +1,9 @@
 // Get DOM elements
-const requestHelpBtn = document.getElementById("requestHelpBtn");
+const requestHelpBtn = document.getElementById("request-help-btn");
 const drawer = document.getElementById("drawer");
 const confirmationMessage = document.getElementById("confirmationMessage");
-const helpSectionWrapper = document.getElementById("requestHelpWrapper");
-const statusSection = document.getElementById("statusSection"); // ✅ New Section
+const helpSectionWrapper = document.getElementById("request-help-wrapper");
+const statusSection = document.getElementById("status-section"); // ✅ New Section
 
 let drawerTimeout = null;
 let messageTimeout = null;

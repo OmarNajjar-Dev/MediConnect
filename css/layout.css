@@ -184,11 +184,27 @@
     grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+.grid-cols-5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.grid-cols-6 {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.grid-cols-7 {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
 /* --- Other Layout Utilities --- */
 
 /* Overflow */
 .overflow-auto {
     overflow: auto;
+}
+
+.overflow-x-auto {
+    overflow-x: auto;
 }
 
 .overflow-hidden {
@@ -251,6 +267,10 @@
 
 .z-50 {
     z-index: 50;
+}
+
+.z-1000 {
+    z-index: 1000;
 }
 
 .z-auto {

@@ -1,6 +1,6 @@
 export function initDropdown() {
-  const button = document.getElementById("dropdownButton");
-  const menu = document.getElementById("dropdownMenu");
+  const button = document.getElementById("dropdown-button");
+  const menu = document.getElementById("dropdown-menu");
   const selectedText = button.querySelector("span");
 
   if (!button || !menu || !selectedText) return;

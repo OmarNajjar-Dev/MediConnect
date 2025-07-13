@@ -1,14 +1,18 @@
 export async function sendEmail() {
   const emailEndpoint = "https://api.emailjs.com/api/v1.0/email/send";
 
+  let subject = document.getElementById("dropdown-button span")?.textContent;
+  subject = subject === "Select a subject" ? null : subject;
+
   const emailData = {
-    service_id: "service_5p2nj9m",
-    template_id: "elio123",
-    user_id: "kLGuKHDTc--RzYINt",
+    service_id: "service_tjk4vcw",
+    template_id: "template_chqvqdb",
+    user_id: "HYJ9rNlhhrXT4tlMY",
     template_params: {
-      to_name: "Elio",
+      to_name: "MediConnect",
       from_name: document.getElementById("name").value.trim(),
       from_email: document.getElementById("email").value.trim(),
+      subject: subject,
       message: document.getElementById("message").value.trim(),
     },
   };

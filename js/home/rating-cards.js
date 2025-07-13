@@ -7,7 +7,7 @@ export const ratingCardsData = [
     description:
       "View and contribute to hospital ratings based on quality of care, facilities, and services.",
     buttonText: "View Hospital Ratings",
-    linkHref: "./hospitals.html",
+    linkHref: "<?= $paths['services']['hospitals'] ?>",
     animationDelay: "100ms",
   },
   {
@@ -16,7 +16,7 @@ export const ratingCardsData = [
     description:
       "Browse doctor reviews and ratings to find the best healthcare provider for your needs.",
     buttonText: "Find Rated Doctors",
-    linkHref: "./doctors.html",
+    linkHref: "<?= $paths['services']['doctors'] ?>",
     animationDelay: "200ms",
   },
 ];

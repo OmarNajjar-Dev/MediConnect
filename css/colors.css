@@ -44,9 +44,24 @@
   --blue-500: 59, 130, 246;
   --blue-600: 37, 99, 235;
   --blue-700: 29, 78, 216;
+  --blue-800: 30, 64, 175;
+  --blue-900: 30, 58, 138;
 
+  --purple-50: 250, 245, 255;
   --purple-500: 168, 85, 247;
   --purple-600: 147, 51, 234;
+
+  --orange-50: 255, 247, 237;
+  --orange-100: 255, 237, 213;
+  --orange-400: 251, 146, 60;
+
+  --orange-500: 249, 115, 22;
+  --orange-600: 234, 88, 12;
+  --orange-700: 194, 49, 12;
+
+  --text-slate-500: 100, 116, 139;
+  --text-slate-600: 71, 85, 105;
+  --text-slate-700: 51, 65, 85;
 
   /* Status Colors */
   --success: 22, 163, 74;
@@ -58,11 +73,12 @@
   --background: 255, 255, 255;
   --heading: 2, 8, 23;
   --card-background: 255, 255, 255;
-  --primary-foreground: 255, 255, 255;
   --secondary: 186, 225, 242;
   --secondary-foreground: 39, 71, 84;
   --foreground: 75, 85, 99;
+  --card-foreground: 15, 23, 41;
   --muted-foreground: 101, 117, 139;
+  --muted-50: 245, 245, 245;
   --border-card-light: 255, 255, 255, 0.2;
   --border-card-soft: 225, 234, 234;
   --border: 209, 213, 219;
@@ -202,7 +218,7 @@
   background-color: rgba(var(--background), 0.2);
 }
 
-.bg-white-95 {
+.bg-white\/95 {
   background-color: rgb(var(--background), 0.95);
 }
 
@@ -334,20 +350,16 @@
   color: rgb(var(--muted-foreground));
 }
 
-.text-muted-foreground {
-  color: rgb(var(--muted-foreground));
+.hover\:bg-muted\/50:hover {
+  background-color: rgba(var(--muted-50), 0.5);
+}
+
+.text-card-foreground {
+  color: rgb(var(--card-foreground));
 }
 
 .text-heading {
   color: rgb(var(--heading));
-}
-
-.text-primary-foreground {
-  color: rgb(var(--primary-foreground));
-}
-
-.text-primary-foreground {
-  color: rgb(var(--primary-foreground));
 }
 
 .text-white {
@@ -397,6 +409,18 @@
   border-color: rgb(var(--separator));
 }
 
+.border-gray-100 {
+  border-color: rgb(var(--gray-100));
+}
+
+.border-gray-200 {
+  border-color: rgb(var(--gray-200));
+}
+
+.border-gray-300 {
+  border-color: rgb(var(--gray-300));
+}
+
 .border-card-light {
   border-color: rgb(var(--border-card-light));
 }
@@ -409,12 +433,16 @@
   border-color: rgb(var(--medical-100));
 }
 
-.border-transparent {
-  border-color: transparent;
+.border-medical-200 {
+  border-color: rgb(var(--medical-200));
 }
 
 .border-transparent {
   border-color: transparent;
+}
+
+.border-orange-100 {
+  border-color: rgb(var(--orange-100));
 }
 
 /* ==================================================
@@ -507,12 +535,141 @@
   background-color: rgba(var(--gray-900));
 }
 
+.bg-purple-50 {
+  background-color: rgb(var(--purple-50));
+}
+
+.bg-purple-500 {
+  background-color: rgb(var(--purple-500));
+}
+
+.bg-orange-50 {
+  background-color: rgb(var(--orange-50));
+}
+
+.bg-orange-400 {
+  background-color: rgb(var(--orange-400));
+}
+
+
+.text-green-400 {
+  color: rgb(var(--green-400));
+}
+
+.text-green-500 {
+  color: rgb(var(--green-500));
+}
+
+.text-green-600 {
+  color: rgb(var(--green-600));
+}
+
+.text-green-700 {
+  color: rgb(var(--green-700));
+}
+
+.text-green-800 {
+  color: rgb(var(--green-800));
+}
+
+.bg-yellow-100 {
+  background-color: rgb(var(--yellow-100));
+}
+
+.text-yellow-800 {
+  color: rgb(var(--yellow-800));
+}
+
+.bg-blue-50 {
+  background-color: rgb(var(--blue-50));
+}
+
+.text-blue-500 {
+  color: rgb(var(--blue-500));
+}
+
+.text-blue-800 {
+  color: rgb(var(--blue-800));
+}
+
+.hover\:text-blue-800:hover {
+  color: rgb(var(--blue-800));
+}
+
+.bg-blue-500 {
+  background-color: rgb(var(--blue-500));
+}
+
+.bg-blue-600 {
+  background-color: rgb(var(--blue-600));
+}
+
+.hover\:bg-blue-700:hover {
+  background-color: rgb(var(--blue-700));
+}
+
+.text-blue-700 {
+  color: rgb(var(--blue-700));
+}
+
+.text-blue-900 {
+  color: rgb(var(--blue-900));
+}
+
+.text-purple-500 {
+  color: rgb(var(--purple-500));
+}
+
+.text-purple-600 {
+  color: rgb(var(--purple-600));
+}
+
+.text-slate-700 {
+  color: rgb(var(--text-slate-700));
+}
+
+.text-slate-500 {
+  color: rgb(var(--text-slate-500));
+}
+
+.text-slate-600 {
+  color: rgb(var(--text-slate-600));
+}
+
+.text-orange-500 {
+  color: rgb(var(--orange-500));
+}
+
+.hover\:bg-orange-500:hover {
+  background-color: rgb(var(--orange-500));
+}
+
+.text-orange-600 {
+  color: rgb(var(--orange-600));
+}
+
+.hover\:text-orange-700:hover {
+  color: rgb(var(--orange-700))
+}
+
+.bg-accent {
+  background-color: rgb(var(--accent));
+}
+
+.hover\:bg-accent:hover {
+  background-color: rgb(var(--accent));
+}
+
 .bg-green-50 {
   background-color: rgb(var(--green-50));
 }
 
 .bg-green-100 {
   background-color: rgb(var(--green-100));
+}
+
+.bg-green-500 {
+  background-color: rgb(var(--green-500));
 }
 
 .text-green-400 {
@@ -555,83 +712,7 @@
   background-color: rgb(var(--blue-50));
 }
 
-.text-blue-500 {
-  color: rgb(var(--blue-500));
-}
-
-.text-blue-600 {
-  color: rgb(var(--blue-600));
-}
-
-.text-blue-700 {
-  color: rgb(var(--blue-700));
-}
-
-.text-purple-500 {
-  color: rgb(var(--purple-500));
-}
-
-.text-purple-600 {
-  color: rgb(var(--purple-600));
-}
-
-.hover\:text-red-800:hover {
-  color: rgb(var(--red-800));
-}
-
-.bg-accent {
-  background-color: rgb(var(--accent));
-}
-
-.hover\:bg-accent:hover {
-  background-color: rgb(var(--accent));
-}
-
-.bg-green-50 {
-  background-color: rgb(var(--green-50));
-}
-
-.bg-green-100 {
-  background-color: rgb(var(--green-100));
-}
-
-.text-green-400 {
-  color: rgb(var(--green-400));
-}
-
-.text-green-500 {
-  color: rgb(var(--green-500));
-}
-
-.text-green-600 {
-  color: rgb(var(--green-600));
-}
-
-.text-green-700 {
-  color: rgb(var(--green-700));
-}
-
-.text-green-800 {
-  color: rgb(var(--green-800));
-}
-
-.bg-yellow-100 {
-  background-color: rgb(var(--yellow-100));
-}
-
-.text-yellow-800 {
-  color: rgb(var(--yellow-800));
-}
-
-.bg-red-100 {
-  background-color: #fee2e2;
-}
-
-.text-red-600 {
-  color: rgb(var(--red-600));
-}
-
-.bg-blue-50 {
+.hover\:bg-blue-50:hover {
   background-color: rgb(var(--blue-50));
 }
 
@@ -655,16 +736,20 @@
   color: rgb(var(--purple-600));
 }
 
+.text-red-800 {
+  color: rgb(var(--red-800));
+}
+
 .hover\:text-red-800:hover {
   color: rgb(var(--red-800));
 }
 
-.bg-accent {
-  background-color: rgb(var(--accent));
+.text-accent-foreground {
+  color: rgb(var(--text-accent-foreground));
 }
 
-.hover\:bg-accent:hover {
-  background-color: rgb(var(--accent));
+.hover\:text-accent-foreground:hover {
+  color: rgb(var(--text-accent-foreground));
 }
 
 /* Hover - Status Backgrounds */

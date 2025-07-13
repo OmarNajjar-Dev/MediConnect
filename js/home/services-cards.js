@@ -5,7 +5,7 @@ export const servicesCardsData = [
     description:
       "Schedule appointments with doctors and receive notifications for any changes.",
     linkText: "Book Now",
-    linkHref: "./appointments.php",
+    linkHref: "<?= $paths['services']['appointments'] ?>",
     animationDelay: "0ms",
   },
   {
@@ -23,7 +23,7 @@ export const servicesCardsData = [
     description:
       "Find hospitals with available beds and emergency services in your area.",
     linkText: "View Hospitals",
-    linkHref: "./hospitals.html",
+    linkHref: "<?= $paths['services']['hospitals'] ?>",
     animationDelay: "200ms",
   },
   {

@@ -74,7 +74,7 @@ input::placeholder {
 }
 
 .leadership__leader {
-  background: linear-gradient(to bottom right, #ffffff, #E0F2F1);
+  background: linear-gradient(to bottom right, #ffffff, #e0f2f1);
 }
 
 .leadership__leader:hover .leadership__leader-name {
@@ -86,11 +86,11 @@ input::placeholder {
 }
 
 #background-overlay {
-  background: linear-gradient(to bottom right, #00897B, #00695C);
+  background: linear-gradient(to bottom right, #00897b, #00695c);
 }
 
 #background-overlay-image {
-  background-image: url('https://images.unsplash.com/photo-1527613426441-4da17471b66d?q=80&w=2070&auto=format&fit=crop');
+  background-image: url("https://images.unsplash.com/photo-1527613426441-4da17471b66d?q=80&w=2070&auto=format&fit=crop");
 }
 
 #leadership-cta:hover svg {
@@ -106,19 +106,13 @@ input::placeholder {
 }
 
 #hero-image {
-  background-image: url('https://images.unsplash.com/photo-1504439468489-c8920d796a29?q=80&w=2071&auto=format&fit=crop');
+  background-image: url("https://images.unsplash.com/photo-1504439468489-c8920d796a29?q=80&w=2071&auto=format&fit=crop");
 }
 
 #hero-background {
-  background: linear-gradient(to right, rgb(0 105 92 / .9), rgb(30 58 138 / .7))
-}
-
-.drop-shadow-md {
-  filter: drop-shadow(0 4px 30px rgba(0, 0, 0, 0.1));
-}
-
-.drop-shadow {
-  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.1));
+  background: linear-gradient(to right,
+      rgb(0 105 92 / 0.9),
+      rgb(30 58 138 / 0.7));
 }
 
 #contact-section-top {
@@ -170,26 +164,39 @@ input::placeholder {
   right: 0;
 }
 
+.inset-y-0 {
+  top: 0;
+  bottom: 0;
+}
+
 /* Icon itself */
 .eye-toggle-icon {
   pointer-events: none;
 }
 
 #password-error-toast,
-#role-error-toast {
+#role-error-toast,
+#email-error-toast,
+#login-error-toast {
   bottom: 20px;
   right: 20px;
 }
 
-.align-middle {
-    vertical-align: middle
-}
-
-.quick-action-dash:hover span {
+.quick-links-dashboard:hover span {
   color: rgb(0, 150, 136);
 }
 
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .bg-red-50 {
+  background-color: #fef2f2;
+}
+
+.hover\:bg-red-50:hover {
   background-color: #fef2f2;
 }
 
@@ -199,6 +206,14 @@ input::placeholder {
 
 .hover\:bg-red-700:hover {
   background-color: #b91c1c;
+}
+
+.hover\:bg-red-500:hover {
+  background-color: #ef4444;
+}
+
+.bg-red-500 {
+  background-color: #ef4444;
 }
 
 .text-red-500 {
