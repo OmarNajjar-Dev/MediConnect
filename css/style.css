@@ -366,8 +366,16 @@ input::placeholder {
   line-height: 1.625;
 }
 
-#service-error {
+#server-error {
   background-image: linear-gradient(to bottom right, #f9fafb, #fef2f2);
+}
+
+#unauthorized-error {
+  background-image: linear-gradient(to bottom right, #f9fafb, #e0f2f1);
+}
+
+#forbidden-error {
+  background-image: linear-gradient(to bottom right, #f9fafb, #fff7ed);
 }
 
 .border-red-100 {

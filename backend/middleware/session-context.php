@@ -46,7 +46,9 @@ if (isset($_SESSION['user_id'])) {
                 $normalizedRole = strtolower($roleName);
             }
 
-            $dashboardLink = $paths['dashboard'][$normalizedRole] ?? $paths['errors']['unauthorized'];
+            $dashboardLink = $paths['dashboard'][$normalizedRole] ?? $paths['errors']['forbidden'];
         }
     }
 }
+
+$dashboardLink = "/mediconnect/dashboard/";

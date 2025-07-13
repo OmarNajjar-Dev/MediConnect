@@ -1,14 +1,5 @@
 <?php
 
-// 1. Load system configuration (paths, constants, routes, etc.)
-require_once __DIR__ . "/../backend/config/path.php";
-
-// 2. Load authentication logic (login state, remember me, etc.)
-require_once __DIR__ . "/../backend/auth/auth.php";
-
-// 3. Load user session context (sets $isLoggedIn, $userName, $userEmail, $dashboardLink)
-require_once __DIR__ . "/../backend/middleware/session-context.php";
-
 // 4. Define required role for this dashboard
 $requiredRole = 'patient';
 
@@ -30,16 +21,16 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="../css/base.css" />
-    <link rel="stylesheet" href="../css/colors.css" />
-    <link rel="stylesheet" href="../css/typography.css" />
-    <link rel="stylesheet" href="../css/spacing.min.css" />
-    <link rel="stylesheet" href="../css/sizing.min.css" />
-    <link rel="stylesheet" href="../css/borders.css" />
-    <link rel="stylesheet" href="../css/layout.css" />
-    <link rel="stylesheet" href="../css/animations.css" />
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/responsive.css" />
+    <link rel="stylesheet" href="/mediconnect/css/base.css" />
+    <link rel="stylesheet" href="/mediconnect/css/colors.css" />
+    <link rel="stylesheet" href="/mediconnect/css/typography.css" />
+    <link rel="stylesheet" href="/mediconnect/css/spacing.min.css" />
+    <link rel="stylesheet" href="/mediconnect/css/sizing.min.css" />
+    <link rel="stylesheet" href="/mediconnect/css/borders.css" />
+    <link rel="stylesheet" href="/mediconnect/css/layout.css" />
+    <link rel="stylesheet" href="/mediconnect/css/animations.css" />
+    <link rel="stylesheet" href="/mediconnect/css/style.css" />
+    <link rel="stylesheet" href="/mediconnect/css/responsive.css" />
 
     <!-- Page Title -->
     <title>MediConnect - Bridging Healthcare & Technology</title>
@@ -625,8 +616,8 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
     </footer>
 
     <!-- External JavaScript -->
-    <script type="module" src="../js/common/index.js"></script>
-    <script type="module" src="../js/dashboard/patient/index.js"></script>
+    <script type="module" src="/mediconnect/js/common/index.js"></script>
+    <script type="module" src="/mediconnect/js/dashboard/patient/index.js"></script>
 
     <!-- Create Lucide Icons -->
     <script>

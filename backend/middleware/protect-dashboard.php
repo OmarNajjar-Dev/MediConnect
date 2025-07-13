@@ -17,6 +17,6 @@ $userRole = $_SESSION['user_role'] ?? null;
 
 // Redirect to unauthorized page if user role doesn't match
 if ($userRole !== $requiredRole) {
-    header("Location: " . $paths["errors"]["unauthorized"]);
+    header("Location: " . $paths["errors"]["forbidden"]);
     exit;
 }
