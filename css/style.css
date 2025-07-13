@@ -164,10 +164,6 @@ input::placeholder {
   right: 0;
 }
 
-.right-0 {
-  right: 0;
-}
-
 .inset-y-0 {
   top: 0;
   bottom: 0;
@@ -314,6 +310,14 @@ input::placeholder {
   background-color: #dc2626;
 }
 
+.bg-purple-100 {
+  background-color: #f3e8ff; 
+}
+
+.text-purple-800 {
+  color: #6b21a8;
+}
+
 .text-blue-600 {
   color: #2563eb; /* Tailwind's blue-600 */
 }
@@ -333,6 +337,14 @@ input::placeholder {
 
 .not-allowed {
   cursor: not-allowed;
+}
+
+.bottom-0 {
+  bottom: 0;
+}
+
+.right-0 {
+  right: 0;
 }
 
 .left-3 {
@@ -389,4 +401,8 @@ input::placeholder {
 
 .bg-red-400 {
   background-color: #f87171;
+}
+
+.new-image:hover {
+  border-color: rgb(38, 166, 154);
 }
