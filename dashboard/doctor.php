@@ -223,26 +223,29 @@ $userEmail = "elio"
                         <div class="flex flex-col gap-3">
 
                             <!-- Appointment 1 -->
-                            <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                                <div class="flex items-center gap-4">
-                                    <div class="w-2 h-2 rounded-full bg-blue-600"></div>
+                            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 p-4 bg-gray-50 rounded-lg">
+                                <!-- Left Side: Patient Info -->
+                                <div class="flex items-start gap-4 flex-1">
+                                    <div class="w-2 h-2 rounded-full bg-blue-600 mt-1"></div>
                                     <div>
                                         <p class="font-medium">John Smith</p>
                                         <p class="text-sm text-gray-600">consultation • 30 min</p>
                                         <p class="text-sm text-gray-500">Regular checkup - chest pain complaints</p>
                                     </div>
                                 </div>
-                                <div class="flex items-center gap-4">
-                                    <div class="text-right">
-                                        <p class="font-medium">09:00</p>
-                                        <span class="text-xs px-2 py-1 rounded-full bg-green-100 text-green-800">confirmed</span>
+
+                                <!-- Right Side: Time, Status, Buttons -->
+                                <div class="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 md:text-end">
+                                    <div>
+                                        <p class="font-medium text-end md:text-right">09:00</p>
+                                        <span class="text-xs px-2 py-1 rounded-full bg-green-100 text-green-800 inline-block w-fit">confirmed</span>
                                     </div>
-                                    <div class="flex gap-2">
-                                        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium border border-input border-solid bg-background hover:bg-accent hover:text-medical-500 h-9 rounded-md px-3 pointer">
+                                    <div class="flex flex-col md:flex-row gap-2 w-full md:w-auto">
+                                        <button class="w-full md:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium border border-input border-solid bg-background hover:bg-accent hover:text-medical-500 h-9 rounded-md px-3 pointer">
                                             <i data-lucide="square-pen" class="h-4 w-4 mr-1"></i>
                                             Update
                                         </button>
-                                        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm border border-transparent font-medium bg-medical-500 text-white hover:bg-medical-400 h-9 rounded-md px-3 pointer">
+                                        <button class="w-full md:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm border border-transparent font-medium bg-medical-500 text-white hover:bg-medical-400 h-9 rounded-md px-3 pointer">
                                             Complete
                                         </button>
                                     </div>
@@ -250,26 +253,27 @@ $userEmail = "elio"
                             </div>
 
                             <!-- Appointment 2 -->
-                            <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                                <div class="flex items-center gap-4">
-                                    <div class="w-2 h-2 rounded-full bg-blue-600"></div>
+                            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 p-4 bg-gray-50 rounded-lg">
+                                <div class="flex items-start gap-4 flex-1">
+                                    <div class="w-2 h-2 rounded-full bg-blue-600 mt-1"></div>
                                     <div>
                                         <p class="font-medium">Mary Johnson</p>
                                         <p class="text-sm text-gray-600">follow-up • 45 min</p>
                                         <p class="text-sm text-gray-500">Follow-up on ECG results</p>
                                     </div>
                                 </div>
-                                <div class="flex items-center gap-4">
-                                    <div class="text-right">
-                                        <p class="font-medium">10:30</p>
-                                        <span class="text-xs px-2 py-1 rounded-full bg-blue-100 text-blue-800">in progress</span>
+
+                                <div class="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 md:text-end">
+                                    <div>
+                                        <p class="font-medium text-end md:text-right">10:30</p>
+                                        <span class="text-xs px-2 py-1 rounded-full bg-blue-100 text-blue-800 inline-block w-fit">in progress</span>
                                     </div>
-                                    <div class="flex gap-2">
-                                        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium border border-input border-solid bg-background hover:bg-accent hover:text-medical-500 h-9 rounded-md px-3 pointer">
+                                    <div class="flex flex-col md:flex-row gap-2 w-full md:w-auto">
+                                        <button class="w-full md:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium border border-input border-solid bg-background hover:bg-accent hover:text-medical-500 h-9 rounded-md px-3 pointer">
                                             <i data-lucide="square-pen" class="h-4 w-4 mr-1"></i>
                                             Update
                                         </button>
-                                        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm border border-transparent font-medium bg-medical-500 text-white hover:bg-medical-400 h-9 rounded-md px-3 pointer">
+                                        <button class="w-full md:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm border border-transparent font-medium bg-medical-500 text-white hover:bg-medical-400 h-9 rounded-md px-3 pointer">
                                             Complete
                                         </button>
                                     </div>
@@ -277,26 +281,27 @@ $userEmail = "elio"
                             </div>
 
                             <!-- Appointment 3 -->
-                            <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                                <div class="flex items-center gap-4">
-                                    <div class="w-2 h-2 rounded-full bg-blue-600"></div>
+                            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 p-4 bg-gray-50 rounded-lg">
+                                <div class="flex items-start gap-4 flex-1">
+                                    <div class="w-2 h-2 rounded-full bg-blue-600 mt-1"></div>
                                     <div>
                                         <p class="font-medium">Ahmed Al-Rashid</p>
                                         <p class="text-sm text-gray-600">consultation • 30 min</p>
                                         <p class="text-sm text-gray-500">New patient - hypertension concerns</p>
                                     </div>
                                 </div>
-                                <div class="flex items-center gap-4">
-                                    <div class="text-right">
-                                        <p class="font-medium">11:15</p>
-                                        <span class="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-800">scheduled</span>
+
+                                <div class="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 md:text-end">
+                                    <div>
+                                        <p class="font-medium text-end md:text-right">11:15</p>
+                                        <span class="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-800 inline-block w-fit">scheduled</span>
                                     </div>
-                                    <div class="flex gap-2">
-                                        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium border border-input border-solid bg-background hover:bg-accent hover:text-medical-500 h-9 rounded-md px-3 pointer">
+                                    <div class="flex flex-col md:flex-row gap-2 w-full md:w-auto">
+                                        <button class="w-full md:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium border border-input border-solid bg-background hover:bg-accent hover:text-medical-500 h-9 rounded-md px-3 pointer">
                                             <i data-lucide="square-pen" class="h-4 w-4 mr-1"></i>
                                             Update
                                         </button>
-                                        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm border border-transparent font-medium bg-medical-500 text-white hover:bg-medical-400 h-9 rounded-md px-3 pointer">
+                                        <button class="w-full md:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm border border-transparent font-medium bg-medical-500 text-white hover:bg-medical-400 h-9 rounded-md px-3 pointer">
                                             Complete
                                         </button>
                                     </div>
@@ -304,26 +309,27 @@ $userEmail = "elio"
                             </div>
 
                             <!-- Appointment 4 -->
-                            <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                                <div class="flex items-center gap-4">
-                                    <div class="w-2 h-2 rounded-full bg-blue-600"></div>
+                            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 p-4 bg-gray-50 rounded-lg">
+                                <div class="flex items-start gap-4 flex-1">
+                                    <div class="w-2 h-2 rounded-full bg-blue-600 mt-1"></div>
                                     <div>
                                         <p class="font-medium">Fatima Hassan</p>
                                         <p class="text-sm text-gray-600">routine-checkup • 60 min</p>
                                         <p class="text-sm text-gray-500">Annual cardiac screening</p>
                                     </div>
                                 </div>
-                                <div class="flex items-center gap-4">
-                                    <div class="text-right">
-                                        <p class="font-medium">14:00</p>
-                                        <span class="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-800">scheduled</span>
+
+                                <div class="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 md:text-end">
+                                    <div>
+                                        <p class="font-medium text-end md:text-right">14:00</p>
+                                        <span class="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-800 inline-block w-fit">scheduled</span>
                                     </div>
-                                    <div class="flex gap-2">
-                                        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium border border-input border-solid bg-background hover:bg-accent hover:text-medical-500 h-9 rounded-md px-3 pointer">
+                                    <div class="flex flex-col md:flex-row gap-2 w-full md:w-auto">
+                                        <button class="w-full md:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium border border-input border-solid bg-background hover:bg-accent hover:text-medical-500 h-9 rounded-md px-3 pointer">
                                             <i data-lucide="square-pen" class="h-4 w-4 mr-1"></i>
                                             Update
                                         </button>
-                                        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm border border-transparent font-medium bg-medical-500 text-white hover:bg-medical-400 h-9 rounded-md px-3 pointer">
+                                        <button class="w-full md:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm border border-transparent font-medium bg-medical-500 text-white hover:bg-medical-400 h-9 rounded-md px-3 pointer">
                                             Complete
                                         </button>
                                     </div>
@@ -333,7 +339,6 @@ $userEmail = "elio"
                         </div>
                     </div>
 
-                    
                     <!-- 📅 Schedule Section - July 8 -->
                     <div data-section="schedule" class="mt-4 sm:mt-6">
                         <div class="glass-card rounded-xl p-4 sm:p-6">
@@ -423,7 +428,6 @@ $userEmail = "elio"
                             </div>
                         </div>
                     </div>
-
 
                     <!-- Profile Management Section -->
                     <div data-section="profile" class="hidden mt-4 sm:mt-6">
