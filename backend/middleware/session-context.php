@@ -50,3 +50,5 @@ if (isset($_SESSION['user_id'])) {
         }
     }
 }
+
+$dashboardLink = "/mediconnect/dashboard/";

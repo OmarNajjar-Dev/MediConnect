@@ -1,16 +1,7 @@
 <?php
 
-// 1. Load system configuration (paths, constants, routes, etc.)
-require_once __DIR__ . "/../backend/config/path.php";
-
-// 2. Load authentication logic (login state, remember me, etc.)
-require_once __DIR__ . "/../backend/auth/auth.php";
-
-// 3. Load user session context (sets $isLoggedIn, $userName, $userEmail, $dashboardLink)
-require_once __DIR__ . "/../backend/middleware/session-context.php";
-
 // 4. Define required role for this dashboard
-$requiredRole = 'hospital_admin';
+$requiredRole = 'admin';
 
 // 5. Protect the dashboard: redirect if user role does not match
 require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
