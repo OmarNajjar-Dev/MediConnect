@@ -15,23 +15,26 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
 // 5. Load helper functions (utilities, formatting, reusable logic)
 require_once __DIR__ . "/backend/auth/helpers.php";
 
-// Show all errors during development (remove in production)
+// Show all errors during development (disable in production)
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+// Handle form submission
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    // Get POST data
-    $email = $_POST["email"] ?? '';
-    $password = $_POST["password"] ?? '';
-    $firstName = $_POST["first_name"] ?? '';
-    $lastName = $_POST["last_name"] ?? '';
-    $city = $_POST["city"] ?? '';
-    $address = $_POST["address"] ?? '';
-    $slugRole = $_POST["role"] ?? '';
-    $roleName = slugToTitle($slugRole);  // Converts "super-admin" → "Super Admin"
+    // Get data from POST request
+    $email      = $_POST["email"] ?? '';
+    $password   = $_POST["password"] ?? '';
+    $firstName  = $_POST["first_name"] ?? '';
+    $lastName   = $_POST["last_name"] ?? '';
+    $city       = $_POST["city"] ?? '';
+    $address    = $_POST["address"] ?? '';
+    $slugRole   = $_POST["role"] ?? '';
 
-    // Step 0-A: Validate email format
+    // Convert slug (e.g. super-admin) to role title (e.g. Super Admin)
+    $roleName = slugToTitle($slugRole);
+
+    // Step 0-A: Check if email format is valid
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         header("Location: register.php?error=invalid_email");
         exit();
@@ -49,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
     $check_stmt->close();
 
-    // Step 1: Get role_id
+    // Step 1: Get role_id from roles table
     $role_stmt = $conn->prepare("SELECT role_id FROM roles WHERE role_name = ?");
     $role_stmt->bind_param("s", $roleName);
     $role_stmt->execute();
@@ -60,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $role_id = $role_row["role_id"];
         $role_stmt->close();
 
-        // Step 2: Insert user
+        // Step 2: Insert user into users table
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         $user_stmt = $conn->prepare("INSERT INTO users (email, password, first_name, last_name, city, address_line) VALUES (?, ?, ?, ?, ?, ?)");
         $user_stmt->bind_param("ssssss", $email, $hashedPassword, $firstName, $lastName, $city, $address);
@@ -69,18 +72,32 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $user_id = $user_stmt->insert_id;
             $user_stmt->close();
 
-            // Step 3: Link user to role
+            // Step 3: Link user to role in user_roles
             $link_stmt = $conn->prepare("INSERT INTO user_roles (user_id, role_id) VALUES (?, ?)");
             $link_stmt->bind_param("ii", $user_id, $role_id);
             if ($link_stmt->execute()) {
                 $link_stmt->close();
 
+                // Step 3-B: Insert into role-specific table if needed
+                if ($roleName === "Patient") {
+                    $patient_stmt = $conn->prepare("INSERT INTO patients (user_id) VALUES (?)");
+                    $patient_stmt->bind_param("i", $user_id);
+                    $patient_stmt->execute();
+                    $patient_stmt->close();
+                } elseif ($roleName === "Ambulance Team") {
+                    $teamName = $firstName . "'s Team";
+                    $team_stmt = $conn->prepare("INSERT INTO ambulance_teams (user_id, team_name) VALUES (?, ?)");
+                    $team_stmt->bind_param("is", $user_id, $teamName);
+                    $team_stmt->execute();
+                    $team_stmt->close();
+                }
+
+                // Step 4: Store user session and redirect to dashboard
                 $_SESSION["user_id"] = $user_id;
-                // Store the role in the session
                 storeUserRoleInSession($roleName);
 
-                $slug = strtolower(str_replace(' ', '_', $roleName));
-
+                // Convert role name to snake_case for path lookup
+                $slug = slugToSnakeCase($roleName);
                 $rolePath = $paths['dashboard'][$slug] ?? $paths['errors']['forbidden'];
                 header("Location: $rolePath");
                 exit();
@@ -230,13 +247,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             <div>
                                 <label for="first-name" class="block text-sm font-medium text-gray-700">First Name</label>
                                 <input type="text" id="first-name" name="first_name" autocomplete="given-name" required
-                                    class="mt-1 block h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
+                                    class="mt-1 block h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
                             </div>
 
                             <div>
                                 <label for="last-name" class="block text-sm font-medium text-gray-700">Last Name</label>
                                 <input type="text" id="last-name" name="last_name" autocomplete="family-name" required
-                                    class="mt-1 block h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
+                                    class="mt-1 block h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
                             </div>
                         </div>
 
@@ -244,7 +261,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <div>
                             <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
                             <input type="email" id="email" name="email" autocomplete="email" required placeholder="you@example.com"
-                                class="mt-1 block h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
+                                class="mt-1 block h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
                         </div>
 
                         <!-- Role Selection -->
@@ -252,7 +269,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             <label for="role-input" class="block text-sm font-medium text-gray-700">Choose Your Role</label>
                             <div class="relative">
                                 <button id="role-trigger" type="button"
-                                    class="pointer flex h-10 w-full items-center justify-between rounded-md border border-solid border-input bg-background px-3 py-2 text-sm focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
+                                    class="pointer flex h-10 w-full items-center justify-between rounded-md border border-solid border-input bg-background px-3 py-2 text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
                                     <span id="selected-role" class="text-gray-700">Select your role</span>
                                     <i data-lucide="chevron-down" class="h-4 w-4 opacity-50"></i>
                                 </button>
@@ -275,8 +292,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <div>
                             <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
                             <div class="relative mt-1">
-                                <input type="password" name="password" autocomplete="current-password" required placeholder="*******"
-                                    class="password block h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 pr-10 text-base md:text-sm focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
+                                <input type="password" id="password" name="password" autocomplete="current-password" required placeholder="*******"
+                                    class="block h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 pr-10 text-base md:text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
                                 <button type="button" id="toggle-password" class="pointer absolute inset-y-0 right-0 z-10 flex items-center border-none bg-transparent pr-3" aria-label="Toggle password visibility">
                                     <i data-lucide="eye" class="h-5 w-5 text-gray-400"></i>
                                 </button>
@@ -288,7 +305,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <div>
                             <label for="confirm-password" class="block text-sm font-medium text-gray-700">Confirm Password</label>
                             <input type="password" id="confirm-password" name="confirm-password" autocomplete="new-password" required placeholder="********"
-                                class="mt-1 block h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
+                                class="mt-1 block h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
                             <input type="text" name="city" id="city" class="hidden">
                             <input type="text" name="address" id="address" class="hidden">
                         </div>
@@ -330,17 +347,39 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                         <!-- Social Buttons -->
                         <div class="mt-6 grid grid-cols-2 gap-3">
-                            <button type="button" class="pointer inline-flex w-full justify-center rounded-md border border-solid border-input bg-white px-4 py-2 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50">
-                                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12.545,10.239v3.821h5.445c-0.712,2.315-2.647,3.972-5.445,3.972c-3.332,0-6.033-2.701-6.033-6.032s2.701-6.032,6.033-6.032c1.498,0,2.866,0.549,3.921,1.453l2.814-2.814C17.503,2.988,15.139,2,12.545,2C7.021,2,2.543,6.477,2.543,12s4.478,10,10.002,10c8.396,0,10.249-7.85,9.426-11.748L12.545,10.239z"></path>
-                                </svg>
-                            </button>
 
-                            <button type="button" class="pointer inline-flex w-full justify-center rounded-md border border-solid border-input bg-white px-4 py-2 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50">
-                                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path>
-                                </svg>
-                            </button>
+                            <!-- Google Button Wrapper -->
+                            <div class="group relative not-allowed">
+                                <button type="button"
+                                    class="inline-flex w-full justify-center rounded-md border border-solid border-input bg-white px-4 py-2 text-sm font-medium text-gray-500 shadow-sm pointer-events-none"
+                                    disabled>
+                                    <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            d="M12.545,10.239v3.821h5.445c-0.712,2.315-2.647,3.972-5.445,3.972c-3.332,0-6.033-2.701-6.033-6.032s2.701-6.032,6.033-6.032c1.498,0,2.866,0.549,3.921,1.453l2.814-2.814C17.503,2.988,15.139,2,12.545,2C7.021,2,2.543,6.477,2.543,12s4.478,10,10.002,10c8.396,0,10.249-7.85,9.426-11.748L12.545,10.239z" />
+                                    </svg>
+                                </button>
+                                <div
+                                    class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded shadow whitespace-nowrap">
+                                    Comming Soon!
+                                </div>
+                            </div>
+
+                            <!-- Facebook Button Wrapper -->
+                            <div class="group relative not-allowed">
+                                <button type="button"
+                                    class="inline-flex w-full justify-center rounded-md border border-solid border-input bg-white px-4 py-2 text-sm font-medium text-gray-500 shadow-sm pointer-events-none"
+                                    disabled>
+                                    <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                                    </svg>
+                                </button>
+                                <div
+                                    class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded shadow whitespace-nowrap">
+                                    Comming Soon!
+                                </div>
+                            </div>
+
                         </div>
                     </div>
 
@@ -356,20 +395,26 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </div>
 
         <!-- Error Toasts -->
-        <div id="password-error-toast" class="hidden fixed max-w-xs rounded-md bg-danger p-5 text-white">
+        <div id="password-error-toast" class="hidden toast-error fixed max-w-xs rounded-md bg-danger p-5 text-white">
             <p class="font-semibold">Passwords do not match.</p>
             <p class="text-sm">Please make sure your passwords match.</p>
         </div>
 
-        <div id="role-error-toast" class="hidden fixed max-w-xs rounded-md bg-danger p-5 text-white">
+        <div id="password-format-error-toast" class="hidden toast-error fixed max-w-xs rounded-md bg-danger p-5 text-white">
+            <p class="font-semibold">Invalid password format.</p>
+            <p class="text-sm">Password must be at least 8 characters long with at least one number and one special character.</p>
+        </div>
+
+        <div id="role-error-toast" class="hidden toast-error fixed max-w-xs rounded-md bg-danger p-5 text-white">
             <p class="font-semibold">Please select your role.</p>
             <p class="text-sm">You must choose your position in the healthcare system.</p>
         </div>
 
-        <div id="email-error-toast" class="hidden fixed bottom-4 right-4 z-50 max-w-xs rounded-md bg-danger p-5 text-white shadow-lg">
+        <div id="email-error-toast" class="hidden toast-error fixed bottom-4 right-4 z-50 max-w-xs rounded-md bg-danger p-5 text-white shadow-lg">
             <p class="font-semibold">Email already exists.</p>
             <p class="text-sm">Please use another email or login instead.</p>
         </div>
+
     </main>
 
     <!-- Footer -->
@@ -462,8 +507,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             </a>
                         </li>
                         <li>
-                            <a href="<?= $paths['static']['blood_donation'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
-                                Blood Donation
+                            <a href="<?= $paths['static']['blood_bank'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+                                Blood Bank System
                             </a>
                         </li>
                     </ul>

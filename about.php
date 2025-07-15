@@ -239,11 +239,12 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
 
                             <!-- CTA -->
                             <div class="flex justify-center">
-                                <button id="leadership-cta"
+                                <a href="comming-soon.php"
+                                    id="leadership-cta"
                                     class="inline-flex items-center justify-center gap-2 text-sm font-medium border border-solid border-input bg-background hover:bg-medical-50 text-heading hover:text-medical-500 h-11 rounded-md px-8 transition-colors pointer">
                                     <span>View Full Leadership Team</span>
                                     <i data-lucide="arrow-right" class="ml-2 h-4 w-4 transition-transform"></i>
-                                </button>
+                                </a>
                             </div>
 
                         </div>
@@ -271,14 +272,14 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
                                         healthier tomorrow.
                                     </p>
                                     <div class="flex flex-col sm:flex-row flex-wrap gap-4">
-                                        <button
+                                        <a href="comming-soon.php"
                                             class="w-full sm:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors outline-none border border-solid border-white h-11 rounded-lg px-8 bg-white text-medical-700 hover:bg-gray-100 shadow-lg pointer">
                                             Become a Partner
-                                        </button>
-                                        <button
+                                        </a>
+                                        <a href="comming-soon.php"
                                             class="w-full sm:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors outline-none border border-solid border-white h-11 rounded-lg px-8 text-white bg-medical-600/30 pointer">
                                             Learn More About Our Mission
-                                        </button>
+                                        </a>
                                     </div>
                                 </div>
 
@@ -424,8 +425,8 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
                             </a>
                         </li>
                         <li>
-                            <a href="<?= $paths['static']['blood_donation'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
-                                Blood Donation
+                            <a href="<?= $paths['static']['blood_bank'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+                                Blood Bank System
                             </a>
                         </li>
                     </ul>

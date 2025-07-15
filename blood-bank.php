@@ -163,7 +163,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
             </div>
             <div class="flex justify-center mt-8 mb-16">
                 <div>
-                    <a href="https://external-bloodbank.example" target="_blank" class="inline-block bg-medical-500 transition-colors hover:bg-medical-600 text-white font-medium py-4 px-8 rounded-full shadow-lg text-lg md:text-xl">Go to Blood Donation System</a>
+                    <a href="https://external-bloodbank.example" target="_blank" onclick="return false;" title="Comming Soon" class="inline-block bg-medical-500 transition-colors hover:bg-medical-600 text-white font-medium py-4 px-8 rounded-full shadow-lg text-lg md:text-xl">Go to Blood Bank System</a>
                 </div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto mt-8 mb-12">
@@ -273,8 +273,8 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
                             </a>
                         </li>
                         <li>
-                            <a href="<?= $paths['static']['blood_donation'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
-                                Blood Donation
+                            <a href="<?= $paths['static']['blood_bank'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+                                Blood Bank System
                             </a>
                         </li>
                     </ul>
@@ -311,6 +311,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
 
     <!-- External JavaScript -->
     <script type="module" src="/mediconnect/js/common/index.js"></script>
+    
     <script>
         lucide.createIcons();
     </script>

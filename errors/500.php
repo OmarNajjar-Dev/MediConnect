@@ -314,8 +314,8 @@ require_once __DIR__ . "/../backend/middleware/session-context.php";
                             </a>
                         </li>
                         <li>
-                            <a href="<?= $paths['static']['blood_donation'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
-                                Blood Donation
+                            <a href="<?= $paths['static']['blood_bank'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+                                Blood Bank System
                             </a>
                         </li>
                     </ul>

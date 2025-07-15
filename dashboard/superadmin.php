@@ -41,7 +41,8 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
 
 <body class="bg-background">
 
-  <!-- Header Section -->
+  <!-- ==================== Header ==================== -->
+
   <header class="fixed z-50 py-5 bg-transparent transition-all">
     <div class="container mx-auto flex items-center justify-between px-4">
 
@@ -128,7 +129,9 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
     </div>
   </header>
 
-  <!-- Main Content -->
+
+  <!-- ==================== Main Content ==================== -->
+
   <main class="pt-20 pb-16 min-h-screen bg-gray-50">
     <div class="container mx-auto px-4">
       <div class="py-8">
@@ -332,13 +335,13 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                       <div class="px-6 pb-6 flex flex-col gap-4">
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                           <div class="flex flex-col gap-2">
-                            <label for="name" class="text-sm font-medium leading-none">Full Name</label>
-                            <input id="name" placeholder="Enter your full name" value="System Administrator"
+                            <label for="admin-name" class="text-sm font-medium leading-none">Full Name</label>
+                            <input id="admin-name" placeholder="Enter your full name" value="System Administrator"
                               class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
                           </div>
                           <div class="flex flex-col gap-2">
-                            <label for="email" class="text-sm font-medium leading-none">Email Address</label>
-                            <input type="email" id="email" placeholder="Enter your email" value="admin@mediconnect.com"
+                            <label for="admin-email" class="text-sm font-medium leading-none">Email Address</label>
+                            <input type="email" id="admin-email" placeholder="Enter your email" value="admin@mediconnect.com"
                               class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
                           </div>
                         </div>
@@ -401,7 +404,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                         <p class="text-sm text-muted-foreground">Manage all system users and their roles</p>
                       </div>
                     </div>
-                    <button type="button" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors text-white h-10 px-4 py-2 bg-medical-600 hover:bg-medical-700 pointer border border-solid border-transparent">
+                    <button type="button" data-modal-trigger class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors text-white h-10 px-4 py-2 bg-medical-600 hover:bg-medical-700 pointer border border-solid border-transparent">
                       <i data-lucide="plus" class="h-4 w-4 mr-2"></i>
                       Add User
                     </button>
@@ -414,7 +417,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
 
                         <!-- Search Field -->
                         <div class="relative flex-grow">
-                          <i data-lucide="search" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4"></i>
+                          <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4"></i>
                           <input class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm pl-10 focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white" placeholder="Search users by name or email..." value="">
                         </div>
 
@@ -423,7 +426,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                           <i data-lucide="filter" class="h-4 w-4 text-gray-500"></i>
                           <button type="button" role="combobox" class="flex h-10 items-center justify-between rounded-md border border-solid border-input bg-background px-3 py-2 text-sm w-full sm:w-48 focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white pointer">
                             <span style="pointer-events: none;">All Roles</span>
-                            <i data-lucide="chevron-down" class="h-4 w-4 opacity-50" aria-hidden="true"></i>
+                            <i data-lucide="chevron-down" class="h-4 w-4 opacity-50"></i>
                           </button>
                         </div>
                       </div>
@@ -647,7 +650,126 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
     </div>
   </main>
 
-  <!-- Footer -->
+
+  <!-- ==================== Add User Modal ==================== -->
+
+  <!-- Overlay -->
+  <div data-dialog="overlay" class="hidden inset-0 z-50 bg-black/80"></div>
+
+  <!-- Modal Container -->
+  <div
+    data-dialog="modal"
+    role="dialog"
+    class="hidden left-[50%] top-[50%] z-50 grid translate-center bg-white gap-4 p-6 shadow-lg transition-200 sm:rounded-lg w-full max-w-md mx-4 sm:mx-auto">
+
+    <!-- Modal Header -->
+    <div class="flex flex-col gap-1.5 text-center sm:text-left">
+      <h2 class="text-lg font-semibold leading-none tracking-tight">Add New User</h2>
+    </div>
+
+    <!-- Modal Body -->
+    <div class="flex flex-col gap-4">
+
+      <!-- Name and Email Fields -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+        <div>
+          <label class="text-sm font-medium leading-none" for="name">Full Name</label>
+          <input id="name"
+            class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm outline-none focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white"
+            placeholder="Enter full name">
+        </div>
+
+        <div>
+          <label class="text-sm font-medium leading-none" for="email">Email</label>
+          <input id="email" type="email"
+            class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm outline-none focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white"
+            placeholder="Enter email address">
+        </div>
+
+      </div>
+
+      <!-- Role Dropdown -->
+      <div class="relative">
+        <label for="role" class="block mb-2 text-sm text-heading font-medium">
+          Role
+        </label>
+
+        <!-- Dropdown Button -->
+        <button type="button"
+          data-dropdown-toggle
+          data-dropdown-id="role-menu"
+          data-selected-value
+          role="combobox"
+          class="flex h-10 w-full items-center justify-between pointer rounded-sm border border-solid border-input bg-background px-3 py-2 text-base text-left focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white md:text-sm">
+          <span>Select a role</span>
+          <i data-lucide="chevron-down" class="w-4 h-4"></i>
+        </button>
+
+        <!-- Role Options -->
+        <ul id="role-menu" data-dropdown-menu class="absolute z-10 mt-1.5 p-1 border border-solid border-input w-full bg-white rounded-md shadow-xl hidden">
+        </ul>
+      </div>
+
+      <!-- Hospital Dropdown -->
+      <div class="relative">
+        <label for="hospital" class="block mb-2 text-sm text-heading font-medium">
+          Hospital
+        </label>
+
+        <!-- Dropdown Toggle Button -->
+        <button
+          type="button"
+          data-dropdown-toggle
+          data-dropdown-id="hospital-menu"
+          data-selected-value
+          role="combobox"
+          class="flex h-10 w-full items-center justify-between pointer rounded-sm border border-solid border-input bg-background px-3 py-2 text-base text-left focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white md:text-sm">
+          <span>Select a hospital</span>
+          <i data-lucide="chevron-down" class="w-4 h-4 opacity-50"></i>
+        </button>
+
+        <!-- Dropdown Menu -->
+        <ul id="hospital-menu" data-dropdown-menu class="absolute z-10 mt-1.5 p-1 border border-solid border-card-soft w-full bg-white rounded-md shadow-2xl hidden">
+        </ul>
+      </div>
+
+      <!-- Department Field -->
+      <div>
+        <label class="text-sm font-medium leading-none" for="department">Department</label>
+        <input
+          class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm outline-none focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white"
+          placeholder="Enter department (optional)" />
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex justify-end gap-2 pt-4">
+        <button
+          data-modal-close
+          class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-input bg-transparent pointer hover:bg-accent hover:text-medical-500 h-10 px-4 py-2">
+          Cancel
+        </button>
+        <button
+          class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors text-white h-10 px-4 py-2 bg-medical-500 hover:bg-medical-600 border-none pointer">
+          Add User
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Close Button -->
+    <button type="button"
+      data-modal-close
+      class="absolute right-4 top-4 w-5 h-5 bg-transparent border-none rounded-full opacity-70 transition-opacity hover:opacity-100 focus:ring focus:ring-2 focus:ring-medical-600 focus:ring-offset-2 focus:ring-offset-white pointer">
+      <i data-lucide="x" class="h-4 w-4"></i>
+      <span class="sr-only">Close</span>
+    </button>
+
+  </div>
+
+
+  <!-- ==================== Footer ==================== -->
+
   <footer class="bg-gray-50 pt-16 pb-8 border-t border-solid separator">
     <div class="container mx-auto px-4">
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
@@ -737,8 +859,8 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
               </a>
             </li>
             <li>
-              <a href="<?= $paths['static']['blood_donation'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
-                Blood Donation
+              <a href="<?= $paths['static']['blood_bank'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+                Blood Bank System
               </a>
             </li>
           </ul>
@@ -773,7 +895,9 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
     </div>
   </footer>
 
-  <!-- External JavaScript -->
+
+  <!-- ==================== External JavaScript ==================== -->
+
   <script type="module" src="/mediconnect/js/common/index.js"></script>
   <script type="module" src="/mediconnect/js/dashboard/superadmin/index.js"></script>
 

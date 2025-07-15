@@ -72,11 +72,19 @@ header {
 }
 
 #hero-background {
-  background: linear-gradient(to right, rgb(0 105 92 / 0.9), rgb(30 58 138 / 0.7));
+  background: linear-gradient(
+    to right,
+    rgba(0, 105, 92, 0.9),
+    rgb(30 58 138 / 0.7)
+  );
 }
 
 #contact-section-top {
   background: linear-gradient(to bottom, #b2e3dd, #ffffff);
+}
+
+#comming-soon section {
+  background-image: linear-gradient(#e6f5f4b3, #ffffffe6);;
 }
 
 /* =============================
@@ -164,10 +172,8 @@ input::placeholder {
 /* =============================
    Toast Notifications
    ============================= */
-#password-error-toast,
-#role-error-toast,
-#email-error-toast,
-#login-error-toast {
+.toast-error,
+.toast-succes {
   bottom: 20px;
   right: 20px;
 }
@@ -207,4 +213,28 @@ input::placeholder {
 #about-trust {
   bottom: -2rem;
   left: -2rem;
+}
+
+/* =============================
+   Disabled Buttons
+   ============================= */
+button[disabled] {
+  cursor: not-allowed;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+button[disabled]:hover {
+  box-shadow: none;
+}
+
+/* =============================
+   Hover-triggered visibility via group container
+   ============================= */
+.group {
+  position: relative;
+}
+
+.group:hover .group-hover\:block {
+  display: block;
 }

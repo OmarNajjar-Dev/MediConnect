@@ -34,7 +34,8 @@ export function renderCalendar() {
   for (let i = firstDay; i > 0; i--) {
     const div = document.createElement("div");
     div.textContent = prevLastDate - i + 1;
-    div.className = "h-9 w-9 text-gray-400 not-allowed flex items-center justify-center";
+    div.className =
+      "h-9 w-9 text-gray-400 not-allowed flex items-center justify-center";
     div.setAttribute("disabled", "true");
     daysContainer.appendChild(div);
   }
@@ -43,7 +44,8 @@ export function renderCalendar() {
     const div = document.createElement("div");
     div.textContent = i;
 
-    const defaultClass = "h-9 w-9 rounded-md flex items-center justify-center transition-colors";
+    const defaultClass =
+      "h-9 w-9 rounded-md flex items-center justify-center transition-colors";
     div.className = defaultClass;
 
     const cellDate = new Date(year, month, i);
@@ -59,31 +61,44 @@ export function renderCalendar() {
 
     if (isPast || isSunday) {
       // 🔒 Disable past dates or Sundays
-      div.classList.add("text-gray-400", "cursor-not-allowed", "opacity-50");
+      div.classList.add("text-gray-400", "not-allowed", "opacity-50");
       div.setAttribute("disabled", "true");
     } else {
-      div.classList.add("hover:text-medical-600", "hover:bg-medical-50", "pointer");
+      div.classList.add(
+        "hover:text-medical-600",
+        "hover:bg-medical-50",
+        "pointer"
+      );
 
       div.addEventListener("click", () => {
         if (selectedDay === div) {
-          div.className = defaultClass + "hover:text-medical-600 hover:bg-medical-50 pointer";
+          div.className =
+            defaultClass + "hover:text-medical-600 hover:bg-medical-50 pointer";
           if (isToday) div.classList.add("font-bold", "text-black");
           selectedDay = null;
           selectedDateValue.textContent = "Pick a date";
         } else {
           if (selectedDay) {
             const prevText = selectedDay.textContent;
-            selectedDay.className = defaultClass + "hover:text-medical-600 hover:bg-medical-50 pointer";
-            const wasToday = +prevText === today.getDate() && month === today.getMonth() && year === today.getFullYear();
+            selectedDay.className =
+              defaultClass +
+              "hover:text-medical-600 hover:bg-medical-50 pointer";
+            const wasToday =
+              +prevText === today.getDate() &&
+              month === today.getMonth() &&
+              year === today.getFullYear();
             if (wasToday) selectedDay.classList.add("font-bold", "text-black");
           }
 
-          div.className = "h-9 w-9 rounded-md bg-medical-600 text-white pointer flex items-center justify-center transition-colors";
+          div.className =
+            "h-9 w-9 rounded-md bg-medical-600 text-white pointer flex items-center justify-center transition-colors";
           selectedDay = div;
 
           const dateWithSuffix = `${cellDate.toLocaleString("en-US", {
             month: "long",
-          })} ${addOrdinalSuffix(cellDate.getDate())}, ${cellDate.getFullYear()}`;
+          })} ${addOrdinalSuffix(
+            cellDate.getDate()
+          )}, ${cellDate.getFullYear()}`;
 
           selectedDateValue.textContent = dateWithSuffix;
         }

@@ -161,7 +161,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
                         </p>
                         <div class="flex flex-col gap-6">
                             <button
-                                class="gap-2 whitespace-nowrap border border-solid border-input h-10 bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-sm text-lg shadow-lg flex items-center justify-center w-full md:w-auto md:max-w-[300px]">
+                                class="gap-2 whitespace-nowrap border border-solid border-input h-10 bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-sm text-lg shadow-lg flex items-center justify-center w-full md:w-auto md:max-w-[310px]">
                                 <i data-lucide="ambulance" class="mr-2 h-4 w-4"></i>
                                 Request Emergency Help
                             </button>
@@ -250,19 +250,30 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
                         <div class="mt-8 p-6 glass-card border-card-soft rounded-lg bg-gray-50">
                             <h3 class="text-heading text-lg font-semibold mb-4 text-center">Alternative Contact Options</h3>
                             <div class="grid gap-4 sm:grid-cols-2">
-                                <button
-                                    class="gap-2 whitespace-nowrap rounded-md text-sm font-medium text-heading glass-card border-card-soft bg-background hover:bg-accent px-4 py-2 flex items-center justify-center h-16 pointer">
-                                    <i data-lucide="phone" class="w-4 h-4 text-heading mr-2"></i>
-                                    Emergency COVID-19 Hotline<br />
-                                    <span class="font-bold text-heading">800-COVID-19</span>
-                                </button>
 
-                                <button
-                                    class="gap-2 whitespace-nowrap rounded-md text-sm font-medium text-heading glass-card border-card-soft bg-background hover:bg-accent px-4 py-2 flex items-center justify-center h-16 pointer">
+                                <!-- Disabled Button with Tooltip wrapper -->
+                                <div class="group relative not-allowed">
+                                    <button
+                                        class="gap-2 whitespace-nowrap rounded-md text-sm font-medium text-heading glass-card border-card-soft bg-background px-4 py-2 flex items-center justify-center h-16 pointer-events-none w-full"
+                                        disabled>
+                                        <i data-lucide="phone" class="w-4 h-4 text-heading mr-2"></i>
+                                        Emergency COVID-19 Hotline<br />
+                                        <span class="font-bold text-heading">800-COVID-19</span>
+                                    </button>
+                                    <div
+                                        class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded shadow whitespace-nowrap">
+                                        Comming Soon!
+                                    </div>
+                                </div>
+
+                                <!-- Link to Coming Soon Page -->
+                                <a href="comming-soon.php"
+                                    class="gap-2 whitespace-nowrap rounded-md text-sm font-medium text-heading glass-card border-card-soft bg-background hover:bg-accent px-4 py-2 flex items-center justify-center h-16 pointer w-full">
                                     <i data-lucide="map-pin" class="w-4 h-4 text-heading mr-2"></i>
                                     Find Nearest<br />COVID-19 Treatment Center
-                                </button>
+                                </a>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -360,8 +371,8 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
                             </a>
                         </li>
                         <li>
-                            <a href="<?= $paths['static']['blood_donation'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
-                                Blood Donation
+                            <a href="<?= $paths['static']['blood_bank'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+                                Blood Bank System
                             </a>
                         </li>
                     </ul>

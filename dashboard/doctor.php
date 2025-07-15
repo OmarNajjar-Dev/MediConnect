@@ -134,7 +134,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                 <div class="flex justify-between items-center mb-8">
                     <div>
                         <p class="text-sm text-gray-600 mb-1">Logged in as: <span class="font-medium">DOCTOR</span></p>
-                        <h1 class="text-2xl font-bold text-gray-900">Welcome back, Dr. Sarah Johnson</h1>
+                        <h1 class="text-2xl font-bold text-gray-900">Welcome back, Dr. <?= $userName ?></h1>
                         <p class="text-sm text-medical-600 mt-1">Al Noor Medical Center</p>
                     </div>
                 </div>
@@ -143,7 +143,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
 
                         <div>
                             <h1 class="text-3xl font-bold">Doctor Panel</h1>
-                            <p class="text-gray-600">Welcome, Dr. Sarah Johnson</p>
+                            <p class="text-gray-600">Welcome, Dr. <?= $userName ?></p>
                         </div>
                     </div>
 
@@ -173,7 +173,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                     </div>
 
                     <!-- My Appointments Section -->
-                    <div data-section="my-appointments" class="hidden glass-card rounded-xl p-6">
+                    <div data-section="my-appointments" class="glass-card rounded-xl p-6">
 
                         <!-- Dashboard Stats Cards Section -->
                         <div class="mb-6 flex flex-col gap-6">
@@ -343,7 +343,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                     </div>
 
                     <!-- 📅 Schedule Section - July 8 -->
-                    <div data-section="schedule" class="mt-4 sm:mt-6">
+                    <div data-section="schedule" class="hidden mt-4 sm:mt-6">
                         <div class="glass-card rounded-xl p-4 sm:p-6">
                             <div class="mb-6">
                                 <h3 class="text-lg sm:text-xl font-bold mb-2">Today's Schedule</h3>
@@ -439,7 +439,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                             <!-- Header: Title and Edit Button -->
                             <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
                                 <h3 class="text-lg sm:text-xl font-bold">Profile Management</h3>
-                                <button class="w-full sm:w-auto h-10 px-4 py-2 rounded-md text-sm font-medium pointer inline-flex items-center justify-center gap-2 bg-medical-500 text-white hover:bg-medical-400 disabled:opacity-50 disabled:pointer-events-none border border-transparent">
+                                <button class="w-full sm:w-auto h-10 px-4 py-2 rounded-md text-sm font-medium pointer inline-flex items-center justify-center gap-2 bg-medical-500 text-white hover:bg-medical-400 border border-transparent">
                                     <i data-lucide="square-pen" class="h-4 w-4 mr-2"></i>
                                     Edit Profile
                                 </button>
@@ -624,8 +624,8 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                             </a>
                         </li>
                         <li>
-                            <a href="<?= $paths['static']['blood_donation'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
-                                Blood Donation
+                            <a href="<?= $paths['static']['blood_bank'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+                                Blood Bank System
                             </a>
                         </li>
                     </ul>

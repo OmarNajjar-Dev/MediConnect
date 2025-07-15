@@ -103,11 +103,27 @@ textarea {
     line-clamp: 2;
 }
 
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 /* ==================================================
    Positioning Utilities
    ================================================== */
 .bottom-0 {
     bottom: 0;
+}
+
+.bottom-full {
+  bottom: 100%;
 }
 
 .top-1\/2 {
@@ -116,12 +132,14 @@ textarea {
 
 .top-1 {
     top: 0.25rem;
-    /* 4px */
+}
+
+.left-1\/2 {
+  left: 50%;
 }
 
 .left-3 {
     left: 0.75rem;
-    /* 12px */
 }
 
 .right-0 {
@@ -140,17 +158,16 @@ textarea {
 /* ==================================================
    Transform Utilities
    ================================================== */
-.transform {
-    transform: translateZ(0);
+.-translate-x-1\/2 {
+  transform: translateX(-50%);
 }
 
-.transform.-translate-y-1\/2 {
+.-translate-y-1\/2 {
     transform: translateY(-50%);
 }
 
 .-translate-y-1 {
     transform: translateY(-0.25rem);
-    /* -4px */
 }
 
 /* ==================================================

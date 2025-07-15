@@ -134,15 +134,15 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
                         <div>
                             <label for="email" class="text-sm font-medium text-gray-700">Email</label>
                             <input type="email" id="email" name="email" required autocomplete="email" placeholder="you@example.com"
-                                class="mt-1 block h-10 w-full rounded-sm border border-solid border-input bg-background px-3 py-2 text-base md:text-sm focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
+                                class="mt-1 block h-10 w-full rounded-sm border border-solid border-input bg-background px-3 py-2 text-base md:text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
                         </div>
 
                         <!-- Password Input -->
                         <div>
                             <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
                             <div class="relative mt-1">
-                                <input type="password" name="password" required autocomplete="current-password" placeholder="*******"
-                                    class="password block h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 pr-10 text-base md:text-sm focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
+                                <input type="password" id="password" name="password" required autocomplete="current-password" placeholder="*******"
+                                    class="block h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 pr-10 text-base md:text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
                                 <button type="button" id="toggle-password" aria-label="Toggle password visibility"
                                     class="eye-toggle-button absolute inset-y-0 right-0 z-10 flex items-center border-none bg-transparent pr-3 pointer">
                                     <i data-lucide="eye" class="eye-toggle-icon h-5 w-5 text-gray-400"></i>
@@ -185,21 +185,38 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
                     <!-- Social Buttons -->
                     <div class="mt-6 grid grid-cols-2 gap-3">
 
-                        <!-- Google Button -->
-                        <button type="button"
-                            class="inline-flex w-full justify-center rounded-md border border-solid border-input bg-white px-4 py-2 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50 pointer">
-                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12.545,10.239v3.821h5.445c-0.712,2.315-2.647,3.972-5.445,3.972c-3.332,0-6.033-2.701-6.033-6.032s2.701-6.032,6.033-6.032c1.498,0,2.866,0.549,3.921,1.453l2.814-2.814C17.503,2.988,15.139,2,12.545,2C7.021,2,2.543,6.477,2.543,12s4.478,10,10.002,10c8.396,0,10.249-7.85,9.426-11.748L12.545,10.239z" />
-                            </svg>
-                        </button>
+                        <!-- Google Button Wrapper -->
+                        <div class="group relative not-allowed">
+                            <button type="button"
+                                class="inline-flex w-full justify-center rounded-md border border-solid border-input bg-white px-4 py-2 text-sm font-medium text-gray-500 shadow-sm pointer-events-none"
+                                disabled>
+                                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12.545,10.239v3.821h5.445c-0.712,2.315-2.647,3.972-5.445,3.972c-3.332,0-6.033-2.701-6.033-6.032s2.701-6.032,6.033-6.032c1.498,0,2.866,0.549,3.921,1.453l2.814-2.814C17.503,2.988,15.139,2,12.545,2C7.021,2,2.543,6.477,2.543,12s4.478,10,10.002,10c8.396,0,10.249-7.85,9.426-11.748L12.545,10.239z" />
+                                </svg>
+                            </button>
+                            <div
+                                class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded shadow whitespace-nowrap">
+                                Comming Soon!
+                            </div>
+                        </div>
 
-                        <!-- Facebook Button -->
-                        <button type="button"
-                            class="inline-flex w-full justify-center rounded-md border border-solid border-input bg-white px-4 py-2 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50 pointer">
-                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                            </svg>
-                        </button>
+                        <!-- Facebook Button Wrapper -->
+                        <div class="group relative not-allowed">
+                            <button type="button"
+                                class="inline-flex w-full justify-center rounded-md border border-solid border-input bg-white px-4 py-2 text-sm font-medium text-gray-500 shadow-sm pointer-events-none"
+                                disabled>
+                                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                                </svg>
+                            </button>
+                            <div
+                                class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded shadow whitespace-nowrap">
+                                Comming Soon!
+                            </div>
+                        </div>
+
                     </div>
 
                     <!-- Sign Up Link -->
@@ -308,8 +325,8 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
                             </a>
                         </li>
                         <li>
-                            <a href="<?= $paths['static']['blood_donation'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
-                                Blood Donation
+                            <a href="<?= $paths['static']['blood_bank'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+                                Blood Bank System
                             </a>
                         </li>
                     </ul>

@@ -1,10 +1,10 @@
 <?php
 
 // 1. Load system configuration (paths, constants, routes, etc.)
-require_once __DIR__ . "/../backend/config/path.php";
+require_once __DIR__ . "/backend/config/path.php";
 
 // 2. Load user session context (sets $isLoggedIn, $userName, $userEmail, $dashboardLink)
-require_once __DIR__ . "/../backend/middleware/session-context.php";
+require_once __DIR__ . "/backend/middleware/session-context.php";
 
 ?>
 
@@ -147,84 +147,74 @@ require_once __DIR__ . "/../backend/middleware/session-context.php";
         </div>
     </header>
 
-    <!-- Unauthorized Access Page Wrapper -->
-    <main class="overflow-hidden flex justify-center flex-grow bg-gray-50 pt-20 pb-16">
-        <!-- Centered Content Container -->
-        <div class="max-w-lg w-full flex flex-col gap-8 text-center animate-fade-in pt-20 pb-16">
+    <!-- Main Content -->
+    <main id="comming-soon" class="overflow-hidden flex justify-center flex-grow pt-20 pb-16">
+        <section class="relative overflow-hidden w-full">
 
-            <!-- Lock Icon Section -->
-            <div class="flex justify-center">
-                <div class="relative">
-                    <!-- Icon Circle -->
-                    <div class="w-28 h-28 bg-white rounded-full shadow-xl flex items-center justify-center border border-solid border-transparent border-gray-100 hover-scale hover-scale:hover">
-                        <i data-lucide="lock" class="w-12 h-12 text-medical-500"></i>
+            <div class="container mx-auto px-4 py-20 text-center relative z-10">
+                <div class="mb-8 animate-fade-in">
+                    <div class="inline-flex items-center justify-center w-20 h-20 bg-medical-500 rounded-2xl mb-6 shadow-lg">
+                        <i data-lucide="heart" class="w-10 h-10 text-white"></i>
                     </div>
-                    <!-- Optional Blurred Background -->
-                    <div class="absolute inset-0 w-28 h-28 rounded-full blur-xl -z-10 pulse"></div>
-                </div>
-            </div>
-
-            <!-- Message Box -->
-            <div class="bg-white rounded-3xl shadow-2xl border border-solid border-gray-100 p-8 sm:p-12 relative z-10">
-
-                <!-- Title and Subtitle -->
-                <div class="flex flex-col gap-5">
-                    <h1 class="text-5xl sm:text-6xl font-bold text-gray-900 tracking-tight">401</h1>
-                    <h2 class="text-2xl sm:text-3xl font-semibold text-gray-800 leading-tight">Unauthorized Access</h2>
+                    <h1 class="text-5xl md:text-7xl font-bold text-gray-900 mb-4">MediConnect</h1>
+                    <p class="text-xl md:text-2xl text-medical-600 font-medium">Connecting Hearts with Healthcare</p>
                 </div>
 
-                <!-- Description -->
-                <div class="flex flex-col gap-4 mt-8">
-                    <p class="text-gray-700 text-lg sm:text-xl leading-relaxed font-medium">
-                        You don't have permission to access this page.
-                    </p>
-                    <p class="text-gray-500 text-base leading-relaxed max-w-md mx-auto">
-                        Please contact your system administrator if you believe this is a mistake.
+                <div class="max-w-4xl mx-auto mb-12 animate-fade-in delay-200">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
+                        Revolutionary Healthcare Platform<br><span class="text-medical-500">Coming Soon</span>
+                    </h2>
+                    <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                        We're building the future of healthcare connectivity. Join thousands of patients, doctors, and hospitals preparing for a seamless healthcare experience.
                     </p>
                 </div>
 
-                <!-- Action Buttons -->
-                <div class="flex flex-col sm:flex-row gap-4 mt-10">
-                    <!-- Contact Support Button -->
-                    <a
-                        href="<?= $paths['auth']['login'] ?>"
-                        class="inline-flex items-center justify-center gap-2 whitespace-nowrap flex-grow rounded-md text-sm font-medium h-10 px-5 py-2 flex-grow bg-medical-500 hover:bg-medical-400 text-white shadow-lg hover:shadow-xl transition-all transition-200">
-                        <i data-lucide="log-in" class="w-4 h-4"></i>
-                        Go to Login
-                    </a>
+                <div class="mb-12 animate-scale-in delay-400">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-6">Launch Countdown</h3>
+                    <div class="flex justify-center gap-4 md:gap-8" id="countdown">
+                        <div class="bg-white rounded-xl shadow-lg p-4 md:p-6 min-w-20 md:min-w-25 text-center">
+                            <div class="text-2xl md:text-4xl font-bold text-medical-500 mb-2" id="days">--</div>
+                            <div class="text-sm md:text-base text-gray-600 font-medium">Days</div>
+                        </div>
+                        <div class="bg-white rounded-xl shadow-lg p-4 md:p-6 min-w-20 md:min-w-25 text-center">
+                            <div class="text-2xl md:text-4xl font-bold text-medical-500 mb-2" id="hours">--</div>
+                            <div class="text-sm md:text-base text-gray-600 font-medium">Hours</div>
+                        </div>
+                        <div class="bg-white rounded-xl shadow-lg p-4 md:p-6 min-w-20 md:min-w-25 text-center">
+                            <div class="text-2xl md:text-4xl font-bold text-medical-500 mb-2" id="minutes">--</div>
+                            <div class="text-sm md:text-base text-gray-600 font-medium">Minutes</div>
+                        </div>
+                        <div class="bg-white rounded-xl shadow-lg p-4 md:p-6 min-w-20 md:min-w-25 text-center">
+                            <div class="text-2xl md:text-4xl font-bold text-medical-500 mb-2" id="seconds">--</div>
+                            <div class="text-sm md:text-base text-gray-600 font-medium">Seconds</div>
+                        </div>
+                    </div>
+                </div>
 
-                    <!-- Back to Home Button -->
-                    <a
-                        href="<?= $paths['home'] ?>"
-                        class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium border border-solid border-card-soft bg-background hover:bg-gray-100 hover:text-accent-foreground h-10 px-4 py-2 flex-grow text-heading transition-all transition-200">
-                        <i data-lucide="house" class="w-4 h-4"></i>
-                        Back to Home
-                    </a>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto animate-fade-in delay-800">
+                    <div class="bg-white rounded-xl p-6 shadow-lg hover-scale">
+                        <i data-lucide="stethoscope" class="w-12 h-12 text-medical-500 mx-auto mb-4"></i>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Expert Care</h3>
+                        <p class="text-gray-600 text-sm">Connect with certified healthcare professionals and specialists</p>
+                    </div>
+                    <div class="bg-white rounded-xl p-6 shadow-lg hover-scale">
+                        <i data-lucide="calendar" class="w-12 h-12 text-medical-500 mx-auto mb-4"></i>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Easy Booking</h3>
+                        <p class="text-gray-600 text-sm">Schedule appointments seamlessly with real-time availability</p>
+                    </div>
+                    <div class="bg-white rounded-xl p-6 shadow-lg hover-scale">
+                        <i data-lucide="phone" class="w-12 h-12 text-medical-500 mx-auto mb-4"></i>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">24/7 Support</h3>
+                        <p class="text-gray-600 text-sm">Emergency services and round-the-clock healthcare assistance</p>
+                    </div>
                 </div>
             </div>
 
-            <!-- Contact Note -->
-            <div class="text-center flex flex-col gap-3 relative z-10">
-                <p class="text-gray-500 text-sm">
-                    Need help?
-                    <a href="mailto:contact@mediconnect.example" class="text-medical-600 hover:text-medical-700 transition-colors transition-200 font-medium">
-                        contact@mediconnect.example
-                    </a>
-                </p>
-            </div>
-
-            <!-- Animated Pulsing Dots -->
-            <div class="flex justify-center gap-3 opacity-30">
-                <div class="w-2 h-2 bg-medical-400 rounded-full pulse"></div>
-                <div class="w-2 h-2 bg-medical-400 rounded-full pulse delay-200"></div>
-                <div class="w-2 h-2 bg-medical-400 rounded-full pulse delay-400"></div>
-            </div>
-
-        </div>
+        </section>
     </main>
 
     <!-- Footer -->
-    <footer id="unauthorized-error" class="bg-gray-50 pt-16 pb-8 border-t border-solid separator">
+    <footer class="bg-gray-50 pt-16 pb-8 border-t border-solid separator">
         <div class="container mx-auto px-4">
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                 <div>
@@ -351,8 +341,8 @@ require_once __DIR__ . "/../backend/middleware/session-context.php";
 
     <!-- External JavaScript -->
     <script type="module" src="/mediconnect/js/common/index.js"></script>
+    <script type="module" src="/mediconnect/js/comming-soon.js"></script>
 
-    <!-- Create Lucide Icons -->
     <script>
         lucide.createIcons();
     </script>

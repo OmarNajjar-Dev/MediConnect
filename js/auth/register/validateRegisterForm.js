@@ -1,18 +1,30 @@
 export function validateRegisterForm() {
   const form = document.getElementById("register-form");
-  const password = document.querySelector(".password");
+  const password = document.getElementById("password");
   const confirmPassword = document.getElementById("confirm-password");
   const roleInput = document.getElementById("role-input");
-  const emailInput = document.querySelector('input[name="email"]');
+  const emailInput = document.getElementById('email');
+
   const passwordErrorToast = document.getElementById("password-error-toast");
+  const passwordFormatErrorToast = document.getElementById(
+    "password-format-error-toast"
+  );
   const roleErrorToast = document.getElementById("role-error-toast");
   const emailErrorToast = document.getElementById("email-error-toast");
 
   // Helper to hide all toasts
   const hideAllToasts = () => {
     passwordErrorToast.classList.add("hidden");
+    passwordFormatErrorToast.classList.add("hidden");
     roleErrorToast.classList.add("hidden");
     emailErrorToast.classList.add("hidden");
+  };
+
+  // Helper to validate password format
+  const isPasswordValid = (pwd) => {
+    const regex =
+      /^(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/;
+    return regex.test(pwd);
   };
 
   form.addEventListener("submit", async (e) => {
@@ -27,13 +39,19 @@ export function validateRegisterForm() {
       hasError = true;
     }
 
-    // Check password
+    // Check password format
+    else if (!isPasswordValid(password.value)) {
+      passwordFormatErrorToast.classList.remove("hidden");
+      hasError = true;
+    }
+
+    // Check password match
     else if (password.value !== confirmPassword.value) {
       passwordErrorToast.classList.remove("hidden");
       hasError = true;
     }
-    
-    // Check email
+
+    // Check email existence
     else {
       try {
         const res = await fetch("/MediConnect/backend/auth/check-email.php", {

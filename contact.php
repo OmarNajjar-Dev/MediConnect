@@ -195,7 +195,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
                     <button id="dropdown-button" type="button" role="combobox"
                       class="flex h-10 w-full items-center justify-between pointer rounded-sm border border-solid border-input bg-background px-3 py-2 text-base text-left focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white md:text-sm">
                       <span>Select a subject</span>
-                      <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                      <i data-lucide="chevron-down" class="w-4 h-4 opacity-50"></i>
                     </button>
 
                     <!-- Custom Dropdown Menu -->
@@ -425,8 +425,8 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
               </a>
             </li>
             <li>
-              <a href="<?= $paths['static']['blood_donation'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
-                Blood Donation
+              <a href="<?= $paths['static']['blood_bank'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+                Blood Bank System
               </a>
             </li>
           </ul>

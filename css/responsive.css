@@ -23,15 +23,15 @@
   .sm\:w-auto {
     width: auto;
   }
-  
+
   .sm\:w-32 {
-    width: 8rem; 
+    width: 8rem;
   }
-  
+
   .sm\:h-32 {
-    height: 8rem; /* 128px */
+    height: 8rem;
   }
-  
+
   .sm\:w-48 {
     width: 192px;
   }
@@ -210,6 +210,11 @@
     margin-bottom: 0.5rem;
   }
 
+  .sm\:mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .sm\:hidden {
     display: none;
   }
@@ -220,6 +225,10 @@
 
   .sm\:table-cell {
     display: table-cell;
+  }
+
+  .sm\:text-left {
+    text-align: left;
   }
 
   /* Containers */
@@ -270,7 +279,11 @@
     width: auto;
   }
 
-  .md\:max-w-\[300px\] {
+  .md\:min-w-25 {
+    min-width: 100px;
+  }
+
+  .md\:max-w-\[310px\] {
     max-width: 310px;
   }
 
@@ -312,6 +325,10 @@
   }
 
   /* Spacing */
+  .md\:p-6 {
+    padding: 24px;
+  }
+
   .md\:px-6 {
     padding-left: 24px;
     padding-right: 24px;
@@ -352,6 +369,10 @@
     padding-bottom: 112px;
   }
 
+  .md\:gap-8 {
+    gap: 32px;
+  }
+
   /* Typography */
   .md\:text-sm {
     font-size: 0.875rem;
@@ -361,6 +382,11 @@
   .md\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
+  }
+
+  .md\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
   }
 
   .md\:text-4xl {
@@ -375,6 +401,11 @@
 
   .md\:text-6xl {
     font-size: 3.75rem;
+    line-height: 1;
+  }
+
+  .md\:text-7xl {
+    font-size: 4.5rem;
     line-height: 1;
   }
 
@@ -466,7 +497,7 @@
     grid-template-columns: repeat(6, 1fr);
   }
 
-   .lg\:grid-cols-7 {
+  .lg\:grid-cols-7 {
     grid-template-columns: repeat(7, 1fr);
   }
 

@@ -34,7 +34,7 @@ $paths = [
         'terms'           => BASE_URL . '/terms.php',
         'faq'             => BASE_URL . '/faq.php',
         'contact'         => BASE_URL . '/contact.php',
-        'blood_donation'  => BASE_URL . '/blood-donation.php'
+        'blood_bank'  => BASE_URL . '/blood-bank.php'
     ],
 
     'errors' => [

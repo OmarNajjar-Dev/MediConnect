@@ -39,13 +39,26 @@ export async function renderDoctors(container) {
         <div class="text-sm text-gray-600 mb-6 flex-grow line-clamp-2">${
           card.bio || ""
         }</div>
+
         <div class="flex gap-2 mt-2">
-          <button type="button" class="flex-grow-2 whitespace-nowrap text-sm inline-flex items-center justify-center gap-2 rounded-md font-medium transition-all border border-solid border-input bg-background hover:bg-medical-50 text-heading hover:text-medical-600 h-10 py-2 px-4 pointer">
-            View Profile
-          </button>
-          <a href="${appointmentPath}?doctor=${
-            card.doctor_id
-          }" class="flex-grow whitespace-nowrap text-sm inline-flex items-center justify-center gap-2 rounded-md font-medium transition-all bg-medical-500 text-white hover:bg-medical-400 h-10 py-2 px-4">
+        
+          <!-- Tooltip Wrapper -->
+          <div class="group relative flex-grow-2 not-allowed">
+            <button type="button"
+              class="w-full whitespace-nowrap text-sm inline-flex items-center justify-center gap-2 rounded-md font-medium transition-all border border-solid border-input bg-background text-heading h-10 py-2 px-4 not-allowed opacity-60"
+              disabled>
+              View Profile
+            </button>
+            <!-- Tooltip -->
+            <div
+              class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded shadow whitespace-nowrap">
+              Comming Soon!
+            </div>
+          </div>
+
+          <!-- Book Appointment -->
+          <a href="${appointmentPath}?doctor=${card.doctor_id}"
+            class="flex-grow whitespace-nowrap text-sm inline-flex items-center justify-center gap-2 rounded-md font-medium transition-all bg-medical-500 text-white hover:bg-medical-400 h-10 py-2 px-4">
             Book Appointment
           </a>
         </div>

@@ -2,6 +2,10 @@
    ROOT COLORS
    ================================================== */
 :root {
+    /* Basic Colors */
+    --white: 255, 255, 255;
+    --black: 0, 0, 0;
+
     /* Primary Colors: Medical */
     --medical-50: 224, 242, 241;
     --medical-100: 178, 223, 219;
@@ -243,6 +247,10 @@
     background-color: rgb(var(--background), 0.95);
 }
 
+.bg-black {
+    background-color: rgb(var(--black));
+}
+
 .bg-background {
     background-color: rgba(var(--background), 0.8);
 }
@@ -310,19 +318,19 @@
 
 /* Hover Medical Text Colors */
 .hover\:text-medical-400:hover {
-  color: rgba(var(--medical-400));
+    color: rgba(var(--medical-400));
 }
 
 .hover\:text-medical-500:hover {
-  color: rgba(var(--medical-500));
+    color: rgba(var(--medical-500));
 }
 
 .hover\:text-medical-600:hover {
-  color: rgba(var(--medical-600));
+    color: rgba(var(--medical-600));
 }
 
 .hover\:text-medical-700:hover {
-  color: rgba(var(--medical-700));
+    color: rgba(var(--medical-700));
 }
 
 /* Gray Text Colors */
@@ -409,7 +417,11 @@
 }
 
 .text-white {
-    color: rgb(var(--background));
+    color: rgb(var(--white));
+}
+
+.text-black {
+    color: rgb(var(--black));
 }
 
 .text-white\/90 {
@@ -799,7 +811,7 @@
 }
 
 .hover\:text-red-700:hover {
-  color: rgb(var(--red-700));
+    color: rgb(var(--red-700));
 }
 
 .text-red-800 {
@@ -807,7 +819,7 @@
 }
 
 .hover\:text-red-800:hover {
-  color: rgb(var(--red-800));
+    color: rgb(var(--red-800));
 }
 
 .text-red-900 {
