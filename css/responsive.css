@@ -307,6 +307,10 @@
     margin-top: 0;
   }
 
+  .md\:mr-4 {
+    margin-right: 16px;
+  }
+
   /* Grid */
   .md\:grid-cols-1 {
     grid-template-columns: repeat(1, 1fr);
@@ -425,6 +429,10 @@
 @media screen and (min-width: 1024px) {
 
   /* Layout */
+  .lg\:flex {
+    display: flex;
+  }
+  
   .lg\:flex-col {
     flex-direction: column;
   }

@@ -58,58 +58,45 @@ require_once __DIR__ . "/../backend/middleware/session-context.php";
                 <a href="<?= $paths['services']['appointments'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Appointments</a>
             </nav>
 
-            <!-- Right section: Auth / Dropdown / Emergency / Menu -->
+            <!-- Right section: Emergency / Auth / Dropdown / Menu -->
             <div class="flex items-center gap-4">
-
-                <!-- Sign In / Sign Up (visible if not logged in) -->
-                <?php if (!$isLoggedIn): ?>
-                    <a href="<?= $paths['auth']['login'] ?>" class="hidden md:flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-10 px-3 rounded-lg text-sm lg:text-base font-medium whitespace-nowrap transition-all">
-                        Sign In
-                    </a>
-
-                    <a href="<?= $paths['auth']['register'] ?>" class="hidden md:flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-10 px-3 rounded-lg text-sm lg:text-base font-medium whitespace-nowrap transition-all mr-4">
-                        Sign Up
-                    </a>
-                <?php else: ?>
-
-                    <!-- User dropdown (visible if logged in) -->
-                    <div class="hidden md:flex items-center gap-3">
-                        <div class="dropdown relative">
-                            <button class="flex items-center gap-2 md:py-2 px-2 border-none bg-transparent hover:bg-medical-50 transition-colors transition-200 pointer rounded-lg">
-                                <div class="w-8 h-8 rounded-full bg-medical-100 flex items-center justify-center text-medical-700 text-sm lg:text-base font-medium">
-                                    <?= strtoupper(substr($userName, 0, 2)) ?>
-                                </div>
-                                <span class="hidden lg:block text-sm lg:text-base font-medium slate-700 max-w-24 truncate">
-                                    <?= htmlspecialchars($userName) ?>
-                                </span>
-                                <i data-lucide="chevron-down" class="w-4 h-4 slate-500"></i>
-                            </button>
-
-                            <!-- Dropdown menu content -->
-                            <div class="dropdown-content overflow-hidden hidden animate-fade-in absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-solid border-gray-100 z-50">
-                                <div class="px-3 py-2 border-b border-solid border-medical-100">
-                                    <p class="text-sm font-medium slate-700"><?= htmlspecialchars($userName) ?></p>
-                                    <p class="text-xs slate-500"><?= htmlspecialchars($userEmail) ?></p>
-                                </div>
-
-                                <a href="<?= htmlspecialchars($dashboardLink) ?>" class="flex items-center gap-2 px-3 py-2 text-sm slate-600 hover:text-medical-600 hover:bg-medical-50 transition-colors transition-200">
-                                    <i data-lucide="user" class="w-4 h-4"></i>Dashboard
-                                </a>
-
-                                <a href="<?= $paths['auth']['logout'] ?>" class="flex items-center gap-2 px-3 py-2 text-sm text-red-600 hover:text-red-700 hover:bg-red-50 w-full transition-colors transition-200">
-                                    <i data-lucide="log-out" class="w-4 h-4"></i>Sign Out
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                <?php endif; ?>
 
                 <!-- Emergency button (always visible) -->
                 <a href="<?= $paths['services']['emergency'] ?>" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-sm lg:text-base font-medium px-2 lg:px-4 py-2 md:py-3 lg:ml-2 rounded-lg transition-colors transition-200">
                     <i data-lucide="ambulance" class="w-4 h-4"></i>
                     Emergency
                 </a>
+
+                <!-- User dropdown (visible if logged in) -->
+                <div class="hidden md:flex items-center gap-3 md:order-last">
+                    <div class="dropdown relative">
+                        <button class="flex items-center gap-2 md:py-2 px-2 border-none bg-transparent hover:bg-medical-50 transition-colors transition-200 pointer rounded-lg">
+                            <div class="w-8 h-8 rounded-full bg-medical-100 flex items-center justify-center text-medical-700 text-sm lg:text-base font-medium">
+                                <?= strtoupper(substr($userName, 0, 2)) ?>
+                            </div>
+                            <span class="hidden lg:block text-sm lg:text-base font-medium slate-700 max-w-24 truncate">
+                                <?= htmlspecialchars($userName) ?>
+                            </span>
+                            <i data-lucide="chevron-down" class="w-4 h-4 slate-500"></i>
+                        </button>
+
+                        <!-- Dropdown menu content -->
+                        <div class="dropdown-content overflow-hidden hidden animate-fade-in absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-solid border-gray-100 z-50">
+                            <div class="px-3 py-2 border-b border-solid border-medical-100">
+                                <p class="text-sm font-medium slate-700"><?= htmlspecialchars($userName) ?></p>
+                                <p class="text-xs slate-500"><?= htmlspecialchars($userEmail) ?></p>
+                            </div>
+
+                            <a href="#" class="flex items-center gap-2 px-3 py-2 text-sm slate-600 hover:text-medical-600 hover:bg-medical-50 transition-colors transition-200">
+                                <i data-lucide="user" class="w-4 h-4"></i>Dashboard
+                            </a>
+
+                            <a href="<?= $paths['auth']['logout'] ?>" class="flex items-center gap-2 px-3 py-2 text-sm text-red-600 hover:text-red-700 hover:bg-red-50 w-full transition-colors transition-200">
+                                <i data-lucide="log-out" class="w-4 h-4"></i>Sign Out
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- Mobile menu toggle button -->
                 <button id="menu-button" class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none pointer">
@@ -125,22 +112,14 @@ require_once __DIR__ . "/../backend/middleware/session-context.php";
                     <a href="<?= $paths['services']['hospitals'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
                     <a href="<?= $paths['services']['appointments'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
 
-                    <!-- Mobile: Sign In / Sign Out depending on session -->
-                    <?php if (!$isLoggedIn): ?>
-                        <div class="flex flex-col pt-2 gap-2 border-t border-solid separator">
-                            <a href="<?= $paths['auth']['login'] ?>" class="inline-flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-all">Sign In</a>
-                            <a href="<?= $paths['auth']['register'] ?>" class="inline-flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Sign Up</a>
-                        </div>
-                    <?php else: ?>
-                        <div class="flex flex-col pt-2 gap-2 bg-transparent border-t border-solid separator">
-                            <a href="<?= htmlspecialchars($dashboardLink) ?>" class="inline-flex items-center gap-2 justify-start text-gray-700 hover:bg-medical-50 hover:text-medical-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
-                                <i data-lucide="user" class="w-4 h-4"></i> Dashboard
-                            </a>
-                            <a href="<?= $paths['auth']['logout'] ?>" class="inline-flex items-center gap-2 justify-start text-red-600 hover:bg-red-50 hover:text-red-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
-                                <i data-lucide="log-out" class="w-4 h-4"></i> Sign Out
-                            </a>
-                        </div>
-                    <?php endif; ?>
+                    <div class="flex flex-col pt-2 gap-2 bg-transparent border-t border-solid separator">
+                        <a href="#" class="inline-flex items-center gap-2 justify-start text-gray-700 hover:bg-medical-50 hover:text-medical-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                            <i data-lucide="user" class="w-4 h-4"></i> Dashboard
+                        </a>
+                        <a href="<?= $paths['auth']['logout'] ?>" class="inline-flex items-center gap-2 justify-start text-red-600 hover:bg-red-50 hover:text-red-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                            <i data-lucide="log-out" class="w-4 h-4"></i> Sign Out
+                        </a>
+                    </div>
                 </nav>
             </div>
 

@@ -175,22 +175,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <a href="<?= $paths['services']['appointments'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Appointments</a>
             </nav>
 
-            <!-- Right section: Auth / Dropdown / Emergency / Menu -->
+            <!-- Right section: Emergency / Auth / Menu -->
             <div class="flex items-center gap-4">
 
-                <!-- Sign In / Sign Up (visible) -->
+                <!-- Emergency button (always visible) -->
+                <a href="<?= $paths['services']['emergency'] ?>" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-sm lg:text-base font-medium px-2 lg:px-4 py-2 md:py-3 rounded-lg transition-colors transition-200 order-1 md:order-none">
+                    <i data-lucide="ambulance" class="w-4 h-4"></i>
+                    Emergency
+                </a>
+
+                <!-- Sign In / Sign Up (visible on desktop) -->
                 <a href="<?= $paths['auth']['login'] ?>" class="hidden md:flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-10 px-3 rounded-lg text-sm lg:text-base font-medium whitespace-nowrap transition-all">
                     Sign In
                 </a>
 
                 <a href="<?= $paths['auth']['register'] ?>" class="hidden md:flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-10 px-3 rounded-lg text-sm lg:text-base font-medium whitespace-nowrap transition-all mr-4">
                     Sign Up
-                </a>
-
-                <!-- Emergency button (always visible) -->
-                <a href="<?= $paths['services']['emergency'] ?>" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-sm lg:text-base font-medium px-2 lg:px-4 py-2 md:py-3 lg:ml-2 rounded-lg transition-colors transition-200">
-                    <i data-lucide="ambulance" class="w-4 h-4"></i>
-                    Emergency
                 </a>
 
                 <!-- Mobile menu toggle button -->

@@ -59,11 +59,17 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                 <a href="<?= $paths['services']['appointments'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Appointments</a>
             </nav>
 
-            <!-- Right section: Auth / Dropdown / Emergency / Menu -->
+            <!-- Right section: Emergency / Auth / Dropdown / Menu -->
             <div class="flex items-center gap-4">
 
+                <!-- Emergency button (always visible) -->
+                <a href="<?= $paths['services']['emergency'] ?>" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-sm lg:text-base font-medium px-2 lg:px-4 py-2 md:py-3 lg:ml-2 rounded-lg transition-colors transition-200">
+                    <i data-lucide="ambulance" class="w-4 h-4"></i>
+                    Emergency
+                </a>
+
                 <!-- User dropdown (visible if logged in) -->
-                <div class="hidden md:flex items-center gap-3">
+                <div class="hidden md:flex items-center gap-3 md:order-last">
                     <div class="dropdown relative">
                         <button class="flex items-center gap-2 md:py-2 px-2 border-none bg-transparent hover:bg-medical-50 transition-colors transition-200 pointer rounded-lg">
                             <div class="w-8 h-8 rounded-full bg-medical-100 flex items-center justify-center text-medical-700 text-sm lg:text-base font-medium">
@@ -93,12 +99,6 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                     </div>
                 </div>
 
-                <!-- Emergency button (always visible) -->
-                <a href="<?= $paths['services']['emergency'] ?>" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-sm lg:text-base font-medium px-2 lg:px-4 py-2 md:py-3 lg:ml-2 rounded-lg transition-colors transition-200">
-                    <i data-lucide="ambulance" class="w-4 h-4"></i>
-                    Emergency
-                </a>
-
                 <!-- Mobile menu toggle button -->
                 <button id="menu-button" class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none pointer">
                     <i data-lucide="menu" class="w-4 h-4"></i>
@@ -108,10 +108,10 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
             <!-- Mobile Navigation Panel (visible only on mobile) -->
             <div id="mobile-nav" class="hidden absolute bg-white/95 backdrop-blur-lg animate-slide-down shadow-lg md:hidden">
                 <nav class="container mx-auto flex flex-col gap-4 px-4 py-4">
-                    <a href="../" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Home</a>
-                    <a href=".<?= $paths['services']['doctors'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Doctors</a>
-                    <a href=".<?= $paths['services']['hospitals'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
-                    <a href=".<?= $paths['services']['appointments'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
+                    <a href="<?= $paths['home'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Home</a>
+                    <a href="<?= $paths['services']['doctors'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Doctors</a>
+                    <a href="<?= $paths['services']['hospitals'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
+                    <a href="<?= $paths['services']['appointments'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
 
                     <div class="flex flex-col pt-2 gap-2 bg-transparent border-t border-solid separator">
                         <a href="#" class="inline-flex items-center gap-2 justify-start text-gray-700 hover:bg-medical-50 hover:text-medical-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
