@@ -20,6 +20,7 @@ $paths = [
     ],
 
     'dashboard' => [
+        'index'           => BASE_URL . '/dashboard/index.php',
         'super_admin'     => BASE_URL . '/dashboard/superadmin.php',
         'hospital_admin'  => BASE_URL . '/dashboard/admin.php',
         'doctor'          => BASE_URL . '/dashboard/doctor.php',

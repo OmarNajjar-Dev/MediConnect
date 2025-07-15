@@ -179,17 +179,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <div class="flex items-center gap-4">
 
                 <!-- Emergency button (always visible) -->
-                <a href="<?= $paths['services']['emergency'] ?>" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-sm lg:text-base font-medium px-2 lg:px-4 py-2 md:py-3 rounded-lg transition-colors transition-200 order-1 md:order-none">
+                <a href="<?= $paths['services']['emergency'] ?>" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-sm lg:text-base font-medium px-2 lg:px-4 py-2 md:py-3 rounded-lg transition-colors transition-200">
                     <i data-lucide="ambulance" class="w-4 h-4"></i>
                     Emergency
                 </a>
 
                 <!-- Sign In / Sign Up (visible on desktop) -->
-                <a href="<?= $paths['auth']['login'] ?>" class="hidden md:flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-10 px-3 rounded-lg text-sm lg:text-base font-medium whitespace-nowrap transition-all">
+                <a href="<?= $paths['auth']['login'] ?>" class="hidden md:flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-10 px-3 rounded-lg text-sm lg:text-base font-medium whitespace-nowrap transition-all md:ml-4">
                     Sign In
                 </a>
 
-                <a href="<?= $paths['auth']['register'] ?>" class="hidden md:flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-10 px-3 rounded-lg text-sm lg:text-base font-medium whitespace-nowrap transition-all mr-4">
+                <a href="<?= $paths['auth']['register'] ?>" class="hidden md:flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-10 px-3 rounded-lg text-sm lg:text-base font-medium whitespace-nowrap transition-all">
                     Sign Up
                 </a>
 
@@ -264,28 +264,94 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                 class="mt-1 block h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
                         </div>
 
-                        <!-- Role Selection -->
+                        <!-- Role Selection Container -->
                         <div class="flex flex-col gap-2">
-                            <label for="role-input" class="block text-sm font-medium text-gray-700">Choose Your Role</label>
+
+                            <!-- Label for the dropdown -->
+                            <label for="role-input" class="block text-sm font-medium text-gray-700">
+                                Choose Your Role
+                            </label>
+
+                            <!-- Dropdown trigger and options wrapper -->
                             <div class="relative">
+
+                                <!-- Dropdown button that displays the selected role -->
                                 <button id="role-trigger" type="button"
                                     class="pointer flex h-10 w-full items-center justify-between rounded-md border border-solid border-input bg-background px-3 py-2 text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
                                     <span id="selected-role" class="text-gray-700">Select your role</span>
+                                    <!-- Dropdown icon -->
                                     <i data-lucide="chevron-down" class="h-4 w-4 opacity-50"></i>
                                 </button>
+
+                                <!-- Hidden input to store the selected role value -->
                                 <input type="hidden" id="role-input" name="role" value="">
 
+                                <!-- Role options dropdown list (initially hidden) -->
                                 <ul id="role-options"
                                     class="absolute z-50 mt-1.5 hidden w-full rounded-md border border-solid border-input bg-white p-1 shadow-xl">
-                                    <li><button type="button" data-value="super-admin" class="pointer option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm text-gray-700 bg-white hover:bg-gray-100 border-none"><span>Super Admin</span><i data-lucide="check" class="h-4 w-4 text-gray-700 hidden"></i></button></li>
-                                    <li><button type="button" data-value="hospital-admin" class="pointer option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm text-gray-700 bg-white hover:bg-gray-100 border-none"><span>Hospital Admin</span><i data-lucide="check" class="h-4 w-4 text-gray-700 hidden"></i></button></li>
-                                    <li><button type="button" data-value="doctor" class="pointer option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm text-gray-700 bg-white hover:bg-gray-100 border-none"><span>Doctor</span><i data-lucide="check" class="h-4 w-4 text-gray-700 hidden"></i></button></li>
-                                    <li><button type="button" data-value="patient" class="pointer option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm text-gray-700 bg-white hover:bg-gray-100 border-none"><span>Patient</span><i data-lucide="check" class="h-4 w-4 text-gray-700 hidden"></i></button></li>
-                                    <li><button type="button" data-value="ambulance-team" class="pointer option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm text-gray-700 bg-white hover:bg-gray-100 border-none"><span>Ambulance Team</span><i data-lucide="check" class="h-4 w-4 text-gray-700 hidden"></i></button></li>
-                                    <li><button type="button" data-value="staff" class="pointer option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm text-gray-700 bg-white hover:bg-gray-100 border-none"><span>Staff</span><i data-lucide="check" class="h-4 w-4 text-gray-700 hidden"></i></button></li>
+
+                                    <!-- Super Admin option -->
+                                    <li>
+                                        <button type="button" data-value="super-admin"
+                                            class="pointer option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm text-gray-700 bg-white hover:bg-gray-100 border-none">
+                                            <span>Super Admin</span>
+                                            <!-- Check icon (shown only when selected) -->
+                                            <i data-lucide="check" class="h-4 w-4 text-gray-700 hidden"></i>
+                                        </button>
+                                    </li>
+
+                                    <!-- Hospital Admin option -->
+                                    <li>
+                                        <button type="button" data-value="hospital-admin"
+                                            class="pointer option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm text-gray-700 bg-white hover:bg-gray-100 border-none">
+                                            <span>Hospital Admin</span>
+                                            <i data-lucide="check" class="h-4 w-4 text-gray-700 hidden"></i>
+                                        </button>
+                                    </li>
+
+                                    <!-- Doctor option -->
+                                    <li>
+                                        <button type="button" data-value="doctor"
+                                            class="pointer option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm text-gray-700 bg-white hover:bg-gray-100 border-none">
+                                            <span>Doctor</span>
+                                            <i data-lucide="check" class="h-4 w-4 text-gray-700 hidden"></i>
+                                        </button>
+                                    </li>
+
+                                    <!-- Patient option -->
+                                    <li>
+                                        <button type="button" data-value="patient"
+                                            class="pointer option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm text-gray-700 bg-white hover:bg-gray-100 border-none">
+                                            <span>Patient</span>
+                                            <i data-lucide="check" class="h-4 w-4 text-gray-700 hidden"></i>
+                                        </button>
+                                    </li>
+
+                                    <!-- Staff option -->
+                                    <li>
+                                        <button type="button" data-value="staff"
+                                            class="pointer option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm text-gray-700 bg-white hover:bg-gray-100 border-none">
+                                            <span>Staff</span>
+                                            <i data-lucide="check" class="h-4 w-4 text-gray-700 hidden"></i>
+                                        </button>
+                                    </li>
+
+                                    <!-- Ambulance Team option -->
+                                    <li>
+                                        <button type="button" data-value="ambulance-team"
+                                            class="pointer option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm text-gray-700 bg-white hover:bg-gray-100 border-none">
+                                            <span>Ambulance Team</span>
+                                            <i data-lucide="check" class="h-4 w-4 text-gray-700 hidden"></i>
+                                        </button>
+                                    </li>
+
                                 </ul>
                             </div>
-                            <p class="text-xs text-gray-500">Select the role that best describes your position in the healthcare system.</p>
+
+                            <!-- Help text under the role selector -->
+                            <p class="text-xs text-gray-500">
+                                Select the role that best describes your position in the healthcare system.
+                            </p>
                         </div>
 
                         <!-- Password Field -->

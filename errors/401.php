@@ -62,17 +62,17 @@ require_once __DIR__ . "/../backend/middleware/session-context.php";
             <div class="flex items-center gap-4">
 
                 <!-- Emergency button (always visible) -->
-                <a href="<?= $paths['services']['emergency'] ?>" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-sm lg:text-base font-medium px-2 lg:px-4 py-2 md:py-3 rounded-lg transition-colors transition-200 order-1 md:order-none">
+                <a href="<?= $paths['services']['emergency'] ?>" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-sm lg:text-base font-medium px-2 lg:px-4 py-2 md:py-3 rounded-lg transition-colors transition-200">
                     <i data-lucide="ambulance" class="w-4 h-4"></i>
                     Emergency
                 </a>
 
                 <!-- Sign In / Sign Up (visible on desktop) -->
-                <a href="<?= $paths['auth']['login'] ?>" class="hidden md:flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-10 px-3 rounded-lg text-sm lg:text-base font-medium whitespace-nowrap transition-all">
+                <a href="<?= $paths['auth']['login'] ?>" class="hidden md:flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-10 px-3 rounded-lg text-sm lg:text-base font-medium whitespace-nowrap transition-all md:ml-4">
                     Sign In
                 </a>
 
-                <a href="<?= $paths['auth']['register'] ?>" class="hidden md:flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-10 px-3 rounded-lg text-sm lg:text-base font-medium whitespace-nowrap transition-all mr-4">
+                <a href="<?= $paths['auth']['register'] ?>" class="hidden md:flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-10 px-3 rounded-lg text-sm lg:text-base font-medium whitespace-nowrap transition-all">
                     Sign Up
                 </a>
 
@@ -150,7 +150,7 @@ require_once __DIR__ . "/../backend/middleware/session-context.php";
                     <!-- Back to Home Button -->
                     <a
                         href="<?= $paths['home'] ?>"
-                        class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium border border-solid border-card-soft bg-background hover:bg-gray-100 hover:text-accent-foreground h-10 px-4 py-2 flex-grow text-heading transition-all transition-200">
+                        class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium border border-solid border-card-soft bg-background hover:bg-gray-100 hover:text-medical-500 h-10 px-4 py-2 flex-grow text-heading transition-all transition-200">
                         <i data-lucide="house" class="w-4 h-4"></i>
                         Back to Home
                     </a>

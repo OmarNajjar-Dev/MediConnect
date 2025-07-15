@@ -307,6 +307,10 @@
     margin-top: 0;
   }
 
+  .md\:ml-4 {
+    margin-left: 16px;
+  }
+
   .md\:mr-4 {
     margin-right: 16px;
   }
@@ -432,7 +436,7 @@
   .lg\:flex {
     display: flex;
   }
-  
+
   .lg\:flex-col {
     flex-direction: column;
   }

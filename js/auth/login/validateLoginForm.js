@@ -2,7 +2,7 @@ export function validateLoginForm() {
   const form = document.getElementById("login-form");
   const loginBtn = document.getElementById("login-btn");
   const emailInput = document.getElementById("email");
-  const passwordInput = document.querySelector(".password");
+  const passwordInput = document.getElementById("password");
   const rememberMeCheckbox = document.getElementById("remember-me");
   const errorToast = document.getElementById("login-error-toast");
 

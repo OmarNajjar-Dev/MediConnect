@@ -63,7 +63,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
 
         <?php if ($isLoggedIn): ?>
           <!-- User dropdown (visible if logged in) -->
-          <div class="hidden md:flex items-center gap-3">
+          <div class="hidden md:flex items-center gap-3 mr-4">
             <div class="dropdown relative">
               <button class="flex items-center gap-2 md:py-2 px-2 border-none bg-transparent hover:bg-medical-50 transition-colors transition-200 pointer rounded-lg">
                 <div class="w-8 h-8 rounded-full bg-medical-100 flex items-center justify-center text-medical-700 text-sm lg:text-base font-medium">
@@ -82,7 +82,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
                   <p class="text-xs slate-500"><?= htmlspecialchars($userEmail) ?></p>
                 </div>
 
-                <a href="<?= htmlspecialchars($dashboardLink) ?>" class="flex items-center gap-2 px-3 py-2 text-sm slate-600 hover:text-medical-600 hover:bg-medical-50 transition-colors transition-200">
+                <a href="<?= $paths['dashboard']['index'] ?>" class="flex items-center gap-2 px-3 py-2 text-sm slate-600 hover:text-medical-600 hover:bg-medical-50 transition-colors transition-200">
                   <i data-lucide="user" class="w-4 h-4"></i>Dashboard
                 </a>
 
@@ -95,18 +95,18 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
         <?php endif; ?>
 
         <!-- Emergency button (always visible) -->
-        <a href="<?= $paths['services']['emergency'] ?>" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-sm lg:text-base font-medium px-2 lg:px-4 py-2 md:py-3 lg:ml-2 rounded-lg transition-colors transition-200 md:mr-4">
+        <a href="<?= $paths['services']['emergency'] ?>" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-sm lg:text-base font-medium px-2 lg:px-4 py-2 md:py-3 rounded-lg transition-colors transition-200">
           <i data-lucide="ambulance" class="w-4 h-4"></i>
           Emergency
         </a>
 
         <?php if (!$isLoggedIn): ?>
           <!-- Sign In / Sign Up (visible if not logged in) -->
-          <a href="<?= $paths['auth']['login'] ?>" class="hidden md:flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-10 px-3 rounded-lg text-sm lg:text-base font-medium whitespace-nowrap transition-all">
+          <a href="<?= $paths['auth']['login'] ?>" class="hidden md:flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-10 px-3 rounded-lg text-sm lg:text-base font-medium whitespace-nowrap transition-all md:ml-4">
             Sign In
           </a>
 
-          <a href="<?= $paths['auth']['register'] ?>" class="hidden lg:flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-10 px-3 rounded-lg text-sm lg:text-base font-medium whitespace-nowrap transition-all mr-4">
+          <a href="<?= $paths['auth']['register'] ?>" class="hidden lg:flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-10 px-3 rounded-lg text-sm lg:text-base font-medium whitespace-nowrap transition-all">
             Sign Up
           </a>
         <?php endif; ?>
@@ -133,7 +133,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
             </div>
           <?php else: ?>
             <div class="flex flex-col pt-2 gap-2 bg-transparent border-t border-solid separator">
-              <a href="<?= htmlspecialchars($dashboardLink) ?>" class="inline-flex items-center gap-2 justify-start text-gray-700 hover:bg-medical-50 hover:text-medical-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+              <a href="<?= $paths['dashboard']['index'] ?>" class="inline-flex items-center gap-2 justify-start text-gray-700 hover:bg-medical-50 hover:text-medical-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
                 <i data-lucide="user" class="w-4 h-4"></i> Dashboard
               </a>
               <a href="<?= $paths['auth']['logout'] ?>" class="inline-flex items-center gap-2 justify-start text-red-600 hover:bg-red-50 hover:text-red-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors">

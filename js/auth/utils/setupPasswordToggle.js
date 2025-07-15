@@ -1,5 +1,5 @@
 export function setupPasswordToggle() {
-  const passwordInput = document.querySelector(".password");
+  const passwordInput = document.getElementById("password");
   const toggleBtn = document.getElementById("toggle-password");
 
   toggleBtn.addEventListener("click", () => {

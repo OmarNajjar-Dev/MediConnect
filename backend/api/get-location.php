@@ -4,7 +4,7 @@ if (isset($_GET['lat']) && isset($_GET['lon'])) {
     $lat = $_GET['lat'];
     $lon = $_GET['lon'];
 
-    $url = "https://nominatim.openstreetmap.org/reverse?lat=$lat&lon=$lon&format=json";
+    $url = "https://nominatim.openstreetmap.org/reverse?lat=$lat&lon=$lon&format=json&accept-language=en";
 
     $opts = [
         "http" => [
