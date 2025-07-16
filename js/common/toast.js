@@ -1,9 +1,9 @@
 let toastTimeoutId = null;
 
 export function showToast(title, message, type = "error", duration = 5000) {
-  const toast = document.getElementById("error-toast");
-  const titleElement = document.getElementById("error-title");
-  const messageElement = document.getElementById("error-message");
+  const toast = document.getElementById("toast");
+  const titleElement = document.getElementById("toast-title");
+  const messageElement = document.getElementById("toast-message");
 
   if (!toast || !titleElement || !messageElement) {
     console.error("Toast elements not found");
@@ -55,7 +55,7 @@ export function showWarningToast(title, message, duration = 5000) {
 }
 
 export function hideToast() {
-  const toast = document.getElementById("error-toast");
+  const toast = document.getElementById("toast");
   if (toast) {
     toast.classList.add("hidden");
   }

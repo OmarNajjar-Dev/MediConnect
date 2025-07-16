@@ -335,10 +335,10 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
     </div>
   </main>
 
-  <!-- Dynamic Error Toast -->
-  <div id="error-toast" class="hidden fixed bottom-4 right-4 z-50 max-w-xs rounded-md bg-danger p-5 text-white shadow-lg">
-    <p id="error-title" class="font-semibold"></p>
-    <p id="error-message" class="text-sm"></p>
+  <!-- Dynamic Toast -->
+  <div id="toast" class="hidden fixed bottom-4 right-4 z-50 max-w-xs rounded-md p-5 text-white shadow-lg">
+    <p id="toast-title" class="font-semibold"></p>
+    <p id="toast-message" class="text-sm"></p>
   </div>
 
   <!-- Footer -->

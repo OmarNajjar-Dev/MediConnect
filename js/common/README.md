@@ -32,13 +32,13 @@ hideToast();
 ### Add to any page:
 
 ```html
-<!-- Dynamic Error Toast -->
+<!-- Universal Toast Container -->
 <div
-  id="error-toast"
-  class="hidden fixed bottom-4 right-4 z-50 max-w-xs rounded-md bg-danger p-5 text-white shadow-lg"
+  id="toast"
+  class="hidden fixed bottom-4 right-4 z-50 max-w-xs rounded-md p-5 text-white shadow-lg"
 >
-  <p id="error-title" class="font-semibold"></p>
-  <p id="error-message" class="text-sm"></p>
+  <p id="toast-title" class="font-semibold"></p>
+  <p id="toast-message" class="text-sm"></p>
 </div>
 ```
 
@@ -49,3 +49,19 @@ hideToast();
 - ✅ Multiple toast types (error, success, warning)
 - ✅ Consistent styling across all pages
 - ✅ Simple API
+- ✅ Semantic HTML structure
+- ✅ Type-agnostic naming convention
+
+## Toast Types
+
+The system automatically applies the appropriate styling based on the toast type:
+
+- **Error**: Red background (`bg-danger`)
+- **Success**: Green background (`bg-success`)
+- **Warning**: Yellow background (`bg-warning`)
+
+## Best Practices
+
+- Use semantic IDs (`toast`, `toast-title`, `toast-message`) instead of type-specific IDs
+- The toast container handles all message types dynamically
+- Consistent positioning and styling across all pages
