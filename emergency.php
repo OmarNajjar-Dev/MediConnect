@@ -252,7 +252,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
                             <div class="grid gap-4 sm:grid-cols-2">
 
                                 <!-- Disabled Button with Tooltip wrapper -->
-                                <div class="group relative not-allowed">
+                                <div class="group relative cursor-not-allowed">
                                     <button
                                         class="gap-2 whitespace-nowrap rounded-md text-sm font-medium text-heading glass-card border-card-soft bg-background px-4 py-2 flex items-center justify-center h-16 pointer-events-none w-full"
                                         disabled>

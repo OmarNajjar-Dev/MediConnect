@@ -288,10 +288,10 @@ require_once __DIR__ . "/backend/middleware/require-user.php";
                                     <!-- Calendar Days -->
                                     <div id="days" class="grid grid-cols-7 gap-1 text-sm">
                                         <!-- Previous Month Days (disabled) -->
-                                        <button class="w-9 h-9 text-gray-400 not-allowed" disabled>27</button>
-                                        <button class="w-9 h-9 text-gray-400 not-allowed" disabled>28</button>
-                                        <button class="w-9 h-9 text-gray-400 not-allowed" disabled>29</button>
-                                        <button class="w-9 h-9 text-gray-400 not-allowed" disabled>30</button>
+                                        <button class="w-9 h-9 text-gray-400 cursor-not-allowed" disabled>27</button>
+                                        <button class="w-9 h-9 text-gray-400 cursor-not-allowed" disabled>28</button>
+                                        <button class="w-9 h-9 text-gray-400 cursor-not-allowed" disabled>29</button>
+                                        <button class="w-9 h-9 text-gray-400 cursor-not-allowed" disabled>30</button>
 
                                         <!-- Current Month Days -->
                                         <button class="w-9 h-9 hover:bg-gray-100 rounded">1</button>

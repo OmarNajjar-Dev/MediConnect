@@ -1,24 +1,11 @@
+import { showErrorToast, hideToast } from "../../common/toast.js";
+
 export function validateRegisterForm() {
   const form = document.getElementById("register-form");
   const password = document.getElementById("password");
   const confirmPassword = document.getElementById("confirm-password");
   const roleInput = document.getElementById("role-input");
-  const emailInput = document.getElementById('email');
-
-  const passwordErrorToast = document.getElementById("password-error-toast");
-  const passwordFormatErrorToast = document.getElementById(
-    "password-format-error-toast"
-  );
-  const roleErrorToast = document.getElementById("role-error-toast");
-  const emailErrorToast = document.getElementById("email-error-toast");
-
-  // Helper to hide all toasts
-  const hideAllToasts = () => {
-    passwordErrorToast.classList.add("hidden");
-    passwordFormatErrorToast.classList.add("hidden");
-    roleErrorToast.classList.add("hidden");
-    emailErrorToast.classList.add("hidden");
-  };
+  const emailInput = document.getElementById("email");
 
   // Helper to validate password format
   const isPasswordValid = (pwd) => {
@@ -31,23 +18,32 @@ export function validateRegisterForm() {
     e.preventDefault();
     let hasError = false;
 
-    hideAllToasts(); // Hide all before checks
+    hideToast(); // Hide any existing toast
 
     // Check role
     if (!roleInput.value) {
-      roleErrorToast.classList.remove("hidden");
+      showErrorToast(
+        "Please select your role.",
+        "You must choose your position in the healthcare system."
+      );
       hasError = true;
     }
 
     // Check password format
     else if (!isPasswordValid(password.value)) {
-      passwordFormatErrorToast.classList.remove("hidden");
+      showErrorToast(
+        "Invalid password format.",
+        "Password must be at least 8 characters long with at least one number and one special character."
+      );
       hasError = true;
     }
 
     // Check password match
     else if (password.value !== confirmPassword.value) {
-      passwordErrorToast.classList.remove("hidden");
+      showErrorToast(
+        "Passwords do not match.",
+        "Please make sure your passwords match."
+      );
       hasError = true;
     }
 
@@ -61,16 +57,16 @@ export function validateRegisterForm() {
         });
         const data = await res.json();
         if (data.exists) {
-          emailErrorToast.classList.remove("hidden");
+          showErrorToast(
+            "Email already exists.",
+            "Please use another email or login instead."
+          );
           hasError = true;
         }
       } catch (err) {
         console.error("Email verification failed:", err);
       }
     }
-
-    // Hide toast after 5 seconds (if shown)
-    setTimeout(hideAllToasts, 5000);
 
     if (!hasError) {
       form.submit();

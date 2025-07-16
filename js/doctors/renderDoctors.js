@@ -43,9 +43,9 @@ export async function renderDoctors(container) {
         <div class="flex gap-2 mt-2">
         
           <!-- Tooltip Wrapper -->
-          <div class="group relative flex-grow-2 not-allowed">
+          <div class="group relative flex-grow-2 cursor-not-allowed">
             <button type="button"
-              class="w-full whitespace-nowrap text-sm inline-flex items-center justify-center gap-2 rounded-md font-medium transition-all border border-solid border-input bg-background text-heading h-10 py-2 px-4 not-allowed opacity-60"
+              class="w-full whitespace-nowrap text-sm inline-flex items-center justify-center gap-2 rounded-md font-medium transition-all border border-solid border-input bg-background text-heading h-10 py-2 px-4 cursor-not-allowed opacity-60"
               disabled>
               View Profile
             </button>

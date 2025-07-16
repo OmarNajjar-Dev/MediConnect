@@ -133,7 +133,7 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
                         <!-- Email Input -->
                         <div>
                             <label for="email" class="text-sm font-medium text-gray-700">Email</label>
-                            <input type="email" id="email" name="email" required autocomplete="email" placeholder="you@example.com"
+                            <input type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com" required
                                 class="mt-1 block h-10 w-full rounded-sm border border-solid border-input bg-background px-3 py-2 text-base md:text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
                         </div>
 
@@ -141,7 +141,7 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
                         <div>
                             <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
                             <div class="relative mt-1">
-                                <input type="password" id="password" name="password" required autocomplete="current-password" placeholder="*******"
+                                <input type="password" id="password" name="password" autocomplete="current-password" placeholder="*******" required
                                     class="block h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 pr-10 text-base md:text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
                                 <button type="button" id="toggle-password" aria-label="Toggle password visibility"
                                     class="eye-toggle-button absolute inset-y-0 right-0 z-10 flex items-center border-none bg-transparent pr-3 pointer">
@@ -186,7 +186,7 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
                     <div class="mt-6 grid grid-cols-2 gap-3">
 
                         <!-- Google Button Wrapper -->
-                        <div class="group relative not-allowed">
+                        <div class="group relative cursor-not-allowed">
                             <button type="button"
                                 class="inline-flex w-full justify-center rounded-md border border-solid border-input bg-white px-4 py-2 text-sm font-medium text-gray-500 shadow-sm pointer-events-none"
                                 disabled>
@@ -202,7 +202,7 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
                         </div>
 
                         <!-- Facebook Button Wrapper -->
-                        <div class="group relative not-allowed">
+                        <div class="group relative cursor-not-allowed">
                             <button type="button"
                                 class="inline-flex w-full justify-center rounded-md border border-solid border-input bg-white px-4 py-2 text-sm font-medium text-gray-500 shadow-sm pointer-events-none"
                                 disabled>
@@ -228,10 +228,10 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
             </div>
         </div>
 
-        <!-- Error Toast -->
-        <div id="login-error-toast" class="toast-error fixed hidden max-w-xs rounded-md bg-danger p-5 text-white" role="alert">
-            <p class="font-semibold">Error:</p>
-            <span class="error-message text-md">Invalid email or password.</span>
+        <!-- Dynamic Error Toast -->
+        <div id="error-toast" class="hidden fixed bottom-4 right-4 z-50 max-w-xs rounded-md bg-danger p-5 text-white shadow-lg">
+            <p id="error-title" class="font-semibold"></p>
+            <p id="error-message" class="text-sm"></p>
         </div>
     </main>
 

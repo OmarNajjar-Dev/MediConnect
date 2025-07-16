@@ -444,18 +444,6 @@
   background-color: rgba(var(--secondary), 0.8);
 }
 
-.bg-secondary {
-  background-color: rgb(var(--secondary));
-}
-
-.text-secondary-foreground {
-  color: rgb(var(--secondary-foreground));
-}
-
-.hover\:bg-secondary\/80:hover {
-  background-color: rgba(var(--secondary), 0.8);
-}
-
 .border-input {
   border-color: rgb(var(--border));
 }

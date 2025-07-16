@@ -260,7 +260,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <!-- Email Field -->
                         <div>
                             <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                            <input type="email" id="email" name="email" autocomplete="email" required placeholder="you@example.com"
+                            <input type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com"
                                 class="mt-1 block h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
                         </div>
 
@@ -358,7 +358,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <div>
                             <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
                             <div class="relative mt-1">
-                                <input type="password" id="password" name="password" autocomplete="current-password" required placeholder="*******"
+                                <input type="password" id="password" name="password" autocomplete="current-password" placeholder="*******" required
                                     class="block h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 pr-10 text-base md:text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
                                 <button type="button" id="toggle-password" class="pointer absolute inset-y-0 right-0 z-10 flex items-center border-none bg-transparent pr-3" aria-label="Toggle password visibility">
                                     <i data-lucide="eye" class="h-5 w-5 text-gray-400"></i>
@@ -415,7 +415,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <div class="mt-6 grid grid-cols-2 gap-3">
 
                             <!-- Google Button Wrapper -->
-                            <div class="group relative not-allowed">
+                            <div class="group relative cursor-not-allowed">
                                 <button type="button"
                                     class="inline-flex w-full justify-center rounded-md border border-solid border-input bg-white px-4 py-2 text-sm font-medium text-gray-500 shadow-sm pointer-events-none"
                                     disabled>
@@ -431,7 +431,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             </div>
 
                             <!-- Facebook Button Wrapper -->
-                            <div class="group relative not-allowed">
+                            <div class="group relative cursor-not-allowed">
                                 <button type="button"
                                     class="inline-flex w-full justify-center rounded-md border border-solid border-input bg-white px-4 py-2 text-sm font-medium text-gray-500 shadow-sm pointer-events-none"
                                     disabled>
@@ -460,25 +460,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </div>
         </div>
 
-        <!-- Error Toasts -->
-        <div id="password-error-toast" class="hidden toast-error fixed max-w-xs rounded-md bg-danger p-5 text-white">
-            <p class="font-semibold">Passwords do not match.</p>
-            <p class="text-sm">Please make sure your passwords match.</p>
-        </div>
-
-        <div id="password-format-error-toast" class="hidden toast-error fixed max-w-xs rounded-md bg-danger p-5 text-white">
-            <p class="font-semibold">Invalid password format.</p>
-            <p class="text-sm">Password must be at least 8 characters long with at least one number and one special character.</p>
-        </div>
-
-        <div id="role-error-toast" class="hidden toast-error fixed max-w-xs rounded-md bg-danger p-5 text-white">
-            <p class="font-semibold">Please select your role.</p>
-            <p class="text-sm">You must choose your position in the healthcare system.</p>
-        </div>
-
-        <div id="email-error-toast" class="hidden toast-error fixed bottom-4 right-4 z-50 max-w-xs rounded-md bg-danger p-5 text-white shadow-lg">
-            <p class="font-semibold">Email already exists.</p>
-            <p class="text-sm">Please use another email or login instead.</p>
+        <!-- Dynamic Error Toast -->
+        <div id="error-toast" class="hidden fixed bottom-4 right-4 z-50 max-w-xs rounded-md bg-danger p-5 text-white shadow-lg">
+            <p id="error-title" class="font-semibold"></p>
+            <p id="error-message" class="text-sm"></p>
         </div>
 
     </main>

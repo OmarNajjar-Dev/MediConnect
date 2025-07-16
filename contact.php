@@ -172,7 +172,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
               <h2 class="text-2xl font-bold text-heading mb-6">
                 Send Us a Message
               </h2>
-              <form>
+              <form id="contact-form">
                 <div class="flex flex-col gap-4">
                   <div>
                     <label for="name" class="block mb-2 text-sm text-heading font-medium">Your Name</label>
@@ -249,7 +249,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
                     <textarea id="message" name="message" rows="5" placeholder="How can we help you?" required
                       class="resize-y scrollbar-none flex w-full rounded-sm border border-solid border-input bg-background px-3 py-2 text-sm focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white"></textarea>
                   </div>
-                  <button type="submit"
+                  <button type="submit" id="contact-submit-btn"
                     class="w-full inline-flex border border-solid border-input items-center text-white outline-none justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors h-10 px-4 py-2 bg-medical-400 hover:bg-medical-500 pointer">
                     Send Message
                   </button>
@@ -334,6 +334,12 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
       </section>
     </div>
   </main>
+
+  <!-- Dynamic Error Toast -->
+  <div id="error-toast" class="hidden fixed bottom-4 right-4 z-50 max-w-xs rounded-md bg-danger p-5 text-white shadow-lg">
+    <p id="error-title" class="font-semibold"></p>
+    <p id="error-message" class="text-sm"></p>
+  </div>
 
   <!-- Footer -->
   <footer class="bg-gray-50 pt-16 pb-8 border-t border-solid separator">

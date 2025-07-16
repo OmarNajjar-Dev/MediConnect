@@ -339,7 +339,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                           </div>
                           <div class="flex flex-col gap-2">
                             <label for="admin-email" class="text-sm font-medium leading-none">Email Address</label>
-                            <input type="email" id="admin-email" placeholder="Enter your email" value="admin@mediconnect.com"
+                            <input id="admin-email" type="email"  placeholder="Enter your email" value="admin@mediconnect.com" required
                               class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
                           </div>
                         </div>
@@ -680,7 +680,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
 
         <div>
           <label class="text-sm font-medium leading-none" for="email">Email</label>
-          <input id="email" type="email"
+          <input id="email" type="email" required
             class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm outline-none focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white"
             placeholder="Enter email address">
         </div>

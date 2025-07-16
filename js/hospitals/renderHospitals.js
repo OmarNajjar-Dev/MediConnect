@@ -88,7 +88,7 @@ export async function renderHospitals(container) {
 
               <div class="mt-6 flex justify-end gap-3">
                 <!-- View Details -->
-                <div class="group relative not-allowed">
+                <div class="group relative cursor-not-allowed">
                   <button type="button"
                     class="inline-flex items-center justify-center gap-2 flex-grow md:flex-grow-0 whitespace-nowrap rounded-md border border-solid border-input bg-medical-600 text-sm font-medium transition-colors h-10 px-4 py-2 text-white pointer-events-none"
                     disabled>
@@ -101,7 +101,7 @@ export async function renderHospitals(container) {
                 </div>
 
                 <!-- Get Directions -->
-                <div class="group relative not-allowed">
+                <div class="group relative cursor-not-allowed">
                   <button type="button"
                     class="inline-flex items-center justify-center gap-2 flex-grow md:flex-grow-0 whitespace-nowrap rounded-md text-sm font-medium transition-colors text-heading border border-solid border-input bg-background hover:bg-medical-50 hover:text-medical-500 h-10 px-4 py-2 pointer-events-none"
                     disabled>
