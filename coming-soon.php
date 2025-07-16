@@ -64,7 +64,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
                 <?php if ($isLoggedIn): ?>
                     <!-- User dropdown (visible if logged in) -->
                     <div class="hidden md:flex items-center gap-3 mr-4">
-                        <div class="dropdown relative">
+                        <div class="relative">
                             <button class="flex items-center gap-2 md:py-2 px-2 border-none bg-transparent hover:bg-medical-50 transition-colors transition-200 pointer rounded-lg">
                                 <div class="w-8 h-8 rounded-full bg-medical-100 flex items-center justify-center text-medical-700 text-sm lg:text-base font-medium">
                                     <?= strtoupper(substr($userName, 0, 2)) ?>
@@ -76,7 +76,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
                             </button>
 
                             <!-- Dropdown menu content -->
-                            <div class="dropdown-content overflow-hidden hidden animate-fade-in absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-solid border-gray-100 z-50">
+                            <div class="overflow-hidden hidden animate-fade-in absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-solid border-gray-100 z-50">
                                 <div class="px-3 py-2 border-b border-solid border-medical-100">
                                     <p class="text-sm font-medium slate-700"><?= htmlspecialchars($userName) ?></p>
                                     <p class="text-xs slate-500"><?= htmlspecialchars($userEmail) ?></p>
@@ -169,7 +169,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
                     </p>
                 </div>
 
-                <div class="mb-12 animate-scale-in delay-400">
+                <div class="mb-12">
                     <h3 class="text-xl font-semibold text-gray-700 mb-6">Launch Countdown</h3>
                     <div class="flex justify-center gap-4 md:gap-8" id="countdown">
                         <div class="bg-white rounded-xl shadow-lg p-4 md:p-6 min-w-20 md:min-w-25 text-center">

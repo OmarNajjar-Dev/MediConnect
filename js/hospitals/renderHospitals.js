@@ -18,7 +18,11 @@ export async function renderHospitals(container) {
           <div class="flex flex-col md:flex-row">
 
             <div class="relative w-full h-48 md:w-1/3 md:h-auto">
-              <img src="${h.image_url}" alt="${
+              <img src="${
+                h.profile_image
+                  ? "images/hospitals/" + h.profile_image
+                  : "images/hospitals/default.jpg"
+              }" alt="${
         h.name
       }" class="w-full h-full object-cover" loading="lazy"/>
               ${

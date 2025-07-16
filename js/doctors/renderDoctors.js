@@ -12,9 +12,13 @@ export async function renderDoctors(container) {
       div.innerHTML = `
         <div class="flex items-start mb-4">
           <div class="w-20 h-20 rounded-full overflow-hidden mr-4 flex-shrink-0">
-            <img src="${card.image_url || "default.jpg"}" alt="${
-        card.first_name
-      } ${card.last_name}" loading="lazy" class="w-full h-full object-cover" />
+            <img src="${
+              card.profile_image
+                ? "images/doctors/" + card.profile_image
+                : "images/doctors/default.jpg"
+            }" alt="${card.first_name} ${
+        card.last_name
+      }" loading="lazy" class="w-full h-full object-cover" />
           </div>
           <div>
             <h2 class="text-lg text-heading font-bold tracking-tight">${

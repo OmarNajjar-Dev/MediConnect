@@ -35,7 +35,7 @@ CREATE TABLE `doctors` (
   `is_verified` tinyint(1) DEFAULT 0,
   `rating` decimal(2,1) DEFAULT NULL,
   `reviews_count` int(11) DEFAULT NULL,
-  `image_url` varchar(255) DEFAULT NULL,
+  `profile_image` varchar(255) DEFAULT NULL,
   `bio` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -43,13 +43,13 @@ CREATE TABLE `doctors` (
 -- Dumping data for table `doctors`
 --
 
-INSERT INTO `doctors` (`doctor_id`, `user_id`, `specialty_id`, `hospital_id`, `is_verified`, `rating`, `reviews_count`, `image_url`, `bio`) VALUES
-(1, 1, 1, 1, 1, 4.9, 124, 'https://randomuser.me/api/portraits/women/45.jpg', 'Dr. Sarah Johnson is a board-certified cardiologist with over 12 years of experience in treating cardiovascular diseases. She completed her medical training at Harvard Medical School and residency at Massachusetts General Hospital.'),
-(2, 2, 2, 2, 1, 4.7, 98, 'https://randomuser.me/api/portraits/men/32.jpg', 'Dr. Michael Chen specializes in medical, surgical, and cosmetic dermatology. He has expertise in treating skin conditions like acne, eczema, psoriasis, and skin cancer.'),
-(3, 3, 3, 3, 1, 4.8, 156, 'https://randomuser.me/api/portraits/women/63.jpg', 'Dr. Emily Rodriguez is a neurologist with expertise in headache disorders, multiple sclerosis, and neurodegenerative diseases. She is dedicated to providing compassionate care for patients with complex neurological conditions.'),
-(4, 4, 4, 4, 1, 4.6, 87, 'https://randomuser.me/api/portraits/men/46.jpg', 'Dr. James Wilson is an orthopedic surgeon specializing in sports medicine, joint replacement, and trauma. With 20 years of experience, he has helped thousands of patients recover from orthopedic injuries and conditions.'),
-(5, 5, 5, 5, 1, 4.9, 142, 'https://randomuser.me/api/portraits/women/69.jpg', 'Dr. Lisa Kim is a dedicated pediatrician who provides comprehensive healthcare for children from birth through adolescence. She is known for her gentle approach and ability to connect with young patients.'),
-(6, 6, 6, 6, 1, 4.8, 73, 'https://randomuser.me/api/portraits/men/79.jpg', 'Dr. Robert Taylor is a psychiatrist specializing in mood disorders, anxiety, and PTSD. He takes a holistic approach to mental health, combining medication management with psychotherapy when appropriate.');
+INSERT INTO `doctors` (`doctor_id`, `user_id`, `specialty_id`, `hospital_id`, `is_verified`, `rating`, `reviews_count`, `profile_image`, `bio`) VALUES
+(1, 1, 1, 1, 1, 4.9, 124, 'dr_sarah_johnson.jpg', 'Dr. Sarah Johnson is a board-certified cardiologist with over 12 years of experience in treating cardiovascular diseases. She completed her medical training at Harvard Medical School and residency at Massachusetts General Hospital.'),
+(2, 2, 2, 2, 1, 4.7, 98, 'dr_michael_chen.jpg', 'Dr. Michael Chen specializes in medical, surgical, and cosmetic dermatology. He has expertise in treating skin conditions like acne, eczema, psoriasis, and skin cancer.'),
+(3, 3, 3, 3, 1, 4.8, 156, 'dr_emily_rodriguez.jpg', 'Dr. Emily Rodriguez is a neurologist with expertise in headache disorders, multiple sclerosis, and neurodegenerative diseases. She is dedicated to providing compassionate care for patients with complex neurological conditions.'),
+(4, 4, 4, 4, 1, 4.6, 87, 'dr_james_wilson.jpg', 'Dr. James Wilson is an orthopedic surgeon specializing in sports medicine, joint replacement, and trauma. With 20 years of experience, he has helped thousands of patients recover from orthopedic injuries and conditions.'),
+(5, 5, 5, 5, 1, 4.9, 142, 'dr_lisa_kim.jpg', 'Dr. Lisa Kim is a dedicated pediatrician who provides comprehensive healthcare for children from birth through adolescence. She is known for her gentle approach and ability to connect with young patients.'),
+(6, 6, 6, 6, 1, 4.8, 73, 'dr_robert_taylor.jpg', 'Dr. Robert Taylor is a psychiatrist specializing in mood disorders, anxiety, and PTSD. He takes a holistic approach to mental health, combining medication management with psychotherapy when appropriate.');
 
 -- --------------------------------------------------------
 
@@ -66,14 +66,14 @@ CREATE TABLE `hospitals` (
   `rating` decimal(2,1) DEFAULT NULL,
   `reviews_count` int(11) DEFAULT NULL,
   `emergency_services` tinyint(1) DEFAULT 0,
-  `image_url` varchar(255) DEFAULT NULL
+  `profile_image` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `hospitals`
 --
 
-INSERT INTO `hospitals` (`hospital_id`, `name`, `address`, `contact`, `available_beds`, `rating`, `reviews_count`, `emergency_services`, `image_url`) VALUES
+INSERT INTO `hospitals` (`hospital_id`, `name`, `address`, `contact`, `available_beds`, `rating`, `reviews_count`, `emergency_services`, `profile_image`) VALUES
 (1, 'Central Medical Center', '123 Medical Blvd, Central City', '+1 (555) 123-4567', 15, 4.8, 356, 1, 'https:images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'),
 (2, 'Westside Hospital', '456 Healthcare Ave, West District', '+1 (555) 987-6543', 8, 4.6, 283, 1, 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'),
 (3, 'Metropolitan Medical Center', '789 Wellness St, Downtown', '+1 (555) 246-8135', 23, 4.9, 412, 1, 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'),
