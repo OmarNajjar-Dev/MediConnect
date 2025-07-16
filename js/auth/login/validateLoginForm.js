@@ -8,29 +8,54 @@ export function validateLoginForm() {
 
   if (!form || !loginBtn) return;
 
+  // Store timeout ID for cleanup (setTimeout returns a unique numeric identifier)
+  let toastTimeoutId = null;
+
   loginBtn.addEventListener("click", async (e) => {
     e.preventDefault();
 
     const formData = new URLSearchParams();
-    formData.append("email", emailInput.value);
+    formData.append("email", emailInput.value.trim());
     formData.append("password", passwordInput.value);
     if (rememberMeCheckbox.checked) {
       formData.append("remember_me", "1");
     }
 
-    const res = await fetch("/MediConnect/backend/auth/login-handler.php", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: formData.toString(),
-    });
+    try {
+      const res = await fetch("/MediConnect/backend/auth/login-handler.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: formData.toString(),
+      });
 
-    const data = await res.json();
+      const data = await res.json();
 
-    if (data.success) {
-      window.location.href = "./dashboard/superadmin.php";
-    } else {
-      errorToast.classList.remove("hidden");
-      setTimeout(() => errorToast.classList.add("hidden"), 5000);
+      if (data.success && data.redirect) {
+        // Successful login - redirect to appropriate dashboard
+        window.location.href = data.redirect;
+      } else {
+        // Failed login - show error toast
+        showErrorToast();
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      // Network error - show same error message
+      showErrorToast();
     }
   });
+
+  function showErrorToast() {
+    // Clear existing timeout to prevent multiple timeouts
+    if (toastTimeoutId) {
+      clearTimeout(toastTimeoutId);
+    }
+
+    // Show toast (message is already set in HTML)
+    errorToast.classList.remove("hidden");
+
+    // Set timeout to hide toast (returns a unique numeric ID)
+    toastTimeoutId = setTimeout(() => {
+      errorToast.classList.add("hidden");
+    }, 5000);
+  }
 }

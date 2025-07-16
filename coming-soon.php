@@ -3,7 +3,7 @@
 // 1. Load system configuration (paths, constants, routes, etc.)
 require_once __DIR__ . "/backend/config/path.php";
 
-// 2. Load user session context (sets $isLoggedIn, $userName, $userEmail, $dashboardLink)
+// 2. Load user session context (sets $isLoggedIn, $userName, $userEmail)
 require_once __DIR__ . "/backend/middleware/session-context.php";
 
 ?>
@@ -44,7 +44,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
         <div class="container mx-auto flex items-center justify-between px-4">
 
             <!-- Logo -->
-            <a href="<?= $paths['home'] ?>" class="flex items-center">
+            <a href="<?= $paths['home']['index'] ?>" class="flex items-center">
                 <span class="text-medical-700 text-2xl font-semibold">
                     Medi<span class="text-medical-500">Connect</span>
                 </span>
@@ -52,7 +52,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
 
             <!-- Desktop Navigation (hidden on mobile) -->
             <nav class="hidden md:flex items-center gap-4 lg:gap-8 xl:ml-28">
-                <a href="<?= $paths['home'] ?>" class="text-medical-700 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Home</a>
+                <a href="<?= $paths['home']['index'] ?>" class="text-medical-700 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Home</a>
                 <a href="<?= $paths['services']['doctors'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Doctors</a>
                 <a href="<?= $paths['services']['hospitals'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Hospitals</a>
                 <a href="<?= $paths['services']['appointments'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Appointments</a>
@@ -120,7 +120,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
             <!-- Mobile Navigation Panel (visible only on mobile) -->
             <div id="mobile-nav" class="hidden absolute bg-white/95 backdrop-blur-lg animate-slide-down shadow-lg md:hidden">
                 <nav class="container mx-auto flex flex-col gap-4 px-4 py-4">
-                    <a href="<?= $paths['home'] ?>" class="text-medical-700 bg-medical-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Home</a>
+                    <a href="<?= $paths['home']['index'] ?>" class="text-medical-700 bg-medical-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Home</a>
                     <a href="<?= $paths['services']['doctors'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Doctors</a>
                     <a href="<?= $paths['services']['hospitals'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
                     <a href="<?= $paths['services']['appointments'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
@@ -148,7 +148,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
     </header>
 
     <!-- Main Content -->
-    <main id="comming-soon" class="overflow-hidden flex justify-center flex-grow pt-20 pb-16">
+    <main id="coming-soon" class="overflow-hidden flex justify-center flex-grow pt-20 pb-16">
         <section class="relative overflow-hidden w-full">
 
             <div class="container mx-auto px-4 py-20 text-center relative z-10">
@@ -218,7 +218,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
         <div class="container mx-auto px-4">
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                 <div>
-                    <a href="<?= $paths['home'] ?>" class="inline-block mb-4">
+                    <a href="<?= $paths['home']['index'] ?>" class="inline-block mb-4">
                         <span class="text-medical-700 font-semibold text-2xl">
                             Medi<span class="text-medical-500">Connect</span>
                         </span>
@@ -341,7 +341,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
 
     <!-- External JavaScript -->
     <script type="module" src="/mediconnect/js/common/index.js"></script>
-    <script type="module" src="/mediconnect/js/comming-soon.js"></script>
+    <script type="module" src="/mediconnect/js/coming-soon.js"></script>
 
     <script>
         lucide.createIcons();

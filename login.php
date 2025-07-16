@@ -51,7 +51,7 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
         <div class="container mx-auto flex items-center justify-between px-4">
 
             <!-- Logo -->
-            <a href="<?= $paths['home'] ?>" class="flex items-center">
+            <a href="<?= $paths['home']['index'] ?>" class="flex items-center">
                 <span class="text-medical-700 text-2xl font-semibold">
                     Medi<span class="text-medical-500">Connect</span>
                 </span>
@@ -59,7 +59,7 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
 
             <!-- Desktop Navigation (hidden on mobile) -->
             <nav class="hidden md:flex items-center gap-4 lg:gap-8 xl:ml-28">
-                <a href="<?= $paths['home'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Home</a>
+                <a href="<?= $paths['home']['index'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Home</a>
                 <a href="<?= $paths['services']['doctors'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Doctors</a>
                 <a href="<?= $paths['services']['hospitals'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Hospitals</a>
                 <a href="<?= $paths['services']['appointments'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Appointments</a>
@@ -92,7 +92,7 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
             <!-- Mobile Navigation Panel (visible only on mobile) -->
             <div id="mobile-nav" class="hidden absolute bg-white/95 backdrop-blur-lg animate-slide-down shadow-lg md:hidden">
                 <nav class="container mx-auto flex flex-col gap-4 px-4 py-4">
-                    <a href="<?= $paths['home'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Home</a>
+                    <a href="<?= $paths['home']['index'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Home</a>
                     <a href="<?= $paths['services']['doctors'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Doctors</a>
                     <a href="<?= $paths['services']['hospitals'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
                     <a href="<?= $paths['services']['appointments'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
@@ -115,7 +115,7 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
 
                 <!-- Logo and Heading -->
                 <div class="text-center">
-                    <a href="<?= $paths['home'] ?>" class="flex items-center justify-center">
+                    <a href="<?= $paths['home']['index'] ?>" class="flex items-center justify-center">
                         <span class="text-3xl font-semibold text-medical-700">
                             Medi<span class="text-medical-500">Connect</span>
                         </span>
@@ -197,7 +197,7 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
                             </button>
                             <div
                                 class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded shadow whitespace-nowrap">
-                                Comming Soon!
+                                Coming Soon!
                             </div>
                         </div>
 
@@ -213,7 +213,7 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
                             </button>
                             <div
                                 class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded shadow whitespace-nowrap">
-                                Comming Soon!
+                                Coming Soon!
                             </div>
                         </div>
 
@@ -231,7 +231,7 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
         <!-- Error Toast -->
         <div id="login-error-toast" class="toast-error fixed hidden max-w-xs rounded-md bg-danger p-5 text-white" role="alert">
             <p class="font-semibold">Error:</p>
-            <span class="text-md">Invalid email or password.</span>
+            <span class="error-message text-md">Invalid email or password.</span>
         </div>
     </main>
 
@@ -240,7 +240,7 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
         <div class="container mx-auto px-4">
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                 <div>
-                    <a href="<?= $paths['home'] ?>" class="inline-block mb-4">
+                    <a href="<?= $paths['home']['index'] ?>" class="inline-block mb-4">
                         <span class="text-medical-700 font-semibold text-2xl">
                             Medi<span class="text-medical-500">Connect</span>
                         </span>

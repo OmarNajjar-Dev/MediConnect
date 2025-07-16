@@ -14,7 +14,7 @@ export const servicesCardsData = [
     description:
       "Receive digital medical reports and prescriptions directly from your doctor.",
     linkText: "Learn More",
-    linkHref: "./comming-soon.php",
+    linkHref: "./coming-soon.php",
     animationDelay: "100ms",
   },
   {
@@ -32,7 +32,7 @@ export const servicesCardsData = [
     description:
       "Order prescription and over-the-counter medications from registered pharmacies.",
     linkText: "Order Medicines",
-    linkHref: "./comming-soon.php",
+    linkHref: "./coming-soon.php",
     animationDelay: "300ms",
   },
 ];

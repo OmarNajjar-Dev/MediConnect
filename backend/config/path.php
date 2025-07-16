@@ -4,7 +4,9 @@ $basePath = '/mediconnect';
 const BASE_URL = '/mediconnect';
 
 $paths = [
-    'home' => BASE_URL . '/',
+    'home' => [
+        'index' => BASE_URL . '/',
+    ],
 
     'auth' => [
         'login'    => BASE_URL . '/login.php',
@@ -20,13 +22,7 @@ $paths = [
     ],
 
     'dashboard' => [
-        'index'           => BASE_URL . '/dashboard/index.php',
-        'super_admin'     => BASE_URL . '/dashboard/superadmin.php',
-        'hospital_admin'  => BASE_URL . '/dashboard/admin.php',
-        'doctor'          => BASE_URL . '/dashboard/doctor.php',
-        'patient'         => BASE_URL . '/dashboard/patient.php',
-        'ambulance_team'  => BASE_URL . '/dashboard/ambulance.php',
-        'staff'           => BASE_URL . '/dashboard/staff.php',
+        'index' => BASE_URL . '/dashboard/index.php',
     ],
 
     'static' => [
