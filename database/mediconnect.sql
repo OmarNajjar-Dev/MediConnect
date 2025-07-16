@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 19, 2025 at 09:10 PM
+-- Generation Time: Jul 16, 2025 at 08:19 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -24,6 +24,46 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `ambulance_locations`
+--
+
+CREATE TABLE `ambulance_locations` (
+  `team_id` int(11) NOT NULL,
+  `latitude` decimal(10,8) DEFAULT NULL,
+  `longitude` decimal(11,8) DEFAULT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `ambulance_locations`
+--
+
+INSERT INTO `ambulance_locations` (`team_id`, `latitude`, `longitude`, `updated_at`) VALUES
+(1, 34.39400000, 35.84300000, '2025-07-15 04:41:46');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ambulance_teams`
+--
+
+CREATE TABLE `ambulance_teams` (
+  `team_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `team_name` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `ambulance_teams`
+--
+
+INSERT INTO `ambulance_teams` (`team_id`, `user_id`, `team_name`) VALUES
+(1, 1, 'Test Ambulance Team'),
+(4, 12, 'Omar\'s Team');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `doctors`
 --
 
@@ -35,7 +75,7 @@ CREATE TABLE `doctors` (
   `is_verified` tinyint(1) DEFAULT 0,
   `rating` decimal(2,1) DEFAULT NULL,
   `reviews_count` int(11) DEFAULT NULL,
-  `profile_image` varchar(255) DEFAULT NULL,
+  `image_url` varchar(255) DEFAULT NULL,
   `bio` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -43,13 +83,56 @@ CREATE TABLE `doctors` (
 -- Dumping data for table `doctors`
 --
 
-INSERT INTO `doctors` (`doctor_id`, `user_id`, `specialty_id`, `hospital_id`, `is_verified`, `rating`, `reviews_count`, `profile_image`, `bio`) VALUES
-(1, 1, 1, 1, 1, 4.9, 124, 'dr_sarah_johnson.jpg', 'Dr. Sarah Johnson is a board-certified cardiologist with over 12 years of experience in treating cardiovascular diseases. She completed her medical training at Harvard Medical School and residency at Massachusetts General Hospital.'),
-(2, 2, 2, 2, 1, 4.7, 98, 'dr_michael_chen.jpg', 'Dr. Michael Chen specializes in medical, surgical, and cosmetic dermatology. He has expertise in treating skin conditions like acne, eczema, psoriasis, and skin cancer.'),
-(3, 3, 3, 3, 1, 4.8, 156, 'dr_emily_rodriguez.jpg', 'Dr. Emily Rodriguez is a neurologist with expertise in headache disorders, multiple sclerosis, and neurodegenerative diseases. She is dedicated to providing compassionate care for patients with complex neurological conditions.'),
-(4, 4, 4, 4, 1, 4.6, 87, 'dr_james_wilson.jpg', 'Dr. James Wilson is an orthopedic surgeon specializing in sports medicine, joint replacement, and trauma. With 20 years of experience, he has helped thousands of patients recover from orthopedic injuries and conditions.'),
-(5, 5, 5, 5, 1, 4.9, 142, 'dr_lisa_kim.jpg', 'Dr. Lisa Kim is a dedicated pediatrician who provides comprehensive healthcare for children from birth through adolescence. She is known for her gentle approach and ability to connect with young patients.'),
-(6, 6, 6, 6, 1, 4.8, 73, 'dr_robert_taylor.jpg', 'Dr. Robert Taylor is a psychiatrist specializing in mood disorders, anxiety, and PTSD. He takes a holistic approach to mental health, combining medication management with psychotherapy when appropriate.');
+INSERT INTO `doctors` (`doctor_id`, `user_id`, `specialty_id`, `hospital_id`, `is_verified`, `rating`, `reviews_count`, `image_url`, `bio`) VALUES
+(1, 1, 1, 1, 1, 4.9, 124, 'https://randomuser.me/api/portraits/women/45.jpg', 'Dr. Sarah Johnson is a board-certified cardiologist with over 12 years of experience in treating cardiovascular diseases. She completed her medical training at Harvard Medical School and residency at Massachusetts General Hospital.'),
+(2, 2, 2, 2, 1, 4.7, 98, 'https://randomuser.me/api/portraits/men/32.jpg', 'Dr. Michael Chen specializes in medical, surgical, and cosmetic dermatology. He has expertise in treating skin conditions like acne, eczema, psoriasis, and skin cancer.'),
+(3, 3, 3, 3, 1, 4.8, 156, 'https://randomuser.me/api/portraits/women/63.jpg', 'Dr. Emily Rodriguez is a neurologist with expertise in headache disorders, multiple sclerosis, and neurodegenerative diseases. She is dedicated to providing compassionate care for patients with complex neurological conditions.'),
+(4, 4, 4, 4, 1, 4.6, 87, 'https://randomuser.me/api/portraits/men/46.jpg', 'Dr. James Wilson is an orthopedic surgeon specializing in sports medicine, joint replacement, and trauma. With 20 years of experience, he has helped thousands of patients recover from orthopedic injuries and conditions.'),
+(5, 5, 5, 5, 1, 4.9, 142, 'https://randomuser.me/api/portraits/women/69.jpg', 'Dr. Lisa Kim is a dedicated pediatrician who provides comprehensive healthcare for children from birth through adolescence. She is known for her gentle approach and ability to connect with young patients.'),
+(6, 6, 6, 6, 1, 4.8, 73, 'https://randomuser.me/api/portraits/men/79.jpg', 'Dr. Robert Taylor is a psychiatrist specializing in mood disorders, anxiety, and PTSD. He takes a holistic approach to mental health, combining medication management with psychotherapy when appropriate.');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `emergency_requests`
+--
+
+CREATE TABLE `emergency_requests` (
+  `request_id` int(11) NOT NULL,
+  `patient_id` int(11) NOT NULL,
+  `location` varchar(255) DEFAULT NULL,
+  `status` enum('Pending','In Transit','Resolved') DEFAULT 'Pending',
+  `requested_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `emergency_requests`
+--
+
+INSERT INTO `emergency_requests` (`request_id`, `patient_id`, `location`, `status`, `requested_at`) VALUES
+(3, 1, '{\"lat\":34.3948392,\"lng\":35.8431243}', 'Pending', '2025-07-15 05:01:50'),
+(4, 1, '{\"lat\":34.3950887,\"lng\":35.8427908}', 'Pending', '2025-07-15 08:44:47');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `emergency_responses`
+--
+
+CREATE TABLE `emergency_responses` (
+  `response_id` int(11) NOT NULL,
+  `request_id` int(11) NOT NULL,
+  `team_id` int(11) NOT NULL,
+  `dispatched_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `emergency_responses`
+--
+
+INSERT INTO `emergency_responses` (`response_id`, `request_id`, `team_id`, `dispatched_at`) VALUES
+(3, 3, 1, '2025-07-15 05:01:50'),
+(4, 4, 1, '2025-07-15 08:44:47');
 
 -- --------------------------------------------------------
 
@@ -66,14 +149,14 @@ CREATE TABLE `hospitals` (
   `rating` decimal(2,1) DEFAULT NULL,
   `reviews_count` int(11) DEFAULT NULL,
   `emergency_services` tinyint(1) DEFAULT 0,
-  `profile_image` varchar(255) DEFAULT NULL
+  `image_url` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `hospitals`
 --
 
-INSERT INTO `hospitals` (`hospital_id`, `name`, `address`, `contact`, `available_beds`, `rating`, `reviews_count`, `emergency_services`, `profile_image`) VALUES
+INSERT INTO `hospitals` (`hospital_id`, `name`, `address`, `contact`, `available_beds`, `rating`, `reviews_count`, `emergency_services`, `image_url`) VALUES
 (1, 'Central Medical Center', '123 Medical Blvd, Central City', '+1 (555) 123-4567', 15, 4.8, 356, 1, 'https:images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'),
 (2, 'Westside Hospital', '456 Healthcare Ave, West District', '+1 (555) 987-6543', 8, 4.6, 283, 1, 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'),
 (3, 'Metropolitan Medical Center', '789 Wellness St, Downtown', '+1 (555) 246-8135', 23, 4.9, 412, 1, 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'),
@@ -131,6 +214,49 @@ INSERT INTO `hospital_specialties` (`id`, `hospital_id`, `specialty_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `patients`
+--
+
+CREATE TABLE `patients` (
+  `patient_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `birthdate` date DEFAULT NULL,
+  `gender` enum('Male','Female','Other') DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `patients`
+--
+
+INSERT INTO `patients` (`patient_id`, `user_id`, `birthdate`, `gender`) VALUES
+(2, 10, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `roles`
+--
+
+CREATE TABLE `roles` (
+  `role_id` int(11) NOT NULL,
+  `role_name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`role_id`, `role_name`) VALUES
+(6, 'Ambulance Team'),
+(3, 'Doctor'),
+(2, 'Hospital Admin'),
+(4, 'Patient'),
+(5, 'Staff'),
+(1, 'Super Admin');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `specialties`
 --
 
@@ -181,24 +307,70 @@ CREATE TABLE `users` (
   `first_name` varchar(100) NOT NULL,
   `last_name` varchar(100) NOT NULL,
   `city` varchar(100) NOT NULL,
-  `address_line` varchar(255) NOT NULL
+  `address_line` varchar(255) NOT NULL,
+  `remember_token` varchar(64) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `email`, `password`, `first_name`, `last_name`, `city`, `address_line`) VALUES
-(1, 'sarah.johnson@gmail.com', 'sarahjohson@123', 'Sarah', 'Johnson', 'Tripoli', 'Hay Al Ramlet'),
-(2, 'michael.chen@example.com', 'password2', 'Michael', 'Chen', 'New York', '123 Skin St'),
-(3, 'emily.rodriguez@example.com', 'password3', 'Emily', 'Rodriguez', 'Los Angeles', '456 Neuro Rd'),
-(4, 'james.wilson@example.com', 'password4', 'James', 'Wilson', 'Chicago', '789 Ortho Ave'),
-(5, 'lisa.kim@example.com', 'password5', 'Lisa', 'Kim', 'Houston', '321 Pediatric Blvd'),
-(6, 'robert.taylor@example.com', 'password6', 'Robert', 'Taylor', 'Phoenix', '654 Mental Way');
+INSERT INTO `users` (`user_id`, `email`, `password`, `first_name`, `last_name`, `city`, `address_line`, `remember_token`) VALUES
+(1, 'sarah.johnson@gmail.com', 'sarahjohson@123', 'Sarah', 'Johnson', 'Tripoli', 'Hay Al Ramlet', NULL),
+(2, 'michael.chen@example.com', 'password2', 'Michael', 'Chen', 'New York', '123 Skin St', NULL),
+(3, 'emily.rodriguez@example.com', 'password3', 'Emily', 'Rodriguez', 'Los Angeles', '456 Neuro Rd', NULL),
+(4, 'james.wilson@example.com', 'password4', 'James', 'Wilson', 'Chicago', '789 Ortho Ave', NULL),
+(5, 'lisa.kim@example.com', 'password5', 'Lisa', 'Kim', 'Houston', '321 Pediatric Blvd', NULL),
+(6, 'robert.taylor@example.com', 'password6', 'Robert', 'Taylor', 'Phoenix', '654 Mental Way', NULL),
+(7, 'superadmin@gmail.com', '$2y$10$GKpi6ZUEK9yWc1BDSlkPO.Fkg47UqISpJ1Pd0zh1OkVQTERTknajW', 'Omar', 'Najjar', 'الميناء', 'شارع رشيد كرامة, الميناء, قضاء طرابلس, محافظة الشمال, 1301, لبنان', NULL),
+(8, 'admin@gmail.com', '$2y$10$F1MJOk0q1/ltcHd0fuG6B.HXnwwi9fcVGM6.ja/A3mu.MyIgmaA4a', 'Omar', 'Najjar', 'بيروت', 'الشيخ توفيق خالد, السراي, زقاق البلاط, بيروت, محافظة بيروت, 2033 9105, لبنان', NULL),
+(9, 'doctor@gmail.com', '$2y$10$NsJqi3QqXBVCTfYRbMRUCuyreOK9mpg8SnzOT95xnK55X/hqwpgBa', 'Omar', 'Najjar', 'بيروت', 'الشيخ توفيق خالد, السراي, زقاق البلاط, بيروت, محافظة بيروت, 2033 9105, لبنان', NULL),
+(10, 'patient@gmail.com', '$2y$10$Qifkqh6GZ6XLYH3NwgGywuR.9SVWmWKwPXQ9CvOFjdubIRA1jj6E2', 'Omar', 'Najjar', 'بيروت', 'الشيخ توفيق خالد, السراي, زقاق البلاط, بيروت, محافظة بيروت, 2033 9105, لبنان', NULL),
+(11, 'staff@gmail.com', '$2y$10$pk9KfO83/mctcEJtilUrgu1GYDSyu64SUuMGWXbz5LIBsPpizxLEK', 'Omar', 'Najjar', 'بيروت', 'الشيخ توفيق خالد, السراي, زقاق البلاط, بيروت, محافظة بيروت, 2033 9105, لبنان', NULL),
+(12, 'ambulance@gmail.com', '$2y$10$0Ei.NdhOtnMEOjHlq/GxUelqrnqVZydjTRHdc0aia62DTdiUacSkO', 'Omar', 'Najjar', 'Beirut', 'Cheikh Toufic Khaled, Serail, Zuqaq Al Blat, Beirut, Beirut Governorate, 2033 9105, Lebanon', NULL),
+(13, 'omarnajjar10.on@gmail.com', '$2y$10$Rj89O5hV8PLPMQRX.HQmRegrbt/0yrB/b1i1xQyrpbajTYnGNwbba', 'Omar', 'Najjar', 'Beirut', 'Cheikh Toufic Khaled, Serail, Zuqaq Al Blat, Beirut, Beirut Governorate, 2033 9105, Lebanon', '36f89072ca2dc3e06db4b89b41c2dfdd4ed4cf5ac63f88a5400fae1e64987039');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_roles`
+--
+
+CREATE TABLE `user_roles` (
+  `user_role_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `role_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user_roles`
+--
+
+INSERT INTO `user_roles` (`user_role_id`, `user_id`, `role_id`) VALUES
+(64, 7, 1),
+(65, 8, 2),
+(66, 9, 3),
+(67, 10, 4),
+(68, 11, 5),
+(71, 12, 6),
+(72, 13, 1);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `ambulance_locations`
+--
+ALTER TABLE `ambulance_locations`
+  ADD PRIMARY KEY (`team_id`);
+
+--
+-- Indexes for table `ambulance_teams`
+--
+ALTER TABLE `ambulance_teams`
+  ADD PRIMARY KEY (`team_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `doctors`
@@ -208,6 +380,21 @@ ALTER TABLE `doctors`
   ADD KEY `user_id` (`user_id`),
   ADD KEY `specialty_id` (`specialty_id`),
   ADD KEY `hospital_id` (`hospital_id`);
+
+--
+-- Indexes for table `emergency_requests`
+--
+ALTER TABLE `emergency_requests`
+  ADD PRIMARY KEY (`request_id`),
+  ADD KEY `patient_id` (`patient_id`);
+
+--
+-- Indexes for table `emergency_responses`
+--
+ALTER TABLE `emergency_responses`
+  ADD PRIMARY KEY (`response_id`),
+  ADD KEY `request_id` (`request_id`),
+  ADD KEY `team_id` (`team_id`);
 
 --
 -- Indexes for table `hospitals`
@@ -224,6 +411,20 @@ ALTER TABLE `hospital_specialties`
   ADD KEY `specialty_id` (`specialty_id`);
 
 --
+-- Indexes for table `patients`
+--
+ALTER TABLE `patients`
+  ADD PRIMARY KEY (`patient_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`role_id`),
+  ADD UNIQUE KEY `role_name` (`role_name`);
+
+--
 -- Indexes for table `specialties`
 --
 ALTER TABLE `specialties`
@@ -238,14 +439,40 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `email` (`email`);
 
 --
+-- Indexes for table `user_roles`
+--
+ALTER TABLE `user_roles`
+  ADD PRIMARY KEY (`user_role_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `role_id` (`role_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `ambulance_teams`
+--
+ALTER TABLE `ambulance_teams`
+  MODIFY `team_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `doctors`
 --
 ALTER TABLE `doctors`
   MODIFY `doctor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `emergency_requests`
+--
+ALTER TABLE `emergency_requests`
+  MODIFY `request_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `emergency_responses`
+--
+ALTER TABLE `emergency_responses`
+  MODIFY `response_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `hospitals`
@@ -260,6 +487,18 @@ ALTER TABLE `hospital_specialties`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
+-- AUTO_INCREMENT for table `patients`
+--
+ALTER TABLE `patients`
+  MODIFY `patient_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `specialties`
 --
 ALTER TABLE `specialties`
@@ -269,11 +508,29 @@ ALTER TABLE `specialties`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `user_roles`
+--
+ALTER TABLE `user_roles`
+  MODIFY `user_role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `ambulance_locations`
+--
+ALTER TABLE `ambulance_locations`
+  ADD CONSTRAINT `ambulance_locations_ibfk_1` FOREIGN KEY (`team_id`) REFERENCES `ambulance_teams` (`team_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `ambulance_teams`
+--
+ALTER TABLE `ambulance_teams`
+  ADD CONSTRAINT `ambulance_teams_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `doctors`
@@ -289,6 +546,19 @@ ALTER TABLE `doctors`
 ALTER TABLE `hospital_specialties`
   ADD CONSTRAINT `hospital_specialties_ibfk_1` FOREIGN KEY (`hospital_id`) REFERENCES `hospitals` (`hospital_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `hospital_specialties_ibfk_2` FOREIGN KEY (`specialty_id`) REFERENCES `specialties` (`specialty_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `patients`
+--
+ALTER TABLE `patients`
+  ADD CONSTRAINT `patients_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `user_roles`
+--
+ALTER TABLE `user_roles`
+  ADD CONSTRAINT `user_roles_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `user_roles_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `roles` (`role_id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
