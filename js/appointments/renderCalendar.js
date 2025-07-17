@@ -64,16 +64,12 @@ export function renderCalendar() {
       div.classList.add("text-gray-400", "not-allowed", "opacity-50");
       div.setAttribute("disabled", "true");
     } else {
-      div.classList.add(
-        "hover:text-medical-600",
-        "hover:bg-medical-50",
-        "pointer"
-      );
+      div.classList.add("hover:text-primary", "hover:bg-medical-50", "pointer");
 
       div.addEventListener("click", () => {
         if (selectedDay === div) {
           div.className =
-            defaultClass + "hover:text-medical-600 hover:bg-medical-50 pointer";
+            defaultClass + "hover:text-primary hover:bg-medical-50 pointer";
           if (isToday) div.classList.add("font-bold", "text-black");
           selectedDay = null;
           selectedDateValue.textContent = "Pick a date";
@@ -81,8 +77,7 @@ export function renderCalendar() {
           if (selectedDay) {
             const prevText = selectedDay.textContent;
             selectedDay.className =
-              defaultClass +
-              "hover:text-medical-600 hover:bg-medical-50 pointer";
+              defaultClass + "hover:text-primary hover:bg-medical-50 pointer";
             const wasToday =
               +prevText === today.getDate() &&
               month === today.getMonth() &&

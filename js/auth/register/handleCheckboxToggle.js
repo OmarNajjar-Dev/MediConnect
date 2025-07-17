@@ -7,7 +7,7 @@ export function handleCheckboxToggle() {
 
     button?.classList.toggle("bg-medical-200", !isChecked);
     button?.classList.toggle("pointer-events-none", !isChecked);
-    button?.classList.toggle("bg-medical-500", isChecked);
+    button?.classList.toggle("bg-primary", isChecked);
     button?.classList.toggle("hover:bg-medical-700", isChecked);
 
     button?.classList.toggle("pointer", isChecked);

@@ -1,28 +1,115 @@
 <?php
 
-if (isset($_GET['lat']) && isset($_GET['lon'])) {
-    $lat = $_GET['lat'];
-    $lon = $_GET['lon'];
+/**
+ * Simple Geolocation API for MediConnect
+ * Uses OpenCage API only - simple and reliable
+ */
 
-    $url = "https://nominatim.openstreetmap.org/reverse?lat=$lat&lon=$lon&format=json&accept-language=en";
+// Enable CORS for frontend requests
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET');
+header('Access-Control-Allow-Headers: Content-Type');
+header('Content-Type: application/json');
 
+// Validate input parameters
+if (!isset($_GET['lat']) || !isset($_GET['lon'])) {
+    http_response_code(400);
+    echo json_encode([
+        "error" => "Missing required parameters",
+        "message" => "Both 'lat' and 'lon' parameters are required"
+    ]);
+    exit;
+}
+
+$lat = floatval($_GET['lat']);
+$lon = floatval($_GET['lon']);
+
+// Validate coordinates
+if ($lat < -90 || $lat > 90 || $lon < -180 || $lon > 180) {
+    http_response_code(400);
+    echo json_encode([
+        "error" => "Invalid coordinates",
+        "message" => "Latitude must be between -90 and 90, longitude between -180 and 180"
+    ]);
+    exit;
+}
+
+// Get location data using OpenCage API
+$locationData = getLocationFromOpenCage($lat, $lon);
+
+if ($locationData) {
+    echo json_encode($locationData);
+} else {
+    http_response_code(500);
+    echo json_encode([
+        "error" => "Location service unavailable",
+        "message" => "OpenCage service failed to respond"
+    ]);
+}
+
+/**
+ * Get location from OpenCage API
+ */
+function getLocationFromOpenCage($lat, $lon) {
+    $apiKey = 'f7257b4524a9479eacc86758ec47dc69';
+    
+    $url = "https://api.opencagedata.com/geocode/v1/json?" . http_build_query([
+        'key' => $apiKey,
+        'q' => "$lat+$lon",
+        'language' => 'en',
+        'pretty' => 0,
+        'no_annotations' => 1
+    ]);
+    
     $opts = [
         "http" => [
             "method" => "GET",
-            "header" => "User-Agent: MediConnectApp/1.0\r\n"
+            "header" => "User-Agent: MediConnect/1.0\r\n",
+            "timeout" => 10
         ]
     ];
+    
     $context = stream_context_create($opts);
     $response = file_get_contents($url, false, $context);
-
-    if ($response !== false) {
-        header('Content-Type: application/json');
-        echo $response;
-    } else {
-        http_response_code(500);
-        echo json_encode(["error" => "Failed to fetch location"]);
+    
+    if (!$response) {
+        return null;
     }
-} else {
-    http_response_code(400);
-    echo json_encode(["error" => "Missing parameters"]);
+    
+    $data = json_decode($response, true);
+    if (!$data || !isset($data['results']) || empty($data['results'])) {
+        return null;
+    }
+    
+    $result = $data['results'][0];
+    $address = $result['components'];
+    
+    // Extract basic address info
+    $city = $address['city'] ?? $address['town'] ?? $address['village'] ?? $address['county'] ?? 'Unknown';
+    $district = $address['suburb'] ?? $address['neighbourhood'] ?? null;
+    $street = $address['road'] ?? $address['street'] ?? null;
+    $country = $address['country'] ?? 'Unknown';
+    $state = $address['state'] ?? $address['province'] ?? null;
+    
+    // Build clean address
+    $cleanAddressParts = array_filter([$street, $district, $city]);
+    $cleanAddress = implode(', ', $cleanAddressParts);
+    
+    return [
+        "success" => true,
+        "city" => $city,
+        "district" => $district,
+        "street" => $street,
+        "clean_address" => $cleanAddress ?: $city,
+        "country" => $country,
+        "state" => $state,
+        "confidence" => $result['confidence'] ?? 7,
+        "service_used" => "opencage",
+        "coordinates" => [
+            "lat" => $lat,
+            "lng" => $lon
+        ]
+    ];
 }
+
+?>

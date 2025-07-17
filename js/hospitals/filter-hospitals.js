@@ -11,8 +11,7 @@ function applyAllFilters() {
     const name =
       card.querySelector(".hospital-name")?.textContent.toLowerCase() || "";
     const address =
-      card.querySelector(".hospital-address")?.textContent.toLowerCase() ||
-      "";
+      card.querySelector(".hospital-address")?.textContent.toLowerCase() || "";
 
     const matchesSearch =
       name.includes(currentSearchQuery) || address.includes(currentSearchQuery);
@@ -63,7 +62,7 @@ export function initHospitalFilters() {
 }
 
 function toggleButtonStyle(button, isActive) {
-  const active = ["bg-medical-600", "text-white", "hover:bg-medical-500"];
+  const active = ["bg-medical-600", "text-white", "hover:bg-primary"];
   const inactive = [
     "bg-background",
     "text-heading",

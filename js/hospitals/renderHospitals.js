@@ -7,7 +7,7 @@ export async function renderHospitals(container) {
       const specialtiesHtml = h.specialties
         .map(
           (s) =>
-            `<span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-xs font-medium text-gray-800">${s}</span>`
+            `<span class="inline-block bg-neutral-100 rounded-full px-3 py-1 text-xs font-medium text-gray-800">${s}</span>`
         )
         .join("");
 
@@ -18,11 +18,7 @@ export async function renderHospitals(container) {
           <div class="flex flex-col md:flex-row">
 
             <div class="relative w-full h-48 md:w-1/3 md:h-auto">
-              <img src="${
-                h.profile_image
-                  ? "images/hospitals/" + h.profile_image
-                  : "images/hospitals/default.jpg"
-              }" alt="${
+              <img src="${h.image_url}" alt="${
         h.name
       }" class="w-full h-full object-cover" loading="lazy"/>
               ${
@@ -80,7 +76,7 @@ export async function renderHospitals(container) {
               }
 
                 <div class="flex items-center">
-                  <div class="w-10 h-10 rounded-full bg-medical-100 text-medical-600 flex items-center justify-center">
+                  <div class="w-10 h-10 rounded-full bg-medical-100 text-primary flex items-center justify-center">
                     <i data-lucide="phone" class="w-5 h-5"></i>
                   </div>
                   <div class="ml-3">

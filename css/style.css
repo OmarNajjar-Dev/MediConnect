@@ -72,11 +72,9 @@ header {
 }
 
 #hero-background {
-  background: linear-gradient(
-    to right,
-    rgba(0, 105, 92, 0.9),
-    rgb(30 58 138 / 0.7)
-  );
+  background: linear-gradient(to right,
+      rgba(0, 105, 92, 0.9),
+      rgb(30 58 138 / 0.7));
 }
 
 #contact-section-top {
@@ -113,95 +111,6 @@ header {
 }
 
 /* =============================
-   Custom Checkbox Styling
-   ============================= */
-.custom-checkbox {
-  appearance: none;
-  width: 16px;
-  height: 16px;
-  border: 1px solid #009688;
-  border-radius: 4px;
-  background-color: white;
-  cursor: pointer;
-  position: relative;
-  display: inline-block;
-}
-
-.custom-checkbox:checked {
-  background-color: #009688;
-}
-
-.custom-checkbox:checked::after {
-  content: "";
-  position: absolute;
-  top: 1px;
-  left: 4px;
-  width: 4px;
-  height: 8px;
-  border: solid white;
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
-}
-
-/* =============================
-   Placeholder & Icons
-   ============================= */
-input::placeholder {
-  color: #6b7280;
-}
-
-[data-lucide="search"] {
-  left: 0.75rem;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-/* =============================
-   Eye Toggle for Password Fields
-   ============================= */
-.eye-toggle-button {
-  top: 0;
-  bottom: 0;
-  right: 0;
-}
-
-.eye-toggle-icon {
-  pointer-events: none;
-}
-
-/* =============================
-   Toast Notifications
-   ============================= */
-#error-toast,
-#success-toast,
-#warning-toast {
-  bottom: 20px;
-  right: 20px;
-}
-
-/* =============================
-   Error Pages Backgrounds
-   ============================= */
-#server-error {
-  background-image: linear-gradient(to bottom right, #f9fafb, #fef2f2);
-}
-
-#unauthorized-error {
-  background-image: linear-gradient(to bottom right, #f9fafb, #e0f2f1);
-}
-
-#forbidden-error {
-  background-image: linear-gradient(to bottom right, #f9fafb, #fff7ed);
-}
-
-/* =============================
-   Transitions
-   ============================= */
-.hover-scale {
-  transition: transform 0.3s ease;
-}
-
-/* =============================
    Profile Image Hover
    ============================= */
 #new-image-profile:hover {
@@ -214,28 +123,4 @@ input::placeholder {
 #about-trust {
   bottom: -2rem;
   left: -2rem;
-}
-
-/* =============================
-   Disabled Buttons
-   ============================= */
-button[disabled] {
-  cursor: cursor-not-allowed;
-  opacity: 0.6;
-  pointer-events: none;
-}
-
-button[disabled]:hover {
-  box-shadow: none;
-}
-
-/* =============================
-   Hover-triggered visibility via group container
-   ============================= */
-.group {
-  position: relative;
-}
-
-.group:hover .group-hover\:block {
-  display: block;
 }

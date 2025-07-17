@@ -1,42 +1,46 @@
 // 1. Fetch roles from the backend
 async function fetchRoles() {
   try {
-    const response = await fetch('/mediconnect/backend/api/get-roles.php');
+    const response = await fetch("/mediconnect/backend/api/get-roles.php");
     const roles = await response.json();
     return roles;
   } catch (error) {
-    console.error('Failed to fetch roles:', error);
+    console.error("Failed to fetch roles:", error);
     return [];
   }
 }
 
 // 2. Render role options using innerHTML and DocumentFragment
 function renderRoleOptions(roles) {
-  const menu = document.getElementById('role-menu');
+  const menu = document.getElementById("role-menu");
   if (!menu) return;
 
-  menu.innerHTML = ''; // Clear existing content
+  menu.innerHTML = ""; // Clear existing content
 
   const fragment = document.createDocumentFragment();
 
   // Generate HTML string for all roles
-  const listHtml = roles.map(role => `
+  const listHtml = roles
+    .map(
+      (role) => `
     <li>
       <button type="button"
               data-dropdown-option
               data-value="${role}"
-              class="w-full flex items-center justify-between px-4 py-1.5 text-sm border-none bg-white text-gray-700 hover:bg-gray-100 pointer">
+              class="w-full flex items-center justify-between px-4 py-1.5 text-sm border-none bg-white text-gray-700 hover:bg-neutral-100 pointer">
         <span>${role}</span>
         <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i>
       </button>
     </li>
-  `).join('');
+  `
+    )
+    .join("");
 
   // Use a temporary container to convert HTML string to nodes
-  const tempContainer = document.createElement('div');
+  const tempContainer = document.createElement("div");
   tempContainer.innerHTML = listHtml;
 
-  Array.from(tempContainer.children).forEach(child => {
+  Array.from(tempContainer.children).forEach((child) => {
     fragment.appendChild(child);
   });
 
@@ -46,16 +50,16 @@ function renderRoleOptions(roles) {
   if (window.lucide) lucide.createIcons();
 
   // ✅ Attach check-icon logic (same as renderHospitals.js)
-  const buttons = menu.querySelectorAll('button[data-dropdown-option]');
+  const buttons = menu.querySelectorAll("button[data-dropdown-option]");
   buttons.forEach((btn) => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener("click", () => {
       // Hide all check icons
       buttons.forEach((b) => {
-        b.querySelector('svg')?.classList.add('hidden');
+        b.querySelector("svg")?.classList.add("hidden");
       });
 
       // Show the one for selected
-      btn.querySelector('svg')?.classList.remove('hidden');
+      btn.querySelector("svg")?.classList.remove("hidden");
     });
   });
 }

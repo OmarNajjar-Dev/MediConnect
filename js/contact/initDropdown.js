@@ -21,7 +21,7 @@ export function initDropdown() {
       options.forEach((btn) => {
         const icon = btn.querySelector("svg");
         icon?.classList.add("hidden");
-        btn.classList.remove("bg-gray-100");
+        btn.classList.remove("bg-neutral-100");
         btn.classList.add("bg-white");
       });
 
@@ -29,7 +29,7 @@ export function initDropdown() {
       icon?.classList.remove("hidden");
 
       option.classList.remove("bg-white");
-      option.classList.add("bg-gray-100");
+      option.classList.add("bg-neutral-100");
 
       selectedOption = option;
 
@@ -38,14 +38,14 @@ export function initDropdown() {
 
     option.addEventListener("mouseenter", () => {
       if (selectedOption && selectedOption !== option) {
-        selectedOption.classList.remove("bg-gray-100");
+        selectedOption.classList.remove("bg-neutral-100");
         selectedOption.classList.add("bg-white");
       }
     });
 
     option.addEventListener("mouseleave", () => {
       selectedOption?.classList.remove("bg-white");
-      selectedOption?.classList.add("bg-gray-100");
+      selectedOption?.classList.add("bg-neutral-100");
     });
   });
 

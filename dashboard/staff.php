@@ -53,10 +53,10 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
 
             <!-- Desktop Navigation (hidden on mobile) -->
             <nav class="hidden md:flex items-center gap-4 lg:gap-8 xl:ml-28">
-                <a href="<?= $paths['home']['index'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Home</a>
-                <a href="<?= $paths['services']['doctors'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Doctors</a>
-                <a href="<?= $paths['services']['hospitals'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Hospitals</a>
-                <a href="<?= $paths['services']['appointments'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Appointments</a>
+                <a href="<?= $paths['home']['index'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-primary transition-colors">Home</a>
+                <a href="<?= $paths['services']['doctors'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-primary transition-colors">Doctors</a>
+                <a href="<?= $paths['services']['hospitals'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-primary transition-colors">Hospitals</a>
+                <a href="<?= $paths['services']['appointments'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-primary transition-colors">Appointments</a>
             </nav>
 
             <!-- Right section: Dropdown / Emergency / Auth -->
@@ -81,7 +81,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                                 <p class="text-sm font-medium slate-700"><?= htmlspecialchars($userName) ?></p>
                                 <p class="text-xs slate-500"><?= htmlspecialchars($userEmail) ?></p>
                             </div>
-                            <a href="#" class="flex items-center gap-2 px-3 py-2 text-sm slate-600 hover:text-medical-600 hover:bg-medical-50 transition-colors transition-200">
+                            <a href="#" class="flex items-center gap-2 px-3 py-2 text-sm slate-600 hover:text-primary hover:bg-medical-50 transition-colors transition-200">
                                 <i data-lucide="user" class="w-4 h-4"></i>Dashboard
                             </a>
                             <a href="<?= $paths['auth']['logout'] ?>" class="flex items-center gap-2 px-3 py-2 text-sm text-red-600 hover:text-red-700 hover:bg-red-50 w-full transition-colors transition-200">
@@ -92,7 +92,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                 </div>
 
                 <!-- Emergency button (always visible) -->
-                <a href="<?= $paths['services']['emergency'] ?>" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-sm lg:text-base font-medium px-2 lg:px-4 py-2 md:py-3 rounded-lg transition-colors transition-200">
+                <a href="<?= $paths['services']['emergency'] ?>" class="inline-flex items-center gap-2 bg-danger hover:bg-red-700 text-white text-sm lg:text-base font-medium px-2 lg:px-4 py-2 md:py-3 rounded-lg transition-colors transition-200">
                     <i data-lucide="ambulance" class="w-4 h-4"></i>
                     Emergency
                 </a>
@@ -112,7 +112,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                     <a href="<?= $paths['services']['appointments'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
 
                     <div class="flex flex-col pt-2 gap-2 bg-transparent border-t border-solid separator">
-                        <a href="#" class="inline-flex items-center gap-2 justify-start text-gray-700 hover:bg-medical-50 hover:text-medical-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                        <a href="#" class="inline-flex items-center gap-2 justify-start text-gray-700 hover:bg-medical-50 hover:text-primary px-4 py-2 rounded-lg text-sm font-medium transition-colors">
                             <i data-lucide="user" class="w-4 h-4"></i> Dashboard
                         </a>
                         <a href="<?= $paths['auth']['logout'] ?>" class="inline-flex items-center gap-2 justify-start text-red-600 hover:bg-red-50 hover:text-red-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
@@ -137,7 +137,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                             Logged in as: <span class="font-medium">STAFF</span>
                         </p>
                         <h1 class="text-2xl font-bold text-gray-900">Welcome back, Mary Williams</h1>
-                        <p class="mt-1 text-sm text-medical-600">Al Noor Medical Center</p>
+                        <p class="mt-1 text-sm text-primary">Al Noor Medical Center</p>
                     </div>
                 </div>
 
@@ -231,7 +231,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                             <div class="mb-4 flex items-center justify-between">
                                 <h3 class="text-xl font-bold">Appointment Management</h3>
                                 <button
-                                    class="pointer inline-flex h-10 items-center justify-center gap-2 rounded-md border border-input border-solid bg-medical-500 px-4 py-2 text-sm font-medium text-white hover:bg-medical-400 transition-colors">
+                                    class="pointer inline-flex h-10 items-center justify-center gap-2 rounded-md border border-input border-solid bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-medical-400 transition-colors">
                                     <i data-lucide="plus" class="mr-2 h-4 w-4"></i>
                                     Create Appointment
                                 </button>
@@ -243,7 +243,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                                 <!-- Appointment: Ahmed Al-Rashid -->
                                 <div class="flex items-center justify-between rounded-lg bg-gray-50 p-4">
                                     <div class="flex items-center gap-4">
-                                        <div class="h-3 w-3 rounded-full bg-green-600"></div>
+                                        <div class="h-3 w-3 rounded-full bg-success"></div>
                                         <div>
                                             <p class="font-medium">Ahmed Al-Rashid</p>
                                             <p class="text-sm text-gray-600">consultation • 30 min</p>
@@ -260,7 +260,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                                     </div>
                                     <div class="flex gap-2">
                                         <button
-                                            class="pointer inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium hover:bg-accent hover:text-medical-600">
+                                            class="pointer inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium hover:bg-accent hover:text-primary">
                                             <i data-lucide="square-pen" class="h-4 w-4"></i>
                                         </button>
                                         <button
@@ -290,7 +290,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                                     </div>
                                     <div class="flex gap-2">
                                         <button
-                                            class="pointer inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium hover:bg-accent hover:text-medical-600">
+                                            class="pointer inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium hover:bg-accent hover:text-primary">
                                             <i data-lucide="square-pen" class="h-4 w-4"></i>
                                         </button>
                                         <button
@@ -303,7 +303,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                                 <!-- Appointment: Mohammed Ali -->
                                 <div class="flex items-center justify-between rounded-lg bg-gray-50 p-4">
                                     <div class="flex items-center gap-4">
-                                        <div class="h-3 w-3 rounded-full bg-blue-600"></div>
+                                        <div class="h-3 w-3 rounded-full bg-info"></div>
                                         <div>
                                             <p class="font-medium">Mohammed Ali</p>
                                             <p class="text-sm text-gray-600">routine-checkup • 60 min</p>
@@ -320,7 +320,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                                     </div>
                                     <div class="flex gap-2">
                                         <button
-                                            class="pointer inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium hover:bg-accent hover:text-medical-600">
+                                            class="pointer inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium hover:bg-accent hover:text-primary">
                                             <i data-lucide="square-pen" class="h-4 w-4"></i>
                                         </button>
                                         <button
@@ -350,7 +350,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                                     </div>
                                     <div class="flex gap-2">
                                         <button
-                                            class="pointer inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium hover:bg-accent hover:text-medical-600">
+                                            class="pointer inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium hover:bg-accent hover:text-primary">
                                             <i data-lucide="square-pen" class="h-4 w-4"></i>
                                         </button>
                                         <button
@@ -537,16 +537,16 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                     </p>
                     <div class="footer-socials flex gap-4 transition-all">
                         <a href="#"
-                            class="text-gray-500 hover:text-medical-600 hover:bg-medical-50 rounded-full flex justify-center items-center w-10 h-10">
+                            class="text-gray-500 hover:text-primary hover:bg-medical-50 rounded-full flex justify-center items-center w-10 h-10">
                             <i data-lucide="facebook" class="h-4 w-4"></i>
                         </a>
 
                         <a href="#"
-                            class="text-gray-500 hover:text-medical-600 hover:bg-medical-50 rounded-full flex justify-center items-center w-10 h-10">
+                            class="text-gray-500 hover:text-primary hover:bg-medical-50 rounded-full flex justify-center items-center w-10 h-10">
                             <i data-lucide="twitter" class="h-4 w-4"></i>
                         </a>
                         <a href="#"
-                            class="text-gray-500 hover:text-medical-600 hover:bg-medical-50 rounded-full flex justify-center items-center w-10 h-10">
+                            class="text-gray-500 hover:text-primary hover:bg-medical-50 rounded-full flex justify-center items-center w-10 h-10">
                             <i data-lucide="instagram" class="h-4 w-4"></i>
                         </a>
                     </div>
@@ -558,22 +558,22 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                     </h4>
                     <ul class="flex flex-col gap-2">
                         <li>
-                            <a href="<?= $paths['services']['appointments'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['services']['appointments'] ?>" class="text-gray-600 hover:text-primary transition-colors">
                                 Book Appointments
                             </a>
                         </li>
                         <li>
-                            <a href="<?= $paths['services']['doctors'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['services']['doctors'] ?>" class="text-gray-600 hover:text-primary transition-colors">
                                 Find Doctors
                             </a>
                         </li>
                         <li>
-                            <a href="<?= $paths['services']['hospitals'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['services']['hospitals'] ?>" class="text-gray-600 hover:text-primary transition-colors">
                                 Hospital Information
                             </a>
                         </li>
                         <li>
-                            <a href="<?= $paths['services']['emergency'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['services']['emergency'] ?>" class="text-gray-600 hover:text-primary transition-colors">
                                 Emergency Services
                             </a>
                         </li>
@@ -586,32 +586,32 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                     </h4>
                     <ul class="flex flex-col gap-2">
                         <li>
-                            <a href="<?= $paths['static']['about'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['static']['about'] ?>" class="text-gray-600 hover:text-primary transition-colors">
                                 About Us
                             </a>
                         </li>
                         <li>
-                            <a href="<?= $paths['static']['privacy'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['static']['privacy'] ?>" class="text-gray-600 hover:text-primary transition-colors">
                                 Privacy Policy
                             </a>
                         </li>
                         <li>
-                            <a href="<?= $paths['static']['terms'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['static']['terms'] ?>" class="text-gray-600 hover:text-primary transition-colors">
                                 Terms of Service
                             </a>
                         </li>
                         <li>
-                            <a href="<?= $paths['static']['faq'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['static']['faq'] ?>" class="text-gray-600 hover:text-primary transition-colors">
                                 FAQs
                             </a>
                         </li>
                         <li>
-                            <a href="<?= $paths['static']['contact'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['static']['contact'] ?>" class="text-gray-600 hover:text-primary transition-colors">
                                 Contact Us
                             </a>
                         </li>
                         <li>
-                            <a href="<?= $paths['static']['blood_bank'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['static']['blood_bank'] ?>" class="text-gray-600 hover:text-primary transition-colors">
                                 Blood Bank System
                             </a>
                         </li>

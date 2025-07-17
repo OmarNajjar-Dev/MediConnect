@@ -8,11 +8,11 @@ export async function sendEmail() {
   submitBtn.disabled = true;
   submitBtn.textContent = "Sending...";
   submitBtn.classList.add("opacity-70", "cursor-not-allowed");
-  submitBtn.classList.remove("hover:bg-medical-500");
+  submitBtn.classList.remove("hover:bg-primary");
 
   const emailEndpoint = "https://api.emailjs.com/api/v1.0/email/send";
 
-  const subject = document.getElementById("dropdown-button span")?.textContent;
+  const subject = document.querySelector("#dropdown-button span")?.textContent;
 
   const emailData = {
     service_id: "service_tjk4vcw",
@@ -61,6 +61,6 @@ export async function sendEmail() {
     submitBtn.disabled = false;
     submitBtn.textContent = originalText;
     submitBtn.classList.remove("opacity-70", "cursor-not-allowed");
-    submitBtn.classList.add("hover:bg-medical-500");
+    submitBtn.classList.add("hover:bg-primary");
   }
 }

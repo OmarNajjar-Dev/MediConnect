@@ -7,7 +7,7 @@ $sql = "SELECT
             d.is_verified,
             d.rating,
             d.reviews_count,
-            d.profile_image,
+            d.image_url,
             d.bio,
             u.first_name,
             u.last_name,

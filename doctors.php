@@ -30,6 +30,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
   <link rel="stylesheet" href="/mediconnect/css/ring.css" />
   <link rel="stylesheet" href="/mediconnect/css/layout.css" />
   <link rel="stylesheet" href="/mediconnect/css/animations.css" />
+  <link rel="stylesheet" href="/mediconnect/css/components.css" />
   <link rel="stylesheet" href="/mediconnect/css/style.css" />
   <link rel="stylesheet" href="/mediconnect/css/responsive.css" />
 
@@ -53,10 +54,10 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
 
       <!-- Desktop Navigation (hidden on mobile) -->
       <nav class="hidden md:flex items-center gap-4 lg:gap-8 xl:ml-28">
-        <a href="<?= $paths['home']['index'] ?>" class="text-medical-700 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Home</a>
-        <a href="<?= $paths['services']['doctors'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Doctors</a>
-        <a href="<?= $paths['services']['hospitals'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Hospitals</a>
-        <a href="<?= $paths['services']['appointments'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Appointments</a>
+        <a href="<?= $paths['home']['index'] ?>" class="text-medical-700 text-sm lg:text-base font-medium hover:text-primary transition-colors">Home</a>
+        <a href="<?= $paths['services']['doctors'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-primary transition-colors">Doctors</a>
+        <a href="<?= $paths['services']['hospitals'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-primary transition-colors">Hospitals</a>
+        <a href="<?= $paths['services']['appointments'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-primary transition-colors">Appointments</a>
       </nav>
 
       <!-- Right section: Auth / Dropdown / Emergency / Menu -->
@@ -83,7 +84,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
                   <p class="text-xs slate-500"><?= htmlspecialchars($userEmail) ?></p>
                 </div>
 
-                <a href="<?= $paths['dashboard']['index'] ?>" class="flex items-center gap-2 px-3 py-2 text-sm slate-600 hover:text-medical-600 hover:bg-medical-50 transition-colors transition-200">
+                <a href="<?= $paths['dashboard']['index'] ?>" class="flex items-center gap-2 px-3 py-2 text-sm slate-600 hover:text-primary hover:bg-medical-50 transition-colors transition-200">
                   <i data-lucide="user" class="w-4 h-4"></i>Dashboard
                 </a>
 
@@ -96,7 +97,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
         <?php endif; ?>
 
         <!-- Emergency button (always visible) -->
-        <a href="<?= $paths['services']['emergency'] ?>" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-sm lg:text-base font-medium px-2 lg:px-4 py-2 md:py-3 rounded-lg transition-colors transition-200">
+        <a href="<?= $paths['services']['emergency'] ?>" class="inline-flex items-center gap-2 bg-danger hover:bg-red-700 text-white text-sm lg:text-base font-medium px-2 lg:px-4 py-2 md:py-3 rounded-lg transition-colors transition-200">
           <i data-lucide="ambulance" class="w-4 h-4"></i>
           Emergency
         </a>
@@ -107,7 +108,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
             Sign In
           </a>
 
-          <a href="<?= $paths['auth']['register'] ?>" class="hidden lg:flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-10 px-3 rounded-lg text-sm lg:text-base font-medium whitespace-nowrap transition-all">
+          <a href="<?= $paths['auth']['register'] ?>" class="hidden lg:flex items-center justify-center bg-primary text-white hover:bg-medical-400 h-10 px-3 rounded-lg text-sm lg:text-base font-medium whitespace-nowrap transition-all">
             Sign Up
           </a>
         <?php endif; ?>
@@ -130,11 +131,11 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
           <?php if (!$isLoggedIn): ?>
             <div class="flex flex-col pt-2 gap-2 border-t border-solid separator">
               <a href="<?= $paths['auth']['login'] ?>" class="inline-flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-all">Sign In</a>
-              <a href="<?= $paths['auth']['register'] ?>" class="inline-flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Sign Up</a>
+              <a href="<?= $paths['auth']['register'] ?>" class="inline-flex items-center justify-center bg-primary text-white hover:bg-medical-400 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Sign Up</a>
             </div>
           <?php else: ?>
             <div class="flex flex-col pt-2 gap-2 bg-transparent border-t border-solid separator">
-              <a href="<?= $paths['dashboard']['index'] ?>" class="inline-flex items-center gap-2 justify-start text-gray-700 hover:bg-medical-50 hover:text-medical-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+              <a href="<?= $paths['dashboard']['index'] ?>" class="inline-flex items-center gap-2 justify-start text-gray-700 hover:bg-medical-50 hover:text-primary px-4 py-2 rounded-lg text-sm font-medium transition-colors">
                 <i data-lucide="user" class="w-4 h-4"></i> Dashboard
               </a>
               <a href="<?= $paths['auth']['logout'] ?>" class="inline-flex items-center gap-2 justify-start text-red-600 hover:bg-red-50 hover:text-red-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
@@ -179,43 +180,43 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
         <div class="buttons-container inline-flex gap-2 pb-2 min-w-full">
           <!-- All Specialties Button -->
           <button id="all-specialties"
-            class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background pointer rounded-full text-sm font-medium transition-all border border-solid border-input hover:bg-medical-50 hover:text-medical-600 h-10 px-4 py-2">
+            class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background pointer rounded-full text-sm font-medium transition-all border border-solid border-input hover:bg-medical-50 hover:text-primary h-10 px-4 py-2">
             All Specialties
           </button>
 
           <!-- Cardiologist Button -->
           <button
-            class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background pointer rounded-full text-sm font-medium transition-all border border-solid border-input hover:bg-medical-50 hover:text-medical-600 h-10 px-4 py-2">
+            class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background pointer rounded-full text-sm font-medium transition-all border border-solid border-input hover:bg-medical-50 hover:text-primary h-10 px-4 py-2">
             Cardiologist
           </button>
 
           <!-- Dermatologist Button -->
           <button
-            class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background pointer rounded-full text-sm font-medium transition-all border border-solid border-input hover:bg-medical-50 hover:text-medical-600 h-10 px-4 py-2">
+            class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background pointer rounded-full text-sm font-medium transition-all border border-solid border-input hover:bg-medical-50 hover:text-primary h-10 px-4 py-2">
             Dermatologist
           </button>
 
           <!-- Neurology Button -->
           <button
-            class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background pointer rounded-full text-sm font-medium transition-all border border-solid border-input hover:bg-medical-50 hover:text-medical-600 h-10 px-4 py-2">
+            class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background pointer rounded-full text-sm font-medium transition-all border border-solid border-input hover:bg-medical-50 hover:text-primary h-10 px-4 py-2">
             Neurologist
           </button>
 
           <!-- Orthopedics Button -->
           <button
-            class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background pointer rounded-full text-sm font-medium transition-all border border-solid border-input hover:bg-medical-50 hover:text-medical-600 h-10 px-4 py-2">
+            class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background pointer rounded-full text-sm font-medium transition-all border border-solid border-input hover:bg-medical-50 hover:text-primary h-10 px-4 py-2">
             Orthopedist
           </button>
 
           <!-- Pediatrics Button -->
           <button
-            class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background pointer rounded-full text-sm font-medium transition-all border border-solid border-input hover:bg-medical-50 hover:text-medical-600 h-10 px-4 py-2">
+            class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background pointer rounded-full text-sm font-medium transition-all border border-solid border-input hover:bg-medical-50 hover:text-primary h-10 px-4 py-2">
             Pediatrician
           </button>
 
           <!-- Psychiatry Button -->
           <button
-            class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background pointer rounded-full text-sm font-medium transition-all border border-solid border-input hover:bg-medical-50 hover:text-medical-600 h-10 px-4 py-2">
+            class="specialty-button inline-flex items-center justify-center gap-2 whitespace-nowrap bg-background pointer rounded-full text-sm font-medium transition-all border border-solid border-input hover:bg-medical-50 hover:text-primary h-10 px-4 py-2">
             Psychiatrist
           </button>
         </div>
@@ -223,13 +224,13 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
 
       <!-- No Doctors Found Message -->
       <div class="no-results hidden glass-card rounded-xl p-6 py-16 text-center">
-        <div class="mx-auto w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+        <div class="mx-auto w-16 h-16 bg-neutral-100 rounded-full flex items-center justify-center mb-4">
           <i data-lucide="triangle-alert" class="w-7 h-7 text-gray-400"></i>
         </div>
         <h2 class="text-xl font-medium mb-2 tracking-tight text-heading">No doctors found</h2>
         <p class="text-gray-600 mb-4">Try adjusting your search criteria</p>
         <button
-          class="clear-filters inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md border border-solid border-input text-sm font-medium transition-colors bg-medical-500 text-white hover:bg-medical-400 h-10 px-4 py-2 pointer">
+          class="clear-filters inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md border border-solid border-input text-sm font-medium transition-colors bg-primary text-white hover:bg-medical-400 h-10 px-4 py-2 pointer">
           Clear Filters
         </button>
       </div>
@@ -257,16 +258,16 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
           </p>
           <div class="footer-socials flex gap-4 transition-all">
             <a href="#"
-              class="text-gray-500 hover:text-medical-600 hover:bg-medical-50 rounded-full flex justify-center items-center w-10 h-10">
+              class="text-gray-500 hover:text-primary hover:bg-medical-50 rounded-full flex justify-center items-center w-10 h-10">
               <i data-lucide="facebook" class="h-4 w-4"></i>
             </a>
 
             <a href="#"
-              class="text-gray-500 hover:text-medical-600 hover:bg-medical-50 rounded-full flex justify-center items-center w-10 h-10">
+              class="text-gray-500 hover:text-primary hover:bg-medical-50 rounded-full flex justify-center items-center w-10 h-10">
               <i data-lucide="twitter" class="h-4 w-4"></i>
             </a>
             <a href="#"
-              class="text-gray-500 hover:text-medical-600 hover:bg-medical-50 rounded-full flex justify-center items-center w-10 h-10">
+              class="text-gray-500 hover:text-primary hover:bg-medical-50 rounded-full flex justify-center items-center w-10 h-10">
               <i data-lucide="instagram" class="h-4 w-4"></i>
             </a>
           </div>
@@ -278,22 +279,22 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
           </h4>
           <ul class="flex flex-col gap-2">
             <li>
-              <a href="<?= $paths['services']['appointments'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+              <a href="<?= $paths['services']['appointments'] ?>" class="text-gray-600 hover:text-primary transition-colors">
                 Book Appointments
               </a>
             </li>
             <li>
-              <a href="<?= $paths['services']['doctors'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+              <a href="<?= $paths['services']['doctors'] ?>" class="text-gray-600 hover:text-primary transition-colors">
                 Find Doctors
               </a>
             </li>
             <li>
-              <a href="<?= $paths['services']['hospitals'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+              <a href="<?= $paths['services']['hospitals'] ?>" class="text-gray-600 hover:text-primary transition-colors">
                 Hospital Information
               </a>
             </li>
             <li>
-              <a href="<?= $paths['services']['emergency'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+              <a href="<?= $paths['services']['emergency'] ?>" class="text-gray-600 hover:text-primary transition-colors">
                 Emergency Services
               </a>
             </li>
@@ -306,32 +307,32 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
           </h4>
           <ul class="flex flex-col gap-2">
             <li>
-              <a href="<?= $paths['static']['about'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+              <a href="<?= $paths['static']['about'] ?>" class="text-gray-600 hover:text-primary transition-colors">
                 About Us
               </a>
             </li>
             <li>
-              <a href="<?= $paths['static']['privacy'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+              <a href="<?= $paths['static']['privacy'] ?>" class="text-gray-600 hover:text-primary transition-colors">
                 Privacy Policy
               </a>
             </li>
             <li>
-              <a href="<?= $paths['static']['terms'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+              <a href="<?= $paths['static']['terms'] ?>" class="text-gray-600 hover:text-primary transition-colors">
                 Terms of Service
               </a>
             </li>
             <li>
-              <a href="<?= $paths['static']['faq'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+              <a href="<?= $paths['static']['faq'] ?>" class="text-gray-600 hover:text-primary transition-colors">
                 FAQs
               </a>
             </li>
             <li>
-              <a href="<?= $paths['static']['contact'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+              <a href="<?= $paths['static']['contact'] ?>" class="text-gray-600 hover:text-primary transition-colors">
                 Contact Us
               </a>
             </li>
             <li>
-              <a href="<?= $paths['static']['blood_bank'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+              <a href="<?= $paths['static']['blood_bank'] ?>" class="text-gray-600 hover:text-primary transition-colors">
                 Blood Bank System
               </a>
             </li>

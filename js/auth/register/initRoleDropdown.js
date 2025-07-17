@@ -25,7 +25,7 @@ export function initRoleDropdown() {
       options.forEach((btn) => {
         const icon = btn.querySelector("svg");
         icon?.classList.add("hidden");
-        btn.classList.remove("bg-gray-100");
+        btn.classList.remove("bg-neutral-100");
         btn.classList.add("bg-white");
       });
 
@@ -33,7 +33,7 @@ export function initRoleDropdown() {
       icon?.classList.remove("hidden");
 
       option.classList.remove("bg-white");
-      option.classList.add("bg-gray-100");
+      option.classList.add("bg-neutral-100");
 
       selectedOption = option;
       menu.classList.add("hidden");
@@ -41,7 +41,7 @@ export function initRoleDropdown() {
 
     option.addEventListener("mouseenter", () => {
       if (selectedOption && selectedOption !== option) {
-        selectedOption.classList.remove("bg-gray-100");
+        selectedOption.classList.remove("bg-neutral-100");
         selectedOption.classList.add("bg-white");
       }
     });
@@ -49,7 +49,7 @@ export function initRoleDropdown() {
     option.addEventListener("mouseleave", () => {
       if (selectedOption) {
         selectedOption.classList.remove("bg-white");
-        selectedOption.classList.add("bg-gray-100");
+        selectedOption.classList.add("bg-neutral-100");
       }
     });
   });

@@ -6,6 +6,7 @@ export function validateRegisterForm() {
   const confirmPassword = document.getElementById("confirm-password");
   const roleInput = document.getElementById("role-input");
   const emailInput = document.getElementById("email");
+  const agreeCheckbox = document.getElementById("agree-checkbox");
 
   // Helper to validate password format
   const isPasswordValid = (pwd) => {
@@ -68,7 +69,7 @@ export function validateRegisterForm() {
       }
     }
 
-    if (!hasError) {
+    if (!hasError && agreeCheckbox.checked) {
       form.submit();
     }
   });

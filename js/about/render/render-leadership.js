@@ -13,7 +13,7 @@ export function renderLeadership(items, container) {
       <div class="lg:w-3/5 w-full p-8 flex flex-col justify-between">
         <div>
           <h3 class="leadership__leader-name text-3xl tracking-tight font-bold text-heading mb-2 transition-colors">${item.name}</h3>
-          <p class="text-medical-600 font-medium mb-6 tracking-wide text-lg">${item.role}</p>
+          <p class="text-primary font-medium mb-6 tracking-wide text-lg">${item.role}</p>
           <p class="text-gray-600 mb-6 leading-relaxed">${item.bio}</p>
           <p class="text-medical-700 font-medium text-sm">${item.degrees}</p>
         </div>

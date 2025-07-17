@@ -12,11 +12,7 @@ export async function renderDoctors(container) {
       div.innerHTML = `
         <div class="flex items-start mb-4">
           <div class="w-20 h-20 rounded-full overflow-hidden mr-4 flex-shrink-0">
-            <img src="${
-              card.profile_image
-                ? "images/doctors/" + card.profile_image
-                : "images/doctors/default.jpg"
-            }" alt="${card.first_name} ${
+            <img src="${card.image_url}" alt="${card.first_name} ${
         card.last_name
       }" loading="lazy" class="w-full h-full object-cover" />
           </div>
@@ -24,7 +20,7 @@ export async function renderDoctors(container) {
             <h2 class="text-lg text-heading font-bold tracking-tight">${
               card.first_name
             } ${card.last_name}</h2>
-            <p class="text-medical-600 font-medium">${card.specialty || ""}</p>
+            <p class="text-primary font-medium">${card.specialty || ""}</p>
             <div class="flex items-center mt-1 mb-1">
               <i data-lucide="map-pin" class="h-3.5 w-3.5 text-gray-500 mr-1"></i>
               <span class="text-gray-600 text-sm">${
@@ -62,7 +58,7 @@ export async function renderDoctors(container) {
 
           <!-- Book Appointment -->
           <a href="${appointmentPath}?doctor=${card.doctor_id}"
-            class="flex-grow whitespace-nowrap text-sm inline-flex items-center justify-center gap-2 rounded-md font-medium transition-all bg-medical-500 text-white hover:bg-medical-400 h-10 py-2 px-4">
+            class="flex-grow whitespace-nowrap text-sm inline-flex items-center justify-center gap-2 rounded-md font-medium transition-all bg-primary text-white hover:bg-medical-400 h-10 py-2 px-4">
             Book Appointment
           </a>
         </div>
