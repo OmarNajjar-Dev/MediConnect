@@ -13,8 +13,14 @@ window.addEventListener("DOMContentLoaded", () => {
   validateRegisterForm();
   setupEnhancedRegistration();
 
-  // Initialize password strength validator
-  new PasswordStrengthValidator();
+  // Initialize password strength validator with simplified structure
+  new PasswordStrengthValidator(
+    "password",                    // password input ID
+    null,                         // no strength bar (simplified)
+    "password-strength",          // strength text ID
+    "confirm-password",           // confirm password input ID
+    "password-match-indicator"    // password match indicator ID
+  );
 
   // Handle PHP error redirects
   handlePhpErrors();

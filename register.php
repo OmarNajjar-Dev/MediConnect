@@ -354,34 +354,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                         <!-- Password Strength Indicator -->
                         <div class="mt-2">
-                            <div class="flex items-center gap-2 mb-1">
-                                <div class="flex-1 bg-gray-200 rounded-full h-2">
-                                    <div id="password-strength-bar" class="h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
-                                </div>
-                                <span id="password-strength-text" class="text-xs font-medium text-gray-500">Enter password</span>
-                            </div>
-                            <div id="password-requirements" class="text-xs text-gray-500 space-y-1">
-                                <div class="flex items-center gap-1">
-                                    <span id="req-length" class="text-gray-400">•</span>
-                                    <span>At least 8 characters</span>
-                                </div>
-                                <div class="flex items-center gap-1">
-                                    <span id="req-uppercase" class="text-gray-400">•</span>
-                                    <span>One uppercase letter</span>
-                                </div>
-                                <div class="flex items-center gap-1">
-                                    <span id="req-lowercase" class="text-gray-400">•</span>
-                                    <span>One lowercase letter</span>
-                                </div>
-                                <div class="flex items-center gap-1">
-                                    <span id="req-number" class="text-gray-400">•</span>
-                                    <span>One number</span>
-                                </div>
-                                <div class="flex items-center gap-1">
-                                    <span id="req-special" class="text-gray-400">•</span>
-                                    <span>One special character</span>
-                                </div>
-                            </div>
+                            <div id="password-strength" class="text-xs"></div>
                         </div>
 
                         <!-- Location Fields -->
@@ -426,9 +399,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         </div>
 
                         <!-- Submit Button -->
-                        <div class="flex justify-end pt-4">
+                        <div class="pt-4">
                             <button id="signup-btn" type="submit"
-                                class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors text-white h-10 px-4 py-2 bg-primary hover:bg-medical-600 border-none pointer pointer-events-none bg-medical-200">
+                                class="flex h-10 w-full items-center justify-center gap-2 rounded-md text-sm font-medium transition-colors text-white bg-primary hover:bg-medical-600 border-none pointer pointer-events-none bg-medical-200">
                                 <i data-lucide="user-plus" class="h-4 w-4"></i>
                                 Sign up
                             </button>
