@@ -1,13 +1,10 @@
 import { setupTabNavigation } from "./setupTabNavigation.js";
-import { setupModal } from "./setupModal.js";
-import { renderRoles } from "./renderRoles.js";
-import { renderHospitals } from "./renderHospitals.js";
-import { setupDropdowns } from "./setupDropdowns.js";
+import userManagement from "./userManagement.js";
+import hospitalManagement from "./hospitalManagement.js";
+import profileManagement from "./profileManagement.js";
+import systemOverview from "./systemOverview.js";
 
 window.addEventListener("DOMContentLoaded", () => {
   setupTabNavigation();
-  setupModal();
-  renderRoles();
-  renderHospitals();
-  setupDropdowns();
+  // All modules are auto-initialized in their respective files
 });

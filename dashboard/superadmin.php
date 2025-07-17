@@ -171,7 +171,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
               </div>
 
               <!-- Navigation Tabs -->
-              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 bg-muted text-muted-foreground rounded-md p-1">
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-muted-foreground rounded-md p-1">
                 <button type="button" data-target="system-overview"
                   class="inline-flex items-center justify-center px-2 py-3 text-xs sm:text-sm font-medium rounded-sm border border-transparent transition-all pointer bg-blue-50 text-blue-700">
                   System Overview
@@ -339,7 +339,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                           </div>
                           <div class="flex flex-col gap-2">
                             <label for="admin-email" class="text-sm font-medium leading-none">Email Address</label>
-                            <input id="admin-email" type="email"  placeholder="Enter your email" value="admin@mediconnect.com" required
+                            <input id="admin-email" type="email" placeholder="Enter your email" value="admin@mediconnect.com" required
                               class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
                           </div>
                         </div>
@@ -402,7 +402,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                         <p class="text-sm text-muted-foreground">Manage all system users and their roles</p>
                       </div>
                     </div>
-                    <button type="button" data-modal-trigger class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors text-white h-10 px-4 py-2 bg-medical-600 hover:bg-medical-700 pointer border border-solid border-transparent">
+                    <button type="button" data-modal-trigger="user" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors text-white h-10 px-4 py-2 bg-medical-600 hover:bg-medical-700 pointer border border-solid border-transparent">
                       <i data-lucide="plus" class="h-4 w-4 mr-2"></i>
                       Add User
                     </button>
@@ -416,25 +416,30 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                         <!-- Search Field -->
                         <div class="relative flex-grow">
                           <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4"></i>
-                          <input class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm pl-10 focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white" placeholder="Search users by name or email..." value="">
+                          <input id="user-search" class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm pl-10 focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white" placeholder="Search users by name or email..." value="">
                         </div>
 
                         <!-- Role Filter -->
                         <div class="flex items-center gap-2">
                           <i data-lucide="filter" class="h-4 w-4 text-gray-500"></i>
-                          <button type="button" role="combobox" class="flex h-10 items-center justify-between rounded-md border border-solid border-input bg-background px-3 py-2 text-sm w-full sm:w-48 focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white pointer">
-                            <span style="pointer-events: none;">All Roles</span>
-                            <i data-lucide="chevron-down" class="h-4 w-4 opacity-50"></i>
-                          </button>
+                          <select id="role-filter" class="flex h-10 items-center justify-between rounded-md border border-solid border-input bg-background px-3 py-2 text-sm w-full sm:w-48 focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
+                            <option value="">All Roles</option>
+                          </select>
                         </div>
                       </div>
                     </div>
                   </div>
 
+                  <!-- Loading State -->
+                  <div id="users-loading" class="hidden flex items-center justify-center py-8">
+                    <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-medical-600"></div>
+                    <span class="ml-2 text-gray-600">Loading users...</span>
+                  </div>
+
                   <!-- Table Section -->
                   <div class="rounded-lg glass-card border-card-soft text-card-foreground">
                     <div class="flex flex-col gap-1.5 p-6">
-                      <h3 class="font-semibold tracking-tight text-lg">All Users (3)</h3>
+                      <h3 id="users-count" class="font-semibold tracking-tight text-lg">All Users (0)</h3>
                     </div>
                     <div class="p-0 overflow-x-auto">
                       <table class="border-collapse w-full text-sm">
@@ -444,53 +449,14 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                             <th class="h-12 px-4 text-left font-medium text-muted-foreground min-w-50">Email</th>
                             <th class="h-12 px-4 text-left font-medium text-muted-foreground">Role</th>
                             <th class="h-12 px-4 text-left font-medium text-muted-foreground hidden sm:table-cell">Hospital</th>
-                            <th class="h-12 px-4 text-left font-medium text-muted-foreground hidden lg:table-cell">Department</th>
+                            <th class="h-12 px-4 text-left font-medium text-muted-foreground hidden lg:table-cell">Specialty</th>
                             <th class="h-12 px-4 text-left font-medium text-muted-foreground">Status</th>
                             <th class="h-12 px-4 text-right font-medium text-muted-foreground min-w-25">Actions</th>
                           </tr>
                         </thead>
 
-                        <tbody class="table-no-border-last">
-
-                          <!-- Row: Doctor -->
-                          <tr class="border-b border-solid border-card-soft hover:bg-gray-50">
-                            <td class="p-4 font-medium">Dr. Sarah Johnson</td>
-                            <td class="p-4 text-sm text-gray-600">sarah.johnson@mediconnect.com</td>
-                            <td class="p-4">
-                              <div class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold bg-green-100 text-green-800">Doctor</div>
-                            </td>
-                            <td class="p-4 hidden sm:table-cell text-sm">Central Medical Center</td>
-                            <td class="p-4 hidden lg:table-cell text-sm">Cardiology</td>
-                            <td class="p-4">
-                              <div class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold bg-primary hover:bg-medical-400 text-white">active</div>
-                            </td>
-                            <td class="p-4 text-right">
-                              <div class="flex gap-1 justify-end">
-                                <button class="rounded-md h-8 w-8 p-0 hover:bg-accent pointer bg-transparent border-none hover:text-medical-500"><i data-lucide="square-pen" class="h-4 w-4"></i></button>
-                                <button class="rounded-md h-8 w-8 p-0 text-red-600 hover:text-red-800 hover:bg-red-50 pointer bg-transparent border-none"><i data-lucide="trash2" class="h-4 w-4"></i></button>
-                              </div>
-                            </td>
-                          </tr>
-
-                          <!-- Row: Staff -->
-                          <tr class="border-b hover:bg-gray-50">
-                            <td class="p-4 font-medium">John Smith</td>
-                            <td class="p-4 text-sm text-gray-600">john.smith@mediconnect.com</td>
-                            <td class="p-4">
-                              <div class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold bg-yellow-100 text-yellow-800">Staff</div>
-                            </td>
-                            <td class="p-4 hidden sm:table-cell text-sm">Westside Hospital</td>
-                            <td class="p-4 hidden lg:table-cell text-sm">Front Desk</td>
-                            <td class="p-4">
-                              <div class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold bg-primary hover:bg-medical-400 text-white">active</div>
-                            </td>
-                            <td class="p-4 text-right">
-                              <div class="flex gap-1 justify-end">
-                                <button class="rounded-md h-8 w-8 p-0 hover:bg-accent pointer bg-transparent border-none hover:text-medical-500"><i data-lucide="square-pen" class="h-4 w-4"></i></button>
-                                <button class="rounded-md h-8 w-8 p-0 text-red-600 hover:text-red-800 hover:bg-red-50 pointer bg-transparent border-none"><i data-lucide="trash2" class="h-4 w-4"></i></button>
-                              </div>
-                            </td>
-                          </tr>
+                        <tbody id="users-table-body" class="table-no-border-last">
+                          <!-- Dynamic content will be inserted here -->
                         </tbody>
                       </table>
                     </div>
@@ -504,10 +470,14 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
 
                   <!-- Header -->
                   <div class="flex justify-between items-center">
-                    <h2 class="text-2xl font-bold">Hospital Management</h2>
-                    <button
-                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors bg-primary text-white hover:bg-medical-400 h-10 px-4 py-2 pointer border border-solid border-transparent"
-                      type="button">
+                    <div class="flex items-center gap-3">
+                      <i data-lucide="building-2" class="h-6 w-6 text-primary"></i>
+                      <div>
+                        <h2 class="text-xl sm:text-2xl font-bold text-gray-900">Hospital Management</h2>
+                        <p class="text-sm text-muted-foreground">Manage all hospitals and their information</p>
+                      </div>
+                    </div>
+                    <button data-modal-trigger="hospital" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors bg-primary text-white hover:bg-medical-400 h-10 px-4 py-2 pointer border border-solid border-transparent" type="button">
                       <i data-lucide="plus" class="h-4 w-4 mr-2"></i>
                       Add Hospital
                     </button>
@@ -516,13 +486,20 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                   <!-- Search Field -->
                   <div class="relative">
                     <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4"></i>
-                    <input
-                      class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm pl-10"
-                      placeholder="Search hospitals..." value="">
+                    <input id="hospital-search" class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm pl-10 focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white" placeholder="Search hospitals..." value="">
+                  </div>
+
+                  <!-- Loading State -->
+                  <div id="hospitals-loading" class="hidden flex items-center justify-center py-8">
+                    <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-medical-600"></div>
+                    <span class="ml-2 text-gray-600">Loading hospitals...</span>
                   </div>
 
                   <!-- Table -->
                   <div class="rounded-md glass-card border-card-soft">
+                    <div class="flex flex-col gap-1.5 p-6">
+                      <h3 id="hospitals-count" class="font-semibold tracking-tight text-lg">All Hospitals (0)</h3>
+                    </div>
                     <div class="relative w-full overflow-auto">
                       <table class="border-collapse w-full text-sm">
                         <thead class="border-b border-solid border-card-soft">
@@ -531,108 +508,14 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                             <th class="h-12 px-4 text-left font-medium text-muted-foreground">Location</th>
                             <th class="h-12 px-4 text-left font-medium text-muted-foreground">Contact</th>
                             <th class="h-12 px-4 text-left font-medium text-muted-foreground">Capacity</th>
-                            <th class="h-12 px-4 text-left font-medium text-muted-foreground">Departments</th>
+                            <th class="h-12 px-4 text-left font-medium text-muted-foreground hidden sm:table-cell">Emergency</th>
                             <th class="h-12 px-4 text-left font-medium text-muted-foreground">Status</th>
                             <th class="h-12 px-4 text-right font-medium text-muted-foreground">Actions</th>
                           </tr>
                         </thead>
 
-                        <tbody class="table-no-border-last">
-
-                          <!-- Row 1 -->
-                          <tr class="border-b border-solid border-card-soft transition-colors hover:bg-muted/50">
-                            <td class="p-4 font-medium">Central Medical Center</td>
-                            <td class="p-4">
-                              <div class="flex items-center">
-                                <i data-lucide="map-pin" class="h-4 w-4 mr-1 text-gray-400"></i>
-                                123 Medical Blvd, Central City
-                              </div>
-                            </td>
-                            <td class="p-4">
-                              <div class="flex items-center">
-                                <i data-lucide="phone" class="h-4 w-4 mr-1 text-gray-400"></i>
-                                +1 (555) 123-4567
-                              </div>
-                            </td>
-                            <td class="p-4">
-                              <div class="flex items-center">
-                                <i data-lucide="building" class="h-4 w-4 mr-1 text-gray-400"></i>
-                                45/200
-                              </div>
-                            </td>
-                            <td class="p-4">
-                              <div class="flex items-center">
-                                <i data-lucide="users" class="h-4 w-4 mr-1 text-gray-400"></i>
-                                4 depts
-                              </div>
-                            </td>
-                            <td class="p-4">
-                              <div class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold transition-colors border border-solid border-transparent bg-primary text-white hover:bg-medical-400">
-                                active
-                              </div>
-                            </td>
-                            <td class="p-4 text-right">
-                              <div class="flex gap-2 justify-end">
-                                <button
-                                  class="rounded-md h-8 w-8 p-0 hover:bg-accent pointer bg-transparent border-none hover:text-medical-500">
-                                  <i data-lucide="square-pen" class="h-4 w-4"></i>
-                                </button>
-                                <button
-                                  class="rounded-md h-8 w-8 p-0 text-red-600 hover:text-red-800 hover:bg-red-50 pointer bg-transparent border-none"
-                                  type="button">
-                                  <i data-lucide="trash-2" class="h-4 w-4"></i>
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
-
-                          <!-- Row 2 -->
-                          <tr class="border-b border-solid border-card-soft transition-colors hover:bg-muted/50">
-                            <td class="p-4 font-medium">Westside Hospital</td>
-                            <td class="p-4">
-                              <div class="flex items-center">
-                                <i data-lucide="map-pin" class="h-4 w-4 mr-1 text-gray-400"></i>
-                                456 Healthcare Ave, West District
-                              </div>
-                            </td>
-                            <td class="p-4">
-                              <div class="flex items-center">
-                                <i data-lucide="phone" class="h-4 w-4 mr-1 text-gray-400"></i>
-                                +1 (555) 987-6543
-                              </div>
-                            </td>
-                            <td class="p-4">
-                              <div class="flex items-center">
-                                <i data-lucide="building" class="h-4 w-4 mr-1 text-gray-400"></i>
-                                23/150
-                              </div>
-                            </td>
-                            <td class="p-4">
-                              <div class="flex items-center">
-                                <i data-lucide="users" class="h-4 w-4 mr-1 text-gray-400"></i>
-                                3 depts
-                              </div>
-                            </td>
-                            <td class="p-4">
-                              <div class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold transition-colors border border-solid border-transparent bg-primary text-white hover:bg-medical-400">
-                                active
-                              </div>
-                            </td>
-                            <td class="p-4 text-right">
-                              <div class="flex gap-2 justify-end">
-                                <button
-                                  class="rounded-md h-8 w-8 p-0 hover:bg-accent pointer bg-transparent border-none hover:text-medical-500">
-                                  <i data-lucide="square-pen" class="h-4 w-4"></i>
-                                </button>
-                                <button
-                                  class="rounded-md h-8 w-8 p-0 text-red-600 hover:text-red-800 hover:bg-red-50 pointer bg-transparent border-none"
-                                  type="button">
-                                  <i data-lucide="trash-2" class="h-4 w-4"></i>
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
-
+                        <tbody id="hospitals-table-body" class="table-no-border-last">
+                          <!-- Dynamic content will be inserted here -->
                         </tbody>
                       </table>
                     </div>
@@ -649,120 +532,225 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
   </main>
 
 
-  <!-- ==================== Add User Modal ==================== -->
+  <!-- ==================== User Modal ==================== -->
 
   <!-- Overlay -->
-  <div data-dialog="overlay" class="hidden inset-0 z-50 bg-black/80"></div>
+  <div data-dialog="overlay" data-modal-type="user" class="hidden inset-0 z-50 bg-black/80"></div>
 
   <!-- Modal Container -->
   <div
     data-dialog="modal"
+    data-modal-type="user"
     role="dialog"
-    class="hidden left-[50%] top-[50%] z-50 grid translate-center bg-white gap-4 p-6 shadow-lg transition-200 sm:rounded-lg w-full max-w-md mx-4 sm:mx-auto">
+    class="hidden left-[50%] top-[50%] z-50 grid translate-center bg-white gap-4 p-6 shadow-lg transition-200 sm:rounded-lg w-full max-w-lg mx-4 sm:mx-auto">
 
     <!-- Modal Header -->
     <div class="flex flex-col gap-1.5 text-center sm:text-left">
-      <h2 class="text-lg font-semibold leading-none tracking-tight">Add New User</h2>
+      <h2 id="user-modal-title" class="text-lg font-semibold leading-none tracking-tight">Add New User</h2>
     </div>
 
     <!-- Modal Body -->
-    <div class="flex flex-col gap-4">
+    <form id="user-form" class="flex flex-col gap-4">
 
       <!-- Name and Email Fields -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-
         <div>
-          <label class="text-sm font-medium leading-none" for="name">Full Name</label>
-          <input id="name"
+          <label class="text-sm font-medium leading-none" for="user-fullname">Full Name</label>
+          <input id="user-fullname" name="fullName" required
             class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm outline-none focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white"
             placeholder="Enter full name">
         </div>
 
         <div>
-          <label class="text-sm font-medium leading-none" for="email">Email</label>
-          <input id="email" type="email" required
+          <label class="text-sm font-medium leading-none" for="user-email">Email</label>
+          <input id="user-email" name="email" type="email" required
             class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm outline-none focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white"
             placeholder="Enter email address">
         </div>
+      </div>
 
+      <!-- Password Field -->
+      <div>
+        <label class="text-sm font-medium leading-none" for="user-password">Password</label>
+        <div class="relative">
+          <input id="user-password" name="password" type="text" required readonly
+            class="flex h-10 w-full rounded-md border border-solid border-input bg-gray-50 px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm outline-none focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white pr-20"
+            placeholder="Generated password">
+          <button type="button" id="generate-password" class="absolute right-2 top-1/2 -translate-y-1/2 text-xs bg-medical-600 text-white px-2 py-1 rounded hover:bg-medical-700">
+            Generate
+          </button>
+        </div>
       </div>
 
       <!-- Role Dropdown -->
       <div class="relative">
-        <label for="role" class="block mb-2 text-sm text-heading font-medium">
-          Role
-        </label>
-
-        <!-- Dropdown Button -->
-        <button type="button"
-          data-dropdown-toggle
-          data-dropdown-id="role-menu"
-          data-selected-value
-          role="combobox"
-          class="flex h-10 w-full items-center justify-between pointer rounded-sm border border-solid border-input bg-background px-3 py-2 text-base text-left focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white md:text-sm">
-          <span>Select a role</span>
-          <i data-lucide="chevron-down" class="w-4 h-4"></i>
-        </button>
-
-        <!-- Role Options -->
-        <ul id="role-menu" data-dropdown-menu class="absolute z-10 mt-1.5 p-1 border border-solid border-input w-full bg-white rounded-md shadow-xl hidden">
-        </ul>
+        <label for="user-role" class="block mb-2 text-sm text-heading font-medium">Role</label>
+        <select id="user-role" name="role" required class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white md:text-sm">
+          <option value="">Select a role</option>
+        </select>
       </div>
 
-      <!-- Hospital Dropdown -->
-      <div class="relative">
-        <label for="hospital" class="block mb-2 text-sm text-heading font-medium">
-          Hospital
-        </label>
+      <!-- Conditional Fields Container -->
+      <div id="conditional-fields" class="hidden">
 
-        <!-- Dropdown Toggle Button -->
-        <button
-          type="button"
-          data-dropdown-toggle
-          data-dropdown-id="hospital-menu"
-          data-selected-value
-          role="combobox"
-          class="flex h-10 w-full items-center justify-between pointer rounded-sm border border-solid border-input bg-background px-3 py-2 text-base text-left focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white md:text-sm">
-          <span>Select a hospital</span>
-          <i data-lucide="chevron-down" class="w-4 h-4 opacity-50"></i>
-        </button>
+        <!-- Hospital Dropdown (for Doctor and Hospital Admin) -->
+        <div id="hospital-field" class="hidden">
+          <label for="user-hospital" class="block mb-2 text-sm text-heading font-medium">Hospital</label>
+          <select id="user-hospital" name="hospitalId" class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white md:text-sm">
+            <option value="">Select a hospital</option>
+          </select>
+        </div>
 
-        <!-- Dropdown Menu -->
-        <ul id="hospital-menu" data-dropdown-menu class="absolute z-10 mt-1.5 p-1 border border-solid border-card-soft w-full bg-white rounded-md shadow-2xl hidden">
-        </ul>
+        <!-- Specialty Dropdown (for Doctor only) -->
+        <div id="specialty-field" class="hidden">
+          <label for="user-specialty" class="block mb-2 text-sm text-heading font-medium">Specialty</label>
+          <select id="user-specialty" name="specialtyId" class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white md:text-sm">
+            <option value="">Select a specialty</option>
+          </select>
+        </div>
+
+        <!-- Team Name Field (for Ambulance Team) -->
+        <div id="team-field" class="hidden">
+          <label for="user-team" class="block mb-2 text-sm text-heading font-medium">Team Name</label>
+          <input id="user-team" name="teamName" class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm outline-none focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white" placeholder="Enter team name (optional)">
+        </div>
+
       </div>
 
-      <!-- Department Field -->
-      <div>
-        <label class="text-sm font-medium leading-none" for="department">Department</label>
-        <input
-          class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm outline-none focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white"
-          placeholder="Enter department (optional)" />
+      <!-- Location Fields -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="text-sm font-medium leading-none" for="user-city">City</label>
+          <input id="user-city" name="city" class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm outline-none focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white" placeholder="Enter city">
+        </div>
+
+        <div>
+          <label class="text-sm font-medium leading-none" for="user-address">Address</label>
+          <input id="user-address" name="addressLine" class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm outline-none focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white" placeholder="Enter address">
+        </div>
       </div>
 
       <!-- Action Buttons -->
       <div class="flex justify-end gap-2 pt-4">
-        <button
-          data-modal-close
-          class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-input bg-transparent pointer hover:bg-accent hover:text-medical-500 h-10 px-4 py-2">
+        <button type="button" data-modal-close="user" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-input bg-transparent pointer hover:bg-accent hover:text-medical-500 h-10 px-4 py-2">
           Cancel
         </button>
-        <button
-          class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors text-white h-10 px-4 py-2 bg-primary hover:bg-medical-600 border-none pointer">
-          Add User
+        <button type="submit" id="user-submit-btn" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors text-white h-10 px-4 py-2 bg-primary hover:bg-medical-600 border-none pointer">
+          <span id="user-submit-text">Add User</span>
+          <div id="user-submit-loading" class="hidden animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
         </button>
       </div>
 
-    </div>
+    </form>
 
     <!-- Close Button -->
     <button type="button"
-      data-modal-close
+      data-modal-close="user"
       class="absolute right-4 top-4 w-5 h-5 bg-transparent border-none rounded-full opacity-70 transition-opacity hover:opacity-100 focus:ring focus:ring-2 focus:ring-medical-600 focus:ring-offset-2 focus:ring-offset-white pointer">
       <i data-lucide="x" class="h-4 w-4"></i>
       <span class="sr-only">Close</span>
     </button>
 
+  </div>
+
+  <!-- ==================== Hospital Modal ==================== -->
+
+  <!-- Overlay -->
+  <div data-dialog="overlay" data-modal-type="hospital" class="hidden inset-0 z-50 bg-black/80"></div>
+
+  <!-- Modal Container -->
+  <div
+    data-dialog="modal"
+    data-modal-type="hospital"
+    role="dialog"
+    class="hidden left-[50%] top-[50%] z-50 grid translate-center bg-white gap-4 p-6 shadow-lg transition-200 sm:rounded-lg w-full max-w-lg mx-4 sm:mx-auto">
+
+    <!-- Modal Header -->
+    <div class="flex flex-col gap-1.5 text-center sm:text-left">
+      <h2 id="hospital-modal-title" class="text-lg font-semibold leading-none tracking-tight">Add New Hospital</h2>
+    </div>
+
+    <!-- Modal Body -->
+    <form id="hospital-form" class="flex flex-col gap-4">
+
+      <!-- Hospital Name -->
+      <div>
+        <label class="text-sm font-medium leading-none" for="hospital-name">Hospital Name</label>
+        <input id="hospital-name" name="name" required
+          class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm outline-none focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white"
+          placeholder="Enter hospital name">
+      </div>
+
+      <!-- Address -->
+      <div>
+        <label class="text-sm font-medium leading-none" for="hospital-address">Address</label>
+        <input id="hospital-address" name="address" required
+          class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm outline-none focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white"
+          placeholder="Enter hospital address">
+      </div>
+
+      <!-- Contact and Available Beds -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="text-sm font-medium leading-none" for="hospital-contact">Contact</label>
+          <input id="hospital-contact" name="contact" required
+            class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm outline-none focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white"
+            placeholder="Enter contact number">
+        </div>
+
+        <div>
+          <label class="text-sm font-medium leading-none" for="hospital-beds">Available Beds</label>
+          <input id="hospital-beds" name="availableBeds" type="number" min="0"
+            class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm outline-none focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white"
+            placeholder="Enter number of beds">
+        </div>
+      </div>
+
+      <!-- Emergency Services -->
+      <div>
+        <label class="flex items-center gap-2 cursor-pointer">
+          <input id="hospital-emergency" name="emergencyServices" type="checkbox" class="rounded border-input">
+          <span class="text-sm font-medium">Emergency Services Available</span>
+        </label>
+      </div>
+
+      <!-- Image URL -->
+      <div>
+        <label class="text-sm font-medium leading-none" for="hospital-image">Image URL</label>
+        <input id="hospital-image" name="imageUrl"
+          class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm outline-none focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white"
+          placeholder="Enter image URL (optional)">
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex justify-end gap-2 pt-4">
+        <button type="button" data-modal-close="hospital" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-input bg-transparent pointer hover:bg-accent hover:text-medical-500 h-10 px-4 py-2">
+          Cancel
+        </button>
+        <button type="submit" id="hospital-submit-btn" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors text-white h-10 px-4 py-2 bg-primary hover:bg-medical-600 border-none pointer">
+          <span id="hospital-submit-text">Add Hospital</span>
+          <div id="hospital-submit-loading" class="hidden animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+        </button>
+      </div>
+
+    </form>
+
+    <!-- Close Button -->
+    <button type="button"
+      data-modal-close="hospital"
+      class="absolute right-4 top-4 w-5 h-5 bg-transparent border-none rounded-full opacity-70 transition-opacity hover:opacity-100 focus:ring focus:ring-2 focus:ring-medical-600 focus:ring-offset-2 focus:ring-offset-white pointer">
+      <i data-lucide="x" class="h-4 w-4"></i>
+      <span class="sr-only">Close</span>
+    </button>
+
+  </div>
+
+  <!-- Universal Toast Container -->
+  <div
+    id="toast"
+    class="hidden fixed bottom-4 right-4 z-50 max-w-xs rounded-md p-5 text-white shadow-lg">
+    <p id="toast-title" class="font-semibold"></p>
+    <p id="toast-message" class="text-sm"></p>
   </div>
 
 
