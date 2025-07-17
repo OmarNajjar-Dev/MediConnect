@@ -1,224 +1,235 @@
-import { generateInitials } from "../../utils/userUtils.js";
-import { showToast } from "../../common/toast.js";
+export function initProfileManagement() {
+  setupProfileImageUpload();
+  setupProfileFormSubmission();
+}
 
-class ProfileManagement {
-  constructor() {
-    this.currentUser = null;
-    this.init();
-  }
+function setupProfileImageUpload() {
+  const profileUpload = document.getElementById("profile-upload");
+  const profileAvatarContainer = document.getElementById(
+    "profile-avatar-container"
+  );
 
-  async init() {
-    await this.loadUserProfile();
-    this.setupEventListeners();
-    this.setupAvatar();
-  }
+  if (!profileUpload || !profileAvatarContainer) return;
 
-  async loadUserProfile() {
-    try {
-      // Get current user info from session context
-      // This would typically be passed from the server-side PHP
-      const userName =
-        document.querySelector(".dropdown .text-sm.font-medium")?.textContent ||
-        "User";
-      const userEmail =
-        document.querySelector(".dropdown .text-xs")?.textContent ||
-        "user@example.com";
+  profileUpload.addEventListener("change", handleImageUpload);
 
-      this.currentUser = {
-        name: userName,
-        email: userEmail,
-        // Split name for avatar initials
-        firstName: userName.split(" ")[0] || "U",
-        lastName: userName.split(" ")[1] || "N",
-      };
-
-      this.populateProfileForm();
-    } catch (error) {
-      console.error("Error loading user profile:", error);
-      showToast("Failed to load profile", "error");
-    }
-  }
-
-  setupEventListeners() {
-    // Profile image upload
-    const profileUpload = document.getElementById("profile-upload");
-    if (profileUpload) {
-      profileUpload.addEventListener("change", (e) => {
-        this.handleImageUpload(e);
-      });
-    }
-
-    // Profile form submission (if needed)
-    const profileForm = document.querySelector(
-      '[data-section="my-profile"] form'
-    );
-    if (profileForm) {
-      profileForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        this.handleProfileUpdate();
-      });
-    }
-
-    // Save changes button
-    const saveButton = document.querySelector(
-      '[data-section="my-profile"] button[type="submit"]'
-    );
-    if (saveButton) {
-      saveButton.addEventListener("click", (e) => {
-        e.preventDefault();
-        this.handleProfileUpdate();
-      });
-    }
-  }
-
-  setupAvatar() {
-    this.updateAvatarDisplay();
-  }
-
-  updateAvatarDisplay(imageUrl = null) {
-    const avatarElements = document.querySelectorAll(".rounded-full");
-
-    avatarElements.forEach((element) => {
-      if (
-        element.classList.contains("w-8") ||
-        element.classList.contains("w-24")
-      ) {
-        if (imageUrl) {
-          // Replace with actual image
-          element.innerHTML = `<img src="${imageUrl}" alt="Profile" class="w-full h-full rounded-full object-cover">`;
-        } else {
-          // Show initials
-          const initials = generateInitials(
-            this.currentUser?.firstName || "U",
-            this.currentUser?.lastName || "N"
-          );
-          element.innerHTML = `<span class="flex h-full w-full items-center justify-center text-medical-700 font-medium">${initials}</span>`;
-        }
-      }
-    });
-  }
-
-  populateProfileForm() {
-    if (!this.currentUser) return;
-
-    // Populate form fields
-    const nameInput = document.getElementById("admin-name");
-    const emailInput = document.getElementById("admin-email");
-
-    if (nameInput) {
-      nameInput.value = this.currentUser.name;
-    }
-
-    if (emailInput) {
-      emailInput.value = this.currentUser.email;
-    }
-  }
-
-  async handleImageUpload(event) {
+  async function handleImageUpload(event) {
     const file = event.target.files[0];
     if (!file) return;
 
     // Validate file type
     if (!file.type.startsWith("image/")) {
-      showToast("Please select a valid image file", "error");
+      showToast("Invalid File", "Please select a valid image file.", "error");
       return;
     }
 
     // Validate file size (max 5MB)
     if (file.size > 5 * 1024 * 1024) {
-      showToast("Image size must be less than 5MB", "error");
+      showToast(
+        "File Too Large",
+        "Please select an image smaller than 5MB.",
+        "error"
+      );
       return;
     }
 
     try {
       // Create preview
       const reader = new FileReader();
-      reader.onload = (e) => {
-        this.updateAvatarDisplay(e.target.result);
+      reader.onload = function (e) {
+        updateAvatarPreview(e.target.result);
       };
       reader.readAsDataURL(file);
 
-      // Here you would typically upload to server
-      // For now, we'll just show the preview
-      showToast("Profile image updated successfully", "success");
+      // Upload image
+      const formData = new FormData();
+      formData.append("profile_image", file);
+
+      const response = await fetch(
+        "/mediconnect/backend/api/upload-profile-image.php",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      const result = await response.json();
+
+      if (result.success) {
+        showToast("Success", "Profile image updated successfully!", "success");
+        // Update header avatar as well
+        updateHeaderAvatar(result.imageUrl);
+      } else {
+        showToast(
+          "Upload Failed",
+          result.message || "Failed to upload image",
+          "error"
+        );
+        // Revert preview
+        revertAvatarPreview();
+      }
     } catch (error) {
       console.error("Error uploading image:", error);
-      showToast("Failed to upload image", "error");
+      showToast(
+        "Upload Error",
+        "An error occurred while uploading the image.",
+        "error"
+      );
+      revertAvatarPreview();
     }
   }
 
-  async handleProfileUpdate() {
-    try {
-      const nameInput = document.getElementById("admin-name");
-      const emailInput = document.getElementById("admin-email");
-      const currentPassword = document.getElementById("current-password");
-      const newPassword = document.getElementById("new-password");
-      const confirmPassword = document.getElementById("confirm-password");
+  function updateAvatarPreview(imageUrl) {
+    profileAvatarContainer.innerHTML = `<img src="${imageUrl}" alt="Profile" class="w-24 h-24 rounded-full object-cover">`;
+  }
 
-      const updateData = {
-        name: nameInput?.value || "",
-        email: emailInput?.value || "",
-      };
-
-      // Validate email
-      if (updateData.email && !this.validateEmail(updateData.email)) {
-        showToast("Please enter a valid email address", "error");
-        return;
-      }
-
-      // Handle password change if provided
-      if (newPassword?.value) {
-        if (!currentPassword?.value) {
-          showToast("Current password is required to change password", "error");
-          return;
-        }
-
-        if (newPassword.value !== confirmPassword?.value) {
-          showToast("New passwords do not match", "error");
-          return;
-        }
-
-        if (newPassword.value.length < 8) {
-          showToast("New password must be at least 8 characters long", "error");
-          return;
-        }
-
-        updateData.currentPassword = currentPassword.value;
-        updateData.newPassword = newPassword.value;
-      }
-
-      // Here you would typically send the update to the server
-      // For now, we'll just show success message
-      showToast("Profile updated successfully", "success");
-
-      // Clear password fields
-      if (currentPassword) currentPassword.value = "";
-      if (newPassword) newPassword.value = "";
-      if (confirmPassword) confirmPassword.value = "";
-
-      // Update current user data
-      this.currentUser.name = updateData.name;
-      this.currentUser.email = updateData.email;
-
-      // Update avatar if name changed
-      const nameParts = updateData.name.split(" ");
-      this.currentUser.firstName = nameParts[0] || "U";
-      this.currentUser.lastName = nameParts[1] || "N";
-      this.updateAvatarDisplay();
-    } catch (error) {
-      console.error("Error updating profile:", error);
-      showToast("Failed to update profile", "error");
+  function updateHeaderAvatar(imageUrl) {
+    // Update header avatar if it exists
+    const headerAvatar = document.querySelector(
+      ".dropdown button > div, .dropdown button > img"
+    );
+    if (headerAvatar) {
+      const userName = headerAvatar.getAttribute("alt") || "User";
+      headerAvatar.outerHTML = `<img src="${imageUrl}" alt="${userName}" class="w-8 h-8 rounded-full object-cover">`;
     }
   }
 
-  validateEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
+  function revertAvatarPreview() {
+    // This would need to revert to the original avatar
+    // For now, just reload the page
+    location.reload();
   }
 }
 
-// Initialize and export
-const profileManagement = new ProfileManagement();
-window.profileManagement = profileManagement;
+function setupProfileFormSubmission() {
+  const profileForm = document.querySelector('[data-section="my-profile"]');
+  const saveButton = profileForm?.querySelector('button[type="button"]');
 
-export default profileManagement;
+  if (!saveButton) return;
+
+  saveButton.addEventListener("click", handleProfileSave);
+
+  async function handleProfileSave() {
+    const nameInput = document.getElementById("admin-name");
+    const emailInput = document.getElementById("admin-email");
+    const currentPasswordInput = document.getElementById("current-password");
+    const newPasswordInput = document.getElementById("new-password");
+    const confirmPasswordInput = document.getElementById("confirm-password");
+
+    if (!nameInput || !emailInput) return;
+
+    const profileData = {
+      name: nameInput.value.trim(),
+      email: emailInput.value.trim(),
+    };
+
+    // Validate inputs
+    if (!profileData.name || !profileData.email) {
+      showToast(
+        "Validation Error",
+        "Please fill in all required fields.",
+        "error"
+      );
+      return;
+    }
+
+    // If password fields are filled, validate them
+    if (
+      currentPasswordInput.value ||
+      newPasswordInput.value ||
+      confirmPasswordInput.value
+    ) {
+      if (
+        !currentPasswordInput.value ||
+        !newPasswordInput.value ||
+        !confirmPasswordInput.value
+      ) {
+        showToast(
+          "Password Error",
+          "Please fill in all password fields to change password.",
+          "error"
+        );
+        return;
+      }
+
+      if (newPasswordInput.value !== confirmPasswordInput.value) {
+        showToast("Password Error", "New passwords do not match.", "error");
+        return;
+      }
+
+      if (newPasswordInput.value.length < 8) {
+        showToast(
+          "Password Error",
+          "New password must be at least 8 characters long.",
+          "error"
+        );
+        return;
+      }
+
+      profileData.currentPassword = currentPasswordInput.value;
+      profileData.newPassword = newPasswordInput.value;
+    }
+
+    try {
+      // Show loading state
+      const originalText = saveButton.textContent;
+      saveButton.textContent = "Saving...";
+      saveButton.disabled = true;
+
+      const response = await fetch(
+        "/mediconnect/backend/api/update-profile.php",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(profileData),
+        }
+      );
+
+      const result = await response.json();
+
+      if (result.success) {
+        showToast("Success", "Profile updated successfully!", "success");
+
+        // Clear password fields
+        if (currentPasswordInput) currentPasswordInput.value = "";
+        if (newPasswordInput) newPasswordInput.value = "";
+        if (confirmPasswordInput) confirmPasswordInput.value = "";
+
+        // Update header name if changed
+        const headerName = document.querySelector(".dropdown button span");
+        if (headerName && profileData.name) {
+          headerName.textContent = profileData.name;
+        }
+      } else {
+        showToast(
+          "Update Failed",
+          result.message || "Failed to update profile",
+          "error"
+        );
+      }
+    } catch (error) {
+      console.error("Error updating profile:", error);
+      showToast(
+        "Update Error",
+        "An error occurred while updating profile.",
+        "error"
+      );
+    } finally {
+      // Restore button
+      saveButton.textContent = originalText;
+      saveButton.disabled = false;
+    }
+  }
+}
+
+function showToast(title, message, type) {
+  // Use the existing toast system
+  if (typeof window.showToast === "function") {
+    window.showToast(title, message, type);
+  } else {
+    // Fallback alert
+    alert(`${title}: ${message}`);
+  }
+}

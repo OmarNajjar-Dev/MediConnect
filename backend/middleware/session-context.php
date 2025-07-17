@@ -9,12 +9,13 @@ require_once __DIR__ . '/../config/db.php';
 $isLoggedIn = false;
 $userName = '';
 $userEmail = '';
+$userProfileImage = '';
 
 if (isset($_SESSION['user_id'])) {
     $userId = $_SESSION['user_id'];
 
-    // Fetch user's basic information
-    $stmt = $conn->prepare("SELECT first_name, last_name, email FROM users WHERE user_id = ?");
+    // Fetch user's basic information including profile image
+    $stmt = $conn->prepare("SELECT first_name, last_name, email, profile_image FROM users WHERE user_id = ?");
     $stmt->bind_param("i", $userId);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -23,5 +24,6 @@ if (isset($_SESSION['user_id'])) {
         $isLoggedIn = true;
         $userName = $user['first_name'] . ' ' . $user['last_name'];
         $userEmail = $user['email'];
+        $userProfileImage = $user['profile_image'];
     }
 }

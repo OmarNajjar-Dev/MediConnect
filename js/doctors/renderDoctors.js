@@ -1,7 +1,13 @@
 export async function renderDoctors(container) {
   try {
-    const res = await fetch("/MediConnect/backend/api/get-doctors.php");
-    const doctorsCardsData = await res.json();
+    const res = await fetch("/mediconnect/backend/api/get-doctors.php");
+    const response = await res.json();
+
+    if (!response.success) {
+      throw new Error(response.message || "Failed to load doctors");
+    }
+
+    const doctorsCardsData = response.doctors;
 
     const fragment = document.createDocumentFragment();
 
@@ -12,7 +18,7 @@ export async function renderDoctors(container) {
       div.innerHTML = `
         <div class="flex items-start mb-4">
           <div class="w-20 h-20 rounded-full overflow-hidden mr-4 flex-shrink-0">
-            <img src="${card.image_url}" alt="${card.first_name} ${
+            <img src="${card.profile_image}" alt="${card.first_name} ${
         card.last_name
       }" loading="lazy" class="w-full h-full object-cover" />
           </div>

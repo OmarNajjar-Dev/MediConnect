@@ -29,6 +29,25 @@ try {
         exit;
     }
 
+    // SECURITY: Check if user being updated is Super Admin
+    $stmt = $conn->prepare("SELECT r.role_name FROM users u JOIN user_roles ur ON u.user_id = ur.user_id JOIN roles r ON ur.role_id = r.role_id WHERE u.user_id = ?");
+    $stmt->bind_param("i", $userId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result->num_rows > 0) {
+        $currentRole = $result->fetch_assoc()['role_name'];
+        if ($currentRole === 'Super Admin') {
+            echo json_encode(['success' => false, 'message' => 'Cannot update Super Admin users']);
+            exit;
+        }
+    }
+
+    // SECURITY: Prevent updating to Super Admin role
+    if ($roleName === 'Super Admin') {
+        echo json_encode(['success' => false, 'message' => 'Cannot assign Super Admin role']);
+        exit;
+    }
+
     // Split full name into first and last name
     $nameParts = explode(' ', $fullName, 2);
     $firstName = $nameParts[0];

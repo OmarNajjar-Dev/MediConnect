@@ -1,4 +1,5 @@
 import { showErrorToast, hideToast } from "../../common/toast.js";
+import { PasswordStrengthValidator } from "../../common/passwordStrength.js";
 
 export function validateRegisterForm() {
   const form = document.getElementById("register-form");
@@ -8,11 +9,12 @@ export function validateRegisterForm() {
   const emailInput = document.getElementById("email");
   const agreeCheckbox = document.getElementById("agree-checkbox");
 
-  // Helper to validate password format
+  // Initialize password strength validator with default IDs
+  const passwordValidator = new PasswordStrengthValidator();
+
+  // Helper to validate password format using the strength validator
   const isPasswordValid = (pwd) => {
-    const regex =
-      /^(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/;
-    return regex.test(pwd);
+    return passwordValidator.isPasswordValid(pwd);
   };
 
   form.addEventListener("submit", async (e) => {
@@ -40,7 +42,7 @@ export function validateRegisterForm() {
     }
 
     // Check password match
-    else if (password.value !== confirmPassword.value) {
+    else if (!passwordValidator.doPasswordsMatch()) {
       showErrorToast(
         "Passwords do not match.",
         "Please make sure your passwords match."

@@ -6,6 +6,9 @@ $requiredRole = 'super_admin';
 // 5. Protect the dashboard: redirect if user role does not match
 require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
 
+// 6. Include avatar helper
+require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -68,9 +71,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
         <div class="hidden md:flex items-center gap-3 md:mr-4">
           <div class="dropdown relative">
             <button class="flex items-center gap-2 md:py-2 px-2 border-none bg-transparent hover:bg-medical-50 transition-colors transition-200 pointer rounded-lg">
-              <div class="w-8 h-8 rounded-full bg-medical-100 flex items-center justify-center text-medical-700 text-sm lg:text-base font-medium">
-                <?= strtoupper(substr($userName, 0, 2)) ?>
-              </div>
+              <?= generateAvatar($userProfileImage, $userName, 'w-8 h-8', 'text-sm lg:text-base') ?>
               <span class="hidden lg:block text-sm lg:text-base font-medium slate-700 max-w-24 truncate">
                 <?= htmlspecialchars($userName) ?>
               </span>
@@ -301,11 +302,9 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                       </div>
                       <div class="px-6 pb-6 flex flex-col gap-4">
                         <div class="flex flex-col gap-4 items-center">
-                          <span class="relative flex shrink-0 overflow-hidden rounded-full w-24 h-24">
-                            <span class="flex h-full w-full items-center justify-center rounded-full text-lg bg-medical-100 text-medical-700">
-                              <?= strtoupper(substr($userName, 0, 2)) ?>
-                            </span>
-                          </span>
+                          <div id="profile-avatar-container" class="relative flex shrink-0 overflow-hidden rounded-full w-24 h-24">
+                            <?= generateAvatar($userProfileImage, $userName, 'w-24 h-24', 'text-lg') ?>
+                          </div>
                           <div class="w-full">
                             <label for="profile-upload" class="text-sm font-medium leading-none pointer">
                               <div id="new-image-profile" class="flex items-center justify-center w-full p-3 border-2 border-dashed border-gray-300 rounded-lg hover:border-medical-400 transition-colors">
@@ -334,12 +333,12 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                           <div class="flex flex-col gap-2">
                             <label for="admin-name" class="text-sm font-medium leading-none">Full Name</label>
-                            <input id="admin-name" placeholder="Enter your full name" value="System Administrator"
+                            <input id="admin-name" placeholder="Enter your full name" value="<?= htmlspecialchars($userName) ?>"
                               class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
                           </div>
                           <div class="flex flex-col gap-2">
                             <label for="admin-email" class="text-sm font-medium leading-none">Email Address</label>
-                            <input id="admin-email" type="email" placeholder="Enter your email" value="admin@mediconnect.com" required
+                            <input id="admin-email" type="email" placeholder="Enter your email" value="<?= htmlspecialchars($userEmail) ?>" required
                               class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
                           </div>
                         </div>
@@ -555,30 +554,67 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
       <!-- Name and Email Fields -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label class="text-sm font-medium leading-none" for="user-fullname">Full Name</label>
+          <label class="text-sm font-medium leading-none mb-2 block" for="user-fullname">Full Name</label>
           <input id="user-fullname" name="fullName" required
             class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm outline-none focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white"
             placeholder="Enter full name">
         </div>
 
         <div>
-          <label class="text-sm font-medium leading-none" for="user-email">Email</label>
+          <label class="text-sm font-medium leading-none mb-2 block" for="user-email">Email</label>
           <input id="user-email" name="email" type="email" required
             class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm outline-none focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white"
             placeholder="Enter email address">
         </div>
       </div>
 
-      <!-- Password Field -->
-      <div>
-        <label class="text-sm font-medium leading-none" for="user-password">Password</label>
-        <div class="relative">
-          <input id="user-password" name="password" type="text" required readonly
-            class="flex h-10 w-full rounded-md border border-solid border-input bg-gray-50 px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm outline-none focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white pr-20"
-            placeholder="Generated password">
-          <button type="button" id="generate-password" class="absolute right-2 top-1/2 -translate-y-1/2 text-xs bg-medical-600 text-white px-2 py-1 rounded hover:bg-medical-700">
-            Generate
-          </button>
+      <!-- Password Fields (Only visible when adding new user) -->
+      <div id="password-fields" class="hidden">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="text-sm font-medium leading-none mb-2 block" for="user-password">Password</label>
+            <div class="flex gap-2">
+              <input id="user-password" name="password" type="password" 
+                class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm outline-none focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white"
+                placeholder="Enter temporary password">
+              <button type="button" id="generate-password" 
+                class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-input bg-transparent pointer hover:bg-accent hover:text-medical-500 h-10 px-3 py-2">
+                <i data-lucide="refresh-cw" class="h-4 w-4"></i>
+              </button>
+            </div>
+            <div id="password-strength" class="mt-1 text-xs"></div>
+          </div>
+          <div>
+            <label class="text-sm font-medium leading-none mb-2 block" for="user-confirm-password">Confirm Password</label>
+            <input id="user-confirm-password" name="confirmPassword" type="password" 
+              class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm outline-none focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white"
+              placeholder="Confirm temporary password">
+            <div id="password-match" class="mt-1 text-xs"></div>
+          </div>
+        </div>
+        
+        <!-- Password Note -->
+        <div class="p-3 bg-yellow-50 border border-yellow-200 rounded-md mt-4">
+          <div class="flex items-start">
+            <i data-lucide="info" class="h-4 w-4 text-yellow-600 mt-0.5 mr-2"></i>
+            <div class="text-sm text-yellow-800">
+              <p class="font-medium">Password Security</p>
+              <p class="text-xs mt-1">Set a temporary password for the new user. They will be prompted to change it on first login for security.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Edit Mode Password Note (Only visible when editing user) -->
+      <div id="edit-password-note" class="hidden">
+        <div class="p-3 bg-blue-50 border border-blue-200 rounded-md">
+          <div class="flex items-start">
+            <i data-lucide="shield" class="h-4 w-4 text-blue-600 mt-0.5 mr-2"></i>
+            <div class="text-sm text-blue-800">
+              <p class="font-medium">Password Management</p>
+              <p class="text-xs mt-1">For security reasons, passwords cannot be changed here. Use the password reset feature to help users reset their passwords.</p>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -594,7 +630,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
       <div id="conditional-fields" class="hidden">
 
         <!-- Hospital Dropdown (for Doctor and Hospital Admin) -->
-        <div id="hospital-field" class="hidden">
+        <div id="hospital-field" class="hidden mb-4">
           <label for="user-hospital" class="block mb-2 text-sm text-heading font-medium">Hospital</label>
           <select id="user-hospital" name="hospitalId" class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white md:text-sm">
             <option value="">Select a hospital</option>
@@ -620,12 +656,12 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
       <!-- Location Fields -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label class="text-sm font-medium leading-none" for="user-city">City</label>
+          <label class="text-sm font-medium leading-none mb-2 block" for="user-city">City</label>
           <input id="user-city" name="city" class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm outline-none focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white" placeholder="Enter city">
         </div>
 
         <div>
-          <label class="text-sm font-medium leading-none" for="user-address">Address</label>
+          <label class="text-sm font-medium leading-none mb-2 block" for="user-address">Address</label>
           <input id="user-address" name="addressLine" class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm outline-none focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white" placeholder="Enter address">
         </div>
       </div>

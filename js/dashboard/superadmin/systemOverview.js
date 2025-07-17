@@ -68,9 +68,11 @@ class SystemOverview {
   async loadDoctorStats() {
     try {
       const response = await fetch("/mediconnect/backend/api/get-doctors.php");
-      const doctors = await response.json();
+      const data = await response.json();
 
-      this.stats.totalDoctors = doctors.length;
+      if (data.success) {
+        this.stats.totalDoctors = data.doctors.length;
+      }
     } catch (error) {
       console.error("Error loading doctor stats:", error);
     }

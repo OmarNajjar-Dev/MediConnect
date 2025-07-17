@@ -7,11 +7,11 @@ $sql = "SELECT
             d.is_verified,
             d.rating,
             d.reviews_count,
-            d.image_url,
             d.bio,
             u.first_name,
             u.last_name,
             u.city,
+            u.profile_image,
             h.name AS hospital_name,
             s.label_for_doctor AS specialty
         FROM doctors d
@@ -28,4 +28,7 @@ while ($row = $result->fetch_assoc()) {
 }
 
 header('Content-Type: application/json');
-echo json_encode($doctors);
+echo json_encode([
+    'success' => true,
+    'doctors' => $doctors
+]);

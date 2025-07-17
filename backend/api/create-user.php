@@ -15,16 +15,27 @@ try {
     
     $fullName = trim($input['fullName'] ?? '');
     $email = trim($input['email'] ?? '');
-    $password = $input['password'] ?? '';
     $roleName = trim($input['role'] ?? '');
     $hospitalId = $input['hospitalId'] ?? null;
     $specialtyId = $input['specialtyId'] ?? null;
     $teamName = trim($input['teamName'] ?? '');
     $city = trim($input['city'] ?? '');
     $addressLine = trim($input['addressLine'] ?? '');
+    $password = trim($input['password'] ?? '');
+
+    // Validate password if provided (for new users)
+    if (empty($password)) {
+        echo json_encode(['success' => false, 'message' => 'Password is required for new users']);
+        exit;
+    }
+
+    if (strlen($password) < 8) {
+        echo json_encode(['success' => false, 'message' => 'Password must be at least 8 characters long']);
+        exit;
+    }
 
     // Validate required fields
-    if (empty($fullName) || empty($email) || empty($password) || empty($roleName)) {
+    if (empty($fullName) || empty($email) || empty($roleName)) {
         echo json_encode(['success' => false, 'message' => 'Missing required fields']);
         exit;
     }
@@ -43,6 +54,12 @@ try {
     $stmt->execute();
     if ($stmt->get_result()->num_rows > 0) {
         echo json_encode(['success' => false, 'message' => 'Email already exists']);
+        exit;
+    }
+
+    // SECURITY: Prevent creation of Super Admin users
+    if ($roleName === 'Super Admin') {
+        echo json_encode(['success' => false, 'message' => 'Cannot create Super Admin users']);
         exit;
     }
 
@@ -103,9 +120,10 @@ try {
 
     $conn->commit();
 
+    // TODO: Send email notification to user about account creation
     echo json_encode([
         'success' => true,
-        'message' => 'User created successfully',
+        'message' => 'User created successfully with the provided password.',
         'userId' => $userId
     ]);
 
@@ -116,6 +134,33 @@ try {
         'success' => false,
         'message' => 'Failed to create user: ' . $e->getMessage()
     ]);
+}
+
+/**
+ * Generate a secure temporary password
+ */
+function generateSecurePassword($length = 12) {
+    $uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $lowercase = 'abcdefghijklmnopqrstuvwxyz';
+    $numbers = '0123456789';
+    $symbols = '!@#$%^&*';
+    
+    $password = '';
+    
+    // Ensure at least one character from each set
+    $password .= $uppercase[random_int(0, strlen($uppercase) - 1)];
+    $password .= $lowercase[random_int(0, strlen($lowercase) - 1)];
+    $password .= $numbers[random_int(0, strlen($numbers) - 1)];
+    $password .= $symbols[random_int(0, strlen($symbols) - 1)];
+    
+    // Fill the rest with random characters
+    $allChars = $uppercase . $lowercase . $numbers . $symbols;
+    for ($i = 4; $i < $length; $i++) {
+        $password .= $allChars[random_int(0, strlen($allChars) - 1)];
+    }
+    
+    // Shuffle the password
+    return str_shuffle($password);
 }
 
 $conn->close(); 

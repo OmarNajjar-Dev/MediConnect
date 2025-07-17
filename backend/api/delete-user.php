@@ -19,12 +19,20 @@ try {
         exit;
     }
 
-    // Check if user exists
-    $stmt = $conn->prepare("SELECT user_id FROM users WHERE user_id = ?");
+    // Check if user exists and is not Super Admin
+    $stmt = $conn->prepare("SELECT u.user_id, r.role_name FROM users u JOIN user_roles ur ON u.user_id = ur.user_id JOIN roles r ON ur.role_id = r.role_id WHERE u.user_id = ?");
     $stmt->bind_param("i", $userId);
     $stmt->execute();
-    if ($stmt->get_result()->num_rows === 0) {
+    $result = $stmt->get_result();
+    if ($result->num_rows === 0) {
         echo json_encode(['success' => false, 'message' => 'User not found']);
+        exit;
+    }
+    
+    // SECURITY: Prevent deletion of Super Admin users
+    $userData = $result->fetch_assoc();
+    if ($userData['role_name'] === 'Super Admin') {
+        echo json_encode(['success' => false, 'message' => 'Cannot delete Super Admin users']);
         exit;
     }
 

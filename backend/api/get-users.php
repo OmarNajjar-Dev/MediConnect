@@ -12,6 +12,7 @@ try {
                 u.last_name,
                 u.city,
                 u.address_line,
+                u.profile_image,
                 GROUP_CONCAT(r.role_name) as roles,
                 h.name as hospital_name,
                 s.label_for_doctor as specialty,
@@ -24,7 +25,9 @@ try {
             LEFT JOIN hospitals h ON d.hospital_id = h.hospital_id
             LEFT JOIN specialties s ON d.specialty_id = s.specialty_id
             LEFT JOIN ambulance_teams at ON u.user_id = at.user_id
+            WHERE r.role_name != 'Super Admin' OR r.role_name IS NULL
             GROUP BY u.user_id
+            HAVING GROUP_CONCAT(r.role_name) NOT LIKE '%Super Admin%'
             ORDER BY u.first_name, u.last_name";
 
     $result = $conn->query($sql);

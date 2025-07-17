@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 16, 2025 at 08:19 PM
+-- Generation Time: Jul 17, 2025 at 10:34 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -34,13 +34,6 @@ CREATE TABLE `ambulance_locations` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `ambulance_locations`
---
-
-INSERT INTO `ambulance_locations` (`team_id`, `latitude`, `longitude`, `updated_at`) VALUES
-(1, 34.39400000, 35.84300000, '2025-07-15 04:41:46');
-
 -- --------------------------------------------------------
 
 --
@@ -52,14 +45,6 @@ CREATE TABLE `ambulance_teams` (
   `user_id` int(11) NOT NULL,
   `team_name` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `ambulance_teams`
---
-
-INSERT INTO `ambulance_teams` (`team_id`, `user_id`, `team_name`) VALUES
-(1, 1, 'Test Ambulance Team'),
-(4, 12, 'Omar\'s Team');
 
 -- --------------------------------------------------------
 
@@ -75,21 +60,8 @@ CREATE TABLE `doctors` (
   `is_verified` tinyint(1) DEFAULT 0,
   `rating` decimal(2,1) DEFAULT NULL,
   `reviews_count` int(11) DEFAULT NULL,
-  `image_url` varchar(255) DEFAULT NULL,
   `bio` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `doctors`
---
-
-INSERT INTO `doctors` (`doctor_id`, `user_id`, `specialty_id`, `hospital_id`, `is_verified`, `rating`, `reviews_count`, `image_url`, `bio`) VALUES
-(1, 1, 1, 1, 1, 4.9, 124, 'https://randomuser.me/api/portraits/women/45.jpg', 'Dr. Sarah Johnson is a board-certified cardiologist with over 12 years of experience in treating cardiovascular diseases. She completed her medical training at Harvard Medical School and residency at Massachusetts General Hospital.'),
-(2, 2, 2, 2, 1, 4.7, 98, 'https://randomuser.me/api/portraits/men/32.jpg', 'Dr. Michael Chen specializes in medical, surgical, and cosmetic dermatology. He has expertise in treating skin conditions like acne, eczema, psoriasis, and skin cancer.'),
-(3, 3, 3, 3, 1, 4.8, 156, 'https://randomuser.me/api/portraits/women/63.jpg', 'Dr. Emily Rodriguez is a neurologist with expertise in headache disorders, multiple sclerosis, and neurodegenerative diseases. She is dedicated to providing compassionate care for patients with complex neurological conditions.'),
-(4, 4, 4, 4, 1, 4.6, 87, 'https://randomuser.me/api/portraits/men/46.jpg', 'Dr. James Wilson is an orthopedic surgeon specializing in sports medicine, joint replacement, and trauma. With 20 years of experience, he has helped thousands of patients recover from orthopedic injuries and conditions.'),
-(5, 5, 5, 5, 1, 4.9, 142, 'https://randomuser.me/api/portraits/women/69.jpg', 'Dr. Lisa Kim is a dedicated pediatrician who provides comprehensive healthcare for children from birth through adolescence. She is known for her gentle approach and ability to connect with young patients.'),
-(6, 6, 6, 6, 1, 4.8, 73, 'https://randomuser.me/api/portraits/men/79.jpg', 'Dr. Robert Taylor is a psychiatrist specializing in mood disorders, anxiety, and PTSD. He takes a holistic approach to mental health, combining medication management with psychotherapy when appropriate.');
 
 -- --------------------------------------------------------
 
@@ -224,13 +196,6 @@ CREATE TABLE `patients` (
   `gender` enum('Male','Female','Other') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `patients`
---
-
-INSERT INTO `patients` (`patient_id`, `user_id`, `birthdate`, `gender`) VALUES
-(2, 10, NULL, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -308,6 +273,7 @@ CREATE TABLE `users` (
   `last_name` varchar(100) NOT NULL,
   `city` varchar(100) NOT NULL,
   `address_line` varchar(255) NOT NULL,
+  `profile_image` varchar(255) DEFAULT NULL,
   `remember_token` varchar(64) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -315,20 +281,8 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `email`, `password`, `first_name`, `last_name`, `city`, `address_line`, `remember_token`) VALUES
-(1, 'sarah.johnson@gmail.com', 'sarahjohson@123', 'Sarah', 'Johnson', 'Tripoli', 'Hay Al Ramlet', NULL),
-(2, 'michael.chen@example.com', 'password2', 'Michael', 'Chen', 'New York', '123 Skin St', NULL),
-(3, 'emily.rodriguez@example.com', 'password3', 'Emily', 'Rodriguez', 'Los Angeles', '456 Neuro Rd', NULL),
-(4, 'james.wilson@example.com', 'password4', 'James', 'Wilson', 'Chicago', '789 Ortho Ave', NULL),
-(5, 'lisa.kim@example.com', 'password5', 'Lisa', 'Kim', 'Houston', '321 Pediatric Blvd', NULL),
-(6, 'robert.taylor@example.com', 'password6', 'Robert', 'Taylor', 'Phoenix', '654 Mental Way', NULL),
-(7, 'superadmin@gmail.com', '$2y$10$GKpi6ZUEK9yWc1BDSlkPO.Fkg47UqISpJ1Pd0zh1OkVQTERTknajW', 'Omar', 'Najjar', 'الميناء', 'شارع رشيد كرامة, الميناء, قضاء طرابلس, محافظة الشمال, 1301, لبنان', NULL),
-(8, 'admin@gmail.com', '$2y$10$F1MJOk0q1/ltcHd0fuG6B.HXnwwi9fcVGM6.ja/A3mu.MyIgmaA4a', 'Omar', 'Najjar', 'بيروت', 'الشيخ توفيق خالد, السراي, زقاق البلاط, بيروت, محافظة بيروت, 2033 9105, لبنان', NULL),
-(9, 'doctor@gmail.com', '$2y$10$NsJqi3QqXBVCTfYRbMRUCuyreOK9mpg8SnzOT95xnK55X/hqwpgBa', 'Omar', 'Najjar', 'بيروت', 'الشيخ توفيق خالد, السراي, زقاق البلاط, بيروت, محافظة بيروت, 2033 9105, لبنان', NULL),
-(10, 'patient@gmail.com', '$2y$10$Qifkqh6GZ6XLYH3NwgGywuR.9SVWmWKwPXQ9CvOFjdubIRA1jj6E2', 'Omar', 'Najjar', 'بيروت', 'الشيخ توفيق خالد, السراي, زقاق البلاط, بيروت, محافظة بيروت, 2033 9105, لبنان', NULL),
-(11, 'staff@gmail.com', '$2y$10$pk9KfO83/mctcEJtilUrgu1GYDSyu64SUuMGWXbz5LIBsPpizxLEK', 'Omar', 'Najjar', 'بيروت', 'الشيخ توفيق خالد, السراي, زقاق البلاط, بيروت, محافظة بيروت, 2033 9105, لبنان', NULL),
-(12, 'ambulance@gmail.com', '$2y$10$0Ei.NdhOtnMEOjHlq/GxUelqrnqVZydjTRHdc0aia62DTdiUacSkO', 'Omar', 'Najjar', 'Beirut', 'Cheikh Toufic Khaled, Serail, Zuqaq Al Blat, Beirut, Beirut Governorate, 2033 9105, Lebanon', NULL),
-(13, 'omarnajjar10.on@gmail.com', '$2y$10$Rj89O5hV8PLPMQRX.HQmRegrbt/0yrB/b1i1xQyrpbajTYnGNwbba', 'Omar', 'Najjar', 'Beirut', 'Cheikh Toufic Khaled, Serail, Zuqaq Al Blat, Beirut, Beirut Governorate, 2033 9105, Lebanon', '36f89072ca2dc3e06db4b89b41c2dfdd4ed4cf5ac63f88a5400fae1e64987039');
+INSERT INTO `users` (`user_id`, `email`, `password`, `first_name`, `last_name`, `city`, `address_line`, `profile_image`, `remember_token`) VALUES
+(1, 'omarnajjar10.on@gmail.com', '$2y$10$bT5gQZNnWwgJrFQCF2zCoubpdiiK4TrSIYF5f2DCpBGB7cT7629aq', 'Omar', 'Najjar', 'Mina', 'Sea Road, Mina, El Mina, Tripoli District, North Governorate, 1301, Lebanon', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -347,13 +301,7 @@ CREATE TABLE `user_roles` (
 --
 
 INSERT INTO `user_roles` (`user_role_id`, `user_id`, `role_id`) VALUES
-(64, 7, 1),
-(65, 8, 2),
-(66, 9, 3),
-(67, 10, 4),
-(68, 11, 5),
-(71, 12, 6),
-(72, 13, 1);
+(1, 1, 1);
 
 --
 -- Indexes for dumped tables
@@ -460,7 +408,7 @@ ALTER TABLE `ambulance_teams`
 -- AUTO_INCREMENT for table `doctors`
 --
 ALTER TABLE `doctors`
-  MODIFY `doctor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `doctor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `emergency_requests`
@@ -490,7 +438,7 @@ ALTER TABLE `hospital_specialties`
 -- AUTO_INCREMENT for table `patients`
 --
 ALTER TABLE `patients`
-  MODIFY `patient_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `patient_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -508,13 +456,13 @@ ALTER TABLE `specialties`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user_roles`
 --
 ALTER TABLE `user_roles`
-  MODIFY `user_role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `user_role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables

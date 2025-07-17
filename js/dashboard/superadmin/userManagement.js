@@ -1,9 +1,6 @@
-import {
-  generatePassword,
-  generateInitials,
-  validateEmail,
-} from "../../utils/userUtils.js";
+import { generateInitials, validateEmail } from "../../utils/userUtils.js";
 import { showToast } from "../../common/toast.js";
+import { PasswordStrengthValidator } from "../../common/passwordStrength.js";
 
 class UserManagement {
   constructor() {
@@ -13,6 +10,7 @@ class UserManagement {
     this.hospitals = [];
     this.specialties = [];
     this.currentEditingUser = null;
+    this.passwordValidator = null; // Will be initialized when modal opens
     this.init();
   }
 
@@ -20,7 +18,6 @@ class UserManagement {
     await this.loadInitialData();
     this.setupEventListeners();
     this.setupModal();
-    this.generateInitialPassword();
   }
 
   async loadInitialData() {
@@ -182,11 +179,19 @@ class UserManagement {
       });
     }
 
-    // Password generation
-    const generateBtn = document.getElementById("generate-password");
-    if (generateBtn) {
-      generateBtn.addEventListener("click", () => {
-        this.generateInitialPassword();
+    // Generate password button
+    const generatePasswordBtn = document.getElementById("generate-password");
+    if (generatePasswordBtn) {
+      generatePasswordBtn.addEventListener("click", () => {
+        if (this.passwordValidator) {
+          const generatedPassword =
+            this.passwordValidator.generateSecurePassword();
+          document.getElementById("user-password").value = generatedPassword;
+          document.getElementById("user-confirm-password").value =
+            generatedPassword;
+          this.passwordValidator.validatePassword(generatedPassword);
+          this.passwordValidator.checkPasswordMatch();
+        }
       });
     }
 
@@ -238,18 +243,39 @@ class UserManagement {
     );
     const title = document.getElementById("user-modal-title");
     const submitText = document.getElementById("user-submit-text");
+    const passwordFields = document.getElementById("password-fields");
+    const editPasswordNote = document.getElementById("edit-password-note");
 
     if (user) {
       // Edit mode
       title.textContent = "Edit User";
       submitText.textContent = "Update User";
       this.populateUserForm(user);
+
+      // Hide password fields and show edit note
+      passwordFields.classList.add("hidden");
+      editPasswordNote.classList.remove("hidden");
+
+      // Clean up password validator
+      this.passwordValidator = null;
     } else {
       // Add mode
       title.textContent = "Add New User";
       submitText.textContent = "Add User";
       this.resetUserForm();
-      this.generateInitialPassword();
+
+      // Show password fields and hide edit note
+      passwordFields.classList.remove("hidden");
+      editPasswordNote.classList.add("hidden");
+
+      // Initialize password validator for add mode with correct IDs
+      this.passwordValidator = new PasswordStrengthValidator(
+        "user-password", // password input ID
+        null, // no strength bar in admin modal
+        "password-strength", // strength text ID
+        "user-confirm-password", // confirm password input ID
+        "password-match" // password match indicator ID
+      );
     }
 
     overlay.classList.remove("hidden");
@@ -319,6 +345,11 @@ class UserManagement {
     document.getElementById("hospital-field").classList.add("hidden");
     document.getElementById("specialty-field").classList.add("hidden");
     document.getElementById("team-field").classList.add("hidden");
+
+    // Reset password fields using centralized validator
+    if (this.passwordValidator) {
+      this.passwordValidator.reset();
+    }
   }
 
   handleRoleChange(role) {
@@ -367,13 +398,6 @@ class UserManagement {
     }
   }
 
-  generateInitialPassword() {
-    const passwordInput = document.getElementById("user-password");
-    if (passwordInput) {
-      passwordInput.value = generatePassword();
-    }
-  }
-
   async handleUserSubmit() {
     const submitBtn = document.getElementById("user-submit-btn");
     const submitText = document.getElementById("user-submit-text");
@@ -389,18 +413,33 @@ class UserManagement {
       const userData = Object.fromEntries(formData.entries());
 
       // Validate required fields
-      if (
-        !userData.fullName ||
-        !userData.email ||
-        !userData.password ||
-        !userData.role
-      ) {
+      if (!userData.fullName || !userData.email || !userData.role) {
         throw new Error("Please fill in all required fields");
       }
 
       // Validate email format
       if (!validateEmail(userData.email)) {
         throw new Error("Please enter a valid email address");
+      }
+
+      // Password validation for new users
+      if (!this.currentEditingUser) {
+        // Adding new user - password is required
+        if (!userData.password || !userData.confirmPassword) {
+          throw new Error("Please fill in both password fields");
+        }
+
+        if (!this.passwordValidator.doPasswordsMatch()) {
+          throw new Error("Passwords do not match");
+        }
+
+        if (!this.passwordValidator.isPasswordValid(userData.password)) {
+          throw new Error("Password does not meet minimum requirements");
+        }
+      } else {
+        // Editing existing user - remove password fields from data
+        delete userData.password;
+        delete userData.confirmPassword;
       }
 
       // Validate role-specific requirements

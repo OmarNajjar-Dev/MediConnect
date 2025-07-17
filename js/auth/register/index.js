@@ -1,21 +1,61 @@
 import { setupPasswordToggle } from "../utils/setupPasswordToggle.js";
 import { showErrorToast } from "../../common/toast.js";
 
-import { initRoleDropdown } from "./initRoleDropdown.js";
-import { autoFillLocation } from "./autoFillLocation.js";
 import { handleCheckboxToggle } from "./handleCheckboxToggle.js";
 import { validateRegisterForm } from "./validateRegisterForm.js";
+import { setupEnhancedRegistration } from "./enhancedRegistration.js";
+import { PasswordStrengthValidator } from "../../common/passwordStrength.js";
 
 window.addEventListener("DOMContentLoaded", () => {
   setupPasswordToggle();
-  initRoleDropdown();
-  autoFillLocation();
+  initRoleHandler();
   handleCheckboxToggle();
   validateRegisterForm();
+  setupEnhancedRegistration();
+
+  // Initialize password strength validator
+  new PasswordStrengthValidator();
 
   // Handle PHP error redirects
   handlePhpErrors();
 });
+
+function initRoleHandler() {
+  const roleSelect = document.getElementById("role");
+  if (!roleSelect) return;
+
+  roleSelect.addEventListener("change", (e) => {
+    const selectedRole = e.target.value;
+    handleRoleChange(selectedRole);
+  });
+}
+
+function handleRoleChange(role) {
+  const roleSpecificFields = document.getElementById("role-specific-fields");
+  const hospitalSelection = document.getElementById("hospital-selection");
+  const specialtySelection = document.getElementById("specialty-selection");
+  const teamNameField = document.getElementById("team-name-field");
+
+  // Hide all role-specific fields first
+  roleSpecificFields.classList.add("hidden");
+  hospitalSelection.classList.add("hidden");
+  specialtySelection.classList.add("hidden");
+  teamNameField.classList.add("hidden");
+
+  // Show relevant fields based on selected role
+  if (role === "doctor") {
+    roleSpecificFields.classList.remove("hidden");
+    hospitalSelection.classList.remove("hidden");
+    specialtySelection.classList.remove("hidden");
+  } else if (role === "ambulance-team") {
+    roleSpecificFields.classList.remove("hidden");
+    hospitalSelection.classList.remove("hidden");
+    teamNameField.classList.remove("hidden");
+  } else if (role === "staff") {
+    roleSpecificFields.classList.remove("hidden");
+    hospitalSelection.classList.remove("hidden");
+  }
+}
 
 function handlePhpErrors() {
   const urlParams = new URLSearchParams(window.location.search);
