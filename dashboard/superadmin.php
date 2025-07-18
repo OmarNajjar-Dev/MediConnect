@@ -203,8 +203,8 @@ require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
                       <i data-lucide="users" class="h-4 w-4 text-blue-600"></i>
                     </div>
                     <div class="px-6 pt-0 pb-6">
-                      <div class="text-2xl font-bold text-gray-900">3</div>
-                      <p class="text-xs text-muted-foreground mt-1">3 active</p>
+                      <div class="text-2xl font-bold text-gray-900"></div>
+                      <p class="text-xs text-muted-foreground mt-1"></p>
                     </div>
                   </div>
 
@@ -215,8 +215,8 @@ require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
                       <i data-lucide="building-2" class="h-4 w-4 text-green-600"></i>
                     </div>
                     <div class="px-6 pt-0 pb-6">
-                      <div class="text-2xl font-bold text-gray-900">2</div>
-                      <p class="text-xs text-muted-foreground mt-1">2 active</p>
+                      <div class="text-2xl font-bold text-gray-900"></div>
+                      <p class="text-xs text-muted-foreground mt-1"></p>
                     </div>
                   </div>
 
@@ -227,8 +227,8 @@ require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
                       <i data-lucide="user-check" class="h-4 w-4 text-purple-600"></i>
                     </div>
                     <div class="px-6 pt-0 pb-6">
-                      <div class="text-2xl font-bold text-gray-900">1</div>
-                      <p class="text-xs text-muted-foreground mt-1">1 active</p>
+                      <div class="text-2xl font-bold text-gray-900"></div>
+                      <p class="text-xs text-muted-foreground mt-1"></p>
                     </div>
                   </div>
 
@@ -239,8 +239,8 @@ require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
                       <i data-lucide="shield" class="h-6 w-6 text-orange-600"></i>
                     </div>
                     <div class="px-6 pt-0 pb-6">
-                      <div class="text-2xl font-bold text-gray-900">350</div>
-                      <p class="text-xs text-muted-foreground mt-1">68 available</p>
+                      <div class="text-2xl font-bold text-gray-900"></div>
+                      <p class="text-xs text-muted-foreground mt-1"></p>
                     </div>
                   </div>
                 </div>
@@ -338,7 +338,23 @@ require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
                           </div>
                           <div class="flex flex-col gap-2">
                             <label for="admin-email" class="text-sm font-medium leading-none">Email Address</label>
-                            <input id="admin-email" type="email" placeholder="Enter your email" value="<?= htmlspecialchars($userEmail) ?>" required
+                            <input id="admin-email" type="email" placeholder="Enter your email" value="<?= htmlspecialchars($userEmail) ?>" disabled
+                              class="flex h-10 w-full rounded-md border border-solid border-input bg-gray-50 px-3 py-2 text-base md:text-sm text-gray-600 cursor-not-allowed">
+                            <p class="text-xs text-gray-500 mt-1">
+                              <i data-lucide="shield" class="h-3 w-3 inline mr-1"></i>
+                              Email cannot be changed for security reasons
+                            </p>
+                          </div>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <div class="flex flex-col gap-2">
+                            <label for="admin-city" class="text-sm font-medium leading-none">City</label>
+                            <input id="admin-city" placeholder="Enter your city" value="<?= htmlspecialchars($userCity ?? '') ?>"
+                              class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
+                          </div>
+                          <div class="flex flex-col gap-2">
+                            <label for="admin-address" class="text-sm font-medium leading-none">Address</label>
+                            <input id="admin-address" placeholder="Enter your address" value="<?= htmlspecialchars($userAddress ?? '') ?>"
                               class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
                           </div>
                         </div>
@@ -377,11 +393,16 @@ require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
                     </div>
                   </div>
 
-                  <!-- Save Button -->
-                  <div class="flex justify-end">
-                    <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-transparent h-10 py-2 bg-medical-600 hover:bg-medical-700 text-white px-6 pointer">
+                  <!-- Action Buttons -->
+                  <div class="flex justify-end gap-3">
+                    <button id="discard-profile-changes" type="button" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-input bg-transparent hover:bg-gray-50 text-gray-700 h-10 py-2 px-6 pointer">
+                      <i data-lucide="x" class="h-4 w-4 mr-2"></i>
+                      Discard Changes
+                    </button>
+                    <button id="save-profile-changes" type="button" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-transparent h-10 py-2 bg-medical-600 hover:bg-medical-700 text-white px-6 pointer">
                       <i data-lucide="save" class="h-4 w-4 mr-2"></i>
-                      Save Changes
+                      <span id="save-profile-text">Save Changes</span>
+                      <div id="save-profile-loading" class="hidden animate-spin rounded-full h-4 w-4 border-b-2 border-white ml-2"></div>
                     </button>
                   </div>
 
@@ -448,7 +469,7 @@ require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
                             <th class="h-12 px-4 text-left font-medium text-muted-foreground min-w-50">Email</th>
                             <th class="h-12 px-4 text-left font-medium text-muted-foreground">Role</th>
                             <th class="h-12 px-4 text-left font-medium text-muted-foreground hidden sm:table-cell">Hospital</th>
-                            <th class="h-12 px-4 text-left font-medium text-muted-foreground hidden lg:table-cell">Specialty</th>
+                            <th class="h-12 px-4 text-left font-medium text-muted-foreground hidden lg:table-cell">Details</th>
                             <th class="h-12 px-4 text-left font-medium text-muted-foreground">Status</th>
                             <th class="h-12 px-4 text-right font-medium text-muted-foreground min-w-25">Actions</th>
                           </tr>

@@ -1,4 +1,4 @@
-import { showToast } from "../../common/toast.js";
+import { showSuccessToast, showErrorToast } from "../../common/toast.js";
 
 class HospitalManagement {
   constructor() {
@@ -27,7 +27,7 @@ class HospitalManagement {
       this.updateHospitalCount();
     } catch (error) {
       console.error("Error loading hospitals:", error);
-      showToast("Failed to load hospitals", "error");
+      showErrorToast("Error", "Failed to load hospitals");
     }
   }
 
@@ -191,7 +191,7 @@ class HospitalManagement {
       const result = await response.json();
 
       if (result.success) {
-        showToast(result.message, "success");
+        showSuccessToast("Success", result.message);
         this.closeHospitalModal();
         await this.loadHospitals();
       } else {
@@ -199,7 +199,7 @@ class HospitalManagement {
       }
     } catch (error) {
       console.error("Error submitting hospital:", error);
-      showToast(error.message, "error");
+      showErrorToast("Error", error.message);
     } finally {
       // Reset loading state
       submitBtn.disabled = false;
@@ -232,14 +232,14 @@ class HospitalManagement {
       const result = await response.json();
 
       if (result.success) {
-        showToast(result.message, "success");
+        showSuccessToast("Success", result.message);
         await this.loadHospitals();
       } else {
         throw new Error(result.message || "Failed to delete hospital");
       }
     } catch (error) {
       console.error("Error deleting hospital:", error);
-      showToast(error.message, "error");
+      showErrorToast("Error", error.message);
     }
   }
 

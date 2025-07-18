@@ -1,5 +1,5 @@
 import { generateInitials, validateEmail } from "../../utils/userUtils.js";
-import { showToast } from "../../common/toast.js";
+import { showSuccessToast, showErrorToast } from "../../common/toast.js";
 import { PasswordStrengthValidator } from "../../common/passwordStrength.js";
 
 class UserManagement {
@@ -31,7 +31,7 @@ class UserManagement {
       ]);
     } catch (error) {
       console.error("Failed to load initial data:", error);
-      showToast("Error", "Failed to load data", "error");
+      showErrorToast("Error", "Failed to load data");
     }
   }
 
@@ -50,7 +50,7 @@ class UserManagement {
       }
     } catch (error) {
       console.error("Error loading users:", error);
-      showToast("Error", "Failed to load users", "error");
+      showErrorToast("Error", "Failed to load users");
     }
   }
 
@@ -471,7 +471,7 @@ class UserManagement {
       const result = await response.json();
 
       if (result.success) {
-        showToast("Success", result.message, "success");
+        showSuccessToast("Success", result.message);
         this.closeUserModal();
         await this.loadUsers();
       } else {
@@ -479,7 +479,7 @@ class UserManagement {
       }
     } catch (error) {
       console.error("Error submitting user:", error);
-      showToast("Error", error.message, "error");
+      showErrorToast("Error", error.message);
     } finally {
       // Reset loading state
       submitBtn.disabled = false;
@@ -509,14 +509,14 @@ class UserManagement {
       const result = await response.json();
 
       if (result.success) {
-        showToast("Success", result.message, "success");
+        showSuccessToast("Success", result.message);
         await this.loadUsers();
       } else {
         throw new Error(result.message || "Failed to delete user");
       }
     } catch (error) {
       console.error("Error deleting user:", error);
-      showToast("Error", error.message, "error");
+      showErrorToast("Error", error.message);
     }
   }
 
@@ -576,6 +576,8 @@ class UserManagement {
     const primaryRole = user.roles[0] || "Unknown";
     const roleColor = roleColors[primaryRole] || "bg-gray-100 text-gray-800";
 
+    const details = user.specialty || user.ambulance_team_name || "-";
+
     return `
       <tr class="border-b border-solid border-card-soft hover:bg-gray-50">
         <td class="p-4 font-medium">${fullName}</td>
@@ -588,9 +590,7 @@ class UserManagement {
         <td class="p-4 hidden sm:table-cell text-sm">${
           user.hospital_name || "-"
         }</td>
-        <td class="p-4 hidden lg:table-cell text-sm">${
-          user.specialty || user.ambulance_team_name || "-"
-        }</td>
+        <td class="p-4 hidden lg:table-cell text-sm">${details}</td>
         <td class="p-4">
           <div class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold bg-primary hover:bg-medical-400 text-white">
             active
