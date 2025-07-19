@@ -6,6 +6,9 @@ $requiredRole = 'staff';
 // 5. Protect the dashboard: redirect if user role does not match
 require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
 
+// 6. Include avatar helper
+require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -65,10 +68,8 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                 <!-- User dropdown (visible if logged in) -->
                 <div class="hidden md:flex items-center gap-3 md:mr-4">
                     <div class="dropdown relative">
-                        <button class="flex items-center gap-2 md:py-2 px-2 border-none bg-transparent hover:bg-medical-50 transition-colors transition-200 pointer rounded-lg">
-                            <div class="w-8 h-8 rounded-full bg-medical-100 flex items-center justify-center text-medical-700 text-sm lg:text-base font-medium">
-                                <?= strtoupper(substr($userName, 0, 2)) ?>
-                            </div>
+                        <button class="flex items-center gap-2 md:py-2 px-2 border-none bg-transparent hover:bg-medical-50 transition-colors transition-200 cursor-pointer rounded-lg">
+                            <?= generateAvatar($userProfileImage, $userName, 'w-8 h-8', 'text-sm lg:text-base') ?>
                             <span class="hidden lg:block text-sm lg:text-base font-medium slate-700 max-w-24 truncate">
                                 <?= htmlspecialchars($userName) ?>
                             </span>
@@ -98,7 +99,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                 </a>
 
                 <!-- Mobile menu toggle button -->
-                <button id="menu-button" class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none pointer">
+                <button id="menu-button" class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none cursor-pointer">
                     <i data-lucide="menu" class="w-4 h-4"></i>
                 </button>
             </div>
@@ -152,25 +153,25 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
 
                     <!-- Tab Navigation -->
                     <div
-                        class="mb-2 grid h-10 w-full grid-cols-3 items-center justify-center rounded-md bg-gray-150 p-1 text-muted-foreground pointer">
+                        class="mb-2 grid h-10 w-full grid-cols-3 items-center justify-center rounded-md bg-gray-150 p-1 text-muted-foreground cursor-pointer">
                         <button
                             type="button"
                             data-target="Manage-Appointments"
-                            class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-white px-3 py-1.5 text-sm font-medium pointer">
+                            class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-white px-3 py-1.5 text-sm font-medium cursor-pointer">
                             Manage Appointments
                         </button>
 
                         <button
                             type="button"
                             data-target="Available-Doctors"
-                            class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-gray-150 px-3 py-1.5 text-sm font-medium pointer">
+                            class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-gray-150 px-3 py-1.5 text-sm font-medium cursor-pointer">
                             Available Doctors
                         </button>
 
                         <button
                             type="button"
                             data-target="Daily-Schedule"
-                            class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-gray-150 px-3 py-1.5 text-sm font-medium pointer">
+                            class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-gray-150 px-3 py-1.5 text-sm font-medium cursor-pointer">
                             Daily Schedule
                         </button>
                     </div>
@@ -231,7 +232,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                             <div class="mb-4 flex items-center justify-between">
                                 <h3 class="text-xl font-bold">Appointment Management</h3>
                                 <button
-                                    class="pointer inline-flex h-10 items-center justify-center gap-2 rounded-md border border-input border-solid bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-medical-400 transition-colors">
+                                    class="cursor-pointer inline-flex h-10 items-center justify-center gap-2 rounded-md border border-input border-solid bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-medical-400 transition-colors">
                                     <i data-lucide="plus" class="mr-2 h-4 w-4"></i>
                                     Create Appointment
                                 </button>
@@ -260,11 +261,11 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                                     </div>
                                     <div class="flex gap-2">
                                         <button
-                                            class="pointer inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium hover:bg-accent hover:text-primary">
+                                            class="cursor-pointer inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium hover:bg-accent hover:text-primary">
                                             <i data-lucide="square-pen" class="h-4 w-4"></i>
                                         </button>
                                         <button
-                                            class="pointer inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium text-red-600 hover:bg-accent hover:text-red-800">
+                                            class="cursor-pointer inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium text-red-600 hover:bg-accent hover:text-red-800">
                                             <i data-lucide="x" class="h-4 w-4"></i>
                                         </button>
                                     </div>
@@ -290,11 +291,11 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                                     </div>
                                     <div class="flex gap-2">
                                         <button
-                                            class="pointer inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium hover:bg-accent hover:text-primary">
+                                            class="cursor-pointer inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium hover:bg-accent hover:text-primary">
                                             <i data-lucide="square-pen" class="h-4 w-4"></i>
                                         </button>
                                         <button
-                                            class="pointer inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium text-red-600 hover:bg-accent hover:text-red-800">
+                                            class="cursor-pointer inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium text-red-600 hover:bg-accent hover:text-red-800">
                                             <i data-lucide="x" class="h-4 w-4"></i>
                                         </button>
                                     </div>
@@ -320,11 +321,11 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                                     </div>
                                     <div class="flex gap-2">
                                         <button
-                                            class="pointer inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium hover:bg-accent hover:text-primary">
+                                            class="cursor-pointer inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium hover:bg-accent hover:text-primary">
                                             <i data-lucide="square-pen" class="h-4 w-4"></i>
                                         </button>
                                         <button
-                                            class="pointer inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium text-red-600 hover:bg-accent hover:text-red-800">
+                                            class="cursor-pointer inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium text-red-600 hover:bg-accent hover:text-red-800">
                                             <i data-lucide="x" class="h-4 w-4"></i>
                                         </button>
                                     </div>
@@ -350,16 +351,16 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                                     </div>
                                     <div class="flex gap-2">
                                         <button
-                                            class="pointer inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium hover:bg-accent hover:text-primary">
+                                            class="cursor-pointer inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium hover:bg-accent hover:text-primary">
                                             <i data-lucide="square-pen" class="h-4 w-4"></i>
                                         </button>
                                         <button
-                                            class="pointer inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium hover:bg-accent hover:text-medical-500">
+                                            class="cursor-pointer inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium hover:bg-accent hover:text-medical-500">
                                             <i data-lucide="user" class="mr-1 h-4 w-4"></i>
                                             Assign
                                         </button>
                                         <button
-                                            class="pointer inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium text-red-600 hover:bg-accent hover:text-red-800">
+                                            class="cursor-pointer inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium text-red-600 hover:bg-accent hover:text-red-800">
                                             <i data-lucide="x" class="h-4 w-4"></i>
                                         </button>
                                     </div>
@@ -389,7 +390,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                                 </div>
                             </div>
                             <button
-                                class="pointer mt-2 inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium text-black hover:bg-accent hover:text-medical-500">
+                                class="cursor-pointer mt-2 inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium text-black hover:bg-accent hover:text-medical-500">
                                 View Schedule
                             </button>
                         </div>
@@ -419,7 +420,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                                 </div>
                             </div>
                             <button
-                                class="pointer mt-2 inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium text-black hover:bg-accent hover:text-medical-500">
+                                class="cursor-pointer mt-2 inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium text-black hover:bg-accent hover:text-medical-500">
                                 View Schedule
                             </button>
                         </div>
@@ -436,7 +437,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                                 </div>
                             </div>
                             <button
-                                class="pointer mt-2 inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium text-black hover:bg-accent hover:text-medical-500">
+                                class="cursor-pointer mt-2 inline-flex h-9 items-center justify-center gap-2 rounded-md border border-input border-solid bg-background px-3 text-sm font-medium text-black hover:bg-accent hover:text-medical-500">
                                 View Schedule
                             </button>
                         </div>

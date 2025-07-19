@@ -16,7 +16,7 @@ function generateAvatar($profileImage, $fullName, $size = 'w-8 h-8', $textSize =
     } else {
         // Use initials
         $initials = generateInitials($fullName);
-        return '<div class="' . $size . ' rounded-full bg-medical-100 flex items-center justify-center text-medical-700 ' . $textSize . ' font-medium">' . $initials . '</div>';
+        return "<div class=\"{$size} rounded-full bg-medical-100 flex items-center justify-center text-medical-700 {$textSize} font-medium\">{$initials}</div>";
     }
 }
 
@@ -44,6 +44,43 @@ function generateInitials($fullName) {
     }
     
     return $initials ?: '?';
+}
+
+/**
+ * Fetch user profile data (city and address)
+ * 
+ * @param int $userId - User ID to fetch data for
+ * @param mysqli $conn - Database connection
+ * @return array - Array with 'city' and 'address' keys
+ */
+function getUserProfileData($userId, $conn) {
+    $profileData = [
+        'city' => '',
+        'address' => ''
+    ];
+    
+    if (!$userId || !$conn) {
+        return $profileData;
+    }
+    
+    try {
+        $stmt = $conn->prepare("SELECT city, address_line FROM users WHERE user_id = ?");
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        if ($user = $result->fetch_assoc()) {
+            $profileData['city'] = $user['city'] ?? '';
+            $profileData['address'] = trim($user['address_line'] ?? '');
+        }
+        
+        $stmt->close();
+    } catch (Exception $e) {
+        // Log error if needed, but return empty data gracefully
+        error_log("Error fetching user profile data: " . $e->getMessage());
+    }
+    
+    return $profileData;
 }
 
 ?> 

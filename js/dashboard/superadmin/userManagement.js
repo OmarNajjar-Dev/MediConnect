@@ -314,11 +314,9 @@ class UserManagement {
     this.handleRoleChange(user.roles[0] || "");
 
     // Set conditional field values
-    if (user.hospital_name) {
+    if (user.name) {
       const hospitalSelect = document.getElementById("user-hospital");
-      const hospital = this.hospitals.find(
-        (h) => h.name === user.hospital_name
-      );
+      const hospital = this.hospitals.find((h) => h.name === user.name);
       if (hospital) {
         hospitalSelect.value = hospital.hospital_id;
       }
@@ -587,9 +585,7 @@ class UserManagement {
             ${primaryRole}
           </div>
         </td>
-        <td class="p-4 hidden sm:table-cell text-sm">${
-          user.hospital_name || "-"
-        }</td>
+        <td class="p-4 hidden sm:table-cell text-sm">${user.name || "-"}</td>
         <td class="p-4 hidden lg:table-cell text-sm">${details}</td>
         <td class="p-4">
           <div class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold bg-primary hover:bg-medical-400 text-white">
@@ -601,11 +597,11 @@ class UserManagement {
             <button onclick="userManagement.openUserModal(${JSON.stringify(
               user
             ).replace(/"/g, "&quot;")})" 
-                    class="rounded-md h-8 w-8 p-0 hover:bg-accent pointer bg-transparent border-none hover:text-medical-500">
+                    class="rounded-md h-8 w-8 p-0 hover:bg-accent cursor-pointer bg-transparent border-none hover:text-medical-500">
               <i data-lucide="square-pen" class="h-4 w-4"></i>
             </button>
             <button onclick="userManagement.deleteUser(${user.user_id})" 
-                    class="rounded-md h-8 w-8 p-0 text-red-600 hover:text-red-800 hover:bg-red-50 pointer bg-transparent border-none">
+                    class="rounded-md h-8 w-8 p-0 text-red-600 hover:text-red-800 hover:bg-red-50 cursor-pointer bg-transparent border-none">
               <i data-lucide="trash2" class="h-4 w-4"></i>
             </button>
           </div>

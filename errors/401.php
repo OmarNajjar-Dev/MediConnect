@@ -6,6 +6,9 @@ require_once __DIR__ . "/../backend/config/path.php";
 // 2. Load user session context (sets $isLoggedIn, $userName, $userEmail)
 require_once __DIR__ . "/../backend/middleware/session-context.php";
 
+// 3. Include avatar helper
+require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -78,7 +81,7 @@ require_once __DIR__ . "/../backend/middleware/session-context.php";
                 </a>
 
                 <!-- Mobile menu toggle button -->
-                <button id="menu-button" class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none pointer">
+                <button id="menu-button" class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none cursor-pointer">
                     <i data-lucide="menu" class="w-4 h-4"></i>
                 </button>
             </div>

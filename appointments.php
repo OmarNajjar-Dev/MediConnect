@@ -9,6 +9,9 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
 // 3. Require user to be logged in
 require_once __DIR__ . "/backend/middleware/require-user.php";
 
+// 4. Include avatar helper
+require_once __DIR__ . "/backend/helpers/avatar-helper.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -69,10 +72,8 @@ require_once __DIR__ . "/backend/middleware/require-user.php";
                 <!-- User dropdown (visible if logged in) -->
                 <div class="hidden md:flex items-center gap-3 md:mr-4">
                     <div class="dropdown relative">
-                        <button class="flex items-center gap-2 md:py-2 px-2 border-none bg-transparent hover:bg-medical-50 transition-colors transition-200 pointer rounded-lg">
-                            <div class="w-8 h-8 rounded-full bg-medical-100 flex items-center justify-center text-medical-700 text-sm lg:text-base font-medium">
-                                <?= strtoupper(substr($userName, 0, 2)) ?>
-                            </div>
+                        <button class="flex items-center gap-2 md:py-2 px-2 border-none bg-transparent hover:bg-medical-50 transition-colors transition-200 cursor-pointer rounded-lg">
+                            <?= generateAvatar($userProfileImage, $userName, 'w-8 h-8', 'text-sm lg:text-base') ?>
                             <span class="hidden lg:block text-sm lg:text-base font-medium slate-700 max-w-24 truncate">
                                 <?= htmlspecialchars($userName) ?>
                             </span>
@@ -102,7 +103,7 @@ require_once __DIR__ . "/backend/middleware/require-user.php";
                 </a>
 
                 <!-- Mobile menu toggle button -->
-                <button id="menu-button" class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none pointer">
+                <button id="menu-button" class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none cursor-pointer">
                     <i data-lucide="menu" class="w-4 h-4"></i>
                 </button>
             </div>
@@ -122,9 +123,9 @@ require_once __DIR__ . "/backend/middleware/require-user.php";
                         <a href="<?= $paths['auth']['logout'] ?>" class="inline-flex items-center gap-2 justify-start text-red-600 hover:bg-red-50 hover:text-red-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
                             <i data-lucide="log-out" class="w-4 h-4"></i> Sign Out
                         </a>
+                    </div>
+                </nav>
             </div>
-            </nav>
-        </div>
 
         </div>
     </header>
@@ -146,7 +147,7 @@ require_once __DIR__ . "/backend/middleware/require-user.php";
                             <label class="text-sm font-medium leading-none">Specialty</label>
                             <button id="speciality-button" type="button" role="combobox" aria-controls="subject-options"
                                 aria-expanded="false"
-                                class="bg-white flex items-center justify-between pointer h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
+                                class="bg-white flex items-center justify-between cursor-pointer h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
                                 <span id="selected-speciality" class="selected-value">Select a speciality</span>
                                 <i data-lucide="chevron-down" class="h-4 w-4 opacity-50"></i>
                             </button>
@@ -154,32 +155,32 @@ require_once __DIR__ . "/backend/middleware/require-user.php";
                                 class="hidden p-1.5 mt-7.5 bg-background border border-solid border-input shadow-xl rounded-md">
                                 <li>
                                     <button type="button"
-                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md"><span>Cardiology</span>
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md"><span>Cardiology</span>
                                         <i data-lucide="check" class="w-4 h-4 text-medical-700 hidden"></i></button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md"><span>Dermatology</span>
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md"><span>Dermatology</span>
                                         <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i></button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md"><span>Neurology</span>
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md"><span>Neurology</span>
                                         <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i></button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md"><span>Orthopedics</span>
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md"><span>Orthopedics</span>
                                         <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i></button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md"><span>Pediatrics</span>
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md"><span>Pediatrics</span>
                                         <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i></button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md"><span>General
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md"><span>General
                                             Medicine</span> <i data-lucide="check"
                                             class="w-4 h-4 text-gray-700 hidden"></i></button>
                                 </li>
@@ -194,7 +195,7 @@ require_once __DIR__ . "/backend/middleware/require-user.php";
                         <div class="flex flex-col gap-3">
                             <label class="text-sm font-medium leading-none">Doctor</label>
                             <button type="button" role="combobox"
-                                class="bg-white flex items-center justify-between h-10 pointer w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
+                                class="bg-white flex items-center justify-between h-10 cursor-pointer w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
                                 <span class="selected-value">Select a doctor</span>
                                 <i data-lucide="chevron-down" class="h-4 w-4 opacity-50"></i>
                             </button>
@@ -202,31 +203,31 @@ require_once __DIR__ . "/backend/middleware/require-user.php";
                                 class="hidden p-1.5 mt-7.5 bg-background border border-solid border-input rounded-md shadow-xl">
                                 <li>
                                     <button type="button"
-                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md"><span>Dr.
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md"><span>Dr.
                                             Sarah Johnson - Cardiology</span><i data-lucide="check"
                                             class="w-4 h-4 text-gray-700 hidden"></i></button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md"><span>Dr.
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md"><span>Dr.
                                             Michael Chen - Dermatology</span><i data-lucide="check"
                                             class="w-4 h-4 text-gray-700 hidden"></i></button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md"><span>Dr.
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md"><span>Dr.
                                             Emily Patel - Neurology</span><i data-lucide="check"
                                             class="w-4 h-4 text-gray-700 hidden"></i></button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md"><span>Dr.
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md"><span>Dr.
                                             Robert Miller - Orthopedics</span><i data-lucide="check"
                                             class="w-4 h-4 text-gray-700 hidden"></i></button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md"><span>Dr.
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md"><span>Dr.
                                             Jessica Williams - Pediatrics</span><i data-lucide="check"
                                             class="w-4 h-4 text-gray-700 hidden"></i></button>
                                 </li>
@@ -241,7 +242,7 @@ require_once __DIR__ . "/backend/middleware/require-user.php";
                             <label for="appointment-date" class="text-sm font-medium leading-none">Appointment
                                 Date</label>
                             <button id="appointment-date" type="button" role="combobox"
-                                class="inline-flex items-center text-gray-500 pointer justify-center gap-2 whitespace-nowrap rounded-md text-sm transition-colors border border-solid border-input bg-background h-10 px-4 py-2 w-full pl-3 text-left font-normal hover:bg-medical-50 hover:text-medical-500">
+                                class="inline-flex items-center text-gray-500 cursor-pointer justify-center gap-2 whitespace-nowrap rounded-md text-sm transition-colors border border-solid border-input bg-background h-10 px-4 py-2 w-full pl-3 text-left font-normal hover:bg-medical-50 hover:text-medical-500">
                                 <span id="selected-date" class="selected-value">Pick a date</span>
 
                                 <i data-lucide="calendar" class="ml-auto w-4 opacity-50"></i>
@@ -315,7 +316,7 @@ require_once __DIR__ . "/backend/middleware/require-user.php";
                         <div class="flex flex-col gap-3 relative" id="time-slot-container">
                             <label class="text-sm font-medium leading-none">Time Slot</label>
                             <button type="button" role="combobox" id="time-slot-button"
-                                class="dropdown-trigger bg-white flex items-center justify-between pointer h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
+                                class="dropdown-trigger bg-white flex items-center justify-between cursor-pointer h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
                                 <span class="selected-value">Select a time</span>
                                 <i data-lucide="chevron-down" class="h-4 w-4 opacity-50"></i>
                             </button>
@@ -323,72 +324,72 @@ require_once __DIR__ . "/backend/middleware/require-user.php";
                                 class="hidden p-1.5 mt-7.5 mb-1 bg-background scrollbar-none border border-solid max-h-72 border-input rounded-md shadow-xl">
                                 <li>
                                     <button type="button"
-                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md">9:00
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md">9:00
                                         AM</button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md">9:30
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md">9:30
                                         AM</button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md">10:00
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md">10:00
                                         AM</button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md">10:30
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md">10:30
                                         AM</button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md">11:00
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md">11:00
                                         AM</button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md">11:30
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md">11:30
                                         AM</button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md">1:00
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md">1:00
                                         PM</button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md">1:30
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md">1:30
                                         PM</button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md">2:00
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md">2:00
                                         PM</button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md">2:30
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md">2:30
                                         PM</button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md">3:00
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md">3:00
                                         PM</button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md">3:30
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md">3:30
                                         PM</button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md">4:00
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md">4:00
                                         PM</button>
                                 </li>
                                 <li>
                                     <button type="button"
-                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 pointer rounded-md">4:30
+                                        class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md">4:30
                                         PM</button>
                                 </li>
                             </ul>
@@ -422,7 +423,7 @@ require_once __DIR__ . "/backend/middleware/require-user.php";
 
                         <!-- Submit Button -->
                         <button type="submit"
-                            class="h-10 w-full px-4 py-2 border-none pointer text-sm font-medium text-white bg-primary hover:bg-medical-600 rounded-md transition-colors outline-none">
+                            class="h-10 w-full px-4 py-2 border-none cursor-pointer text-sm font-medium text-white bg-primary hover:bg-medical-600 rounded-md transition-colors outline-none">
                             Schedule Appointment
                         </button>
                     </form>

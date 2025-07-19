@@ -6,6 +6,9 @@ require_once __DIR__ . "/backend/config/path.php";
 // 2. Load user session context (sets $isLoggedIn, $userName, $userEmail)
 require_once __DIR__ . "/backend/middleware/session-context.php";
 
+// 3. Include avatar helper
+require_once __DIR__ . "/backend/helpers/avatar-helper.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -67,10 +70,8 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
           <!-- User dropdown (visible if logged in) -->
           <div class="hidden md:flex items-center gap-3 mr-4">
             <div class="dropdown relative">
-              <button class="flex items-center gap-2 md:py-2 px-2 border-none bg-transparent hover:bg-medical-50 transition-colors transition-200 pointer rounded-lg">
-                <div class="w-8 h-8 rounded-full bg-medical-100 flex items-center justify-center text-medical-700 text-sm lg:text-base font-medium">
-                  <?= strtoupper(substr($userName, 0, 2)) ?>
-                </div>
+              <button class="flex items-center gap-2 md:py-2 px-2 border-none bg-transparent hover:bg-medical-50 transition-colors transition-200 cursor-pointer rounded-lg">
+                <?= generateAvatar($userProfileImage, $userName, 'w-8 h-8', 'text-sm lg:text-base') ?>
                 <span class="hidden lg:block text-sm lg:text-base font-medium slate-700 max-w-24 truncate">
                   <?= htmlspecialchars($userName) ?>
                 </span>
@@ -114,7 +115,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
         <?php endif; ?>
 
         <!-- Mobile menu toggle button -->
-        <button id="menu-button" class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none pointer">
+        <button id="menu-button" class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none cursor-pointer">
           <i data-lucide="menu" class="w-4 h-4"></i>
         </button>
       </div>
@@ -194,7 +195,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
 
                     <!-- Button that toggles dropdown -->
                     <button id="dropdown-button" type="button" role="combobox"
-                      class="flex h-10 w-full items-center justify-between pointer rounded-sm border border-solid border-input bg-background px-3 py-2 text-base text-left focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white md:text-sm">
+                      class="flex h-10 w-full items-center justify-between cursor-pointer rounded-sm border border-solid border-input bg-background px-3 py-2 text-base text-left focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white md:text-sm">
                       <span>Select a subject</span>
                       <i data-lucide="chevron-down" class="w-4 h-4 opacity-50"></i>
                     </button>
@@ -251,7 +252,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
                       class="resize-y scrollbar-none flex w-full rounded-sm border border-solid border-input bg-background px-3 py-2 text-sm focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white"></textarea>
                   </div>
                   <button type="submit" id="contact-submit-btn"
-                    class="w-full inline-flex border border-solid border-input items-center text-white outline-none justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors h-10 px-4 py-2 bg-medical-400 hover:bg-primary pointer">
+                    class="w-full inline-flex border border-solid border-input items-center text-white outline-none justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors h-10 px-4 py-2 bg-medical-400 hover:bg-primary cursor-pointer">
                     Send Message
                   </button>
                 </div>

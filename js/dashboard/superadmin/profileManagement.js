@@ -72,6 +72,58 @@ class ProfileManager {
         this.handleDiscardChanges.bind(this)
       );
     }
+
+    // Monitor form changes to show/hide discard button
+    this.setupChangeMonitoring();
+  }
+
+  setupChangeMonitoring() {
+    const inputs = [
+      document.getElementById("admin-name"),
+      document.getElementById("admin-city"),
+      document.getElementById("admin-address"),
+      document.getElementById("current-password"),
+      document.getElementById("new-password"),
+      document.getElementById("confirm-password"),
+    ];
+
+    inputs.forEach((input) => {
+      if (input) {
+        input.addEventListener("input", this.checkForChanges.bind(this));
+        input.addEventListener("change", this.checkForChanges.bind(this));
+      }
+    });
+  }
+
+  checkForChanges() {
+    const nameInput = document.getElementById("admin-name");
+    const cityInput = document.getElementById("admin-city");
+    const addressInput = document.getElementById("admin-address");
+    const currentPasswordInput = document.getElementById("current-password");
+    const newPasswordInput = document.getElementById("new-password");
+    const confirmPasswordInput = document.getElementById("confirm-password");
+    const discardButton = document.getElementById("discard-profile-changes");
+
+    if (!discardButton) return;
+
+    // Check if any field has changed from its original value
+    const hasFieldChanges =
+      (nameInput && nameInput.value !== this.originalData.name) ||
+      (cityInput && cityInput.value !== this.originalData.city) ||
+      (addressInput && addressInput.value !== this.originalData.address) ||
+      (currentPasswordInput && currentPasswordInput.value !== "") ||
+      (newPasswordInput && newPasswordInput.value !== "") ||
+      (confirmPasswordInput && confirmPasswordInput.value !== "");
+
+    // Check if profile image has been changed
+    const hasImageChanges = this.currentImageFile !== null;
+
+    // Show or hide discard button based on whether there are changes
+    if (hasFieldChanges || hasImageChanges) {
+      discardButton.classList.remove("hidden");
+    } else {
+      discardButton.classList.add("hidden");
+    }
   }
 
   handleImageSelection(event) {
@@ -102,6 +154,8 @@ class ProfileManager {
     const reader = new FileReader();
     reader.onload = (e) => {
       this.updateAvatarPreview(e.target.result);
+      // Check for changes after image selection
+      this.checkForChanges();
     };
     reader.readAsDataURL(file);
   }
@@ -121,6 +175,8 @@ class ProfileManager {
       profileUpload.value = "";
     }
     this.currentImageFile = null;
+    // Check for changes after resetting file input
+    this.checkForChanges();
   }
 
   async handleSaveChanges() {
@@ -181,6 +237,7 @@ class ProfileManager {
         this.updateHeaderAvatar(result.imageUrl);
         this.currentImageFile = null;
         this.resetFileInput();
+        // Note: resetFileInput() already calls checkForChanges()
         return true;
       } else {
         showErrorToast(
@@ -291,6 +348,9 @@ class ProfileManager {
         // Update header name if changed
         this.updateHeaderName(profileData.name);
 
+        // Hide discard button after successful save
+        this.checkForChanges();
+
         // Show success message
         const hasPasswordUpdate =
           profileData.currentPassword && profileData.newPassword;
@@ -357,6 +417,9 @@ class ProfileManager {
 
     // Clear file input and stored file
     this.resetFileInput();
+
+    // Hide the discard button after changes are discarded
+    this.checkForChanges();
 
     showSuccessToast(
       "Changes Discarded",

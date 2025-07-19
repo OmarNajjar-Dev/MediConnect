@@ -6,6 +6,9 @@ require_once __DIR__ . "/backend/config/path.php";
 // 2. Load user session context (sets $isLoggedIn, $userName, $userEmail)
 require_once __DIR__ . "/backend/middleware/session-context.php";
 
+// 3. Include avatar helper
+require_once __DIR__ . "/backend/helpers/avatar-helper.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -64,10 +67,8 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
                     <!-- User dropdown (visible if logged in) -->
                     <div class="hidden md:flex items-center gap-3 mr-4">
                         <div class="dropdown relative">
-                            <button class="flex items-center gap-2 md:py-2 px-2 border-none bg-transparent hover:bg-medical-50 transition-colors transition-200 pointer rounded-lg">
-                                <div class="w-8 h-8 rounded-full bg-medical-100 flex items-center justify-center text-medical-700 text-sm lg:text-base font-medium">
-                                    <?= strtoupper(substr($userName, 0, 2)) ?>
-                                </div>
+                            <button class="flex items-center gap-2 md:py-2 px-2 border-none bg-transparent hover:bg-medical-50 transition-colors transition-200 cursor-pointer rounded-lg">
+                                <?= generateAvatar($userProfileImage, $userName, 'w-8 h-8', 'text-sm lg:text-base') ?>
                                 <span class="hidden lg:block text-sm lg:text-base font-medium slate-700 max-w-24 truncate">
                                     <?= htmlspecialchars($userName) ?>
                                 </span>
@@ -111,7 +112,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
                 <?php endif; ?>
 
                 <!-- Mobile menu toggle button -->
-                <button id="menu-button" class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none pointer">
+                <button id="menu-button" class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none cursor-pointer">
                     <i data-lucide="menu" class="w-4 h-4"></i>
                 </button>
             </div>
@@ -165,7 +166,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
                     <div>
                         <div class="border-b border-solid separator">
                             <button type="button"
-                                class="faq-question text-heading pointer border-none w-full flex items-center justify-between py-4 font-medium text-left">
+                                class="faq-question text-heading cursor-pointer border-none w-full flex items-center justify-between py-4 font-medium text-left">
                                 What is MediConnect?
                                 <i data-lucide="chevron-down" class="w-5 h-5 transition-transform faq-toggle-icon"></i>
                             </button>
@@ -178,7 +179,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
                         </div>
                         <div class="border-b border-solid separator">
                             <button type="button"
-                                class="faq-question text-heading pointer border-none w-full flex items-center justify-between py-4 font-medium text-left">
+                                class="faq-question text-heading cursor-pointer border-none w-full flex items-center justify-between py-4 font-medium text-left">
                                 Is MediConnect free to use?
                                 <i data-lucide="chevron-down" class="w-5 h-5 transition-transform faq-toggle-icon"></i>
                             </button>
@@ -191,7 +192,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
                         </div>
                         <div class="border-b border-solid separator">
                             <button type="button"
-                                class="faq-question text-heading pointer border-none w-full flex items-center justify-between py-4 font-medium text-left">
+                                class="faq-question text-heading cursor-pointer border-none w-full flex items-center justify-between py-4 font-medium text-left">
                                 Do I need to create an account to use MediConnect?
                                 <i data-lucide="chevron-down" class="w-5 h-5 transition-transform faq-toggle-icon"></i>
                             </button>
@@ -212,7 +213,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
                     <div>
                         <div class="border-b border-solid separator">
                             <button type="button"
-                                class="faq-question text-heading pointer border-none w-full flex items-center justify-between py-4 font-medium text-left">
+                                class="faq-question text-heading cursor-pointer border-none w-full flex items-center justify-between py-4 font-medium text-left">
                                 How do I book an appointment with a doctor?
                                 <i data-lucide="chevron-down" class="w-5 h-5 transition-transform faq-toggle-icon"></i>
                             </button>
@@ -224,7 +225,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
                         </div>
                         <div class="border-b border-solid separator">
                             <button type="button"
-                                class="faq-question text-heading pointer border-none w-full flex items-center justify-between py-4 font-medium text-left">
+                                class="faq-question text-heading cursor-pointer border-none w-full flex items-center justify-between py-4 font-medium text-left">
                                 Can I reschedule or cancel my appointment?
                                 <i data-lucide="chevron-down" class="w-5 h-5 transition-transform faq-toggle-icon"></i>
                             </button>
@@ -237,7 +238,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
                         </div>
                         <div class="border-b border-solid separator">
                             <button type="button"
-                                class="faq-question text-heading pointer border-none w-full flex items-center justify-between py-4 font-medium text-left">
+                                class="faq-question text-heading cursor-pointer border-none w-full flex items-center justify-between py-4 font-medium text-left">
                                 Will I receive a reminder before my appointment?
                                 <i data-lucide="chevron-down" class="w-5 h-5 transition-transform faq-toggle-icon"></i>
                             </button>
@@ -258,7 +259,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
                     <div>
                         <div class="border-b border-solid separator">
                             <button type="button"
-                                class="faq-question text-heading pointer border-none w-full flex items-center justify-between py-4 font-medium text-left">
+                                class="faq-question text-heading cursor-pointer border-none w-full flex items-center justify-between py-4 font-medium text-left">
                                 How do I access my medical reports?
                                 <i data-lucide="chevron-down" class="w-5 h-5 transition-transform faq-toggle-icon"></i>
                             </button>
@@ -271,7 +272,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
                         </div>
                         <div class="border-b border-solid separator">
                             <button type="button"
-                                class="faq-question text-heading pointer border-none w-full flex items-center justify-between py-4 font-medium text-left">
+                                class="faq-question text-heading cursor-pointer border-none w-full flex items-center justify-between py-4 font-medium text-left">
                                 Are my medical reports secure?
                                 <i data-lucide="chevron-down" class="w-5 h-5 transition-transform faq-toggle-icon"></i>
                             </button>
@@ -283,7 +284,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
                         </div>
                         <div class="border-b border-solid separator">
                             <button type="button"
-                                class="faq-question text-heading pointer border-none w-full flex items-center justify-between py-4 font-medium text-left">
+                                class="faq-question text-heading cursor-pointer border-none w-full flex items-center justify-between py-4 font-medium text-left">
                                 Can I share my medical reports with other doctors?
                                 <i data-lucide="chevron-down" class="w-5 h-5 transition-transform faq-toggle-icon"></i>
                             </button>
@@ -305,7 +306,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
                     <div>
                         <div class="border-b border-solid separator">
                             <button type="button"
-                                class="faq-question text-heading pointer border-none w-full flex items-center justify-between py-4 font-medium text-left">
+                                class="faq-question text-heading cursor-pointer border-none w-full flex items-center justify-between py-4 font-medium text-left">
                                 How do I leave a review for a doctor or hospital?
                                 <i data-lucide="chevron-down" class="w-5 h-5 transition-transform faq-toggle-icon"></i>
                             </button>
@@ -318,7 +319,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
                         </div>
                         <div class="border-b border-solid separator">
                             <button type="button"
-                                class="faq-question text-heading pointer border-none w-full flex items-center justify-between py-4 font-medium text-left">
+                                class="faq-question text-heading cursor-pointer border-none w-full flex items-center justify-between py-4 font-medium text-left">
                                 Are all reviews verified?
                                 <i data-lucide="chevron-down" class="w-5 h-5 transition-transform faq-toggle-icon"></i>
                             </button>
@@ -330,7 +331,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
                         </div>
                         <div class="border-b border-solid separator">
                             <button type="button"
-                                class="faq-question text-heading pointer border-none w-full flex items-center justify-between py-4 font-medium text-left">
+                                class="faq-question text-heading cursor-pointer border-none w-full flex items-center justify-between py-4 font-medium text-left">
                                 Can healthcare providers respond to reviews?
                                 <i data-lucide="chevron-down" class="w-5 h-5 transition-transform faq-toggle-icon"></i>
                             </button>

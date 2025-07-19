@@ -27,7 +27,7 @@ function renderHospitalOptions(hospitals) {
       <button type="button"
               data-dropdown-option
               data-value="${hospital.hospital_id}"
-              class="w-full flex items-center justify-between px-4 py-1.5 text-sm border-none bg-white text-gray-700 hover:bg-neutral-100 pointer">
+              class="w-full flex items-center justify-between px-4 py-1.5 text-sm border-none bg-white text-gray-700 hover:bg-neutral-100 cursor-pointer">
         <span>${hospital.name}</span>
         <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i>
       </button>
