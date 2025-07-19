@@ -1,5 +1,0 @@
-Array
-(
-    [latitude] => 34.3834624
-    [longitude] => 35.8252544
-)

@@ -196,9 +196,9 @@ if (isset($_SESSION['user_id'])) {
 
                         <button
                             type="button"
-                            data-target="profile"
+                            data-target="my-profile"
                             class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-gray-150 px-3 py-1.5 text-sm font-medium cursor-pointer">
-                            Profile
+                            My Profile
                         </button>
                     </div>
 
@@ -463,7 +463,7 @@ if (isset($_SESSION['user_id'])) {
                     </div>
 
                     <!-- Profile Management Section -->
-                    <div data-section="profile" class="hidden mt-4 sm:mt-6">
+                    <div data-section="my-profile" class="hidden mt-4 sm:mt-6">
                         <div class="glass-card rounded-xl p-4 sm:p-6">
 
                             <!-- Header: Title and Edit Button -->

@@ -19,7 +19,7 @@ $userId = $_SESSION['user_id'];
 
 // Form Data
 $name = trim($_POST['name'] ?? '');
-$bio = trim($_POST['bio'] ?? '');
+$birthday = trim($_POST['birthday'] ?? '');
 
 // Validation
 if (empty($name)) {
@@ -40,7 +40,7 @@ try {
         throw new Exception('Database connection failed');
     }
     
-    // Check if user has doctor role
+    // Check if user has patient role
     $roleCheck = $conn->prepare("SELECT r.role_name FROM users u JOIN user_roles ur ON u.user_id = ur.user_id JOIN roles r ON ur.role_id = r.role_id WHERE u.user_id = ?");
     if (!$roleCheck) {
         throw new Exception('Failed to prepare role check statement');
@@ -50,17 +50,17 @@ try {
     $roleCheck->execute();
     $roleResult = $roleCheck->get_result();
     
-    $isDoctor = false;
+    $isPatient = false;
     while ($row = $roleResult->fetch_assoc()) {
-        if ($row['role_name'] === 'Doctor') {
-            $isDoctor = true;
+        if ($row['role_name'] === 'Patient') {
+            $isPatient = true;
             break;
         }
     }
     
-    if (!$isDoctor) {
+    if (!$isPatient) {
         http_response_code(403);
-        echo json_encode(['success' => false, 'message' => 'Unauthorized: Doctor role required']);
+        echo json_encode(['success' => false, 'message' => 'Unauthorized: Patient role required']);
         exit;
     }
     
@@ -72,12 +72,13 @@ try {
     $stmt->bind_param("ssi", $firstName, $lastName, $userId);
     $stmt->execute();
 
-    // Update doctors table
-    $stmt = $conn->prepare("UPDATE doctors SET bio = ? WHERE user_id = ?");
+    // Update patients table
+    $stmt = $conn->prepare("UPDATE patients SET birthdate = ?, gender = ? WHERE user_id = ?");
     if (!$stmt) {
-        throw new Exception('Failed to prepare doctor update statement');
+        throw new Exception('Failed to prepare patient update statement');
     }
-    $stmt->bind_param("si", $bio, $userId);
+    $gender = trim($_POST['gender'] ?? '');
+    $stmt->bind_param("ssi", $birthday, $gender, $userId);
     $stmt->execute();
 
     // Handle profile image upload

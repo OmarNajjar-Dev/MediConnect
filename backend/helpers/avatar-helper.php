@@ -9,7 +9,8 @@
  * @param string $textSize - Text size class (default: 'text-sm')
  * @return string - HTML for avatar
  */
-function generateAvatar($profileImage, $fullName, $size = 'w-8 h-8', $textSize = 'text-sm') {
+function generateAvatar($profileImage, $fullName, $size = 'w-8 h-8', $textSize = 'text-sm')
+{
     if (!empty($profileImage)) {
         // Use profile image
         return '<img src="' . htmlspecialchars($profileImage) . '" alt="' . htmlspecialchars($fullName) . '" class="' . $size . ' rounded-full object-cover">';
@@ -26,15 +27,16 @@ function generateAvatar($profileImage, $fullName, $size = 'w-8 h-8', $textSize =
  * @param string $fullName - Full name
  * @return string - Initials (max 2 characters)
  */
-function generateInitials($fullName) {
+function generateInitials($fullName)
+{
     $nameParts = explode(' ', trim($fullName));
     $initials = '';
-    
+
     // Get first letter of first name
     if (isset($nameParts[0]) && strlen($nameParts[0]) > 0) {
         $initials .= strtoupper(substr($nameParts[0], 0, 1));
     }
-    
+
     // Get first letter of last name
     if (isset($nameParts[1]) && strlen($nameParts[1]) > 0) {
         $initials .= strtoupper(substr($nameParts[1], 0, 1));
@@ -42,7 +44,7 @@ function generateInitials($fullName) {
         // If no last name, use first two letters of first name
         $initials = strtoupper(substr($nameParts[0], 0, 2));
     }
-    
+
     return $initials ?: '?';
 }
 
@@ -53,34 +55,33 @@ function generateInitials($fullName) {
  * @param mysqli $conn - Database connection
  * @return array - Array with 'city' and 'address' keys
  */
-function getUserProfileData($userId, $conn) {
+function getUserProfileData($userId, $conn)
+{
     $profileData = [
         'city' => '',
         'address' => ''
     ];
-    
+
     if (!$userId || !$conn) {
         return $profileData;
     }
-    
+
     try {
         $stmt = $conn->prepare("SELECT city, address_line FROM users WHERE user_id = ?");
         $stmt->bind_param("i", $userId);
         $stmt->execute();
         $result = $stmt->get_result();
-        
+
         if ($user = $result->fetch_assoc()) {
             $profileData['city'] = $user['city'] ?? '';
             $profileData['address'] = trim($user['address_line'] ?? '');
         }
-        
+
         $stmt->close();
     } catch (Exception $e) {
         // Log error if needed, but return empty data gracefully
         error_log("Error fetching user profile data: " . $e->getMessage());
     }
-    
+
     return $profileData;
 }
-
-?> 
