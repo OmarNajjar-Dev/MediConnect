@@ -160,7 +160,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
                         <p class="text-lg text-gray-700 mb-8">
                             Request immediate medical assistance for COVID-19 related emergencies
                         </p>
-                        <div class="flex flex-col gap-6">
+                        <div id="request-help-wrapper" class="flex flex-col gap-6">
                             <button
                                 class="gap-2 whitespace-nowrap border border-solid border-input h-10 bg-danger hover:bg-red-700 text-white font-bold py-4 px-8 rounded-sm text-lg shadow-lg flex items-center justify-center w-full md:w-auto md:max-w-[310px]">
                                 <i data-lucide="ambulance" class="mr-2 h-4 w-4"></i>
@@ -173,6 +173,109 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
                     </div>
                 </div>
             </section>
+
+            <section id="status-section" class="hidden py-8 md:py-12">
+                <div class="container mx-auto px-4 md:px-6">
+                    <div class="max-w-4xl mx-auto">
+                        <div class="rounded-lg border bg-card text-card-foreground shadow-sm mb-8">
+                            <div class="flex flex-col gap-1.5 p-6">
+                                <h3 class="text-2xl font-semibold leading-none text-heading tracking-tight flex items-center">
+                                    <i data-lucide="ambulance" class="mr-2 text-medical-500"></i>
+                                    Emergency Response Status
+                                </h3>
+                                <p class="text-sm text-muted-foreground">COVID-19 specialized medical team status and location</p>
+                            </div>
+                            <div class="p-6 pt-0">
+                                <div class="flex flex-col gap-6">
+                                    <div class="flex flex-col items-center gap-4">
+                                        <div class="text-center">
+                                            <div
+                                                class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors border border-solid border-transparent text-white hover:bg-medical-400 bg-medical-500 mb-2">
+                                                EN ROUTE TO YOUR LOCATION</div>
+                                            <div class="mb-4"><i data-lucide="ambulance" class="h-16 w-16 mx-auto text-medical-500"></i>
+                                            </div>
+                                            <h3 class="text-xl text-heading font-bold">COVID-19 Response Team En Route</h3>
+                                            <div class="flex items-center justify-center mt-2"><i data-lucide="clock" class="mr-2 text-medical-500"></i>
+
+                                                <p class="text-gray-800 font-semibold">Estimated arrival: 10 minutes</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="border rounded-lg overflow-hidden h-62.5">
+                                        <div class="h-full flex items-center justify-center bg-gray-100 p-4">
+                                            <p class="text-center text-gray-600">Please set your Mapbox token in the Contact page
+                                                to enable emergency map tracking.</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col gap-4">
+                                        <h4 class="font-semibold text-heading text-lg">What to expect:</h4>
+                                        <ul class="flex flex-col gap-2">
+                                            <li class="flex"><i data-lucide="shield" class="mr-2 text-medical-500 flex-shrink-0 mt-0.5"></i>
+
+                                                <p class="text-heading">
+                                                    Ambulance staff will be wearing full COVID-19 protective equipment</p>
+                                            </li>
+                                            <li class="flex"><i data-lucide="shield" class="mr-2 text-medical-500 flex-shrink-0 mt-0.5"></i>
+                                                <p class="text-heading">
+                                                    You may be asked screening questions about your symptoms</p>
+                                            </li>
+                                            <li class="flex"><i data-lucide="shield" class="mr-2 text-medical-500 flex-shrink-0 mt-0.5"></i>
+                                                <p class="text-heading">
+                                                    Please wear a mask if available</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="pt-4 border-t">
+                                        <h4 class="font-semibold text-heading text-center">Emergency Contact Options</h4>
+                                        <div class="flex justify-center gap-4 mt-4"><button
+                                                class="justify-center gap-2 whitespace-nowrap rounded-md text-sm text-heading font-medium disabled:pointer-events-none disabled:opacity-50 border border-solid border-card-soft bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 flex items-center pointer">
+                                                <i data-lucide="phone" class="mr-2 h-4 w-4"></i>
+                                                Call Dispatch</button><button
+                                                class="justify-center gap-2 whitespace-nowrap rounded-md text-sm text-heading font-medium disabled:pointer-events-none disabled:opacity-50 border border-solid border-card-soft bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 flex items-center pointer">Cancel
+                                                Request</button></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Drawer (location access UI) -->
+            <div id="drawer" class="fixed inset-0 bg-opacity-50 flex items-center justify-center z-50 hidden">
+                <div class="bg-white w-full max-w-md mx-auto rounded-lg overflow-hidden shadow-lg">
+                    <!-- Drawer Header -->
+                    <div class="p-4 relative border-b">
+                        <h2 class="text-lg text-heading font-semibold">Requesting Emergency Help</h2>
+                        <p class="text-sm text-gray-500">Please wait while we access your location</p>
+
+                        <!-- X Close Button -->
+                        <button onclick="closeDrawer()" class="absolute right-4 top-4 border-none bg-transparent text-gray-500 hover:text-heading">
+                            <i data-lucide="x" class="w-4 h-4"></i>
+                        </button>
+
+                    </div>
+
+
+                    <!-- Drawer Body -->
+                    <div class="p-4 text-center">
+                        <div class="animate-pulse">
+                            <i data-lucide="map-pin" class="h-16 w-16 mx-auto text-medical-500"></i>
+                        </div>
+                        <p class="mt-4 text-heading">Accessing your location to send help...</p>
+                        <p class="text-sm text-gray-500 mt-2">
+                            This helps our emergency teams find you quickly
+                        </p>
+                    </div>
+
+                    <!-- Drawer Footer -->
+                    <div class="p-4 border-t text-right">
+                        <button onclick="cancelRequest()" class="px-4 py-2 border border-solid border-card-soft rounded-sm bg-transparent text-heading rounded text-sm font-medium hover:bg-gray-100 pointer">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
 
             <section class="py-8 md:py-12">
                 <div class="container mx-auto px-4 md:px-6">
@@ -415,6 +518,15 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
     <script>
         lucide.createIcons()
     </script>
+    <script type="module" src="js/emergency/emergency.js">
+    </script>
+
+    <!-- Confirmation Message -->
+    <div id="confirmationMessage" class="fixed bottom-6 right-6 z-50 px-6 py-4 bg-white border border-solid border-card-soft shadow-md rounded-lg text-sm max-w-sm">
+        <p class="font-semibold text-heading mb-1">Emergency request sent.</p>
+        <p class="text-heading">Help is on the way.Please stay where you are!</p>
+    </div>
+
 
 </body>
 
