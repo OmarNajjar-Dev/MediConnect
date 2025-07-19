@@ -5,7 +5,7 @@ export function validateRegisterForm() {
   const form = document.getElementById("register-form");
   const password = document.getElementById("password");
   const confirmPassword = document.getElementById("confirm-password");
-  const roleInput = document.getElementById("role-input");
+  const roleInput = document.getElementById("role");
   const emailInput = document.getElementById("email");
   const agreeCheckbox = document.getElementById("agree-checkbox");
 
@@ -41,11 +41,20 @@ export function validateRegisterForm() {
       hasError = true;
     }
 
+    // Check password confirmation
+    else if (confirmPassword.value === "") {
+      showErrorToast(
+        "Please confirm your password.",
+        "You must enter your password twice for verification."
+      );
+      hasError = true;
+    }
+
     // Check password match
     else if (!passwordValidator.doPasswordsMatch()) {
       showErrorToast(
         "Passwords do not match.",
-        "Please make sure your passwords match."
+        "Please make sure both password fields contain exactly the same password."
       );
       hasError = true;
     }
@@ -71,7 +80,28 @@ export function validateRegisterForm() {
       }
     }
 
-    if (!hasError && agreeCheckbox.checked) {
+    // Check terms agreement
+    if (!hasError && !agreeCheckbox.checked) {
+      showErrorToast(
+        "Please accept the terms and conditions.",
+        "You must agree to the terms of service to create an account."
+      );
+      hasError = true;
+    }
+
+    // If no errors, proceed with form submission
+    if (!hasError) {
+      // Show success feedback before submission
+      hideToast();
+
+      // For ambulance team registration, we'll geocode their address after successful registration
+      if (roleInput.value === "6") {
+        // Ambulance Team role ID
+        console.log(
+          "Registering ambulance team member - will geocode address after registration"
+        );
+      }
+
       form.submit();
     }
   });

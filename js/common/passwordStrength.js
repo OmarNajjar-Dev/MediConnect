@@ -247,7 +247,11 @@ export class PasswordStrengthValidator {
    */
   isPasswordValid(password) {
     const checks = this.performChecks(password);
-    return Object.values(checks).every(Boolean);
+    // Only check the requirements mentioned in the error message:
+    // - At least 8 characters long
+    // - At least one number
+    // - At least one special character
+    return checks.length && checks.number && checks.special;
   }
 
   /**

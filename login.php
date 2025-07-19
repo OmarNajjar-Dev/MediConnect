@@ -189,7 +189,7 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
                         <!-- Google Button Wrapper -->
                         <div class="group relative cursor-not-allowed">
                             <button type="button"
-                                class="inline-flex w-full justify-center rounded-md border border-solid border-input bg-white px-4 py-2 text-sm font-medium text-gray-500 shadow-sm cursor-pointer-events-none"
+                                class="inline-flex w-full justify-center rounded-md border border-solid border-input bg-white px-4 py-2 text-sm font-medium text-gray-500 shadow-sm pointer-events-none"
                                 disabled>
                                 <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                                     <path
@@ -205,7 +205,7 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
                         <!-- Facebook Button Wrapper -->
                         <div class="group relative cursor-not-allowed">
                             <button type="button"
-                                class="inline-flex w-full justify-center rounded-md border border-solid border-input bg-white px-4 py-2 text-sm font-medium text-gray-500 shadow-sm cursor-pointer-events-none"
+                                class="inline-flex w-full justify-center rounded-md border border-solid border-input bg-white px-4 py-2 text-sm font-medium text-gray-500 shadow-sm pointer-events-none"
                                 disabled>
                                 <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                                     <path

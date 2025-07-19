@@ -401,7 +401,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <!-- Submit Button -->
                         <div class="pt-4">
                             <button id="signup-btn" type="submit"
-                                class="flex h-10 w-full items-center justify-center gap-2 rounded-md text-sm font-medium transition-colors text-white bg-primary hover:bg-medical-600 border-none cursor-pointer cursor-pointer-events-none bg-medical-200">
+                                class="flex h-10 w-full items-center justify-center gap-2 rounded-md text-sm font-medium transition-colors text-white bg-primary hover:bg-medical-600 border-none cursor-pointer pointer-events-none bg-medical-200">
                                 <i data-lucide="user-plus" class="h-4 w-4"></i>
                                 Sign up
                             </button>
@@ -428,7 +428,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             <!-- Google Button Wrapper -->
                             <div class="group relative cursor-not-allowed">
                                 <button type="button"
-                                    class="inline-flex w-full justify-center rounded-md border border-solid border-input bg-white px-4 py-2 text-sm font-medium text-gray-500 shadow-sm cursor-pointer-events-none"
+                                    class="inline-flex w-full justify-center rounded-md border border-solid border-input bg-white px-4 py-2 text-sm font-medium text-gray-500 shadow-sm pointer-events-none"
                                     disabled>
                                     <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                                         <path
@@ -444,7 +444,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             <!-- Facebook Button Wrapper -->
                             <div class="group relative cursor-not-allowed">
                                 <button type="button"
-                                    class="inline-flex w-full justify-center rounded-md border border-solid border-input bg-white px-4 py-2 text-sm font-medium text-gray-500 shadow-sm cursor-pointer-events-none"
+                                    class="inline-flex w-full justify-center rounded-md border border-solid border-input bg-white px-4 py-2 text-sm font-medium text-gray-500 shadow-sm pointer-events-none"
                                     disabled>
                                     <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                                         <path
