@@ -69,7 +69,7 @@ require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
                     <!-- User dropdown (visible if logged in) -->
                     <div class="hidden md:flex items-center gap-3 mr-4">
                         <div class="dropdown relative">
-                            <button class="flex items-center gap-2 md:py-2 px-2 border-none bg-transparent hover:bg-medical-50 transition-colors transition-200 pointer rounded-lg">
+                            <button class="flex items-center gap-2 md:py-2 px-2 border-none bg-transparent hover:bg-medical-50 transition-colors transition-200 cursor-pointer rounded-lg">
                                 <?= generateAvatar($userProfileImage, $userName, 'w-8 h-8', 'text-sm lg:text-base') ?>
                                 <span class="hidden lg:block text-sm lg:text-base font-medium slate-700 max-w-24 truncate">
                                     <?= htmlspecialchars($userName) ?>
@@ -114,7 +114,7 @@ require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
                 <?php endif; ?>
 
                 <!-- Mobile menu toggle button -->
-                <button id="menu-button" class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none pointer">
+                <button id="menu-button" class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none cursor-pointer">
                     <i data-lucide="menu" class="w-4 h-4"></i>
                 </button>
             </div>

@@ -322,13 +322,13 @@ class HospitalManagement {
             <button onclick="hospitalManagement.openHospitalModal(${JSON.stringify(
               hospital
             ).replace(/"/g, "&quot;")})" 
-                    class="rounded-md h-8 w-8 p-0 hover:bg-accent pointer bg-transparent border-none hover:text-medical-500">
+                    class="rounded-md h-8 w-8 p-0 hover:bg-accent cursor-pointer bg-transparent border-none hover:text-medical-500">
               <i data-lucide="square-pen" class="h-4 w-4"></i>
             </button>
             <button onclick="hospitalManagement.deleteHospital(${
               hospital.hospital_id
             })" 
-                    class="rounded-md h-8 w-8 p-0 text-red-600 hover:text-red-800 hover:bg-red-50 pointer bg-transparent border-none">
+                    class="rounded-md h-8 w-8 p-0 text-red-600 hover:text-red-800 hover:bg-red-50 cursor-pointer bg-transparent border-none">
               <i data-lucide="trash-2" class="h-4 w-4"></i>
             </button>
           </div>

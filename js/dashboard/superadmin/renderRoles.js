@@ -27,7 +27,7 @@ function renderRoleOptions(roles) {
       <button type="button"
               data-dropdown-option
               data-value="${role}"
-              class="w-full flex items-center justify-between px-4 py-1.5 text-sm border-none bg-white text-gray-700 hover:bg-neutral-100 pointer">
+              class="w-full flex items-center justify-between px-4 py-1.5 text-sm border-none bg-white text-gray-700 hover:bg-neutral-100 cursor-pointer">
         <span>${role}</span>
         <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i>
       </button>

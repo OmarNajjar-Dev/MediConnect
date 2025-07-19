@@ -70,7 +70,7 @@ require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
         <!-- User dropdown (visible if logged in) -->
         <div class="hidden md:flex items-center gap-3 md:mr-4">
           <div class="dropdown relative">
-            <button class="flex items-center gap-2 md:py-2 px-2 border-none bg-transparent hover:bg-medical-50 transition-colors transition-200 pointer rounded-lg">
+            <button class="flex items-center gap-2 md:py-2 px-2 border-none bg-transparent hover:bg-medical-50 transition-colors transition-200 cursor-pointer rounded-lg">
               <?= generateAvatar($userProfileImage, $userName, 'w-8 h-8', 'text-sm lg:text-base') ?>
               <span class="hidden lg:block text-sm lg:text-base font-medium slate-700 max-w-24 truncate">
                 <?= htmlspecialchars($userName) ?>
@@ -101,7 +101,7 @@ require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
         </a>
 
         <!-- Mobile menu toggle button -->
-        <button id="menu-button" class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none pointer">
+        <button id="menu-button" class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none cursor-pointer">
           <i data-lucide="menu" class="w-4 h-4"></i>
         </button>
       </div>
@@ -174,19 +174,19 @@ require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
               <!-- Navigation Tabs -->
               <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-muted-foreground rounded-md p-1">
                 <button type="button" data-target="system-overview"
-                  class="inline-flex items-center justify-center px-2 py-3 text-xs sm:text-sm font-medium rounded-sm border border-transparent transition-all pointer bg-blue-50 text-blue-700">
+                  class="inline-flex items-center justify-center px-2 py-3 text-xs sm:text-sm font-medium rounded-sm border border-solid border-transparent transition-all cursor-pointer bg-blue-50 text-blue-700">
                   System Overview
                 </button>
                 <button type="button" data-target="my-profile"
-                  class="inline-flex items-center justify-center px-2 py-3 text-xs sm:text-sm font-medium rounded-sm border border-transparent transition-all pointer">
+                  class="inline-flex items-center justify-center px-2 py-3 text-xs sm:text-sm font-medium rounded-sm border border-solid border-transparent transition-all cursor-pointer hover:bg-gray-100">
                   My Profile
                 </button>
                 <button type="button" data-target="manage-users"
-                  class="inline-flex items-center justify-center px-2 py-3 text-xs sm:text-sm font-medium rounded-sm border border-transparent transition-all pointer">
+                  class="inline-flex items-center justify-center px-2 py-3 text-xs sm:text-sm font-medium rounded-sm border border-solid border-transparent transition-all cursor-pointer hover:bg-gray-100">
                   Manage Users
                 </button>
                 <button type="button" data-target="manage-hospitals"
-                  class="inline-flex items-center justify-center px-2 py-3 text-xs sm:text-sm font-medium rounded-sm border border-transparent transition-all pointer">
+                  class="inline-flex items-center justify-center px-2 py-3 text-xs sm:text-sm font-medium rounded-sm border border-solid border-transparent transition-all cursor-pointer hover:bg-gray-100">
                   Manage Hospitals
                 </button>
               </div>
@@ -306,8 +306,8 @@ require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
                             <?= generateAvatar($userProfileImage, $userName, 'w-24 h-24', 'text-lg') ?>
                           </div>
                           <div class="w-full">
-                            <label for="profile-upload" class="text-sm font-medium leading-none pointer">
-                              <div id="new-image-profile" class="flex items-center justify-center w-full p-3 border-2 border-dashed border-gray-300 rounded-lg hover:border-medical-400 transition-colors">
+                            <label for="profile-upload" class="text-sm font-medium leading-none cursor-pointer">
+                              <div id="new-image-profile" class="flex items-center justify-center w-full p-3 border-2 border-dashed border-gray-300 rounded-lg transition-colors">
                                 <div class="flex flex-col text-center">
                                   <i data-lucide="camera" class="mx-auto h-6 w-6 text-gray-400 mb-2"></i>
                                   <span class="text-sm text-gray-600">Upload new image</span>
@@ -395,11 +395,11 @@ require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
 
                   <!-- Action Buttons -->
                   <div class="flex justify-end gap-3">
-                    <button id="discard-profile-changes" type="button" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-input bg-transparent hover:bg-gray-50 text-gray-700 h-10 py-2 px-6 pointer">
+                    <button id="discard-profile-changes" type="button" class="hidden inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors text-yellow-700 border border-solid border-warning hover:bg-yellow-100 bg-yellow-50 hover:bg-yellow-100 h-10 px-6 py-2 cursor-pointer">
                       <i data-lucide="x" class="h-4 w-4 mr-2"></i>
                       Discard Changes
                     </button>
-                    <button id="save-profile-changes" type="button" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-transparent h-10 py-2 bg-medical-600 hover:bg-medical-700 text-white px-6 pointer">
+                    <button id="save-profile-changes" type="button" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-transparent h-10 py-2 bg-medical-600 hover:bg-medical-700 text-white px-6 cursor-pointer">
                       <i data-lucide="save" class="h-4 w-4 mr-2"></i>
                       <span id="save-profile-text">Save Changes</span>
                       <div id="save-profile-loading" class="hidden animate-spin rounded-full h-4 w-4 border-b-2 border-white ml-2"></div>
@@ -422,7 +422,7 @@ require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
                         <p class="text-sm text-muted-foreground">Manage all system users and their roles</p>
                       </div>
                     </div>
-                    <button type="button" data-modal-trigger="user" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors text-white h-10 px-4 py-2 bg-medical-600 hover:bg-medical-700 pointer border border-solid border-transparent">
+                    <button type="button" data-modal-trigger="user" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors text-white h-10 px-4 py-2 bg-medical-600 hover:bg-medical-700 cursor-pointer border border-solid border-transparent">
                       <i data-lucide="plus" class="h-4 w-4 mr-2"></i>
                       Add User
                     </button>
@@ -497,7 +497,7 @@ require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
                         <p class="text-sm text-muted-foreground">Manage all hospitals and their information</p>
                       </div>
                     </div>
-                    <button data-modal-trigger="hospital" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors bg-primary text-white hover:bg-medical-400 h-10 px-4 py-2 pointer border border-solid border-transparent" type="button">
+                    <button data-modal-trigger="hospital" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors bg-primary text-white hover:bg-medical-400 h-10 px-4 py-2 cursor-pointer border border-solid border-transparent" type="button">
                       <i data-lucide="plus" class="h-4 w-4 mr-2"></i>
                       Add Hospital
                     </button>
@@ -599,7 +599,7 @@ require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
                 class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm outline-none focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white"
                 placeholder="Enter temporary password">
               <button type="button" id="generate-password"
-                class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-input bg-transparent pointer hover:bg-accent hover:text-medical-500 h-10 px-3 py-2">
+                class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-input bg-transparent cursor-pointer hover:bg-accent hover:text-medical-500 h-10 px-3 py-2">
                 <i data-lucide="refresh-cw" class="h-4 w-4"></i>
               </button>
             </div>
@@ -689,10 +689,10 @@ require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
 
       <!-- Action Buttons -->
       <div class="flex justify-end gap-2 pt-4">
-        <button type="button" data-modal-close="user" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-input bg-transparent pointer hover:bg-accent hover:text-medical-500 h-10 px-4 py-2">
+        <button type="button" data-modal-close="user" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-input bg-transparent cursor-pointer hover:bg-accent hover:text-medical-500 h-10 px-4 py-2">
           Cancel
         </button>
-        <button type="submit" id="user-submit-btn" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors text-white h-10 px-4 py-2 bg-primary hover:bg-medical-600 border-none pointer">
+        <button type="submit" id="user-submit-btn" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors text-white h-10 px-4 py-2 bg-primary hover:bg-medical-600 border border-solid border-transparent cursor-pointer">
           <span id="user-submit-text">Add User</span>
           <div id="user-submit-loading" class="hidden animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
         </button>
@@ -703,7 +703,7 @@ require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
     <!-- Close Button -->
     <button type="button"
       data-modal-close="user"
-      class="absolute right-4 top-4 w-5 h-5 bg-transparent border-none rounded-full opacity-70 transition-opacity hover:opacity-100 focus:ring focus:ring-2 focus:ring-medical-600 focus:ring-offset-2 focus:ring-offset-white pointer">
+      class="absolute right-4 top-4 w-5 h-5 bg-transparent border-none rounded-full opacity-70 transition-opacity hover:opacity-100 focus:ring focus:ring-2 focus:ring-medical-600 focus:ring-offset-2 focus:ring-offset-white cursor-pointer">
       <i data-lucide="x" class="h-4 w-4"></i>
       <span class="sr-only">Close</span>
     </button>
@@ -766,7 +766,7 @@ require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
       <!-- Emergency Services -->
       <div>
         <label class="flex items-center gap-2 cursor-pointer">
-          <input id="hospital-emergency" name="emergencyServices" type="checkbox" class="rounded border-input">
+          <input id="hospital-emergency" name="emergencyServices" type="checkbox" class="rounded border-input cursor-pointer">
           <span class="text-sm font-medium">Emergency Services Available</span>
         </label>
       </div>
@@ -781,10 +781,10 @@ require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
 
       <!-- Action Buttons -->
       <div class="flex justify-end gap-2 pt-4">
-        <button type="button" data-modal-close="hospital" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-input bg-transparent pointer hover:bg-accent hover:text-medical-500 h-10 px-4 py-2">
+        <button type="button" data-modal-close="hospital" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-input bg-transparent cursor-pointer hover:bg-accent hover:text-medical-500 h-10 px-4 py-2">
           Cancel
         </button>
-        <button type="submit" id="hospital-submit-btn" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors text-white h-10 px-4 py-2 bg-primary hover:bg-medical-600 border-none pointer">
+        <button type="submit" id="hospital-submit-btn" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors text-white h-10 px-4 py-2 bg-primary hover:bg-medical-600 border border-solid border-transparent cursor-pointer">
           <span id="hospital-submit-text">Add Hospital</span>
           <div id="hospital-submit-loading" class="hidden animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
         </button>
@@ -795,7 +795,7 @@ require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
     <!-- Close Button -->
     <button type="button"
       data-modal-close="hospital"
-      class="absolute right-4 top-4 w-5 h-5 bg-transparent border-none rounded-full opacity-70 transition-opacity hover:opacity-100 focus:ring focus:ring-2 focus:ring-medical-600 focus:ring-offset-2 focus:ring-offset-white pointer">
+      class="absolute right-4 top-4 w-5 h-5 bg-transparent border-none rounded-full opacity-70 transition-opacity hover:opacity-100 focus:ring focus:ring-2 focus:ring-medical-600 focus:ring-offset-2 focus:ring-offset-white cursor-pointer">
       <i data-lucide="x" class="h-4 w-4"></i>
       <span class="sr-only">Close</span>
     </button>

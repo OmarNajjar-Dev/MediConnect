@@ -85,7 +85,7 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
                 </a>
 
                 <!-- Mobile menu toggle button -->
-                <button id="menu-button" class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none pointer">
+                <button id="menu-button" class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none cursor-pointer">
                     <i data-lucide="menu" class="w-4 h-4"></i>
                 </button>
             </div>
@@ -145,7 +145,7 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
                                 <input type="password" id="password" name="password" autocomplete="current-password" placeholder="*******" required
                                     class="block h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 pr-10 text-base md:text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
                                 <button type="button" id="toggle-password" aria-label="Toggle password visibility"
-                                    class="eye-toggle-button absolute inset-y-0 right-0 z-10 flex items-center border-none bg-transparent pr-3 pointer">
+                                    class="eye-toggle-button absolute inset-y-0 right-0 z-10 flex items-center border-none bg-transparent pr-3 cursor-pointer">
                                     <i data-lucide="eye" class="eye-toggle-icon h-5 w-5 text-gray-400"></i>
                                 </button>
                             </div>
@@ -163,7 +163,7 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
                         <!-- Login Button -->
                         <div>
                             <button id="login-btn" type="submit"
-                                class="flex h-10 w-full items-center justify-center gap-2 rounded-sm border border-solid border-transparent bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-medical-700 pointer transition-colors">
+                                class="flex h-10 w-full items-center justify-center gap-2 rounded-sm border border-solid border-transparent bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-medical-700 cursor-pointer transition-colors">
                                 <i data-lucide="log-in" class="h-4 w-4"></i>
                                 Sign in
                             </button>
@@ -189,7 +189,7 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
                         <!-- Google Button Wrapper -->
                         <div class="group relative cursor-not-allowed">
                             <button type="button"
-                                class="inline-flex w-full justify-center rounded-md border border-solid border-input bg-white px-4 py-2 text-sm font-medium text-gray-500 shadow-sm pointer-events-none"
+                                class="inline-flex w-full justify-center rounded-md border border-solid border-input bg-white px-4 py-2 text-sm font-medium text-gray-500 shadow-sm cursor-pointer-events-none"
                                 disabled>
                                 <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                                     <path
@@ -205,7 +205,7 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
                         <!-- Facebook Button Wrapper -->
                         <div class="group relative cursor-not-allowed">
                             <button type="button"
-                                class="inline-flex w-full justify-center rounded-md border border-solid border-input bg-white px-4 py-2 text-sm font-medium text-gray-500 shadow-sm pointer-events-none"
+                                class="inline-flex w-full justify-center rounded-md border border-solid border-input bg-white px-4 py-2 text-sm font-medium text-gray-500 shadow-sm cursor-pointer-events-none"
                                 disabled>
                                 <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                                     <path

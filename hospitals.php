@@ -70,7 +70,7 @@ require_once __DIR__ . "/backend/helpers/avatar-helper.php";
                     <!-- User dropdown (visible if logged in) -->
                     <div class="hidden md:flex items-center gap-3 mr-4">
                         <div class="dropdown relative">
-                            <button class="flex items-center gap-2 md:py-2 px-2 border-none bg-transparent hover:bg-medical-50 transition-colors transition-200 pointer rounded-lg">
+                            <button class="flex items-center gap-2 md:py-2 px-2 border-none bg-transparent hover:bg-medical-50 transition-colors transition-200 cursor-pointer rounded-lg">
                                 <?= generateAvatar($userProfileImage, $userName, 'w-8 h-8', 'text-sm lg:text-base') ?>
                                 <span class="hidden lg:block text-sm lg:text-base font-medium slate-700 max-w-24 truncate">
                                     <?= htmlspecialchars($userName) ?>
@@ -115,7 +115,7 @@ require_once __DIR__ . "/backend/helpers/avatar-helper.php";
                 <?php endif; ?>
 
                 <!-- Mobile menu toggle button -->
-                <button id="menu-button" class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none pointer">
+                <button id="menu-button" class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none cursor-pointer">
                     <i data-lucide="menu" class="w-4 h-4"></i>
                 </button>
             </div>
@@ -175,13 +175,13 @@ require_once __DIR__ . "/backend/helpers/avatar-helper.php";
                 <!-- FIXED BUTTONS HERE -->
                 <div class="flex flex-row gap-3">
                     <button id="emergency-btn"
-                        class="flex items-center gap-2 justify-center whitespace-nowrap rounded-md border border-solid border-input bg-background text-heading px-4 py-2 h-10 text-sm font-medium transition-colors hover:bg-medical-50 hover:text-medical-500 pointer">
+                        class="flex items-center gap-2 justify-center whitespace-nowrap rounded-md border border-solid border-input bg-background text-heading px-4 py-2 h-10 text-sm font-medium transition-colors hover:bg-medical-50 hover:text-medical-500 cursor-pointer">
                         <i data-lucide="activity" class="w-4 h-4"></i>
                         <span>Emergency Services</span>
                     </button>
 
                     <button id="beds-btn"
-                        class="flex items-center gap-2 rounded-md border border-solid border-input text-heading bg-background h-10 px-4 py-2 text-sm font-medium whitespace-nowrap hover:bg-medical-50 transition-colors hover:text-medical-500 pointer">
+                        class="flex items-center gap-2 rounded-md border border-solid border-input text-heading bg-background h-10 px-4 py-2 text-sm font-medium whitespace-nowrap hover:bg-medical-50 transition-colors hover:text-medical-500 cursor-pointer">
                         <i data-lucide="bed" class="w-4 h-4"></i>
                         <span>Available Beds</span>
                     </button>
@@ -197,7 +197,7 @@ require_once __DIR__ . "/backend/helpers/avatar-helper.php";
                 <h2 class="text-xl font-medium mb-2 tracking-tight text-heading">No hospitals found</h2>
                 <p class="text-gray-600 mb-4">Try adjusting your search criteria</p>
                 <button
-                    class="clear-filters inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md border border-solid border-input text-sm font-medium transition-colors bg-primary text-white hover:bg-medical-400 h-10 px-4 py-2 pointer">
+                    class="clear-filters inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md border border-solid border-input text-sm font-medium transition-colors bg-primary text-white hover:bg-medical-400 h-10 px-4 py-2 cursor-pointer">
                     Clear Filters
                 </button>
             </div>

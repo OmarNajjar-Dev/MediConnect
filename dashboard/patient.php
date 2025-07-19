@@ -68,7 +68,7 @@ require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
                 <!-- User dropdown (visible if logged in) -->
                 <div class="hidden md:flex items-center gap-3 md:mr-4">
                     <div class="dropdown relative">
-                        <button class="flex items-center gap-2 md:py-2 px-2 border-none bg-transparent hover:bg-medical-50 transition-colors transition-200 pointer rounded-lg">
+                        <button class="flex items-center gap-2 md:py-2 px-2 border-none bg-transparent hover:bg-medical-50 transition-colors transition-200 cursor-pointer rounded-lg">
                             <?= generateAvatar($userProfileImage, $userName, 'w-8 h-8', 'text-sm lg:text-base') ?>
                             <span class="hidden lg:block text-sm lg:text-base font-medium slate-700 max-w-24 truncate">
                                 <?= htmlspecialchars($userName) ?>
@@ -99,7 +99,7 @@ require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
                 </a>
 
                 <!-- Mobile menu toggle button -->
-                <button id="menu-button" class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none pointer">
+                <button id="menu-button" class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none cursor-pointer">
                     <i data-lucide="menu" class="w-4 h-4"></i>
                 </button>
             </div>
@@ -148,25 +148,25 @@ require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
 
                         <!-- Tab Navigation -->
                         <div
-                            class="mb-2 grid h-10 w-full grid-cols-3 items-center justify-center rounded-md bg-gray-150 p-1 text-muted-foreground pointer">
+                            class="mb-2 grid h-10 w-full grid-cols-3 items-center justify-center rounded-md bg-gray-150 p-1 text-muted-foreground cursor-pointer">
                             <button
                                 type="button"
                                 data-target="appointments"
-                                class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-white px-3 py-1.5 text-sm font-medium pointer">
+                                class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-white px-3 py-1.5 text-sm font-medium cursor-pointer">
                                 Appointments
                             </button>
 
                             <button
                                 type="button"
                                 data-target="medical-history"
-                                class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-gray-150 px-3 py-1.5 text-sm font-medium pointer">
+                                class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-gray-150 px-3 py-1.5 text-sm font-medium cursor-pointer">
                                 Medical history
                             </button>
 
                             <button
                                 type="button"
                                 data-target="my-profile"
-                                class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-gray-150 px-3 py-1.5 text-sm font-medium pointer">
+                                class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-gray-150 px-3 py-1.5 text-sm font-medium cursor-pointer">
                                 My Profile
                             </button>
                         </div>
@@ -212,7 +212,7 @@ require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
                                 <div class="glass-card rounded-xl p-6">
                                     <div class="mb-4 flex items-center justify-between">
                                         <h3 class="text-xl font-bold">Upcoming Appointments</h3>
-                                        <button class="inline-flex items-center justify-center h-9 rounded-md border border-solid border-transparent transition-colors bg-primary px-3 text-sm font-medium text-white hover:bg-medical-400 pointer gap-2 whitespace-nowrap">
+                                        <button class="inline-flex items-center justify-center h-9 rounded-md border border-solid border-transparent transition-colors bg-primary px-3 text-sm font-medium text-white hover:bg-medical-400 cursor-pointer gap-2 whitespace-nowrap">
                                             <i data-lucide="plus" class="mr-2 h-4 w-4"></i>
                                             Book New
                                         </button>
@@ -233,11 +233,11 @@ require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
                                                 </div>
                                             </div>
                                             <div class="flex gap-2">
-                                                <button class="inline-flex items-center justify-center h-9 rounded-md border border-solid border-input bg-background px-3 text-sm font-medium hover:bg-accent hover:text-medical-500 pointer gap-2 whitespace-nowrap transition-200">
+                                                <button class="inline-flex items-center justify-center h-9 rounded-md border border-solid border-input bg-background px-3 text-sm font-medium hover:bg-accent hover:text-medical-500 cursor-pointer gap-2 whitespace-nowrap transition-200">
                                                     <i data-lucide="square-pen" class="mr-1 h-4 w-4"></i>
                                                     Reschedule
                                                 </button>
-                                                <button class="inline-flex items-center justify-center h-9 rounded-md border border-solid border-red-200 bg-background px-3 text-sm font-medium text-red-600 hover:bg-red-50 pointer gap-2 whitespace-nowrap transition-200">
+                                                <button class="inline-flex items-center justify-center h-9 rounded-md border border-solid border-red-200 bg-background px-3 text-sm font-medium text-red-600 hover:bg-red-50 cursor-pointer gap-2 whitespace-nowrap transition-200">
                                                     <i data-lucide="x" class="mr-1 h-4 w-4"></i>
                                                     Cancel
                                                 </button>
@@ -258,11 +258,11 @@ require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
                                                 </div>
                                             </div>
                                             <div class="flex gap-2">
-                                                <button class="inline-flex items-center justify-center h-9 rounded-md border border-solid border-input bg-background px-3 text-sm font-medium hover:bg-accent hover:text-medical-500 pointer gap-2 whitespace-nowrap transition-colors transition-200">
+                                                <button class="inline-flex items-center justify-center h-9 rounded-md border border-solid border-input bg-background px-3 text-sm font-medium hover:bg-accent hover:text-medical-500 cursor-pointer gap-2 whitespace-nowrap transition-colors transition-200">
                                                     <i data-lucide="square-pen" class="mr-1 h-4 w-4"></i>
                                                     Reschedule
                                                 </button>
-                                                <button class="inline-flex items-center justify-center h-9 rounded-md border border-solid border-red-200 bg-background px-3 text-sm font-medium text-red-600 hover:bg-red-50 pointer gap-2 whitespace-nowrap transition-colors transition-200">
+                                                <button class="inline-flex items-center justify-center h-9 rounded-md border border-solid border-red-200 bg-background px-3 text-sm font-medium text-red-600 hover:bg-red-50 cursor-pointer gap-2 whitespace-nowrap transition-colors transition-200">
                                                     <i data-lucide="x" class="mr-1 h-4 w-4"></i>
                                                     Cancel
                                                 </button>
@@ -275,15 +275,15 @@ require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
                                 <div class="glass-card rounded-xl p-6">
                                     <h3 class="mb-4 text-xl font-bold">Quick Actions</h3>
                                     <div class="flex flex-col gap-3">
-                                        <button class="inline-flex w-full items-center justify-start h-10 rounded-md border border-solid border-input bg-background px-4 py-2 text-sm font-medium hover:bg-accent hover:text-medical-500 pointer gap-2 whitespace-nowrap transition-colors transition-200">
+                                        <button class="inline-flex w-full items-center justify-start h-10 rounded-md border border-solid border-input bg-background px-4 py-2 text-sm font-medium hover:bg-accent hover:text-medical-500 cursor-pointer gap-2 whitespace-nowrap transition-colors transition-200">
                                             <i data-lucide="calendar" class="mr-2 h-4 w-4"></i>
                                             Book New Appointment
                                         </button>
-                                        <button class="inline-flex w-full items-center justify-start h-10 rounded-md border border-solid border-input bg-background px-4 py-2 text-sm font-medium hover:bg-accent hover:text-medical-500 pointer gap-2 whitespace-nowrap transition-colors transition-200">
+                                        <button class="inline-flex w-full items-center justify-start h-10 rounded-md border border-solid border-input bg-background px-4 py-2 text-sm font-medium hover:bg-accent hover:text-medical-500 cursor-pointer gap-2 whitespace-nowrap transition-colors transition-200">
                                             <i data-lucide="file-text" class="mr-2 h-4 w-4"></i>
                                             View Test Results
                                         </button>
-                                        <button class="inline-flex w-full items-center justify-start h-10 rounded-md border border-solid border-input bg-background px-4 py-2 text-sm font-medium hover:bg-accent hover:text-medical-500 pointer gap-2 whitespace-nowrap transition-colors transition-200">
+                                        <button class="inline-flex w-full items-center justify-start h-10 rounded-md border border-solid border-input bg-background px-4 py-2 text-sm font-medium hover:bg-accent hover:text-medical-500 cursor-pointer gap-2 whitespace-nowrap transition-colors transition-200">
                                             <i data-lucide="clock" class="mr-2 h-4 w-4"></i>
                                             Request Prescription Refill
                                         </button>
@@ -347,7 +347,7 @@ require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
                             <div class="glass-card rounded-xl p-6">
                                 <div class="mb-6 flex items-center justify-between">
                                     <h3 class="text-xl font-bold">My Profile</h3>
-                                    <button class="pointer inline-flex items-center justify-center gap-2 rounded-md border border-solid border-transparent bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-medical-400 h-10 whitespace-nowrap transition-colors">
+                                    <button class="cursor-pointer inline-flex items-center justify-center gap-2 rounded-md border border-solid border-transparent bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-medical-400 h-10 whitespace-nowrap transition-colors">
                                         <i data-lucide="square-pen" class="mr-2 h-4 w-4"></i>
                                         Edit Profile
                                     </button>
@@ -446,7 +446,7 @@ require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
                             <div class="mb-6 flex items-center justify-between">
                                 <h3 class="text-xl font-bold">My Profile</h3>
                                 <button
-                                    class="pointer inline-flex items-center justify-center gap-2 rounded-md border border-solid border-transparent bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-medical-400 h-10 whitespace-nowrap transition-colors">
+                                    class="cursor-pointer inline-flex items-center justify-center gap-2 rounded-md border border-solid border-transparent bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-medical-400 h-10 whitespace-nowrap transition-colors">
                                     <i data-lucide="square-pen" class="mr-2 h-4 w-4"></i>
                                     Edit Profile
                                 </button>

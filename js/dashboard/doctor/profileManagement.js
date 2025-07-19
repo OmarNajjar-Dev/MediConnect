@@ -246,13 +246,20 @@ class ProfileManager {
         if (nameInput) this.originalData.name = nameInput.value;
         if (bioInput) this.originalData.bio = bioInput.value;
 
+        // Update the page elements with new profile data
+        this.updatePageElements(
+          nameInput?.value,
+          bioInput?.value,
+          this.currentImageFile
+        );
+
         // Update header avatar if image was changed
         if (this.currentImageFile) {
           this.updateHeaderAvatar();
         }
 
-        // Refresh the page to show updated information
-        window.location.reload();
+        // Remove the page reload - let the toast stay visible
+        // window.location.reload(); // REMOVED: This was causing the toast to disappear
       } else {
         throw new Error(result.message || "Failed to update profile");
       }
@@ -264,6 +271,94 @@ class ProfileManager {
       this.saveButton.disabled = false;
       this.saveText.classList.remove("hidden");
       this.saveLoading.classList.add("hidden");
+    }
+  }
+
+  updatePageElements(name, bio, imageFile) {
+    // Update welcome messages with doctor name
+    if (name) {
+      // Update "Welcome back, Dr. {name}" message
+      const welcomeHeader = document.querySelector(
+        "h1.text-2xl.font-bold.text-gray-900"
+      );
+      if (welcomeHeader) {
+        welcomeHeader.textContent = `Welcome back, Dr. ${name}`;
+      }
+
+      // Update "Welcome, Dr. {name}" message in doctor panel
+      const welcomePanel = document.querySelector(".text-gray-600");
+      if (welcomePanel && welcomePanel.textContent.startsWith("Welcome, Dr.")) {
+        welcomePanel.textContent = `Welcome, Dr. ${name}`;
+      }
+
+      // Update profile section name display
+      const profileNameElement = document.querySelector(
+        ".lg\\:col-span-2 .grid .min-w-0 p"
+      );
+      if (
+        profileNameElement &&
+        profileNameElement.textContent.startsWith("Dr.")
+      ) {
+        profileNameElement.textContent = `Dr. ${name}`;
+      }
+
+      // Update dropdown header name
+      const dropdownName = document.querySelector(".dropdown .max-w-24");
+      if (dropdownName) {
+        dropdownName.textContent = name;
+      }
+    }
+
+    // Update bio in profile section
+    if (bio !== undefined) {
+      const bioElement = document.querySelector(
+        '[data-section="profile"] .text-gray-700.leading-relaxed'
+      );
+      const bioContainer = bioElement?.parentElement;
+
+      if (bioContainer) {
+        if (bio && bio.trim()) {
+          // Show bio text with proper escaping
+          const label = document.createElement("label");
+          label.className = "font-medium text-sm";
+          label.textContent = "Professional Bio";
+
+          const bioParagraph = document.createElement("p");
+          bioParagraph.className =
+            "text-gray-700 text-sm sm:text-base leading-relaxed";
+          bioParagraph.textContent = bio;
+
+          bioContainer.innerHTML = "";
+          bioContainer.appendChild(label);
+          bioContainer.appendChild(bioParagraph);
+        } else {
+          // Show "no bio" message
+          bioContainer.innerHTML = `
+            <label class="font-medium text-sm">Professional Bio</label>
+            <p class="text-gray-500 text-sm sm:text-base leading-relaxed italic">
+              No bio available. Click "Edit Profile" to add your professional background.
+            </p>
+          `;
+        }
+      }
+    }
+
+    // Update profile picture in profile section if image was uploaded
+    if (imageFile && this.imagePreview.src) {
+      const profileDisplayAvatar = document.querySelector(
+        '[data-section="profile"] .w-24.h-24'
+      );
+      if (profileDisplayAvatar) {
+        // Replace with new image
+        const newImg = document.createElement("img");
+        newImg.src = this.imagePreview.src;
+        newImg.className = "w-24 h-24 rounded-full object-cover";
+        newImg.alt = "Profile Picture";
+        profileDisplayAvatar.parentNode.replaceChild(
+          newImg,
+          profileDisplayAvatar
+        );
+      }
     }
   }
 

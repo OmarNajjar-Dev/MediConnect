@@ -68,7 +68,7 @@ require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
                 <!-- User dropdown (visible if logged in) -->
                 <div class="hidden md:flex items-center gap-3 md:mr-4">
                     <div class="dropdown relative">
-                        <button class="flex items-center gap-2 md:py-2 px-2 border-none bg-transparent hover:bg-medical-50 transition-colors transition-200 pointer rounded-lg">
+                        <button class="flex items-center gap-2 md:py-2 px-2 border-none bg-transparent hover:bg-medical-50 transition-colors transition-200 cursor-pointer rounded-lg">
                             <?= generateAvatar($userProfileImage, $userName, 'w-8 h-8', 'text-sm lg:text-base') ?>
                             <span class="hidden lg:block text-sm lg:text-base font-medium slate-700 max-w-24 truncate">
                                 <?= htmlspecialchars($userName) ?>
@@ -99,7 +99,7 @@ require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
                 </a>
 
                 <!-- Mobile menu toggle button -->
-                <button id="menu-button" class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none pointer">
+                <button id="menu-button" class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none cursor-pointer">
                     <i data-lucide="menu" class="w-4 h-4"></i>
                 </button>
             </div>
@@ -166,7 +166,7 @@ require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
                             </div>
                         </div>
                         <button
-                            class="pointer rounded-md border border-solid border-input bg-danger transition-colors px-4 py-2 text-sm font-medium text-white hover:bg-red-500 w-full sm:w-auto">
+                            class="cursor-pointer rounded-md border border-solid border-input bg-danger transition-colors px-4 py-2 text-sm font-medium text-white hover:bg-red-500 w-full sm:w-auto">
                             View Alerts
                         </button>
                     </div>
@@ -177,14 +177,14 @@ require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
                     <button
                         type="button"
                         data-target="active-emergencies"
-                        class="inline-flex h-9 w-full items-center justify-center whitespace-nowrap rounded-sm border-none bg-white px-3 text-sm font-medium text-gray-900 transition-all pointer">
+                        class="inline-flex h-9 w-full items-center justify-center whitespace-nowrap rounded-sm border-none bg-white px-3 text-sm font-medium text-gray-900 transition-all cursor-pointer">
                         Active Emergencies
                     </button>
 
                     <button
                         type="button"
                         data-target="notifications"
-                        class="inline-flex h-9 w-full items-center justify-center whitespace-nowrap rounded-sm border-none bg-gray-150 px-3 text-sm font-medium transition-all pointer">
+                        class="inline-flex h-9 w-full items-center justify-center whitespace-nowrap rounded-sm border-none bg-gray-150 px-3 text-sm font-medium transition-all cursor-pointer">
                         Notifications
                         <div id="notification-count"
                             class="ml-2 inline-flex items-center rounded-full bg-red-500 px-2.5 py-0.5 text-xs font-semibold text-white">
@@ -195,7 +195,7 @@ require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
                     <button
                         type="button"
                         data-target="team-status"
-                        class="inline-flex h-9 w-full items-center justify-center whitespace-nowrap rounded-sm border-none bg-gray-150 px-3 text-sm font-medium transition-all pointer">
+                        class="inline-flex h-9 w-full items-center justify-center whitespace-nowrap rounded-sm border-none bg-gray-150 px-3 text-sm font-medium transition-all cursor-pointer">
                         Team Status
                     </button>
                 </div>
@@ -265,12 +265,12 @@ require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
                             <div class="text-xs text-gray-500">Reported: 18h ago</div>
                         </div>
                         <div class="mt-3 flex flex-wrap gap-2">
-                            <button class="pointer rounded-md border border-solid border-input bg-medical-600 px-3 py-2 text-sm font-medium text-white hover:bg-primary">Accept & Assign</button>
-                            <button class="pointer rounded-md border border-solid border-input bg-white px-3 py-2 text-sm font-medium text-heading hover:bg-accent hover:text-primary">Update Status</button>
-                            <button class="pointer flex items-center gap-1 rounded-md border border-solid border-input bg-white px-3 py-2 text-sm font-medium text-heading hover:bg-accent hover:text-primary">
+                            <button class="cursor-pointer rounded-md border border-solid border-input bg-medical-600 px-3 py-2 text-sm font-medium text-white hover:bg-primary">Accept & Assign</button>
+                            <button class="cursor-pointer rounded-md border border-solid border-input bg-white px-3 py-2 text-sm font-medium text-heading hover:bg-accent hover:text-primary">Update Status</button>
+                            <button class="cursor-pointer flex items-center gap-1 rounded-md border border-solid border-input bg-white px-3 py-2 text-sm font-medium text-heading hover:bg-accent hover:text-primary">
                                 <i data-lucide="map-pin" class="h-4 w-4"></i> View Location
                             </button>
-                            <button class="pointer flex items-center gap-1 rounded-md border border-solid border-input bg-white px-3 py-2 text-sm font-medium text-heading hover:bg-accent hover:text-primary">
+                            <button class="cursor-pointer flex items-center gap-1 rounded-md border border-solid border-input bg-white px-3 py-2 text-sm font-medium text-heading hover:bg-accent hover:text-primary">
                                 <i data-lucide="phone" class="h-4 w-4"></i> Call Patient
                             </button>
                         </div>
@@ -294,12 +294,12 @@ require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
                             <div class="text-xs text-gray-500">Reported: 19h ago &nbsp; | &nbsp; ETA: 6:00 PM</div>
                         </div>
                         <div class="mt-3 flex flex-wrap gap-2">
-                            <button class="pointer rounded-md border border-solid border-input bg-medical-600 px-3 py-2 text-sm font-medium text-white hover:bg-primary">Start Response</button>
-                            <button class="pointer rounded-md border border-solid border-input bg-white px-3 py-2 text-sm font-medium text-heading hover:bg-accent hover:text-primary">Update Status</button>
-                            <button class="pointer flex items-center gap-1 rounded-md border border-solid border-input bg-white px-3 py-2 text-sm font-medium text-heading hover:bg-accent hover:text-primary">
+                            <button class="cursor-pointer rounded-md border border-solid border-input bg-medical-600 px-3 py-2 text-sm font-medium text-white hover:bg-primary">Start Response</button>
+                            <button class="cursor-pointer rounded-md border border-solid border-input bg-white px-3 py-2 text-sm font-medium text-heading hover:bg-accent hover:text-primary">Update Status</button>
+                            <button class="cursor-pointer flex items-center gap-1 rounded-md border border-solid border-input bg-white px-3 py-2 text-sm font-medium text-heading hover:bg-accent hover:text-primary">
                                 <i data-lucide="map-pin" class="h-4 w-4"></i> View Location
                             </button>
-                            <button class="pointer flex items-center gap-1 rounded-md border border-solid border-input bg-white px-3 py-2 text-sm font-medium text-heading hover:bg-accent hover:text-primary">
+                            <button class="cursor-pointer flex items-center gap-1 rounded-md border border-solid border-input bg-white px-3 py-2 text-sm font-medium text-heading hover:bg-accent hover:text-primary">
                                 <i data-lucide="phone" class="h-4 w-4"></i> Call Patient
                             </button>
                         </div>
@@ -312,7 +312,7 @@ require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
 
                     <div class="flex flex-col gap-3">
                         <!-- Notification 1 -->
-                        <div class="notification-card p-4 rounded-lg border border-solid border-red-200 bg-red-50 pointer">
+                        <div class="notification-card p-4 rounded-lg border border-solid border-red-200 bg-red-50 cursor-pointer">
                             <div class="flex items-start justify-between">
                                 <div class="flex-1">
                                     <h4 class="font-medium text-heading">Critical Emergency Alert</h4>
@@ -330,7 +330,7 @@ require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
                         </div>
 
                         <!-- Notification 2 -->
-                        <div class="notification-card p-4 rounded-lg border border-solid border-red-200 bg-red-50 pointer">
+                        <div class="notification-card p-4 rounded-lg border border-solid border-red-200 bg-red-50 cursor-pointer">
                             <div class="flex items-start justify-between">
                                 <div class="flex-1">
                                     <h4 class="font-medium text-heading">Emergency Assignment</h4>

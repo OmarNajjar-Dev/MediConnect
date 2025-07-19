@@ -69,7 +69,7 @@ require_once __DIR__ . "/backend/helpers/avatar-helper.php";
                     <!-- User dropdown (visible if logged in) -->
                     <div class="hidden md:flex items-center gap-3 mr-4">
                         <div class="dropdown relative">
-                            <button class="flex items-center gap-2 md:py-2 px-2 border-none bg-transparent hover:bg-medical-50 transition-colors transition-200 pointer rounded-lg">
+                            <button class="flex items-center gap-2 md:py-2 px-2 border-none bg-transparent hover:bg-medical-50 transition-colors transition-200 cursor-pointer rounded-lg">
                                 <?= generateAvatar($userProfileImage, $userName, 'w-8 h-8', 'text-sm lg:text-base') ?>
                                 <span class="hidden lg:block text-sm lg:text-base font-medium slate-700 max-w-24 truncate">
                                     <?= htmlspecialchars($userName) ?>
@@ -114,7 +114,7 @@ require_once __DIR__ . "/backend/helpers/avatar-helper.php";
                 <?php endif; ?>
 
                 <!-- Mobile menu toggle button -->
-                <button id="menu-button" class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none pointer">
+                <button id="menu-button" class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none cursor-pointer">
                     <i data-lucide="menu" class="w-4 h-4"></i>
                 </button>
             </div>
@@ -243,7 +243,7 @@ require_once __DIR__ . "/backend/helpers/avatar-helper.php";
                             <div class="flex justify-center">
                                 <a href="coming-soon.php"
                                     id="leadership-cta"
-                                    class="inline-flex items-center justify-center gap-2 text-sm font-medium border border-solid border-input bg-background hover:bg-medical-50 text-heading hover:text-medical-500 h-11 rounded-md px-8 transition-colors pointer">
+                                    class="inline-flex items-center justify-center gap-2 text-sm font-medium border border-solid border-input bg-background hover:bg-medical-50 text-heading hover:text-medical-500 h-11 rounded-md px-8 transition-colors cursor-pointer">
                                     <span>View Full Leadership Team</span>
                                     <i data-lucide="arrow-right" class="ml-2 h-4 w-4 transition-transform"></i>
                                 </a>
@@ -275,11 +275,11 @@ require_once __DIR__ . "/backend/helpers/avatar-helper.php";
                                     </p>
                                     <div class="flex flex-col sm:flex-row flex-wrap gap-4">
                                         <a href="coming-soon.php"
-                                            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors outline-none border border-solid border-white h-11 rounded-lg px-8 bg-white text-medical-700 hover:bg-neutral-100 shadow-lg pointer">
+                                            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors outline-none border border-solid border-white h-11 rounded-lg px-8 bg-white text-medical-700 hover:bg-neutral-100 shadow-lg cursor-pointer">
                                             Become a Partner
                                         </a>
                                         <a href="coming-soon.php"
-                                            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors outline-none border border-solid border-white h-11 rounded-lg px-8 text-white bg-medical-600/30 pointer">
+                                            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors outline-none border border-solid border-white h-11 rounded-lg px-8 text-white bg-medical-600/30 cursor-pointer">
                                             Learn More About Our Mission
                                         </a>
                                     </div>

@@ -64,12 +64,17 @@ export function renderCalendar() {
       div.classList.add("text-gray-400", "not-allowed", "opacity-50");
       div.setAttribute("disabled", "true");
     } else {
-      div.classList.add("hover:text-primary", "hover:bg-medical-50", "pointer");
+      div.classList.add(
+        "hover:text-primary",
+        "hover:bg-medical-50",
+        "cursor-pointer"
+      );
 
       div.addEventListener("click", () => {
         if (selectedDay === div) {
           div.className =
-            defaultClass + "hover:text-primary hover:bg-medical-50 pointer";
+            defaultClass +
+            "hover:text-primary hover:bg-medical-50 cursor-pointer";
           if (isToday) div.classList.add("font-bold", "text-black");
           selectedDay = null;
           selectedDateValue.textContent = "Pick a date";
@@ -77,7 +82,8 @@ export function renderCalendar() {
           if (selectedDay) {
             const prevText = selectedDay.textContent;
             selectedDay.className =
-              defaultClass + "hover:text-primary hover:bg-medical-50 pointer";
+              defaultClass +
+              "hover:text-primary hover:bg-medical-50 cursor-pointer";
             const wasToday =
               +prevText === today.getDate() &&
               month === today.getMonth() &&
@@ -86,7 +92,7 @@ export function renderCalendar() {
           }
 
           div.className =
-            "h-9 w-9 rounded-md bg-medical-600 text-white pointer flex items-center justify-center transition-colors";
+            "h-9 w-9 rounded-md bg-medical-600 text-white cursor-pointer flex items-center justify-center transition-colors";
           selectedDay = div;
 
           const dateWithSuffix = `${cellDate.toLocaleString("en-US", {

@@ -60,6 +60,7 @@ if (isset($_SESSION['user_id'])) {
     <link rel="stylesheet" href="/mediconnect/css/spacing.min.css" />
     <link rel="stylesheet" href="/mediconnect/css/sizing.min.css" />
     <link rel="stylesheet" href="/mediconnect/css/borders.css" />
+    <link rel="stylesheet" href="/mediconnect/css/ring.css">
     <link rel="stylesheet" href="/mediconnect/css/layout.css" />
     <link rel="stylesheet" href="/mediconnect/css/animations.css" />
     <link rel="stylesheet" href="/mediconnect/css/style.css" />
@@ -98,7 +99,7 @@ if (isset($_SESSION['user_id'])) {
                 <!-- User dropdown (visible if logged in) -->
                 <div class="hidden md:flex items-center gap-3 md:mr-4">
                     <div class="dropdown relative">
-                        <button class="flex items-center gap-2 md:py-2 px-2 border-none bg-transparent hover:bg-medical-50 transition-colors transition-200 pointer rounded-lg">
+                        <button class="flex items-center gap-2 md:py-2 px-2 border-none bg-transparent hover:bg-medical-50 transition-colors transition-200 cursor-pointer rounded-lg">
                             <?= generateAvatar($userProfileImage, $userName, 'w-8 h-8', 'text-sm lg:text-base') ?>
                             <span class="hidden lg:block text-sm lg:text-base font-medium slate-700 max-w-24 truncate">
                                 <?= htmlspecialchars($userName) ?>
@@ -129,7 +130,7 @@ if (isset($_SESSION['user_id'])) {
                 </a>
 
                 <!-- Mobile menu toggle button -->
-                <button id="menu-button" class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none pointer">
+                <button id="menu-button" class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none cursor-pointer">
                     <i data-lucide="menu" class="w-4 h-4"></i>
                 </button>
             </div>
@@ -178,25 +179,25 @@ if (isset($_SESSION['user_id'])) {
 
                     <!-- Tab Navigation -->
                     <div
-                        class="mb-2 grid h-10 w-full grid-cols-3 items-center justify-center rounded-md bg-gray-150 p-1 text-muted-foreground pointer">
+                        class="mb-2 grid h-10 w-full grid-cols-3 items-center justify-center rounded-md bg-gray-150 p-1 text-muted-foreground cursor-pointer">
                         <button
                             type="button"
                             data-target="my-appointments"
-                            class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-white px-3 py-1.5 text-sm font-medium pointer">
+                            class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-white px-3 py-1.5 text-sm font-medium cursor-pointer">
                             My Appointments
                         </button>
 
                         <button
                             type="button"
                             data-target="schedule"
-                            class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-gray-150 px-3 py-1.5 text-sm font-medium pointer">
+                            class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-gray-150 px-3 py-1.5 text-sm font-medium cursor-pointer">
                             Schedule
                         </button>
 
                         <button
                             type="button"
                             data-target="profile"
-                            class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-gray-150 px-3 py-1.5 text-sm font-medium pointer">
+                            class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border-none bg-gray-150 px-3 py-1.5 text-sm font-medium cursor-pointer">
                             Profile
                         </button>
                     </div>
@@ -273,11 +274,11 @@ if (isset($_SESSION['user_id'])) {
                                         <span class="text-xs px-2 py-1 rounded-full bg-green-100 text-green-800 inline-block w-fit">confirmed</span>
                                     </div>
                                     <div class="flex flex-col md:flex-row gap-2 w-full md:w-auto">
-                                        <button class="w-full md:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium border border-input border-solid bg-background hover:bg-accent hover:text-medical-500 h-9 rounded-md px-3 pointer">
+                                        <button class="w-full md:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium border border-input border-solid bg-background hover:bg-accent hover:text-medical-500 h-9 rounded-md px-3 cursor-pointer">
                                             <i data-lucide="square-pen" class="h-4 w-4 mr-1"></i>
                                             Update
                                         </button>
-                                        <button class="w-full md:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm border border-transparent font-medium bg-primary text-white hover:bg-medical-400 h-9 rounded-md px-3 pointer">
+                                        <button class="w-full md:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm border border-transparent font-medium bg-primary text-white hover:bg-medical-400 h-9 rounded-md px-3 cursor-pointer">
                                             Complete
                                         </button>
                                     </div>
@@ -301,11 +302,11 @@ if (isset($_SESSION['user_id'])) {
                                         <span class="text-xs px-2 py-1 rounded-full bg-blue-100 text-blue-800 inline-block w-fit">in progress</span>
                                     </div>
                                     <div class="flex flex-col md:flex-row gap-2 w-full md:w-auto">
-                                        <button class="w-full md:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium border border-input border-solid bg-background hover:bg-accent hover:text-medical-500 h-9 rounded-md px-3 pointer">
+                                        <button class="w-full md:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium border border-input border-solid bg-background hover:bg-accent hover:text-medical-500 h-9 rounded-md px-3 cursor-pointer">
                                             <i data-lucide="square-pen" class="h-4 w-4 mr-1"></i>
                                             Update
                                         </button>
-                                        <button class="w-full md:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm border border-transparent font-medium bg-primary text-white hover:bg-medical-400 h-9 rounded-md px-3 pointer">
+                                        <button class="w-full md:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm border border-transparent font-medium bg-primary text-white hover:bg-medical-400 h-9 rounded-md px-3 cursor-pointer">
                                             Complete
                                         </button>
                                     </div>
@@ -329,11 +330,11 @@ if (isset($_SESSION['user_id'])) {
                                         <span class="text-xs px-2 py-1 rounded-full bg-neutral-100 text-gray-800 inline-block w-fit">scheduled</span>
                                     </div>
                                     <div class="flex flex-col md:flex-row gap-2 w-full md:w-auto">
-                                        <button class="w-full md:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium border border-input border-solid bg-background hover:bg-accent hover:text-medical-500 h-9 rounded-md px-3 pointer">
+                                        <button class="w-full md:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium border border-input border-solid bg-background hover:bg-accent hover:text-medical-500 h-9 rounded-md px-3 cursor-pointer">
                                             <i data-lucide="square-pen" class="h-4 w-4 mr-1"></i>
                                             Update
                                         </button>
-                                        <button class="w-full md:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm border border-transparent font-medium bg-primary text-white hover:bg-medical-400 h-9 rounded-md px-3 pointer">
+                                        <button class="w-full md:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm border border-transparent font-medium bg-primary text-white hover:bg-medical-400 h-9 rounded-md px-3 cursor-pointer">
                                             Complete
                                         </button>
                                     </div>
@@ -357,11 +358,11 @@ if (isset($_SESSION['user_id'])) {
                                         <span class="text-xs px-2 py-1 rounded-full bg-neutral-100 text-gray-800 inline-block w-fit">scheduled</span>
                                     </div>
                                     <div class="flex flex-col md:flex-row gap-2 w-full md:w-auto">
-                                        <button class="w-full md:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium border border-input border-solid bg-background hover:bg-accent hover:text-medical-500 h-9 rounded-md px-3 pointer">
+                                        <button class="w-full md:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium border border-input border-solid bg-background hover:bg-accent hover:text-medical-500 h-9 rounded-md px-3 cursor-pointer">
                                             <i data-lucide="square-pen" class="h-4 w-4 mr-1"></i>
                                             Update
                                         </button>
-                                        <button class="w-full md:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm border border-transparent font-medium bg-primary text-white hover:bg-medical-400 h-9 rounded-md px-3 pointer">
+                                        <button class="w-full md:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm border border-transparent font-medium bg-primary text-white hover:bg-medical-400 h-9 rounded-md px-3 cursor-pointer">
                                             Complete
                                         </button>
                                     </div>
@@ -468,7 +469,7 @@ if (isset($_SESSION['user_id'])) {
                             <!-- Header: Title and Edit Button -->
                             <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
                                 <h3 class="text-lg sm:text-xl font-bold">Profile Management</h3>
-                                <button id="edit-profile-btn" class="w-full sm:w-auto h-10 px-4 py-2 rounded-md text-sm font-medium pointer inline-flex items-center justify-center gap-2 bg-primary text-white hover:bg-medical-400 border border-transparent">
+                                <button id="edit-profile-btn" class="w-full sm:w-auto h-10 px-4 py-2 rounded-md text-sm font-medium cursor-pointer inline-flex items-center justify-center gap-2 bg-primary text-white hover:bg-medical-400 border border-transparent">
                                     <i data-lucide="square-pen" class="h-4 w-4 mr-2"></i>
                                     Edit Profile
                                 </button>
@@ -569,7 +570,7 @@ if (isset($_SESSION['user_id'])) {
                             <p class="text-sm text-muted-foreground">Update your personal information and profile picture</p>
                         </div>
                     </div>
-                    <button id="close-profile-modal-btn" class="text-gray-500 hover:text-gray-800 transition-colors">
+                    <button id="close-profile-modal-btn" class="flex items-center text-gray-500 hover:text-gray-800 cursor-pointer bg-transparent border-none rounded-full transition-colors focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
                         <i data-lucide="x" class="h-6 w-6"></i>
                     </button>
                 </div>
@@ -596,8 +597,8 @@ if (isset($_SESSION['user_id'])) {
                                             <div id="profile-avatar-initials" class="w-24 h-24 rounded-full bg-medical-100 flex items-center justify-center text-medical-700 text-lg font-bold">??</div>
                                         </div>
                                         <div class="w-full">
-                                            <label for="profile-upload" class="text-sm font-medium leading-none pointer">
-                                                <div class="flex items-center justify-center w-full p-3 border-2 border-dashed border-gray-300 rounded-lg hover:border-medical-400 transition-colors">
+                                            <label for="profile-upload" class="text-sm font-medium leading-none cursor-pointer">
+                                                <div id="new-image-profile" class="flex items-center justify-center w-full p-3 border-2 border-dashed border-gray-300 rounded-lg hover:border-medical-400 transition-colors">
                                                     <div class="flex flex-col text-center">
                                                         <i data-lucide="camera" class="mx-auto h-6 w-6 text-gray-400 mb-2"></i>
                                                         <span class="text-sm text-gray-600">Upload new image</span>
@@ -649,15 +650,15 @@ if (isset($_SESSION['user_id'])) {
 
                     <!-- Action Buttons -->
                     <div class="flex justify-end gap-3 p-6 border-t border-solid border-gray-200 bg-gray-50">
-                        <button type="button" id="cancel-profile-edit-btn" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-input bg-white hover:bg-gray-100 h-10 px-6 py-2">
+                        <button type="button" id="cancel-profile-edit-btn" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-input bg-white hover:bg-gray-100 h-10 px-6 py-2 cursor-pointer hover:bg-medical-50 hover:text-primary">
                             <i data-lucide="x" class="h-4 w-4"></i>
                             Cancel
                         </button>
-                        <button type="button" id="discard-profile-changes-btn" class="hidden inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors text-yellow-700 border border-solid border-yellow-300 bg-yellow-50 hover:bg-yellow-100 h-10 px-6 py-2">
+                        <button type="button" id="discard-profile-changes-btn" class="hidden inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors text-yellow-700 border border-solid border-warning hover:bg-yellow-100 bg-yellow-50 hover:bg-yellow-100 h-10 px-6 py-2 cursor-pointer">
                             <i data-lucide="undo" class="h-4 w-4"></i>
                             Discard Changes
                         </button>
-                        <button type="submit" id="save-profile-changes-btn" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors text-white h-10 px-6 py-2 bg-primary hover:bg-medical-600">
+                        <button type="submit" id="save-profile-changes-btn" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors text-white h-10 px-6 py-2 bg-primary hover:bg-medical-600 border border-solid border-transparent cursor-pointer">
                             <span id="save-profile-text">Save Changes</span>
                             <div id="save-profile-loading" class="hidden animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
                         </button>

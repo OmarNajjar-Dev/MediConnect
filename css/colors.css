@@ -110,6 +110,7 @@
   --slate-700: 51, 65, 85;
 
   /* Yellow Shades */
+  --yellow-300: 253, 224, 71;
   --yellow-600: 202, 138, 4;
   --yellow-700: 161, 98, 7;
   --yellow-900: 113, 63, 18;
@@ -1134,6 +1135,10 @@
 
 .border-orange-200 {
   border-color: rgba(var(--warning), 0.2);
+}
+
+.hover\:bg-yellow-100:hover {
+  background-color: rgba(var(--warning), 0.15);
 }
 
 .hover\:bg-orange-500:hover {
