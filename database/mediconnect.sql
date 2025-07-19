@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 18, 2025 at 09:21 PM
+-- Generation Time: Jul 19, 2025 at 12:16 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -68,12 +68,12 @@ CREATE TABLE `doctors` (
 --
 
 INSERT INTO `doctors` (`doctor_id`, `user_id`, `specialty_id`, `hospital_id`, `is_verified`, `rating`, `reviews_count`, `bio`) VALUES
-(8, 2, 1, 1, 0, NULL, NULL, NULL),
-(9, 3, 2, 2, 0, NULL, NULL, NULL),
-(10, 4, 3, 3, 0, NULL, NULL, NULL),
-(12, 6, 5, 6, 0, NULL, NULL, NULL),
-(13, 7, 6, 7, 0, NULL, NULL, NULL),
-(14, 5, 4, 1, 0, NULL, NULL, NULL);
+(8, 2, 1, 1, 0, NULL, NULL, 'Dr. Sarah Johnson is a board-certified cardiologist with over 12 years of experience in treating cardiovascular diseases. She completed her medical training at Harvard Medical School and residency at Massachusetts General Hospital.'),
+(9, 3, 2, 2, 0, NULL, NULL, 'Dr. Michael Chen specializes in medical, surgical, and cosmetic dermatology. He has expertise in treating skin conditions like acne, eczema, psoriasis, and skin cancer.'),
+(10, 4, 3, 3, 0, NULL, NULL, 'Dr. Emily Rodriguez is a neurologist with expertise in headache disorders, multiple sclerosis, and neurodegenerative diseases. She is dedicated to providing compassionate care for patients with complex neurological conditions.'),
+(12, 6, 5, 6, 0, NULL, NULL, 'Dr. Lisa Kim is a dedicated pediatrician who provides comprehensive healthcare for children from birth through adolescence. She is known for her gentle approach and ability to connect with young patients.'),
+(13, 7, 6, 7, 0, NULL, NULL, 'Dr. Robert Taylor is a psychiatrist specializing in mood disorders, anxiety, and PTSD. He takes a holistic approach to mental health, combining medication management with psychotherapy when appropriate.'),
+(14, 5, 4, 1, 0, NULL, NULL, 'Dr. James Wilson is an orthopedic surgeon specializing in sports medicine, joint replacement, and trauma. With 20 years of experience, he has helped thousands of patients recover from orthopedic injuries and conditions.');
 
 -- --------------------------------------------------------
 
@@ -294,13 +294,13 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `email`, `password`, `first_name`, `last_name`, `city`, `address_line`, `profile_image`, `remember_token`) VALUES
-(1, 'omarnajjar10.on@gmail.com', '$2y$10$xNSbA7CiaIHxzA5.YGlAW./4FCuRpzCvCwudixoWASZDZLIgmAdOu', 'Omar', 'Najjar', 'Mina', 'Sea Road, Mina, El Mina, Tripoli District, North Governorate, 1301, Lebanon', '/mediconnect/uploads/profile_images/profile_1_1752840783.jpg', '768afdb5b7e23b33cbaaf6ef86a4238929c370602e02b5f2211e21f3bab662cb'),
-(2, 'sarahjohnson@gmail.com', '$2y$10$diymDRPP0peTXa.U.LdMYu5nZU3x2vxJFAxJaXfwQL0LUjuCm6rfi', 'Sarah', 'Johnson', 'Tripoli', 'Hay Al Ramlet', NULL, NULL),
-(3, 'michaelchen@gmail.com', '$2y$10$mkXvDnpFC6ke5ojUMjOdhem2MXM9hlzt7.R0h4HU3diUSftR8PYse', 'Michael', 'Chen', 'New York', '123 Skin Street', NULL, NULL),
-(4, 'emilyrodriguez@gmail.com', '$2y$10$lX3ffT/LbQZW8jvSG59ceOCCYVGrir6ePRvb3eFfMWtho.IIiKw/G', 'Emily', 'Rodriguez', 'Los Angeles', '456 Neuro', NULL, NULL),
-(5, 'jameswilson@gmail.com', '$2y$10$3Ji/tJwDwkolqSuDAV7Dre33V3oGelJthsnms4P7fwaYYmK/DVu96', 'James', 'Wilson', 'Chicago', '789 Ortho', NULL, NULL),
-(6, 'lisakim@gmail.com', '$2y$10$6rkQR42WGSYZZVSh.n2sauFYW/OJJsOlie.XELzs6a.DaDtmk3ceq', 'Lisa', 'Kim', 'Houston', '321 Pediatric', NULL, NULL),
-(7, 'roberttaylor@gmail.com', '$2y$10$wY10L4rEwSJHVvJGCF5eFO0sYl7rU1keaikUGKE22AdbMTeAxcmqW', 'Robert', 'Taylor', 'Phoenix', '654 Mental Way', NULL, NULL);
+(1, 'omarnajjar10.on@gmail.com', '$2y$10$xNSbA7CiaIHxzA5.YGlAW./4FCuRpzCvCwudixoWASZDZLIgmAdOu', 'Omar', 'Najjar', 'Tripoli', 'Sea Road, El Mina', '/mediconnect/uploads/profile_images/profile_1_1752840783.jpg', '768afdb5b7e23b33cbaaf6ef86a4238929c370602e02b5f2211e21f3bab662cb'),
+(2, 'sarahjohnson@gmail.com', '$2y$10$diymDRPP0peTXa.U.LdMYu5nZU3x2vxJFAxJaXfwQL0LUjuCm6rfi', 'Sarah', 'Johnson', 'Tripoli', 'Hay Al Ramlet', '/mediconnect/uploads/profile_images/profile_2_1752871634.webp', NULL),
+(3, 'michaelchen@gmail.com', '$2y$10$mkXvDnpFC6ke5ojUMjOdhem2MXM9hlzt7.R0h4HU3diUSftR8PYse', 'Michael', 'Chen', 'New York', '123 Skin Street', '/mediconnect/uploads/profile_images/profile_3_1752914804.webp', NULL),
+(4, 'emilyrodriguez@gmail.com', '$2y$10$lX3ffT/LbQZW8jvSG59ceOCCYVGrir6ePRvb3eFfMWtho.IIiKw/G', 'Emily', 'Rodriguez', 'Los Angeles', '456 Neuro', '/mediconnect/uploads/profile_images/profile_4_1752914885.webp', NULL),
+(5, 'jameswilson@gmail.com', '$2y$10$3Ji/tJwDwkolqSuDAV7Dre33V3oGelJthsnms4P7fwaYYmK/DVu96', 'James', 'Wilson', 'Chicago', '789 Ortho', '/mediconnect/uploads/profile_images/profile_5_1752914927.webp', NULL),
+(6, 'lisakim@gmail.com', '$2y$10$6rkQR42WGSYZZVSh.n2sauFYW/OJJsOlie.XELzs6a.DaDtmk3ceq', 'Lisa', 'Kim', 'Houston', '321 Pediatric', '/mediconnect/uploads/profile_images/profile_6_1752914982.webp', NULL),
+(7, 'roberttaylor@gmail.com', '$2y$10$wY10L4rEwSJHVvJGCF5eFO0sYl7rU1keaikUGKE22AdbMTeAxcmqW', 'Robert', 'Taylor', 'Phoenix', '654 Mental Way', '/mediconnect/uploads/profile_images/profile_7_1752915038.webp', NULL);
 
 -- --------------------------------------------------------
 
