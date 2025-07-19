@@ -163,6 +163,7 @@ require_once __DIR__ . "/backend/helpers/avatar-helper.php";
                         </p>
                         <div id="request-help-wrapper" class="flex flex-col gap-6">
                             <button
+                                id="request-help-btn"
                                 class="gap-2 whitespace-nowrap border border-solid border-input h-10 bg-danger hover:bg-red-700 text-white font-bold py-4 px-8 rounded-sm text-lg shadow-lg flex items-center justify-center w-full md:w-auto md:max-w-[310px] cursor-pointer transition-colors">
                                 <i data-lucide="ambulance" class="mr-2 h-4 w-4"></i>
                                 Request Emergency Help
