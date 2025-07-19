@@ -9,6 +9,11 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
 // 6. Include avatar helper
 require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
 
+// 7. Fetch complete user profile data for My Profile section using helper
+$profileData = getUserProfileData($_SESSION['user_id'] ?? 0, $conn);
+$userCity = $profileData['city'];
+$userAddress = $profileData['address'];
+
 ?>
 
 <!DOCTYPE html>
