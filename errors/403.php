@@ -68,13 +68,13 @@ require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
                 <!-- User dropdown (visible if logged in) -->
                 <div class="hidden md:flex items-center gap-3 md:mr-4">
                     <div class="dropdown relative">
-                                      <button class="flex items-center gap-2 md:py-2 px-2 border-none bg-transparent hover:bg-medical-50 transition-colors transition-200 pointer rounded-lg">
-                <?= generateAvatar($userProfileImage, $userName, 'w-8 h-8', 'text-sm lg:text-base') ?>
-                <span class="hidden lg:block text-sm lg:text-base font-medium slate-700 max-w-24 truncate">
-                  <?= htmlspecialchars($userName) ?>
-                </span>
-                <i data-lucide="chevron-down" class="w-4 h-4 slate-500"></i>
-              </button>
+                        <button class="flex items-center gap-2 md:py-2 px-2 border-none bg-transparent hover:bg-medical-50 transition-colors transition-200 pointer rounded-lg">
+                            <?= generateAvatar($userProfileImage, $userName, 'w-8 h-8', 'text-sm lg:text-base') ?>
+                            <span class="hidden lg:block text-sm lg:text-base font-medium slate-700 max-w-24 truncate">
+                                <?= htmlspecialchars($userName) ?>
+                            </span>
+                            <i data-lucide="chevron-down" class="w-4 h-4 slate-500"></i>
+                        </button>
 
                         <!-- Dropdown menu -->
                         <div class="dropdown-content overflow-hidden hidden animate-fade-in absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-solid border-gray-100 z-50">
@@ -82,7 +82,7 @@ require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
                                 <p class="text-sm font-medium slate-700"><?= htmlspecialchars($userName) ?></p>
                                 <p class="text-xs slate-500"><?= htmlspecialchars($userEmail) ?></p>
                             </div>
-                            <a href="#" class="flex items-center gap-2 px-3 py-2 text-sm slate-600 hover:text-primary hover:bg-medical-50 transition-colors transition-200">
+                            <a href="<?= $paths['dashboard']['index'] ?>" class="flex items-center gap-2 px-3 py-2 text-sm slate-600 hover:text-primary hover:bg-medical-50 transition-colors transition-200">
                                 <i data-lucide="user" class="w-4 h-4"></i>Dashboard
                             </a>
                             <a href="<?= $paths['auth']['logout'] ?>" class="flex items-center gap-2 px-3 py-2 text-sm text-red-600 hover:text-red-700 hover:bg-red-50 w-full transition-colors transition-200">
@@ -113,7 +113,7 @@ require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
                     <a href="<?= $paths['services']['appointments'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
 
                     <div class="flex flex-col pt-2 gap-2 bg-transparent border-t border-solid separator">
-                        <a href="#" class="inline-flex items-center gap-2 justify-start text-gray-700 hover:bg-medical-50 hover:text-primary px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                        <a href="<?= $paths['dasbhoard']['index'] ?>" class="inline-flex items-center gap-2 justify-start text-gray-700 hover:bg-medical-50 hover:text-primary px-4 py-2 rounded-lg text-sm font-medium transition-colors">
                             <i data-lucide="user" class="w-4 h-4"></i> Dashboard
                         </a>
                         <a href="<?= $paths['auth']['logout'] ?>" class="inline-flex items-center gap-2 justify-start text-red-600 hover:bg-red-50 hover:text-red-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors">

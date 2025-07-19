@@ -234,7 +234,7 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
             <p id="toast-title" class="font-semibold"></p>
             <p id="toast-message" class="text-sm"></p>
         </div>
-        
+
     </main>
 
     <!-- Footer -->

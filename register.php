@@ -94,7 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 } elseif ($roleName === "Doctor") {
                     $hospitalId = $_POST["hospital_id"] ?? null;
                     $specialtyId = $_POST["specialty_id"] ?? null;
-                    
+
                     if ($hospitalId && $specialtyId) {
                         $doctor_stmt = $conn->prepare("INSERT INTO doctors (user_id, hospital_id, specialty_id, is_verified) VALUES (?, ?, ?, 0)");
                         $doctor_stmt->bind_param("iii", $user_id, $hospitalId, $specialtyId);

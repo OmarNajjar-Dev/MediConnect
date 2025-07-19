@@ -16,7 +16,7 @@ $doctorSpecialty = '';
 
 if (isset($_SESSION['user_id'])) {
     $userId = $_SESSION['user_id'];
-    
+
     // Fetch doctor profile data
     $stmt = $conn->prepare("
         SELECT 
@@ -31,7 +31,7 @@ if (isset($_SESSION['user_id'])) {
     $stmt->bind_param("i", $userId);
     $stmt->execute();
     $result = $stmt->get_result();
-    
+
     if ($doctor = $result->fetch_assoc()) {
         $doctorBio = $doctor['bio'] ?? '';
         $doctorHospital = $doctor['hospital_name'] ?? 'Hospital not assigned';
@@ -623,7 +623,7 @@ if (isset($_SESSION['user_id'])) {
                                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                         <div class="flex flex-col gap-2">
                                             <label for="profile-name" class="text-sm font-medium leading-none">Full Name</label>
-                                            <input id="profile-name" name="name" placeholder="Enter your full name" 
+                                            <input id="profile-name" name="name" placeholder="Enter your full name"
                                                 class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white" required>
                                         </div>
                                         <div class="flex flex-col gap-2">
