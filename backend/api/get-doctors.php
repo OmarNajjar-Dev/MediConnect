@@ -12,7 +12,7 @@ $sql = "SELECT
             u.last_name,
             u.city,
             u.profile_image,
-            h.name AS hospital_name,
+            h.name AS name,
             s.label_for_doctor AS specialty
         FROM doctors d
         INNER JOIN users u ON d.user_id = u.user_id

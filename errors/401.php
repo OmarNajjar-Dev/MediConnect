@@ -6,6 +6,9 @@ require_once __DIR__ . "/../backend/config/path.php";
 // 2. Load user session context (sets $isLoggedIn, $userName, $userEmail)
 require_once __DIR__ . "/../backend/middleware/session-context.php";
 
+// 3. Include avatar helper
+require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
+
 ?>
 
 <!DOCTYPE html>

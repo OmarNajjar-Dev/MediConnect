@@ -6,6 +6,39 @@ $requiredRole = 'doctor';
 // 5. Protect the dashboard: redirect if user role does not match
 require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
 
+// 6. Include avatar helper
+require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
+
+// 7. Fetch doctor-specific information
+$doctorBio = '';
+$doctorHospital = '';
+$doctorSpecialty = '';
+
+if (isset($_SESSION['user_id'])) {
+    $userId = $_SESSION['user_id'];
+    
+    // Fetch doctor profile data
+    $stmt = $conn->prepare("
+        SELECT 
+            d.bio, 
+            h.name AS hospital_name, 
+            s.name AS specialty_name 
+        FROM doctors d
+        LEFT JOIN hospitals h ON d.hospital_id = h.hospital_id
+        LEFT JOIN specialties s ON d.specialty_id = s.specialty_id
+        WHERE d.user_id = ?
+    ");
+    $stmt->bind_param("i", $userId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    if ($doctor = $result->fetch_assoc()) {
+        $doctorBio = $doctor['bio'] ?? '';
+        $doctorHospital = $doctor['hospital_name'] ?? 'Hospital not assigned';
+        $doctorSpecialty = $doctor['specialty_name'] ?? 'Specialty not assigned';
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -66,9 +99,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                 <div class="hidden md:flex items-center gap-3 md:mr-4">
                     <div class="dropdown relative">
                         <button class="flex items-center gap-2 md:py-2 px-2 border-none bg-transparent hover:bg-medical-50 transition-colors transition-200 pointer rounded-lg">
-                            <div class="w-8 h-8 rounded-full bg-medical-100 flex items-center justify-center text-medical-700 text-sm lg:text-base font-medium">
-                                <?= strtoupper(substr($userName, 0, 2)) ?>
-                            </div>
+                            <?= generateAvatar($userProfileImage, $userName, 'w-8 h-8', 'text-sm lg:text-base') ?>
                             <span class="hidden lg:block text-sm lg:text-base font-medium slate-700 max-w-24 truncate">
                                 <?= htmlspecialchars($userName) ?>
                             </span>
@@ -133,7 +164,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                     <div>
                         <p class="text-sm text-gray-600 mb-1">Logged in as: <span class="font-medium">DOCTOR</span></p>
                         <h1 class="text-2xl font-bold text-gray-900">Welcome back, Dr. <?= $userName ?></h1>
-                        <p class="text-sm text-primary mt-1">Al Noor Medical Center</p>
+                        <p class="text-sm text-primary mt-1"><?= htmlspecialchars($doctorHospital) ?></p>
                     </div>
                 </div>
                 <div class="flex flex-col gap-6">
@@ -437,7 +468,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                             <!-- Header: Title and Edit Button -->
                             <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
                                 <h3 class="text-lg sm:text-xl font-bold">Profile Management</h3>
-                                <button class="w-full sm:w-auto h-10 px-4 py-2 rounded-md text-sm font-medium pointer inline-flex items-center justify-center gap-2 bg-primary text-white hover:bg-medical-400 border border-transparent">
+                                <button id="edit-profile-btn" class="w-full sm:w-auto h-10 px-4 py-2 rounded-md text-sm font-medium pointer inline-flex items-center justify-center gap-2 bg-primary text-white hover:bg-medical-400 border border-transparent">
                                     <i data-lucide="square-pen" class="h-4 w-4 mr-2"></i>
                                     Edit Profile
                                 </button>
@@ -457,21 +488,16 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                                     </div>
                                     <div class="px-6 pb-6 flex flex-col gap-4">
                                         <div class="flex flex-col gap-4 items-center">
-                                            <span class="relative flex shrink-0 overflow-hidden rounded-full w-24 h-24">
-                                                <span class="flex h-full w-full items-center justify-center rounded-full text-lg bg-medical-100 text-medical-700">
-                                                    <?= strtoupper(substr($userName, 0, 2)) ?>
-                                                </span>
-                                            </span>
+                                            <div class="relative flex shrink-0 overflow-hidden rounded-full w-24 h-24">
+                                                <?= generateAvatar($userProfileImage, $userName, 'w-24 h-24', 'text-lg') ?>
+                                            </div>
                                             <div class="w-full">
-                                                <label for="profile-upload" class="text-sm font-medium leading-none pointer">
-                                                    <div id="new-image-profile" class="flex items-center justify-center w-full p-3 border-2 border-dashed border-gray-300 rounded-lg hover:border-medical-400 transition-colors">
-                                                        <div class="flex flex-col text-center">
-                                                            <i data-lucide="camera" class="mx-auto h-6 w-6 text-gray-400 mb-2"></i>
-                                                            <span class="text-sm text-gray-600">Upload new image</span>
-                                                        </div>
+                                                <div class="flex items-center justify-center w-full p-3 border border-gray-200 rounded-lg bg-gray-50">
+                                                    <div class="flex flex-col text-center">
+                                                        <i data-lucide="info" class="mx-auto h-5 w-5 text-gray-400 mb-2"></i>
+                                                        <span class="text-xs text-gray-500">Click "Edit Profile" to change your image</span>
                                                     </div>
-                                                </label>
-                                                <input type="file" id="profile-upload" accept="image/*" class="hidden">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -484,41 +510,35 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                         <div class="min-w-0">
                                             <label class="font-medium text-sm">Full Name</label>
-                                            <p class="text-gray-700 text-sm sm:text-base truncate">Dr. Sarah Johnson</p>
+                                            <p class="text-gray-700 text-sm sm:text-base truncate">Dr. <?= htmlspecialchars($userName) ?></p>
                                         </div>
                                         <div class="min-w-0">
                                             <label class="font-medium text-sm">Email</label>
-                                            <p class="text-gray-700 text-sm sm:text-base truncate">sarah.johnson@alnoor.hospital</p>
-                                        </div>
-                                        <div class="min-w-0">
-                                            <label class="font-medium text-sm">Phone</label>
-                                            <p class="text-gray-700 text-sm sm:text-base truncate">+1-555-0101</p>
+                                            <p class="text-gray-700 text-sm sm:text-base truncate"><?= htmlspecialchars($userEmail) ?></p>
                                         </div>
                                         <div class="min-w-0">
                                             <label class="font-medium text-sm">Hospital</label>
-                                            <p class="text-gray-700 text-sm sm:text-base truncate">Al Noor Medical Center</p>
+                                            <p class="text-gray-700 text-sm sm:text-base truncate"><?= htmlspecialchars($doctorHospital) ?></p>
                                         </div>
                                         <div class="min-w-0">
-                                            <label class="font-medium text-sm">License Number</label>
-                                            <p class="text-gray-700 text-sm sm:text-base truncate">MD-12345</p>
-                                        </div>
-                                        <div class="min-w-0">
-                                            <label class="font-medium text-sm">Experience</label>
-                                            <p class="text-gray-700 text-sm sm:text-base truncate">8 years</p>
+                                            <label class="font-medium text-sm">Specialty</label>
+                                            <p class="text-gray-700 text-sm sm:text-base truncate"><?= htmlspecialchars($doctorSpecialty) ?></p>
                                         </div>
                                     </div>
 
                                     <!-- Additional Info -->
                                     <div class="flex flex-col gap-4">
                                         <div>
-                                            <label class="font-medium text-sm">Education</label>
-                                            <p class="text-gray-700 text-sm sm:text-base">MD from Johns Hopkins University</p>
-                                        </div>
-                                        <div>
-                                            <label class="font-medium text-sm">Bio</label>
-                                            <p class="text-gray-700 text-sm sm:text-base leading-relaxed">
-                                                Experienced cardiologist with over 8 years of practice. Specializing in interventional cardiology and heart disease prevention.
-                                            </p>
+                                            <label class="font-medium text-sm">Professional Bio</label>
+                                            <?php if ($doctorBio): ?>
+                                                <p class="text-gray-700 text-sm sm:text-base leading-relaxed">
+                                                    <?= htmlspecialchars($doctorBio) ?>
+                                                </p>
+                                            <?php else: ?>
+                                                <p class="text-gray-500 text-sm sm:text-base leading-relaxed italic">
+                                                    No bio available. Click "Edit Profile" to add your professional background.
+                                                </p>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                 </div>
@@ -531,6 +551,129 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
         </div>
 
     </main>
+
+    <!-- ==================== Edit Profile Modal ==================== -->
+    <div id="edit-profile-modal" class="hidden fixed inset-0 z-50 overflow-y-auto">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <!-- Overlay -->
+            <div id="edit-profile-overlay" class="fixed inset-0 bg-black/80"></div>
+
+            <!-- Modal Content -->
+            <div class="relative bg-white rounded-lg shadow-lg w-full max-w-5xl animate-fade-in-up">
+                <!-- Modal Header -->
+                <div class="flex justify-between items-center p-6 border-b border-solid border-gray-200">
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="user" class="h-6 w-6 text-primary"></i>
+                        <div>
+                            <h2 class="text-2xl font-bold text-gray-900">Edit Profile</h2>
+                            <p class="text-sm text-muted-foreground">Update your personal information and profile picture</p>
+                        </div>
+                    </div>
+                    <button id="close-profile-modal-btn" class="text-gray-500 hover:text-gray-800 transition-colors">
+                        <i data-lucide="x" class="h-6 w-6"></i>
+                    </button>
+                </div>
+
+                <!-- Modal Body -->
+                <form id="edit-profile-form" novalidate>
+                    <div class="p-6">
+                        <!-- Profile Picture & Personal Info -->
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+                            <!-- Profile Picture Upload -->
+                            <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
+                                <div class="flex flex-col gap-1.5 p-6">
+                                    <h3 class="text-xl font-semibold leading-none tracking-tight flex items-center gap-2">
+                                        <i data-lucide="camera" class="h-5 w-5"></i>
+                                        Profile Picture
+                                    </h3>
+                                    <p class="text-sm text-muted-foreground">Update your profile image</p>
+                                </div>
+                                <div class="px-6 pb-6 flex flex-col gap-4">
+                                    <div class="flex flex-col gap-4 items-center">
+                                        <div id="profile-image-preview-container" class="relative flex shrink-0 overflow-hidden rounded-full w-24 h-24">
+                                            <img id="profile-image-preview" src="" alt="Profile Preview" class="w-24 h-24 rounded-full object-cover hidden">
+                                            <div id="profile-avatar-initials" class="w-24 h-24 rounded-full bg-medical-100 flex items-center justify-center text-medical-700 text-lg font-bold">??</div>
+                                        </div>
+                                        <div class="w-full">
+                                            <label for="profile-upload" class="text-sm font-medium leading-none pointer">
+                                                <div class="flex items-center justify-center w-full p-3 border-2 border-dashed border-gray-300 rounded-lg hover:border-medical-400 transition-colors">
+                                                    <div class="flex flex-col text-center">
+                                                        <i data-lucide="camera" class="mx-auto h-6 w-6 text-gray-400 mb-2"></i>
+                                                        <span class="text-sm text-gray-600">Upload new image</span>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                            <input type="file" id="profile-upload" name="profile_image" accept="image/*" class="hidden">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Personal Information -->
+                            <div class="rounded-lg border bg-card text-card-foreground shadow-sm lg:col-span-2">
+                                <div class="flex flex-col gap-1.5 p-6">
+                                    <h3 class="text-xl font-semibold leading-none tracking-tight flex items-center gap-2">
+                                        <i data-lucide="user" class="h-5 w-5"></i>
+                                        Personal Information
+                                    </h3>
+                                    <p class="text-sm text-muted-foreground">Update your basic information</p>
+                                </div>
+                                <div class="px-6 pb-6 flex flex-col gap-4">
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        <div class="flex flex-col gap-2">
+                                            <label for="profile-name" class="text-sm font-medium leading-none">Full Name</label>
+                                            <input id="profile-name" name="name" placeholder="Enter your full name" 
+                                                class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white" required>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <label for="profile-email" class="text-sm font-medium leading-none">Email Address</label>
+                                            <input id="profile-email" name="email" type="email" placeholder="Enter your email" disabled
+                                                class="flex h-10 w-full rounded-md border border-solid border-input bg-gray-50 px-3 py-2 text-base md:text-sm text-gray-600 cursor-not-allowed">
+                                            <p class="text-xs text-gray-500 mt-1">
+                                                <i data-lucide="shield" class="h-3 w-3 inline mr-1"></i>
+                                                Email cannot be changed for security reasons
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <label for="profile-bio" class="text-sm font-medium leading-none">Professional Bio</label>
+                                        <textarea id="profile-bio" name="bio" rows="4" placeholder="Tell us about your medical background, specialties, and experience..."
+                                            class="flex w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white"></textarea>
+                                        <p class="text-xs text-gray-500 mt-1">This information will be displayed to patients and colleagues.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex justify-end gap-3 p-6 border-t border-solid border-gray-200 bg-gray-50">
+                        <button type="button" id="cancel-profile-edit-btn" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-input bg-white hover:bg-gray-100 h-10 px-6 py-2">
+                            <i data-lucide="x" class="h-4 w-4"></i>
+                            Cancel
+                        </button>
+                        <button type="button" id="discard-profile-changes-btn" class="hidden inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors text-yellow-700 border border-solid border-yellow-300 bg-yellow-50 hover:bg-yellow-100 h-10 px-6 py-2">
+                            <i data-lucide="undo" class="h-4 w-4"></i>
+                            Discard Changes
+                        </button>
+                        <button type="submit" id="save-profile-changes-btn" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors text-white h-10 px-6 py-2 bg-primary hover:bg-medical-600">
+                            <span id="save-profile-text">Save Changes</span>
+                            <div id="save-profile-loading" class="hidden animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Universal Toast Container -->
+    <div
+        id="toast"
+        class="hidden fixed bottom-4 right-4 z-50 max-w-xs rounded-md p-5 text-white shadow-lg">
+        <p id="toast-title" class="font-semibold"></p>
+        <p id="toast-message" class="text-sm"></p>
+    </div>
 
     <!-- Footer -->
     <footer class="bg-gray-50 pt-16 pb-8 border-t border-solid separator">

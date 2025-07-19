@@ -6,6 +6,9 @@ require_once __DIR__ . "/backend/config/path.php";
 // 2. Load user session context (sets $isLoggedIn, $userName, $userEmail)
 require_once __DIR__ . "/backend/middleware/session-context.php";
 
+// 3. Include avatar helper
+require_once __DIR__ . "/backend/helpers/avatar-helper.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -64,15 +67,13 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
                     <!-- User dropdown (visible if logged in) -->
                     <div class="hidden md:flex items-center gap-3 mr-4">
                         <div class="dropdown relative">
-                            <button class="flex items-center gap-2 md:py-2 px-2 border-none bg-transparent hover:bg-medical-50 transition-colors transition-200 pointer rounded-lg">
-                                <div class="w-8 h-8 rounded-full bg-medical-100 flex items-center justify-center text-medical-700 text-sm lg:text-base font-medium">
-                                    <?= strtoupper(substr($userName, 0, 2)) ?>
-                                </div>
-                                <span class="hidden lg:block text-sm lg:text-base font-medium slate-700 max-w-24 truncate">
-                                    <?= htmlspecialchars($userName) ?>
-                                </span>
-                                <i data-lucide="chevron-down" class="w-4 h-4 slate-500"></i>
-                            </button>
+                                          <button class="flex items-center gap-2 md:py-2 px-2 border-none bg-transparent hover:bg-medical-50 transition-colors transition-200 pointer rounded-lg">
+                <?= generateAvatar($userProfileImage, $userName, 'w-8 h-8', 'text-sm lg:text-base') ?>
+                <span class="hidden lg:block text-sm lg:text-base font-medium slate-700 max-w-24 truncate">
+                  <?= htmlspecialchars($userName) ?>
+                </span>
+                <i data-lucide="chevron-down" class="w-4 h-4 slate-500"></i>
+              </button>
 
                             <!-- Dropdown menu content -->
                             <div class="dropdown-content overflow-hidden hidden animate-fade-in absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-solid border-gray-100 z-50">

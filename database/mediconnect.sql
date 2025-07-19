@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 17, 2025 at 10:34 PM
+-- Generation Time: Jul 18, 2025 at 09:21 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -62,6 +62,18 @@ CREATE TABLE `doctors` (
   `reviews_count` int(11) DEFAULT NULL,
   `bio` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `doctors`
+--
+
+INSERT INTO `doctors` (`doctor_id`, `user_id`, `specialty_id`, `hospital_id`, `is_verified`, `rating`, `reviews_count`, `bio`) VALUES
+(8, 2, 1, 1, 0, NULL, NULL, NULL),
+(9, 3, 2, 2, 0, NULL, NULL, NULL),
+(10, 4, 3, 3, 0, NULL, NULL, NULL),
+(12, 6, 5, 6, 0, NULL, NULL, NULL),
+(13, 7, 6, 7, 0, NULL, NULL, NULL),
+(14, 5, 4, 1, 0, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -282,7 +294,13 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `email`, `password`, `first_name`, `last_name`, `city`, `address_line`, `profile_image`, `remember_token`) VALUES
-(1, 'omarnajjar10.on@gmail.com', '$2y$10$bT5gQZNnWwgJrFQCF2zCoubpdiiK4TrSIYF5f2DCpBGB7cT7629aq', 'Omar', 'Najjar', 'Mina', 'Sea Road, Mina, El Mina, Tripoli District, North Governorate, 1301, Lebanon', NULL, NULL);
+(1, 'omarnajjar10.on@gmail.com', '$2y$10$xNSbA7CiaIHxzA5.YGlAW./4FCuRpzCvCwudixoWASZDZLIgmAdOu', 'Omar', 'Najjar', 'Mina', 'Sea Road, Mina, El Mina, Tripoli District, North Governorate, 1301, Lebanon', '/mediconnect/uploads/profile_images/profile_1_1752840783.jpg', '768afdb5b7e23b33cbaaf6ef86a4238929c370602e02b5f2211e21f3bab662cb'),
+(2, 'sarahjohnson@gmail.com', '$2y$10$diymDRPP0peTXa.U.LdMYu5nZU3x2vxJFAxJaXfwQL0LUjuCm6rfi', 'Sarah', 'Johnson', 'Tripoli', 'Hay Al Ramlet', NULL, NULL),
+(3, 'michaelchen@gmail.com', '$2y$10$mkXvDnpFC6ke5ojUMjOdhem2MXM9hlzt7.R0h4HU3diUSftR8PYse', 'Michael', 'Chen', 'New York', '123 Skin Street', NULL, NULL),
+(4, 'emilyrodriguez@gmail.com', '$2y$10$lX3ffT/LbQZW8jvSG59ceOCCYVGrir6ePRvb3eFfMWtho.IIiKw/G', 'Emily', 'Rodriguez', 'Los Angeles', '456 Neuro', NULL, NULL),
+(5, 'jameswilson@gmail.com', '$2y$10$3Ji/tJwDwkolqSuDAV7Dre33V3oGelJthsnms4P7fwaYYmK/DVu96', 'James', 'Wilson', 'Chicago', '789 Ortho', NULL, NULL),
+(6, 'lisakim@gmail.com', '$2y$10$6rkQR42WGSYZZVSh.n2sauFYW/OJJsOlie.XELzs6a.DaDtmk3ceq', 'Lisa', 'Kim', 'Houston', '321 Pediatric', NULL, NULL),
+(7, 'roberttaylor@gmail.com', '$2y$10$wY10L4rEwSJHVvJGCF5eFO0sYl7rU1keaikUGKE22AdbMTeAxcmqW', 'Robert', 'Taylor', 'Phoenix', '654 Mental Way', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -301,7 +319,13 @@ CREATE TABLE `user_roles` (
 --
 
 INSERT INTO `user_roles` (`user_role_id`, `user_id`, `role_id`) VALUES
-(1, 1, 1);
+(1, 1, 1),
+(3, 2, 3),
+(4, 3, 3),
+(5, 4, 3),
+(7, 6, 3),
+(8, 7, 3),
+(9, 5, 3);
 
 --
 -- Indexes for dumped tables
@@ -408,7 +432,7 @@ ALTER TABLE `ambulance_teams`
 -- AUTO_INCREMENT for table `doctors`
 --
 ALTER TABLE `doctors`
-  MODIFY `doctor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `doctor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `emergency_requests`
@@ -438,7 +462,7 @@ ALTER TABLE `hospital_specialties`
 -- AUTO_INCREMENT for table `patients`
 --
 ALTER TABLE `patients`
-  MODIFY `patient_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `patient_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -456,13 +480,13 @@ ALTER TABLE `specialties`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `user_roles`
 --
 ALTER TABLE `user_roles`
-  MODIFY `user_role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables

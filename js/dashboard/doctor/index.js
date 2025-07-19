@@ -1,5 +1,7 @@
 import { setupTabNavigation } from "../utils/setupTabNavigation.js";
+import { initProfileManagement } from "./profileManagement.js";
 
-window.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
   setupTabNavigation();
+  initProfileManagement();
 });

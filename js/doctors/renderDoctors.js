@@ -29,9 +29,7 @@ export async function renderDoctors(container) {
             <p class="text-primary font-medium">${card.specialty || ""}</p>
             <div class="flex items-center mt-1 mb-1">
               <i data-lucide="map-pin" class="h-3.5 w-3.5 text-gray-500 mr-1"></i>
-              <span class="text-gray-600 text-sm">${
-                card.hospital_name || ""
-              }</span>
+              <span class="text-gray-600 text-sm">${card.name || ""}</span>
             </div>
             <div class="flex items-center">
               <i data-lucide="star" class="w-3.5 h-3.5 text-star-500 fill-star-500 mr-1"></i>

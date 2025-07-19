@@ -6,6 +6,9 @@ $requiredRole = 'patient';
 // 5. Protect the dashboard: redirect if user role does not match
 require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
 
+// 6. Include avatar helper
+require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -66,9 +69,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                 <div class="hidden md:flex items-center gap-3 md:mr-4">
                     <div class="dropdown relative">
                         <button class="flex items-center gap-2 md:py-2 px-2 border-none bg-transparent hover:bg-medical-50 transition-colors transition-200 pointer rounded-lg">
-                            <div class="w-8 h-8 rounded-full bg-medical-100 flex items-center justify-center text-medical-700 text-sm lg:text-base font-medium">
-                                <?= strtoupper(substr($userName, 0, 2)) ?>
-                            </div>
+                            <?= generateAvatar($userProfileImage, $userName, 'w-8 h-8', 'text-sm lg:text-base') ?>
                             <span class="hidden lg:block text-sm lg:text-base font-medium slate-700 max-w-24 truncate">
                                 <?= htmlspecialchars($userName) ?>
                             </span>

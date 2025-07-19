@@ -14,7 +14,7 @@ try {
                 u.address_line,
                 u.profile_image,
                 GROUP_CONCAT(r.role_name) as roles,
-                h.name as hospital_name,
+                h.name as name,
                 s.label_for_doctor as specialty,
                 d.is_verified as doctor_verified,
                 at.team_name as ambulance_team_name
