@@ -163,7 +163,7 @@ require_once __DIR__ . "/backend/helpers/avatar-helper.php";
                         </p>
                         <div id="request-help-wrapper" class="flex flex-col gap-6">
                             <button
-                                class="gap-2 whitespace-nowrap border border-solid border-input h-10 bg-danger hover:bg-red-700 text-white font-bold py-4 px-8 rounded-sm text-lg shadow-lg flex items-center justify-center w-full md:w-auto md:max-w-[310px]">
+                                class="gap-2 whitespace-nowrap border border-solid border-input h-10 bg-danger hover:bg-red-700 text-white font-bold py-4 px-8 rounded-sm text-lg shadow-lg flex items-center justify-center w-full md:w-auto md:max-w-[310px] cursor-pointer transition-colors">
                                 <i data-lucide="ambulance" class="mr-2 h-4 w-4"></i>
                                 Request Emergency Help
                             </button>
@@ -229,10 +229,10 @@ require_once __DIR__ . "/backend/helpers/avatar-helper.php";
                                     <div class="pt-4 border-t">
                                         <h4 class="font-semibold text-heading text-center">Emergency Contact Options</h4>
                                         <div class="flex justify-center gap-4 mt-4"><button
-                                                class="justify-center gap-2 whitespace-nowrap rounded-md text-sm text-heading font-medium disabled:pointer-events-none disabled:opacity-50 border border-solid border-card-soft bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 flex items-center pointer">
+                                                class="justify-center gap-2 whitespace-nowrap rounded-md text-sm text-heading font-medium border border-solid border-card-soft bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 flex items-center cursor-pointer">
                                                 <i data-lucide="phone" class="mr-2 h-4 w-4"></i>
                                                 Call Dispatch</button><button
-                                                class="justify-center gap-2 whitespace-nowrap rounded-md text-sm text-heading font-medium disabled:pointer-events-none disabled:opacity-50 border border-solid border-card-soft bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 flex items-center pointer">Cancel
+                                                class="justify-center gap-2 whitespace-nowrap rounded-md text-sm text-heading font-medium border border-solid border-card-soft bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 flex items-center cursor-pointer">Cancel
                                                 Request</button></div>
                                     </div>
                                 </div>
@@ -271,7 +271,7 @@ require_once __DIR__ . "/backend/helpers/avatar-helper.php";
 
                     <!-- Drawer Footer -->
                     <div class="p-4 border-t text-right">
-                        <button onclick="cancelRequest()" class="px-4 py-2 border border-solid border-card-soft rounded-sm bg-transparent text-heading rounded text-sm font-medium hover:bg-gray-100 pointer">
+                        <button onclick="cancelRequest()" class="px-4 py-2 border border-solid border-card-soft rounded-sm bg-transparent text-heading rounded text-sm font-medium hover:bg-gray-100 cursor-pointer">
                             Cancel
                         </button>
                     </div>
@@ -359,7 +359,7 @@ require_once __DIR__ . "/backend/helpers/avatar-helper.php";
                                 <!-- Disabled Button with Tooltip wrapper -->
                                 <div class="group relative cursor-not-allowed">
                                     <button
-                                        class="gap-2 whitespace-nowrap rounded-md text-sm font-medium text-heading glass-card border-card-soft bg-background px-4 py-2 flex items-center justify-center h-16 cursor-pointer-events-none w-full"
+                                        class="gap-2 whitespace-nowrap rounded-md text-sm font-medium text-heading glass-card border-card-soft bg-background px-4 py-2 flex items-center justify-center h-16 pointer-events-none w-full"
                                         disabled>
                                         <i data-lucide="phone" class="w-4 h-4 text-heading mr-2"></i>
                                         Emergency COVID-19 Hotline<br />
