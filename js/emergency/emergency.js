@@ -24,10 +24,31 @@ requestHelpBtn.addEventListener("click", () => {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        console.log("User location:", position.coords);
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+
+        console.log("Sending coordinates:", latitude, longitude);
+
+        fetch("/mediconnect/backend/api/handle_emergency.php", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            latitude: latitude,
+            longitude: longitude,
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log("Response from server:", data);
+          })
+          .catch((err) => {
+            console.error("Error sending location:", err);
+          });
       },
       (error) => {
-        console.warn("Location access error:", error);
+        console.error("Geolocation error:", error);
       }
     );
   }

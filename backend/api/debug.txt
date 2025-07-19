@@ -1,0 +1,5 @@
+Array
+(
+    [latitude] => 34.3932928
+    [longitude] => 35.8055936
+)

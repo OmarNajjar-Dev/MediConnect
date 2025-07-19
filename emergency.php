@@ -190,7 +190,7 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
                                     <div class="flex flex-col items-center gap-4">
                                         <div class="text-center">
                                             <div
-                                                class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors border border-solid border-transparent text-primary-foreground hover:bg-medical-400 bg-medical-500 mb-2">
+                                                class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors border border-solid border-transparent text-white hover:bg-medical-400 bg-medical-500 mb-2">
                                                 EN ROUTE TO YOUR LOCATION</div>
                                             <div class="mb-4"><i data-lucide="ambulance" class="h-16 w-16 mx-auto text-medical-500"></i>
                                             </div>
@@ -507,17 +507,15 @@ require_once __DIR__ . "/backend/middleware/session-context.php";
     <script>
         lucide.createIcons()
     </script>
-    <<<<<<< HEAD
-        <script type="module" src="js/emergency/emergency.js">
-        </script>
+    <script type="module" src="js/emergency/emergency.js">
+    </script>
 
-        <!-- Confirmation Message -->
-        <div id="confirmationMessage" class="fixed bottom-6 right-6 z-50 px-6 py-4 bg-white border border-solid border-card-soft shadow-md rounded-lg text-sm max-w-sm">
-            <p class="font-semibold text-heading mb-1">Emergency request sent.</p>
-            <p class="text-heading">Help is on the way.Please stay where you are!</p>
-        </div>
-        =======
-        >>>>>>> main
+    <!-- Confirmation Message -->
+    <div id="confirmationMessage" class="fixed bottom-6 right-6 z-50 px-6 py-4 bg-white border border-solid border-card-soft shadow-md rounded-lg text-sm max-w-sm">
+        <p class="font-semibold text-heading mb-1">Emergency request sent.</p>
+        <p class="text-heading">Help is on the way.Please stay where you are!</p>
+    </div>
+
 
 </body>
 

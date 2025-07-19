@@ -15,23 +15,26 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
 // 5. Load helper functions (utilities, formatting, reusable logic)
 require_once __DIR__ . "/backend/auth/helpers.php";
 
-// Show all errors during development (remove in production)
+// Show all errors during development (disable in production)
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+// Handle form submission
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    // Get POST data
-    $email = $_POST["email"] ?? '';
-    $password = $_POST["password"] ?? '';
-    $firstName = $_POST["first_name"] ?? '';
-    $lastName = $_POST["last_name"] ?? '';
-    $city = $_POST["city"] ?? '';
-    $address = $_POST["address"] ?? '';
-    $slugRole = $_POST["role"] ?? '';
-    $roleName = slugToTitle($slugRole);  // Converts "super-admin" → "Super Admin"
+    // Get data from POST request
+    $email      = $_POST["email"] ?? '';
+    $password   = $_POST["password"] ?? '';
+    $firstName  = $_POST["first_name"] ?? '';
+    $lastName   = $_POST["last_name"] ?? '';
+    $city       = $_POST["city"] ?? '';
+    $address    = $_POST["address"] ?? '';
+    $slugRole   = $_POST["role"] ?? '';
 
-    // Step 0-A: Validate email format
+    // Convert slug (e.g. super-admin) to role title (e.g. Super Admin)
+    $roleName = slugToTitle($slugRole);
+
+    // Step 0-A: Check if email format is valid
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         header("Location: register.php?error=invalid_email");
         exit();
@@ -49,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
     $check_stmt->close();
 
-    // Step 1: Get role_id
+    // Step 1: Get role_id from roles table
     $role_stmt = $conn->prepare("SELECT role_id FROM roles WHERE role_name = ?");
     $role_stmt->bind_param("s", $roleName);
     $role_stmt->execute();
@@ -60,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $role_id = $role_row["role_id"];
         $role_stmt->close();
 
-        // Step 2: Insert user
+        // Step 2: Insert user into users table
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         $user_stmt = $conn->prepare("INSERT INTO users (email, password, first_name, last_name, city, address_line) VALUES (?, ?, ?, ?, ?, ?)");
         $user_stmt->bind_param("ssssss", $email, $hashedPassword, $firstName, $lastName, $city, $address);
@@ -69,18 +72,32 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $user_id = $user_stmt->insert_id;
             $user_stmt->close();
 
-            // Step 3: Link user to role
+            // Step 3: Link user to role in user_roles
             $link_stmt = $conn->prepare("INSERT INTO user_roles (user_id, role_id) VALUES (?, ?)");
             $link_stmt->bind_param("ii", $user_id, $role_id);
             if ($link_stmt->execute()) {
                 $link_stmt->close();
 
+                // Step 3-B: Insert into role-specific table if needed
+                if ($roleName === "Patient") {
+                    $patient_stmt = $conn->prepare("INSERT INTO patients (user_id) VALUES (?)");
+                    $patient_stmt->bind_param("i", $user_id);
+                    $patient_stmt->execute();
+                    $patient_stmt->close();
+                } elseif ($roleName === "Ambulance Team") {
+                    $teamName = $firstName . "'s Team";
+                    $team_stmt = $conn->prepare("INSERT INTO ambulance_teams (user_id, team_name) VALUES (?, ?)");
+                    $team_stmt->bind_param("is", $user_id, $teamName);
+                    $team_stmt->execute();
+                    $team_stmt->close();
+                }
+
+                // Step 4: Store user session and redirect to dashboard
                 $_SESSION["user_id"] = $user_id;
-                // Store the role in the session
                 storeUserRoleInSession($roleName);
 
-                $slug = strtolower(str_replace(' ', '_', $roleName));
-
+                // Convert role name to snake_case for path lookup
+                $slug = slugToSnakeCase($roleName);
                 $rolePath = $paths['dashboard'][$slug] ?? $paths['errors']['forbidden'];
                 header("Location: $rolePath");
                 exit();
