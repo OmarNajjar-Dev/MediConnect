@@ -509,19 +509,19 @@ if (isset($_SESSION['user_id'])) {
 
                                     <!-- Basic Info Grid -->
                                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                        <div class="min-w-0">
+                                        <div>
                                             <label class="font-medium text-sm">Full Name</label>
-                                            <p class="text-gray-700 text-sm sm:text-base truncate">Dr. <?= htmlspecialchars($userName) ?></p>
+                                            <p data-profile-name class="text-gray-700 text-sm sm:text-base truncate">Dr. <?= htmlspecialchars($userName) ?></p>
                                         </div>
-                                        <div class="min-w-0">
+                                        <div>
                                             <label class="font-medium text-sm">Email</label>
                                             <p class="text-gray-700 text-sm sm:text-base truncate"><?= htmlspecialchars($userEmail) ?></p>
                                         </div>
-                                        <div class="min-w-0">
+                                        <div>
                                             <label class="font-medium text-sm">Hospital</label>
                                             <p class="text-gray-700 text-sm sm:text-base truncate"><?= htmlspecialchars($doctorHospital) ?></p>
                                         </div>
-                                        <div class="min-w-0">
+                                        <div>
                                             <label class="font-medium text-sm">Specialty</label>
                                             <p class="text-gray-700 text-sm sm:text-base truncate"><?= htmlspecialchars($doctorSpecialty) ?></p>
                                         </div>
@@ -532,11 +532,11 @@ if (isset($_SESSION['user_id'])) {
                                         <div>
                                             <label class="font-medium text-sm">Professional Bio</label>
                                             <?php if ($doctorBio): ?>
-                                                <p class="text-gray-700 text-sm sm:text-base leading-relaxed">
+                                                <p data-profile-bio class="text-gray-700 text-sm sm:text-base leading-relaxed">
                                                     <?= htmlspecialchars($doctorBio) ?>
                                                 </p>
                                             <?php else: ?>
-                                                <p class="text-gray-500 text-sm sm:text-base leading-relaxed italic">
+                                                <p data-profile-bio class="text-gray-500 text-sm sm:text-base leading-relaxed italic">
                                                     No bio available. Click "Edit Profile" to add your professional background.
                                                 </p>
                                             <?php endif; ?>
@@ -593,8 +593,7 @@ if (isset($_SESSION['user_id'])) {
                                 <div class="px-6 pb-6 flex flex-col gap-4">
                                     <div class="flex flex-col gap-4 items-center">
                                         <div id="profile-image-preview-container" class="relative flex shrink-0 overflow-hidden rounded-full w-24 h-24">
-                                            <img id="profile-image-preview" src="" alt="Profile Preview" class="w-24 h-24 rounded-full object-cover hidden">
-                                            <div id="profile-avatar-initials" class="w-24 h-24 rounded-full bg-medical-100 flex items-center justify-center text-medical-700 text-lg font-bold">??</div>
+                                            <?= generateAvatar($userProfileImage, $userName, 'w-24 h-24', 'text-lg') ?>
                                         </div>
                                         <div class="w-full">
                                             <label for="profile-upload" class="text-sm font-medium leading-none cursor-pointer">

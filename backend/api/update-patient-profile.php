@@ -19,7 +19,7 @@ $userId = $_SESSION['user_id'];
 
 // Form Data
 $name = trim($_POST['name'] ?? '');
-$birthday = trim($_POST['birthday'] ?? '');
+$birthday = trim($_POST['birthdate'] ?? '');
 
 // Validation
 if (empty($name)) {
@@ -39,17 +39,17 @@ try {
     if (!$conn) {
         throw new Exception('Database connection failed');
     }
-    
+
     // Check if user has patient role
     $roleCheck = $conn->prepare("SELECT r.role_name FROM users u JOIN user_roles ur ON u.user_id = ur.user_id JOIN roles r ON ur.role_id = r.role_id WHERE u.user_id = ?");
     if (!$roleCheck) {
         throw new Exception('Failed to prepare role check statement');
     }
-    
+
     $roleCheck->bind_param("i", $userId);
     $roleCheck->execute();
     $roleResult = $roleCheck->get_result();
-    
+
     $isPatient = false;
     while ($row = $roleResult->fetch_assoc()) {
         if ($row['role_name'] === 'Patient') {
@@ -57,13 +57,13 @@ try {
             break;
         }
     }
-    
+
     if (!$isPatient) {
         http_response_code(403);
         echo json_encode(['success' => false, 'message' => 'Unauthorized: Patient role required']);
         exit;
     }
-    
+
     // Update users table
     $stmt = $conn->prepare("UPDATE users SET first_name = ?, last_name = ? WHERE user_id = ?");
     if (!$stmt) {
@@ -87,7 +87,7 @@ try {
         if (!is_dir($uploadDir)) {
             mkdir($uploadDir, 0755, true);
         }
-        
+
         // Remove old image if it exists
         $stmt = $conn->prepare("SELECT profile_image FROM users WHERE user_id = ?");
         if (!$stmt) {
@@ -110,7 +110,7 @@ try {
         $extension = pathinfo($_FILES['profile_image']['name'], PATHINFO_EXTENSION);
         $newFileName = 'profile_' . $userId . '_' . time() . '.' . $extension;
         $uploadPath = $uploadDir . $newFileName;
-        
+
         // Generate web-accessible URL (like Super Admin implementation)
         $imageUrl = '/mediconnect/uploads/profile_images/' . $newFileName;
 
@@ -127,12 +127,36 @@ try {
         }
     }
 
-    $conn->commit();
-    echo json_encode(['success' => true, 'message' => 'Profile updated successfully']);
+    // Get updated profile data to return
+    $updatedImageUrl = null;
+    if (isset($_FILES['profile_image']) && $_FILES['profile_image']['error'] === UPLOAD_ERR_OK) {
+        $updatedImageUrl = $imageUrl;
+    } else {
+        // Get current image URL if no new image was uploaded
+        $stmt = $conn->prepare("SELECT profile_image FROM users WHERE user_id = ?");
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($row = $result->fetch_assoc()) {
+            $updatedImageUrl = $row['profile_image'];
+        }
+    }
 
+    $conn->commit();
+    echo json_encode([
+        'success' => true,
+        'message' => 'Profile updated successfully',
+        'data' => [
+            'name' => $firstName . ' ' . $lastName,
+            'birthdate' => $birthday,
+            'gender' => $gender,
+            'city' => $city,
+            'address' => $address,
+            'profile_image' => $updatedImageUrl
+        ]
+    ]);
 } catch (Exception $e) {
     $conn->rollback();
     http_response_code(500);
     echo json_encode(['success' => false, 'message' => 'Server error: ' . $e->getMessage()]);
 }
-?> 

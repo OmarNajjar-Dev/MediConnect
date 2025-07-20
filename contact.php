@@ -187,60 +187,60 @@ require_once __DIR__ . "/backend/helpers/avatar-helper.php";
                       class="flex h-10 w-full rounded-sm border border-solid border-input bg-background px-3 py-2 text-base focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white md:text-sm" />
                   </div>
 
-                  <!--select case-->
-                  <div class="relative">
+                  <!-- Select Subject -->
+                  <div class="relative" data-dropdown="container">
                     <label for="subject" class="block mb-2 text-sm text-heading font-medium">
                       Subject
                     </label>
 
                     <!-- Button that toggles dropdown -->
-                    <button id="dropdown-button" type="button" role="combobox"
+                    <button type="button" role="combobox" data-dropdown="button"
                       class="flex h-10 w-full items-center justify-between cursor-pointer rounded-sm border border-solid border-input bg-background px-3 py-2 text-base text-left focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white md:text-sm">
                       <span>Select a subject</span>
                       <i data-lucide="chevron-down" class="w-4 h-4 opacity-50"></i>
                     </button>
 
                     <!-- Custom Dropdown Menu -->
-                    <ul id="dropdown-menu"
+                    <ul data-dropdown="menu"
                       class="absolute z-10 mt-1.5 p-1 border border-solid border-input w-full bg-white rounded-md shadow-xl hidden">
                       <li>
-                        <button type="button"
-                          class="option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm border-none bg-white text-gray-700 hover:bg-neutral-100"
+                        <button type="button" data-dropdown="option"
+                          class="bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md"
                           data-value="general">
                           <span>General Inquiry</span>
-                          <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i>
+                          <i data-lucide="check" class="w-4 h-4 text-medical-500 hidden"></i>
                         </button>
                       </li>
                       <li>
-                        <button type="button"
-                          class="option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm border-none bg-white text-gray-700 hover:bg-neutral-100"
+                        <button type="button" data-dropdown="option"
+                          class="bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md"
                           data-value="support">
                           <span>Technical Support</span>
-                          <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i>
+                          <i data-lucide="check" class="w-4 h-4 text-medical-500 hidden"></i>
                         </button>
                       </li>
                       <li>
-                        <button type="button"
-                          class="option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm border-none bg-white text-gray-700 hover:bg-neutral-100"
+                        <button type="button" data-dropdown="option"
+                          class="bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md"
                           data-value="billing">
                           <span>Billing Question</span>
-                          <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i>
+                          <i data-lucide="check" class="w-4 h-4 text-medical-500 hidden"></i>
                         </button>
                       </li>
                       <li>
-                        <button type="button"
-                          class="option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm border-none bg-white text-gray-700 hover:bg-neutral-100"
+                        <button type="button" data-dropdown="option"
+                          class="bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md"
                           data-value="partnership">
                           <span>Partnership Opportunity</span>
-                          <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i>
+                          <i data-lucide="check" class="w-4 h-4 text-medical-500 hidden"></i>
                         </button>
                       </li>
                       <li>
-                        <button type="button"
-                          class="option-btn w-full flex items-center justify-between px-4 py-1.5 text-sm border-none bg-white text-gray-700 hover:bg-neutral-100"
+                        <button type="button" data-dropdown="option"
+                          class="bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md"
                           data-value="feedback">
                           <span>Feedback</span>
-                          <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i>
+                          <i data-lucide="check" class="w-4 h-4 text-medical-500 hidden"></i>
                         </button>
                       </li>
                     </ul>

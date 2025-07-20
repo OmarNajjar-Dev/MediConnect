@@ -62,7 +62,7 @@ try {
     // Update database
     $stmt = $conn->prepare("UPDATE users SET profile_image = ? WHERE user_id = ?");
     $stmt->bind_param("si", $imageUrl, $userId);
-    
+
     if ($stmt->execute()) {
         echo json_encode([
             'success' => true,
@@ -74,13 +74,10 @@ try {
         unlink($filePath);
         echo json_encode(['success' => false, 'message' => 'Failed to update database']);
     }
-
 } catch (Exception $e) {
     http_response_code(500);
     echo json_encode([
-        'success' => false, 
+        'success' => false,
         'message' => 'Server error: ' . $e->getMessage()
     ]);
 }
-
-?> 

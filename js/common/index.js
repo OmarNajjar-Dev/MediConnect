@@ -1,6 +1,7 @@
 import { setupScrollHeaderEffect } from "./setupScrollHeaderEffect.js";
 import { setupMobileMenuToggle } from "./setupMobileMenuToggle.js";
 import { initDropdownMenu } from "./initDropdownMenu.js";
+import { initDropdown } from "./initDropdown.js";
 import {
   showToast,
   showSuccessToast,
@@ -13,6 +14,7 @@ window.addEventListener("DOMContentLoaded", () => {
   setupScrollHeaderEffect();
   setupMobileMenuToggle();
   initDropdownMenu();
+  initDropdown();
 });
 
 // Make toast functions available globally

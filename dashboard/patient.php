@@ -1,7 +1,7 @@
 <?php
 
 // 4. Define required role for this dashboard
-$requiredRole = 'super_admin';
+$requiredRole = 'patient';
 
 // 5. Protect the dashboard: redirect if user role does not match
 require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
@@ -415,33 +415,36 @@ if (isset($_SESSION['user_id'])) {
 
                                         <!-- Basic Info Grid -->
                                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                            <div class="min-w-0">
+                                            <div>
                                                 <label class="font-medium text-sm">Full Name</label>
-                                                <p class="text-gray-700 text-sm sm:text-base truncate"><?= htmlspecialchars($userName) ?></p>
+                                                <p data-profile-name class="text-gray-700 text-sm sm:text-base truncate"><?= htmlspecialchars($userName) ?></p>
                                             </div>
-                                            <div class="min-w-0">
+                                            <div>
                                                 <label class="font-medium text-sm">Email</label>
                                                 <p class="text-gray-700 text-sm sm:text-base truncate"><?= htmlspecialchars($userEmail) ?></p>
                                             </div>
-                                            <div class="min-w-0">
+                                            <div>
                                                 <label class="font-medium text-sm">Date of Birth</label>
-                                                <p class="text-gray-700 text-sm sm:text-base truncate"><?= $patientBirthdate ? htmlspecialchars($patientBirthdate) : 'Not specified' ?></p>
+                                                <p data-profile-birthdate class="text-gray-700 text-sm sm:text-base truncate"><?= $patientBirthdate ? htmlspecialchars($patientBirthdate) : 'Not specified' ?></p>
                                             </div>
-                                            <div class="min-w-0">
+                                            <div>
                                                 <label class="font-medium text-sm">Gender</label>
-                                                <p class="text-gray-700 text-sm sm:text-base truncate"><?= $patientGender ? htmlspecialchars($patientGender) : 'Not specified' ?></p>
+                                                <p data-profile-gender class="text-gray-700 text-sm sm:text-base truncate"><?= $patientGender ? htmlspecialchars($patientGender) : 'Not specified' ?></p>
                                             </div>
-                                        </div>
-
-                                        <!-- Additional Info -->
-                                        <div class="flex flex-col gap-4">
+                                            <div>
+                                                <label class="font-medium text-sm">City</label>
+                                                <p data-profile-city class="text-gray-700 text-sm sm:text-base leading-relaxed">
+                                                    <?= htmlspecialchars($userCity) ?>
+                                                </p>
+                                            </div>
                                             <div>
                                                 <label class="font-medium text-sm">Address</label>
-                                                <p class="text-gray-700 text-sm sm:text-base leading-relaxed">
-                                                    <?= htmlspecialchars($userAddress) ?>, <?= htmlspecialchars($userCity) ?>
+                                                <p data-profile-address class="text-gray-700 text-sm sm:text-base leading-relaxed">
+                                                    <?= htmlspecialchars($userAddress) ?>
                                                 </p>
                                             </div>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -548,8 +551,7 @@ if (isset($_SESSION['user_id'])) {
                                 <div class="px-6 pb-6 flex flex-col gap-4">
                                     <div class="flex flex-col gap-4 items-center">
                                         <div id="profile-image-preview-container" class="relative flex shrink-0 overflow-hidden rounded-full w-24 h-24">
-                                            <img id="profile-image-preview" src="" alt="Profile Preview" class="w-24 h-24 rounded-full object-cover hidden">
-                                            <div id="profile-avatar-initials" class="w-24 h-24 rounded-full bg-medical-100 flex items-center justify-center text-medical-700 text-lg font-bold">??</div>
+                                            <?= generateAvatar($userProfileImage, $userName, 'w-24 h-24', 'text-lg') ?>
                                         </div>
                                         <div class="w-full">
                                             <label for="profile-upload" class="text-sm font-medium leading-none cursor-pointer">
@@ -593,21 +595,52 @@ if (isset($_SESSION['user_id'])) {
                                         </div>
                                     </div>
                                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                        <div class="flex flex-col gap-2">
+
+                                        <!-- Profile Birthdate  -->
+                                        <div class="flex flex-col gap-2 mt-1.5">
                                             <label for="profile-birthdate" class="text-sm font-medium leading-none">Date of Birth</label>
                                             <input id="profile-birthdate" name="birthdate" type="date"
                                                 class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
                                         </div>
-                                        <div class="flex flex-col gap-2">
-                                            <label for="profile-gender" class="text-sm font-medium leading-none">Gender</label>
-                                            <select id="profile-gender" name="gender"
-                                                class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
-                                                <option value="">Select gender</option>
-                                                <option value="Male">Male</option>
-                                                <option value="Female">Female</option>
-                                                <option value="Other">Other</option>
-                                            </select>
+
+                                        <div id="profile-gender" class="flex flex-col gap-2" data-dropdown="container">
+                                            <!-- Select Gender -->
+                                            <div class="relative">
+                                                <label for="gender" class="block mb-2 text-sm text-heading font-medium">
+                                                    Gender
+                                                </label>
+
+                                                <!-- Button that toggles dropdown -->
+                                                <button type="button" role="combobox" data-dropdown="button"
+                                                    class="flex h-10 w-full items-center justify-between cursor-pointer rounded-sm border border-solid border-input bg-background px-3 py-2 text-base text-left focus:ring focus:ring-2 focus:ring-offset-2 focus:ring-medical-500 focus:ring-offset-white md:text-sm">
+                                                    <span>Select gender</span>
+                                                    <i data-lucide="chevron-down" class="w-4 h-4 opacity-50"></i>
+                                                </button>
+
+                                                <!-- Custom Dropdown Menu -->
+                                                <ul data-dropdown="menu"
+                                                    class="absolute z-10 mt-1.5 p-1 border border-solid border-input w-full bg-white rounded-md shadow-xl hidden">
+                                                    <li>
+                                                        <button type="button" data-dropdown="option"
+                                                            class="w-full flex items-center justify-between px-4 py-1.5 text-sm border-none bg-white text-gray-700 hover:bg-medical-50 hover:text-primary rounded-md cursor-pointer"
+                                                            data-value="male">
+                                                            <span>Male</span>
+                                                            <i data-lucide="check" class="w-4 h-4 text-medical-500 hidden"></i>
+                                                        </button>
+                                                    </li>
+                                                    <li>
+                                                        <button type="button" data-dropdown="option"
+                                                            class="w-full flex items-center justify-between px-4 py-1.5 text-sm border-none bg-white text-gray-700 hover:bg-medical-50 hover:text-primary rounded-md cursor-pointer"
+                                                            data-value="female">
+                                                            <span>Female</span>
+                                                            <i data-lucide="check" class="w-4 h-4 text-medical-500 hidden"></i>
+                                                        </button>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <input type="hidden" name="gender" id="gender-input">
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
