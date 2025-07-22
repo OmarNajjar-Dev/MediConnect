@@ -51,7 +51,7 @@ require_once __DIR__ . "/../../backend/helpers/avatar-helper.php";
   <main class="overflow-hidden pt-20 flex-grow">
     <div class="flex flex-col">
       <!-- Hero Section -->
-      <section class="bg-mediconnect-gradient py-12 md:py-20">
+      <section class="bg-mediconnect-white py-12 md:py-20">
         <div class="container mx-auto px-4 md:px-6 text-center">
           <h1 class="text-4xl md:text-5xl text-heading font-bold mb-4">
             Contact Us
@@ -64,7 +64,7 @@ require_once __DIR__ . "/../../backend/helpers/avatar-helper.php";
       </section>
 
       <!-- Contact Form Section -->
-      <section class="py-12 bg-white md:py-16">
+      <section class="py-12 md:py-16">
         <div class="container mx-auto px-4 md:px-6">
           <div class="grid gap-10 max-w-5xl mx-auto md:grid-cols-2">
             <div class="bg-white rounded-lg p-6 shadow-sm border border-solid border-input">

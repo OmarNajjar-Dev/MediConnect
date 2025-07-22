@@ -62,7 +62,11 @@
       rgb(30 58 138 / 0.7));
 }
 
-.bg-mediconnect-gradient {
+.bg-mediconnect-gray {
+  background-image: linear-gradient(to bottom, #b2e3dd, #f9fafb);
+}
+
+.bg-mediconnect-white {
   background-image: linear-gradient(to bottom, #b2e3dd, #ffffff);
 }
 

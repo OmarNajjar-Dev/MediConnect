@@ -177,23 +177,24 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     <!-- Main Content -->
     <main class="min-h-screen overflow-hidden flex-grow bg-gray-50 pt-20 pb-16">
+
+        <!-- Hero Section with gradient background -->
+        <section class="bg-mediconnect-gray py-12 text-center">
+            <div class="container mx-auto px-4">
+                <a href="<?= $paths['home']['index'] ?>" class="flex items-center justify-center">
+                    <span class="text-3xl font-semibold text-medical-700">
+                        Medi<span class="text-medical-500">Connect</span>
+                    </span>
+                </a>
+                <h2 class="mt-6 text-3xl font-bold text-gray-900">Create your account</h2>
+                <p class="mt-2 text-sm text-gray-600 max-w-md mx-auto">
+                    Join our healthcare platform to access better medical care
+                </p>
+            </div>
+        </section>
+
         <div class="flex min-h-screen items-center justify-center bg-transparent px-4 py-12 sm:px-6 lg:px-8">
             <div class="w-full max-w-md flex flex-col gap-8">
-
-                <!-- Logo and Heading -->
-                <div class="text-center">
-                    <a href="<?= $paths['home']['index'] ?>" class="flex items-center justify-center">
-                        <span class="text-3xl font-semibold text-medical-700">
-                            Medi<span class="text-medical-500">Connect</span>
-                        </span>
-                    </a>
-                    <h2 class="mt-6 text-3xl font-bold text-gray-900">
-                        Create your account
-                    </h2>
-                    <p class="mt-2 text-sm text-gray-600">
-                        Join our healthcare platform to access better medical care
-                    </p>
-                </div>
 
                 <!-- Register Form Card -->
                 <div class="bg-white px-4 py-8 shadow sm:rounded-lg sm:px-10">

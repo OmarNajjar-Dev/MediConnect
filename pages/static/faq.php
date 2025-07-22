@@ -47,7 +47,7 @@ require_once __DIR__ . "/../../backend/helpers/avatar-helper.php";
     <!-- Main Content -->
     <main class="overflow-hidden pt-20 flex-grow">
         <div class="flex flex-col">
-            <section class="bg-mediconnect-gradient py-12 md:py-20">
+            <section class="bg-mediconnect-white py-12 md:py-20">
                 <div class="container mx-auto px-4 text-center">
                     <h1 class="text-4xl md:text-5xl text-heading font-bold mb-4">Frequently Asked Questions</h1>
                     <p class="text-lg text-gray-600 max-w-2xl mx-auto">Find answers to common questions about using
