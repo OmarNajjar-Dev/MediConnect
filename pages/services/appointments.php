@@ -1,5 +1,7 @@
 <?php
 
+$currentPage = "appointments";
+
 // 1. Load system configuration (paths, constants, routes, etc.)
 require_once __DIR__ . "/../../backend/config/path.php";
 
