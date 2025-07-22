@@ -63,7 +63,7 @@ require_once __DIR__ . "/../../backend/helpers/avatar-helper.php";
                         <div id="request-help-wrapper" class="flex flex-col gap-6">
                             <button
                                 id="request-help-btn"
-                                class="gap-2 whitespace-nowrap border border-solid border-input h-10 bg-danger hover:bg-red-700 text-white font-bold py-4 px-8 rounded-sm text-lg shadow-lg flex items-center justify-center w-full md:w-auto md:max-w-[310px] cursor-pointer transition-colors">
+                                class="gap-2 whitespace-nowrap border border-solid border-transparent h-10 bg-danger hover:bg-red-700 text-white font-bold py-4 px-8 rounded-sm text-lg shadow-lg flex items-center justify-center w-full md:w-auto md:max-w-[310px] cursor-pointer transition-colors">
                                 <i data-lucide="ambulance" class="mr-2 h-4 w-4"></i>
                                 Request Emergency Help
                             </button>
@@ -97,8 +97,7 @@ require_once __DIR__ . "/../../backend/helpers/avatar-helper.php";
                                             </div>
                                             <h3 class="text-xl text-heading font-bold">COVID-19 Response Team En Route</h3>
                                             <div class="flex items-center justify-center mt-2"><i data-lucide="clock" class="mr-2 text-medical-500"></i>
-
-                                                <p class="text-gray-800 font-semibold">Estimated arrival: 10 minutes</p>
+                                                <p id="eta-text" class="text-gray-800 font-semibold">Estimated arrival: 10 minutes</p>
                                             </div>
                                         </div>
                                     </div>
@@ -131,9 +130,11 @@ require_once __DIR__ . "/../../backend/helpers/avatar-helper.php";
                                         <div class="flex justify-center gap-4 mt-4"><button
                                                 class="justify-center gap-2 whitespace-nowrap rounded-md text-sm text-heading font-medium border border-solid border-card-soft bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 flex items-center cursor-pointer">
                                                 <i data-lucide="phone" class="mr-2 h-4 w-4"></i>
-                                                Call Dispatch</button><button
+                                                Call Dispatch</button>
+                                            <button id="status-cancel-btn"
                                                 class="justify-center gap-2 whitespace-nowrap rounded-md text-sm text-heading font-medium border border-solid border-card-soft bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 flex items-center cursor-pointer">Cancel
-                                                Request</button></div>
+                                                Request</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -286,25 +287,23 @@ require_once __DIR__ . "/../../backend/helpers/avatar-helper.php";
         </div>
     </main>
 
-    <!-- Footer -->
-    <?php require_once './../../includes/footer.php'; ?>
-
-    <!-- External JavaScript -->
-    <script type="module" src="/mediconnect/assets/js/common/index.js"></script>
-
-    <!-- Create Lucide Icons -->
-    <script>
-        lucide.createIcons()
-    </script>
-    <script type="module" src="js/emergency/emergency.js">
-    </script>
-
     <!-- Confirmation Message -->
     <div id="confirmationMessage" class="fixed bottom-6 right-6 z-50 px-6 py-4 bg-white border border-solid border-card-soft shadow-md rounded-lg text-sm max-w-sm">
         <p class="font-semibold text-heading mb-1">Emergency request sent.</p>
         <p class="text-heading">Help is on the way.Please stay where you are!</p>
     </div>
 
+    <!-- Footer -->
+    <?php require_once './../../includes/footer.php'; ?>
+
+    <!-- External JavaScript -->
+    <script type="module" src="/mediconnect/assets/js/common/index.js"></script>
+    <script type="module" src="/mediconnect/assets/js/emergency/emergency.js"></script>
+
+    <!-- Create Lucide Icons -->
+    <script>
+        lucide.createIcons()
+    </script>
 
 </body>
 

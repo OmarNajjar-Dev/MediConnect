@@ -103,9 +103,55 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     }
                 } elseif ($roleName === "Ambulance Team") {
                     $teamName = $_POST["team_name"] ?? ($firstName . "'s Team");
+
+                    // Insert into ambulance_teams
                     $team_stmt = $conn->prepare("INSERT INTO ambulance_teams (user_id, team_name) VALUES (?, ?)");
                     $team_stmt->bind_param("is", $user_id, $teamName);
-                    $team_stmt->execute();
+
+                    if ($team_stmt->execute()) {
+                        $team_id = $conn->insert_id; // Get the ID of the inserted ambulance team
+
+                        // Convert address to lat/lng using OpenCage API
+                        function getCoordinatesFromOpenCage($address)
+                        {
+                            $apiKey = "f7257b4524a9479eacc86758ec47dc69"; // Your OpenCage API Key
+                            $url = "https://api.opencagedata.com/geocode/v1/json?" . http_build_query([
+                                'q' => $address,
+                                'key' => $apiKey,
+                                'language' => 'en',
+                                'limit' => 1,
+                                'no_annotations' => 1
+                            ]);
+
+                            $response = file_get_contents($url);
+                            $data = json_decode($response, true);
+
+                            if ($data && isset($data['results'][0]['geometry'])) {
+                                $location = $data['results'][0]['geometry'];
+                                return [$location['lat'], $location['lng']];
+                            }
+
+                            return [null, null];
+                        }
+
+                        // Get user address (from signup form)
+                        $address = $_POST["address"] ?? null;
+
+                        if ($address) {
+                            list($lat, $lng) = getCoordinatesFromOpenCage($address);
+
+                            if ($lat && $lng) {
+                                $updated_at = date("Y-m-d H:i:s");
+
+                                // Insert into ambulance_locations
+                                $location_stmt = $conn->prepare("INSERT INTO ambulance_locations (team_id, latitude, longitude, updated_at) VALUES (?, ?, ?, ?)");
+                                $location_stmt->bind_param("idds", $team_id, $lat, $lng, $updated_at);
+                                $location_stmt->execute();
+                                $location_stmt->close();
+                            }
+                        }
+                    }
+
                     $team_stmt->close();
                 }
 

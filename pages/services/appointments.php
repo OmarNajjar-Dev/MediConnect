@@ -361,7 +361,7 @@ require_once __DIR__ . "/../../backend/helpers/avatar-helper.php";
 
     <!-- External JavaScript -->
     <script type="module" src="/mediconnect/assets/js/common/index.js"></script>
-    <script type="module" src="./js/appointments/index.js"></script>
+    <script type="module" src="/mediconnect/assets/js/appointments/index.js"></script>
 
     <script>
         lucide.createIcons();
