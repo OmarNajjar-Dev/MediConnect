@@ -285,38 +285,103 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         </div>
 
                         <!-- Role Selection -->
-                        <div>
+                        <div class="relative" data-dropdown="container">
                             <label for="role" class="text-sm font-medium leading-none mb-2 block">Role</label>
-                            <select id="role" name="role" required
-                                class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white md:text-sm">
-                                <option value="">Select a role</option>
-                                <option value="patient">Patient</option>
-                                <option value="doctor">Doctor</option>
-                                <option value="ambulance-team">Ambulance Team</option>
-                                <option value="staff">Staff</option>
-                            </select>
+                            
+                            <!-- Button that toggles dropdown -->
+                            <button type="button" role="combobox" data-dropdown="button" id="role-button"
+                                class="flex h-10 w-full items-center justify-between cursor-pointer rounded-md border border-solid border-input bg-background px-3 py-2 text-base text-left focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white md:text-sm">
+                                <span>Select a role</span>
+                                <i data-lucide="chevron-down" class="w-4 h-4 opacity-50"></i>
+                            </button>
+
+                            <!-- Custom Dropdown Menu -->
+                            <ul data-dropdown="menu"
+                                class="absolute z-10 mt-1.5 p-1 border border-solid border-input w-full bg-white rounded-md shadow-xl hidden">
+                                <li>
+                                    <button type="button" data-dropdown="option"
+                                        class="bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md"
+                                        data-value="patient">
+                                        <span>Patient</span>
+                                        <i data-lucide="check" class="w-4 h-4 text-medical-500 hidden"></i>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" data-dropdown="option"
+                                        class="bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md"
+                                        data-value="doctor">
+                                        <span>Doctor</span>
+                                        <i data-lucide="check" class="w-4 h-4 text-medical-500 hidden"></i>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" data-dropdown="option"
+                                        class="bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md"
+                                        data-value="ambulance-team">
+                                        <span>Ambulance Team</span>
+                                        <i data-lucide="check" class="w-4 h-4 text-medical-500 hidden"></i>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" data-dropdown="option"
+                                        class="bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md"
+                                        data-value="staff">
+                                        <span>Staff</span>
+                                        <i data-lucide="check" class="w-4 h-4 text-medical-500 hidden"></i>
+                                    </button>
+                                </li>
+                            </ul>
+                            
+                            <!-- Hidden input for form submission -->
+                            <input type="hidden" id="role" name="role" value="">
                         </div>
 
                         <!-- Dynamic Role-Specific Fields -->
                         <div id="role-specific-fields" class="hidden">
                             <!-- Hospital Selection (for Doctor and Staff) -->
                             <div id="hospital-selection" class="hidden mb-4">
-                                <label for="hospital_id" class="text-sm font-medium leading-none mb-2 block">Hospital</label>
-                                <select id="hospital_id" name="hospital_id"
-                                    class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white md:text-sm">
-                                    <option value="">Select a hospital</option>
-                                    <!-- Options will be populated dynamically -->
-                                </select>
+                                <div class="relative" data-dropdown="container">
+                                    <label for="hospital_id" class="text-sm font-medium leading-none mb-2 block">Hospital</label>
+                                    
+                                    <!-- Button that toggles dropdown -->
+                                    <button type="button" role="combobox" data-dropdown="button" id="hospital-button"
+                                        class="flex h-10 w-full items-center justify-between cursor-pointer rounded-md border border-solid border-input bg-background px-3 py-2 text-base text-left focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white md:text-sm">
+                                        <span>Select a hospital</span>
+                                        <i data-lucide="chevron-down" class="w-4 h-4 opacity-50"></i>
+                                    </button>
+
+                                    <!-- Custom Dropdown Menu -->
+                                    <ul data-dropdown="menu" id="hospital-menu"
+                                        class="absolute z-10 mt-1.5 p-1 border border-solid border-input w-full bg-white rounded-md shadow-xl hidden">
+                                        <!-- Options will be populated dynamically -->
+                                    </ul>
+                                    
+                                    <!-- Hidden input for form submission -->
+                                    <input type="hidden" id="hospital_id" name="hospital_id" value="">
+                                </div>
                             </div>
 
                             <!-- Specialty Selection (for Doctor only) -->
                             <div id="specialty-selection" class="hidden mb-4">
-                                <label for="specialty_id" class="text-sm font-medium leading-none mb-2 block">Specialty</label>
-                                <select id="specialty_id" name="specialty_id"
-                                    class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white md:text-sm">
-                                    <option value="">Select a specialty</option>
-                                    <!-- Options will be populated dynamically -->
-                                </select>
+                                <div class="relative" data-dropdown="container">
+                                    <label for="specialty_id" class="text-sm font-medium leading-none mb-2 block">Specialty</label>
+                                    
+                                    <!-- Button that toggles dropdown -->
+                                    <button type="button" role="combobox" data-dropdown="button" id="specialty-button"
+                                        class="flex h-10 w-full items-center justify-between cursor-pointer rounded-md border border-solid border-input bg-background px-3 py-2 text-base text-left focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white md:text-sm">
+                                        <span>Select a specialty</span>
+                                        <i data-lucide="chevron-down" class="w-4 h-4 opacity-50"></i>
+                                    </button>
+
+                                    <!-- Custom Dropdown Menu -->
+                                    <ul data-dropdown="menu" id="specialty-menu"
+                                        class="absolute z-10 mt-1.5 p-1 border border-solid border-input w-full bg-white rounded-md shadow-xl hidden">
+                                        <!-- Options will be populated dynamically -->
+                                    </ul>
+                                    
+                                    <!-- Hidden input for form submission -->
+                                    <input type="hidden" id="specialty_id" name="specialty_id" value="">
+                                </div>
                             </div>
 
                             <!-- Team Name (for Ambulance Team) -->

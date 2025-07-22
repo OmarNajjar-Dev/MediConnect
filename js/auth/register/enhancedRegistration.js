@@ -1,3 +1,5 @@
+import { initDropdown } from "../../common/initDropdown.js";
+
 export function setupEnhancedRegistration() {
   setupRoleBasedFields();
   setupGeolocationDetection();
@@ -5,25 +7,31 @@ export function setupEnhancedRegistration() {
 
 function setupRoleBasedFields() {
   console.log("Setting up role-based fields...");
-  const roleSelect = document.getElementById("role");
+  const roleButton = document.getElementById("role-button");
+  const roleInput = document.getElementById("role");
   const roleSpecificFields = document.getElementById("role-specific-fields");
   const hospitalSelection = document.getElementById("hospital-selection");
   const specialtySelection = document.getElementById("specialty-selection");
   const teamNameField = document.getElementById("team-name-field");
-  const hospitalSelect = document.getElementById("hospital_id");
-  const specialtySelect = document.getElementById("specialty_id");
+  const hospitalButton = document.getElementById("hospital-button");
+  const hospitalInput = document.getElementById("hospital_id");
+  const specialtyButton = document.getElementById("specialty-button");
+  const specialtyInput = document.getElementById("specialty_id");
 
   console.log("Elements found:", {
-    roleSelect: !!roleSelect,
+    roleButton: !!roleButton,
+    roleInput: !!roleInput,
     roleSpecificFields: !!roleSpecificFields,
     hospitalSelection: !!hospitalSelection,
     specialtySelection: !!specialtySelection,
     teamNameField: !!teamNameField,
-    hospitalSelect: !!hospitalSelect,
-    specialtySelect: !!specialtySelect,
+    hospitalButton: !!hospitalButton,
+    hospitalInput: !!hospitalInput,
+    specialtyButton: !!specialtyButton,
+    specialtyInput: !!specialtyInput,
   });
 
-  if (!roleSelect || !roleSpecificFields) {
+  if (!roleButton || !roleInput || !roleSpecificFields) {
     console.error("Required elements not found");
     return;
   }
@@ -33,11 +41,22 @@ function setupRoleBasedFields() {
   loadHospitals();
   loadSpecialties();
 
-  // Listen for role changes on the select element
-  roleSelect.addEventListener("change", (e) => {
-    const selectedRole = e.target.value;
-    console.log("Role changed to:", selectedRole);
-    handleRoleChange(selectedRole);
+  // Listen for role changes on the dropdown options
+  const roleOptions = document.querySelectorAll('[data-dropdown="option"]');
+  roleOptions.forEach((option) => {
+    option.addEventListener("click", (e) => {
+      const selectedRole = option.getAttribute("data-value");
+      console.log("Role changed to:", selectedRole);
+
+      // Update the hidden input value
+      roleInput.value = selectedRole;
+
+      // Update the button text
+      const roleButtonText = roleButton.querySelector("span");
+      roleButtonText.textContent = option.querySelector("span").textContent;
+
+      handleRoleChange(selectedRole);
+    });
   });
 
   function handleRoleChange(selectedRole) {
@@ -48,8 +67,8 @@ function setupRoleBasedFields() {
     teamNameField.classList.add("hidden");
 
     // Clear required attributes
-    hospitalSelect.removeAttribute("required");
-    specialtySelect.removeAttribute("required");
+    hospitalInput.removeAttribute("required");
+    specialtyInput.removeAttribute("required");
 
     // Show relevant fields based on selected role
     if (selectedRole === "doctor") {
@@ -57,8 +76,8 @@ function setupRoleBasedFields() {
       hospitalSelection.classList.remove("hidden");
       specialtySelection.classList.remove("hidden");
       // Make hospital and specialty required for doctors
-      hospitalSelect.setAttribute("required", "required");
-      specialtySelect.setAttribute("required", "required");
+      hospitalInput.setAttribute("required", "required");
+      specialtyInput.setAttribute("required", "required");
     } else if (selectedRole === "ambulance-team") {
       // Only show team name for ambulance team
       roleSpecificFields.classList.remove("hidden");
@@ -67,7 +86,7 @@ function setupRoleBasedFields() {
       roleSpecificFields.classList.remove("hidden");
       hospitalSelection.classList.remove("hidden");
       // Make hospital required for staff
-      hospitalSelect.setAttribute("required", "required");
+      hospitalInput.setAttribute("required", "required");
     }
   }
 
@@ -81,8 +100,8 @@ function setupRoleBasedFields() {
       const data = await response.json();
       console.log("Hospitals data:", data);
 
-      // Clear existing options except the first one
-      hospitalSelect.innerHTML = '<option value="">Select a hospital</option>';
+      const hospitalMenu = document.getElementById("hospital-menu");
+      hospitalMenu.innerHTML = ""; // Clear existing options
 
       // Check if data is an array (direct response) or has a success property
       const hospitals = Array.isArray(data)
@@ -93,11 +112,40 @@ function setupRoleBasedFields() {
       console.log("Processed hospitals:", hospitals);
 
       hospitals.forEach((hospital) => {
-        const option = document.createElement("option");
-        option.value = hospital.hospital_id;
-        option.textContent = hospital.name;
-        hospitalSelect.appendChild(option);
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <button type="button" data-dropdown="option"
+            class="bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md"
+            data-value="${hospital.hospital_id}">
+            <span>${hospital.name}</span>
+            <i data-lucide="check" class="w-4 h-4 text-medical-500 hidden"></i>
+          </button>
+        `;
+        hospitalMenu.appendChild(li);
+
+        // Add click event listener to the new option
+        const option = li.querySelector('[data-dropdown="option"]');
+        option.addEventListener("click", (e) => {
+          const selectedHospitalId = option.getAttribute("data-value");
+          const selectedHospitalName = option.querySelector("span").textContent;
+
+          // Update the hidden input value
+          hospitalInput.value = selectedHospitalId;
+
+          // Update the button text
+          const hospitalButtonText = hospitalButton.querySelector("span");
+          hospitalButtonText.textContent = selectedHospitalName;
+        });
       });
+
+      // Recreate Lucide icons for the new content
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+
+      // Reinitialize dropdowns for the new content
+      initDropdown();
+
       console.log("Hospitals loaded successfully");
     } catch (error) {
       console.error("Error loading hospitals:", error);
@@ -114,17 +162,46 @@ function setupRoleBasedFields() {
       const data = await response.json();
       console.log("Specialties data:", data);
 
-      // Clear existing options except the first one
-      specialtySelect.innerHTML =
-        '<option value="">Select a specialty</option>';
+      const specialtyMenu = document.getElementById("specialty-menu");
+      specialtyMenu.innerHTML = ""; // Clear existing options
 
       if (data.success && data.specialties) {
         data.specialties.forEach((specialty) => {
-          const option = document.createElement("option");
-          option.value = specialty.specialty_id;
-          option.textContent = specialty.label_for_doctor || specialty.name;
-          specialtySelect.appendChild(option);
+          const li = document.createElement("li");
+          li.innerHTML = `
+            <button type="button" data-dropdown="option"
+              class="bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md"
+              data-value="${specialty.specialty_id}">
+              <span>${specialty.label_for_doctor || specialty.name}</span>
+              <i data-lucide="check" class="w-4 h-4 text-medical-500 hidden"></i>
+            </button>
+          `;
+          specialtyMenu.appendChild(li);
+
+          // Add click event listener to the new option
+          const option = li.querySelector('[data-dropdown="option"]');
+          option.addEventListener("click", (e) => {
+            const selectedSpecialtyId = option.getAttribute("data-value");
+            const selectedSpecialtyName =
+              option.querySelector("span").textContent;
+
+            // Update the hidden input value
+            specialtyInput.value = selectedSpecialtyId;
+
+            // Update the button text
+            const specialtyButtonText = specialtyButton.querySelector("span");
+            specialtyButtonText.textContent = selectedSpecialtyName;
+          });
         });
+
+        // Recreate Lucide icons for the new content
+        if (window.lucide) {
+          window.lucide.createIcons();
+        }
+
+        // Reinitialize dropdowns for the new content
+        initDropdown();
+
         console.log("Specialties loaded successfully");
       } else {
         console.error("No specialties data found:", data);
