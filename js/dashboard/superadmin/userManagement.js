@@ -70,11 +70,21 @@ class UserManagement {
       const response = await fetch(
         "/mediconnect/backend/api/get-hospitals.php"
       );
-      const hospitals = await response.json();
-      this.hospitals = hospitals;
+      const data = await response.json();
+
+      // Handle both old format (direct array) and new format (with success property)
+      if (data.success && data.hospitals) {
+        this.hospitals = data.hospitals;
+      } else if (Array.isArray(data)) {
+        this.hospitals = data;
+      } else {
+        this.hospitals = [];
+      }
+
       this.populateHospitalDropdowns();
     } catch (error) {
       console.error("Error loading hospitals:", error);
+      this.hospitals = [];
     }
   }
 

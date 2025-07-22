@@ -19,14 +19,24 @@ class HospitalManagement {
       const response = await fetch(
         "/mediconnect/backend/api/get-hospitals.php"
       );
-      const hospitals = await response.json();
+      const data = await response.json();
 
-      this.hospitals = hospitals;
+      // Handle both old format (direct array) and new format (with success property)
+      if (data.success && data.hospitals) {
+        this.hospitals = data.hospitals;
+      } else if (Array.isArray(data)) {
+        this.hospitals = data;
+      } else {
+        this.hospitals = [];
+      }
+
       this.filteredHospitals = [...this.hospitals];
       this.renderHospitals();
       this.updateHospitalCount();
     } catch (error) {
       console.error("Error loading hospitals:", error);
+      this.hospitals = [];
+      this.filteredHospitals = [];
       showErrorToast("Error", "Failed to load hospitals");
     }
   }

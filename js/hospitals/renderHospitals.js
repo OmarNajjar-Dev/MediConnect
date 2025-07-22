@@ -1,7 +1,15 @@
 export async function renderHospitals(container) {
   try {
     const response = await fetch("/mediconnect/backend/api/get-hospitals.php");
-    const hospitals = await response.json();
+    const data = await response.json();
+
+    // Handle both old format (direct array) and new format (with success property)
+    let hospitals = [];
+    if (data.success && data.hospitals) {
+      hospitals = data.hospitals;
+    } else if (Array.isArray(data)) {
+      hospitals = data;
+    }
 
     hospitals.forEach((h) => {
       const specialtiesHtml = h.specialties

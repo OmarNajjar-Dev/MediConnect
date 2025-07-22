@@ -2,8 +2,16 @@
 async function fetchHospitals() {
   try {
     const response = await fetch("/mediconnect/backend/api/get-hospitals.php");
-    const hospitals = await response.json();
-    return hospitals;
+    const data = await response.json();
+
+    // Handle both old format (direct array) and new format (with success property)
+    if (data.success && data.hospitals) {
+      return data.hospitals;
+    } else if (Array.isArray(data)) {
+      return data;
+    } else {
+      return [];
+    }
   } catch (error) {
     console.error("Failed to fetch hospitals:", error);
     return [];
