@@ -199,7 +199,7 @@ require_once __DIR__ . "/backend/helpers/avatar-helper.php";
                                             <h3 class="text-xl text-heading font-bold">COVID-19 Response Team En Route</h3>
                                             <div class="flex items-center justify-center mt-2"><i data-lucide="clock" class="mr-2 text-medical-500"></i>
 
-                                                <p class="text-gray-800 font-semibold">Estimated arrival: 10 minutes</p>
+                                                <p id="eta-text" class="text-gray-800 font-semibold">Estimated arrival: 10 minutes</p>
                                             </div>
                                         </div>
                                     </div>
@@ -232,7 +232,8 @@ require_once __DIR__ . "/backend/helpers/avatar-helper.php";
                                         <div class="flex justify-center gap-4 mt-4"><button
                                                 class="justify-center gap-2 whitespace-nowrap rounded-md text-sm text-heading font-medium border border-solid border-card-soft bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 flex items-center cursor-pointer">
                                                 <i data-lucide="phone" class="mr-2 h-4 w-4"></i>
-                                                Call Dispatch</button><button
+                                                Call Dispatch</button>
+                                                <button id="status-cancel-btn"
                                                 class="justify-center gap-2 whitespace-nowrap rounded-md text-sm text-heading font-medium border border-solid border-card-soft bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 flex items-center cursor-pointer">Cancel
                                                 Request</button></div>
                                     </div>
