@@ -299,8 +299,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                         <!-- Dynamic Role-Specific Fields -->
                         <div id="role-specific-fields" class="hidden">
-                            <!-- Hospital Selection (for Doctor and Ambulance Team) -->
-                            <div id="hospital-selection" class="hidden">
+                            <!-- Hospital Selection (for Doctor and Staff) -->
+                            <div id="hospital-selection" class="hidden mb-4">
                                 <label for="hospital_id" class="text-sm font-medium leading-none mb-2 block">Hospital</label>
                                 <select id="hospital_id" name="hospital_id"
                                     class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white md:text-sm">
@@ -310,7 +310,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             </div>
 
                             <!-- Specialty Selection (for Doctor only) -->
-                            <div id="specialty-selection" class="hidden">
+                            <div id="specialty-selection" class="hidden mb-4">
                                 <label for="specialty_id" class="text-sm font-medium leading-none mb-2 block">Specialty</label>
                                 <select id="specialty_id" name="specialty_id"
                                     class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white md:text-sm">
@@ -320,7 +320,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             </div>
 
                             <!-- Team Name (for Ambulance Team) -->
-                            <div id="team-name-field" class="hidden">
+                            <div id="team-name-field" class="hidden mb-4">
                                 <label for="team_name" class="text-sm font-medium leading-none mb-2 block">Team Name</label>
                                 <input type="text" id="team_name" name="team_name"
                                     class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm outline-none focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white"

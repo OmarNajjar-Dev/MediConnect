@@ -4,7 +4,8 @@ export function setupEnhancedRegistration() {
 }
 
 function setupRoleBasedFields() {
-  const roleInput = document.getElementById("role-input");
+  console.log("Setting up role-based fields...");
+  const roleSelect = document.getElementById("role");
   const roleSpecificFields = document.getElementById("role-specific-fields");
   const hospitalSelection = document.getElementById("hospital-selection");
   const specialtySelection = document.getElementById("specialty-selection");
@@ -12,19 +13,31 @@ function setupRoleBasedFields() {
   const hospitalSelect = document.getElementById("hospital_id");
   const specialtySelect = document.getElementById("specialty_id");
 
-  if (!roleInput || !roleSpecificFields) return;
+  console.log("Elements found:", {
+    roleSelect: !!roleSelect,
+    roleSpecificFields: !!roleSpecificFields,
+    hospitalSelection: !!hospitalSelection,
+    specialtySelection: !!specialtySelection,
+    teamNameField: !!teamNameField,
+    hospitalSelect: !!hospitalSelect,
+    specialtySelect: !!specialtySelect,
+  });
+
+  if (!roleSelect || !roleSpecificFields) {
+    console.error("Required elements not found");
+    return;
+  }
 
   // Load hospitals and specialties when page loads
+  console.log("Loading hospitals and specialties...");
   loadHospitals();
   loadSpecialties();
 
-  // Listen for role changes
-  const roleOptions = document.querySelectorAll("#role-options .option-btn");
-  roleOptions.forEach((option) => {
-    option.addEventListener("click", () => {
-      const selectedRole = option.getAttribute("data-value");
-      handleRoleChange(selectedRole);
-    });
+  // Listen for role changes on the select element
+  roleSelect.addEventListener("change", (e) => {
+    const selectedRole = e.target.value;
+    console.log("Role changed to:", selectedRole);
+    handleRoleChange(selectedRole);
   });
 
   function handleRoleChange(selectedRole) {
@@ -43,37 +56,49 @@ function setupRoleBasedFields() {
       roleSpecificFields.classList.remove("hidden");
       hospitalSelection.classList.remove("hidden");
       specialtySelection.classList.remove("hidden");
-
       // Make hospital and specialty required for doctors
       hospitalSelect.setAttribute("required", "required");
       specialtySelect.setAttribute("required", "required");
     } else if (selectedRole === "ambulance-team") {
+      // Only show team name for ambulance team
+      roleSpecificFields.classList.remove("hidden");
+      teamNameField.classList.remove("hidden");
+    } else if (selectedRole === "staff") {
       roleSpecificFields.classList.remove("hidden");
       hospitalSelection.classList.remove("hidden");
-      teamNameField.classList.remove("hidden");
-
-      // Make hospital required for ambulance teams
+      // Make hospital required for staff
       hospitalSelect.setAttribute("required", "required");
     }
   }
 
   async function loadHospitals() {
     try {
+      console.log("Loading hospitals...");
       const response = await fetch(
         "/mediconnect/backend/api/get-hospitals.php"
       );
+      console.log("Hospitals response status:", response.status);
       const data = await response.json();
+      console.log("Hospitals data:", data);
 
-      if (data.success && data.hospitals) {
-        hospitalSelect.innerHTML =
-          '<option value="">Choose a hospital</option>';
-        data.hospitals.forEach((hospital) => {
-          const option = document.createElement("option");
-          option.value = hospital.hospital_id;
-          option.textContent = hospital.name;
-          hospitalSelect.appendChild(option);
-        });
-      }
+      // Clear existing options except the first one
+      hospitalSelect.innerHTML = '<option value="">Select a hospital</option>';
+
+      // Check if data is an array (direct response) or has a success property
+      const hospitals = Array.isArray(data)
+        ? data
+        : data.success && data.hospitals
+        ? data.hospitals
+        : [];
+      console.log("Processed hospitals:", hospitals);
+
+      hospitals.forEach((hospital) => {
+        const option = document.createElement("option");
+        option.value = hospital.hospital_id;
+        option.textContent = hospital.name;
+        hospitalSelect.appendChild(option);
+      });
+      console.log("Hospitals loaded successfully");
     } catch (error) {
       console.error("Error loading hospitals:", error);
     }
@@ -81,20 +106,28 @@ function setupRoleBasedFields() {
 
   async function loadSpecialties() {
     try {
+      console.log("Loading specialties...");
       const response = await fetch(
         "/mediconnect/backend/api/get-specialties.php"
       );
+      console.log("Specialties response status:", response.status);
       const data = await response.json();
+      console.log("Specialties data:", data);
+
+      // Clear existing options except the first one
+      specialtySelect.innerHTML =
+        '<option value="">Select a specialty</option>';
 
       if (data.success && data.specialties) {
-        specialtySelect.innerHTML =
-          '<option value="">Choose a specialty</option>';
         data.specialties.forEach((specialty) => {
           const option = document.createElement("option");
           option.value = specialty.specialty_id;
           option.textContent = specialty.label_for_doctor || specialty.name;
           specialtySelect.appendChild(option);
         });
+        console.log("Specialties loaded successfully");
+      } else {
+        console.error("No specialties data found:", data);
       }
     } catch (error) {
       console.error("Error loading specialties:", error);
