@@ -1,3 +1,5 @@
+import { loadDoctors } from "./loadData.js";
+
 let currentOpenDropdown = null; // Tracks currently open dropdown and its button
 
 // Main setup function
@@ -12,9 +14,15 @@ export function setupDropdowns(dropdownButtons) {
     // Position the dropdown absolutely
     makeDropdownFloat(button, menu);
 
-    // Enable internal scroll for Time Slot dropdown only
-    if (button.id === "time-slot-button") {
-      setupDropdownScroll(menu, 360);
+    // Enable internal scroll only for specific dropdowns
+    const shouldHaveScroll = [
+      "speciality-button",
+      "doctor-button",
+      "time-slot-button",
+    ].includes(button.id);
+    if (shouldHaveScroll) {
+      const maxHeight = button.id === "time-slot-button" ? 360 : 200;
+      setupDropdownScroll(menu, maxHeight);
     }
 
     // When button is clicked
@@ -41,42 +49,79 @@ export function setupDropdowns(dropdownButtons) {
       }
     });
 
-    // When user selects an option
-    const options = menu.querySelectorAll("button.select-btn");
-    options.forEach((option) => {
-      option.addEventListener("click", () => {
-        selectedText.textContent = option.textContent.trim();
+    // Setup option event listeners
+    setupOptionListeners(button, menu, selectedText, selectedOption);
+  });
+}
 
-        // Reset all options
-        options.forEach((btn) => {
-          btn.querySelector("svg")?.classList.add("hidden");
-          btn.classList.remove("bg-neutral-100");
-          btn.classList.add("bg-white");
-        });
+// Separate function to setup option listeners (can be called after dynamic content loading)
+export function setupOptionListeners(
+  button,
+  menu,
+  selectedText,
+  selectedOption
+) {
+  // Remove existing listeners first
+  const existingOptions = menu.querySelectorAll("button.select-btn");
+  existingOptions.forEach((option) => {
+    option.replaceWith(option.cloneNode(true));
+  });
 
-        // Style the selected one
-        option.querySelector("svg")?.classList.remove("hidden");
-        option.classList.remove("bg-white");
-        option.classList.add("bg-neutral-100");
+  // Get fresh references after cloning
+  const options = menu.querySelectorAll("button.select-btn");
 
-        selectedOption = option;
-        menu.classList.add("hidden");
-        document.body.classList.remove("overflow-hidden");
-        currentOpenDropdown = null;
+  options.forEach((option) => {
+    option.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      selectedText.textContent = option.textContent.trim();
+
+      // Reset all options
+      options.forEach((btn) => {
+        btn.querySelector("svg")?.classList.add("hidden");
+        btn.classList.remove("bg-neutral-100");
+        btn.classList.add("bg-white");
       });
 
-      // Visual feedback
-      option.addEventListener("mouseenter", () => {
-        if (selectedOption && selectedOption !== option) {
-          selectedOption.classList.remove("bg-neutral-100");
-          selectedOption.classList.add("bg-white");
+      // Style the selected one
+      option.querySelector("svg")?.classList.remove("hidden");
+      option.classList.remove("bg-white");
+      option.classList.add("bg-neutral-100");
+
+      selectedOption = option;
+      menu.classList.add("hidden");
+      document.body.classList.remove("overflow-hidden");
+      currentOpenDropdown = null;
+
+      // Handle specialty selection - filter doctors
+      if (button.id === "speciality-button") {
+        const specialtyId = option.getAttribute("data-specialty-id");
+        if (specialtyId) {
+          // Reset doctor selection
+          const doctorButton = document.getElementById("doctor-button");
+          const doctorSelectedText = doctorButton.querySelector(
+            "span.selected-value"
+          );
+          doctorSelectedText.textContent = "Select a doctor";
+
+          // Load doctors for selected specialty
+          loadDoctors(specialtyId);
         }
-      });
+      }
+    });
 
-      option.addEventListener("mouseleave", () => {
-        selectedOption?.classList.remove("bg-white");
-        selectedOption?.classList.add("bg-neutral-100");
-      });
+    // Visual feedback
+    option.addEventListener("mouseenter", () => {
+      if (selectedOption && selectedOption !== option) {
+        selectedOption.classList.remove("bg-neutral-100");
+        selectedOption.classList.add("bg-white");
+      }
+    });
+
+    option.addEventListener("mouseleave", () => {
+      selectedOption?.classList.remove("bg-white");
+      selectedOption?.classList.add("bg-neutral-100");
     });
   });
 }
@@ -122,7 +167,7 @@ function makeDropdownFloat(button, dropdown) {
   }
 }
 
-// ✅ Allow scroll inside dropdown only
+// ✅ Allow scroll inside dropdown only for specific dropdowns
 function setupDropdownScroll(dropdownElement, maxHeight = 200) {
   dropdownElement.style.maxHeight = `${maxHeight}px`;
   dropdownElement.style.overflowY = "auto";
