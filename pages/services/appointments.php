@@ -66,7 +66,7 @@ require_once __DIR__ . "/../../backend/helpers/avatar-helper.php";
         </section>
 
         <div class="bg-white border border-solid border-input rounded-xl p-6 max-w-xl mx-auto">
-            <form onsubmit="return validateForm()" class="flex flex-col gap-6">
+            <form id="appointment-form" class="flex flex-col gap-6">
 
                 <!-- Specialty -->
                 <div class="flex flex-col gap-3">
@@ -129,33 +129,50 @@ require_once __DIR__ . "/../../backend/helpers/avatar-helper.php";
                         class="hidden p-1.5 mt-7.5 bg-background border border-solid border-input rounded-md shadow-xl">
                         <li>
                             <button type="button"
-                                class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md"><span>Dr.
-                                    Sarah Johnson - Cardiology</span><i data-lucide="check"
-                                    class="w-4 h-4 text-gray-700 hidden"></i></button>
+                                class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md"
+                                data-id="1">
+                                <span>Dr.
+                                    Sarah Johnson - Cardiology
+                                </span>
+                                <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i>
+                            </button>
                         </li>
                         <li>
                             <button type="button"
-                                class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md"><span>Dr.
-                                    Michael Chen - Dermatology</span><i data-lucide="check"
-                                    class="w-4 h-4 text-gray-700 hidden"></i></button>
+                                class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md"
+                                data-id="2">
+                                <span>Dr.
+                                    Michael Chen - Dermatology
+                                </span>
+                                <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i>
+                            </button>
                         </li>
                         <li>
                             <button type="button"
-                                class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md"><span>Dr.
-                                    Emily Patel - Neurology</span><i data-lucide="check"
-                                    class="w-4 h-4 text-gray-700 hidden"></i></button>
+                                class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md"
+                                data-id="3">
+                                <span>Dr.
+                                    Emily Patel - Neurology</span>
+                                <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i>
+                            </button>
                         </li>
                         <li>
                             <button type="button"
-                                class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md"><span>Dr.
-                                    Robert Miller - Orthopedics</span><i data-lucide="check"
-                                    class="w-4 h-4 text-gray-700 hidden"></i></button>
+                                class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md"
+                                data-id="4">
+                                <span>Dr.
+                                    Robert Miller - Orthopedics</span>
+                                <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i>
+                            </button>
                         </li>
                         <li>
                             <button type="button"
-                                class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md"><span>Dr.
-                                    Jessica Williams - Pediatrics</span><i data-lucide="check"
-                                    class="w-4 h-4 text-gray-700 hidden"></i></button>
+                                class="select-btn bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md"
+                                data-id="5">
+                                <span>Dr.
+                                    Jessica Williams - Pediatrics</span>
+                                <i data-lucide="check" class="w-4 h-4 text-gray-700 hidden"></i>
+                            </button>
                         </li>
                     </ul>
 

@@ -22,7 +22,7 @@ export async function submitAppointment() {
   }
 
   try {
-    const response = await fetch("backend/api/appointments/create.php", {
+    const response = await fetch("/mediconnect/backend/api/appointments/create-appointment.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
