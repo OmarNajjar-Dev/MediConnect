@@ -50,6 +50,7 @@ require_once __DIR__ . "/../../backend/helpers/avatar-helper.php";
   <!-- Main Content -->
   <main class="overflow-hidden pt-20 flex-grow">
     <div class="flex flex-col">
+      
       <!-- Hero Section -->
       <section class="bg-mediconnect-white py-12 md:py-20">
         <div class="container mx-auto px-4 md:px-6 text-center">

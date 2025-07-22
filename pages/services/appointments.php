@@ -53,24 +53,19 @@ require_once __DIR__ . "/../../backend/helpers/avatar-helper.php";
     <?php require_once './../../includes/header.php'; ?>
 
     <!-- Main Content -->
-    <main class="min-h-screen bg-gray-50 pt-20 pb-16">
+    <main class="min-h-screen pt-20 pb-16">
 
         <!-- Hero Section with gradient background -->
-        <section class="bg-mediconnect-gray py-12 text-center">
+        <section class="bg-mediconnect-white py-16 text-center">
             <div class="container mx-auto px-4">
-                <a href="<?= $paths['home']['index'] ?>" class="flex items-center justify-center">
-                    <span class="text-3xl font-semibold text-medical-700">
-                        Medi<span class="text-medical-500">Connect</span>
-                    </span>
-                </a>
-                <h2 class="mt-6 text-3xl font-bold text-gray-900">Create your account</h2>
+                <h2 class="mt-6 text-3xl font-bold text-gray-900">Schedule an Appointment</h2>
                 <p class="mt-2 text-sm text-gray-600 max-w-md mx-auto">
-                    Join our healthcare platform to access better medical care
+                    Book an appointment with one of our healthcare professionals
                 </p>
             </div>
         </section>
 
-        <div class="glass-card bg-card rounded-xl p-6 max-w-xl mx-auto">
+        <div class="bg-white border border-solid border-input rounded-xl p-6 max-w-xl mx-auto">
             <form onsubmit="return validateForm()" class="flex flex-col gap-6">
 
                 <!-- Specialty -->
