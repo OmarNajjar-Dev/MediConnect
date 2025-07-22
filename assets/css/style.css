@@ -1,19 +1,4 @@
 /* =============================
-   Header & Navigation Positioning
-   ============================= */
-header {
-  top: 0;
-  left: 0;
-  right: 0;
-}
-
-#mobile-nav {
-  top: 100%;
-  left: 0;
-  right: 0;
-}
-
-/* =============================
    Hover Effects
    ============================= */
 .service-card:hover {

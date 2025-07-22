@@ -1,6 +1,6 @@
 <?php require_once __DIR__ . "/../backend/helpers/navigation-helper.php" ?>
 
-<header class="fixed z-50 py-5 bg-transparent transition-all">
+<header class="fixed z-50 py-5 top-0 left-0 right-0 bg-transparent transition-all">
     <div class="container mx-auto flex items-center justify-between px-4">
 
         <!-- Logo -->
@@ -76,7 +76,7 @@
         </div>
 
         <!-- Mobile Navigation Panel (visible only on mobile) -->
-        <div id="mobile-nav" class="hidden absolute bg-white/95 backdrop-blur-lg animate-slide-down shadow-lg md:hidden">
+        <div id="mobile-nav" class="hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-lg animate-slide-down shadow-lg md:hidden">
             <nav class="container mx-auto flex flex-col gap-4 px-4 py-4">
                 <a href="<?= $paths['home']['index'] ?>" class="<?= getActiveNavClassMobile('home', $currentPage) ?>">Home</a>
                 <a href="<?= $paths['services']['doctors'] ?>" class="<?= getActiveNavClassMobile('doctors', $currentPage) ?>">Doctors</a>
