@@ -151,7 +151,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
     <!-- Stylesheets -->
-    <!-- Stylesheets -->
     <link rel="stylesheet" href="/mediconnect/css/base.css" />
     <link rel="stylesheet" href="/mediconnect/css/colors.css" />
     <link rel="stylesheet" href="/mediconnect/css/typography.css" />
@@ -440,7 +439,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                         <!-- Geolocation Button -->
                         <div class="flex justify-center">
-                            <button type="button" id="detect-location" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-medical-600 bg-medical-50 border border-solid border-medical-200 rounded-md hover:bg-medical-100 transition-colors">
+                            <button type="button" id="detect-location" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-medical-600 bg-medical-50 border border-solid border-medical-200 rounded-md hover:bg-medical-100 transition-colors cursor-pointer">
                                 <i data-lucide="map-pin" class="h-4 w-4"></i>
                                 <span id="location-button-text">Detect My Location</span>
                                 <div id="location-loading" class="hidden animate-spin h-4 w-4 border-2 border-medical-600 border-t-transparent rounded-full"></div>

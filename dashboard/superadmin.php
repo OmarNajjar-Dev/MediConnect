@@ -447,18 +447,12 @@ $userAddress = $profileData['address'];
                         <!-- Role Filter -->
                         <div class="flex items-center gap-2">
                           <i data-lucide="filter" class="h-4 w-4 text-gray-500"></i>
-                          <select id="role-filter" class="flex h-10 items-center justify-between rounded-md border border-solid border-input bg-background px-3 py-2 text-sm w-full sm:w-48 focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
+                          <select id="role-filter" class="flex h-10 items-center justify-between rounded-md border border-solid border-input bg-background px-3 py-2 text-sm w-full sm:w-48 focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white cursor-pointer">
                             <option value="">All Roles</option>
                           </select>
                         </div>
                       </div>
                     </div>
-                  </div>
-
-                  <!-- Loading State -->
-                  <div id="users-loading" class="hidden flex items-center justify-center py-8">
-                    <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-medical-600"></div>
-                    <span class="ml-2 text-gray-600">Loading users...</span>
                   </div>
 
                   <!-- Table Section -->
