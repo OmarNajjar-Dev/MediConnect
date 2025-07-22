@@ -51,7 +51,7 @@ require_once __DIR__ . "/../../backend/helpers/avatar-helper.php";
   <main class="overflow-hidden pt-20 flex-grow">
     <div class="flex flex-col">
       <!-- Hero Section -->
-      <section id="contact-section-top" class="py-12 md:py-20">
+      <section class="bg-mediconnect-gradient py-12 md:py-20">
         <div class="container mx-auto px-4 md:px-6 text-center">
           <h1 class="text-4xl md:text-5xl text-heading font-bold mb-4">
             Contact Us

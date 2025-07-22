@@ -28,13 +28,13 @@ $paths = [
     ],
 
     'static' => [
-        'about'       => BASE_URL . '/pages/about.php',
-        'privacy'     => BASE_URL . '/pages/privacy.php',
-        'terms'       => BASE_URL . '/pages/terms.php',
-        'faq'         => BASE_URL . '/pages/faq.php',
-        'contact'     => BASE_URL . '/pages/contact.php',
-        'blood_bank'  => BASE_URL . '/pages/services/blood-bank.php',
-        'coming_soon' => BASE_URL . '/pages/coming-soon.php',
+        'about'       => BASE_URL . '/pages/static/about.php',
+        'privacy'     => BASE_URL . '/pages/static/privacy.php',
+        'terms'       => BASE_URL . '/pages/static/terms.php',
+        'faq'         => BASE_URL . '/pages/static/faq.php',
+        'contact'     => BASE_URL . '/pages/static/contact.php',
+        'blood_bank'  => BASE_URL . '/pages/static//blood-bank.php',
+        'coming_soon' => BASE_URL . '/pages/static/coming-soon.php',
     ],
 
     'errors' => [
