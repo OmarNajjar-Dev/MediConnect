@@ -7,12 +7,12 @@ $sql = "SELECT
             d.is_verified,
             d.rating,
             d.reviews_count,
-            d.image_url,
             d.bio,
             u.first_name,
             u.last_name,
             u.city,
-            h.name AS hospital_name,
+            u.profile_image,
+            h.name AS name,
             s.label_for_doctor AS specialty
         FROM doctors d
         INNER JOIN users u ON d.user_id = u.user_id
@@ -28,4 +28,7 @@ while ($row = $result->fetch_assoc()) {
 }
 
 header('Content-Type: application/json');
-echo json_encode($doctors);
+echo json_encode([
+    'success' => true,
+    'doctors' => $doctors
+]);

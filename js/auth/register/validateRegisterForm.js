@@ -1,39 +1,65 @@
+import { showErrorToast, hideToast } from "../../common/toast.js";
+import { PasswordStrengthValidator } from "../../common/passwordStrength.js";
+
 export function validateRegisterForm() {
   const form = document.getElementById("register-form");
-  const password = document.querySelector(".password");
+  const password = document.getElementById("password");
   const confirmPassword = document.getElementById("confirm-password");
-  const roleInput = document.getElementById("role-input");
-  const emailInput = document.querySelector('input[name="email"]');
-  const passwordErrorToast = document.getElementById("password-error-toast");
-  const roleErrorToast = document.getElementById("role-error-toast");
-  const emailErrorToast = document.getElementById("email-error-toast");
+  const roleInput = document.getElementById("role");
+  const emailInput = document.getElementById("email");
+  const agreeCheckbox = document.getElementById("agree-checkbox");
 
-  // Helper to hide all toasts
-  const hideAllToasts = () => {
-    passwordErrorToast.classList.add("hidden");
-    roleErrorToast.classList.add("hidden");
-    emailErrorToast.classList.add("hidden");
+  // Initialize password strength validator with default IDs
+  const passwordValidator = new PasswordStrengthValidator();
+
+  // Helper to validate password format using the strength validator
+  const isPasswordValid = (pwd) => {
+    return passwordValidator.isPasswordValid(pwd);
   };
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     let hasError = false;
 
-    hideAllToasts(); // Hide all before checks
+    hideToast(); // Hide any existing toast
 
     // Check role
     if (!roleInput.value) {
-      roleErrorToast.classList.remove("hidden");
+      showErrorToast(
+        "Please select your role.",
+        "You must choose your position in the healthcare system."
+      );
       hasError = true;
     }
 
-    // Check password
-    else if (password.value !== confirmPassword.value) {
-      passwordErrorToast.classList.remove("hidden");
+    // Check password format
+    else if (!isPasswordValid(password.value)) {
+      showErrorToast(
+        "Invalid password format.",
+        "Password must be at least 8 characters long with at least one number and one special character."
+      );
       hasError = true;
     }
-    
-    // Check email
+
+    // Check password confirmation
+    else if (confirmPassword.value === "") {
+      showErrorToast(
+        "Please confirm your password.",
+        "You must enter your password twice for verification."
+      );
+      hasError = true;
+    }
+
+    // Check password match
+    else if (!passwordValidator.doPasswordsMatch()) {
+      showErrorToast(
+        "Passwords do not match.",
+        "Please make sure both password fields contain exactly the same password."
+      );
+      hasError = true;
+    }
+
+    // Check email existence
     else {
       try {
         const res = await fetch("/MediConnect/backend/auth/check-email.php", {
@@ -43,7 +69,10 @@ export function validateRegisterForm() {
         });
         const data = await res.json();
         if (data.exists) {
-          emailErrorToast.classList.remove("hidden");
+          showErrorToast(
+            "Email already exists.",
+            "Please use another email or login instead."
+          );
           hasError = true;
         }
       } catch (err) {
@@ -51,10 +80,28 @@ export function validateRegisterForm() {
       }
     }
 
-    // Hide toast after 5 seconds (if shown)
-    setTimeout(hideAllToasts, 5000);
+    // Check terms agreement
+    if (!hasError && !agreeCheckbox.checked) {
+      showErrorToast(
+        "Please accept the terms and conditions.",
+        "You must agree to the terms of service to create an account."
+      );
+      hasError = true;
+    }
 
+    // If no errors, proceed with form submission
     if (!hasError) {
+      // Show success feedback before submission
+      hideToast();
+
+      // For ambulance team registration, we'll geocode their address after successful registration
+      if (roleInput.value === "6") {
+        // Ambulance Team role ID
+        console.log(
+          "Registering ambulance team member - will geocode address after registration"
+        );
+      }
+
       form.submit();
     }
   });

@@ -1,955 +1,1261 @@
 /* ==================================================
-   ROOT COLORS
+   MediConnect Color System
+   Modern, semantic color tokens with production-grade utilities
+   ================================================== */
+
+/* ==================================================
+   Design Tokens - Core Color Palette
    ================================================== */
 :root {
-    /* Primary Colors: Medical */
-    --medical-50: 224, 242, 241;
-    --medical-100: 178, 223, 219;
-    --medical-200: 128, 203, 196;
-    --medical-300: 77, 182, 172;
-    --medical-400: 38, 166, 154;
-    --medical-500: 0, 150, 136;
-    --medical-600: 0, 137, 123;
-    --medical-700: 0, 121, 107;
-    --medical-800: 0, 105, 92;
-    --medical-900: 0, 77, 64;
+  /* Brand Colors */
+  --primary: 0, 150, 136;
+  /* Medical Teal - Primary brand color */
+  --primary-light: 178, 223, 219;
+  /* Light teal for backgrounds */
+  --primary-dark: 0, 105, 92;
+  /* Dark teal for emphasis */
 
-    /* Neutral Colors: Gray */
-    --gray-50: 249, 250, 251;
-    --gray-100: 243, 244, 246;
-    --gray-150: 240, 240, 240;
-    --gray-200: 229, 231, 235;
-    --gray-300: 209, 213, 219;
-    --gray-400: 156, 163, 175;
-    --gray-500: 107, 114, 128;
-    --gray-600: 75, 85, 99;
-    --gray-700: 55, 65, 81;
-    --gray-800: 31, 41, 55;
-    --gray-900: 17, 24, 39;
+  /* Extended Primary Shades for Legacy Support */
+  --primary-600: 0, 137, 123;
+  --primary-700: 0, 121, 107;
+  --primary-900: 0, 77, 64;
 
-    --green-50: 240, 253, 244;
-    --green-100: 220, 252, 231;
-    --green-200: 187, 247, 208;
-    --green-400: 74, 222, 128;
-    --green-500: 34, 197, 94;
-    --green-600: 22, 163, 74;
-    --green-700: 21, 128, 61;
-    --green-800: 22, 101, 52;
-    --green-900: 20, 83, 45;
+  /* Semantic Colors */
+  --success: 34, 197, 94;
+  /* Green - Success states */
+  --danger: 239, 68, 68;
+  /* Red - Error/danger states */
+  --warning: 249, 115, 22;
+  /* Orange - Warning states */
+  --info: 59, 130, 246;
+  /* Blue - Informational states */
 
-    --yellow-100: 254, 249, 195;
-    --yellow-800: 133, 77, 14;
+  /* Extended Semantic Shades */
+  --success-400: 74, 222, 128;
+  --success-600: 22, 163, 74;
+  --success-700: 21, 128, 61;
+  --success-800: 22, 101, 52;
 
-    --red-50: 254, 242, 242;
-    --red-100: 254, 226, 226;
-    --red-200: 254, 202, 202;
-    --red-300: 252, 165, 165;
-    --red-400: 248, 113, 113;
-    --red-500: 239, 68, 68;
-    --red-600: 220, 38, 38;
-    --red-700: 185, 28, 28;
-    --red-800: 153, 27, 27;
-    --red-900: 127, 29, 29;
+  --danger-700: 185, 28, 28;
+  --danger-800: 153, 27, 27;
 
-    --blue-50: 239, 246, 255;
-    --blue-100: 219, 234, 254;
-    --blue-200: 191, 219, 254;
-    --blue-500: 59, 130, 246;
-    --blue-600: 37, 99, 235;
-    --blue-700: 29, 78, 216;
-    --blue-800: 30, 64, 175;
-    --blue-900: 30, 58, 138;
+  --warning-400: 251, 146, 60;
+  --warning-700: 194, 49, 12;
+  --warning-800: 154, 52, 18;
+  --warning-dark: 133, 77, 14;
 
-    --purple-50: 250, 245, 255;
-    --pruple-100: 243, 232, 255;
-    --purple-500: 168, 85, 247;
-    --purple-600: 147, 51, 234;
-    --purple-800: 107, 33, 168;
+  --info-600: 37, 99, 235;
+  --info-700: 29, 78, 216;
+  --info-800: 30, 64, 175;
+  --info-900: 30, 58, 138;
 
-    --orange-50: 255, 247, 237;
-    --orange-100: 255, 237, 213;
-    --orange-200: 254, 215, 170;
-    --orange-400: 251, 146, 60;
-    --orange-500: 249, 115, 22;
-    --orange-600: 234, 88, 12;
-    --orange-700: 194, 49, 12;
-    --orange-800: 154, 52, 18;
+  /* Neutral Palette */
+  --neutral-50: 249, 250, 251;
+  /* Lightest gray */
+  --neutral-100: 243, 244, 246;
+  --neutral-150: 240, 240, 240;
+  --neutral-200: 229, 231, 235;
+  --neutral-300: 209, 213, 219;
+  --neutral-400: 156, 163, 175;
+  --neutral-500: 107, 114, 128;
+  --neutral-600: 75, 85, 99;
+  --neutral-700: 55, 65, 81;
+  --neutral-800: 31, 41, 55;
+  --neutral-900: 17, 24, 39;
 
-    --slate-500: 100, 116, 139;
-    --slate-600: 71, 85, 105;
-    --slate-700: 51, 65, 85;
+  /* Base Colors */
+  --white: 255, 255, 255;
+  --black: 0, 0, 0;
 
-    /* Status Colors */
-    --success: 22, 163, 74;
-    --danger: 240, 68, 64;
-    --warning: 133, 77, 14;
-    --accent: 231, 249, 247;
+  /* UI Semantic Tokens */
+  --background: var(--white);
+  --foreground: var(--neutral-600);
+  --card: var(--white);
+  --card-foreground: 15, 23, 41;
+  --muted: var(--neutral-100);
+  --muted-foreground: 101, 117, 139;
+  --muted-50: 245, 245, 245;
+  --accent: 231, 249, 247;
+  --accent-foreground: 248, 250, 252;
 
-    /* Custom UI Colors */
-    --background: 255, 255, 255;
-    --heading: 2, 8, 23;
-    --card-background: 255, 255, 255;
-    --secondary: 186, 225, 242;
-    --secondary-foreground: 39, 71, 84;
-    --foreground: 75, 85, 99;
-    --card-foreground: 15, 23, 41;
-    --muted-foreground: 101, 117, 139;
-    --accent-foreground: 248, 250, 252;
-    --muted-50: 245, 245, 245;
-    --border-card-light: 255, 255, 255, 0.2;
-    --border-card-soft: 225, 234, 234;
-    --border: 209, 213, 219;
-    --input: 252, 253, 253;
-    --separator: 229, 231, 235;
+  /* Component Tokens */
+  --border: var(--neutral-300);
+  --input: 252, 253, 253;
+  --ring: var(--primary);
+  --separator: var(--neutral-200);
 
-    /* Star Colors */
-    --rating-400: 250, 204, 21;
-    --rating-500: 234, 179, 8;
+  /* Special Colors */
+  --secondary: 186, 225, 242;
+  --secondary-foreground: 39, 71, 84;
+  --border-card-light: 255, 255, 255;
+  --border-card-soft: 225, 234, 234;
+
+  /* Special Purpose */
+  --rating: 250, 204, 21;
+  /* Star rating color */
+  --rating-dark: 234, 179, 8;
+  --heading: 2, 8, 23;
+  /* Dark heading text */
+
+  /* Purple Shades */
+  --purple-50: 250, 245, 255;
+  --purple-100: 243, 232, 255;
+  --purple-500: 168, 85, 247;
+  --purple-600: 147, 51, 234;
+  --purple-800: 107, 33, 168;
+
+  /* Slate Shades */
+  --slate-500: 100, 116, 139;
+  --slate-600: 71, 85, 105;
+  --slate-700: 51, 65, 85;
+
+  /* Yellow Shades */
+  --yellow-300: 253, 224, 71;
+  --yellow-600: 202, 138, 4;
+  --yellow-700: 161, 98, 7;
+  --yellow-900: 113, 63, 18;
+
+  /* State Variants */
+  --hover-opacity: 0.8;
+  --disabled-opacity: 0.5;
+  --overlay-opacity: 0.1;
 }
 
 /* ==================================================
-   BACKGROUND COLOR CLASSES
+   Utility Classes - Background Colors
    ================================================== */
 
-/* Medical Backgrounds */
-.bg-medical-50\/50 {
-    background-color: rgba(var(--medical-50), 0.5);
+/* Primary Backgrounds */
+.bg-primary {
+  background-color: rgb(var(--primary));
 }
 
-.bg-medical-50 {
-    background-color: rgb(var(--medical-50));
+.bg-primary-light {
+  background-color: rgb(var(--primary-light));
 }
 
-.bg-medical-100\/65 {
-    background-color: rgba(var(--medical-100), 0.65);
+.bg-primary-dark {
+  background-color: rgb(var(--primary-dark));
 }
 
-.bg-medical-100 {
-    background-color: rgb(var(--medical-100));
+/* Primary with opacity */
+.bg-primary\/10 {
+  background-color: rgba(var(--primary), 0.1);
 }
 
-.bg-medical-100\/20 {
-    background-color: rgba(var(--medical-100), 0.2);
+.bg-primary\/20 {
+  background-color: rgba(var(--primary), 0.2);
 }
 
-.bg-medical-200 {
-    background-color: rgb(var(--medical-200));
+.bg-primary\/30 {
+  background-color: rgba(var(--primary), 0.3);
 }
 
-.bg-medical-300 {
-    background-color: rgb(var(--medical-300));
+.bg-primary\/50 {
+  background-color: rgba(var(--primary), 0.5);
 }
 
-.bg-medical-400 {
-    background-color: rgb(var(--medical-400));
-}
-
-.bg-medical-500 {
-    background-color: rgb(var(--medical-500));
-}
-
-.bg-medical-600 {
-    background-color: rgb(var(--medical-600));
-}
-
-.bg-medical-600\/30 {
-    background-color: rgba(var(--medical-600), 0.3);
-}
-
-.bg-medical-700 {
-    background-color: rgb(var(--medical-700));
-}
-
-.bg-medical-800 {
-    background-color: rgb(var(--medical-800));
-}
-
-.bg-medical-900 {
-    background-color: rgb(var(--medical-900));
-}
-
-/* Gray Backgrounds */
-.bg-gray-50 {
-    background-color: rgb(var(--gray-50));
-}
-
-.bg-gray-100 {
-    background-color: rgb(var(--gray-100));
-}
-
-.bg-gray-150 {
-    background-color: rgb(var(--gray-150));
-}
-
-.bg-gray-200 {
-    background-color: rgb(var(--gray-200));
-}
-
-.bg-gray-300 {
-    background-color: rgb(var(--gray-300));
-}
-
-.bg-gray-400 {
-    background-color: rgb(var(--gray-400));
-}
-
-.bg-gray-500 {
-    background-color: rgb(var(--gray-500));
-}
-
-.bg-gray-600 {
-    background-color: rgb(var(--gray-600));
-}
-
-.bg-gray-700 {
-    background-color: rgb(var(--gray-700));
-}
-
-.bg-gray-800 {
-    background-color: rgb(var(--gray-800));
-}
-
-.bg-gray-900 {
-    background-color: rgb(var(--gray-900));
-}
-
-/* Status Backgrounds */
+/* Semantic Backgrounds */
 .bg-success {
-    background-color: rgb(var(--success));
+  background-color: rgb(var(--success));
 }
 
 .bg-danger {
-    background-color: rgb(var(--danger));
+  background-color: rgb(var(--danger));
 }
 
 .bg-warning {
-    background-color: rgb(var(--warning));
+  background-color: rgb(var(--warning));
 }
 
-/* Custom UI Backgrounds */
+.bg-info {
+  background-color: rgb(var(--info));
+}
+
+/* Neutral Backgrounds */
+.bg-neutral-50 {
+  background-color: rgb(var(--neutral-50));
+}
+
+.bg-neutral-100 {
+  background-color: rgb(var(--neutral-100));
+}
+
+.bg-neutral-200 {
+  background-color: rgb(var(--neutral-200));
+}
+
+.bg-neutral-300 {
+  background-color: rgb(var(--neutral-300));
+}
+
+.bg-neutral-400 {
+  background-color: rgb(var(--neutral-400));
+}
+
+.bg-neutral-500 {
+  background-color: rgb(var(--neutral-500));
+}
+
+.bg-neutral-600 {
+  background-color: rgb(var(--neutral-600));
+}
+
+.bg-neutral-700 {
+  background-color: rgb(var(--neutral-700));
+}
+
+.bg-neutral-800 {
+  background-color: rgb(var(--neutral-800));
+}
+
+.bg-neutral-900 {
+  background-color: rgb(var(--neutral-900));
+}
+
+/* Base Backgrounds */
 .bg-white {
-    background-color: rgb(var(--background));
+  background-color: rgb(var(--white));
 }
 
-.bg-white\/10 {
-    background-color: rgba(var(--background), 0.1);
-}
-
-.bg-white\/20 {
-    background-color: rgba(var(--background), 0.2);
-}
-
-.bg-white\/95 {
-    background-color: rgb(var(--background), 0.95);
-}
-
-.bg-background {
-    background-color: rgba(var(--background), 0.8);
-}
-
-.bg-card {
-    background-color: rgba(var(--card-background), 0.5);
-}
-
-.bg-input {
-    background-color: rgb(var(--input));
+.bg-black {
+  background-color: rgb(var(--black));
 }
 
 .bg-transparent {
-    background-color: transparent;
+  background-color: transparent;
 }
 
-.hover\:bg-transparent:hover {
-    background-color: transparent;
+/* UI Semantic Backgrounds */
+.bg-background {
+  background-color: rgb(var(--background));
 }
 
-/* ==================================================
-   TEXT COLOR CLASSES
-   ================================================== */
-
-/* Medical Text Colors */
-.text-medical-50 {
-    color: rgb(var(--medical-50));
-}
-
-.text-medical-100 {
-    color: rgb(var(--medical-100));
-}
-
-.text-medical-200 {
-    color: rgb(var(--medical-200));
-}
-
-.text-medical-300 {
-    color: rgb(var(--medical-300));
-}
-
-.text-medical-400 {
-    color: rgb(var(--medical-400));
-}
-
-.text-medical-500 {
-    color: rgb(var(--medical-500));
-}
-
-.text-medical-600 {
-    color: rgb(var(--medical-600));
-}
-
-.text-medical-700 {
-    color: rgb(var(--medical-700));
-}
-
-.text-medical-800 {
-    color: rgb(var(--medical-800));
-}
-
-.text-medical-900 {
-    color: rgb(var(--medical-900));
-}
-
-/* Hover Medical Text Colors */
-.hover\:text-medical-400:hover {
-  color: rgba(var(--medical-400));
-}
-
-.hover\:text-medical-500:hover {
-  color: rgba(var(--medical-500));
-}
-
-.hover\:text-medical-600:hover {
-  color: rgba(var(--medical-600));
-}
-
-.hover\:text-medical-700:hover {
-  color: rgba(var(--medical-700));
-}
-
-/* Gray Text Colors */
-.text-gray-50 {
-    color: rgb(var(--gray-50));
-}
-
-.text-gray-100 {
-    color: rgb(var(--gray-100));
-}
-
-.text-gray-200 {
-    color: rgb(var(--gray-200));
-}
-
-.text-gray-300 {
-    color: rgb(var(--gray-300));
-}
-
-.text-gray-400 {
-    color: rgb(var(--gray-400));
-}
-
-.text-gray-500 {
-    color: rgb(var(--gray-500));
-}
-
-.text-gray-600 {
-    color: rgb(var(--gray-600));
-}
-
-.text-gray-700 {
-    color: rgb(var(--gray-700));
-}
-
-.text-gray-800 {
-    color: rgb(var(--gray-800));
-}
-
-.text-gray-900 {
-    color: rgb(var(--gray-900));
-}
-
-.hover\:text-gray-900:hover {
-    color: rgb(var(--gray-900));
-}
-
-/* Status Text Colors */
-.text-success {
-    color: rgb(var(--success));
-}
-
-.text-danger {
-    color: rgb(var(--danger));
-}
-
-.text-warning {
-    color: rgb(var(--warning));
-}
-
-/* Primary Text Colors */
-.text-foreground {
-    color: rgb(var(--foreground));
-}
-
-.text-muted-foreground {
-    color: rgb(var(--muted-foreground));
-}
-
-.hover\:text-accent-foreground:hover {
-    color: rgb(var(--accent-foreground));
-}
-
-.hover\:bg-muted\/50:hover {
-    background-color: rgba(var(--muted-50), 0.5);
-}
-
-.text-card-foreground {
-    color: rgb(var(--card-foreground));
-}
-
-.text-heading {
-    color: rgb(var(--heading));
-}
-
-.text-white {
-    color: rgb(var(--background));
-}
-
-.text-white\/90 {
-    color: rgba(var(--background), 0.9);
-}
-
-/* ==================================================
-   BORDER COLOR CLASSES
-   ================================================== */
-
-.border-white {
-    border-color: #ffffff;
-}
-
-.bg-secondary {
-    background-color: rgb(var(--secondary));
-}
-
-.text-secondary-foreground {
-    color: rgb(var(--secondary-foreground));
-}
-
-.hover\:bg-secondary\/80:hover {
-    background-color: rgba(var(--secondary), 0.8);
-}
-
-.bg-secondary {
-    background-color: rgb(var(--secondary));
-}
-
-.text-secondary-foreground {
-    color: rgb(var(--secondary-foreground));
-}
-
-.hover\:bg-secondary\/80:hover {
-    background-color: rgba(var(--secondary), 0.8);
-}
-
-.border-input {
-    border-color: rgb(var(--border));
-}
-
-.separator {
-    border-color: rgb(var(--separator));
-}
-
-.border-gray-100 {
-    border-color: rgb(var(--gray-100));
-}
-
-.border-gray-200 {
-    border-color: rgb(var(--gray-200));
-}
-
-.border-gray-300 {
-    border-color: rgb(var(--gray-300));
-}
-
-.border-card-light {
-    border-color: rgb(var(--border-card-light));
-}
-
-.border-card-soft {
-    border-color: rgb(var(--border-card-soft));
-}
-
-.border-medical-100 {
-    border-color: rgb(var(--medical-100));
-}
-
-.border-medical-200 {
-    border-color: rgb(var(--medical-200));
-}
-
-.border-transparent {
-    border-color: transparent;
-}
-
-.border-orange-100 {
-    border-color: rgb(var(--orange-100));
-}
-
-.border-orange-200 {
-    border-color: rgb(var(--orange-200));
-}
-
-.border-red-100 {
-    border-color: rgb(var(--red-100));
-}
-
-.border-red-200 {
-    border-color: rgb(var(--red-200));
-}
-
-.border-red-300 {
-    border-color: rgb(var(--red-300));
-}
-
-.hover\:border-red-300:hover {
-    border-color: rgb(var(--red-300));
-}
-
-.border-blue-200 {
-    border-color: rgb(var(--blue-200));
-}
-
-.border-green-200 {
-    border-color: rgb(var(--green-200));
-}
-
-/* ==================================================
-   HOVER STATE CLASSES
-   ================================================== */
-
-/* Hover - Medical Backgrounds */
-.hover\:bg-medical-50\/50:hover {
-    background-color: rgba(var(--medical-50), 0.5);
-}
-
-.hover\:bg-medical-50:hover {
-    background-color: rgba(var(--medical-50));
-}
-
-.hover\:bg-medical-100:hover {
-    background-color: rgba(var(--medical-100));
-}
-
-.hover\:bg-medical-200:hover {
-    background-color: rgba(var(--medical-200));
-}
-
-.hover\:bg-medical-300:hover {
-    background-color: rgba(var(--medical-300));
-}
-
-.hover\:bg-medical-400:hover {
-    background-color: rgba(var(--medical-400));
-}
-
-.hover\:bg-medical-500:hover {
-    background-color: rgba(var(--medical-500));
-}
-
-.hover\:bg-medical-600:hover {
-    background-color: rgba(var(--medical-600));
-}
-
-.hover\:bg-medical-700:hover {
-    background-color: rgba(var(--medical-700));
-}
-
-.hover\:bg-medical-800:hover {
-    background-color: rgba(var(--medical-800));
-}
-
-.hover\:bg-medical-900:hover {
-    background-color: rgba(var(--medical-900));
-}
-
-/* Hover - Gray Backgrounds */
-.hover\:bg-gray-50:hover {
-    background-color: rgba(var(--gray-50));
-}
-
-.hover\:bg-gray-100:hover {
-    background-color: rgba(var(--gray-100));
-}
-
-.hover\:bg-gray-200:hover {
-    background-color: rgba(var(--gray-200));
-}
-
-.hover\:bg-gray-300:hover {
-    background-color: rgba(var(--gray-300));
-}
-
-.hover\:bg-gray-400:hover {
-    background-color: rgba(var(--gray-400));
-}
-
-.hover\:bg-gray-500:hover {
-    background-color: rgba(var(--gray-500));
-}
-
-.hover\:bg-gray-600:hover {
-    background-color: rgba(var(--gray-600));
-}
-
-.hover\:bg-gray-700:hover {
-    background-color: rgba(var(--gray-700));
-}
-
-.hover\:bg-gray-800:hover {
-    background-color: rgba(var(--gray-800));
-}
-
-.hover\:bg-gray-900:hover {
-    background-color: rgba(var(--gray-900));
-}
-
-.bg-purple-50 {
-    background-color: rgb(var(--purple-50));
-}
-
-.bg-purple-100 {
-    background-color: rgb(var(--purple-100));
-}
-
-.bg-purple-500 {
-    background-color: rgb(var(--purple-500));
-}
-
-.bg-orange-50 {
-    background-color: rgb(var(--orange-50));
-}
-
-.bg-orange-100 {
-    background-color: rgb(var(--orange-100));
-}
-
-.bg-orange-400 {
-    background-color: rgb(var(--orange-400));
-}
-
-.bg-orange-600 {
-    background-color: rgb(var(--orange-600));
-}
-
-.text-green-400 {
-    color: rgb(var(--green-400));
-}
-
-.text-green-500 {
-    color: rgb(var(--green-500));
-}
-
-.text-green-600 {
-    color: rgb(var(--green-600));
-}
-
-.text-green-700 {
-    color: rgb(var(--green-700));
-}
-
-.text-green-800 {
-    color: rgb(var(--green-800));
-}
-
-.text-green-900 {
-    color: rgb(var(--green-900));
-}
-
-.bg-yellow-100 {
-    background-color: rgb(var(--yellow-100));
-}
-
-.text-yellow-800 {
-    color: rgb(var(--yellow-800));
-}
-
-.bg-blue-50 {
-    background-color: rgb(var(--blue-50));
-}
-
-.bg-blue-100 {
-    background-color: rgb(var(--blue-100));
-}
-
-.text-blue-500 {
-    color: rgb(var(--blue-500));
-}
-
-.text-blue-800 {
-    color: rgb(var(--blue-800));
-}
-
-.hover\:text-blue-800:hover {
-    color: rgb(var(--blue-800));
-}
-
-.bg-blue-500 {
-    background-color: rgb(var(--blue-500));
-}
-
-.bg-blue-600 {
-    background-color: rgb(var(--blue-600));
-}
-
-.hover\:bg-blue-700:hover {
-    background-color: rgb(var(--blue-700));
-}
-
-.text-blue-600 {
-    color: rgb(var(--blue-600));
-}
-
-.text-blue-700 {
-    color: rgb(var(--blue-700));
-}
-
-.text-blue-900 {
-    color: rgb(var(--blue-900));
-}
-
-.text-purple-500 {
-    color: rgb(var(--purple-500));
-}
-
-.text-purple-600 {
-    color: rgb(var(--purple-600));
-}
-
-.text-purple-800 {
-    color: rgb(var(--purple-800));
-}
-
-.slate-700 {
-    color: rgb(var(--slate-700));
-}
-
-.slate-500 {
-    color: rgb(var(--slate-500));
-}
-
-.slate-600 {
-    color: rgb(var(--slate-600));
-}
-
-.text-orange-500 {
-    color: rgb(var(--orange-500));
-}
-
-.text-orange-600 {
-    color: rgb(var(--orange-600));
-}
-
-.text-orange-800 {
-    color: rgb(var(--orange-800));
-}
-
-.hover\:bg-orange-500:hover {
-    background-color: rgb(var(--orange-500));
+.bg-card {
+  background-color: rgb(var(--card));
 }
 
-.hover\:text-orange-700:hover {
-    color: rgb(var(--orange-700));
+.bg-muted {
+  background-color: rgb(var(--muted));
 }
 
 .bg-accent {
-    background-color: rgb(var(--accent));
+  background-color: rgb(var(--accent));
 }
 
-.hover\:bg-accent:hover {
-    background-color: rgb(var(--accent));
+.bg-input {
+  background-color: rgb(var(--input));
 }
 
-.bg-green-50 {
-    background-color: rgb(var(--green-50));
+/* White with opacity */
+.bg-white\/10 {
+  background-color: rgba(var(--white), 0.1);
 }
 
-.bg-green-100 {
-    background-color: rgb(var(--green-100));
+.bg-white\/20 {
+  background-color: rgba(var(--white), 0.2);
 }
 
-.bg-green-500 {
-    background-color: rgb(var(--green-500));
-}
-
-.bg-green-600 {
-    background-color: rgb(var(--green-600));
-}
-
-.bg-green-700 {
-    background-color: rgb(var(--green-700));
-}
-
-.text-red-500 {
-    color: rgb(var(--red-500));
-}
-
-.text-red-600 {
-    color: rgb(var(--red-600));
-}
-
-.text-red-700 {
-    color: rgb(var(--red-700));
-}
-
-.hover\:text-red-700:hover {
-  color: rgb(var(--red-700));
-}
-
-.text-red-800 {
-    color: rgb(var(--red-800));
-}
-
-.hover\:text-red-800:hover {
-  color: rgb(var(--red-800));
-}
-
-.text-red-900 {
-    color: rgb(var(--red-900));
-}
-
-.bg-red-50 {
-    background-color: rgb(var(--red-50));
-}
-
-.bg-red-100 {
-    background-color: rgb(var(--red-100));
-}
-
-.bg-red-200 {
-    background-color: rgb(var(--red-200));
-}
-
-.bg-red-300 {
-    background-color: rgb(var(--red-300));
-}
-
-.bg-red-400 {
-    background-color: rgb(var(--red-400));
-}
-
-.bg-red-500 {
-    background-color: rgb(var(--red-500));
-}
-
-.bg-red-600 {
-    background-color: rgb(var(--red-600));
-}
-
-.bg-red-700 {
-    background-color: rgb(var(--red-700));
-}
-
-.bg-red-800 {
-    background-color: rgb(var(--red-800));
-}
-
-.bg-red-900 {
-    background-color: rgb(var(--red-900));
-}
-
-.hover\:bg-red-50:hover {
-    background-color: rgb(var(--red-50));
-}
-
-.hover\:bg-red-100:hover {
-    background-color: rgb(var(--red-100));
-}
-
-.hover\:bg-red-500:hover {
-    background-color: rgb(var(--red-500));
-}
-
-.hover\:bg-red-600:hover {
-    background-color: rgb(var(--red-600));
-}
-
-.hover\:bg-red-700:hover {
-    background-color: rgb(var(--red-700));
-}
-
-.hover\:bg-red-800:hover {
-    background-color: rgb(var(--red-800));
-}
-
-.text-yellow-600 {
-    color: rgb(var(--yellow-600));
-}
-
-.text-yellow-700 {
-    color: rgb(var(--yellow-700));
-}
-
-.text-yellow-900 {
-    color: rgb(var(--yellow-900));
-}
-
-.bg-yellow-50 {
-    background-color: rgb(var(--yellow-50));
-}
-
-.bg-yellow-200 {
-    background-color: rgb(var(--yellow-200));
-}
-
-.bg-yellow-300 {
-    background-color: rgb(var(--yellow-300));
-}
-
-.bg-yellow-500 {
-    background-color: rgb(var(--yellow-500));
-}
-
-.bg-yellow-600 {
-    background-color: rgb(var(--yellow-600));
-}
-
-.bg-yellow-700 {
-    background-color: rgb(var(--yellow-700));
-}
-
-.bg-yellow-800 {
-    background-color: rgb(var(--yellow-800));
-}
-
-.hover\:bg-yellow-100:hover {
-    background-color: rgb(var(--yellow-100));
-}
-
-.hover\:bg-yellow-600:hover {
-    background-color: rgb(var(--yellow-600));
-}
-
-.hover\:bg-yellow-700:hover {
-    background-color: rgb(var(--yellow-700));
-}
-
-.hover\:bg-yellow-800:hover {
-    background-color: rgb(var(--yellow-800));
+.bg-white\/95 {
+  background-color: rgba(var(--white), 0.95);
 }
 
 /* ==================================================
-   STAR COLORS
+   Utility Classes - Text Colors
    ================================================== */
 
-.text-star-400 {
-    color: rgb(var(--rating-400));
+/* Primary Text */
+.text-primary {
+  color: rgb(var(--primary));
 }
 
-.fill-star-400 {
-    fill: rgb(var(--rating-400));
+.text-primary-light {
+  color: rgb(var(--primary-light));
+}
+
+.text-primary-dark {
+  color: rgb(var(--primary-dark));
+}
+
+/* Semantic Text */
+.text-success {
+  color: rgb(var(--success));
+}
+
+.text-danger {
+  color: rgb(var(--danger));
+}
+
+.text-warning {
+  color: rgb(var(--warning));
+}
+
+.text-info {
+  color: rgb(var(--info));
+}
+
+/* Neutral Text */
+.text-neutral-50 {
+  color: rgb(var(--neutral-50));
+}
+
+.text-neutral-100 {
+  color: rgb(var(--neutral-100));
+}
+
+.text-neutral-200 {
+  color: rgb(var(--neutral-200));
+}
+
+.text-neutral-300 {
+  color: rgb(var(--neutral-300));
+}
+
+.text-neutral-400 {
+  color: rgb(var(--neutral-400));
+}
+
+.text-neutral-500 {
+  color: rgb(var(--neutral-500));
+}
+
+.text-neutral-600 {
+  color: rgb(var(--neutral-600));
+}
+
+.text-neutral-700 {
+  color: rgb(var(--neutral-700));
+}
+
+.text-neutral-800 {
+  color: rgb(var(--neutral-800));
+}
+
+.text-neutral-900 {
+  color: rgb(var(--neutral-900));
+}
+
+/* Base Text */
+.text-white {
+  color: rgb(var(--white));
+}
+
+.text-black {
+  color: rgb(var(--black));
+}
+
+/* UI Semantic Text */
+.text-foreground {
+  color: rgb(var(--foreground));
+}
+
+.text-card-foreground {
+  color: rgb(var(--card-foreground));
+}
+
+.text-muted-foreground {
+  color: rgb(var(--muted-foreground));
+}
+
+.text-heading {
+  color: rgb(var(--heading));
+}
+
+/* Special Text */
+.text-rating {
+  color: rgb(var(--rating));
+}
+
+/* Text with opacity */
+.text-white\/90 {
+  color: rgba(var(--white), 0.9);
+}
+
+/* ==================================================
+   Utility Classes - Border Colors
+   ================================================== */
+
+/* Primary Borders */
+.border-primary {
+  border-color: rgb(var(--primary));
+}
+
+.border-primary-light {
+  border-color: rgb(var(--primary-light));
+}
+
+.border-primary-dark {
+  border-color: rgb(var(--primary-dark));
+}
+
+/* Semantic Borders */
+.border-success {
+  border-color: rgb(var(--success));
+}
+
+.border-danger {
+  border-color: rgb(var(--danger));
+}
+
+.border-warning {
+  border-color: rgb(var(--warning));
+}
+
+.border-info {
+  border-color: rgb(var(--info));
+}
+
+/* Neutral Borders */
+.border-neutral-50 {
+  border-color: rgb(var(--neutral-50));
+}
+
+.border-neutral-100 {
+  border-color: rgb(var(--neutral-100));
+}
+
+.border-neutral-200 {
+  border-color: rgb(var(--neutral-200));
+}
+
+.border-neutral-300 {
+  border-color: rgb(var(--neutral-300));
+}
+
+.border-neutral-400 {
+  border-color: rgb(var(--neutral-400));
+}
+
+.border-neutral-500 {
+  border-color: rgb(var(--neutral-500));
+}
+
+.border-neutral-600 {
+  border-color: rgb(var(--neutral-600));
+}
+
+.border-neutral-700 {
+  border-color: rgb(var(--neutral-700));
+}
+
+.border-neutral-800 {
+  border-color: rgb(var(--neutral-800));
+}
+
+.border-neutral-900 {
+  border-color: rgb(var(--neutral-900));
+}
+
+/* Base Borders */
+.border-white {
+  border-color: rgb(var(--white));
+}
+
+.border-black {
+  border-color: rgb(var(--black));
+}
+
+.border-transparent {
+  border-color: transparent;
+}
+
+/* UI Semantic Borders */
+.border-input {
+  border-color: rgb(var(--border));
+}
+
+.border-muted {
+  border-color: rgb(var(--muted));
+}
+
+.separator {
+  border-color: rgb(var(--separator));
+}
+
+/* ==================================================
+   Hover State Utilities
+   ================================================== */
+
+/* Primary Hover Backgrounds */
+.hover\:bg-primary:hover {
+  background-color: rgb(var(--primary));
+}
+
+.hover\:bg-primary-light:hover {
+  background-color: rgb(var(--primary-light));
+}
+
+.hover\:bg-primary-dark:hover {
+  background-color: rgb(var(--primary-dark));
+}
+
+.hover\:bg-primary\/10:hover {
+  background-color: rgba(var(--primary), 0.1);
+}
+
+.hover\:bg-primary\/20:hover {
+  background-color: rgba(var(--primary), 0.2);
+}
+
+.hover\:bg-primary\/50:hover {
+  background-color: rgba(var(--primary), 0.5);
+}
+
+.hover\:bg-primary\/80:hover {
+  background-color: rgba(var(--primary), 0.8);
+}
+
+/* Semantic Hover Backgrounds */
+.hover\:bg-success:hover {
+  background-color: rgb(var(--success));
+}
+
+.hover\:bg-danger:hover {
+  background-color: rgb(var(--danger));
+}
+
+.hover\:bg-warning:hover {
+  background-color: rgb(var(--warning));
+}
+
+.hover\:bg-info:hover {
+  background-color: rgb(var(--info));
+}
+
+/* Neutral Hover Backgrounds */
+.hover\:bg-neutral-50:hover {
+  background-color: rgb(var(--neutral-50));
+}
+
+.hover\:bg-neutral-100:hover {
+  background-color: rgb(var(--neutral-100));
+}
+
+.hover\:bg-neutral-200:hover {
+  background-color: rgb(var(--neutral-200));
+}
+
+.hover\:bg-neutral-300:hover {
+  background-color: rgb(var(--neutral-300));
+}
+
+.hover\:bg-neutral-400:hover {
+  background-color: rgb(var(--neutral-400));
+}
+
+.hover\:bg-neutral-500:hover {
+  background-color: rgb(var(--neutral-500));
+}
+
+.hover\:bg-neutral-600:hover {
+  background-color: rgb(var(--neutral-600));
+}
+
+.hover\:bg-neutral-700:hover {
+  background-color: rgb(var(--neutral-700));
+}
+
+.hover\:bg-neutral-800:hover {
+  background-color: rgb(var(--neutral-800));
+}
+
+.hover\:bg-neutral-900:hover {
+  background-color: rgb(var(--neutral-900));
+}
+
+/* UI Semantic Hover Backgrounds */
+.hover\:bg-muted:hover {
+  background-color: rgb(var(--muted));
+}
+
+.hover\:bg-muted\/50:hover {
+  background-color: rgba(var(--muted), 0.5);
+}
+
+.hover\:bg-accent:hover {
+  background-color: rgb(var(--accent));
+}
+
+.hover\:bg-transparent:hover {
+  background-color: transparent;
+}
+
+/* Primary Hover Text */
+.hover\:text-primary:hover {
+  color: rgb(var(--primary));
+}
+
+.hover\:text-primary-light:hover {
+  color: rgb(var(--primary-light));
+}
+
+.hover\:text-primary-dark:hover {
+  color: rgb(var(--primary-dark));
+}
+
+/* Semantic Hover Text */
+.hover\:text-success:hover {
+  color: rgb(var(--success));
+}
+
+.hover\:text-danger:hover {
+  color: rgb(var(--danger));
+}
+
+.hover\:text-warning:hover {
+  color: rgb(var(--warning));
+}
+
+.hover\:text-info:hover {
+  color: rgb(var(--info));
+}
+
+/* Neutral Hover Text */
+.hover\:text-neutral-600:hover {
+  color: rgb(var(--neutral-600));
+}
+
+.hover\:text-neutral-700:hover {
+  color: rgb(var(--neutral-700));
+}
+
+.hover\:text-neutral-800:hover {
+  color: rgb(var(--neutral-800));
+}
+
+.hover\:text-neutral-900:hover {
+  color: rgb(var(--neutral-900));
+}
+
+/* Primary Hover Borders */
+.hover\:border-primary:hover {
+  border-color: rgb(var(--primary));
+}
+
+.hover\:border-primary-light:hover {
+  border-color: rgb(var(--primary-light));
+}
+
+.hover\:border-danger:hover {
+  border-color: rgb(var(--danger));
+}
+
+/* ==================================================
+   Special Utilities
+   ================================================== */
+
+/* Fill utilities for SVG */
+.fill-rating {
+  fill: rgb(var(--rating));
+}
+
+/* Ring utilities for focus states */
+.ring-primary {
+  --tw-ring-color: rgb(var(--primary));
+}
+
+.ring-offset-white {
+  --tw-ring-offset-color: rgb(var(--white));
+}
+
+/* ==================================================
+   Legacy Mappings for Backward Compatibility
+   These map old class names to new ones to maintain visual consistency
+   ================================================== */
+
+/* Medical color mappings */
+.bg-medical-50 {
+  background-color: rgba(var(--primary-light), 0.3);
+}
+
+.bg-medical-100 {
+  background-color: rgba(var(--primary-light), 0.5);
+}
+
+.bg-medical-200 {
+  background-color: rgba(var(--primary-light), 0.7);
+}
+
+.bg-medical-300 {
+  background-color: rgba(var(--primary-light), 0.9);
+}
+
+.bg-medical-400 {
+  background-color: rgba(var(--primary), 0.9);
+}
+
+.bg-medical-500 {
+  background-color: rgb(var(--primary));
+}
+
+.bg-medical-600 {
+  background-color: rgb(var(--primary-600));
+}
+
+.bg-medical-700 {
+  background-color: rgb(var(--primary-700));
+}
+
+.bg-medical-800 {
+  background-color: rgb(var(--primary-dark));
+}
+
+.bg-medical-900 {
+  background-color: rgb(var(--primary-900));
+}
+
+.text-medical-50 {
+  color: rgba(var(--primary-light), 0.9);
+}
+
+.text-medical-100 {
+  color: rgb(var(--primary-light));
+}
+
+.text-medical-500 {
+  color: rgb(var(--primary));
+}
+
+.text-medical-600 {
+  color: rgb(var(--primary-600));
+}
+
+.text-medical-700 {
+  color: rgb(var(--primary-700));
+}
+
+.text-medical-800 {
+  color: rgb(var(--primary-dark));
+}
+
+.border-medical-100 {
+  border-color: rgb(var(--primary-light));
+}
+
+.border-medical-200 {
+  border-color: rgba(var(--primary-light), 0.7);
+}
+
+.hover\:bg-medical-50:hover {
+  background-color: rgba(var(--primary-light), 0.3);
+}
+
+.hover\:bg-medical-100:hover {
+  background-color: rgba(var(--primary-light), 0.5);
+}
+
+.hover\:bg-medical-400:hover {
+  background-color: rgba(var(--primary), 0.9);
+}
+
+.hover\:bg-medical-500:hover {
+  background-color: rgb(var(--primary));
+}
+
+.hover\:bg-medical-600:hover {
+  background-color: rgb(var(--primary-600));
+}
+
+.hover\:bg-medical-700:hover {
+  background-color: rgb(var(--primary-700));
+}
+
+.hover\:text-medical-500:hover {
+  color: rgb(var(--primary));
+}
+
+.hover\:text-medical-600:hover {
+  color: rgb(var(--primary-600));
+}
+
+.hover\:text-medical-700:hover {
+  color: rgb(var(--primary-700));
+}
+
+/* Gray to Neutral mappings */
+.bg-gray-50 {
+  background-color: rgb(var(--neutral-50));
+}
+
+.bg-gray-100 {
+  background-color: rgb(var(--neutral-100));
+}
+
+.bg-gray-150 {
+  background-color: rgb(var(--neutral-150));
+}
+
+.bg-gray-200 {
+  background-color: rgb(var(--neutral-200));
+}
+
+.bg-gray-300 {
+  background-color: rgb(var(--neutral-300));
+}
+
+.bg-gray-400 {
+  background-color: rgb(var(--neutral-400));
+}
+
+.bg-gray-500 {
+  background-color: rgb(var(--neutral-500));
+}
+
+.bg-gray-600 {
+  background-color: rgb(var(--neutral-600));
+}
+
+.bg-gray-700 {
+  background-color: rgb(var(--neutral-700));
+}
+
+.bg-gray-800 {
+  background-color: rgb(var(--neutral-800));
+}
+
+.bg-gray-900 {
+  background-color: rgb(var(--neutral-900));
+}
+
+.text-gray-50 {
+  color: rgb(var(--neutral-50));
+}
+
+.text-gray-100 {
+  color: rgb(var(--neutral-100));
+}
+
+.text-gray-200 {
+  color: rgb(var(--neutral-200));
+}
+
+.text-gray-300 {
+  color: rgb(var(--neutral-300));
+}
+
+.text-gray-400 {
+  color: rgb(var(--neutral-400));
+}
+
+.text-gray-500 {
+  color: rgb(var(--neutral-500));
+}
+
+.text-gray-600 {
+  color: rgb(var(--neutral-600));
+}
+
+.text-gray-700 {
+  color: rgb(var(--neutral-700));
+}
+
+.text-gray-800 {
+  color: rgb(var(--neutral-800));
+}
+
+.text-gray-900 {
+  color: rgb(var(--neutral-900));
+}
+
+.border-gray-100 {
+  border-color: rgb(var(--neutral-100));
+}
+
+.border-gray-200 {
+  border-color: rgb(var(--neutral-200));
+}
+
+.border-gray-300 {
+  border-color: rgb(var(--neutral-300));
+}
+
+.hover\:bg-gray-50:hover {
+  background-color: rgb(var(--neutral-50));
+}
+
+.hover\:bg-gray-100:hover {
+  background-color: rgb(var(--neutral-100));
+}
+
+.hover\:text-gray-900:hover {
+  color: rgb(var(--neutral-900));
+}
+
+/* Status color mappings */
+.bg-red-50 {
+  background-color: rgba(var(--danger), 0.1);
+}
+
+.bg-red-100 {
+  background-color: rgba(var(--danger), 0.15);
+}
+
+.bg-red-200 {
+  background-color: rgba(var(--danger), 0.2);
+}
+
+.bg-red-300 {
+  background-color: rgba(var(--danger), 0.3);
+}
+
+.bg-red-400 {
+  background-color: rgba(var(--danger), 0.4);
+}
+
+.bg-red-500 {
+  background-color: rgba(var(--danger), 0.5);
+}
+
+.bg-red-600 {
+  background-color: rgb(var(--danger));
+}
+
+.bg-red-700 {
+  background-color: rgb(var(--danger-700));
+}
+
+.bg-red-800 {
+  background-color: rgb(var(--danger-800));
+}
+
+.text-red-500 {
+  color: rgb(var(--danger));
+}
+
+.text-red-600 {
+  color: rgb(var(--danger));
+}
+
+.text-red-700 {
+  color: rgb(var(--danger-700));
+}
+
+.text-red-800 {
+  color: rgb(var(--danger-800));
+}
+
+.border-red-100 {
+  border-color: rgba(var(--danger), 0.15);
+}
+
+.border-red-200 {
+  border-color: rgba(var(--danger), 0.2);
+}
+
+.border-red-300 {
+  border-color: rgba(var(--danger), 0.3);
+}
+
+.hover\:bg-red-50:hover {
+  background-color: rgba(var(--danger), 0.1);
+}
+
+.hover\:bg-red-600:hover {
+  background-color: rgb(var(--danger));
+}
+
+.hover\:bg-red-700:hover {
+  background-color: rgb(var(--danger-700));
+}
+
+.hover\:text-red-700:hover {
+  color: rgb(var(--danger-700));
+}
+
+.hover\:text-red-800:hover {
+  color: rgb(var(--danger-800));
+}
+
+.hover\:border-red-300:hover {
+  border-color: rgba(var(--danger), 0.3);
+}
+
+/* Green mappings */
+.bg-green-50 {
+  background-color: rgba(var(--success), 0.1);
+}
+
+.bg-green-100 {
+  background-color: rgba(var(--success), 0.15);
+}
+
+.bg-green-500 {
+  background-color: rgb(var(--success));
+}
+
+.bg-green-600 {
+  background-color: rgb(var(--success-600));
+}
+
+.bg-green-700 {
+  background-color: rgb(var(--success-700));
+}
+
+.text-green-400 {
+  color: rgb(var(--success-400));
+}
+
+.text-green-500 {
+  color: rgb(var(--success));
+}
+
+.text-green-600 {
+  color: rgb(var(--success-600));
+}
+
+.text-green-700 {
+  color: rgb(var(--success-700));
+}
+
+.text-green-800 {
+  color: rgb(var(--success-800));
+}
+
+.border-green-200 {
+  border-color: rgba(var(--success), 0.2);
+}
+
+/* Blue mappings */
+.bg-blue-50 {
+  background-color: rgba(var(--info), 0.1);
+}
+
+.bg-blue-100 {
+  background-color: rgba(var(--info), 0.15);
+}
+
+.bg-blue-500 {
+  background-color: rgb(var(--info));
+}
+
+.bg-blue-600 {
+  background-color: rgb(var(--info-600));
+}
+
+.text-blue-500 {
+  color: rgb(var(--info));
+}
+
+.text-blue-600 {
+  color: rgb(var(--info));
+}
+
+.text-blue-700 {
+  color: rgb(var(--info-700));
+}
+
+.text-blue-800 {
+  color: rgb(var(--info-800));
+}
+
+.text-blue-900 {
+  color: rgb(var(--info-900));
+}
+
+.border-blue-200 {
+  border-color: rgba(var(--info), 0.2);
+}
+
+.hover\:bg-blue-700:hover {
+  background-color: rgb(var(--info-700));
+}
+
+.hover\:text-blue-800:hover {
+  color: rgb(var(--info-800));
+}
+
+/* Yellow/Orange mappings */
+.bg-yellow-50 {
+  background-color: rgba(var(--warning), 0.1);
+}
+
+.bg-yellow-100 {
+  background-color: rgba(var(--warning), 0.15);
+}
+
+.bg-yellow-200 {
+  background-color: rgba(var(--warning), 0.2);
+}
+
+.bg-yellow-800 {
+  background-color: rgb(var(--warning-dark));
+}
+
+.text-yellow-600 {
+  color: rgb(var(--yellow-600));
+}
+
+.text-yellow-700 {
+  color: rgb(var(--yellow-700));
+}
+
+.text-yellow-800 {
+  color: rgb(var(--warning-dark));
+}
+
+.text-yellow-900 {
+  color: rgb(var(--yellow-900));
+}
+
+.bg-orange-50 {
+  background-color: rgba(var(--warning), 0.1);
+}
+
+.bg-orange-100 {
+  background-color: rgba(var(--warning), 0.15);
+}
+
+.bg-orange-400 {
+  background-color: rgb(var(--warning-400));
+}
+
+.bg-orange-600 {
+  background-color: rgb(var(--warning));
+}
+
+.text-orange-500 {
+  color: rgb(var(--warning));
+}
+
+.text-orange-600 {
+  color: rgb(var(--warning));
+}
+
+.text-orange-700 {
+  color: rgb(var(--warning-700));
+}
+
+.text-orange-800 {
+  color: rgb(var(--warning-800));
+}
+
+.border-orange-100 {
+  border-color: rgba(var(--warning), 0.15);
+}
+
+.border-orange-200 {
+  border-color: rgba(var(--warning), 0.2);
+}
+
+.hover\:bg-yellow-100:hover {
+  background-color: rgba(var(--warning), 0.15);
+}
+
+.hover\:bg-orange-500:hover {
+  background-color: rgb(var(--warning));
+}
+
+.hover\:bg-orange-700:hover {
+  background-color: rgb(var(--warning-700));
+}
+
+.hover\:text-orange-700:hover {
+  color: rgb(var(--warning-700));
+}
+
+/* Purple mappings */
+.bg-purple-50 {
+  background-color: rgb(var(--purple-50));
+}
+
+.bg-purple-100 {
+  background-color: rgb(var(--purple-100));
+}
+
+.bg-purple-500 {
+  background-color: rgb(var(--purple-500));
+}
+
+.text-purple-500 {
+  color: rgb(var(--purple-500));
+}
+
+.text-purple-600 {
+  color: rgb(var(--purple-600));
+}
+
+.text-purple-800 {
+  color: rgb(var(--purple-800));
+}
+
+/* Slate mappings */
+.slate-500 {
+  color: rgb(var(--slate-500));
+}
+
+.slate-600 {
+  color: rgb(var(--slate-600));
+}
+
+.slate-700 {
+  color: rgb(var(--slate-700));
+}
+
+/* Secondary mappings */
+.bg-secondary {
+  background-color: rgb(var(--secondary));
+}
+
+.text-secondary-foreground {
+  color: rgb(var(--secondary-foreground));
+}
+
+.hover\:bg-secondary\/80:hover {
+  background-color: rgba(var(--secondary), 0.8);
+}
+
+/* Special mappings */
+.bg-muted-50 {
+  background-color: rgb(var(--muted-50));
+}
+
+.border-card-light {
+  border-color: rgba(var(--border-card-light), 0.2);
+}
+
+.border-card-soft {
+  border-color: rgb(var(--border-card-soft));
+}
+
+/* Star/Rating colors */
+.text-star-400 {
+  color: rgb(var(--rating));
 }
 
 .text-star-500 {
-    color: rgb(var(--rating-500));
+  color: rgb(var(--rating-dark));
+}
+
+.fill-star-400 {
+  fill: rgb(var(--rating));
 }
 
 .fill-star-500 {
-    fill: rgb(var(--rating-500));
+  fill: rgb(var(--rating-dark));
+}
+
+/* Medical color opacity variants */
+.bg-medical-50\/50 {
+  background-color: rgba(var(--primary-light), 0.15);
+}
+
+.bg-medical-100\/20 {
+  background-color: rgba(var(--primary-light), 0.1);
+}
+
+.bg-medical-100\/65 {
+  background-color: rgba(var(--primary-light), 0.325);
+}
+
+.bg-medical-600\/30 {
+  background-color: rgba(var(--primary-600), 0.3);
+}
+
+/* Background opacity variants */
+.bg-background {
+  background-color: rgba(var(--background), 0.8);
+}
+
+.bg-card {
+  background-color: rgba(var(--card), 0.5);
 }

@@ -6,6 +6,14 @@ $requiredRole = 'super_admin';
 // 5. Protect the dashboard: redirect if user role does not match
 require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
 
+// 6. Include avatar helper
+require_once __DIR__ . "/../backend/helpers/avatar-helper.php";
+
+// 7. Fetch complete user profile data for My Profile section using helper
+$profileData = getUserProfileData($_SESSION['user_id'] ?? 0, $conn);
+$userCity = $profileData['city'];
+$userAddress = $profileData['address'];
+
 ?>
 
 <!DOCTYPE html>
@@ -41,12 +49,13 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
 
 <body class="bg-background">
 
-  <!-- Header Section -->
+  <!-- ==================== Header ==================== -->
+
   <header class="fixed z-50 py-5 bg-transparent transition-all">
     <div class="container mx-auto flex items-center justify-between px-4">
 
       <!-- Logo -->
-      <a href="<?= $paths['home'] ?>" class="flex items-center">
+      <a href="<?= $paths['home']['index'] ?>" class="flex items-center">
         <span class="text-medical-700 text-2xl font-semibold">
           Medi<span class="text-medical-500">Connect</span>
         </span>
@@ -54,39 +63,35 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
 
       <!-- Desktop Navigation (hidden on mobile) -->
       <nav class="hidden md:flex items-center gap-4 lg:gap-8 xl:ml-28">
-        <a href="<?= $paths['home'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Home</a>
-        <a href="<?= $paths['services']['doctors'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Doctors</a>
-        <a href="<?= $paths['services']['hospitals'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Hospitals</a>
-        <a href="<?= $paths['services']['appointments'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Appointments</a>
+        <a href="<?= $paths['home']['index'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-primary transition-colors">Home</a>
+        <a href="<?= $paths['services']['doctors'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-primary transition-colors">Doctors</a>
+        <a href="<?= $paths['services']['hospitals'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-primary transition-colors">Hospitals</a>
+        <a href="<?= $paths['services']['appointments'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-primary transition-colors">Appointments</a>
       </nav>
 
-      <!-- Right section: Auth / Dropdown / Emergency / Menu -->
+      <!-- Right section: Dropdown / Emergency / Auth -->
       <div class="flex items-center gap-4">
 
         <!-- User dropdown (visible if logged in) -->
-        <div class="hidden md:flex items-center gap-3">
+        <div class="hidden md:flex items-center gap-3 md:mr-4">
           <div class="dropdown relative">
-            <button class="flex items-center gap-2 md:py-2 px-2 border-none bg-transparent hover:bg-medical-50 transition-colors transition-200 pointer rounded-lg">
-              <div class="w-8 h-8 rounded-full bg-medical-100 flex items-center justify-center text-medical-700 text-sm lg:text-base font-medium">
-                <?= strtoupper(substr($userName, 0, 2)) ?>
-              </div>
+            <button class="flex items-center gap-2 md:py-2 px-2 border-none bg-transparent hover:bg-medical-50 transition-colors transition-200 cursor-pointer rounded-lg">
+              <?= generateAvatar($userProfileImage, $userName, 'w-8 h-8', 'text-sm lg:text-base') ?>
               <span class="hidden lg:block text-sm lg:text-base font-medium slate-700 max-w-24 truncate">
                 <?= htmlspecialchars($userName) ?>
               </span>
               <i data-lucide="chevron-down" class="w-4 h-4 slate-500"></i>
             </button>
 
-            <!-- Dropdown menu content -->
+            <!-- Dropdown menu -->
             <div class="dropdown-content overflow-hidden hidden animate-fade-in absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-solid border-gray-100 z-50">
               <div class="px-3 py-2 border-b border-solid border-medical-100">
                 <p class="text-sm font-medium slate-700"><?= htmlspecialchars($userName) ?></p>
                 <p class="text-xs slate-500"><?= htmlspecialchars($userEmail) ?></p>
               </div>
-
-              <a href="#" class="flex items-center gap-2 px-3 py-2 text-sm slate-600 hover:text-medical-600 hover:bg-medical-50 transition-colors transition-200">
+              <a href="#" class="flex items-center gap-2 px-3 py-2 text-sm slate-600 hover:text-primary hover:bg-medical-50 transition-colors transition-200">
                 <i data-lucide="user" class="w-4 h-4"></i>Dashboard
               </a>
-
               <a href="<?= $paths['auth']['logout'] ?>" class="flex items-center gap-2 px-3 py-2 text-sm text-red-600 hover:text-red-700 hover:bg-red-50 w-full transition-colors transition-200">
                 <i data-lucide="log-out" class="w-4 h-4"></i>Sign Out
               </a>
@@ -95,13 +100,13 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
         </div>
 
         <!-- Emergency button (always visible) -->
-        <a href="<?= $paths['services']['emergency'] ?>" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-sm lg:text-base font-medium px-2 lg:px-4 py-2 md:py-3 lg:ml-2 rounded-lg transition-colors transition-200">
+        <a href="<?= $paths['services']['emergency'] ?>" class="inline-flex items-center gap-2 bg-danger hover:bg-red-700 text-white text-sm lg:text-base font-medium px-2 lg:px-4 py-2 md:py-3 rounded-lg transition-colors transition-200">
           <i data-lucide="ambulance" class="w-4 h-4"></i>
           Emergency
         </a>
 
         <!-- Mobile menu toggle button -->
-        <button id="menu-button" class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none pointer">
+        <button id="menu-button" class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none cursor-pointer">
           <i data-lucide="menu" class="w-4 h-4"></i>
         </button>
       </div>
@@ -109,13 +114,13 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
       <!-- Mobile Navigation Panel (visible only on mobile) -->
       <div id="mobile-nav" class="hidden absolute bg-white/95 backdrop-blur-lg animate-slide-down shadow-lg md:hidden">
         <nav class="container mx-auto flex flex-col gap-4 px-4 py-4">
-          <a href="../" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Home</a>
-          <a href=".<?= $paths['services']['doctors'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Doctors</a>
-          <a href=".<?= $paths['services']['hospitals'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
-          <a href=".<?= $paths['services']['appointments'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
+          <a href="<?= $paths['home']['index'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Home</a>
+          <a href="<?= $paths['services']['doctors'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Doctors</a>
+          <a href="<?= $paths['services']['hospitals'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
+          <a href="<?= $paths['services']['appointments'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
 
           <div class="flex flex-col pt-2 gap-2 bg-transparent border-t border-solid separator">
-            <a href="#" class="inline-flex items-center gap-2 justify-start text-gray-700 hover:bg-medical-50 hover:text-medical-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+            <a href="#" class="inline-flex items-center gap-2 justify-start text-gray-700 hover:bg-medical-50 hover:text-primary px-4 py-2 rounded-lg text-sm font-medium transition-colors">
               <i data-lucide="user" class="w-4 h-4"></i> Dashboard
             </a>
             <a href="<?= $paths['auth']['logout'] ?>" class="inline-flex items-center gap-2 justify-start text-red-600 hover:bg-red-50 hover:text-red-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
@@ -128,7 +133,9 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
     </div>
   </header>
 
-  <!-- Main Content -->
+
+  <!-- ==================== Main Content ==================== -->
+
   <main class="pt-20 pb-16 min-h-screen bg-gray-50">
     <div class="container mx-auto px-4">
       <div class="py-8">
@@ -160,7 +167,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
 
               <!-- Header -->
               <div class="flex items-center gap-3">
-                <i data-lucide="shield" class="h-6 w-6 text-medical-600"></i>
+                <i data-lucide="shield" class="h-6 w-6 text-primary"></i>
                 <div>
                   <h1 class="text-2xl sm:text-3xl font-bold text-gray-900">Super Admin Dashboard</h1>
                   <p class="text-sm sm:text-base text-muted-foreground">
@@ -170,21 +177,21 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
               </div>
 
               <!-- Navigation Tabs -->
-              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 bg-muted text-muted-foreground rounded-md p-1">
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-muted-foreground rounded-md p-1">
                 <button type="button" data-target="system-overview"
-                  class="inline-flex items-center justify-center px-2 py-3 text-xs sm:text-sm font-medium rounded-sm border border-transparent transition-all pointer bg-blue-50 text-blue-700">
+                  class="inline-flex items-center justify-center px-2 py-3 text-xs sm:text-sm font-medium rounded-sm border border-solid border-transparent transition-all cursor-pointer bg-blue-50 text-blue-700">
                   System Overview
                 </button>
                 <button type="button" data-target="my-profile"
-                  class="inline-flex items-center justify-center px-2 py-3 text-xs sm:text-sm font-medium rounded-sm border border-transparent transition-all pointer">
+                  class="inline-flex items-center justify-center px-2 py-3 text-xs sm:text-sm font-medium rounded-sm border border-solid border-transparent transition-all cursor-pointer hover:bg-gray-100">
                   My Profile
                 </button>
                 <button type="button" data-target="manage-users"
-                  class="inline-flex items-center justify-center px-2 py-3 text-xs sm:text-sm font-medium rounded-sm border border-transparent transition-all pointer">
+                  class="inline-flex items-center justify-center px-2 py-3 text-xs sm:text-sm font-medium rounded-sm border border-solid border-transparent transition-all cursor-pointer hover:bg-gray-100">
                   Manage Users
                 </button>
                 <button type="button" data-target="manage-hospitals"
-                  class="inline-flex items-center justify-center px-2 py-3 text-xs sm:text-sm font-medium rounded-sm border border-transparent transition-all pointer">
+                  class="inline-flex items-center justify-center px-2 py-3 text-xs sm:text-sm font-medium rounded-sm border border-solid border-transparent transition-all cursor-pointer hover:bg-gray-100">
                   Manage Hospitals
                 </button>
               </div>
@@ -201,8 +208,8 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                       <i data-lucide="users" class="h-4 w-4 text-blue-600"></i>
                     </div>
                     <div class="px-6 pt-0 pb-6">
-                      <div class="text-2xl font-bold text-gray-900">3</div>
-                      <p class="text-xs text-muted-foreground mt-1">3 active</p>
+                      <div class="text-2xl font-bold text-gray-900"></div>
+                      <p class="text-xs text-muted-foreground mt-1"></p>
                     </div>
                   </div>
 
@@ -213,8 +220,8 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                       <i data-lucide="building-2" class="h-4 w-4 text-green-600"></i>
                     </div>
                     <div class="px-6 pt-0 pb-6">
-                      <div class="text-2xl font-bold text-gray-900">2</div>
-                      <p class="text-xs text-muted-foreground mt-1">2 active</p>
+                      <div class="text-2xl font-bold text-gray-900"></div>
+                      <p class="text-xs text-muted-foreground mt-1"></p>
                     </div>
                   </div>
 
@@ -225,8 +232,8 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                       <i data-lucide="user-check" class="h-4 w-4 text-purple-600"></i>
                     </div>
                     <div class="px-6 pt-0 pb-6">
-                      <div class="text-2xl font-bold text-gray-900">1</div>
-                      <p class="text-xs text-muted-foreground mt-1">1 active</p>
+                      <div class="text-2xl font-bold text-gray-900"></div>
+                      <p class="text-xs text-muted-foreground mt-1"></p>
                     </div>
                   </div>
 
@@ -237,8 +244,8 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                       <i data-lucide="shield" class="h-6 w-6 text-orange-600"></i>
                     </div>
                     <div class="px-6 pt-0 pb-6">
-                      <div class="text-2xl font-bold text-gray-900">350</div>
-                      <p class="text-xs text-muted-foreground mt-1">68 available</p>
+                      <div class="text-2xl font-bold text-gray-900"></div>
+                      <p class="text-xs text-muted-foreground mt-1"></p>
                     </div>
                   </div>
                 </div>
@@ -249,7 +256,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                     <h3 class="text-2xl font-semibold tracking-tight text-medical-800">
                       Welcome to MediConnect Super Admin
                     </h3>
-                    <p class="text-sm text-medical-600">
+                    <p class="text-sm text-primary">
                       Monitor and manage the entire healthcare platform from this centralized dashboard.
                     </p>
                   </div>
@@ -279,7 +286,7 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
 
                   <!-- Section Title -->
                   <div class="flex items-center gap-3">
-                    <i data-lucide="user" class="h-6 w-6 text-medical-600"></i>
+                    <i data-lucide="user" class="h-6 w-6 text-primary"></i>
                     <div>
                       <h2 class="text-2xl font-bold text-gray-900">My Profile</h2>
                       <p class="text-muted-foreground">Manage your personal information and security settings</p>
@@ -300,14 +307,12 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                       </div>
                       <div class="px-6 pb-6 flex flex-col gap-4">
                         <div class="flex flex-col gap-4 items-center">
-                          <span class="relative flex shrink-0 overflow-hidden rounded-full w-24 h-24">
-                            <span class="flex h-full w-full items-center justify-center rounded-full text-lg bg-medical-100 text-medical-700">
-                              <?= strtoupper(substr($userName, 0, 2)) ?>
-                            </span>
-                          </span>
+                          <div id="profile-avatar-container" class="relative flex shrink-0 overflow-hidden rounded-full w-24 h-24">
+                            <?= generateAvatar($userProfileImage, $userName, 'w-24 h-24', 'text-lg') ?>
+                          </div>
                           <div class="w-full">
-                            <label for="profile-upload" class="text-sm font-medium leading-none pointer">
-                              <div id="new-image-profile" class="flex items-center justify-center w-full p-3 border-2 border-dashed border-gray-300 rounded-lg hover:border-medical-400 transition-colors">
+                            <label for="profile-upload" class="text-sm font-medium leading-none cursor-pointer">
+                              <div id="new-image-profile" class="flex items-center justify-center w-full p-3 border-2 border-dashed border-gray-300 rounded-lg transition-colors">
                                 <div class="flex flex-col text-center">
                                   <i data-lucide="camera" class="mx-auto h-6 w-6 text-gray-400 mb-2"></i>
                                   <span class="text-sm text-gray-600">Upload new image</span>
@@ -332,13 +337,29 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                       <div class="px-6 pb-6 flex flex-col gap-4">
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                           <div class="flex flex-col gap-2">
-                            <label for="name" class="text-sm font-medium leading-none">Full Name</label>
-                            <input id="name" placeholder="Enter your full name" value="System Administrator"
+                            <label for="admin-name" class="text-sm font-medium leading-none">Full Name</label>
+                            <input id="admin-name" placeholder="Enter your full name" value="<?= htmlspecialchars($userName) ?>"
                               class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
                           </div>
                           <div class="flex flex-col gap-2">
-                            <label for="email" class="text-sm font-medium leading-none">Email Address</label>
-                            <input type="email" id="email" placeholder="Enter your email" value="admin@mediconnect.com"
+                            <label for="admin-email" class="text-sm font-medium leading-none">Email Address</label>
+                            <input id="admin-email" type="email" placeholder="Enter your email" value="<?= htmlspecialchars($userEmail) ?>" disabled
+                              class="flex h-10 w-full rounded-md border border-solid border-input bg-gray-50 px-3 py-2 text-base md:text-sm text-gray-600 cursor-not-allowed">
+                            <p class="text-xs text-gray-500 mt-1">
+                              <i data-lucide="shield" class="h-3 w-3 inline mr-1"></i>
+                              Email cannot be changed for security reasons
+                            </p>
+                          </div>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <div class="flex flex-col gap-2">
+                            <label for="admin-city" class="text-sm font-medium leading-none">City</label>
+                            <input id="admin-city" placeholder="Enter your city" value="<?= htmlspecialchars($userCity ?? '') ?>"
+                              class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
+                          </div>
+                          <div class="flex flex-col gap-2">
+                            <label for="admin-address" class="text-sm font-medium leading-none">Address</label>
+                            <input id="admin-address" placeholder="Enter your address" value="<?= htmlspecialchars($userAddress ?? '') ?>"
                               class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
                           </div>
                         </div>
@@ -377,11 +398,16 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                     </div>
                   </div>
 
-                  <!-- Save Button -->
-                  <div class="flex justify-end">
-                    <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-transparent h-10 py-2 bg-medical-600 hover:bg-medical-700 text-white px-6 pointer">
+                  <!-- Action Buttons -->
+                  <div class="flex justify-end gap-3">
+                    <button id="discard-profile-changes" type="button" class="hidden inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors text-yellow-700 border border-solid border-warning hover:bg-yellow-100 bg-yellow-50 hover:bg-yellow-100 h-10 px-6 py-2 cursor-pointer">
+                      <i data-lucide="x" class="h-4 w-4 mr-2"></i>
+                      Discard Changes
+                    </button>
+                    <button id="save-profile-changes" type="button" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-transparent h-10 py-2 bg-medical-600 hover:bg-medical-700 text-white px-6 cursor-pointer">
                       <i data-lucide="save" class="h-4 w-4 mr-2"></i>
-                      Save Changes
+                      <span id="save-profile-text">Save Changes</span>
+                      <div id="save-profile-loading" class="hidden animate-spin rounded-full h-4 w-4 border-b-2 border-white ml-2"></div>
                     </button>
                   </div>
 
@@ -395,13 +421,13 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                   <!-- Section Header -->
                   <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                     <div class="flex items-center gap-3">
-                      <i data-lucide="users" class="h-6 w-6 text-medical-600"></i>
+                      <i data-lucide="users" class="h-6 w-6 text-primary"></i>
                       <div>
                         <h2 class="text-xl sm:text-2xl font-bold text-gray-900">User Management</h2>
                         <p class="text-sm text-muted-foreground">Manage all system users and their roles</p>
                       </div>
                     </div>
-                    <button type="button" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors text-white h-10 px-4 py-2 bg-medical-600 hover:bg-medical-700 pointer border border-solid border-transparent">
+                    <button type="button" data-modal-trigger="user" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors text-white h-10 px-4 py-2 bg-medical-600 hover:bg-medical-700 cursor-pointer border border-solid border-transparent">
                       <i data-lucide="plus" class="h-4 w-4 mr-2"></i>
                       Add User
                     </button>
@@ -414,26 +440,31 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
 
                         <!-- Search Field -->
                         <div class="relative flex-grow">
-                          <i data-lucide="search" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4"></i>
-                          <input class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm pl-10 focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white" placeholder="Search users by name or email..." value="">
+                          <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4"></i>
+                          <input id="user-search" class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm pl-10 focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white" placeholder="Search users by name or email..." value="">
                         </div>
 
                         <!-- Role Filter -->
                         <div class="flex items-center gap-2">
                           <i data-lucide="filter" class="h-4 w-4 text-gray-500"></i>
-                          <button type="button" role="combobox" class="flex h-10 items-center justify-between rounded-md border border-solid border-input bg-background px-3 py-2 text-sm w-full sm:w-48 focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white pointer">
-                            <span style="pointer-events: none;">All Roles</span>
-                            <i data-lucide="chevron-down" class="h-4 w-4 opacity-50" aria-hidden="true"></i>
-                          </button>
+                          <select id="role-filter" class="flex h-10 items-center justify-between rounded-md border border-solid border-input bg-background px-3 py-2 text-sm w-full sm:w-48 focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
+                            <option value="">All Roles</option>
+                          </select>
                         </div>
                       </div>
                     </div>
                   </div>
 
+                  <!-- Loading State -->
+                  <div id="users-loading" class="hidden flex items-center justify-center py-8">
+                    <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-medical-600"></div>
+                    <span class="ml-2 text-gray-600">Loading users...</span>
+                  </div>
+
                   <!-- Table Section -->
                   <div class="rounded-lg glass-card border-card-soft text-card-foreground">
                     <div class="flex flex-col gap-1.5 p-6">
-                      <h3 class="font-semibold tracking-tight text-lg">All Users (3)</h3>
+                      <h3 id="users-count" class="font-semibold tracking-tight text-lg">All Users (0)</h3>
                     </div>
                     <div class="p-0 overflow-x-auto">
                       <table class="border-collapse w-full text-sm">
@@ -443,53 +474,14 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                             <th class="h-12 px-4 text-left font-medium text-muted-foreground min-w-50">Email</th>
                             <th class="h-12 px-4 text-left font-medium text-muted-foreground">Role</th>
                             <th class="h-12 px-4 text-left font-medium text-muted-foreground hidden sm:table-cell">Hospital</th>
-                            <th class="h-12 px-4 text-left font-medium text-muted-foreground hidden lg:table-cell">Department</th>
+                            <th class="h-12 px-4 text-left font-medium text-muted-foreground hidden lg:table-cell">Details</th>
                             <th class="h-12 px-4 text-left font-medium text-muted-foreground">Status</th>
                             <th class="h-12 px-4 text-right font-medium text-muted-foreground min-w-25">Actions</th>
                           </tr>
                         </thead>
 
-                        <tbody class="table-no-border-last">
-
-                          <!-- Row: Doctor -->
-                          <tr class="border-b border-solid border-card-soft hover:bg-gray-50">
-                            <td class="p-4 font-medium">Dr. Sarah Johnson</td>
-                            <td class="p-4 text-sm text-gray-600">sarah.johnson@mediconnect.com</td>
-                            <td class="p-4">
-                              <div class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold bg-green-100 text-green-800">Doctor</div>
-                            </td>
-                            <td class="p-4 hidden sm:table-cell text-sm">Central Medical Center</td>
-                            <td class="p-4 hidden lg:table-cell text-sm">Cardiology</td>
-                            <td class="p-4">
-                              <div class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold bg-medical-500 hover:bg-medical-400 text-white">active</div>
-                            </td>
-                            <td class="p-4 text-right">
-                              <div class="flex gap-1 justify-end">
-                                <button class="rounded-md h-8 w-8 p-0 hover:bg-accent pointer bg-transparent border-none hover:text-medical-500"><i data-lucide="square-pen" class="h-4 w-4"></i></button>
-                                <button class="rounded-md h-8 w-8 p-0 text-red-600 hover:text-red-800 hover:bg-red-50 pointer bg-transparent border-none"><i data-lucide="trash2" class="h-4 w-4"></i></button>
-                              </div>
-                            </td>
-                          </tr>
-
-                          <!-- Row: Staff -->
-                          <tr class="border-b hover:bg-gray-50">
-                            <td class="p-4 font-medium">John Smith</td>
-                            <td class="p-4 text-sm text-gray-600">john.smith@mediconnect.com</td>
-                            <td class="p-4">
-                              <div class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold bg-yellow-100 text-yellow-800">Staff</div>
-                            </td>
-                            <td class="p-4 hidden sm:table-cell text-sm">Westside Hospital</td>
-                            <td class="p-4 hidden lg:table-cell text-sm">Front Desk</td>
-                            <td class="p-4">
-                              <div class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold bg-medical-500 hover:bg-medical-400 text-white">active</div>
-                            </td>
-                            <td class="p-4 text-right">
-                              <div class="flex gap-1 justify-end">
-                                <button class="rounded-md h-8 w-8 p-0 hover:bg-accent pointer bg-transparent border-none hover:text-medical-500"><i data-lucide="square-pen" class="h-4 w-4"></i></button>
-                                <button class="rounded-md h-8 w-8 p-0 text-red-600 hover:text-red-800 hover:bg-red-50 pointer bg-transparent border-none"><i data-lucide="trash2" class="h-4 w-4"></i></button>
-                              </div>
-                            </td>
-                          </tr>
+                        <tbody id="users-table-body" class="table-no-border-last">
+                          <!-- Dynamic content will be inserted here -->
                         </tbody>
                       </table>
                     </div>
@@ -503,10 +495,14 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
 
                   <!-- Header -->
                   <div class="flex justify-between items-center">
-                    <h2 class="text-2xl font-bold">Hospital Management</h2>
-                    <button
-                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors bg-medical-500 text-white hover:bg-medical-400 h-10 px-4 py-2 pointer border border-solid border-transparent"
-                      type="button">
+                    <div class="flex items-center gap-3">
+                      <i data-lucide="building-2" class="h-6 w-6 text-primary"></i>
+                      <div>
+                        <h2 class="text-xl sm:text-2xl font-bold text-gray-900">Hospital Management</h2>
+                        <p class="text-sm text-muted-foreground">Manage all hospitals and their information</p>
+                      </div>
+                    </div>
+                    <button data-modal-trigger="hospital" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors bg-primary text-white hover:bg-medical-400 h-10 px-4 py-2 cursor-pointer border border-solid border-transparent" type="button">
                       <i data-lucide="plus" class="h-4 w-4 mr-2"></i>
                       Add Hospital
                     </button>
@@ -515,13 +511,20 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                   <!-- Search Field -->
                   <div class="relative">
                     <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4"></i>
-                    <input
-                      class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm pl-10"
-                      placeholder="Search hospitals..." value="">
+                    <input id="hospital-search" class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm pl-10 focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white" placeholder="Search hospitals..." value="">
+                  </div>
+
+                  <!-- Loading State -->
+                  <div id="hospitals-loading" class="hidden flex items-center justify-center py-8">
+                    <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-medical-600"></div>
+                    <span class="ml-2 text-gray-600">Loading hospitals...</span>
                   </div>
 
                   <!-- Table -->
                   <div class="rounded-md glass-card border-card-soft">
+                    <div class="flex flex-col gap-1.5 p-6">
+                      <h3 id="hospitals-count" class="font-semibold tracking-tight text-lg">All Hospitals (0)</h3>
+                    </div>
                     <div class="relative w-full overflow-auto">
                       <table class="border-collapse w-full text-sm">
                         <thead class="border-b border-solid border-card-soft">
@@ -530,108 +533,14 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
                             <th class="h-12 px-4 text-left font-medium text-muted-foreground">Location</th>
                             <th class="h-12 px-4 text-left font-medium text-muted-foreground">Contact</th>
                             <th class="h-12 px-4 text-left font-medium text-muted-foreground">Capacity</th>
-                            <th class="h-12 px-4 text-left font-medium text-muted-foreground">Departments</th>
+                            <th class="h-12 px-4 text-left font-medium text-muted-foreground hidden sm:table-cell">Emergency</th>
                             <th class="h-12 px-4 text-left font-medium text-muted-foreground">Status</th>
                             <th class="h-12 px-4 text-right font-medium text-muted-foreground">Actions</th>
                           </tr>
                         </thead>
 
-                        <tbody class="table-no-border-last">
-
-                          <!-- Row 1 -->
-                          <tr class="border-b border-solid border-card-soft transition-colors hover:bg-muted/50">
-                            <td class="p-4 font-medium">Central Medical Center</td>
-                            <td class="p-4">
-                              <div class="flex items-center">
-                                <i data-lucide="map-pin" class="h-4 w-4 mr-1 text-gray-400"></i>
-                                123 Medical Blvd, Central City
-                              </div>
-                            </td>
-                            <td class="p-4">
-                              <div class="flex items-center">
-                                <i data-lucide="phone" class="h-4 w-4 mr-1 text-gray-400"></i>
-                                +1 (555) 123-4567
-                              </div>
-                            </td>
-                            <td class="p-4">
-                              <div class="flex items-center">
-                                <i data-lucide="building" class="h-4 w-4 mr-1 text-gray-400"></i>
-                                45/200
-                              </div>
-                            </td>
-                            <td class="p-4">
-                              <div class="flex items-center">
-                                <i data-lucide="users" class="h-4 w-4 mr-1 text-gray-400"></i>
-                                4 depts
-                              </div>
-                            </td>
-                            <td class="p-4">
-                              <div class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold transition-colors border border-solid border-transparent bg-medical-500 text-white hover:bg-medical-400">
-                                active
-                              </div>
-                            </td>
-                            <td class="p-4 text-right">
-                              <div class="flex gap-2 justify-end">
-                                <button
-                                  class="rounded-md h-8 w-8 p-0 hover:bg-accent pointer bg-transparent border-none hover:text-medical-500">
-                                  <i data-lucide="square-pen" class="h-4 w-4"></i>
-                                </button>
-                                <button
-                                  class="rounded-md h-8 w-8 p-0 text-red-600 hover:text-red-800 hover:bg-red-50 pointer bg-transparent border-none"
-                                  type="button">
-                                  <i data-lucide="trash-2" class="h-4 w-4"></i>
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
-
-                          <!-- Row 2 -->
-                          <tr class="border-b border-solid border-card-soft transition-colors hover:bg-muted/50">
-                            <td class="p-4 font-medium">Westside Hospital</td>
-                            <td class="p-4">
-                              <div class="flex items-center">
-                                <i data-lucide="map-pin" class="h-4 w-4 mr-1 text-gray-400"></i>
-                                456 Healthcare Ave, West District
-                              </div>
-                            </td>
-                            <td class="p-4">
-                              <div class="flex items-center">
-                                <i data-lucide="phone" class="h-4 w-4 mr-1 text-gray-400"></i>
-                                +1 (555) 987-6543
-                              </div>
-                            </td>
-                            <td class="p-4">
-                              <div class="flex items-center">
-                                <i data-lucide="building" class="h-4 w-4 mr-1 text-gray-400"></i>
-                                23/150
-                              </div>
-                            </td>
-                            <td class="p-4">
-                              <div class="flex items-center">
-                                <i data-lucide="users" class="h-4 w-4 mr-1 text-gray-400"></i>
-                                3 depts
-                              </div>
-                            </td>
-                            <td class="p-4">
-                              <div class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold transition-colors border border-solid border-transparent bg-medical-500 text-white hover:bg-medical-400">
-                                active
-                              </div>
-                            </td>
-                            <td class="p-4 text-right">
-                              <div class="flex gap-2 justify-end">
-                                <button
-                                  class="rounded-md h-8 w-8 p-0 hover:bg-accent pointer bg-transparent border-none hover:text-medical-500">
-                                  <i data-lucide="square-pen" class="h-4 w-4"></i>
-                                </button>
-                                <button
-                                  class="rounded-md h-8 w-8 p-0 text-red-600 hover:text-red-800 hover:bg-red-50 pointer bg-transparent border-none"
-                                  type="button">
-                                  <i data-lucide="trash-2" class="h-4 w-4"></i>
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
-
+                        <tbody id="hospitals-table-body" class="table-no-border-last">
+                          <!-- Dynamic content will be inserted here -->
                         </tbody>
                       </table>
                     </div>
@@ -647,12 +556,273 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
     </div>
   </main>
 
-  <!-- Footer -->
+
+  <!-- ==================== User Modal ==================== -->
+
+  <!-- Overlay -->
+  <div data-dialog="overlay" data-modal-type="user" class="hidden inset-0 z-50 bg-black/80"></div>
+
+  <!-- Modal Container -->
+  <div
+    data-dialog="modal"
+    data-modal-type="user"
+    role="dialog"
+    class="hidden left-[50%] top-[50%] z-50 grid translate-center bg-white gap-4 p-6 shadow-lg transition-200 sm:rounded-lg w-full max-w-lg mx-4 sm:mx-auto">
+
+    <!-- Modal Header -->
+    <div class="flex flex-col gap-1.5 text-center sm:text-left">
+      <h2 id="user-modal-title" class="text-lg font-semibold leading-none tracking-tight">Add New User</h2>
+    </div>
+
+    <!-- Modal Body -->
+    <form id="user-form" class="flex flex-col gap-4">
+
+      <!-- Name and Email Fields -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="text-sm font-medium leading-none mb-2 block" for="user-fullname">Full Name</label>
+          <input id="user-fullname" name="fullName" required
+            class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm outline-none focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white"
+            placeholder="Enter full name">
+        </div>
+
+        <div>
+          <label class="text-sm font-medium leading-none mb-2 block" for="user-email">Email</label>
+          <input id="user-email" name="email" type="email" required
+            class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm outline-none focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white"
+            placeholder="Enter email address">
+        </div>
+      </div>
+
+      <!-- Password Fields (Only visible when adding new user) -->
+      <div id="password-fields" class="hidden">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="text-sm font-medium leading-none mb-2 block" for="user-password">Password</label>
+            <div class="flex gap-2">
+              <input id="user-password" name="password" type="password"
+                class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm outline-none focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white"
+                placeholder="Enter temporary password">
+              <button type="button" id="generate-password"
+                class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-input bg-transparent cursor-pointer hover:bg-accent hover:text-medical-500 h-10 px-3 py-2">
+                <i data-lucide="refresh-cw" class="h-4 w-4"></i>
+              </button>
+            </div>
+            <div id="password-strength" class="mt-1 text-xs"></div>
+          </div>
+          <div>
+            <label class="text-sm font-medium leading-none mb-2 block" for="user-confirm-password">Confirm Password</label>
+            <input id="user-confirm-password" name="confirmPassword" type="password"
+              class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm outline-none focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white"
+              placeholder="Confirm temporary password">
+            <div id="password-match" class="mt-1 text-xs"></div>
+          </div>
+        </div>
+
+        <!-- Password Note -->
+        <div class="p-3 bg-yellow-50 border border-yellow-200 rounded-md mt-4">
+          <div class="flex items-start">
+            <i data-lucide="info" class="h-4 w-4 text-yellow-600 mt-0.5 mr-2"></i>
+            <div class="text-sm text-yellow-800">
+              <p class="font-medium">Password Security</p>
+              <p class="text-xs mt-1">Set a temporary password for the new user. They will be prompted to change it on first login for security.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Edit Mode Password Note (Only visible when editing user) -->
+      <div id="edit-password-note" class="hidden">
+        <div class="p-3 bg-blue-50 border border-blue-200 rounded-md">
+          <div class="flex items-start">
+            <i data-lucide="shield" class="h-4 w-4 text-blue-600 mt-0.5 mr-2"></i>
+            <div class="text-sm text-blue-800">
+              <p class="font-medium">Password Management</p>
+              <p class="text-xs mt-1">For security reasons, passwords cannot be changed here. Use the password reset feature to help users reset their passwords.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Role Dropdown -->
+      <div class="relative">
+        <label for="user-role" class="block mb-2 text-sm text-heading font-medium">Role</label>
+        <select id="user-role" name="role" required class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white md:text-sm">
+          <option value="">Select a role</option>
+        </select>
+      </div>
+
+      <!-- Conditional Fields Container -->
+      <div id="conditional-fields" class="hidden">
+
+        <!-- Hospital Dropdown (for Doctor and Hospital Admin) -->
+        <div id="hospital-field" class="hidden mb-4">
+          <label for="user-hospital" class="block mb-2 text-sm text-heading font-medium">Hospital</label>
+          <select id="user-hospital" name="hospitalId" class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white md:text-sm">
+            <option value="">Select a hospital</option>
+          </select>
+        </div>
+
+        <!-- Specialty Dropdown (for Doctor only) -->
+        <div id="specialty-field" class="hidden">
+          <label for="user-specialty" class="block mb-2 text-sm text-heading font-medium">Specialty</label>
+          <select id="user-specialty" name="specialtyId" class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white md:text-sm">
+            <option value="">Select a specialty</option>
+          </select>
+        </div>
+
+        <!-- Team Name Field (for Ambulance Team) -->
+        <div id="team-field" class="hidden">
+          <label for="user-team" class="block mb-2 text-sm text-heading font-medium">Team Name</label>
+          <input id="user-team" name="teamName" class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm outline-none focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white" placeholder="Enter team name (optional)">
+        </div>
+
+      </div>
+
+      <!-- Location Fields -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="text-sm font-medium leading-none mb-2 block" for="user-city">City</label>
+          <input id="user-city" name="city" class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm outline-none focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white" placeholder="Enter city">
+        </div>
+
+        <div>
+          <label class="text-sm font-medium leading-none mb-2 block" for="user-address">Address</label>
+          <input id="user-address" name="addressLine" class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm outline-none focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white" placeholder="Enter address">
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex justify-end gap-2 pt-4">
+        <button type="button" data-modal-close="user" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-input bg-transparent cursor-pointer hover:bg-accent hover:text-medical-500 h-10 px-4 py-2">
+          Cancel
+        </button>
+        <button type="submit" id="user-submit-btn" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors text-white h-10 px-4 py-2 bg-primary hover:bg-medical-600 border border-solid border-transparent cursor-pointer">
+          <span id="user-submit-text">Add User</span>
+          <div id="user-submit-loading" class="hidden animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+        </button>
+      </div>
+
+    </form>
+
+    <!-- Close Button -->
+    <button type="button"
+      data-modal-close="user"
+      class="absolute right-4 top-4 w-5 h-5 bg-transparent border-none rounded-full opacity-70 transition-opacity hover:opacity-100 focus:ring focus:ring-2 focus:ring-medical-600 focus:ring-offset-2 focus:ring-offset-white cursor-pointer">
+      <i data-lucide="x" class="h-4 w-4"></i>
+      <span class="sr-only">Close</span>
+    </button>
+
+  </div>
+
+  <!-- ==================== Hospital Modal ==================== -->
+
+  <!-- Overlay -->
+  <div data-dialog="overlay" data-modal-type="hospital" class="hidden inset-0 z-50 bg-black/80"></div>
+
+  <!-- Modal Container -->
+  <div
+    data-dialog="modal"
+    data-modal-type="hospital"
+    role="dialog"
+    class="hidden left-[50%] top-[50%] z-50 grid translate-center bg-white gap-4 p-6 shadow-lg transition-200 sm:rounded-lg w-full max-w-lg mx-4 sm:mx-auto">
+
+    <!-- Modal Header -->
+    <div class="flex flex-col gap-1.5 text-center sm:text-left">
+      <h2 id="hospital-modal-title" class="text-lg font-semibold leading-none tracking-tight">Add New Hospital</h2>
+    </div>
+
+    <!-- Modal Body -->
+    <form id="hospital-form" class="flex flex-col gap-4">
+
+      <!-- Hospital Name -->
+      <div>
+        <label class="text-sm font-medium leading-none" for="hospital-name">Hospital Name</label>
+        <input id="hospital-name" name="name" required
+          class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm outline-none focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white"
+          placeholder="Enter hospital name">
+      </div>
+
+      <!-- Address -->
+      <div>
+        <label class="text-sm font-medium leading-none" for="hospital-address">Address</label>
+        <input id="hospital-address" name="address" required
+          class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm outline-none focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white"
+          placeholder="Enter hospital address">
+      </div>
+
+      <!-- Contact and Available Beds -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="text-sm font-medium leading-none" for="hospital-contact">Contact</label>
+          <input id="hospital-contact" name="contact" required
+            class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm outline-none focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white"
+            placeholder="Enter contact number">
+        </div>
+
+        <div>
+          <label class="text-sm font-medium leading-none" for="hospital-beds">Available Beds</label>
+          <input id="hospital-beds" name="availableBeds" type="number" min="0"
+            class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm outline-none focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white"
+            placeholder="Enter number of beds">
+        </div>
+      </div>
+
+      <!-- Emergency Services -->
+      <div>
+        <label class="flex items-center gap-2 cursor-pointer">
+          <input id="hospital-emergency" name="emergencyServices" type="checkbox" class="rounded border-input cursor-pointer">
+          <span class="text-sm font-medium">Emergency Services Available</span>
+        </label>
+      </div>
+
+      <!-- Image URL -->
+      <div>
+        <label class="text-sm font-medium leading-none" for="hospital-image">Image URL</label>
+        <input id="hospital-image" name="imageUrl"
+          class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm outline-none focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white"
+          placeholder="Enter image URL (optional)">
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex justify-end gap-2 pt-4">
+        <button type="button" data-modal-close="hospital" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-input bg-transparent cursor-pointer hover:bg-accent hover:text-medical-500 h-10 px-4 py-2">
+          Cancel
+        </button>
+        <button type="submit" id="hospital-submit-btn" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors text-white h-10 px-4 py-2 bg-primary hover:bg-medical-600 border border-solid border-transparent cursor-pointer">
+          <span id="hospital-submit-text">Add Hospital</span>
+          <div id="hospital-submit-loading" class="hidden animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+        </button>
+      </div>
+
+    </form>
+
+    <!-- Close Button -->
+    <button type="button"
+      data-modal-close="hospital"
+      class="absolute right-4 top-4 w-5 h-5 bg-transparent border-none rounded-full opacity-70 transition-opacity hover:opacity-100 focus:ring focus:ring-2 focus:ring-medical-600 focus:ring-offset-2 focus:ring-offset-white cursor-pointer">
+      <i data-lucide="x" class="h-4 w-4"></i>
+      <span class="sr-only">Close</span>
+    </button>
+
+  </div>
+
+  <!-- Universal Toast Container -->
+  <div
+    id="toast"
+    class="hidden fixed bottom-4 right-4 z-50 max-w-xs rounded-md p-5 text-white shadow-lg">
+    <p id="toast-title" class="font-semibold"></p>
+    <p id="toast-message" class="text-sm"></p>
+  </div>
+
+
+  <!-- ==================== Footer ==================== -->
+
   <footer class="bg-gray-50 pt-16 pb-8 border-t border-solid separator">
     <div class="container mx-auto px-4">
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
         <div>
-          <a href="<?= $paths['home'] ?>" class="inline-block mb-4">
+          <a href="<?= $paths['home']['index'] ?>" class="inline-block mb-4">
             <span class="text-medical-700 font-semibold text-2xl">
               Medi<span class="text-medical-500">Connect</span>
             </span>
@@ -663,16 +833,16 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
           </p>
           <div class="footer-socials flex gap-4 transition-all">
             <a href="#"
-              class="text-gray-500 hover:text-medical-600 hover:bg-medical-50 rounded-full flex justify-center items-center w-10 h-10">
+              class="text-gray-500 hover:text-primary hover:bg-medical-50 rounded-full flex justify-center items-center w-10 h-10">
               <i data-lucide="facebook" class="h-4 w-4"></i>
             </a>
 
             <a href="#"
-              class="text-gray-500 hover:text-medical-600 hover:bg-medical-50 rounded-full flex justify-center items-center w-10 h-10">
+              class="text-gray-500 hover:text-primary hover:bg-medical-50 rounded-full flex justify-center items-center w-10 h-10">
               <i data-lucide="twitter" class="h-4 w-4"></i>
             </a>
             <a href="#"
-              class="text-gray-500 hover:text-medical-600 hover:bg-medical-50 rounded-full flex justify-center items-center w-10 h-10">
+              class="text-gray-500 hover:text-primary hover:bg-medical-50 rounded-full flex justify-center items-center w-10 h-10">
               <i data-lucide="instagram" class="h-4 w-4"></i>
             </a>
           </div>
@@ -684,22 +854,22 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
           </h4>
           <ul class="flex flex-col gap-2">
             <li>
-              <a href="<?= $paths['services']['appointments'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+              <a href="<?= $paths['services']['appointments'] ?>" class="text-gray-600 hover:text-primary transition-colors">
                 Book Appointments
               </a>
             </li>
             <li>
-              <a href="<?= $paths['services']['doctors'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+              <a href="<?= $paths['services']['doctors'] ?>" class="text-gray-600 hover:text-primary transition-colors">
                 Find Doctors
               </a>
             </li>
             <li>
-              <a href="<?= $paths['services']['hospitals'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+              <a href="<?= $paths['services']['hospitals'] ?>" class="text-gray-600 hover:text-primary transition-colors">
                 Hospital Information
               </a>
             </li>
             <li>
-              <a href="<?= $paths['services']['emergency'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+              <a href="<?= $paths['services']['emergency'] ?>" class="text-gray-600 hover:text-primary transition-colors">
                 Emergency Services
               </a>
             </li>
@@ -712,33 +882,33 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
           </h4>
           <ul class="flex flex-col gap-2">
             <li>
-              <a href="<?= $paths['static']['about'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+              <a href="<?= $paths['static']['about'] ?>" class="text-gray-600 hover:text-primary transition-colors">
                 About Us
               </a>
             </li>
             <li>
-              <a href="<?= $paths['static']['privacy'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+              <a href="<?= $paths['static']['privacy'] ?>" class="text-gray-600 hover:text-primary transition-colors">
                 Privacy Policy
               </a>
             </li>
             <li>
-              <a href="<?= $paths['static']['terms'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+              <a href="<?= $paths['static']['terms'] ?>" class="text-gray-600 hover:text-primary transition-colors">
                 Terms of Service
               </a>
             </li>
             <li>
-              <a href="<?= $paths['static']['faq'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+              <a href="<?= $paths['static']['faq'] ?>" class="text-gray-600 hover:text-primary transition-colors">
                 FAQs
               </a>
             </li>
             <li>
-              <a href="<?= $paths['static']['contact'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+              <a href="<?= $paths['static']['contact'] ?>" class="text-gray-600 hover:text-primary transition-colors">
                 Contact Us
               </a>
             </li>
             <li>
-              <a href="<?= $paths['static']['blood_donation'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
-                Blood Donation
+              <a href="<?= $paths['static']['blood_bank'] ?>" class="text-gray-600 hover:text-primary transition-colors">
+                Blood Bank System
               </a>
             </li>
           </ul>
@@ -773,7 +943,9 @@ require_once __DIR__ . "/../backend/middleware/protect-dashboard.php";
     </div>
   </footer>
 
-  <!-- External JavaScript -->
+
+  <!-- ==================== External JavaScript ==================== -->
+
   <script type="module" src="/mediconnect/js/common/index.js"></script>
   <script type="module" src="/mediconnect/js/dashboard/superadmin/index.js"></script>
 

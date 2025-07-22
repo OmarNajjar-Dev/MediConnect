@@ -207,6 +207,10 @@
     overflow-x: auto;
 }
 
+.overflow-y-auto {
+    overflow-y: auto;
+}
+
 .overflow-hidden {
     overflow: hidden;
 }

@@ -2,6 +2,7 @@
 
 session_start();
 require_once __DIR__ . '/../config/db.php';
+require_once __DIR__ . '/../config/path.php';
 
 // Load helper functions (utilities, formatting, reusable logic)
 require_once __DIR__ . '/helpers.php';
@@ -40,7 +41,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             // Store user role in session
             if ($roleResult->num_rows === 1) {
                 $roleData = $roleResult->fetch_assoc();
-                storeUserRoleInSession($roleData["role_name"]);  // e.g., "super_admin", "doctor"
+                $roleName = $roleData["role_name"];
+                storeUserRoleInSession($roleName);  // e.g., "super_admin", "doctor"
             }
 
             $roleStmt->close();
@@ -56,15 +58,25 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $updateStmt->close();
             }
 
-            echo json_encode(["success" => true]);
+            // Always redirect to dashboard index, which will handle role-based routing
+            echo json_encode([
+                "success" => true,
+                "redirect" => $paths['dashboard']['index']
+            ]);
             exit();
         }
     }
 
     // Failed login
-    echo json_encode(["success" => false]);
+    echo json_encode([
+        "success" => false,
+        "message" => "Invalid email or password"
+    ]);
     exit();
 }
 
-echo json_encode(["success" => false]);
+echo json_encode([
+    "success" => false,
+    "message" => "Invalid request method"
+]);
 exit();

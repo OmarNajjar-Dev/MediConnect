@@ -36,6 +36,7 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
     <link rel="stylesheet" href="/mediconnect/css/ring.css" />
     <link rel="stylesheet" href="/mediconnect/css/layout.css" />
     <link rel="stylesheet" href="/mediconnect/css/animations.css" />
+    <link rel="stylesheet" href="/mediconnect/css/components.css" />
     <link rel="stylesheet" href="/mediconnect/css/style.css" />
     <link rel="stylesheet" href="/mediconnect/css/responsive.css" />
 
@@ -51,7 +52,7 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
         <div class="container mx-auto flex items-center justify-between px-4">
 
             <!-- Logo -->
-            <a href="<?= $paths['home'] ?>" class="flex items-center">
+            <a href="<?= $paths['home']['index'] ?>" class="flex items-center">
                 <span class="text-medical-700 text-2xl font-semibold">
                     Medi<span class="text-medical-500">Connect</span>
                 </span>
@@ -59,32 +60,32 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
 
             <!-- Desktop Navigation (hidden on mobile) -->
             <nav class="hidden md:flex items-center gap-4 lg:gap-8 xl:ml-28">
-                <a href="<?= $paths['home'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Home</a>
-                <a href="<?= $paths['services']['doctors'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Doctors</a>
-                <a href="<?= $paths['services']['hospitals'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Hospitals</a>
-                <a href="<?= $paths['services']['appointments'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-medical-600 transition-colors">Appointments</a>
+                <a href="<?= $paths['home']['index'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-primary transition-colors">Home</a>
+                <a href="<?= $paths['services']['doctors'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-primary transition-colors">Doctors</a>
+                <a href="<?= $paths['services']['hospitals'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-primary transition-colors">Hospitals</a>
+                <a href="<?= $paths['services']['appointments'] ?>" class="text-gray-600 text-sm lg:text-base font-medium hover:text-primary transition-colors">Appointments</a>
             </nav>
 
-            <!-- Right section: Auth / Dropdown / Emergency / Menu -->
+            <!-- Right section: Emergency / Auth / Menu -->
             <div class="flex items-center gap-4">
 
-                <!-- Sign In / Sign Up (visible) -->
-                <a href="<?= $paths['auth']['login'] ?>" class="hidden md:flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-10 px-3 rounded-lg text-sm lg:text-base font-medium whitespace-nowrap transition-all">
-                    Sign In
-                </a>
-
-                <a href="<?= $paths['auth']['register'] ?>" class="hidden md:flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-10 px-3 rounded-lg text-sm lg:text-base font-medium whitespace-nowrap transition-all mr-4">
-                    Sign Up
-                </a>
-
                 <!-- Emergency button (always visible) -->
-                <a href="<?= $paths['services']['emergency'] ?>" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-sm lg:text-base font-medium px-2 lg:px-4 py-2 md:py-3 lg:ml-2 rounded-lg transition-colors transition-200">
+                <a href="<?= $paths['services']['emergency'] ?>" class="inline-flex items-center gap-2 bg-danger hover:bg-red-700 text-white text-sm lg:text-base font-medium px-2 lg:px-4 py-2 md:py-3 rounded-lg transition-colors transition-200">
                     <i data-lucide="ambulance" class="w-4 h-4"></i>
                     Emergency
                 </a>
 
+                <!-- Sign In / Sign Up (visible on desktop) -->
+                <a href="<?= $paths['auth']['login'] ?>" class="hidden md:flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-10 px-3 rounded-lg text-sm lg:text-base font-medium whitespace-nowrap transition-all md:ml-4">
+                    Sign In
+                </a>
+
+                <a href="<?= $paths['auth']['register'] ?>" class="hidden md:flex items-center justify-center bg-primary text-white hover:bg-medical-400 h-10 px-3 rounded-lg text-sm lg:text-base font-medium whitespace-nowrap transition-all">
+                    Sign Up
+                </a>
+
                 <!-- Mobile menu toggle button -->
-                <button id="menu-button" class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none pointer">
+                <button id="menu-button" class="inline-flex md:hidden items-center justify-center bg-background hover:bg-medical-50 hover:text-medical-500 p-3 rounded-md border-none cursor-pointer">
                     <i data-lucide="menu" class="w-4 h-4"></i>
                 </button>
             </div>
@@ -92,7 +93,7 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
             <!-- Mobile Navigation Panel (visible only on mobile) -->
             <div id="mobile-nav" class="hidden absolute bg-white/95 backdrop-blur-lg animate-slide-down shadow-lg md:hidden">
                 <nav class="container mx-auto flex flex-col gap-4 px-4 py-4">
-                    <a href="<?= $paths['home'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Home</a>
+                    <a href="<?= $paths['home']['index'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Home</a>
                     <a href="<?= $paths['services']['doctors'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Doctors</a>
                     <a href="<?= $paths['services']['hospitals'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Hospitals</a>
                     <a href="<?= $paths['services']['appointments'] ?>" class="text-gray-600 hover:bg-gray-50 py-2 px-3 rounded-lg text-sm font-medium transition-colors">Appointments</a>
@@ -100,7 +101,7 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
                     <!-- Mobile: Sign In / Sign Out -->
                     <div class="flex flex-col pt-2 gap-2 border-t border-solid separator">
                         <a href="<?= $paths['auth']['login'] ?>" class="inline-flex items-center justify-center bg-input text-heading border border-solid border-input hover:bg-medical-50 hover:text-medical-500 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-all">Sign In</a>
-                        <a href="<?= $paths['auth']['register'] ?>" class="inline-flex items-center justify-center bg-medical-500 text-white hover:bg-medical-400 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Sign Up</a>
+                        <a href="<?= $paths['auth']['register'] ?>" class="inline-flex items-center justify-center bg-primary text-white hover:bg-medical-400 h-9 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Sign Up</a>
                     </div>
                 </nav>
             </div>
@@ -115,7 +116,7 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
 
                 <!-- Logo and Heading -->
                 <div class="text-center">
-                    <a href="<?= $paths['home'] ?>" class="flex items-center justify-center">
+                    <a href="<?= $paths['home']['index'] ?>" class="flex items-center justify-center">
                         <span class="text-3xl font-semibold text-medical-700">
                             Medi<span class="text-medical-500">Connect</span>
                         </span>
@@ -133,18 +134,18 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
                         <!-- Email Input -->
                         <div>
                             <label for="email" class="text-sm font-medium text-gray-700">Email</label>
-                            <input type="email" id="email" name="email" required autocomplete="email" placeholder="you@example.com"
-                                class="mt-1 block h-10 w-full rounded-sm border border-solid border-input bg-background px-3 py-2 text-base md:text-sm focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
+                            <input type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com" required
+                                class="mt-1 block h-10 w-full rounded-sm border border-solid border-input bg-background px-3 py-2 text-base md:text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
                         </div>
 
                         <!-- Password Input -->
                         <div>
                             <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
                             <div class="relative mt-1">
-                                <input type="password" name="password" required autocomplete="current-password" placeholder="*******"
-                                    class="password block h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 pr-10 text-base md:text-sm focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
+                                <input type="password" id="password" name="password" autocomplete="current-password" placeholder="*******" required
+                                    class="block h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 pr-10 text-base md:text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
                                 <button type="button" id="toggle-password" aria-label="Toggle password visibility"
-                                    class="eye-toggle-button absolute inset-y-0 right-0 z-10 flex items-center border-none bg-transparent pr-3 pointer">
+                                    class="eye-toggle-button absolute inset-y-0 right-0 z-10 flex items-center border-none bg-transparent pr-3 cursor-pointer">
                                     <i data-lucide="eye" class="eye-toggle-icon h-5 w-5 text-gray-400"></i>
                                 </button>
                             </div>
@@ -162,7 +163,7 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
                         <!-- Login Button -->
                         <div>
                             <button id="login-btn" type="submit"
-                                class="flex h-10 w-full items-center justify-center gap-2 rounded-sm border border-solid border-transparent bg-medical-500 px-4 py-2 text-sm font-medium text-white hover:bg-medical-700 pointer transition-colors">
+                                class="flex h-10 w-full items-center justify-center gap-2 rounded-sm border border-solid border-transparent bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-medical-700 cursor-pointer transition-colors">
                                 <i data-lucide="log-in" class="h-4 w-4"></i>
                                 Sign in
                             </button>
@@ -185,21 +186,38 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
                     <!-- Social Buttons -->
                     <div class="mt-6 grid grid-cols-2 gap-3">
 
-                        <!-- Google Button -->
-                        <button type="button"
-                            class="inline-flex w-full justify-center rounded-md border border-solid border-input bg-white px-4 py-2 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50 pointer">
-                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12.545,10.239v3.821h5.445c-0.712,2.315-2.647,3.972-5.445,3.972c-3.332,0-6.033-2.701-6.033-6.032s2.701-6.032,6.033-6.032c1.498,0,2.866,0.549,3.921,1.453l2.814-2.814C17.503,2.988,15.139,2,12.545,2C7.021,2,2.543,6.477,2.543,12s4.478,10,10.002,10c8.396,0,10.249-7.85,9.426-11.748L12.545,10.239z" />
-                            </svg>
-                        </button>
+                        <!-- Google Button Wrapper -->
+                        <div class="group relative cursor-not-allowed">
+                            <button type="button"
+                                class="inline-flex w-full justify-center rounded-md border border-solid border-input bg-white px-4 py-2 text-sm font-medium text-gray-500 shadow-sm pointer-events-none"
+                                disabled>
+                                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12.545,10.239v3.821h5.445c-0.712,2.315-2.647,3.972-5.445,3.972c-3.332,0-6.033-2.701-6.033-6.032s2.701-6.032,6.033-6.032c1.498,0,2.866,0.549,3.921,1.453l2.814-2.814C17.503,2.988,15.139,2,12.545,2C7.021,2,2.543,6.477,2.543,12s4.478,10,10.002,10c8.396,0,10.249-7.85,9.426-11.748L12.545,10.239z" />
+                                </svg>
+                            </button>
+                            <div
+                                class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded shadow whitespace-nowrap">
+                                Coming Soon!
+                            </div>
+                        </div>
 
-                        <!-- Facebook Button -->
-                        <button type="button"
-                            class="inline-flex w-full justify-center rounded-md border border-solid border-input bg-white px-4 py-2 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50 pointer">
-                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                            </svg>
-                        </button>
+                        <!-- Facebook Button Wrapper -->
+                        <div class="group relative cursor-not-allowed">
+                            <button type="button"
+                                class="inline-flex w-full justify-center rounded-md border border-solid border-input bg-white px-4 py-2 text-sm font-medium text-gray-500 shadow-sm pointer-events-none"
+                                disabled>
+                                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                                </svg>
+                            </button>
+                            <div
+                                class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded shadow whitespace-nowrap">
+                                Coming Soon!
+                            </div>
+                        </div>
+
                     </div>
 
                     <!-- Sign Up Link -->
@@ -211,11 +229,12 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
             </div>
         </div>
 
-        <!-- Error Toast -->
-        <div id="login-error-toast" class="fixed hidden max-w-xs rounded-md bg-danger p-5 text-white" role="alert">
-            <p class="font-semibold">Error:</p>
-            <span class="text-md">Invalid email or password.</span>
+        <!-- Dynamic Error Toast -->
+        <div id="toast" class="hidden fixed bottom-4 right-4 z-50 max-w-xs rounded-md bg-danger p-5 text-white shadow-lg">
+            <p id="toast-title" class="font-semibold"></p>
+            <p id="toast-message" class="text-sm"></p>
         </div>
+
     </main>
 
     <!-- Footer -->
@@ -223,7 +242,7 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
         <div class="container mx-auto px-4">
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                 <div>
-                    <a href="<?= $paths['home'] ?>" class="inline-block mb-4">
+                    <a href="<?= $paths['home']['index'] ?>" class="inline-block mb-4">
                         <span class="text-medical-700 font-semibold text-2xl">
                             Medi<span class="text-medical-500">Connect</span>
                         </span>
@@ -234,16 +253,16 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
                     </p>
                     <div class="footer-socials flex gap-4 transition-all">
                         <a href="#"
-                            class="text-gray-500 hover:text-medical-600 hover:bg-medical-50 rounded-full flex justify-center items-center w-10 h-10">
+                            class="text-gray-500 hover:text-primary hover:bg-medical-50 rounded-full flex justify-center items-center w-10 h-10">
                             <i data-lucide="facebook" class="h-4 w-4"></i>
                         </a>
 
                         <a href="#"
-                            class="text-gray-500 hover:text-medical-600 hover:bg-medical-50 rounded-full flex justify-center items-center w-10 h-10">
+                            class="text-gray-500 hover:text-primary hover:bg-medical-50 rounded-full flex justify-center items-center w-10 h-10">
                             <i data-lucide="twitter" class="h-4 w-4"></i>
                         </a>
                         <a href="#"
-                            class="text-gray-500 hover:text-medical-600 hover:bg-medical-50 rounded-full flex justify-center items-center w-10 h-10">
+                            class="text-gray-500 hover:text-primary hover:bg-medical-50 rounded-full flex justify-center items-center w-10 h-10">
                             <i data-lucide="instagram" class="h-4 w-4"></i>
                         </a>
                     </div>
@@ -255,22 +274,22 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
                     </h4>
                     <ul class="flex flex-col gap-2">
                         <li>
-                            <a href="<?= $paths['services']['appointments'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['services']['appointments'] ?>" class="text-gray-600 hover:text-primary transition-colors">
                                 Book Appointments
                             </a>
                         </li>
                         <li>
-                            <a href="<?= $paths['services']['doctors'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['services']['doctors'] ?>" class="text-gray-600 hover:text-primary transition-colors">
                                 Find Doctors
                             </a>
                         </li>
                         <li>
-                            <a href="<?= $paths['services']['hospitals'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['services']['hospitals'] ?>" class="text-gray-600 hover:text-primary transition-colors">
                                 Hospital Information
                             </a>
                         </li>
                         <li>
-                            <a href="<?= $paths['services']['emergency'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['services']['emergency'] ?>" class="text-gray-600 hover:text-primary transition-colors">
                                 Emergency Services
                             </a>
                         </li>
@@ -283,33 +302,33 @@ require_once __DIR__ . "/backend/middleware/redirect-if-logged-in.php";
                     </h4>
                     <ul class="flex flex-col gap-2">
                         <li>
-                            <a href="<?= $paths['static']['about'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['static']['about'] ?>" class="text-gray-600 hover:text-primary transition-colors">
                                 About Us
                             </a>
                         </li>
                         <li>
-                            <a href="<?= $paths['static']['privacy'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['static']['privacy'] ?>" class="text-gray-600 hover:text-primary transition-colors">
                                 Privacy Policy
                             </a>
                         </li>
                         <li>
-                            <a href="<?= $paths['static']['terms'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['static']['terms'] ?>" class="text-gray-600 hover:text-primary transition-colors">
                                 Terms of Service
                             </a>
                         </li>
                         <li>
-                            <a href="<?= $paths['static']['faq'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['static']['faq'] ?>" class="text-gray-600 hover:text-primary transition-colors">
                                 FAQs
                             </a>
                         </li>
                         <li>
-                            <a href="<?= $paths['static']['contact'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
+                            <a href="<?= $paths['static']['contact'] ?>" class="text-gray-600 hover:text-primary transition-colors">
                                 Contact Us
                             </a>
                         </li>
                         <li>
-                            <a href="<?= $paths['static']['blood_donation'] ?>" class="text-gray-600 hover:text-medical-600 transition-colors">
-                                Blood Donation
+                            <a href="<?= $paths['static']['blood_bank'] ?>" class="text-gray-600 hover:text-primary transition-colors">
+                                Blood Bank System
                             </a>
                         </li>
                     </ul>

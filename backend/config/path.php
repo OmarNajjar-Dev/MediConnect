@@ -4,7 +4,9 @@ $basePath = '/mediconnect';
 const BASE_URL = '/mediconnect';
 
 $paths = [
-    'home' => BASE_URL . '/',
+    'home' => [
+        'index' => BASE_URL . '/',
+    ],
 
     'auth' => [
         'login'    => BASE_URL . '/login.php',
@@ -20,12 +22,7 @@ $paths = [
     ],
 
     'dashboard' => [
-        'super_admin'     => BASE_URL . '/dashboard/superadmin.php',
-        'hospital_admin'  => BASE_URL . '/dashboard/admin.php',
-        'doctor'          => BASE_URL . '/dashboard/doctor.php',
-        'patient'         => BASE_URL . '/dashboard/patient.php',
-        'ambulance_team'  => BASE_URL . '/dashboard/ambulance.php',
-        'staff'           => BASE_URL . '/dashboard/staff.php',
+        'index' => BASE_URL . '/dashboard/index.php',
     ],
 
     'static' => [
@@ -34,7 +31,7 @@ $paths = [
         'terms'           => BASE_URL . '/terms.php',
         'faq'             => BASE_URL . '/faq.php',
         'contact'         => BASE_URL . '/contact.php',
-        'blood_donation'  => BASE_URL . '/blood-donation.php'
+        'blood_bank'  => BASE_URL . '/blood-bank.php'
     ],
 
     'errors' => [

@@ -40,7 +40,7 @@ export function renderRatingCards(container) {
           <p class="text-gray-600 mb-6">${card.description}</p>
           <a href="${
             card.linkHref
-          }" class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors bg-medical-500 text-white hover:bg-medical-400 h-10 px-4 py-2 w-full">
+          }" class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors bg-primary text-white hover:bg-medical-400 h-10 px-4 py-2 w-full">
             ${card.buttonText}
           </a>
         </div>

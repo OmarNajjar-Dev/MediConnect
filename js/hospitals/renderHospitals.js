@@ -1,13 +1,13 @@
 export async function renderHospitals(container) {
   try {
-    const response = await fetch("/MediConnect/backend/api/get-hospitals.php");
+    const response = await fetch("/mediconnect/backend/api/get-hospitals.php");
     const hospitals = await response.json();
 
     hospitals.forEach((h) => {
       const specialtiesHtml = h.specialties
         .map(
           (s) =>
-            `<span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-xs font-medium text-gray-800">${s}</span>`
+            `<span class="inline-block bg-neutral-100 rounded-full px-3 py-1 text-xs font-medium text-gray-800">${s}</span>`
         )
         .join("");
 
@@ -76,7 +76,7 @@ export async function renderHospitals(container) {
               }
 
                 <div class="flex items-center">
-                  <div class="w-10 h-10 rounded-full bg-medical-100 text-medical-600 flex items-center justify-center">
+                  <div class="w-10 h-10 rounded-full bg-medical-100 text-primary flex items-center justify-center">
                     <i data-lucide="phone" class="w-5 h-5"></i>
                   </div>
                   <div class="ml-3">
@@ -86,13 +86,32 @@ export async function renderHospitals(container) {
                 </div>
               </div>
 
-              <div class="mt-6 flex justify-end">
-                <button type="button" class="inline-flex items-center justify-center gap-2 flex-grow whitespace-nowrap rounded-md border border-solid border-input bg-medical-600 text-sm font-medium transition-colors h-10 px-4 py-2 mr-3 text-white hover:bg-medical-400 md:flex-grow-0 pointer">
-                  View Details
-                </button>
-                <button type="button" class="inline-flex items-center justify-center gap-2 flex-grow whitespace-nowrap rounded-md text-sm font-medium transition-colors text-heading border border-solid border-input bg-background hover:bg-medical-50 hover:text-medical-500 h-10 px-4 py-2 md:flex-grow-0 pointer">
-                  Get Directions
-                </button>
+              <div class="mt-6 flex justify-end gap-3">
+                <!-- View Details -->
+                <div class="group relative cursor-not-allowed">
+                  <button type="button"
+                    class="inline-flex items-center justify-center gap-2 flex-grow md:flex-grow-0 whitespace-nowrap rounded-md border border-solid border-input bg-medical-600 text-sm font-medium transition-colors h-10 px-4 py-2 text-white pointer-events-none"
+                    disabled>
+                    View Details
+                  </button>
+                  <div
+                    class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded shadow whitespace-nowrap">
+                    Coming Soon!
+                  </div>
+                </div>
+
+                <!-- Get Directions -->
+                <div class="group relative cursor-not-allowed">
+                  <button type="button"
+                    class="inline-flex items-center justify-center gap-2 flex-grow md:flex-grow-0 whitespace-nowrap rounded-md text-sm font-medium transition-colors text-heading border border-solid border-input bg-background hover:bg-medical-50 hover:text-medical-500 h-10 px-4 py-2 pointer-events-none"
+                    disabled>
+                    Get Directions
+                  </button>
+                  <div
+                    class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded shadow whitespace-nowrap">
+                    Coming Soon!
+                  </div>
+                </div>
               </div>
 
             </div>

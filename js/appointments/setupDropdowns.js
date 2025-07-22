@@ -50,14 +50,14 @@ export function setupDropdowns(dropdownButtons) {
         // Reset all options
         options.forEach((btn) => {
           btn.querySelector("svg")?.classList.add("hidden");
-          btn.classList.remove("bg-gray-100");
+          btn.classList.remove("bg-neutral-100");
           btn.classList.add("bg-white");
         });
 
         // Style the selected one
         option.querySelector("svg")?.classList.remove("hidden");
         option.classList.remove("bg-white");
-        option.classList.add("bg-gray-100");
+        option.classList.add("bg-neutral-100");
 
         selectedOption = option;
         menu.classList.add("hidden");
@@ -68,14 +68,14 @@ export function setupDropdowns(dropdownButtons) {
       // Visual feedback
       option.addEventListener("mouseenter", () => {
         if (selectedOption && selectedOption !== option) {
-          selectedOption.classList.remove("bg-gray-100");
+          selectedOption.classList.remove("bg-neutral-100");
           selectedOption.classList.add("bg-white");
         }
       });
 
       option.addEventListener("mouseleave", () => {
         selectedOption?.classList.remove("bg-white");
-        selectedOption?.classList.add("bg-gray-100");
+        selectedOption?.classList.add("bg-neutral-100");
       });
     });
   });

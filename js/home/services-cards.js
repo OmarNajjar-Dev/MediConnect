@@ -14,7 +14,7 @@ export const servicesCardsData = [
     description:
       "Receive digital medical reports and prescriptions directly from your doctor.",
     linkText: "Learn More",
-    linkHref: "./reports.php",
+    linkHref: "./coming-soon.php",
     animationDelay: "100ms",
   },
   {
@@ -32,7 +32,7 @@ export const servicesCardsData = [
     description:
       "Order prescription and over-the-counter medications from registered pharmacies.",
     linkText: "Order Medicines",
-    linkHref: "./pharmacy.php",
+    linkHref: "./coming-soon.php",
     animationDelay: "300ms",
   },
 ];
@@ -46,7 +46,7 @@ export function renderServicesCards(container) {
     div.innerHTML = `
       <div class="service-card glass-card rounded-xl p-6 transition-all backdrop-blur-md h-full">
         <div class="flex flex-col h-full">
-          <div class="mb-6 w-14 h-14 bg-medical-100 text-medical-600 rounded-md flex items-center justify-center">
+          <div class="mb-6 w-14 h-14 bg-medical-100 text-primary rounded-md flex items-center justify-center">
             ${card.icon}
           </div>
           <h3 class="text-heading text-xl tracking-tight font-medium mb-3">${card.title}</h3>

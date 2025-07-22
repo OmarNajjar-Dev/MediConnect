@@ -15,7 +15,7 @@ function applyDoctorFilters() {
     // Extract card content
     const name = card.querySelector("h2")?.textContent.toLowerCase() || "";
     const specialty =
-      card.querySelector(".text-medical-600")?.textContent.toLowerCase() || "";
+      card.querySelector(".text-primary")?.textContent.toLowerCase() || "";
     const hospital =
       card.querySelector(".text-gray-600.text-sm")?.textContent.toLowerCase() ||
       "";
@@ -72,7 +72,7 @@ function toggleButtonStyle(button, isActive) {
     "bg-background",
     "text-black",
     "hover:bg-medical-50",
-    "hover:text-medical-600",
+    "hover:text-primary",
   ];
 
   active.forEach((cls) => button.classList.toggle(cls, isActive));
