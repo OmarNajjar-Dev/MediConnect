@@ -128,28 +128,30 @@ MediConnect is a comprehensive healthcare web platform designed to bridge the ga
 ## 📁 Project Structure
 
 ```
-mediconnect/
+MediConnect/
 ├── 📂 assets/
-│   ├── 📂 css/
-│   │   ├── base.css
-│   │   ├── components.css
-│   │   └── responsive.css
-│   ├── 📂 js/
-│   │   ├── common/
-│   │   ├── auth/
-│   │   └── dashboard/
-│   └── 📂 images/
-├── 📂 includes/
-│   ├── header.php
-│   ├── footer.php
-│   └── config.php
+│   ├── 📂 css/          # Stylesheets (15 files)
+│   └── 📂 js/           # JavaScript modules (12 directories)
+├── 📂 backend/
+│   ├── 📂 api/          # API endpoints (23 files)
+│   ├── 📂 auth/         # Authentication system (5 files)
+│   ├── 📂 config/       # Configuration files (3 files)
+│   ├── 📂 helpers/      # Helper functions (4 files)
+│   └── 📂 middleware/   # Session & access control (5 files)
+├── 📂 database/         # SQL files (3 files)
+├── 📂 docs/             # Documentation (5 files)
+├── 📂 includes/         # Header & footer templates
 ├── 📂 pages/
-│   ├── dashboard/
-│   ├── doctors.php
-│   ├── hospitals.php
-│   └── appointments.php
-├── 📄 index.php
+│   ├── 📂 auth/         # Login & registration
+│   ├── 📂 dashboard/    # Role-based dashboards (7 files)
+│   ├── 📂 errors/       # Error pages (4 files)
+│   ├── 📂 services/     # Core services (4 files)
+│   └── 📂 static/       # Static pages (7 files)
+├── 📂 uploads/          # File uploads
+├── 📂 sandbox/          # Development/testing
+├── 📄 .gitignore
 ├── 📄 .htaccess
+├── 📄 index.php
 └── 📄 README.md
 ```
 
