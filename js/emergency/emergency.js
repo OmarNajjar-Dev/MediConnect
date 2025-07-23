@@ -100,6 +100,26 @@ function startCountdown(minutes) {
       setTimeout(updateCountdown, 60000);
     } else {
       etaText.textContent = `Ambulance has arrived.`;
+
+      // 🔁 Send update to mark request as completed
+      if (currentRequestId) {
+        fetch("/mediconnect/backend/api/mark-completed.php", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ request_id: currentRequestId }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.success) {
+              console.log("Request marked as completed.");
+            } else {
+              console.error("Completion failed:", data.message);
+            }
+          })
+          .catch((err) => {
+            console.error("Complete request error:", err);
+          });
+      }
     }
   }
 
