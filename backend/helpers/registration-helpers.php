@@ -5,7 +5,7 @@
  * Contains all utility functions used in the registration process
  */
 
-require_once __DIR__ . '/../auth/helpers.php';
+require_once __DIR__ . '/auth-helpers.php';
 
 /**
  * Get coordinates from address using OpenCage API

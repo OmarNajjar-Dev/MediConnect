@@ -48,7 +48,7 @@ require_once __DIR__ . "/../../backend/helpers/avatar-helper.php";
 <body class="bg-background">
 
     <!-- Header Section -->
-    <?php require_once './../../includes/header.php'; ?>
+    <?php require_once '/../../includes/header.php'; ?>
 
     <!-- Main Content -->
     <main class="overflow-hidden pt-20 flex-grow">
@@ -305,7 +305,7 @@ require_once __DIR__ . "/../../backend/helpers/avatar-helper.php";
     </div>
 
     <!-- Footer -->
-    <?php require_once './../../includes/footer.php'; ?>
+    <?php require_once '/../../includes/footer.php'; ?>
 
     <!-- External JavaScript -->
     <script type="module" src="/mediconnect/assets/js/common/index.js"></script>

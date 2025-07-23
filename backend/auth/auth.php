@@ -4,7 +4,10 @@ session_start();
 require_once __DIR__ . '/../config/db.php';
 require_once __DIR__ . '/../helpers/registration-helpers.php';
 
-header('Content-Type: application/json');
+// Only set JSON content type for API requests
+if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest') {
+    header('Content-Type: application/json');
+}
 
 if (!isset($_SESSION["user_id"]) && isset($_COOKIE["remember_token"])) {
     $token = $_COOKIE["remember_token"];

@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Authentication Helper Functions
+ * Contains utility functions for authentication and session management
+ */
+
 // Store normalized role in session (snake_case)
 function storeUserRoleInSession(?string $roleName): void
 {
@@ -20,4 +25,4 @@ function slugToTitle(string $slug): string {
 function slugToSnakeCase(string $slugOrTitle): string {
     // Replace spaces and dashes with underscore, then lowercase
     return strtolower(str_replace([' ', '-'], '_', $slugOrTitle));
-}
+} 

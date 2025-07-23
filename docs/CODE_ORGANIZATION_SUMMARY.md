@@ -96,11 +96,12 @@ assets/js/emergency/
 - Code was repetitive and hard to maintain
 - No reusability across different files
 
-### After: Dedicated Helper File
+### After: Dedicated Helper Files
 
 ```
 backend/helpers/
-└── registration-helpers.php (comprehensive helper functions)
+├── auth-helpers.php (authentication and session helpers)
+└── registration-helpers.php (comprehensive registration helpers)
 ```
 
 ### Functions Extracted
@@ -185,6 +186,7 @@ assets/js/emergency/
 └── statusDisplay.js
 
 backend/helpers/
+├── auth-helpers.php
 └── registration-helpers.php
 ```
 
