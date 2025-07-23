@@ -2,10 +2,7 @@
 
 session_start();
 require_once __DIR__ . '/../config/db.php';
-require_once __DIR__ . '/../config/path.php';
-
-// Load helper functions (utilities, formatting, reusable logic)
-require_once __DIR__ . '/helpers.php';
+require_once __DIR__ . '/../helpers/registration-helpers.php';
 
 header('Content-Type: application/json'); // Important for AJAX
 

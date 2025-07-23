@@ -110,6 +110,17 @@ try {
             $stmt = $conn->prepare("INSERT INTO ambulance_teams (user_id, team_name) VALUES (?, ?)");
             $stmt->bind_param("is", $userId, $teamNameToUse);
             $stmt->execute();
+            
+            // Get the team_id that was just created
+            $teamId = $conn->insert_id;
+            
+            // Create initial location entry for the ambulance team
+            // Default to a central location (can be updated later via GPS)
+            $defaultLat = 34.390016; // Default latitude (can be updated)
+            $defaultLng = 35.8055936; // Default longitude (can be updated)
+            $stmt = $conn->prepare("INSERT INTO ambulance_locations (team_id, latitude, longitude) VALUES (?, ?, ?)");
+            $stmt->bind_param("idd", $teamId, $defaultLat, $defaultLng);
+            $stmt->execute();
             break;
 
         // Hospital Admin and Staff don't need additional tables

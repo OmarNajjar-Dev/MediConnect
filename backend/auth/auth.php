@@ -1,13 +1,12 @@
 <?php
 
-// Load helper functions (utilities, formatting, reusable logic)
-require_once __DIR__ . '/helpers.php';
-
 session_start();
+require_once __DIR__ . '/../config/db.php';
+require_once __DIR__ . '/../helpers/registration-helpers.php';
+
+header('Content-Type: application/json');
 
 if (!isset($_SESSION["user_id"]) && isset($_COOKIE["remember_token"])) {
-    require_once __DIR__ . '/../config/db.php';
-
     $token = $_COOKIE["remember_token"];
 
     // Step 1: Find user by token

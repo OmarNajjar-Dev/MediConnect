@@ -12,8 +12,8 @@ require_once __DIR__ . "/../../backend/middleware/redirect-if-logged-in.php";
 // 4. Include avatar helper
 require_once __DIR__ . "/../../backend/helpers/avatar-helper.php";
 
-// 5. Load helper functions (utilities, formatting, reusable logic)
-require_once __DIR__ . "/../../backend/auth/helpers.php";
+// 5. Load registration helper functions
+require_once __DIR__ . "/../../backend/helpers/registration-helpers.php";
 
 // Show all errors during development (disable in production)
 error_reporting(E_ALL);
@@ -23,158 +23,54 @@ ini_set('display_errors', 1);
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Get data from POST request
-    $email      = $_POST["email"] ?? '';
-    $password   = $_POST["password"] ?? '';
-    $firstName  = $_POST["first_name"] ?? '';
-    $lastName   = $_POST["last_name"] ?? '';
-    $city       = $_POST["city"] ?? '';
-    $address    = $_POST["address"] ?? '';
-    $slugRole   = $_POST["role"] ?? '';
+    $userData = [
+        'email' => $_POST["email"] ?? '',
+        'password' => $_POST["password"] ?? '',
+        'first_name' => $_POST["first_name"] ?? '',
+        'last_name' => $_POST["last_name"] ?? '',
+        'city' => $_POST["city"] ?? '',
+        'address' => $_POST["address"] ?? '',
+        'hospital_id' => $_POST["hospital_id"] ?? null,
+        'specialty_id' => $_POST["specialty_id"] ?? null,
+        'team_name' => $_POST["team_name"] ?? null
+    ];
+
+    $slugRole = $_POST["role"] ?? '';
 
     // Convert slug (e.g. super-admin) to role title (e.g. Super Admin)
     $roleName = slugToTitle($slugRole);
 
-    // Security Check: Whitelist validation - only allow specific roles
-    $allowedRoles = ['Patient', 'Doctor', 'Ambulance Team', 'Staff'];
-    if (!in_array($roleName, $allowedRoles)) {
+    // Validate role
+    if (!validateRole($roleName)) {
         header("Location: register.php?error=invalid_role");
         exit();
     }
 
-    // Step 0-A: Check if email format is valid
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    // Validate email format
+    if (!validateEmail($userData['email'])) {
         header("Location: register.php?error=invalid_email");
         exit();
     }
 
-    // Step 0-B: Check if email already exists
-    $check_stmt = $conn->prepare("SELECT user_id FROM users WHERE email = ?");
-    $check_stmt->bind_param("s", $email);
-    $check_stmt->execute();
-    $check_result = $check_stmt->get_result();
-
-    if ($check_result->num_rows > 0) {
+    // Check if email already exists
+    if (emailExists($conn, $userData['email'])) {
         header("Location: register.php?error=email_exists");
         exit();
     }
-    $check_stmt->close();
 
-    // Step 1: Get role_id from roles table
-    $role_stmt = $conn->prepare("SELECT role_id FROM roles WHERE role_name = ?");
-    $role_stmt->bind_param("s", $roleName);
-    $role_stmt->execute();
-    $role_result = $role_stmt->get_result();
+    // Create user account using helper function
+    $result = createUserAccount($conn, $userData, $roleName);
 
-    if ($role_result->num_rows === 1) {
-        $role_row = $role_result->fetch_assoc();
-        $role_id = $role_row["role_id"];
-        $role_stmt->close();
+    if ($result['success']) {
+        // Initialize user session
+        initializeUserSession($result['user_id'], $roleName);
 
-        // Step 2: Insert user into users table
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $user_stmt = $conn->prepare("INSERT INTO users (email, password, first_name, last_name, city, address_line) VALUES (?, ?, ?, ?, ?, ?)");
-        $user_stmt->bind_param("ssssss", $email, $hashedPassword, $firstName, $lastName, $city, $address);
-
-        if ($user_stmt->execute()) {
-            $user_id = $user_stmt->insert_id;
-            $user_stmt->close();
-
-            // Step 3: Link user to role in user_roles
-            $link_stmt = $conn->prepare("INSERT INTO user_roles (user_id, role_id) VALUES (?, ?)");
-            $link_stmt->bind_param("ii", $user_id, $role_id);
-            if ($link_stmt->execute()) {
-                $link_stmt->close();
-
-                // Step 3-B: Insert into role-specific table if needed
-                if ($roleName === "Patient") {
-                    $patient_stmt = $conn->prepare("INSERT INTO patients (user_id) VALUES (?)");
-                    $patient_stmt->bind_param("i", $user_id);
-                    $patient_stmt->execute();
-                    $patient_stmt->close();
-                } elseif ($roleName === "Doctor") {
-                    $hospitalId = $_POST["hospital_id"] ?? null;
-                    $specialtyId = $_POST["specialty_id"] ?? null;
-
-                    if ($hospitalId && $specialtyId) {
-                        $doctor_stmt = $conn->prepare("INSERT INTO doctors (user_id, hospital_id, specialty_id, is_verified) VALUES (?, ?, ?, 0)");
-                        $doctor_stmt->bind_param("iii", $user_id, $hospitalId, $specialtyId);
-                        $doctor_stmt->execute();
-                        $doctor_stmt->close();
-                    }
-                } elseif ($roleName === "Ambulance Team") {
-                    $teamName = $_POST["team_name"] ?? ($firstName . "'s Team");
-
-                    // Insert into ambulance_teams
-                    $team_stmt = $conn->prepare("INSERT INTO ambulance_teams (user_id, team_name) VALUES (?, ?)");
-                    $team_stmt->bind_param("is", $user_id, $teamName);
-
-                    if ($team_stmt->execute()) {
-                        $team_id = $conn->insert_id; // Get the ID of the inserted ambulance team
-
-                        // Convert address to lat/lng using OpenCage API
-                        function getCoordinatesFromOpenCage($address)
-                        {
-                            $apiKey = "f7257b4524a9479eacc86758ec47dc69"; // Your OpenCage API Key
-                            $url = "https://api.opencagedata.com/geocode/v1/json?" . http_build_query([
-                                'q' => $address,
-                                'key' => $apiKey,
-                                'language' => 'en',
-                                'limit' => 1,
-                                'no_annotations' => 1
-                            ]);
-
-                            $response = file_get_contents($url);
-                            $data = json_decode($response, true);
-
-                            if ($data && isset($data['results'][0]['geometry'])) {
-                                $location = $data['results'][0]['geometry'];
-                                return [$location['lat'], $location['lng']];
-                            }
-
-                            return [null, null];
-                        }
-
-                        // Get user address (from signup form)
-                        $address = $_POST["address"] ?? null;
-
-                        if ($address) {
-                            list($lat, $lng) = getCoordinatesFromOpenCage($address);
-
-                            if ($lat && $lng) {
-                                $updated_at = date("Y-m-d H:i:s");
-
-                                // Insert into ambulance_locations
-                                $location_stmt = $conn->prepare("INSERT INTO ambulance_locations (team_id, latitude, longitude, updated_at) VALUES (?, ?, ?, ?)");
-                                $location_stmt->bind_param("idds", $team_id, $lat, $lng, $updated_at);
-                                $location_stmt->execute();
-                                $location_stmt->close();
-                            }
-                        }
-                    }
-
-                    $team_stmt->close();
-                }
-
-                // Step 4: Store user session and redirect to dashboard
-                $_SESSION["user_id"] = $user_id;
-                storeUserRoleInSession($roleName);
-
-                // Redirect to main dashboard index
-                header("Location: " . $paths['dashboard']['index']);
-                exit();
-            } else {
-                $link_stmt->close();
-                header("Location: register.php?error=link_failed");
-                exit();
-            }
-        } else {
-            $user_stmt->close();
-            header("Location: register.php?error=insert_failed");
-            exit();
-        }
+        // Redirect to main dashboard index
+        header("Location: " . $paths['dashboard']['index']);
+        exit();
     } else {
-        $role_stmt->close();
-        header("Location: register.php?error=invalid_role");
+        // Redirect with error
+        header("Location: register.php?error=" . urlencode($result['error']));
         exit();
     }
 }

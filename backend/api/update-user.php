@@ -99,6 +99,13 @@ try {
     $stmt->bind_param("i", $userId);
     $stmt->execute();
 
+    // Clean up ambulance data (including locations)
+    $stmt = $conn->prepare("DELETE al FROM ambulance_locations al 
+                           INNER JOIN ambulance_teams at ON al.team_id = at.team_id 
+                           WHERE at.user_id = ?");
+    $stmt->bind_param("i", $userId);
+    $stmt->execute();
+
     $stmt = $conn->prepare("DELETE FROM ambulance_teams WHERE user_id = ?");
     $stmt->bind_param("i", $userId);
     $stmt->execute();
@@ -124,6 +131,17 @@ try {
             $teamNameToUse = $teamName ?: ($firstName . "'s Team");
             $stmt = $conn->prepare("INSERT INTO ambulance_teams (user_id, team_name) VALUES (?, ?)");
             $stmt->bind_param("is", $userId, $teamNameToUse);
+            $stmt->execute();
+            
+            // Get the team_id that was just created
+            $teamId = $conn->insert_id;
+            
+            // Create initial location entry for the ambulance team
+            // Default to a central location (can be updated later via GPS)
+            $defaultLat = 34.390016; // Default latitude (can be updated)
+            $defaultLng = 35.8055936; // Default longitude (can be updated)
+            $stmt = $conn->prepare("INSERT INTO ambulance_locations (team_id, latitude, longitude) VALUES (?, ?, ?)");
+            $stmt->bind_param("idd", $teamId, $defaultLat, $defaultLng);
             $stmt->execute();
             break;
 

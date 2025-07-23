@@ -31,7 +31,7 @@ CREATE TABLE doctors (
     user_id INT NOT NULL,
     specialty_id INT,
     bio TEXT,
-    rating DECIMAL(2,1),
+    rating DECIMAL(2, 1),
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
     FOREIGN KEY (specialty_id) REFERENCES specialties(specialty_id)
 ) ENGINE = InnoDB;
@@ -83,7 +83,10 @@ CREATE TABLE ratings (
     patient_id INT NOT NULL,
     doctor_id INT,
     hospital_id INT,
-    rating_value INT CHECK (rating_value BETWEEN 1 AND 5),
+    rating_value INT CHECK (
+        rating_value BETWEEN 1
+        AND 5
+    ),
     comment TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (patient_id) REFERENCES patients(patient_id),
@@ -94,11 +97,14 @@ CREATE TABLE ratings (
 -- EMERGENCY MODULE
 CREATE TABLE emergency_requests (
     request_id INT PRIMARY KEY AUTO_INCREMENT,
-    patient_id INT NOT NULL,
+    patient_id INT NULL,
+    -- Changed from NOT NULL to NULL to support guest users
     location VARCHAR(255),
     status ENUM('Pending', 'In Transit', 'Resolved') DEFAULT 'Pending',
     requested_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (patient_id) REFERENCES patients(patient_id)
+    FOREIGN KEY (patient_id) REFERENCES patients(patient_id) ON DELETE
+    SET
+        NULL
 ) ENGINE = InnoDB;
 
 CREATE TABLE ambulance_teams (

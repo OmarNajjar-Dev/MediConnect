@@ -295,12 +295,21 @@ require_once __DIR__ . "/../../backend/helpers/avatar-helper.php";
         <p class="text-heading">Help is on the way.Please stay where you are!</p>
     </div>
 
+    <!-- Universal Toast Container -->
+    <div
+        id="toast"
+        class="hidden fixed bottom-4 right-4 z-50 max-w-xs rounded-md p-5 text-white shadow-lg"
+    >
+        <p id="toast-title" class="font-semibold"></p>
+        <p id="toast-message" class="text-sm"></p>
+    </div>
+
     <!-- Footer -->
     <?php require_once './../../includes/footer.php'; ?>
 
     <!-- External JavaScript -->
     <script type="module" src="/mediconnect/assets/js/common/index.js"></script>
-    <script type="module" src="/mediconnect/assets/js/emergency/emergency.js"></script>
+    <script type="module" src="/mediconnect/assets/js/emergency/index.js"></script>
 
     <!-- Create Lucide Icons -->
     <script>
