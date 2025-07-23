@@ -16,7 +16,7 @@ require_once __DIR__ . "/../backend/helpers/permission-helper.php";
         </a>
 
         <!-- Desktop Navigation (hidden on mobile) -->
-        <nav class="hidden md:flex items-center gap-4 lg:gap-8 xl:ml-28">
+        <nav class="hidden md:flex items-center gap-4 lg:gap-8 xl:ml-28 <?= !canAccessAppointments() ? 'cursor-not-allowed' : '' ?>">
             <a href="<?= $paths['home']['index'] ?>" class="<?= getActiveNavClassDesktop('home', $currentPage) ?>">Home</a>
             <a href="<?= $paths['services']['doctors'] ?>" class="<?= getActiveNavClassDesktop('doctors', $currentPage) ?>">Doctors</a>
             <a href="<?= $paths['services']['hospitals'] ?>" class="<?= getActiveNavClassDesktop('hospitals', $currentPage) ?>">Hospitals</a>
@@ -31,7 +31,7 @@ require_once __DIR__ . "/../backend/helpers/permission-helper.php";
         </nav>
 
         <!-- Right section: Auth / Dropdown / Emergency / Menu -->
-        <div class="flex items-center gap-4">
+        <div class="flex items-center gap-4 <?= !canAccessEmergency() ? 'cursor-not-allowed' : '' ?>">
 
             <?php if ($isLoggedIn): ?>
                 <!-- User dropdown (visible if logged in) -->
@@ -71,7 +71,7 @@ require_once __DIR__ . "/../backend/helpers/permission-helper.php";
                     Emergency
                 </a>
             <?php else: ?>
-                <span class="inline-flex items-center gap-2 bg-gray-400 text-white text-sm lg:text-base font-medium px-2 lg:px-4 py-2 md:py-3 rounded-lg opacity-50 cursor-not-allowed pointer-events-none" title="Emergency access restricted">
+                <span class="inline-flex items-center gap-2 bg-gray-400 text-white text-sm lg:text-base font-medium px-2 lg:px-4 py-2 md:py-3 rounded-lg opacity-50 pointer-events-none" title="Emergency access restricted">
                     <i data-lucide="ambulance" class="w-4 h-4"></i>
                     Emergency
                 </span>
@@ -96,7 +96,7 @@ require_once __DIR__ . "/../backend/helpers/permission-helper.php";
 
         <!-- Mobile Navigation Panel (visible only on mobile) -->
         <div id="mobile-nav" class="hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-lg animate-slide-down shadow-lg md:hidden">
-            <nav class="container mx-auto flex flex-col gap-4 px-4 py-4">
+            <nav class="container mx-auto flex flex-col gap-4 px-4 py-4 <?= (!canAccessAppointments() || !canAccessEmergency()) ? 'cursor-not-allowed' : '' ?>">
                 <a href="<?= $paths['home']['index'] ?>" class="<?= getActiveNavClassMobile('home', $currentPage) ?>">Home</a>
                 <a href="<?= $paths['services']['doctors'] ?>" class="<?= getActiveNavClassMobile('doctors', $currentPage) ?>">Doctors</a>
                 <a href="<?= $paths['services']['hospitals'] ?>" class="<?= getActiveNavClassMobile('hospitals', $currentPage) ?>">Hospitals</a>
@@ -113,7 +113,7 @@ require_once __DIR__ . "/../backend/helpers/permission-helper.php";
                         Emergency
                     </a>
                 <?php else: ?>
-                    <span class="inline-flex items-center gap-2 bg-gray-400 text-white text-sm font-medium px-3 py-2 rounded-lg opacity-50 cursor-not-allowed pointer-events-none" title="Emergency access restricted">
+                    <span class="inline-flex items-center gap-2 bg-gray-400 text-white text-sm font-medium px-3 py-2 rounded-lg opacity-50 pointer-events-none" title="Emergency access restricted">
                         <i data-lucide="ambulance" class="w-4 h-4"></i>
                         Emergency
                     </span>

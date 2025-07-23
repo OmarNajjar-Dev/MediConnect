@@ -46,7 +46,7 @@ function canAccessEmergency() {
  */
 function getDisabledNavClasses($isDisabled, $baseClasses = '') {
     if ($isDisabled) {
-        return $baseClasses . ' opacity-50 cursor-not-allowed pointer-events-none';
+        return $baseClasses . ' opacity-50 pointer-events-none';
     }
     return $baseClasses;
 }
@@ -60,7 +60,7 @@ function getDisabledNavClasses($isDisabled, $baseClasses = '') {
  */
 function getDisabledMobileNavClasses($isDisabled, $baseClasses = '') {
     if ($isDisabled) {
-        return $baseClasses . ' opacity-50 cursor-not-allowed pointer-events-none';
+        return $baseClasses . ' opacity-50 pointer-events-none';
     }
     return $baseClasses;
 } 
