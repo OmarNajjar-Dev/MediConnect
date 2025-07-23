@@ -8,9 +8,11 @@ require_once __DIR__ . "/../../backend/config/path.php";
 // 2. Load user session context (sets $isLoggedIn, $userName, $userEmail, $userProfileImage, $userAddress, $userCity)
 require_once __DIR__ . "/../../backend/middleware/session-context.php";
 
-// 3. Include avatar helper
-require_once __DIR__ . "/../../backend/helpers/avatar-helper.php";
+// 3. Restrict access if user is logged in but not a patient
+require_once __DIR__ . "/../../backend/middleware/only-patient.php";
 
+// 4. Include avatar helper
+require_once __DIR__ . "/../../backend/helpers/avatar-helper.php";
 ?>
 
 <!DOCTYPE html>
