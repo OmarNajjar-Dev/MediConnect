@@ -9,9 +9,15 @@ require_once __DIR__ . "/../../backend/middleware/protect-dashboard.php";
 // 6. Include avatar helper
 require_once __DIR__ . "/../../backend/helpers/avatar-helper.php";
 
-// 7. Fetch patient-specific information
+// 7. Include patient appointment helper
+require_once __DIR__ . "/../../backend/helpers/patient-appointment-helper.php";
+
+// 8. Fetch patient-specific information
 $patientBirthdate = '';
 $patientGender = '';
+$patientAppointmentStats = ['upcoming' => 0, 'completed' => 0, 'this_month' => 0];
+$upcomingAppointments = [];
+$completedAppointments = [];
 
 if (isset($_SESSION['user_id'])) {
     $userId = $_SESSION['user_id'];
@@ -32,6 +38,15 @@ if (isset($_SESSION['user_id'])) {
         $patientBirthdate = $patient['birthdate'] ?? '';
         $patientGender = $patient['gender'] ?? '';
     }
+    
+    // Fetch patient appointment statistics
+    $patientAppointmentStats = getPatientAppointmentStats($userId);
+    
+    // Fetch upcoming appointments
+    $upcomingAppointments = getPatientAppointments($userId, 'Scheduled');
+    
+    // Fetch completed appointments for medical history
+    $completedAppointments = getPatientAppointments($userId, 'Completed');
 }
 
 ?>
@@ -126,7 +141,7 @@ if (isset($_SESSION['user_id'])) {
                                     <div class="flex items-center justify-between">
                                         <div>
                                             <p class="text-sm font-medium text-gray-600">Upcoming</p>
-                                            <p class="text-2xl font-bold">2</p>
+                                            <p class="text-2xl font-bold"><?= $patientAppointmentStats['upcoming'] ?></p>
                                         </div>
                                         <i data-lucide="calendar" class="h-8 w-8 text-blue-600"></i>
                                     </div>
@@ -136,7 +151,7 @@ if (isset($_SESSION['user_id'])) {
                                     <div class="flex items-center justify-between">
                                         <div>
                                             <p class="text-sm font-medium text-gray-600">Completed</p>
-                                            <p class="text-2xl font-bold">3</p>
+                                            <p class="text-2xl font-bold"><?= $patientAppointmentStats['completed'] ?></p>
                                         </div>
                                         <i data-lucide="file-text" class="h-8 w-8 text-green-600"></i>
                                     </div>
@@ -146,7 +161,7 @@ if (isset($_SESSION['user_id'])) {
                                     <div class="flex items-center justify-between">
                                         <div>
                                             <p class="text-sm font-medium text-gray-600">This Month</p>
-                                            <p class="text-2xl font-bold">2</p>
+                                            <p class="text-2xl font-bold"><?= $patientAppointmentStats['this_month'] ?></p>
                                         </div>
                                         <i data-lucide="clock" class="h-8 w-8 text-purple-600"></i>
                                     </div>
@@ -157,80 +172,62 @@ if (isset($_SESSION['user_id'])) {
                             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                                 <!-- Upcoming Appointments -->
                                 <div class="glass-card rounded-xl p-6">
-                                    <div class="mb-4 flex items-center justify-between">
+                                    <div class="mb-4 flex items-center justify-between cursor-not-allowed">
                                         <h3 class="text-xl font-bold">Upcoming Appointments</h3>
-                                        <button class="inline-flex items-center justify-center h-9 rounded-md border border-solid border-transparent transition-colors bg-primary px-3 text-sm font-medium text-white hover:bg-medical-400 cursor-pointer gap-2 whitespace-nowrap">
+                                        <button class="inline-flex items-center justify-center h-9 rounded-md border border-solid border-transparent transition-colors bg-gray-400 px-3 text-sm font-medium text-white opacity-50 pointer-events-none cursor-not-allowed gap-2 whitespace-nowrap" title="This action is currently disabled for patient view.">
                                             <i data-lucide="plus" class="mr-2 h-4 w-4"></i>
                                             Book New
                                         </button>
                                     </div>
 
                                     <div class="flex flex-col gap-3">
-                                        <!-- Appointment Card 1 -->
-                                        <div class="rounded-lg bg-gray-50 p-4">
-                                            <div class="mb-3 flex items-start justify-between">
-                                                <div>
-                                                    <p class="font-medium">Dr. Sarah Johnson</p>
-                                                    <p class="text-sm text-gray-600">Cardiology</p>
-                                                    <p class="text-sm text-gray-600">Al Noor Medical Center</p>
-                                                    <p class="mt-1 text-sm font-medium">2025-07-08 at 10:00</p>
-                                                </div>
-                                                <div class="inline-flex items-center rounded-full border border-transparent bg-green-100 px-2.5 py-0.5 text-xs font-semibold text-green-800 transition-colors hover:bg-primary/80">
-                                                    confirmed
-                                                </div>
+                                        <?php if (empty($upcomingAppointments)): ?>
+                                            <div class="rounded-lg bg-gray-50 p-4 text-center">
+                                                <p class="text-gray-500">No upcoming appointments</p>
                                             </div>
-                                            <div class="flex gap-2">
-                                                <button class="inline-flex items-center justify-center h-9 rounded-md border border-solid border-input bg-background px-3 text-sm font-medium hover:bg-accent hover:text-medical-500 cursor-pointer gap-2 whitespace-nowrap transition-200">
-                                                    <i data-lucide="square-pen" class="mr-1 h-4 w-4"></i>
-                                                    Reschedule
-                                                </button>
-                                                <button class="inline-flex items-center justify-center h-9 rounded-md border border-solid border-red-200 bg-background px-3 text-sm font-medium text-red-600 hover:bg-red-50 cursor-pointer gap-2 whitespace-nowrap transition-200">
-                                                    <i data-lucide="x" class="mr-1 h-4 w-4"></i>
-                                                    Cancel
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <!-- Appointment Card 2 -->
-                                        <div class="rounded-lg bg-gray-50 p-4">
-                                            <div class="mb-3 flex items-start justify-between">
-                                                <div>
-                                                    <p class="font-medium">Dr. Ahmed Hassan</p>
-                                                    <p class="text-sm text-gray-600">General Medicine</p>
-                                                    <p class="text-sm text-gray-600">City Hospital</p>
-                                                    <p class="mt-1 text-sm font-medium">2025-07-12 at 14:30</p>
+                                        <?php else: ?>
+                                            <?php foreach (array_slice($upcomingAppointments, 0, 2) as $appointment): ?>
+                                                <div class="rounded-lg bg-gray-50 p-4">
+                                                    <div class="mb-3 flex items-start justify-between">
+                                                        <div>
+                                                            <p class="font-medium"><?= htmlspecialchars($appointment['doctor_name'] ?? 'Doctor not assigned') ?></p>
+                                                            <p class="text-sm text-gray-600"><?= htmlspecialchars($appointment['specialty_name'] ?? 'Specialty not assigned') ?></p>
+                                                            <p class="text-sm text-gray-600"><?= htmlspecialchars($appointment['hospital_name'] ?? 'Hospital not assigned') ?></p>
+                                                            <p class="mt-1 text-sm font-medium"><?= formatAppointmentDateTime($appointment['appointment_date']) ?></p>
+                                                        </div>
+                                                        <div class="inline-flex items-center rounded-full border border-transparent px-2.5 py-0.5 text-xs font-semibold transition-colors <?= getAppointmentStatusClasses($appointment['status']) ?>">
+                                                            <?= htmlspecialchars($appointment['status']) ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex gap-2 cursor-not-allowed">
+                                                        <button class="inline-flex items-center justify-center h-9 rounded-md border border-solid border-input bg-background px-3 text-sm font-medium opacity-50 pointer-events-none cursor-not-allowed gap-2 whitespace-nowrap transition-200" title="This action is currently disabled for patient view.">
+                                                            <i data-lucide="square-pen" class="mr-1 h-4 w-4"></i>
+                                                            Reschedule
+                                                        </button>
+                                                        <button class="inline-flex items-center justify-center h-9 rounded-md border border-solid border-red-200 bg-background px-3 text-sm font-medium text-red-600 opacity-50 pointer-events-none cursor-not-allowed gap-2 whitespace-nowrap transition-200" title="This action is currently disabled for patient view.">
+                                                            <i data-lucide="x" class="mr-1 h-4 w-4"></i>
+                                                            Cancel
+                                                        </button>
+                                                    </div>
                                                 </div>
-                                                <div class="inline-flex items-center rounded-full border border-transparent bg-blue-100 px-2.5 py-0.5 text-xs font-semibold text-blue-800 transition-colors hover:bg-primary/80">
-                                                    scheduled
-                                                </div>
-                                            </div>
-                                            <div class="flex gap-2">
-                                                <button class="inline-flex items-center justify-center h-9 rounded-md border border-solid border-input bg-background px-3 text-sm font-medium hover:bg-accent hover:text-medical-500 cursor-pointer gap-2 whitespace-nowrap transition-colors transition-200">
-                                                    <i data-lucide="square-pen" class="mr-1 h-4 w-4"></i>
-                                                    Reschedule
-                                                </button>
-                                                <button class="inline-flex items-center justify-center h-9 rounded-md border border-solid border-red-200 bg-background px-3 text-sm font-medium text-red-600 hover:bg-red-50 cursor-pointer gap-2 whitespace-nowrap transition-colors transition-200">
-                                                    <i data-lucide="x" class="mr-1 h-4 w-4"></i>
-                                                    Cancel
-                                                </button>
-                                            </div>
-                                        </div>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
 
                                 <!-- Quick Actions -->
-                                <div class="glass-card rounded-xl p-6">
+                                <div class="glass-card rounded-xl p-6 cursor-not-allowed">
                                     <h3 class="mb-4 text-xl font-bold">Quick Actions</h3>
                                     <div class="flex flex-col gap-3">
-                                        <button class="inline-flex w-full items-center justify-start h-10 rounded-md border border-solid border-input bg-background px-4 py-2 text-sm font-medium hover:bg-accent hover:text-medical-500 cursor-pointer gap-2 whitespace-nowrap transition-colors transition-200">
+                                        <button class="inline-flex w-full items-center justify-start h-10 rounded-md border border-solid border-input bg-background px-4 py-2 text-sm font-medium opacity-50 pointer-events-none cursor-not-allowed gap-2 whitespace-nowrap transition-colors transition-200" title="This action is currently disabled for patient view.">
                                             <i data-lucide="calendar" class="mr-2 h-4 w-4"></i>
                                             Book New Appointment
                                         </button>
-                                        <button class="inline-flex w-full items-center justify-start h-10 rounded-md border border-solid border-input bg-background px-4 py-2 text-sm font-medium hover:bg-accent hover:text-medical-500 cursor-pointer gap-2 whitespace-nowrap transition-colors transition-200">
+                                        <button class="inline-flex w-full items-center justify-start h-10 rounded-md border border-solid border-input bg-background px-4 py-2 text-sm font-medium opacity-50 pointer-events-none cursor-not-allowed gap-2 whitespace-nowrap transition-colors transition-200" title="This action is currently disabled for patient view.">
                                             <i data-lucide="file-text" class="mr-2 h-4 w-4"></i>
                                             View Test Results
                                         </button>
-                                        <button class="inline-flex w-full items-center justify-start h-10 rounded-md border border-solid border-input bg-background px-4 py-2 text-sm font-medium hover:bg-accent hover:text-medical-500 cursor-pointer gap-2 whitespace-nowrap transition-colors transition-200">
+                                        <button class="inline-flex w-full items-center justify-start h-10 rounded-md border border-solid border-input bg-background px-4 py-2 text-sm font-medium opacity-50 pointer-events-none cursor-not-allowed gap-2 whitespace-nowrap transition-colors transition-200" title="This action is currently disabled for patient view.">
                                             <i data-lucide="clock" class="mr-2 h-4 w-4"></i>
                                             Request Prescription Refill
                                         </button>
@@ -240,51 +237,31 @@ if (isset($_SESSION['user_id'])) {
                         </div>
 
                         <!-- Medical History Section -->
-                        <div data-section="medical-history" class="mt-2">
+                        <div data-section="medical-history" class="hidden mt-2">
                             <div class="glass-card rounded-xl p-6">
                                 <h3 class="mb-4 text-xl font-bold">Appointment History</h3>
                                 <div class="flex flex-col gap-3">
-                                    <div class="flex items-center justify-between rounded-lg bg-gray-50 p-4">
-                                        <div>
-                                            <p class="font-medium">Dr. Sarah Johnson</p>
-                                            <p class="mt-1 text-sm text-gray-600">Cardiology</p>
-                                            <p class="mt-1 text-sm text-gray-500">ECG normal, continue medication</p>
+                                    <?php if (empty($completedAppointments)): ?>
+                                        <div class="rounded-lg bg-gray-50 p-4 text-center">
+                                            <p class="text-gray-500">No completed appointments found</p>
                                         </div>
-                                        <div class="text-right">
-                                            <p class="font-medium">2025-06-15</p>
-                                            <div class="inline-flex items-center rounded-full border border-transparent bg-purple-100 px-2.5 py-0.5 text-xs font-semibold text-purple-800 transition-colors hover:bg-primary/80">
-                                                completed
+                                    <?php else: ?>
+                                        <?php foreach ($completedAppointments as $appointment): ?>
+                                            <div class="flex items-center justify-between rounded-lg bg-gray-50 p-4">
+                                                <div>
+                                                    <p class="font-medium"><?= htmlspecialchars($appointment['doctor_name'] ?? 'Doctor not assigned') ?></p>
+                                                    <p class="mt-1 text-sm text-gray-600"><?= htmlspecialchars($appointment['specialty_name'] ?? 'Specialty not assigned') ?></p>
+                                                    <p class="mt-1 text-sm text-gray-500"><?= htmlspecialchars($appointment['notes'] ?? 'No notes available') ?></p>
+                                                </div>
+                                                <div class="text-right">
+                                                    <p class="font-medium"><?= date('Y-m-d', strtotime($appointment['appointment_date'])) ?></p>
+                                                    <div class="inline-flex items-center rounded-full border border-transparent px-2.5 py-0.5 text-xs font-semibold transition-colors <?= getAppointmentStatusClasses($appointment['status']) ?>">
+                                                        <?= htmlspecialchars($appointment['status']) ?>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="flex items-center justify-between rounded-lg bg-gray-50 p-4">
-                                        <div>
-                                            <p class="font-medium">Dr. Fatima Al-Zahra</p>
-                                            <p class="mt-1 text-sm text-gray-600">Dermatology</p>
-                                            <p class="mt-1 text-sm text-gray-500">Skin condition treated successfully</p>
-                                        </div>
-                                        <div class="text-right">
-                                            <p class="font-medium">2025-05-20</p>
-                                            <div class="inline-flex items-center rounded-full border border-transparent bg-purple-100 px-2.5 py-0.5 text-xs font-semibold text-purple-800 transition-colors">
-                                                completed
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="flex items-center justify-between rounded-lg bg-gray-50 p-4">
-                                        <div>
-                                            <p class="font-medium">Dr. Mohammed Ali</p>
-                                            <p class="mt-1 text-sm text-gray-600">Orthopedics</p>
-                                            <p class="mt-1 text-sm text-gray-500">Joint pain assessment, recommended PT</p>
-                                        </div>
-                                        <div class="text-right">
-                                            <p class="font-medium">2025-04-10</p>
-                                            <div class="inline-flex items-center rounded-full border border-transparent bg-purple-100 px-2.5 py-0.5 text-xs font-semibold text-purple-800 transition-colors">
-                                                completed
-                                            </div>
-                                        </div>
-                                    </div>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
@@ -372,60 +349,7 @@ if (isset($_SESSION['user_id'])) {
                         </div>
                     </div>
 
-                    <!-- Medical history section showing past appointment details -->
-                    <div data-section="medical-history" class="mt-2">
-                        <div class="glass-card rounded-xl p-6">
-                            <h3 class="mb-4 text-xl font-bold">Appointment History</h3>
-                            <div class="flex flex-col gap-3">
 
-                                <div class="flex items-center justify-between rounded-lg bg-gray-50 p-4">
-                                    <div>
-                                        <p class="font-medium">Dr. Sarah Johnson</p>
-                                        <p class="mt-1 text-sm text-gray-600">Cardiology</p>
-                                        <p class="mt-1 text-sm text-gray-500">ECG normal, continue medication</p>
-                                    </div>
-                                    <div class="text-right">
-                                        <p class="font-medium">2025-06-15</p>
-                                        <div
-                                            class="inline-flex items-center rounded-full border border-transparent bg-purple-100 px-2.5 py-0.5 text-xs font-semibold text-purple-800 transition-colors hover:bg-primary/80">
-                                            completed
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="flex items-center justify-between rounded-lg bg-gray-50 p-4">
-                                    <div>
-                                        <p class="font-medium">Dr. Fatima Al-Zahra</p>
-                                        <p class="mt-1 text-sm text-gray-600">Dermatology</p>
-                                        <p class="mt-1 text-sm text-gray-500">Skin condition treated successfully</p>
-                                    </div>
-                                    <div class="text-right">
-                                        <p class="font-medium">2025-05-20</p>
-                                        <div
-                                            class="inline-flex items-center rounded-full border border-transparent bg-purple-100 px-2.5 py-0.5 text-xs font-semibold text-purple-800 transition-colors">
-                                            completed
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="flex items-center justify-between rounded-lg bg-gray-50 p-4">
-                                    <div>
-                                        <p class="font-medium">Dr. Mohammed Ali</p>
-                                        <p class="mt-1 text-sm text-gray-600">Orthopedics</p>
-                                        <p class="mt-1 text-sm text-gray-500">Joint pain assessment, recommended PT</p>
-                                    </div>
-                                    <div class="text-right">
-                                        <p class="font-medium">2025-04-10</p>
-                                        <div
-                                            class="inline-flex items-center rounded-full border border-transparent bg-purple-100 px-2.5 py-0.5 text-xs font-semibold text-purple-800 transition-colors">
-                                            completed
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
             </div>
