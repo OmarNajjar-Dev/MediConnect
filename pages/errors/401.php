@@ -47,7 +47,7 @@ require_once __DIR__ . "/../../backend/helpers/avatar-helper.php";
     <?php require_once './../../includes/header.php'; ?>
 
     <!-- Unauthorized Access Page Wrapper -->
-    <main class="overflow-hidden flex justify-center flex-grow bg-gray-50 pt-20 pb-16">
+    <main id="unauthorized-error" class="overflow-hidden flex justify-center flex-grow bg-gray-50 pt-20 pb-16">
         <!-- Centered Content Container -->
         <div class="max-w-lg w-full flex flex-col gap-8 text-center animate-fade-in pt-20 pb-16">
 

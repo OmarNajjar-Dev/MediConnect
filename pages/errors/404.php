@@ -47,10 +47,10 @@ require_once __DIR__ . "/../../backend/helpers/avatar-helper.php";
     <?php require_once './../../includes/header.php'; ?>
 
     <!-- 404 Page Not Found Wrapper -->
-    <main class="overflow-hidden pt-20 flex-grow bg-gray-50">
+    <main id="not-found-error" class="overflow-hidden pt-20 flex-grow">
 
         <!-- Fullscreen Centered Container -->
-        <div class="min-h-screen flex items-center justify-center bg-gray-50">
+        <div class="min-h-screen flex items-center justify-center">
             <div class="text-center px-4 max-w-md">
 
                 <!-- Icon Section -->

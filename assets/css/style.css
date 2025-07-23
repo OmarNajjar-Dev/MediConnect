@@ -74,6 +74,22 @@
   background-image: linear-gradient(#e6f5f4b3, #ffffffe6);
 }
 
+#unauthorized-error {
+  background-image: linear-gradient(#f9fafb, #ecfdf5);
+}
+
+#forbidden-error {
+  background-image: linear-gradient(#f9fafb, #fff7ed);
+}
+
+#not-found-error {
+  background-image: linear-gradient(#f9fafb, #ecfdf5);
+}
+
+#server-error {
+  background-image: linear-gradient(#f9fafb, #fef2f2);
+}
+
 /* =============================
    Cards & Components Styling
    ============================= */
