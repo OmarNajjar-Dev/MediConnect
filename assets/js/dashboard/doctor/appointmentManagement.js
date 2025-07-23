@@ -21,7 +21,7 @@ function setupAppointmentButtons() {
 async function refreshAppointmentStats() {
   try {
     const response = await fetch(
-      "/mediconnect/backend/api/get-doctor-appointments.php?date=" +
+      "/mediconnect/backend/api/doctors/get-doctor-appointments.php?date=" +
         new Date().toISOString().split("T")[0]
     );
     const data = await response.json();

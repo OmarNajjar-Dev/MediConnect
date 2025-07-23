@@ -44,7 +44,7 @@ if (isset($_SESSION['user_id'])) {
         $doctorHospital = $doctor['hospital_name'] ?? 'Hospital not assigned';
         $doctorSpecialty = $doctor['specialty_name'] ?? 'Specialty not assigned';
     }
-    
+
     // Fetch upcoming appointments and stats (next 7 days)
     if ($doctorId) {
         $today = date('Y-m-d');
@@ -68,20 +68,30 @@ if (isset($_SESSION['user_id'])) {
     <!-- Lucide Icons -->
     <?php require_once __DIR__ . '/../../backend/config/apis.php'; ?>
     <script src="<?= LUCIDE_CDN_URL ?>"></script>
-    
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="/mediconnect/assets/css/base.css" />
-    <link rel="stylesheet" href="/mediconnect/assets/css/colors.css" />
-    <link rel="stylesheet" href="/mediconnect/assets/css/typography.css" />
-    <link rel="stylesheet" href="/mediconnect/assets/css/spacing.min.css" />
-    <link rel="stylesheet" href="/mediconnect/assets/css/sizing.min.css" />
-    <link rel="stylesheet" href="/mediconnect/assets/css/borders.css" />
-    <link rel="stylesheet" href="/mediconnect/assets/css/ring.css">
-    <link rel="stylesheet" href="/mediconnect/assets/css/layout.css" />
-    <link rel="stylesheet" href="/mediconnect/assets/css/animations.css" />
-    <link rel="stylesheet" href="/mediconnect/assets/css/style.css" />
-    <link rel="stylesheet" href="/mediconnect/assets/css/responsive.css" />
-    <link rel="stylesheet" href="/mediconnect/assets/css/dashboard.css">
+
+    <!-- Base Styles -->
+    <link rel="stylesheet" href="/mediconnect/assets/css/base/base.css" />
+    <link rel="stylesheet" href="/mediconnect/assets/css/base/typography.css" />
+
+    <!-- Design System -->
+    <link rel="stylesheet" href="/mediconnect/assets/css/utils/colors.css" />
+    <link rel="stylesheet" href="/mediconnect/assets/css/utils/spacing.min.css" />
+    <link rel="stylesheet" href="/mediconnect/assets/css/utils/sizing.min.css" />
+    <link rel="stylesheet" href="/mediconnect/assets/css/utils/borders.css" />
+    <link rel="stylesheet" href="/mediconnect/assets/css/utils/ring.css" />
+
+    <!-- Layout & Components -->
+    <link rel="stylesheet" href="/mediconnect/assets/css/layout/layout.css" />
+    <link rel="stylesheet" href="/mediconnect/assets/css/components/animations.css" />
+
+    <!-- Page Specific Styles -->
+    <link rel="stylesheet" href="/mediconnect/assets/css/pages/dashboard.css" />
+
+    <!-- Custom Styles (Overrides) -->
+    <link rel="stylesheet" href="/mediconnect/assets/css/base/style.css" />
+
+    <!-- Responsive Design -->
+    <link rel="stylesheet" href="/mediconnect/assets/css/layout/responsive.css" />
 
     <!-- Page Title -->
     <title>MediConnect - Bridging Healthcare & Technology</title>
@@ -217,15 +227,15 @@ if (isset($_SESSION['user_id'])) {
                                                     <?= getAppointmentStatusText($appointment['status']) ?>
                                                 </span>
                                             </div>
-                                                                                <div class="flex flex-col md:flex-row gap-2 w-full md:w-auto">
-                                        <button class="w-full md:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium border border-input border-solid bg-gray-100 text-gray-500 h-9 rounded-md px-3 cursor-not-allowed opacity-50" title="Update functionality coming soon">
-                                            <i data-lucide="square-pen" class="h-4 w-4 mr-1"></i>
-                                            Update
-                                        </button>
-                                        <button class="w-full md:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm border border-transparent font-medium bg-gray-300 text-gray-500 h-9 rounded-md px-3 cursor-not-allowed opacity-50" title="Complete functionality coming soon">
-                                            Complete
-                                        </button>
-                                    </div>
+                                            <div class="flex flex-col md:flex-row gap-2 w-full md:w-auto">
+                                                <button class="w-full md:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium border border-input border-solid bg-gray-100 text-gray-500 h-9 rounded-md px-3 cursor-not-allowed opacity-50" title="Update functionality coming soon">
+                                                    <i data-lucide="square-pen" class="h-4 w-4 mr-1"></i>
+                                                    Update
+                                                </button>
+                                                <button class="w-full md:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm border border-transparent font-medium bg-gray-300 text-gray-500 h-9 rounded-md px-3 cursor-not-allowed opacity-50" title="Complete functionality coming soon">
+                                                    Complete
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 <?php endforeach; ?>

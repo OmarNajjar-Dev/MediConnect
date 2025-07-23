@@ -17,7 +17,7 @@ export async function checkExistingEmergencyRequest() {
       );
 
       const response = await fetch(
-        `/mediconnect/backend/api/get-emergency-status.php?request_id=${storedRequestId}`
+        `/mediconnect/backend/api/emergency/get-emergency-status.php?request_id=${storedRequestId}`
       );
       const data = await response.json();
 

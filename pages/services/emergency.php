@@ -29,18 +29,26 @@ require_once __DIR__ . "/../../backend/helpers/avatar-helper.php";
     <?php require_once __DIR__ . '/../../backend/config/apis.php'; ?>
     <script src="<?= LUCIDE_CDN_URL ?>"></script>
 
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="/mediconnect/assets/css/base.css" />
-    <link rel="stylesheet" href="/mediconnect/assets/css/colors.css" />
-    <link rel="stylesheet" href="/mediconnect/assets/css/typography.css" />
-    <link rel="stylesheet" href="/mediconnect/assets/css/spacing.min.css" />
-    <link rel="stylesheet" href="/mediconnect/assets/css/sizing.min.css" />
-    <link rel="stylesheet" href="/mediconnect/assets/css/borders.css" />
-    <link rel="stylesheet" href="/mediconnect/assets/css/layout.css" />
-    <link rel="stylesheet" href="/mediconnect/assets/css/animations.css" />
-    <link rel="stylesheet" href="/mediconnect/assets/css/components.css" />
-    <link rel="stylesheet" href="/mediconnect/assets/css/style.css" />
-    <link rel="stylesheet" href="/mediconnect/assets/css/responsive.css" />
+    <!-- Base Styles -->
+    <link rel="stylesheet" href="/mediconnect/assets/css/base/base.css" />
+    <link rel="stylesheet" href="/mediconnect/assets/css/base/typography.css" />
+    
+    <!-- Design System -->
+    <link rel="stylesheet" href="/mediconnect/assets/css/utils/colors.css" />
+    <link rel="stylesheet" href="/mediconnect/assets/css/utils/spacing.min.css" />
+    <link rel="stylesheet" href="/mediconnect/assets/css/utils/sizing.min.css" />
+    <link rel="stylesheet" href="/mediconnect/assets/css/utils/borders.css" />
+    
+    <!-- Layout & Components -->
+    <link rel="stylesheet" href="/mediconnect/assets/css/layout/layout.css" />
+    <link rel="stylesheet" href="/mediconnect/assets/css/components/animations.css" />
+    <link rel="stylesheet" href="/mediconnect/assets/css/components/components.css" />
+    
+    <!-- Custom Styles (Overrides) -->
+    <link rel="stylesheet" href="/mediconnect/assets/css/base/style.css" />
+    
+    <!-- Responsive Design -->
+    <link rel="stylesheet" href="/mediconnect/assets/css/layout/responsive.css" />
 
     <!-- Page Title -->
     <title>MediConnect - Bridging Healthcare & Technology</title>

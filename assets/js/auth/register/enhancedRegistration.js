@@ -94,7 +94,7 @@ function setupRoleBasedFields() {
     try {
       console.log("Loading hospitals...");
       const response = await fetch(
-        "/mediconnect/backend/api/get-hospitals.php"
+        "/mediconnect/backend/api/hospitals/get-hospitals.php"
       );
       console.log("Hospitals response status:", response.status);
       const data = await response.json();
@@ -156,7 +156,7 @@ function setupRoleBasedFields() {
     try {
       console.log("Loading specialties...");
       const response = await fetch(
-        "/mediconnect/backend/api/get-specialties.php"
+        "/mediconnect/backend/api/utils/get-specialties.php"
       );
       console.log("Specialties response status:", response.status);
       const data = await response.json();
@@ -302,7 +302,7 @@ function setupGeolocationDetection() {
     try {
       // Use the existing get-location.php API
       const response = await fetch(
-        `/mediconnect/backend/api/get-location.php?lat=${latitude}&lon=${longitude}`,
+        `/mediconnect/backend/api/utils/get-location.php?lat=${latitude}&lon=${longitude}`,
         {
           method: "GET",
           headers: {

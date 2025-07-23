@@ -30,7 +30,7 @@ export function startCountdown(minutes) {
           console.log("Marking emergency request as completed...");
 
           const res = await fetch(
-            "/mediconnect/backend/api/mark-completed.php",
+            "/mediconnect/backend/api/emergency/mark-completed.php",
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },
@@ -81,7 +81,7 @@ export async function markRequestAsCompleted() {
   if (!currentRequestId) return;
 
   try {
-    const res = await fetch("/mediconnect/backend/api/mark-completed.php", {
+    const res = await fetch("/mediconnect/backend/api/emergency/mark-completed.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ request_id: currentRequestId }),

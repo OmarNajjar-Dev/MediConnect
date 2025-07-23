@@ -1,6 +1,6 @@
 export async function renderDoctors(container) {
   try {
-    const res = await fetch("/mediconnect/backend/api/get-doctors.php");
+    const res = await fetch("/mediconnect/backend/api/doctors/get-doctors.php");
     const response = await res.json();
 
     if (!response.success) {

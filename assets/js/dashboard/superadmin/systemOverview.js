@@ -33,7 +33,7 @@ class SystemOverview {
 
   async loadUserStats() {
     try {
-      const response = await fetch("/mediconnect/backend/api/get-users.php");
+      const response = await fetch("/mediconnect/backend/api/users/get-users.php");
       const data = await response.json();
 
       if (data.success) {
@@ -47,7 +47,7 @@ class SystemOverview {
   async loadHospitalStats() {
     try {
       const response = await fetch(
-        "/mediconnect/backend/api/get-hospitals.php"
+        "/mediconnect/backend/api/hospitals/get-hospitals.php"
       );
       const data = await response.json();
 
@@ -75,7 +75,7 @@ class SystemOverview {
 
   async loadDoctorStats() {
     try {
-      const response = await fetch("/mediconnect/backend/api/get-doctors.php");
+      const response = await fetch("/mediconnect/backend/api/doctors/get-doctors.php");
       const data = await response.json();
 
       if (data.success) {

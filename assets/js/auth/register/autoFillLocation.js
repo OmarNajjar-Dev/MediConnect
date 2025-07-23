@@ -37,7 +37,7 @@ export async function autoFillLocation() {
 
     // Call simple backend API
     const response = await fetch(
-      `/mediconnect/backend/api/get-location.php?lat=${lat}&lon=${lon}`,
+      `/mediconnect/backend/api/utils/get-location.php?lat=${lat}&lon=${lon}`,
       {
         method: "GET",
         headers: {

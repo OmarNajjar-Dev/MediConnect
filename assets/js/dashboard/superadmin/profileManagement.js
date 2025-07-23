@@ -222,7 +222,7 @@ class ProfileManager {
       formData.append("profile_image", this.currentImageFile);
 
       const response = await fetch(
-        "/mediconnect/backend/api/upload-profile-image.php",
+        "/mediconnect/backend/api/common/upload-profile-image.php",
         {
           method: "POST",
           body: formData,
@@ -321,7 +321,7 @@ class ProfileManager {
 
     try {
       const response = await fetch(
-        "/mediconnect/backend/api/update-profile.php",
+        "/mediconnect/backend/api/common/update-profile.php",
         {
           method: "POST",
           headers: {

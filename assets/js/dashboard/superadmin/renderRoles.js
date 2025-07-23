@@ -1,7 +1,7 @@
 // 1. Fetch roles from the backend
 async function fetchRoles() {
   try {
-    const response = await fetch("/mediconnect/backend/api/get-roles.php");
+    const response = await fetch("/mediconnect/backend/api/utils/get-roles.php");
     const roles = await response.json();
     return roles;
   } catch (error) {

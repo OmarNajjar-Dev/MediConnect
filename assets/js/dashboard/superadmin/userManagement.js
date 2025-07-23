@@ -37,7 +37,7 @@ class UserManagement {
 
   async loadUsers() {
     try {
-      const response = await fetch("/mediconnect/backend/api/get-users.php");
+      const response = await fetch("/mediconnect/backend/api/users/get-users.php");
       const data = await response.json();
 
       if (data.success) {
@@ -56,7 +56,7 @@ class UserManagement {
 
   async loadRoles() {
     try {
-      const response = await fetch("/mediconnect/backend/api/get-roles.php");
+      const response = await fetch("/mediconnect/backend/api/utils/get-roles.php");
       const roles = await response.json();
       this.roles = roles;
       this.populateRoleDropdowns();
@@ -68,7 +68,7 @@ class UserManagement {
   async loadHospitals() {
     try {
       const response = await fetch(
-        "/mediconnect/backend/api/get-hospitals.php"
+        "/mediconnect/backend/api/hospitals/get-hospitals.php"
       );
       const data = await response.json();
 
@@ -91,7 +91,7 @@ class UserManagement {
   async loadSpecialties() {
     try {
       const response = await fetch(
-        "/mediconnect/backend/api/get-specialties.php"
+        "/mediconnect/backend/api/utils/get-specialties.php"
       );
       const data = await response.json();
 
@@ -459,8 +459,8 @@ class UserManagement {
       }
 
       const url = this.currentEditingUser
-        ? "/mediconnect/backend/api/update-user.php"
-        : "/mediconnect/backend/api/create-user.php";
+        ? "/mediconnect/backend/api/users/update-user.php"
+        : "/mediconnect/backend/api/users/create-user.php";
 
       const method = this.currentEditingUser ? "PUT" : "POST";
 
@@ -506,7 +506,7 @@ class UserManagement {
     }
 
     try {
-      const response = await fetch("/mediconnect/backend/api/delete-user.php", {
+      const response = await fetch("/mediconnect/backend/api/users/delete-user.php", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
