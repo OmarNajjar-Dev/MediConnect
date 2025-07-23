@@ -16,6 +16,7 @@ require_once __DIR__ . "/../../backend/middleware/only-patient.php";
 
 // 5. Include avatar helper
 require_once __DIR__ . "/../../backend/helpers/avatar-helper.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +31,7 @@ require_once __DIR__ . "/../../backend/helpers/avatar-helper.php";
     <!-- Lucide Icons -->
     <?php require_once __DIR__ . '/../../backend/config/apis.php'; ?>
     <script src="<?= LUCIDE_CDN_URL ?>"></script>
-    
+
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/mediconnect/assets/css/base.css" />
     <link rel="stylesheet" href="/mediconnect/assets/css/colors.css" />
