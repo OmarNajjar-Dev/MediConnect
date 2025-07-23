@@ -9,13 +9,20 @@ require_once __DIR__ . "/../../backend/middleware/protect-dashboard.php";
 // 6. Include avatar helper
 require_once __DIR__ . "/../../backend/helpers/avatar-helper.php";
 
-// 7. Fetch doctor-specific information
+// 7. Include doctor appointment helper
+require_once __DIR__ . "/../../backend/helpers/doctor-appointment-helper.php";
+
+// 8. Fetch doctor-specific information
 $doctorBio = '';
 $doctorHospital = '';
 $doctorSpecialty = '';
+$doctorId = null;
+$todayAppointments = [];
+$todayStats = [];
 
 if (isset($_SESSION['user_id'])) {
     $userId = $_SESSION['user_id'];
+    $doctorId = getDoctorIdFromUserId($userId);
 
     // Fetch doctor profile data
     $stmt = $conn->prepare("
@@ -36,6 +43,14 @@ if (isset($_SESSION['user_id'])) {
         $doctorBio = $doctor['bio'] ?? '';
         $doctorHospital = $doctor['hospital_name'] ?? 'Hospital not assigned';
         $doctorSpecialty = $doctor['specialty_name'] ?? 'Specialty not assigned';
+    }
+    
+    // Fetch upcoming appointments and stats (next 7 days)
+    if ($doctorId) {
+        $today = date('Y-m-d');
+        $nextWeek = date('Y-m-d', strtotime('+7 days'));
+        $todayAppointments = getDoctorAppointments($doctorId, null, null); // Get all upcoming appointments
+        $todayStats = getDoctorAppointmentStats($doctorId, $today);
     }
 }
 
@@ -134,7 +149,7 @@ if (isset($_SESSION['user_id'])) {
                                     <div class="flex items-center justify-between">
                                         <div>
                                             <p class="text-sm font-medium text-gray-600">Today's Total</p>
-                                            <p class="text-2xl font-bold">4</p>
+                                            <p class="text-2xl font-bold"><?= $todayStats['total'] ?? 0 ?></p>
                                         </div>
                                         <i data-lucide="calendar" class="h-8 w-8 text-blue-600"></i>
                                     </div>
@@ -143,8 +158,8 @@ if (isset($_SESSION['user_id'])) {
                                 <div class="glass-card rounded-xl p-6">
                                     <div class="flex items-center justify-between">
                                         <div>
-                                            <p class="text-sm font-medium text-gray-600">Pending</p>
-                                            <p class="text-2xl font-bold">2</p>
+                                            <p class="text-sm font-medium text-gray-600">Scheduled</p>
+                                            <p class="text-2xl font-bold"><?= $todayStats['scheduled'] ?? 0 ?></p>
                                         </div>
                                         <i data-lucide="clock" class="h-8 w-8 text-orange-600"></i>
                                     </div>
@@ -154,7 +169,7 @@ if (isset($_SESSION['user_id'])) {
                                     <div class="flex items-center justify-between">
                                         <div>
                                             <p class="text-sm font-medium text-gray-600">Completed</p>
-                                            <p class="text-2xl font-bold">0</p>
+                                            <p class="text-2xl font-bold"><?= $todayStats['completed'] ?? 0 ?></p>
                                         </div>
                                         <i data-lucide="file-text" class="h-8 w-8 text-green-600"></i>
                                     </div>
@@ -163,201 +178,168 @@ if (isset($_SESSION['user_id'])) {
                                 <div class="glass-card rounded-xl p-6">
                                     <div class="flex items-center justify-between">
                                         <div>
-                                            <p class="text-sm font-medium text-gray-600">In Progress</p>
-                                            <p class="text-2xl font-bold">1</p>
+                                            <p class="text-sm font-medium text-gray-600">Cancelled</p>
+                                            <p class="text-2xl font-bold"><?= $todayStats['cancelled'] ?? 0 ?></p>
                                         </div>
-                                        <i data-lucide="user" class="h-8 w-8 text-purple-600"></i>
+                                        <i data-lucide="x-circle" class="h-8 w-8 text-red-600"></i>
                                     </div>
                                 </div>
 
                             </div>
                         </div>
 
-                        <h3 class="text-xl font-bold mb-4">Today's Appointments</h3>
-                        <div class="flex flex-col gap-3">
-
-                            <!-- Appointment 1 -->
-                            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 p-4 bg-gray-50 rounded-lg">
-                                <!-- Left Side: Patient Info -->
-                                <div class="flex items-start gap-4 flex-1">
-                                    <div class="w-2 h-2 rounded-full bg-info mt-1"></div>
-                                    <div>
-                                        <p class="font-medium">John Smith</p>
-                                        <p class="text-sm text-gray-600">consultation • 30 min</p>
-                                        <p class="text-sm text-gray-500">Regular checkup - chest pain complaints</p>
-                                    </div>
+                        <h3 class="text-xl font-bold mb-4">Upcoming Appointments</h3>
+                        <div id="appointments-container" class="flex flex-col gap-3">
+                            <?php if (empty($todayAppointments)): ?>
+                                <div class="text-center py-8 text-gray-500">
+                                    <i data-lucide="calendar-x" class="h-12 w-12 mx-auto mb-4 text-gray-300"></i>
+                                    <p class="text-lg font-medium">No upcoming appointments</p>
+                                    <p class="text-sm">You have no scheduled appointments in the next 7 days.</p>
                                 </div>
+                            <?php else: ?>
+                                <?php foreach ($todayAppointments as $appointment): ?>
+                                    <div class="appointment-item flex flex-col md:flex-row md:items-center justify-between gap-4 p-4 bg-gray-50 rounded-lg" data-appointment-id="<?= $appointment['appointment_id'] ?>">
+                                        <!-- Left Side: Patient Info -->
+                                        <div class="flex items-start gap-4 flex-1">
+                                            <div class="w-2 h-2 rounded-full bg-info mt-1"></div>
+                                            <div>
+                                                <p class="font-medium"><?= htmlspecialchars($appointment['patient_name']) ?></p>
+                                                <p class="text-sm text-gray-600">consultation • 30 min</p>
+                                                <p class="text-sm text-gray-500"><?= htmlspecialchars($appointment['notes'] ?: 'No additional notes') ?></p>
+                                            </div>
+                                        </div>
 
-                                <!-- Right Side: Time, Status, Buttons -->
-                                <div class="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 md:text-end">
-                                    <div>
-                                        <p class="font-medium text-end md:text-right">09:00</p>
-                                        <span class="text-xs px-2 py-1 rounded-full bg-green-100 text-green-800 inline-block w-fit">confirmed</span>
-                                    </div>
-                                    <div class="flex flex-col md:flex-row gap-2 w-full md:w-auto">
-                                        <button class="w-full md:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium border border-input border-solid bg-background hover:bg-accent hover:text-medical-500 h-9 rounded-md px-3 cursor-pointer">
+                                        <!-- Right Side: Time, Status, Buttons -->
+                                        <div class="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 md:text-end">
+                                            <div>
+                                                <p class="font-medium text-end md:text-right"><?= formatAppointmentDateTime($appointment['appointment_date']) ?></p>
+                                                <span class="text-xs px-2 py-1 rounded-full <?= getAppointmentStatusClasses($appointment['status']) ?> inline-block w-fit">
+                                                    <?= getAppointmentStatusText($appointment['status']) ?>
+                                                </span>
+                                            </div>
+                                                                                <div class="flex flex-col md:flex-row gap-2 w-full md:w-auto">
+                                        <button class="w-full md:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium border border-input border-solid bg-gray-100 text-gray-500 h-9 rounded-md px-3 cursor-not-allowed opacity-50" title="Update functionality coming soon">
                                             <i data-lucide="square-pen" class="h-4 w-4 mr-1"></i>
                                             Update
                                         </button>
-                                        <button class="w-full md:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm border border-transparent font-medium bg-primary text-white hover:bg-medical-400 h-9 rounded-md px-3 cursor-pointer">
+                                        <button class="w-full md:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm border border-transparent font-medium bg-gray-300 text-gray-500 h-9 rounded-md px-3 cursor-not-allowed opacity-50" title="Complete functionality coming soon">
                                             Complete
                                         </button>
                                     </div>
-                                </div>
-                            </div>
-
-                            <!-- Appointment 2 -->
-                            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 p-4 bg-gray-50 rounded-lg">
-                                <div class="flex items-start gap-4 flex-1">
-                                    <div class="w-2 h-2 rounded-full bg-info mt-1"></div>
-                                    <div>
-                                        <p class="font-medium">Mary Johnson</p>
-                                        <p class="text-sm text-gray-600">follow-up • 45 min</p>
-                                        <p class="text-sm text-gray-500">Follow-up on ECG results</p>
+                                        </div>
                                     </div>
-                                </div>
-
-                                <div class="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 md:text-end">
-                                    <div>
-                                        <p class="font-medium text-end md:text-right">10:30</p>
-                                        <span class="text-xs px-2 py-1 rounded-full bg-blue-100 text-blue-800 inline-block w-fit">in progress</span>
-                                    </div>
-                                    <div class="flex flex-col md:flex-row gap-2 w-full md:w-auto">
-                                        <button class="w-full md:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium border border-input border-solid bg-background hover:bg-accent hover:text-medical-500 h-9 rounded-md px-3 cursor-pointer">
-                                            <i data-lucide="square-pen" class="h-4 w-4 mr-1"></i>
-                                            Update
-                                        </button>
-                                        <button class="w-full md:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm border border-transparent font-medium bg-primary text-white hover:bg-medical-400 h-9 rounded-md px-3 cursor-pointer">
-                                            Complete
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Appointment 3 -->
-                            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 p-4 bg-gray-50 rounded-lg">
-                                <div class="flex items-start gap-4 flex-1">
-                                    <div class="w-2 h-2 rounded-full bg-info mt-1"></div>
-                                    <div>
-                                        <p class="font-medium">Ahmed Al-Rashid</p>
-                                        <p class="text-sm text-gray-600">consultation • 30 min</p>
-                                        <p class="text-sm text-gray-500">New patient - hypertension concerns</p>
-                                    </div>
-                                </div>
-
-                                <div class="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 md:text-end">
-                                    <div>
-                                        <p class="font-medium text-end md:text-right">11:15</p>
-                                        <span class="text-xs px-2 py-1 rounded-full bg-neutral-100 text-gray-800 inline-block w-fit">scheduled</span>
-                                    </div>
-                                    <div class="flex flex-col md:flex-row gap-2 w-full md:w-auto">
-                                        <button class="w-full md:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium border border-input border-solid bg-background hover:bg-accent hover:text-medical-500 h-9 rounded-md px-3 cursor-pointer">
-                                            <i data-lucide="square-pen" class="h-4 w-4 mr-1"></i>
-                                            Update
-                                        </button>
-                                        <button class="w-full md:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm border border-transparent font-medium bg-primary text-white hover:bg-medical-400 h-9 rounded-md px-3 cursor-pointer">
-                                            Complete
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Appointment 4 -->
-                            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 p-4 bg-gray-50 rounded-lg">
-                                <div class="flex items-start gap-4 flex-1">
-                                    <div class="w-2 h-2 rounded-full bg-info mt-1"></div>
-                                    <div>
-                                        <p class="font-medium">Fatima Hassan</p>
-                                        <p class="text-sm text-gray-600">routine-checkup • 60 min</p>
-                                        <p class="text-sm text-gray-500">Annual cardiac screening</p>
-                                    </div>
-                                </div>
-
-                                <div class="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 md:text-end">
-                                    <div>
-                                        <p class="font-medium text-end md:text-right">14:00</p>
-                                        <span class="text-xs px-2 py-1 rounded-full bg-neutral-100 text-gray-800 inline-block w-fit">scheduled</span>
-                                    </div>
-                                    <div class="flex flex-col md:flex-row gap-2 w-full md:w-auto">
-                                        <button class="w-full md:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium border border-input border-solid bg-background hover:bg-accent hover:text-medical-500 h-9 rounded-md px-3 cursor-pointer">
-                                            <i data-lucide="square-pen" class="h-4 w-4 mr-1"></i>
-                                            Update
-                                        </button>
-                                        <button class="w-full md:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm border border-transparent font-medium bg-primary text-white hover:bg-medical-400 h-9 rounded-md px-3 cursor-pointer">
-                                            Complete
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
+                                <?php endforeach; ?>
+                            <?php endif; ?>
                         </div>
                     </div>
 
-                    <!-- 📅 Schedule Section - July 8 -->
+                    <!-- 📅 Schedule Section -->
                     <div data-section="schedule" class="hidden mt-4 sm:mt-6">
                         <div class="glass-card rounded-xl p-4 sm:p-6">
                             <div class="mb-6">
-                                <h3 class="text-lg sm:text-xl font-bold mb-2">Today's Schedule</h3>
-                                <p class="text-sm text-gray-600">July 8, 2025</p>
+                                <h3 class="text-lg sm:text-xl font-bold mb-2">Weekly Schedule</h3>
+                                <p class="text-sm text-gray-600"><?= date('F j, Y') ?> - <?= date('F j, Y', strtotime('+6 days')) ?></p>
                             </div>
 
                             <div class="flex flex-col gap-3">
-                                <!-- Morning Clinic -->
-                                <div class="rounded-lg border-2 border-solid border-green-200 bg-green-100 p-4 text-green-800">
-                                    <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                                        <div class="flex-1">
-                                            <div class="mb-1 flex items-center gap-3">
-                                                <i data-lucide="clock" class="w-4 h-4 text-current"></i>
-                                                <span class="text-sm sm:text-base font-medium">09:00 - 12:00</span>
-                                            </div>
-                                            <p class="ml-7 text-sm text-gray-700">Morning Clinic</p>
-                                        </div>
-                                        <div class="ml-7 text-right sm:ml-0">
-                                            <p class="text-xs text-gray-600">Patients</p>
-                                            <p class="text-lg font-bold">8</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Lunch Break -->
-                                <div class="rounded-lg border-2 border-solid border-gray-200 bg-neutral-100 p-4 text-gray-600">
-                                    <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                                        <div class="flex-1">
-                                            <div class="mb-1 flex items-center gap-3">
-                                                <i data-lucide="clock" class="w-4 h-4 text-current"></i>
-                                                <span class="text-sm sm:text-base font-medium">12:00 - 13:00</span>
-                                            </div>
-                                            <p class="ml-7 text-sm text-gray-700">Lunch Break</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Afternoon Clinic -->
+                                <!-- Monday -->
                                 <div class="rounded-lg border-2 border-solid border-blue-200 bg-blue-100 p-4 text-blue-800">
                                     <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                                         <div class="flex-1">
                                             <div class="mb-1 flex items-center gap-3">
-                                                <i data-lucide="clock" class="w-4 h-4 text-current"></i>
-                                                <span class="text-sm sm:text-base font-medium">13:00 - 17:00</span>
+                                                <i data-lucide="calendar" class="w-4 h-4 text-current"></i>
+                                                <span class="text-sm sm:text-base font-medium">Monday</span>
                                             </div>
-                                            <p class="ml-7 text-sm text-gray-700">Afternoon Clinic</p>
+                                            <p class="ml-7 text-sm text-gray-700">General Clinic Hours: 9:00 AM - 5:00 PM</p>
                                         </div>
                                         <div class="ml-7 text-right sm:ml-0">
-                                            <p class="text-xs text-gray-600">Patients</p>
-                                            <p class="text-lg font-bold">6</p>
+                                            <p class="text-xs text-gray-600">Status</p>
+                                            <p class="text-sm font-bold text-green-600">Available</p>
                                         </div>
                                     </div>
                                 </div>
 
-                                <!-- Administrative Work -->
+                                <!-- Tuesday -->
                                 <div class="rounded-lg border-2 border-solid border-blue-200 bg-blue-100 p-4 text-blue-800">
                                     <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                                         <div class="flex-1">
                                             <div class="mb-1 flex items-center gap-3">
-                                                <i data-lucide="clock" class="w-4 h-4 text-current"></i>
-                                                <span class="text-sm sm:text-base font-medium">17:00 - 18:00</span>
+                                                <i data-lucide="calendar" class="w-4 h-4 text-current"></i>
+                                                <span class="text-sm sm:text-base font-medium">Tuesday</span>
                                             </div>
-                                            <p class="ml-7 text-sm text-gray-700">Administrative Work</p>
+                                            <p class="ml-7 text-sm text-gray-700">General Clinic Hours: 9:00 AM - 5:00 PM</p>
+                                        </div>
+                                        <div class="ml-7 text-right sm:ml-0">
+                                            <p class="text-xs text-gray-600">Status</p>
+                                            <p class="text-sm font-bold text-green-600">Available</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Wednesday -->
+                                <div class="rounded-lg border-2 border-solid border-blue-200 bg-blue-100 p-4 text-blue-800">
+                                    <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                                        <div class="flex-1">
+                                            <div class="mb-1 flex items-center gap-3">
+                                                <i data-lucide="calendar" class="w-4 h-4 text-current"></i>
+                                                <span class="text-sm sm:text-base font-medium">Wednesday</span>
+                                            </div>
+                                            <p class="ml-7 text-sm text-gray-700">General Clinic Hours: 9:00 AM - 5:00 PM</p>
+                                        </div>
+                                        <div class="ml-7 text-right sm:ml-0">
+                                            <p class="text-xs text-gray-600">Status</p>
+                                            <p class="text-sm font-bold text-green-600">Available</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Thursday -->
+                                <div class="rounded-lg border-2 border-solid border-blue-200 bg-blue-100 p-4 text-blue-800">
+                                    <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                                        <div class="flex-1">
+                                            <div class="mb-1 flex items-center gap-3">
+                                                <i data-lucide="calendar" class="w-4 h-4 text-current"></i>
+                                                <span class="text-sm sm:text-base font-medium">Thursday</span>
+                                            </div>
+                                            <p class="ml-7 text-sm text-gray-700">General Clinic Hours: 9:00 AM - 5:00 PM</p>
+                                        </div>
+                                        <div class="ml-7 text-right sm:ml-0">
+                                            <p class="text-xs text-gray-600">Status</p>
+                                            <p class="text-sm font-bold text-green-600">Available</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Friday -->
+                                <div class="rounded-lg border-2 border-solid border-blue-200 bg-blue-100 p-4 text-blue-800">
+                                    <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                                        <div class="flex-1">
+                                            <div class="mb-1 flex items-center gap-3">
+                                                <i data-lucide="calendar" class="w-4 h-4 text-current"></i>
+                                                <span class="text-sm sm:text-base font-medium">Friday</span>
+                                            </div>
+                                            <p class="ml-7 text-sm text-gray-700">General Clinic Hours: 9:00 AM - 5:00 PM</p>
+                                        </div>
+                                        <div class="ml-7 text-right sm:ml-0">
+                                            <p class="text-xs text-gray-600">Status</p>
+                                            <p class="text-sm font-bold text-green-600">Available</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Weekend -->
+                                <div class="rounded-lg border-2 border-solid border-gray-200 bg-gray-100 p-4 text-gray-600">
+                                    <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                                        <div class="flex-1">
+                                            <div class="mb-1 flex items-center gap-3">
+                                                <i data-lucide="calendar" class="w-4 h-4 text-current"></i>
+                                                <span class="text-sm sm:text-base font-medium">Weekend</span>
+                                            </div>
+                                            <p class="ml-7 text-sm text-gray-700">Saturday & Sunday - Emergency Only</p>
+                                        </div>
+                                        <div class="ml-7 text-right sm:ml-0">
+                                            <p class="text-xs text-gray-600">Status</p>
+                                            <p class="text-sm font-bold text-orange-600">Emergency</p>
                                         </div>
                                     </div>
                                 </div>
@@ -367,16 +349,16 @@ if (isset($_SESSION['user_id'])) {
                             <div class="mt-6 rounded-lg bg-blue-50 p-4">
                                 <div class="grid grid-cols-2 gap-4 text-center sm:grid-cols-3">
                                     <div>
-                                        <p class="text-lg font-bold text-blue-600">14</p>
-                                        <p class="text-xs text-gray-600">Total Patients</p>
+                                        <p class="text-lg font-bold text-blue-600">5</p>
+                                        <p class="text-xs text-gray-600">Working Days</p>
                                     </div>
                                     <div>
-                                        <p class="text-lg font-bold text-green-600">8</p>
-                                        <p class="text-xs text-gray-600">Working Hours</p>
+                                        <p class="text-lg font-bold text-green-600">40</p>
+                                        <p class="text-xs text-gray-600">Hours/Week</p>
                                     </div>
                                     <div class="col-span-2 sm:col-span-1">
-                                        <p class="text-lg font-bold text-purple-600">1</p>
-                                        <p class="text-xs text-gray-600">Break Hour</p>
+                                        <p class="text-lg font-bold text-orange-600">2</p>
+                                        <p class="text-xs text-gray-600">Emergency Days</p>
                                     </div>
                                 </div>
                             </div>
