@@ -24,37 +24,35 @@ if (statusCancelBtn) {
   statusCancelBtn.addEventListener("click", resetEmergency);
 }
 
-function handleEmergencyClick() {
+async function handleEmergencyClick() {
   requestCancelled = false;
   drawer.classList.remove("hidden");
 
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const { latitude, longitude } = position.coords;
+    navigator.geolocation.getCurrentPosition(async (position) => {
+      const { latitude, longitude } = position.coords;
 
-        fetch("/mediconnect/backend/api/handle-emergency.php", {
+      try {
+        const response = await fetch("/mediconnect/backend/api/handle-emergency.php", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ latitude, longitude }),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            if (data.success && data.estimated_time_minutes !== undefined) {
-              currentRequestId = data.request_id;
-              startCountdown(data.estimated_time_minutes);
-            } else {
-              console.error("Error:", data.message);
-            }
-          })
-          .catch((err) => {
-            console.error("Error sending location:", err);
-          });
-      },
-      (error) => {
-        console.error("Geolocation error:", error);
+        });
+
+        const data = await response.json();
+
+        if (data.success && data.estimated_time_minutes !== undefined) {
+          currentRequestId = data.request_id;
+          startCountdown(data.estimated_time_minutes);
+        } else {
+          console.error("Error:", data.message);
+        }
+      } catch (err) {
+        console.error("Error sending location:", err);
       }
-    );
+    }, (error) => {
+      console.error("Geolocation error:", error);
+    });
   }
 
   drawerTimeout = setTimeout(() => {
@@ -93,13 +91,33 @@ function startCountdown(minutes) {
   const etaText = document.getElementById("eta-text");
   if (!etaText) return;
 
-  function updateCountdown() {
+  async function updateCountdown() {
     if (remaining > 0) {
       etaText.textContent = `Estimated arrival: ${remaining} minute(s)`;
       remaining--;
       setTimeout(updateCountdown, 60000);
     } else {
       etaText.textContent = `Ambulance has arrived.`;
+
+      if (currentRequestId) {
+        try {
+          const res = await fetch("/mediconnect/backend/api/mark-completed.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ request_id: currentRequestId }),
+          });
+
+          const data = await res.json();
+
+          if (data.success) {
+            console.log("Request marked as completed.");
+          } else {
+            console.error("Completion failed:", data.message);
+          }
+        } catch (err) {
+          console.error("Complete request error:", err);
+        }
+      }
     }
   }
 
@@ -110,7 +128,7 @@ function closeDrawer() {
   drawer.classList.add("hidden");
 }
 
-function cancelRequest() {
+async function cancelRequest() {
   requestCancelled = true;
   clearTimeout(drawerTimeout);
   clearTimeout(messageTimeout);
@@ -122,23 +140,24 @@ function cancelRequest() {
     return;
   }
 
-  fetch("/mediconnect/backend/api/cancel-request.php", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ request_id: currentRequestId }),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      if (data.success) {
-        console.log("Request canceled on server.");
-        currentRequestId = null;
-      } else {
-        console.error("Cancel failed:", data.message);
-      }
-    })
-    .catch((err) => {
-      console.error("Cancel request error:", err);
+  try {
+    const response = await fetch("/mediconnect/backend/api/cancel-request.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ request_id: currentRequestId }),
     });
+
+    const data = await response.json();
+
+    if (data.success) {
+      console.log("Request canceled on server.");
+      currentRequestId = null;
+    } else {
+      console.error("Cancel failed:", data.message);
+    }
+  } catch (err) {
+    console.error("Cancel request error:", err);
+  }
 }
 
 function resetEmergency() {
@@ -155,7 +174,6 @@ function resetEmergency() {
   console.log("Emergency page fully reset.");
 }
 
-// Expose some functions globally if needed
 window.closeDrawer = closeDrawer;
 window.cancelRequest = cancelRequest;
 window.resetEmergency = resetEmergency;

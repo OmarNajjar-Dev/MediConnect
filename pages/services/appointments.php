@@ -11,9 +11,11 @@ require_once __DIR__ . "/../../backend/middleware/session-context.php";
 // 3. Require user to be logged in
 require_once __DIR__ . "/../../backend/middleware/require-user.php";
 
-// 4. Include avatar helper
-require_once __DIR__ . "/../../backend/helpers/avatar-helper.php";
+// 4. Require the user to be patient
+require_once __DIR__ . "/../../backend/middleware/only-patient.php";
 
+// 5. Include avatar helper
+require_once __DIR__ . "/../../backend/helpers/avatar-helper.php";
 ?>
 
 <!DOCTYPE html>
