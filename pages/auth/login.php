@@ -1,5 +1,7 @@
 <?php
 
+$currentPage = "login";
+
 // 1. Load system configuration
 require_once __DIR__ . "/../../backend/config/path.php";
 

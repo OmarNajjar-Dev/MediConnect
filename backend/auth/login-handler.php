@@ -1,7 +1,12 @@
 <?php
 
-session_start();
+// Start session if not already started
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 require_once __DIR__ . '/../config/db.php';
+require_once __DIR__ . '/../config/path.php';
 require_once __DIR__ . '/../helpers/registration-helpers.php';
 
 header('Content-Type: application/json'); // Important for AJAX
@@ -10,6 +15,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = $_POST["email"] ?? '';
     $password = $_POST["password"] ?? '';
     $rememberMe = !empty($_POST["remember_me"]);
+
+    // Debug logging
+    error_log("Login attempt for email: " . $email);
 
     // Get user and password from users table
     $stmt = $conn->prepare("SELECT user_id, password FROM users WHERE email = ?");
@@ -21,6 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $user = $result->fetch_assoc();
 
         if (password_verify($password, $user["password"])) {
+            error_log("Password verified successfully for user ID: " . $user["user_id"]);
             $_SESSION["user_id"] = $user["user_id"];
 
             // Fetch user role
@@ -40,6 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $roleData = $roleResult->fetch_assoc();
                 $roleName = $roleData["role_name"];
                 storeUserRoleInSession($roleName);  // e.g., "super_admin", "doctor"
+                error_log("Role stored in session: " . $roleName);
             }
 
             $roleStmt->close();
@@ -53,22 +63,31 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $updateStmt->bind_param("si", $token, $user["user_id"]);
                 $updateStmt->execute();
                 $updateStmt->close();
+                error_log("Remember me token set for user ID: " . $user["user_id"]);
             }
 
             // Always redirect to dashboard index, which will handle role-based routing
-            echo json_encode([
+            $response = [
                 "success" => true,
                 "redirect" => $paths['dashboard']['index']
-            ]);
+            ];
+            error_log("Login successful, redirecting to: " . $response["redirect"]);
+            echo json_encode($response);
             exit();
+        } else {
+            error_log("Password verification failed for email: " . $email);
         }
+    } else {
+        error_log("User not found for email: " . $email);
     }
 
     // Failed login
-    echo json_encode([
+    $response = [
         "success" => false,
         "message" => "Invalid email or password"
-    ]);
+    ];
+    error_log("Login failed for email: " . $email);
+    echo json_encode($response);
     exit();
 }
 

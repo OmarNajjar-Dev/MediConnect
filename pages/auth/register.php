@@ -117,7 +117,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <body class="bg-background">
 
     <!-- Header Section -->
-    <?php require_once '/../../includes/header.php'; ?>
+    <?php require_once './../../includes/header.php'; ?>
 
     <!-- Main Content -->
     <main class="min-h-screen overflow-hidden flex-grow bg-gray-50 pt-20 pb-16">
@@ -430,7 +430,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     </main>
 
     <!-- Footer -->
-    <?php require_once '/../../includes/footer.php'; ?>
+    <?php require_once './../../includes/footer.php'; ?>
 
     <!-- External JavaScript -->
     <script type="module" src="/mediconnect/assets/js/common/index.js"></script>
