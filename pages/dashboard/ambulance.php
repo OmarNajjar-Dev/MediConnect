@@ -1,5 +1,8 @@
 <?php
 
+// 0. Redirect to coming soon if this dashboard is not ready
+require_once __DIR__ . "/../../backend/middleware/redirect-to-coming-soon.php";
+
 // 4. Define required role for this dashboard
 $requiredRole = 'ambulance_team';
 

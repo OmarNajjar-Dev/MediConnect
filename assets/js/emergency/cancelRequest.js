@@ -7,7 +7,6 @@ import { getCurrentRequestId, setCurrentRequestId } from "./countdown.js";
 
 let requestCancelled = false;
 let drawerTimeout = null;
-let messageTimeout = null;
 
 // Save original help section HTML to restore later
 const helpSectionWrapper = document.getElementById("request-help-wrapper");
@@ -16,13 +15,9 @@ const originalHelpHTML = helpSectionWrapper ? helpSectionWrapper.innerHTML : "";
 export async function cancelRequest() {
   requestCancelled = true;
   clearTimeout(drawerTimeout);
-  clearTimeout(messageTimeout);
 
   const drawer = document.getElementById("drawer");
   if (drawer) drawer.classList.add("hidden");
-
-  const confirmationMessage = document.getElementById("confirmationMessage");
-  if (confirmationMessage) confirmationMessage.classList.add("hidden");
 
   const currentRequestId = getCurrentRequestId();
 
@@ -98,4 +93,4 @@ export function resetEmergency() {
 }
 
 // Export for use in other modules
-export { requestCancelled, drawerTimeout, messageTimeout };
+export { requestCancelled, drawerTimeout };

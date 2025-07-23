@@ -9,7 +9,6 @@ import { startCountdown } from "./countdown.js";
 let currentRequestId = null;
 let requestCancelled = false;
 let drawerTimeout = null;
-let messageTimeout = null;
 
 // Save original help section HTML to restore later
 const helpSectionWrapper = document.getElementById("request-help-wrapper");
@@ -109,25 +108,11 @@ export async function handleEmergencyClick() {
     if (!requestCancelled) {
       const drawer = document.getElementById("drawer");
       if (drawer) drawer.classList.add("hidden");
-      showConfirmationMessage();
       replaceHelpButtonSection();
       const statusSection = document.getElementById("status-section");
       if (statusSection) statusSection.classList.remove("hidden");
     }
   }, 4000);
-}
-
-function showConfirmationMessage() {
-  if (requestCancelled) return;
-
-  const confirmationMessage = document.getElementById("confirmationMessage");
-  if (confirmationMessage) {
-    confirmationMessage.classList.remove("hidden");
-
-    messageTimeout = setTimeout(() => {
-      confirmationMessage.classList.add("hidden");
-    }, 3000);
-  }
 }
 
 function replaceHelpButtonSection() {
@@ -142,4 +127,4 @@ function replaceHelpButtonSection() {
 }
 
 // Export for use in other modules
-export { currentRequestId, requestCancelled, drawerTimeout, messageTimeout };
+export { currentRequestId, requestCancelled, drawerTimeout };

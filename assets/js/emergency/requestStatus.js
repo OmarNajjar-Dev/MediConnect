@@ -29,7 +29,6 @@ export async function checkExistingEmergencyRequest() {
 
         if (request.status === "Pending") {
           // Restore the countdown
-          showConfirmationMessage();
           replaceHelpButtonSection();
           const statusSection = document.getElementById("status-section");
           if (statusSection) statusSection.classList.remove("hidden");
@@ -48,7 +47,6 @@ export async function checkExistingEmergencyRequest() {
           }
         } else if (request.status === "Completed") {
           // Show completed status
-          showConfirmationMessage();
           replaceHelpButtonSection();
           const statusSection = document.getElementById("status-section");
           if (statusSection) statusSection.classList.remove("hidden");
@@ -82,17 +80,6 @@ export async function checkExistingEmergencyRequest() {
       sessionStorage.removeItem("currentEmergencyRequestId");
       setCurrentRequestId(null);
     }
-  }
-}
-
-function showConfirmationMessage() {
-  const confirmationMessage = document.getElementById("confirmationMessage");
-  if (confirmationMessage) {
-    confirmationMessage.classList.remove("hidden");
-
-    setTimeout(() => {
-      confirmationMessage.classList.add("hidden");
-    }, 3000);
   }
 }
 

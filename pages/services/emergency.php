@@ -289,12 +289,6 @@ require_once __DIR__ . "/../../backend/helpers/avatar-helper.php";
         </div>
     </main>
 
-    <!-- Confirmation Message -->
-    <div id="confirmationMessage" class="fixed bottom-6 right-6 z-50 px-6 py-4 bg-white border border-solid border-card-soft shadow-md rounded-lg text-sm max-w-sm">
-        <p class="font-semibold text-heading mb-1">Emergency request sent.</p>
-        <p class="text-heading">Help is on the way.Please stay where you are!</p>
-    </div>
-
     <!-- Universal Toast Container -->
     <div
         id="toast"
