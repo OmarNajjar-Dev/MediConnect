@@ -189,21 +189,7 @@ class UserManagement {
       });
     }
 
-    // Generate password button
-    const generatePasswordBtn = document.getElementById("generate-password");
-    if (generatePasswordBtn) {
-      generatePasswordBtn.addEventListener("click", () => {
-        if (this.passwordValidator) {
-          const generatedPassword =
-            this.passwordValidator.generateSecurePassword();
-          document.getElementById("user-password").value = generatedPassword;
-          document.getElementById("user-confirm-password").value =
-            generatedPassword;
-          this.passwordValidator.validatePassword(generatedPassword);
-          this.passwordValidator.checkPasswordMatch();
-        }
-      });
-    }
+
 
     // Form submission
     const userForm = document.getElementById("user-form");

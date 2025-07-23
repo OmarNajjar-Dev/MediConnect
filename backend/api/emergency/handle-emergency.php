@@ -2,7 +2,7 @@
 
 session_start();  // Start session to check login info
 header('Content-Type: application/json');
-require_once __DIR__ . '/../config/db.php';
+require_once __DIR__ . '/../../config/db.php';
 
 // Enable error reporting for debugging
 error_reporting(E_ALL);

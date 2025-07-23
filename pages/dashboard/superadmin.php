@@ -524,15 +524,9 @@ $userAddress = $profileData['address'];
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label class="text-sm font-medium leading-none mb-2 block" for="user-password">Password</label>
-            <div class="flex gap-2">
-              <input id="user-password" name="password" type="password"
-                class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm outline-none focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white"
-                placeholder="Enter temporary password">
-              <button type="button" id="generate-password"
-                class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-solid border-input bg-transparent cursor-pointer hover:bg-accent hover:text-medical-500 h-10 px-3 py-2">
-                <i data-lucide="refresh-cw" class="h-4 w-4"></i>
-              </button>
-            </div>
+            <input id="user-password" name="password" type="password"
+              class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm outline-none focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white"
+              placeholder="Enter temporary password">
             <div id="password-strength" class="mt-1 text-xs"></div>
           </div>
           <div>

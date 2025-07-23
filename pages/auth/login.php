@@ -29,6 +29,10 @@ require_once __DIR__ . "/../../backend/middleware/redirect-if-logged-in.php";
     <?php require_once __DIR__ . '/../../backend/config/apis.php'; ?>
     <script src="<?= LUCIDE_CDN_URL ?>"></script>
 
+    <!-- Base Styles -->
+    <link rel="stylesheet" href="/mediconnect/assets/css/base/base.css" />
+    <link rel="stylesheet" href="/mediconnect/assets/css/base/typography.css" />
+
     <!-- Design System -->
     <link rel="stylesheet" href="/mediconnect/assets/css/utils/colors.css" />
     <link rel="stylesheet" href="/mediconnect/assets/css/utils/spacing.min.css" />

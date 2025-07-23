@@ -5,7 +5,7 @@
  * Uses OpenCage API only - simple and reliable
  */
 
-require_once __DIR__ . '/../config/apis.php';
+require_once __DIR__ . '/../../config/apis.php';
 
 // Enable CORS for frontend requests
 header('Access-Control-Allow-Origin: *');

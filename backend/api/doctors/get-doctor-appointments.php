@@ -1,7 +1,7 @@
 <?php
 
-require_once __DIR__ . '/../config/db.php';
-require_once __DIR__ . '/../helpers/doctor-appointment-helper.php';
+require_once __DIR__ . '/../../config/db.php';
+require_once __DIR__ . '/../../helpers/doctor-appointment-helper.php';
 
 header('Content-Type: application/json');
 
