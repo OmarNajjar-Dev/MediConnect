@@ -1,6 +1,8 @@
 export async function renderHospitals(container) {
   try {
-    const response = await fetch("/mediconnect/backend/api/hospitals/get-hospitals.php");
+    const response = await fetch(
+      "/mediconnect/backend/api/hospitals/get-hospitals.php"
+    );
     const data = await response.json();
 
     // Handle both old format (direct array) and new format (with success property)
@@ -67,10 +69,10 @@ export async function renderHospitals(container) {
 
               <div class="flex flex-wrap gap-2 my-3">${specialtiesHtml}</div>
 
-              ${
-                h.available_beds > 0
-                  ? `
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
+                ${
+                  h.available_beds > 0
+                    ? `
                 <div class="flex items-center">
                   <div class="bed-icon w-10 h-10 rounded-full flex items-center justify-center">
                     <i data-lucide="bed" class="w-5 h-5"></i>
@@ -80,8 +82,8 @@ export async function renderHospitals(container) {
                     <p class="font-medium text-heading">${h.available_beds}</p>
                   </div>
                 </div>`
-                  : ``
-              }
+                    : ``
+                }
 
                 <div class="flex items-center">
                   <div class="w-10 h-10 rounded-full bg-medical-100 text-primary flex items-center justify-center">

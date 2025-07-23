@@ -13,10 +13,27 @@ function applyAllFilters() {
     const address =
       card.querySelector(".hospital-address")?.textContent.toLowerCase() || "";
 
+    // Check for emergency services
+    const hasEmergencyServices =
+      card.querySelector(".emergency-badge") !== null;
+
+    // Check for available beds
+    const bedElement = card.querySelector(".bed-icon");
+    const hasAvailableBeds = bedElement !== null;
+
+    // Apply search filter
     const matchesSearch =
       name.includes(currentSearchQuery) || address.includes(currentSearchQuery);
 
-    card.parentElement.style.display = matchesSearch ? "block" : "none";
+    // Apply emergency filter
+    const matchesEmergency = !isEmergencyActive || hasEmergencyServices;
+
+    // Apply beds filter
+    const matchesBeds = !isBedsActive || hasAvailableBeds;
+
+    // Show card only if it matches all active filters
+    const shouldShow = matchesSearch && matchesEmergency && matchesBeds;
+    card.parentElement.style.display = shouldShow ? "block" : "none";
   });
 
   updateNoResultsVisibility(
@@ -62,14 +79,23 @@ export function initHospitalFilters() {
 }
 
 function toggleButtonStyle(button, isActive) {
-  const active = ["bg-medical-600", "text-white", "hover:bg-primary"];
-  const inactive = [
-    "bg-background",
-    "text-heading",
-    "hover:bg-medical-50",
-    "hover:text-medical-500",
-  ];
-
-  active.forEach((cls) => button.classList.toggle(cls, isActive));
-  inactive.forEach((cls) => button.classList.toggle(cls, !isActive));
+  if (isActive) {
+    // Active state
+    button.classList.remove(
+      "bg-background",
+      "text-heading",
+      "hover:bg-medical-50",
+      "hover:text-medical-500"
+    );
+    button.classList.add("bg-primary", "text-white", "hover:bg-medical-600");
+  } else {
+    // Inactive state
+    button.classList.remove("bg-primary", "text-white", "hover:bg-medical-600");
+    button.classList.add(
+      "bg-background",
+      "text-heading",
+      "hover:bg-medical-50",
+      "hover:text-medical-500"
+    );
+  }
 }
