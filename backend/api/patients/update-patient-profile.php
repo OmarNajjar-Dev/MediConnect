@@ -20,6 +20,8 @@ $userId = $_SESSION['user_id'];
 // Form Data
 $name = trim($_POST['name'] ?? '');
 $birthday = trim($_POST['birthdate'] ?? '');
+$city = trim($_POST['city'] ?? '');
+$address = trim($_POST['address'] ?? '');
 
 // Validation
 if (empty($name)) {
@@ -65,11 +67,11 @@ try {
     }
 
     // Update users table
-    $stmt = $conn->prepare("UPDATE users SET first_name = ?, last_name = ? WHERE user_id = ?");
+    $stmt = $conn->prepare("UPDATE users SET first_name = ?, last_name = ?, city = ?, address_line = ? WHERE user_id = ?");
     if (!$stmt) {
         throw new Exception('Failed to prepare user update statement');
     }
-    $stmt->bind_param("ssi", $firstName, $lastName, $userId);
+    $stmt->bind_param("ssssi", $firstName, $lastName, $city, $address, $userId);
     $stmt->execute();
 
     // Update patients table

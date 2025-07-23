@@ -26,9 +26,13 @@ class ProfileManager {
     this.emailInput = document.getElementById("profile-email");
     this.birthdateInput = document.getElementById("profile-birthdate");
     this.genderInput = document.querySelector('[data-dropdown="container"]');
+    this.cityInput = document.getElementById("profile-city");
+    this.addressInput = document.getElementById("profile-address");
 
     this.uploadInput = document.getElementById("profile-upload");
-    this.previewContainer = document.getElementById("profile-image-preview-container");
+    this.previewContainer = document.getElementById(
+      "profile-image-preview-container"
+    );
 
     this.saveButton = document.getElementById("save-profile-changes-btn");
     this.saveText = document.getElementById("save-profile-text");
@@ -46,7 +50,9 @@ class ProfileManager {
       if (e.target === this.overlay) this.closeModal();
     });
 
-    this.uploadInput?.addEventListener("change", (e) => this.handleImageSelection(e));
+    this.uploadInput?.addEventListener("change", (e) =>
+      this.handleImageSelection(e)
+    );
     this.form?.addEventListener("input", () => this.toggleDiscardButton());
     this.form?.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -74,18 +80,24 @@ class ProfileManager {
   // 4. Fetch Data
   async fetchProfileData() {
     try {
-      const res = await fetch("/mediconnect/backend/api/patients/get-patient-profile.php");
+      const res = await fetch(
+        "/mediconnect/backend/api/patients/get-patient-profile.php"
+      );
       const json = await res.json();
-      if (!json.success) throw new Error(json.message || "Failed to load profile");
+      if (!json.success)
+        throw new Error(json.message || "Failed to load profile");
 
-      const { name, email, birthdate, gender, profile_image } = json.data;
+      const { name, email, birthdate, gender, city, address, profile_image } =
+        json.data;
 
       this.nameInput.value = name || "";
       this.emailInput.value = email || "";
       this.birthdateInput.value = birthdate || "";
       this.setGenderValue(gender || "");
+      this.cityInput.value = city || "";
+      this.addressInput.value = address || "";
 
-      this.originalData = { name, birthdate, gender };
+      this.originalData = { name, birthdate, gender, city, address };
       this.originalImageUrl = profile_image || null;
 
       this.renderImage(profile_image);
@@ -113,7 +125,9 @@ class ProfileManager {
   }
 
   clearPreview() {
-    const existing = this.previewContainer.querySelector("#profile-image-preview");
+    const existing = this.previewContainer.querySelector(
+      "#profile-image-preview"
+    );
     if (existing) existing.remove();
   }
 
@@ -159,6 +173,8 @@ class ProfileManager {
       this.nameInput.value !== this.originalData.name ||
       this.birthdateInput.value !== this.originalData.birthdate ||
       this.getSelectedGender() !== this.originalData.gender ||
+      this.cityInput.value !== this.originalData.city ||
+      this.addressInput.value !== this.originalData.address ||
       this.currentImageFile !== null;
     this.discardButton.classList.toggle("hidden", !changed);
   }
@@ -171,6 +187,8 @@ class ProfileManager {
     this.nameInput.value = this.originalData.name;
     this.birthdateInput.value = this.originalData.birthdate;
     this.setGenderValue(this.originalData.gender);
+    this.cityInput.value = this.originalData.city;
+    this.addressInput.value = this.originalData.address;
     this.uploadInput.value = "";
     this.currentImageFile = null;
     this.restoreOriginalImage();
@@ -179,17 +197,33 @@ class ProfileManager {
 
   // 7. Gender
   setGenderValue(value) {
-    const options = this.genderInput.querySelectorAll('[data-dropdown="option"]');
+    if (!value) return;
+
+    const button = this.genderInput.querySelector('[data-dropdown="button"]');
+    const options = this.genderInput.querySelectorAll(
+      '[data-dropdown="option"]'
+    );
+    const hiddenInput = document.getElementById("gender-input");
+
     options.forEach((opt) => {
-      const selected = opt.getAttribute("data-value") === value;
-      if (selected) document.getElementById("gender-input").value = selectedValue;
+      const optionValue = opt.getAttribute("data-value");
+      const checkIcon = opt.querySelector("svg");
+
+      if (optionValue === value.toLowerCase()) {
+        checkIcon.classList.remove("hidden");
+        hiddenInput.value = value.toLowerCase();
+        // Update button text to show selected gender
+        button.querySelector("span").textContent = this.capitalize(value);
+      } else {
+        checkIcon.classList.add("hidden");
+      }
     });
   }
 
   getSelectedGender() {
-    const selected = this.genderInput.querySelector('[data-dropdown="option"] svg:not(.hidden)');
-    if (!selected) return "";
-    return this.capitalize(selected.closest("button")?.getAttribute("data-value")) || "Not specified";
+    const hiddenInput = document.getElementById("gender-input");
+    const value = hiddenInput.value;
+    return value ? this.capitalize(value) : "";
   }
 
   capitalize(str) {
@@ -209,17 +243,22 @@ class ProfileManager {
         formData.append("profile_image", this.currentImageFile);
       }
 
-      const res = await fetch("/mediconnect/backend/api/patients/update-patient-profile.php", {
-        method: "POST",
-        body: formData,
-      });
+      const res = await fetch(
+        "/mediconnect/backend/api/patients/update-patient-profile.php",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
       const json = await res.json();
-      if (!json.success) throw new Error(json.message || "Failed to update profile");
+      if (!json.success)
+        throw new Error(json.message || "Failed to update profile");
 
-      const { name, birthdate, gender, city, address, profile_image } = json.data;
+      const { name, birthdate, gender, city, address, profile_image } =
+        json.data;
 
-      this.originalData = { name, birthdate, gender };
+      this.originalData = { name, birthdate, gender, city, address };
       this.originalImageUrl = profile_image || null;
       this.currentImageFile = null;
 
@@ -259,7 +298,9 @@ class ProfileManager {
   updateAvatars(imageUrl) {
     if (!imageUrl || imageUrl === "null" || imageUrl.trim() === "") return;
 
-    const headerAvatar = document.querySelector(".dropdown button img, .dropdown button div");
+    const headerAvatar = document.querySelector(
+      ".dropdown button img, .dropdown button div"
+    );
     if (headerAvatar) {
       const newImg = document.createElement("img");
       newImg.src = imageUrl;
@@ -268,7 +309,9 @@ class ProfileManager {
       headerAvatar.parentNode.replaceChild(newImg, headerAvatar);
     }
 
-    const profileAvatar = document.querySelector('[data-section="my-profile"] .w-24.h-24');
+    const profileAvatar = document.querySelector(
+      '[data-section="my-profile"] .w-24.h-24'
+    );
     if (profileAvatar) {
       const newImg = document.createElement("img");
       newImg.src = imageUrl;

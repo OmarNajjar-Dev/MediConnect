@@ -41,6 +41,8 @@ try {
             u.last_name,
             u.email,
             u.profile_image,
+            u.city,
+            u.address_line,
             p.birthdate,
             p.gender
         FROM users u
@@ -58,7 +60,9 @@ try {
             'email' => $user['email'],
             'profile_image' => $user['profile_image'],
             'birthdate' => $user['birthdate'],
-            'gender' => $user['gender']
+            'gender' => $user['gender'],
+            'city' => $user['city'],
+            'address' => $user['address_line']
         ];
         
         echo json_encode([

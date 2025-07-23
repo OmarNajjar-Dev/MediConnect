@@ -497,6 +497,20 @@ if (isset($_SESSION['user_id'])) {
                                         </div>
 
                                     </div>
+                                    
+                                    <!-- Location Information -->
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        <div class="flex flex-col gap-2">
+                                            <label for="profile-city" class="text-sm font-medium leading-none">City</label>
+                                            <input id="profile-city" name="city" placeholder="Enter your city"
+                                                class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <label for="profile-address" class="text-sm font-medium leading-none">Address</label>
+                                            <input id="profile-address" name="address" placeholder="Enter your address"
+                                                class="flex h-10 w-full rounded-md border border-solid border-input bg-background px-3 py-2 text-base md:text-sm focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
