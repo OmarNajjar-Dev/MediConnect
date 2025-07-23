@@ -1,4 +1,9 @@
-<?php require_once __DIR__ . "/../backend/helpers/navigation-helper.php" ?>
+<?php
+
+require_once __DIR__ . "/../backend/helpers/navigation-helper.php";
+require_once __DIR__ . "/../backend/helpers/permission-helper.php";
+
+?>
 
 <header class="fixed z-50 py-5 top-0 left-0 right-0 bg-transparent transition-all">
     <div class="container mx-auto flex items-center justify-between px-4">
@@ -15,7 +20,14 @@
             <a href="<?= $paths['home']['index'] ?>" class="<?= getActiveNavClassDesktop('home', $currentPage) ?>">Home</a>
             <a href="<?= $paths['services']['doctors'] ?>" class="<?= getActiveNavClassDesktop('doctors', $currentPage) ?>">Doctors</a>
             <a href="<?= $paths['services']['hospitals'] ?>" class="<?= getActiveNavClassDesktop('hospitals', $currentPage) ?>">Hospitals</a>
-            <a href="<?= $paths['services']['appointments'] ?>" class="<?= getActiveNavClassDesktop('appointments', $currentPage) ?>">Appointments</a>
+
+            <?php if (canAccessAppointments()): ?>
+                <a href="<?= $paths['services']['appointments'] ?>" class="<?= getActiveNavClassDesktop('appointments', $currentPage) ?>">Appointments</a>
+
+            <?php else: ?>
+                <span class="<?= getDisabledNavClasses(true, getActiveNavClassDesktop('appointments', $currentPage)) ?>" title="Only patients can access appointments">Appointments</span>
+
+            <?php endif; ?>
         </nav>
 
         <!-- Right section: Auth / Dropdown / Emergency / Menu -->
@@ -52,11 +64,18 @@
                 </div>
             <?php endif; ?>
 
-            <!-- Emergency button (always visible) -->
-            <a href="<?= $paths['services']['emergency'] ?>" class="inline-flex items-center gap-2 bg-danger hover:bg-red-700 text-white text-sm lg:text-base font-medium px-2 lg:px-4 py-2 md:py-3 rounded-lg transition-colors transition-200">
-                <i data-lucide="ambulance" class="w-4 h-4"></i>
-                Emergency
-            </a>
+            <!-- Emergency button -->
+            <?php if (canAccessEmergency()): ?>
+                <a href="<?= $paths['services']['emergency'] ?>" class="inline-flex items-center gap-2 bg-danger hover:bg-red-700 text-white text-sm lg:text-base font-medium px-2 lg:px-4 py-2 md:py-3 rounded-lg transition-colors transition-200">
+                    <i data-lucide="ambulance" class="w-4 h-4"></i>
+                    Emergency
+                </a>
+            <?php else: ?>
+                <span class="inline-flex items-center gap-2 bg-gray-400 text-white text-sm lg:text-base font-medium px-2 lg:px-4 py-2 md:py-3 rounded-lg opacity-50 cursor-not-allowed pointer-events-none" title="Emergency access restricted">
+                    <i data-lucide="ambulance" class="w-4 h-4"></i>
+                    Emergency
+                </span>
+            <?php endif; ?>
 
             <?php if (!$isLoggedIn): ?>
                 <!-- Sign In / Sign Up (visible if not logged in) -->
@@ -81,7 +100,24 @@
                 <a href="<?= $paths['home']['index'] ?>" class="<?= getActiveNavClassMobile('home', $currentPage) ?>">Home</a>
                 <a href="<?= $paths['services']['doctors'] ?>" class="<?= getActiveNavClassMobile('doctors', $currentPage) ?>">Doctors</a>
                 <a href="<?= $paths['services']['hospitals'] ?>" class="<?= getActiveNavClassMobile('hospitals', $currentPage) ?>">Hospitals</a>
-                <a href="<?= $paths['services']['appointments'] ?>" class="<?= getActiveNavClassMobile('appointments', $currentPage) ?>">Appointments</a>
+                <?php if (canAccessAppointments()): ?>
+                    <a href="<?= $paths['services']['appointments'] ?>" class="<?= getActiveNavClassMobile('appointments', $currentPage) ?>">Appointments</a>
+                <?php else: ?>
+                    <span class="<?= getDisabledMobileNavClasses(true, getActiveNavClassMobile('appointments', $currentPage)) ?>" title="Only patients can access appointments">Appointments</span>
+                <?php endif; ?>
+
+                <!-- Mobile Emergency button -->
+                <?php if (canAccessEmergency()): ?>
+                    <a href="<?= $paths['services']['emergency'] ?>" class="inline-flex items-center gap-2 bg-danger hover:bg-red-700 text-white text-sm font-medium px-3 py-2 rounded-lg transition-colors">
+                        <i data-lucide="ambulance" class="w-4 h-4"></i>
+                        Emergency
+                    </a>
+                <?php else: ?>
+                    <span class="inline-flex items-center gap-2 bg-gray-400 text-white text-sm font-medium px-3 py-2 rounded-lg opacity-50 cursor-not-allowed pointer-events-none" title="Emergency access restricted">
+                        <i data-lucide="ambulance" class="w-4 h-4"></i>
+                        Emergency
+                    </span>
+                <?php endif; ?>
 
                 <!-- Mobile: Sign In / Sign Out depending on session -->
                 <?php if (!$isLoggedIn): ?>
