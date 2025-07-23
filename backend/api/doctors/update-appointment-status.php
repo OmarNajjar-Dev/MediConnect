@@ -5,8 +5,12 @@ require_once __DIR__ . '/../../helpers/doctor-appointment-helper.php';
 
 header('Content-Type: application/json');
 
+// Start session if not already started
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+};
+
 // Check if user is logged in and is a doctor
-session_start();
 if (!isset($_SESSION['user_id'])) {
     http_response_code(401);
     echo json_encode(['success' => false, 'message' => 'Unauthorized']);

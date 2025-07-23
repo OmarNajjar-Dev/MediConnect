@@ -1,7 +1,5 @@
 <?php
 
-$currentPage = "register";
-
 // 1. Load system configuration (paths, constants, routes, etc.)
 require_once __DIR__ . "/../../backend/config/path.php";
 
@@ -153,7 +151,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                 <!-- Register Form Card -->
                 <div class="bg-white px-4 py-8 shadow sm:rounded-lg sm:px-10">
-                    <form id="register-form" method="POST" class="flex flex-col gap-4">
+                    <form id="register-form" method="POST" action="/mediconnect/backend/auth/register-handler.php" class="flex flex-col gap-4">
 
                         <!-- Name Fields -->
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
