@@ -92,8 +92,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <title>MediConnect - Bridging Healthcare & Technology</title>
 
     <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-
+    <?php require_once __DIR__ . '/../../backend/config/apis.php'; ?>
+    <script src="<?= LUCIDE_CDN_URL ?>"></script>
+    
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/mediconnect/assets/css/base.css" />
     <link rel="stylesheet" href="/mediconnect/assets/css/colors.css" />

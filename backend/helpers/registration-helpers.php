@@ -6,6 +6,7 @@
  */
 
 require_once __DIR__ . '/auth-helpers.php';
+require_once __DIR__ . '/../config/apis.php';
 
 /**
  * Get coordinates from address using OpenCage API
@@ -15,10 +16,9 @@ require_once __DIR__ . '/auth-helpers.php';
  */
 function getCoordinatesFromOpenCage($address)
 {
-    $apiKey = "f7257b4524a9479eacc86758ec47dc69"; // Your OpenCage API Key
-    $url = "https://api.opencagedata.com/geocode/v1/json?" . http_build_query([
+    $url = OPENCAGE_BASE_URL . "?" . http_build_query([
         'q' => $address,
-        'key' => $apiKey,
+        'key' => OPENCAGE_API_KEY,
         'language' => 'en',
         'limit' => 1,
         'no_annotations' => 1

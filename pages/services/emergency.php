@@ -25,8 +25,9 @@ require_once __DIR__ . "/../../backend/helpers/avatar-helper.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-
+    <?php require_once __DIR__ . '/../../backend/config/apis.php'; ?>
+    <script src="<?= LUCIDE_CDN_URL ?>"></script>
+    
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/mediconnect/assets/css/base.css" />
     <link rel="stylesheet" href="/mediconnect/assets/css/colors.css" />
@@ -292,8 +293,7 @@ require_once __DIR__ . "/../../backend/helpers/avatar-helper.php";
     <!-- Universal Toast Container -->
     <div
         id="toast"
-        class="hidden fixed bottom-4 right-4 z-50 max-w-xs rounded-md p-5 text-white shadow-lg"
-    >
+        class="hidden fixed bottom-4 right-4 z-50 max-w-xs rounded-md p-5 text-white shadow-lg">
         <p id="toast-title" class="font-semibold"></p>
         <p id="toast-message" class="text-sm"></p>
     </div>

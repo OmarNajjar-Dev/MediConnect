@@ -26,7 +26,8 @@ require_once __DIR__ . "/../../backend/middleware/redirect-if-logged-in.php";
     <title>MediConnect - Bridging Healthcare & Technology</title>
 
     <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <?php require_once __DIR__ . '/../../backend/config/apis.php'; ?>
+    <script src="<?= LUCIDE_CDN_URL ?>"></script>
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/mediconnect/assets/css/base.css" />

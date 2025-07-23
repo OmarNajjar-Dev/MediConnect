@@ -21,7 +21,8 @@ require_once __DIR__ . "/../../backend/helpers/avatar-helper.php";
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <?php require_once __DIR__ . '/../../backend/config/apis.php'; ?>
+  <script src="<?= LUCIDE_CDN_URL ?>"></script>
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="/mediconnect/assets/css/base.css" />
@@ -50,7 +51,7 @@ require_once __DIR__ . "/../../backend/helpers/avatar-helper.php";
   <!-- Main Content -->
   <main class="overflow-hidden pt-20 flex-grow">
     <div class="flex flex-col">
-      
+
       <!-- Hero Section -->
       <section class="bg-mediconnect-white py-12 md:py-20">
         <div class="container mx-auto px-4 md:px-6 text-center">

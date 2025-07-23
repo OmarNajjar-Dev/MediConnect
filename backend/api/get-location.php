@@ -5,6 +5,8 @@
  * Uses OpenCage API only - simple and reliable
  */
 
+require_once __DIR__ . '/../config/apis.php';
+
 // Enable CORS for frontend requests
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET');
@@ -51,10 +53,8 @@ if ($locationData) {
  * Get location from OpenCage API
  */
 function getLocationFromOpenCage($lat, $lon) {
-    $apiKey = 'f7257b4524a9479eacc86758ec47dc69';
-    
-    $url = "https://api.opencagedata.com/geocode/v1/json?" . http_build_query([
-        'key' => $apiKey,
+    $url = OPENCAGE_BASE_URL . "?" . http_build_query([
+        'key' => OPENCAGE_API_KEY,
         'q' => "$lat+$lon",
         'language' => 'en',
         'pretty' => 0,
