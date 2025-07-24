@@ -95,10 +95,9 @@ MediConnect is a comprehensive healthcare web platform designed to bridge the ga
 | Role               | Access Level          | Key Capabilities                                                                   |
 | ------------------ | --------------------- | ---------------------------------------------------------------------------------- |
 | **Super Admin**    | Full Platform Control | • Complete system management<br>• User role assignment<br>• Platform configuration |
-| **Admin**          | Hospital Management   | • Staff and doctor management<br>• Appointment oversight<br>• Facility settings    |
+| **Admin**          | Hospital Management   | • Doctor management<br>• Appointment oversight<br>• Facility settings              |
 | **Doctor**         | Medical Services      | • Patient record access<br>• Prescription management<br>• Schedule control         |
 | **Patient**        | Personal Health       | • Appointment booking<br>• Medical history access<br>• Profile management          |
-| **Staff**          | Reception Services    | • Patient registration<br>• Appointment scheduling<br>• Basic record access        |
 | **Ambulance Team** | Emergency Response    | • Real-time dispatch<br>• Route optimization<br>• Patient status updates           |
 
 ## 🛠 Tech Stack

@@ -37,7 +37,9 @@ class UserManagement {
 
   async loadUsers() {
     try {
-      const response = await fetch("/mediconnect/backend/api/users/get-users.php");
+      const response = await fetch(
+        "/mediconnect/backend/api/users/get-users.php"
+      );
       const data = await response.json();
 
       if (data.success) {
@@ -56,7 +58,9 @@ class UserManagement {
 
   async loadRoles() {
     try {
-      const response = await fetch("/mediconnect/backend/api/utils/get-roles.php");
+      const response = await fetch(
+        "/mediconnect/backend/api/utils/get-roles.php"
+      );
       const roles = await response.json();
       this.roles = roles;
       this.populateRoleDropdowns();
@@ -188,8 +192,6 @@ class UserManagement {
         this.handleRoleChange(e.target.value);
       });
     }
-
-
 
     // Form submission
     const userForm = document.getElementById("user-form");
@@ -492,13 +494,16 @@ class UserManagement {
     }
 
     try {
-      const response = await fetch("/mediconnect/backend/api/users/delete-user.php", {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ userId }),
-      });
+      const response = await fetch(
+        "/mediconnect/backend/api/users/delete-user.php",
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ userId }),
+        }
+      );
 
       const result = await response.json();
 
@@ -562,7 +567,7 @@ class UserManagement {
       Doctor: "bg-green-100 text-green-800",
       "Hospital Admin": "bg-blue-100 text-blue-800",
       Patient: "bg-purple-100 text-purple-800",
-      Staff: "bg-yellow-100 text-yellow-800",
+
       "Ambulance Team": "bg-red-100 text-red-800",
       "Super Admin": "bg-gray-100 text-gray-800",
     };

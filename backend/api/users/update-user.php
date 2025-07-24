@@ -145,9 +145,8 @@ try {
             $stmt->execute();
             break;
 
-        // Hospital Admin and Staff don't need additional tables
+        // Hospital Admin doesn't need additional tables
         case 'Hospital Admin':
-        case 'Staff':
             break;
     }
 

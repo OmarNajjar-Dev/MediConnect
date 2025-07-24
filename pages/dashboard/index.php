@@ -24,9 +24,7 @@ switch ($role) {
     case 'patient':
         include 'patient.php';
         break;
-    case 'staff':
-        include 'staff.php';
-        break;
+
     case 'ambulance_team':
         include 'ambulance.php';
         break;

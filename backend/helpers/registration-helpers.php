@@ -97,7 +97,7 @@ function getRoleId($conn, $roleName): ?int
  * @param array $allowedRoles Array of allowed roles
  * @return bool True if allowed, false otherwise
  */
-function validateRole($roleName, $allowedRoles = ['Patient', 'Doctor', 'Ambulance Team', 'Staff']): bool
+function validateRole($roleName, $allowedRoles = ['Patient']): bool
 {
     return in_array($roleName, $allowedRoles);
 }
@@ -219,9 +219,7 @@ function createRoleSpecificRecord($conn, $userId, $roleName, $userData): array
                 }
                 break;
 
-            case 'Staff':
-                // Staff doesn't need additional records
-                break;
+
 
             default:
                 return ['success' => false, 'error' => 'Unsupported role'];

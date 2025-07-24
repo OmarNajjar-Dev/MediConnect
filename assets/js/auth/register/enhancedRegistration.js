@@ -36,10 +36,8 @@ function setupRoleBasedFields() {
     return;
   }
 
-  // Load hospitals and specialties when page loads
-  console.log("Loading hospitals and specialties...");
-  loadHospitals();
-  loadSpecialties();
+  // No need to load hospitals and specialties for patient-only registration
+  console.log("Patient-only registration - no additional data needed");
 
   // Listen for role changes on the dropdown options
   const roleOptions = document.querySelectorAll('[data-dropdown="option"]');
@@ -60,155 +58,16 @@ function setupRoleBasedFields() {
   });
 
   function handleRoleChange(selectedRole) {
-    // Hide all role-specific fields first
+    // For patient-only registration, no role-specific fields are needed
+    // All fields are hidden by default
     roleSpecificFields.classList.add("hidden");
     hospitalSelection.classList.add("hidden");
     specialtySelection.classList.add("hidden");
     teamNameField.classList.add("hidden");
 
-    // Clear required attributes
+    // Clear any required attributes
     hospitalInput.removeAttribute("required");
     specialtyInput.removeAttribute("required");
-
-    // Show relevant fields based on selected role
-    if (selectedRole === "doctor") {
-      roleSpecificFields.classList.remove("hidden");
-      hospitalSelection.classList.remove("hidden");
-      specialtySelection.classList.remove("hidden");
-      // Make hospital and specialty required for doctors
-      hospitalInput.setAttribute("required", "required");
-      specialtyInput.setAttribute("required", "required");
-    } else if (selectedRole === "ambulance-team") {
-      // Only show team name for ambulance team
-      roleSpecificFields.classList.remove("hidden");
-      teamNameField.classList.remove("hidden");
-    } else if (selectedRole === "staff") {
-      roleSpecificFields.classList.remove("hidden");
-      hospitalSelection.classList.remove("hidden");
-      // Make hospital required for staff
-      hospitalInput.setAttribute("required", "required");
-    }
-  }
-
-  async function loadHospitals() {
-    try {
-      console.log("Loading hospitals...");
-      const response = await fetch(
-        "/mediconnect/backend/api/hospitals/get-hospitals.php"
-      );
-      console.log("Hospitals response status:", response.status);
-      const data = await response.json();
-      console.log("Hospitals data:", data);
-
-      const hospitalMenu = document.getElementById("hospital-menu");
-      hospitalMenu.innerHTML = ""; // Clear existing options
-
-      // Check if data is an array (direct response) or has a success property
-      const hospitals = Array.isArray(data)
-        ? data
-        : data.success && data.hospitals
-        ? data.hospitals
-        : [];
-      console.log("Processed hospitals:", hospitals);
-
-      hospitals.forEach((hospital) => {
-        const li = document.createElement("li");
-        li.innerHTML = `
-          <button type="button" data-dropdown="option"
-            class="bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md"
-            data-value="${hospital.hospital_id}">
-            <span>${hospital.name}</span>
-            <i data-lucide="check" class="w-4 h-4 text-medical-500 hidden"></i>
-          </button>
-        `;
-        hospitalMenu.appendChild(li);
-
-        // Add click event listener to the new option
-        const option = li.querySelector('[data-dropdown="option"]');
-        option.addEventListener("click", (e) => {
-          const selectedHospitalId = option.getAttribute("data-value");
-          const selectedHospitalName = option.querySelector("span").textContent;
-
-          // Update the hidden input value
-          hospitalInput.value = selectedHospitalId;
-
-          // Update the button text
-          const hospitalButtonText = hospitalButton.querySelector("span");
-          hospitalButtonText.textContent = selectedHospitalName;
-        });
-      });
-
-      // Recreate Lucide icons for the new content
-      if (window.lucide) {
-        window.lucide.createIcons();
-      }
-
-      // Reinitialize dropdowns for the new content
-      initDropdown();
-
-      console.log("Hospitals loaded successfully");
-    } catch (error) {
-      console.error("Error loading hospitals:", error);
-    }
-  }
-
-  async function loadSpecialties() {
-    try {
-      console.log("Loading specialties...");
-      const response = await fetch(
-        "/mediconnect/backend/api/utils/get-specialties.php"
-      );
-      console.log("Specialties response status:", response.status);
-      const data = await response.json();
-      console.log("Specialties data:", data);
-
-      const specialtyMenu = document.getElementById("specialty-menu");
-      specialtyMenu.innerHTML = ""; // Clear existing options
-
-      if (data.success && data.specialties) {
-        data.specialties.forEach((specialty) => {
-          const li = document.createElement("li");
-          li.innerHTML = `
-            <button type="button" data-dropdown="option"
-              class="bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md"
-              data-value="${specialty.specialty_id}">
-              <span>${specialty.label_for_doctor || specialty.name}</span>
-              <i data-lucide="check" class="w-4 h-4 text-medical-500 hidden"></i>
-            </button>
-          `;
-          specialtyMenu.appendChild(li);
-
-          // Add click event listener to the new option
-          const option = li.querySelector('[data-dropdown="option"]');
-          option.addEventListener("click", (e) => {
-            const selectedSpecialtyId = option.getAttribute("data-value");
-            const selectedSpecialtyName =
-              option.querySelector("span").textContent;
-
-            // Update the hidden input value
-            specialtyInput.value = selectedSpecialtyId;
-
-            // Update the button text
-            const specialtyButtonText = specialtyButton.querySelector("span");
-            specialtyButtonText.textContent = selectedSpecialtyName;
-          });
-        });
-
-        // Recreate Lucide icons for the new content
-        if (window.lucide) {
-          window.lucide.createIcons();
-        }
-
-        // Reinitialize dropdowns for the new content
-        initDropdown();
-
-        console.log("Specialties loaded successfully");
-      } else {
-        console.error("No specialties data found:", data);
-      }
-    } catch (error) {
-      console.error("Error loading specialties:", error);
-    }
   }
 }
 
