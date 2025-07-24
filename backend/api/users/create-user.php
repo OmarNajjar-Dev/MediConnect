@@ -106,9 +106,12 @@ try {
             break;
 
         case 'Ambulance Team':
+            if (!$hospitalId) {
+                throw new Exception('Hospital is required for ambulance teams');
+            }
             $teamNameToUse = $teamName ?: ($firstName . "'s Team");
-            $stmt = $conn->prepare("INSERT INTO ambulance_teams (user_id, team_name) VALUES (?, ?)");
-            $stmt->bind_param("is", $userId, $teamNameToUse);
+            $stmt = $conn->prepare("INSERT INTO ambulance_teams (user_id, team_name, hospital_id) VALUES (?, ?, ?)");
+            $stmt->bind_param("isi", $userId, $teamNameToUse, $hospitalId);
             $stmt->execute();
             
             // Get the team_id that was just created

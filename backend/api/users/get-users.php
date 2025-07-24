@@ -14,10 +14,11 @@ try {
                 u.address_line,
                 u.profile_image,
                 GROUP_CONCAT(r.role_name) as roles,
-                h.name as name,
+                h.name as hospital_name,
                 s.label_for_doctor as specialty,
                 d.is_verified as doctor_verified,
-                at.team_name as ambulance_team_name
+                at.team_name as ambulance_team_name,
+                ah.name as ambulance_hospital_name
             FROM users u
             LEFT JOIN user_roles ur ON u.user_id = ur.user_id
             LEFT JOIN roles r ON ur.role_id = r.role_id
@@ -25,6 +26,7 @@ try {
             LEFT JOIN hospitals h ON d.hospital_id = h.hospital_id
             LEFT JOIN specialties s ON d.specialty_id = s.specialty_id
             LEFT JOIN ambulance_teams at ON u.user_id = at.user_id
+            LEFT JOIN hospitals ah ON at.hospital_id = ah.hospital_id
             WHERE r.role_name != 'Super Admin' OR r.role_name IS NULL
             GROUP BY u.user_id
             HAVING GROUP_CONCAT(r.role_name) NOT LIKE '%Super Admin%'

@@ -312,9 +312,22 @@ class UserManagement {
     this.handleRoleChange(user.roles[0] || "");
 
     // Set conditional field values
-    if (user.name) {
+    if (user.hospital_name) {
       const hospitalSelect = document.getElementById("user-hospital");
-      const hospital = this.hospitals.find((h) => h.name === user.name);
+      const hospital = this.hospitals.find(
+        (h) => h.name === user.hospital_name
+      );
+      if (hospital) {
+        hospitalSelect.value = hospital.hospital_id;
+      }
+    }
+
+    // Handle ambulance team hospital
+    if (user.ambulance_hospital_name) {
+      const hospitalSelect = document.getElementById("user-hospital");
+      const hospital = this.hospitals.find(
+        (h) => h.name === user.ambulance_hospital_name
+      );
       if (hospital) {
         hospitalSelect.value = hospital.hospital_id;
       }
@@ -380,10 +393,11 @@ class UserManagement {
       document.getElementById("user-team").required = false;
     } else if (role === "Ambulance Team") {
       conditionalFields.classList.remove("hidden");
+      hospitalField.classList.remove("hidden");
       teamField.classList.remove("hidden");
 
-      // Make team name optional
-      document.getElementById("user-hospital").required = false;
+      // Make hospital required, team name optional
+      document.getElementById("user-hospital").required = true;
       document.getElementById("user-specialty").required = false;
       document.getElementById("user-team").required = false;
     } else {
@@ -444,6 +458,14 @@ class UserManagement {
         (!userData.hospitalId || !userData.specialtyId)
       ) {
         throw new Error("Hospital and specialty are required for doctors");
+      }
+
+      if (userData.role === "Hospital Admin" && !userData.hospitalId) {
+        throw new Error("Hospital is required for hospital administrators");
+      }
+
+      if (userData.role === "Ambulance Team" && !userData.hospitalId) {
+        throw new Error("Hospital is required for ambulance teams");
       }
 
       const url = this.currentEditingUser
@@ -575,7 +597,21 @@ class UserManagement {
     const primaryRole = user.roles[0] || "Unknown";
     const roleColor = roleColors[primaryRole] || "bg-gray-100 text-gray-800";
 
-    const details = user.specialty || user.ambulance_team_name || "-";
+    // Get hospital name based on role
+    let hospitalName = "-";
+    if (primaryRole === "Doctor" || primaryRole === "Hospital Admin") {
+      hospitalName = user.hospital_name || "-";
+    } else if (primaryRole === "Ambulance Team") {
+      hospitalName = user.ambulance_hospital_name || "-";
+    }
+
+    // Get details based on role
+    let details = "-";
+    if (primaryRole === "Doctor") {
+      details = user.specialty || "-";
+    } else if (primaryRole === "Ambulance Team") {
+      details = user.ambulance_team_name || "-";
+    }
 
     return `
       <tr class="border-b border-solid border-card-soft hover:bg-gray-50">
@@ -586,7 +622,7 @@ class UserManagement {
             ${primaryRole}
           </div>
         </td>
-        <td class="p-4 hidden sm:table-cell text-sm">${user.name || "-"}</td>
+        <td class="p-4 hidden sm:table-cell text-sm">${hospitalName}</td>
         <td class="p-4 hidden lg:table-cell text-sm">${details}</td>
         <td class="p-4">
           <div class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold bg-primary hover:bg-medical-400 text-white">
