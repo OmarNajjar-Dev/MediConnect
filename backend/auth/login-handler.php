@@ -1,13 +1,16 @@
 <?php
 
-// Start session if not already started
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+// Load enhanced session configuration
+require_once __DIR__ . '/../config/session-config.php';
+
+// Start secure session
+startSecureSession();
 
 require_once __DIR__ . '/../config/db.php';
 require_once __DIR__ . '/../config/path.php';
+require_once __DIR__ . '/../helpers/auth-helpers.php';
 require_once __DIR__ . '/../helpers/registration-helpers.php';
+require_once __DIR__ . '/../helpers/session-fallback.php';
 
 header('Content-Type: application/json'); // Important for AJAX
 
@@ -30,6 +33,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         if (password_verify($password, $user["password"])) {
             error_log("Password verified successfully for user ID: " . $user["user_id"]);
+            
+            // Store user ID in session directly
             $_SESSION["user_id"] = $user["user_id"];
 
             // Fetch user role
@@ -44,12 +49,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $roleStmt->execute();
             $roleResult = $roleStmt->get_result();
 
-            // Store user role in session
+            // Store user role in session with fallback
             if ($roleResult->num_rows === 1) {
                 $roleData = $roleResult->fetch_assoc();
                 $roleName = $roleData["role_name"];
-                storeUserRoleInSession($roleName);  // e.g., "super_admin", "doctor"
-                error_log("Role stored in session: " . $roleName);
+                
+                // Store role with fallback system
+                $normalizedRole = slugToSnakeCase($roleName);
+                setUserRoleWithFallback($normalizedRole);
+                
+                error_log("Role stored with fallback: " . $normalizedRole);
             }
 
             $roleStmt->close();

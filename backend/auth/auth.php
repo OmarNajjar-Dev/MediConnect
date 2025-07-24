@@ -1,12 +1,15 @@
 <?php
 
-// Start session if not already started
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-};
+// Load enhanced session configuration
+require_once __DIR__ . '/../config/session-config.php';
+
+// Start secure session
+startSecureSession();
 
 require_once __DIR__ . '/../config/db.php';
+require_once __DIR__ . '/../helpers/auth-helpers.php';
 require_once __DIR__ . '/../helpers/registration-helpers.php';
+require_once __DIR__ . '/../helpers/session-fallback.php';
 
 // Only set JSON content type for API requests
 if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest') {
@@ -24,8 +27,10 @@ if (!isset($_SESSION["user_id"]) && isset($_COOKIE["remember_token"])) {
 
     if ($result->num_rows === 1) {
         $user = $result->fetch_assoc();
-        $_SESSION["user_id"] = $user["user_id"];
         $userId = $user["user_id"];
+        
+        // Store user ID in session directly
+        $_SESSION["user_id"] = $userId;
 
         // Step 2: Get role_name from user_roles → roles
         $roleStmt = $conn->prepare("
@@ -41,7 +46,8 @@ if (!isset($_SESSION["user_id"]) && isset($_COOKIE["remember_token"])) {
 
         if ($roleRow = $roleResult->fetch_assoc()) {
             $roleName = trim($roleRow['role_name']);
-            storeUserRoleInSession($roleName);
+            $normalizedRole = slugToSnakeCase($roleName);
+            setUserRoleWithFallback($normalizedRole);
         }
 
         $roleStmt->close();

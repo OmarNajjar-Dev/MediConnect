@@ -9,7 +9,10 @@ require_once __DIR__ . "/../../backend/auth/auth.php";
 // 3. Load user session context (sets $isLoggedIn, $userName, $userEmail, $userProfileImage, $userAddress, $userCity)
 require_once __DIR__ . "/../../backend/middleware/session-context.php";
 
-$role = $_SESSION['user_role'] ?? null;
+// 4. Load fallback helper
+require_once __DIR__ . "/../../backend/helpers/session-fallback.php";
+
+$role = getCurrentUserRole($conn, $_SESSION['user_id'] ?? null);
 
 switch ($role) {
     case 'super_admin':
