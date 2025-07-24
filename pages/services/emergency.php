@@ -32,21 +32,21 @@ require_once __DIR__ . "/../../backend/helpers/avatar-helper.php";
     <!-- Base Styles -->
     <link rel="stylesheet" href="/mediconnect/assets/css/base/base.css" />
     <link rel="stylesheet" href="/mediconnect/assets/css/base/typography.css" />
-    
+
     <!-- Design System -->
     <link rel="stylesheet" href="/mediconnect/assets/css/utils/colors.css" />
     <link rel="stylesheet" href="/mediconnect/assets/css/utils/spacing.min.css" />
     <link rel="stylesheet" href="/mediconnect/assets/css/utils/sizing.min.css" />
     <link rel="stylesheet" href="/mediconnect/assets/css/utils/borders.css" />
-    
+
     <!-- Layout & Components -->
     <link rel="stylesheet" href="/mediconnect/assets/css/layout/layout.css" />
     <link rel="stylesheet" href="/mediconnect/assets/css/components/animations.css" />
     <link rel="stylesheet" href="/mediconnect/assets/css/components/components.css" />
-    
+
     <!-- Custom Styles (Overrides) -->
     <link rel="stylesheet" href="/mediconnect/assets/css/base/style.css" />
-    
+
     <!-- Responsive Design -->
     <link rel="stylesheet" href="/mediconnect/assets/css/layout/responsive.css" />
 
@@ -139,13 +139,23 @@ require_once __DIR__ . "/../../backend/helpers/avatar-helper.php";
                                     </div>
                                     <div class="pt-4 border-t">
                                         <h4 class="font-semibold text-heading text-center">Emergency Contact Options</h4>
-                                        <div class="flex justify-center gap-4 mt-4"><button
-                                                class="justify-center gap-2 whitespace-nowrap rounded-md text-sm text-heading font-medium border border-solid border-card-soft bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 flex items-center cursor-pointer">
-                                                <i data-lucide="phone" class="mr-2 h-4 w-4"></i>
-                                                Call Dispatch</button>
+                                        <div class="flex justify-center gap-4 mt-4">
+                                            <div class="cursor-not-allowed group">
+                                                <button
+                                                    class="justify-center gap-2 whitespace-nowrap rounded-md text-sm text-heading font-medium border border-solid border-card-soft bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 flex items-center pointer-events-none" disabled>
+                                                    <i data-lucide="phone" class="mr-2 h-4 w-4"></i>
+                                                    Call Dispatch
+                                                </button>
+
+                                                <div
+                                                    class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded shadow whitespace-nowrap">
+                                                    Coming Soon!
+                                                </div>
+                                            </div>
                                             <button id="status-cancel-btn"
                                                 class="justify-center gap-2 whitespace-nowrap rounded-md text-sm text-heading font-medium border border-solid border-card-soft bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 flex items-center cursor-pointer">Cancel
-                                                Request</button>
+                                                Request
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
