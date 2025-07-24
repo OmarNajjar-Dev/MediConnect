@@ -11,6 +11,6 @@ export function handleCheckboxToggle() {
     button?.classList.toggle("hover:bg-medical-700", isChecked);
 
     button?.classList.toggle("cursor-pointer", isChecked);
-    button?.parentElement?.classList.toggle("not-allowed", !isChecked);
+    button?.parentElement?.classList.toggle("cursor-not-allowed", !isChecked);
   });
 }

@@ -358,7 +358,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         </div>
 
                         <!-- Submit Button -->
-                        <div class="pt-4">
+                        <div class="pt-4 cursor-not-allowed">
                             <button id="signup-btn" type="submit"
                                 class="flex h-10 w-full items-center justify-center gap-2 rounded-md text-sm font-medium transition-colors text-white bg-primary hover:bg-medical-600 border-none cursor-pointer pointer-events-none bg-medical-200">
                                 <i data-lucide="user-plus" class="h-4 w-4"></i>
