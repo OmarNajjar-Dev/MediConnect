@@ -2,6 +2,8 @@ import { showErrorToast, showSuccessToast } from "../common/toast.js";
 import { updateStatusDisplay } from "./statusDisplay.js";
 
 let currentRequestId = null;
+let countdownTimeout = null;
+let isCountdownActive = false;
 
 export function setCurrentRequestId(requestId) {
   currentRequestId = requestId;
@@ -11,16 +13,40 @@ export function getCurrentRequestId() {
   return currentRequestId;
 }
 
+export function stopCountdown() {
+  console.log("Stopping countdown...");
+  isCountdownActive = false;
+  if (countdownTimeout) {
+    clearTimeout(countdownTimeout);
+    countdownTimeout = null;
+  }
+  
+  // Reset the ETA text to original state when countdown is stopped
+  const etaText = document.getElementById("eta-text");
+  if (etaText) {
+    etaText.textContent = "Estimated arrival: 10 minutes";
+  }
+}
+
 export function startCountdown(minutes) {
   let remaining = minutes;
   const etaText = document.getElementById("eta-text");
   if (!etaText) return;
 
+  // Set countdown as active
+  isCountdownActive = true;
+
   async function updateCountdown() {
+    // Check if countdown was cancelled
+    if (!isCountdownActive) {
+      console.log("Countdown was cancelled, stopping...");
+      return;
+    }
+
     if (remaining > 0) {
       etaText.textContent = `Estimated arrival: ${remaining} minute(s)`;
       remaining--;
-      setTimeout(updateCountdown, 60000); // Update every minute
+      countdownTimeout = setTimeout(updateCountdown, 60000); // Update every minute
     } else {
       // Ambulance has arrived
       etaText.textContent = `Ambulance has arrived!`;

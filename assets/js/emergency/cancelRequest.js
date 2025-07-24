@@ -3,7 +3,11 @@ import {
   showSuccessToast,
   showWarningToast,
 } from "../common/toast.js";
-import { getCurrentRequestId, setCurrentRequestId } from "./countdown.js";
+import {
+  getCurrentRequestId,
+  setCurrentRequestId,
+  stopCountdown,
+} from "./countdown.js";
 
 let requestCancelled = false;
 let drawerTimeout = null;
@@ -15,6 +19,12 @@ const originalHelpHTML = helpSectionWrapper ? helpSectionWrapper.innerHTML : "";
 export async function cancelRequest() {
   requestCancelled = true;
   clearTimeout(drawerTimeout);
+
+  // Stop the countdown immediately
+  stopCountdown();
+
+  // Set global state to prevent drawer timeout
+  window.emergencyRequestCancelled = true;
 
   const drawer = document.getElementById("drawer");
   if (drawer) drawer.classList.add("hidden");
@@ -74,6 +84,12 @@ export async function cancelRequest() {
 function resetEmergencyUI() {
   const statusSection = document.getElementById("status-section");
   if (statusSection) statusSection.classList.add("hidden");
+
+  // Reset the ETA text to original state
+  const etaText = document.getElementById("eta-text");
+  if (etaText) {
+    etaText.textContent = "Estimated arrival: 10 minutes";
+  }
 
   if (helpSectionWrapper) {
     helpSectionWrapper.innerHTML = originalHelpHTML;

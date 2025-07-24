@@ -3,7 +3,11 @@ import {
   showSuccessToast,
   showWarningToast,
 } from "../common/toast.js";
-import { startCountdown, setCurrentRequestId } from "./countdown.js";
+import {
+  startCountdown,
+  setCurrentRequestId,
+  stopCountdown,
+} from "./countdown.js";
 
 // Global variables for emergency state
 let currentRequestId = null;
@@ -16,6 +20,13 @@ const originalHelpHTML = helpSectionWrapper ? helpSectionWrapper.innerHTML : "";
 
 export async function handleEmergencyClick() {
   requestCancelled = false;
+
+  // Reset global state
+  window.emergencyRequestCancelled = false;
+
+  // Stop any existing countdown before starting new request
+  stopCountdown();
+
   const drawer = document.getElementById("drawer");
   if (drawer) drawer.classList.remove("hidden");
 
@@ -106,7 +117,7 @@ export async function handleEmergencyClick() {
   }
 
   drawerTimeout = setTimeout(() => {
-    if (!requestCancelled) {
+    if (!requestCancelled && !window.emergencyRequestCancelled) {
       const drawer = document.getElementById("drawer");
       if (drawer) drawer.classList.add("hidden");
       replaceHelpButtonSection();
