@@ -147,31 +147,4 @@ try {
     ]);
 }
 
-/**
- * Generate a secure temporary password
- */
-function generateSecurePassword($length = 12) {
-    $uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $lowercase = 'abcdefghijklmnopqrstuvwxyz';
-    $numbers = '0123456789';
-    $symbols = '!@#$%^&*';
-    
-    $password = '';
-    
-    // Ensure at least one character from each set
-    $password .= $uppercase[random_int(0, strlen($uppercase) - 1)];
-    $password .= $lowercase[random_int(0, strlen($lowercase) - 1)];
-    $password .= $numbers[random_int(0, strlen($numbers) - 1)];
-    $password .= $symbols[random_int(0, strlen($symbols) - 1)];
-    
-    // Fill the rest with random characters
-    $allChars = $uppercase . $lowercase . $numbers . $symbols;
-    for ($i = 4; $i < $length; $i++) {
-        $password .= $allChars[random_int(0, strlen($allChars) - 1)];
-    }
-    
-    // Shuffle the password
-    return str_shuffle($password);
-}
-
 $conn->close(); 
