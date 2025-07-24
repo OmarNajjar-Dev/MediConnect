@@ -10,9 +10,7 @@ async function getEmailJSConfig() {
   }
 
   try {
-    const response = await fetch(
-      "/mediconnect/backend/api/utils/get-emailjs-config.php"
-    );
+    const response = await fetch("/backend/api/utils/get-emailjs-config.php");
     const result = await response.json();
 
     if (result.success) {

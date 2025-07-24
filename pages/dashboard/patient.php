@@ -38,13 +38,13 @@ if (isset($_SESSION['user_id'])) {
         $patientBirthdate = $patient['birthdate'] ?? '';
         $patientGender = $patient['gender'] ?? '';
     }
-    
+
     // Fetch patient appointment statistics
     $patientAppointmentStats = getPatientAppointmentStats($userId);
-    
+
     // Fetch upcoming appointments
     $upcomingAppointments = getPatientAppointments($userId, 'Scheduled');
-    
+
     // Fetch completed appointments for medical history
     $completedAppointments = getPatientAppointments($userId, 'Completed');
 }
@@ -63,30 +63,30 @@ if (isset($_SESSION['user_id'])) {
     <!-- Lucide Icons -->
     <?php require_once __DIR__ . '/../../backend/config/apis.php'; ?>
     <script src="<?= LUCIDE_CDN_URL ?>"></script>
-    
+
     <!-- Base Styles -->
-    <link rel="stylesheet" href="/mediconnect/assets/css/base/base.css" />
-    <link rel="stylesheet" href="/mediconnect/assets/css/base/typography.css" />
-    
+    <link rel="stylesheet" href="/assets/css/base/base.css" />
+    <link rel="stylesheet" href="/assets/css/base/typography.css" />
+
     <!-- Design System -->
-    <link rel="stylesheet" href="/mediconnect/assets/css/utils/colors.css" />
-    <link rel="stylesheet" href="/mediconnect/assets/css/utils/spacing.min.css" />
-    <link rel="stylesheet" href="/mediconnect/assets/css/utils/sizing.min.css" />
-    <link rel="stylesheet" href="/mediconnect/assets/css/utils/borders.css" />
-    <link rel="stylesheet" href="/mediconnect/assets/css/utils/ring.css" />
-    
+    <link rel="stylesheet" href="/assets/css/utils/colors.css" />
+    <link rel="stylesheet" href="/assets/css/utils/spacing.min.css" />
+    <link rel="stylesheet" href="/assets/css/utils/sizing.min.css" />
+    <link rel="stylesheet" href="/assets/css/utils/borders.css" />
+    <link rel="stylesheet" href="/assets/css/utils/ring.css" />
+
     <!-- Layout & Components -->
-    <link rel="stylesheet" href="/mediconnect/assets/css/layout/layout.css" />
-    <link rel="stylesheet" href="/mediconnect/assets/css/components/animations.css" />
-    
+    <link rel="stylesheet" href="/assets/css/layout/layout.css" />
+    <link rel="stylesheet" href="/assets/css/components/animations.css" />
+
     <!-- Page Specific Styles -->
-    <link rel="stylesheet" href="/mediconnect/assets/css/pages/dashboard.css" />
-    
+    <link rel="stylesheet" href="/assets/css/pages/dashboard.css" />
+
     <!-- Custom Styles (Overrides) -->
-    <link rel="stylesheet" href="/mediconnect/assets/css/base/style.css" />
-    
+    <link rel="stylesheet" href="/assets/css/base/style.css" />
+
     <!-- Responsive Design -->
-    <link rel="stylesheet" href="/mediconnect/assets/css/layout/responsive.css" />
+    <link rel="stylesheet" href="/assets/css/layout/responsive.css" />
 
     <!-- Page Title -->
     <title>MediConnect - Bridging Healthcare & Technology</title>
@@ -497,7 +497,7 @@ if (isset($_SESSION['user_id'])) {
                                         </div>
 
                                     </div>
-                                    
+
                                     <!-- Location Information -->
                                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                         <div class="flex flex-col gap-2">
@@ -548,8 +548,8 @@ if (isset($_SESSION['user_id'])) {
     <?php require_once './../../includes/footer.php'; ?>
 
     <!-- External JavaScript -->
-    <script type="module" src="/mediconnect/assets/js/common/index.js"></script>
-    <script type="module" src="/mediconnect/assets/js/dashboard/patient/index.js"></script>
+    <script type="module" src="/assets/js/common/index.js"></script>
+    <script type="module" src="/assets/js/dashboard/patient/index.js"></script>
 
     <!-- Create Lucide Icons -->
     <script>

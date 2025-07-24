@@ -26,7 +26,9 @@ class ProfileManager {
     this.bioInput = document.getElementById("profile-bio");
 
     this.uploadInput = document.getElementById("profile-upload");
-    this.previewContainer = document.getElementById("profile-image-preview-container");
+    this.previewContainer = document.getElementById(
+      "profile-image-preview-container"
+    );
 
     this.saveButton = document.getElementById("save-profile-changes-btn");
     this.saveText = document.getElementById("save-profile-text");
@@ -44,7 +46,9 @@ class ProfileManager {
       if (e.target === this.overlay) this.closeModal();
     });
 
-    this.uploadInput?.addEventListener("change", (e) => this.handleImageSelection(e));
+    this.uploadInput?.addEventListener("change", (e) =>
+      this.handleImageSelection(e)
+    );
     this.form?.addEventListener("input", () => this.toggleDiscardButton());
     this.form?.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -72,9 +76,10 @@ class ProfileManager {
   // 4. Fetch Data
   async fetchProfileData() {
     try {
-      const res = await fetch("/mediconnect/backend/api/doctors/get-doctor-profile.php");
+      const res = await fetch("/backend/api/doctors/get-doctor-profile.php");
       const json = await res.json();
-      if (!json.success) throw new Error(json.message || "Failed to load profile");
+      if (!json.success)
+        throw new Error(json.message || "Failed to load profile");
 
       const { name, email, bio, profile_image } = json.data;
 
@@ -110,7 +115,9 @@ class ProfileManager {
   }
 
   clearPreview() {
-    const existing = this.previewContainer.querySelector("#profile-image-preview");
+    const existing = this.previewContainer.querySelector(
+      "#profile-image-preview"
+    );
     if (existing) existing.remove();
   }
 
@@ -184,13 +191,17 @@ class ProfileManager {
         formData.append("profile_image", this.currentImageFile);
       }
 
-      const res = await fetch("/mediconnect/backend/api/doctors/update-doctor-profile.php", {
-        method: "POST",
-        body: formData,
-      });
+      const res = await fetch(
+        "/backend/api/doctors/update-doctor-profile.php",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
       const json = await res.json();
-      if (!json.success) throw new Error(json.message || "Failed to update profile");
+      if (!json.success)
+        throw new Error(json.message || "Failed to update profile");
 
       const { name, bio, profile_image } = json.data;
 
@@ -214,7 +225,9 @@ class ProfileManager {
 
   // 8. Update static content
   updateStaticContent(name, bio) {
-    const welcomeHeader = document.querySelector("h1.text-2xl.font-bold.text-gray-900");
+    const welcomeHeader = document.querySelector(
+      "h1.text-2xl.font-bold.text-gray-900"
+    );
     if (welcomeHeader) welcomeHeader.textContent = `Welcome back, Dr. ${name}`;
 
     const panelHeader = document.querySelector(".text-gray-600");
@@ -222,7 +235,7 @@ class ProfileManager {
       panelHeader.textContent = `Welcome, Dr. ${name}`;
     }
 
-    const profileName = document.querySelector('[data-profile-name]');
+    const profileName = document.querySelector("[data-profile-name]");
     if (profileName?.textContent?.startsWith("Dr.")) {
       profileName.textContent = `Dr. ${name}`;
     }
@@ -230,14 +243,17 @@ class ProfileManager {
     const dropdownName = document.querySelector(".dropdown .max-w-24");
     if (dropdownName) dropdownName.textContent = name;
 
-    const bioParagraph = document.querySelector('[data-profile-bio]');
+    const bioParagraph = document.querySelector("[data-profile-bio]");
     if (bioParagraph) {
       if (bio?.trim()) {
-        bioParagraph.className = "text-gray-700 text-sm sm:text-base leading-relaxed";
+        bioParagraph.className =
+          "text-gray-700 text-sm sm:text-base leading-relaxed";
         bioParagraph.textContent = bio;
       } else {
-        bioParagraph.className = "text-gray-500 text-sm sm:text-base italic leading-relaxed";
-        bioParagraph.textContent = 'No bio available. Click "Edit Profile" to add your professional background.';
+        bioParagraph.className =
+          "text-gray-500 text-sm sm:text-base italic leading-relaxed";
+        bioParagraph.textContent =
+          'No bio available. Click "Edit Profile" to add your professional background.';
       }
     }
   }
@@ -247,7 +263,9 @@ class ProfileManager {
     if (!imageUrl || imageUrl === "null" || imageUrl.trim() === "") return;
 
     // header
-    const headerAvatar = document.querySelector(".dropdown button img, .dropdown button div");
+    const headerAvatar = document.querySelector(
+      ".dropdown button img, .dropdown button div"
+    );
     if (headerAvatar) {
       const newImg = document.createElement("img");
       newImg.src = imageUrl;
@@ -257,7 +275,9 @@ class ProfileManager {
     }
 
     // profile section
-    const profileAvatar = document.querySelector('[data-section="my-profile"] .w-24.h-24');
+    const profileAvatar = document.querySelector(
+      '[data-section="my-profile"] .w-24.h-24'
+    );
     if (profileAvatar) {
       const newImg = document.createElement("img");
       newImg.src = imageUrl;

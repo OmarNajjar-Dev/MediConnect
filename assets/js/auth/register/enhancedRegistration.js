@@ -101,7 +101,7 @@ function setupGeolocationDetection() {
     try {
       // Use the existing get-location.php API
       const response = await fetch(
-        `/mediconnect/backend/api/utils/get-location.php?lat=${latitude}&lon=${longitude}`,
+        `/backend/api/utils/get-location.php?lat=${latitude}&lon=${longitude}`,
         {
           method: "GET",
           headers: {

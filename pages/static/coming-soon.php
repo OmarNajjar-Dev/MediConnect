@@ -23,27 +23,27 @@ require_once __DIR__ . "/../../backend/helpers/avatar-helper.php";
     <!-- Lucide Icons -->
     <?php require_once __DIR__ . '/../../backend/config/apis.php'; ?>
     <script src="<?= LUCIDE_CDN_URL ?>"></script>
-    
+
     <!-- Base Styles -->
-    <link rel="stylesheet" href="/mediconnect/assets/css/base/base.css" />
-    <link rel="stylesheet" href="/mediconnect/assets/css/base/typography.css" />
-    
+    <link rel="stylesheet" href="/assets/css/base/base.css" />
+    <link rel="stylesheet" href="/assets/css/base/typography.css" />
+
     <!-- Design System -->
-    <link rel="stylesheet" href="/mediconnect/assets/css/utils/colors.css" />
-    <link rel="stylesheet" href="/mediconnect/assets/css/utils/spacing.min.css" />
-    <link rel="stylesheet" href="/mediconnect/assets/css/utils/sizing.min.css" />
-    <link rel="stylesheet" href="/mediconnect/assets/css/utils/borders.css" />
-    
+    <link rel="stylesheet" href="/assets/css/utils/colors.css" />
+    <link rel="stylesheet" href="/assets/css/utils/spacing.min.css" />
+    <link rel="stylesheet" href="/assets/css/utils/sizing.min.css" />
+    <link rel="stylesheet" href="/assets/css/utils/borders.css" />
+
     <!-- Layout & Components -->
-    <link rel="stylesheet" href="/mediconnect/assets/css/layout/layout.css" />
-    <link rel="stylesheet" href="/mediconnect/assets/css/components/animations.css" />
-    <link rel="stylesheet" href="/mediconnect/assets/css/components/components.css" />
-    
+    <link rel="stylesheet" href="/assets/css/layout/layout.css" />
+    <link rel="stylesheet" href="/assets/css/components/animations.css" />
+    <link rel="stylesheet" href="/assets/css/components/components.css" />
+
     <!-- Custom Styles (Overrides) -->
-    <link rel="stylesheet" href="/mediconnect/assets/css/base/style.css" />
-    
+    <link rel="stylesheet" href="/assets/css/base/style.css" />
+
     <!-- Responsive Design -->
-    <link rel="stylesheet" href="/mediconnect/assets/css/layout/responsive.css" />
+    <link rel="stylesheet" href="/assets/css/layout/responsive.css" />
 
     <!-- Page Title -->
     <title>MediConnect - Bridging Healthcare & Technology</title>
@@ -125,8 +125,8 @@ require_once __DIR__ . "/../../backend/helpers/avatar-helper.php";
     <?php require_once './../../includes/footer.php'; ?>
 
     <!-- External JavaScript -->
-    <script type="module" src="/mediconnect/assets/js/common/index.js"></script>
-    <script type="module" src="/mediconnect/assets/js/coming-soon.js"></script>
+    <script type="module" src="/assets/js/common/index.js"></script>
+    <script type="module" src="/assets/js/coming-soon.js"></script>
 
     <script>
         lucide.createIcons();

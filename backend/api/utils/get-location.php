@@ -52,7 +52,8 @@ if ($locationData) {
 /**
  * Get location from OpenCage API
  */
-function getLocationFromOpenCage($lat, $lon) {
+function getLocationFromOpenCage($lat, $lon)
+{
     $url = OPENCAGE_BASE_URL . "?" . http_build_query([
         'key' => OPENCAGE_API_KEY,
         'q' => "$lat+$lon",
@@ -60,41 +61,41 @@ function getLocationFromOpenCage($lat, $lon) {
         'pretty' => 0,
         'no_annotations' => 1
     ]);
-    
+
     $opts = [
         "http" => [
             "method" => "GET",
-            "header" => "User-Agent: MediConnect/1.0\r\n",
+            "header" => "User-Agent: 1.0\r\n",
             "timeout" => 10
         ]
     ];
-    
+
     $context = stream_context_create($opts);
     $response = file_get_contents($url, false, $context);
-    
+
     if (!$response) {
         return null;
     }
-    
+
     $data = json_decode($response, true);
     if (!$data || !isset($data['results']) || empty($data['results'])) {
         return null;
     }
-    
+
     $result = $data['results'][0];
     $address = $result['components'];
-    
+
     // Extract basic address info
     $city = $address['city'] ?? $address['town'] ?? $address['village'] ?? $address['county'] ?? 'Unknown';
     $district = $address['suburb'] ?? $address['neighbourhood'] ?? null;
     $street = $address['road'] ?? $address['street'] ?? null;
     $country = $address['country'] ?? 'Unknown';
     $state = $address['state'] ?? $address['province'] ?? null;
-    
+
     // Build clean address
     $cleanAddressParts = array_filter([$street, $district, $city]);
     $cleanAddress = implode(', ', $cleanAddressParts);
-    
+
     return [
         "success" => true,
         "city" => $city,
@@ -111,5 +112,3 @@ function getLocationFromOpenCage($lat, $lon) {
         ]
     ];
 }
-
-?>

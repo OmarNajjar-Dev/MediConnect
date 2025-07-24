@@ -48,7 +48,7 @@ export async function handleEmergencyClick() {
           });
 
           const response = await fetch(
-            "/mediconnect/backend/api/emergency/handle-emergency.php",
+            "/backend/api/emergency/handle-emergency.php",
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },

@@ -80,9 +80,7 @@ class ProfileManager {
   // 4. Fetch Data
   async fetchProfileData() {
     try {
-      const res = await fetch(
-        "/mediconnect/backend/api/patients/get-patient-profile.php"
-      );
+      const res = await fetch("/backend/api/patients/get-patient-profile.php");
       const json = await res.json();
       if (!json.success)
         throw new Error(json.message || "Failed to load profile");
@@ -244,7 +242,7 @@ class ProfileManager {
       }
 
       const res = await fetch(
-        "/mediconnect/backend/api/patients/update-patient-profile.php",
+        "/backend/api/patients/update-patient-profile.php",
         {
           method: "POST",
           body: formData,

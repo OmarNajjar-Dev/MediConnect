@@ -1,13 +1,13 @@
 RewriteEngine On
-RewriteBase /mediconnect/
+RewriteBase /
 
 # Show 404 if file or folder doesn't exist
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^.*$ /mediconnect/pages/errors/404.php [L]
+RewriteRule ^.*$ /pages/errors/404.php [L]
 
 # Fallback custom 404
-ErrorDocument 401 /mediconnect/pages/errors/401.php
-ErrorDocument 403 /mediconnect/pages/errors/403.php
-ErrorDocument 404 /mediconnect/pages/errors/404.php
-ErrorDocument 500 /mediconnect/pages/errors/500.php
+ErrorDocument 401 /pages/errors/401.php
+ErrorDocument 403 /pages/errors/403.php
+ErrorDocument 404 /pages/errors/404.php
+ErrorDocument 500 /pages/errors/500.php

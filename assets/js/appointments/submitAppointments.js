@@ -66,7 +66,7 @@ export async function submitAppointment() {
     }
 
     const response = await fetch(
-      "/mediconnect/backend/api/appointments/create-appointment.php",
+      "/backend/api/appointments/create-appointment.php",
       {
         method: "POST",
         headers: {

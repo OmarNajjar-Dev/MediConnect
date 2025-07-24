@@ -4,7 +4,7 @@ import { setupDropdowns, setupOptionListeners } from "./setupDropdowns.js";
 export async function loadSpecialties() {
   try {
     const response = await fetch(
-      "/mediconnect/backend/api/appointments/get-appointment-specialties.php"
+      "/backend/api/appointments/get-appointment-specialties.php"
     );
     const data = await response.json();
 
@@ -51,8 +51,8 @@ export async function loadSpecialties() {
 export async function loadDoctors(specialtyId = null) {
   try {
     const url = specialtyId
-      ? `/mediconnect/backend/api/appointments/get-appointment-doctors.php?specialty_id=${specialtyId}`
-      : "/mediconnect/backend/api/appointments/get-appointment-doctors.php";
+      ? `/backend/api/appointments/get-appointment-doctors.php?specialty_id=${specialtyId}`
+      : "/backend/api/appointments/get-appointment-doctors.php";
 
     const response = await fetch(url);
     const data = await response.json();

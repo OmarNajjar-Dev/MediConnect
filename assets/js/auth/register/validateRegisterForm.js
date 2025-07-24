@@ -57,7 +57,7 @@ export function validateRegisterForm() {
     // Check email existence
     else {
       try {
-        const res = await fetch("/mediconnect/backend/auth/check-email.php", {
+        const res = await fetch("/backend/auth/check-email.php", {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
           body: `email=${encodeURIComponent(emailInput.value)}`,

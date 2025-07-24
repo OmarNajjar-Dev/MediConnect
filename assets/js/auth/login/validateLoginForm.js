@@ -30,7 +30,7 @@ export function validateLoginForm() {
     try {
       console.log("Sending login request...");
 
-      const res = await fetch("/mediconnect/backend/auth/login-handler.php", {
+      const res = await fetch("/backend/auth/login-handler.php", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: formData.toString(),

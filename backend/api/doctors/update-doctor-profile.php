@@ -115,7 +115,7 @@ try {
         $uploadPath = $uploadDir . $newFileName;
 
         // Generate web-accessible URL (like Super Admin implementation)
-        $imageUrl = '/mediconnect/uploads/profile_images/' . $newFileName;
+        $imageUrl = '/uploads/profile_images/' . $newFileName;
 
         if (move_uploaded_file($_FILES['profile_image']['tmp_name'], $uploadPath)) {
             // Update database with full web path (not just filename)

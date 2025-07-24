@@ -20,7 +20,7 @@ export function stopCountdown() {
     clearTimeout(countdownTimeout);
     countdownTimeout = null;
   }
-  
+
   // Reset the ETA text to original state when countdown is stopped
   const etaText = document.getElementById("eta-text");
   if (etaText) {
@@ -55,14 +55,11 @@ export function startCountdown(minutes) {
         try {
           console.log("Marking emergency request as completed...");
 
-          const res = await fetch(
-            "/mediconnect/backend/api/emergency/mark-completed.php",
-            {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ request_id: currentRequestId }),
-            }
-          );
+          const res = await fetch("/backend/api/emergency/mark-completed.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ request_id: currentRequestId }),
+          });
 
           const data = await res.json();
           console.log("Mark completed response:", data);
@@ -110,14 +107,11 @@ export async function markRequestAsCompleted() {
   if (!currentRequestId) return;
 
   try {
-    const res = await fetch(
-      "/mediconnect/backend/api/emergency/mark-completed.php",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ request_id: currentRequestId }),
-      }
-    );
+    const res = await fetch("/backend/api/emergency/mark-completed.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ request_id: currentRequestId }),
+    });
 
     const data = await res.json();
 

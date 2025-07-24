@@ -16,9 +16,7 @@ class HospitalManagement {
 
   async loadHospitals() {
     try {
-      const response = await fetch(
-        "/mediconnect/backend/api/hospitals/get-hospitals.php"
-      );
+      const response = await fetch("/backend/api/hospitals/get-hospitals.php");
       const data = await response.json();
 
       // Handle both old format (direct array) and new format (with success property)
@@ -181,8 +179,8 @@ class HospitalManagement {
       }
 
       const url = this.currentEditingHospital
-        ? "/mediconnect/backend/api/hospitals/update-hospital.php"
-        : "/mediconnect/backend/api/hospitals/create-hospital.php";
+        ? "/backend/api/hospitals/update-hospital.php"
+        : "/backend/api/hospitals/create-hospital.php";
 
       const method = this.currentEditingHospital ? "PUT" : "POST";
 
@@ -229,7 +227,7 @@ class HospitalManagement {
 
     try {
       const response = await fetch(
-        "/mediconnect/backend/api/hospitals/delete-hospital.php",
+        "/backend/api/hospitals/delete-hospital.php",
         {
           method: "DELETE",
           headers: {

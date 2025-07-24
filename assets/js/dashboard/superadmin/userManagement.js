@@ -37,9 +37,7 @@ class UserManagement {
 
   async loadUsers() {
     try {
-      const response = await fetch(
-        "/mediconnect/backend/api/users/get-users.php"
-      );
+      const response = await fetch("/backend/api/users/get-users.php");
       const data = await response.json();
 
       if (data.success) {
@@ -58,9 +56,7 @@ class UserManagement {
 
   async loadRoles() {
     try {
-      const response = await fetch(
-        "/mediconnect/backend/api/utils/get-roles.php"
-      );
+      const response = await fetch("/backend/api/utils/get-roles.php");
       const roles = await response.json();
       this.roles = roles;
       this.populateRoleDropdowns();
@@ -71,9 +67,7 @@ class UserManagement {
 
   async loadHospitals() {
     try {
-      const response = await fetch(
-        "/mediconnect/backend/api/hospitals/get-hospitals.php"
-      );
+      const response = await fetch("/backend/api/hospitals/get-hospitals.php");
       const data = await response.json();
 
       // Handle both old format (direct array) and new format (with success property)
@@ -94,9 +88,7 @@ class UserManagement {
 
   async loadSpecialties() {
     try {
-      const response = await fetch(
-        "/mediconnect/backend/api/utils/get-specialties.php"
-      );
+      const response = await fetch("/backend/api/utils/get-specialties.php");
       const data = await response.json();
 
       if (data.success) {
@@ -469,8 +461,8 @@ class UserManagement {
       }
 
       const url = this.currentEditingUser
-        ? "/mediconnect/backend/api/users/update-user.php"
-        : "/mediconnect/backend/api/users/create-user.php";
+        ? "/backend/api/users/update-user.php"
+        : "/backend/api/users/create-user.php";
 
       const method = this.currentEditingUser ? "PUT" : "POST";
 
@@ -516,16 +508,13 @@ class UserManagement {
     }
 
     try {
-      const response = await fetch(
-        "/mediconnect/backend/api/users/delete-user.php",
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ userId }),
-        }
-      );
+      const response = await fetch("/backend/api/users/delete-user.php", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userId }),
+      });
 
       const result = await response.json();
 

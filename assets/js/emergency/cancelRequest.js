@@ -39,14 +39,11 @@ export async function cancelRequest() {
   }
 
   try {
-    const response = await fetch(
-      "/mediconnect/backend/api/emergency/cancel-request.php",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ request_id: currentRequestId }),
-      }
-    );
+    const response = await fetch("/backend/api/emergency/cancel-request.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ request_id: currentRequestId }),
+    });
 
     const data = await response.json();
 

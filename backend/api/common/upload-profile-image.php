@@ -61,7 +61,7 @@ try {
     }
 
     // Generate web-accessible URL
-    $imageUrl = '/mediconnect/uploads/profile_images/' . $filename;
+    $imageUrl = '/uploads/profile_images/' . $filename;
 
     // Update database
     $stmt = $conn->prepare("UPDATE users SET profile_image = ? WHERE user_id = ?");
