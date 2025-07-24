@@ -16,7 +16,7 @@ $request_id = intval($data['request_id']);
 $update_sql = "
     UPDATE emergency_requests
     SET status = 'Canceled', canceled_at = NOW()
-    WHERE request_id = ? AND status = 'pending'
+    WHERE request_id = ? AND (status = 'Pending' OR status = 'pending')
 ";
 
 $stmt = $conn->prepare($update_sql);

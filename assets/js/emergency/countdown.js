@@ -54,6 +54,9 @@ export function startCountdown(minutes) {
 
             // Update the status display
             updateStatusDisplay("completed");
+
+            // Clear the stored request ID since it's completed
+            sessionStorage.removeItem("currentEmergencyRequestId");
           } else {
             console.error("❌ Completion failed:", data.message);
             showErrorToast(
@@ -81,11 +84,14 @@ export async function markRequestAsCompleted() {
   if (!currentRequestId) return;
 
   try {
-    const res = await fetch("/mediconnect/backend/api/emergency/mark-completed.php", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ request_id: currentRequestId }),
-    });
+    const res = await fetch(
+      "/mediconnect/backend/api/emergency/mark-completed.php",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ request_id: currentRequestId }),
+      }
+    );
 
     const data = await res.json();
 
@@ -97,6 +103,9 @@ export async function markRequestAsCompleted() {
       if (etaText) {
         etaText.textContent = "Ambulance has arrived!";
       }
+
+      // Clear the stored request ID since it's completed
+      sessionStorage.removeItem("currentEmergencyRequestId");
     } else {
       console.error("❌ Failed to mark as completed:", data.message);
     }

@@ -23,6 +23,8 @@ export async function cancelRequest() {
 
   if (!currentRequestId) {
     console.warn("No active request to cancel.");
+    // Reset UI even if no request ID
+    resetEmergencyUI();
     return;
   }
 
@@ -42,6 +44,12 @@ export async function cancelRequest() {
       console.log("Request canceled on server.");
       setCurrentRequestId(null);
 
+      // Clear the stored request ID
+      sessionStorage.removeItem("currentEmergencyRequestId");
+
+      // Reset the UI
+      resetEmergencyUI();
+
       // Show warning message
       showWarningToast(
         "Request Canceled",
@@ -56,16 +64,14 @@ export async function cancelRequest() {
     }
   } catch (err) {
     console.error("Cancel request error:", err);
+    showErrorToast(
+      "Network Error",
+      "Failed to cancel request due to network error"
+    );
   }
 }
 
-export function resetEmergency() {
-  cancelRequest();
-  setCurrentRequestId(null);
-
-  // Clear the stored request ID
-  sessionStorage.removeItem("currentEmergencyRequestId");
-
+function resetEmergencyUI() {
   const statusSection = document.getElementById("status-section");
   if (statusSection) statusSection.classList.add("hidden");
 
@@ -75,13 +81,21 @@ export function resetEmergency() {
 
   const newRequestBtn = document.getElementById("request-help-btn");
   if (newRequestBtn) {
-    newRequestBtn.addEventListener("click", () => {
+    // Remove existing event listeners and add new one
+    newRequestBtn.replaceWith(newRequestBtn.cloneNode(true));
+    const freshBtn = document.getElementById("request-help-btn");
+    freshBtn.addEventListener("click", () => {
       // Re-import and call the handler
       import("./handleEmergency.js").then((module) => {
         module.handleEmergencyClick();
       });
     });
   }
+}
+
+export function resetEmergency() {
+  // First try to cancel the request in the database
+  cancelRequest();
 
   // Show success message
   showSuccessToast(

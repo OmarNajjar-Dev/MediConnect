@@ -3,7 +3,7 @@ import {
   showSuccessToast,
   showWarningToast,
 } from "../common/toast.js";
-import { startCountdown } from "./countdown.js";
+import { startCountdown, setCurrentRequestId } from "./countdown.js";
 
 // Global variables for emergency state
 let currentRequestId = null;
@@ -50,6 +50,7 @@ export async function handleEmergencyClick() {
 
           if (data.success && data.estimated_time_minutes !== undefined) {
             currentRequestId = data.request_id;
+            setCurrentRequestId(data.request_id);
 
             // Store the request ID in sessionStorage for persistence
             sessionStorage.setItem(
