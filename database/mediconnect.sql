@@ -98,13 +98,13 @@ CREATE TABLE `doctors` (
 -- Dumping data for table `doctors`
 --
 
-INSERT INTO `doctors` (`doctor_id`, `user_id`, `specialty_id`, `hospital_id`, `is_verified`, `rating`, `reviews_count`, `bio`) VALUES
-(8, 2, 1, 1, 0, NULL, NULL, 'Dr. Sarah Johnson is a board-certified cardiologist with over 12 years of experience in treating cardiovascular diseases. She completed her medical training at Harvard Medical School and residency at Massachusetts General Hospital.'),
-(9, 3, 2, 2, 0, NULL, NULL, 'Dr. Michael Chen specializes in medical, surgical, and cosmetic dermatology. He has expertise in treating skin conditions like acne, eczema, psoriasis, and skin cancer.'),
-(10, 4, 3, 3, 0, NULL, NULL, 'Dr. Emily Rodriguez is a neurologist with expertise in headache disorders, multiple sclerosis, and neurodegenerative diseases. She is dedicated to providing compassionate care for patients with complex neurological conditions.'),
-(13, 7, 6, 7, 0, NULL, NULL, 'Dr. Robert Taylor is a psychiatrist specializing in mood disorders, anxiety, and PTSD. He takes a holistic approach to mental health, combining medication management with psychotherapy when appropriate.'),
-(14, 5, 4, 1, 0, NULL, NULL, 'Dr. James Wilson is an orthopedic surgeon specializing in sports medicine, joint replacement, and trauma. With 20 years of experience, he has helped thousands of patients recover from orthopedic injuries and conditions.'),
-(15, 6, 5, 6, 0, NULL, NULL, NULL);
+INSERT INTO `doctors` (`doctor_id`, `user_id`, `specialty_id`, `hospital_id`, `is_verified`, `bio`) VALUES
+(8, 3, 1, 1, 0, 'Dr. Sarah Johnson is a board-certified cardiologist with over 12 years of experience in treating cardiovascular diseases. She completed her medical training at Harvard Medical School and residency at Massachusetts General Hospital.'),
+(9, 4, 2, 2, 0, 'Dr. Michael Chen specializes in medical, surgical, and cosmetic dermatology. He has expertise in treating skin conditions like acne, eczema, psoriasis, and skin cancer.'),
+(10, 5, 3, 3, 0, 'Dr. Emily Rodriguez is a neurologist with expertise in headache disorders, multiple sclerosis, and neurodegenerative diseases. She is dedicated to providing compassionate care for patients with complex neurological conditions.'),
+(13, 8, 6, 7, 0, 'Dr. Robert Taylor is a psychiatrist specializing in mood disorders, anxiety, and PTSD. He takes a holistic approach to mental health, combining medication management with psychotherapy when appropriate.'),
+(14, 6, 4, 1, 0, 'Dr. James Wilson is an orthopedic surgeon specializing in sports medicine, joint replacement, and trauma. With 20 years of experience, he has helped thousands of patients recover from orthopedic injuries and conditions.'),
+(15, 7, 5, 6, 0, 'Dr. Lisa Kim is a dedicated pediatrician who provides comprehensive healthcare for children from birth through adolescence. She is known for her gentle approach and ability to connect with young patients.');
 
 -- --------------------------------------------------------
 
@@ -291,12 +291,11 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`role_id`, `role_name`) VALUES
-(6, 'Ambulance Team'),
-(3, 'Doctor'),
+(1, 'Super Admin'),
 (2, 'Hospital Admin'),
-(4, 'Patient'),
-(5, 'Staff'),
-(1, 'Super Admin');
+(3, 'Ambulance Team'),
+(4, 'Doctor'),
+(5, 'Patient');
 
 -- --------------------------------------------------------
 
@@ -362,15 +361,15 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`user_id`, `email`, `password`, `first_name`, `last_name`, `city`, `address_line`, `profile_image`, `remember_token`) VALUES
 (1, 'omarnajjar10.on@gmail.com', '$2y$10$eBYOqBRK7AsWXFBi3is4s.NYnZaMn2CCIodTta5amT22YYqBQyxDa', 'Omar', 'Najjar', 'Tripoli', 'Sea Road, El Mina', '/mediconnect/uploads/profile_images/profile_1_1752840783.jpg', '9857d6cddfba0b172ee8ee6217d181e331b4aa4d7d7cf38914e531abd86b23bf'),
-(2, 'sarahjohnson@gmail.com', '$2y$10$diymDRPP0peTXa.U.LdMYu5nZU3x2vxJFAxJaXfwQL0LUjuCm6rfi', 'Sarah', 'Johnson', 'Tripoli', 'Hay Al Ramlet', '/mediconnect/uploads/profile_images/profile_2_1752871634.webp', NULL),
-(3, 'michaelchen@gmail.com', '$2y$10$mkXvDnpFC6ke5ojUMjOdhem2MXM9hlzt7.R0h4HU3diUSftR8PYse', 'Michael', 'Chen', 'New York', '123 Skin Street', '/mediconnect/uploads/profile_images/profile_3_1752914804.webp', NULL),
-(4, 'emilyrodriguez@gmail.com', '$2y$10$lX3ffT/LbQZW8jvSG59ceOCCYVGrir6ePRvb3eFfMWtho.IIiKw/G', 'Emily', 'Rodriguez', 'Los Angeles', '456 Neuro', '/mediconnect/uploads/profile_images/profile_4_1752914885.webp', NULL),
-(5, 'jameswilson@gmail.com', '$2y$10$3Ji/tJwDwkolqSuDAV7Dre33V3oGelJthsnms4P7fwaYYmK/DVu96', 'James', 'Wilson', 'Chicago', '789 Ortho', '/mediconnect/uploads/profile_images/profile_5_1752914927.webp', NULL),
-(6, 'lisakim@gmail.com', '$2y$10$6rkQR42WGSYZZVSh.n2sauFYW/OJJsOlie.XELzs6a.DaDtmk3ceq', 'Lisa', 'Kim', 'Houston', '321 Pediatric', '/mediconnect/uploads/profile_images/profile_6_1752914982.webp', NULL),
-(7, 'roberttaylor@gmail.com', '$2y$10$wY10L4rEwSJHVvJGCF5eFO0sYl7rU1keaikUGKE22AdbMTeAxcmqW', 'Robert', 'Taylor', 'Phoenix', '654 Mental Way', '/mediconnect/uploads/profile_images/profile_7_1752915038.webp', NULL),
-(8, 'eliofaddoul@gmail.com', '$2y$10$EOL6qR0E7KYOVE/VFBytzOhufMU41AUc0H13.Vmk6M8TNU.N2ZkJG', 'Elio', 'Faddoul', 'Tripoli', 'Dahr El Ein, Al Koura', '\\mediconnect\\uploads\\profile_images\\profile_8_1752924513.jpg', NULL),
+(2, 'eliofaddoul@gmail.com', '$2y$10$EOL6qR0E7KYOVE/VFBytzOhufMU41AUc0H13.Vmk6M8TNU.N2ZkJG', 'Elio', 'Faddoul', 'Tripoli', 'Dahr El Ein, Al Koura', '\\mediconnect\\uploads\\profile_images\\profile_8_1752924513.jpg', NULL),
+(3, 'sarahjohnson@gmail.com', '$2y$10$diymDRPP0peTXa.U.LdMYu5nZU3x2vxJFAxJaXfwQL0LUjuCm6rfi', 'Sarah', 'Johnson', 'Tripoli', 'Hay Al Ramlet', '/mediconnect/uploads/profile_images/profile_2_1752871634.webp', NULL),
+(4, 'michaelchen@gmail.com', '$2y$10$mkXvDnpFC6ke5ojUMjOdhem2MXM9hlzt7.R0h4HU3diUSftR8PYse', 'Michael', 'Chen', 'New York', '123 Skin Street', '/mediconnect/uploads/profile_images/profile_3_1752914804.webp', NULL),
+(5, 'emilyrodriguez@gmail.com', '$2y$10$lX3ffT/LbQZW8jvSG59ceOCCYVGrir6ePRvb3eFfMWtho.IIiKw/G', 'Emily', 'Rodriguez', 'Los Angeles', '456 Neuro', '/mediconnect/uploads/profile_images/profile_4_1752914885.webp', NULL),
+(6, 'jameswilson@gmail.com', '$2y$10$3Ji/tJwDwkolqSuDAV7Dre33V3oGelJthsnms4P7fwaYYmK/DVu96', 'James', 'Wilson', 'Chicago', '789 Ortho', '/mediconnect/uploads/profile_images/profile_5_1752914927.webp', NULL),
+(7, 'lisakim@gmail.com', '$2y$10$6rkQR42WGSYZZVSh.n2sauFYW/OJJsOlie.XELzs6a.DaDtmk3ceq', 'Lisa', 'Kim', 'Houston', '321 Pediatric', '/mediconnect/uploads/profile_images/profile_6_1752914982.webp', NULL),
+(8, 'roberttaylor@gmail.com', '$2y$10$wY10L4rEwSJHVvJGCF5eFO0sYl7rU1keaikUGKE22AdbMTeAxcmqW', 'Robert', 'Taylor', 'Phoenix', '654 Mental Way', '/mediconnect/uploads/profile_images/profile_7_1752915038.webp', NULL),
 (9, 'omarnajjar@gmail.com', '$2y$10$bx0qygpNThR0wxup09U6ruMuRcMBAa7lOEqvfRI7UBVp9j4c9US..', 'Omar', 'Najjar', 'Mina', 'AL se3a, Mina', '/mediconnect/uploads/profile_images/profile_9_1753212136.jpg', NULL),
-(11, 'tonyhanna@gmail.com', '$2y$10$erSrsOrXOJK0duZ3GhDuPehY6Gh9TiDAtgWh0QHCMjH9yKE14JKha', 'Tony', 'Hanna', 'Kfaraakka', 'kfaraakka', NULL, NULL);
+(10, 'tonyhanna@gmail.com', '$2y$10$erSrsOrXOJK0duZ3GhDuPehY6Gh9TiDAtgWh0QHCMjH9yKE14JKha', 'Tony', 'Hanna', 'Kfaraakka', 'kfaraakka', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -390,15 +389,15 @@ CREATE TABLE `user_roles` (
 
 INSERT INTO `user_roles` (`user_role_id`, `user_id`, `role_id`) VALUES
 (1, 1, 1),
-(3, 2, 3),
-(4, 3, 3),
-(5, 4, 3),
-(8, 7, 3),
-(9, 5, 3),
-(11, 8, 1),
-(12, 6, 3),
-(18, 9, 4),
-(20, 11, 6);
+(2, 2, 1),
+(3, 3, 4),
+(4, 4, 4),
+(5, 7, 4),
+(6, 5, 4),
+(7, 8, 4),
+(8, 6, 4),
+(9, 9, 5),
+(10, 10, 5);
 
 --
 -- Indexes for dumped tables
