@@ -3,10 +3,7 @@
 // 1. Load system configuration (paths, constants, routes, etc.)
 require_once __DIR__ . "/../../backend/config/path.php";
 
-// 2. Load authentication logic (login state, remember me, etc.)
-require_once __DIR__ . "/../../backend/auth/auth.php";
-
-// 3. Load user session context (sets $isLoggedIn, $userName, $userEmail, $userProfileImage, $userAddress, $userCity)
+// 2. Load user session context (sets $isLoggedIn, $userName, $userEmail, $userProfileImage, $userAddress, $userCity)
 require_once __DIR__ . "/../../backend/middleware/session-context.php";
 
 $role = $_SESSION['user_role'] ?? null;

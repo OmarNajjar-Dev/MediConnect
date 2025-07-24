@@ -1,18 +1,18 @@
 <?php
 
-// 4. Define required role for this dashboard
+// 3. Define required role for this dashboard
 $requiredRole = 'patient';
 
-// 5. Protect the dashboard: redirect if user role does not match
+// 4. Protect the dashboard: redirect if user role does not match
 require_once __DIR__ . "/../../backend/middleware/protect-dashboard.php";
 
-// 6. Include avatar helper
+// 5. Include avatar helper
 require_once __DIR__ . "/../../backend/helpers/avatar-helper.php";
 
-// 7. Include patient appointment helper
+// 6. Include patient appointment helper
 require_once __DIR__ . "/../../backend/helpers/patient-appointment-helper.php";
 
-// 8. Fetch patient-specific information
+// 7. Fetch patient-specific information
 $patientBirthdate = '';
 $patientGender = '';
 $patientAppointmentStats = ['upcoming' => 0, 'completed' => 0, 'this_month' => 0];

@@ -1,15 +1,15 @@
 <?php
 
-// 4. Define required role for this dashboard
+// 3. Define required role for this dashboard
 $requiredRole = 'super_admin';
 
-// 5. Protect the dashboard: redirect if user role does not match
+// 4. Protect the dashboard: redirect if user role does not match
 require_once __DIR__ . "/../../backend/middleware/protect-dashboard.php";
 
-// 6. Include avatar helper
+// 5. Include avatar helper
 require_once __DIR__ . "/../../backend/helpers/avatar-helper.php";
 
-// 7. Fetch complete user profile data for My Profile section using helper
+// 6. Fetch complete user profile data for My Profile section using helper
 $profileData = getUserProfileData($_SESSION['user_id'] ?? 0, $conn);
 $userCity = $profileData['city'];
 $userAddress = $profileData['address'];

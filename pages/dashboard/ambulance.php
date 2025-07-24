@@ -3,13 +3,13 @@
 // 0. Redirect to coming soon if this dashboard is not ready
 require_once __DIR__ . "/../../backend/middleware/redirect-to-coming-soon.php";
 
-// 4. Define required role for this dashboard
+// 3. Define required role for this dashboard
 $requiredRole = 'ambulance_team';
 
-// 5. Protect the dashboard: redirect if user role does not match
+// 4. Protect the dashboard: redirect if user role does not match
 require_once __DIR__ . "/../../backend/middleware/protect-dashboard.php";
 
-// 6. Include avatar helper
+// 5. Include avatar helper
 require_once __DIR__ . "/../../backend/helpers/avatar-helper.php";
 
 ?>
