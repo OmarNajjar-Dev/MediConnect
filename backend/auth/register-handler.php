@@ -30,16 +30,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         'team_name'    => $_POST["team_name"]    ?? null
     ];
 
-    $slugRole = $_POST["role"] ?? '';
-
-    // 6. Convert slug to role title
-    $roleName = slugToTitle($slugRole);
-
-    // 7. Validate role
-    if (!validateRole($roleName)) {
-        header("Location: " . $paths['auth']['register'] . "?error=invalid_role");
-        exit();
-    }
+    // 6. Set role to Patient (hardcoded for public registration)
+    $roleName = 'Patient';
 
     // 8. Validate email format
     if (!validateEmail($userData['email'])) {

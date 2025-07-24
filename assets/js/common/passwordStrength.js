@@ -186,6 +186,16 @@ export class PasswordStrengthValidator {
    * @param {string} password - Password to validate
    */
   validatePassword(password) {
+    // Only show strength indicator if password has at least 8 characters
+    if (password.length < 8) {
+      // Hide strength indicator for passwords less than 8 characters
+      if (this.strengthText) {
+        this.strengthText.textContent = "";
+        this.strengthText.className = "text-xs";
+      }
+      return;
+    }
+
     const checks = this.performChecks(password);
     const strength = this.calculateStrength(checks);
     this.updateUI(checks, strength);

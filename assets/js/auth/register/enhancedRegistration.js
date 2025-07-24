@@ -6,69 +6,9 @@ export function setupEnhancedRegistration() {
 }
 
 function setupRoleBasedFields() {
-  console.log("Setting up role-based fields...");
-  const roleButton = document.getElementById("role-button");
-  const roleInput = document.getElementById("role");
-  const roleSpecificFields = document.getElementById("role-specific-fields");
-  const hospitalSelection = document.getElementById("hospital-selection");
-  const specialtySelection = document.getElementById("specialty-selection");
-  const teamNameField = document.getElementById("team-name-field");
-  const hospitalButton = document.getElementById("hospital-button");
-  const hospitalInput = document.getElementById("hospital_id");
-  const specialtyButton = document.getElementById("specialty-button");
-  const specialtyInput = document.getElementById("specialty_id");
-
-  console.log("Elements found:", {
-    roleButton: !!roleButton,
-    roleInput: !!roleInput,
-    roleSpecificFields: !!roleSpecificFields,
-    hospitalSelection: !!hospitalSelection,
-    specialtySelection: !!specialtySelection,
-    teamNameField: !!teamNameField,
-    hospitalButton: !!hospitalButton,
-    hospitalInput: !!hospitalInput,
-    specialtyButton: !!specialtyButton,
-    specialtyInput: !!specialtyInput,
-  });
-
-  if (!roleButton || !roleInput || !roleSpecificFields) {
-    console.error("Required elements not found");
-    return;
-  }
-
-  // No need to load hospitals and specialties for patient-only registration
-  console.log("Patient-only registration - no additional data needed");
-
-  // Listen for role changes on the dropdown options
-  const roleOptions = document.querySelectorAll('[data-dropdown="option"]');
-  roleOptions.forEach((option) => {
-    option.addEventListener("click", (e) => {
-      const selectedRole = option.getAttribute("data-value");
-      console.log("Role changed to:", selectedRole);
-
-      // Update the hidden input value
-      roleInput.value = selectedRole;
-
-      // Update the button text
-      const roleButtonText = roleButton.querySelector("span");
-      roleButtonText.textContent = option.querySelector("span").textContent;
-
-      handleRoleChange(selectedRole);
-    });
-  });
-
-  function handleRoleChange(selectedRole) {
-    // For patient-only registration, no role-specific fields are needed
-    // All fields are hidden by default
-    roleSpecificFields.classList.add("hidden");
-    hospitalSelection.classList.add("hidden");
-    specialtySelection.classList.add("hidden");
-    teamNameField.classList.add("hidden");
-
-    // Clear any required attributes
-    hospitalInput.removeAttribute("required");
-    specialtyInput.removeAttribute("required");
-  }
+  console.log("Patient-only registration - no role selection needed");
+  // Role is hardcoded to 'Patient' for public registration
+  // No role-based field logic needed
 }
 
 function setupGeolocationDetection() {

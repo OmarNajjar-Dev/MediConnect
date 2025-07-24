@@ -5,16 +5,20 @@ export function validateRegisterForm() {
   const form = document.getElementById("register-form");
   const password = document.getElementById("password");
   const confirmPassword = document.getElementById("confirm-password");
-  const roleInput = document.getElementById("role");
   const emailInput = document.getElementById("email");
   const agreeCheckbox = document.getElementById("agree-checkbox");
 
-  // Initialize password strength validator with default IDs
-  const passwordValidator = new PasswordStrengthValidator();
+  // Password strength validator is initialized in index.js
+  // We'll access it through the global scope
+  const passwordValidator = window.passwordValidator;
 
   // Helper to validate password format using the strength validator
   const isPasswordValid = (pwd) => {
-    return passwordValidator.isPasswordValid(pwd);
+    return passwordValidator
+      ? passwordValidator.isPasswordValid(pwd)
+      : pwd.length >= 8 &&
+          /\d/.test(pwd) &&
+          /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(pwd);
   };
 
   form.addEventListener("submit", async (e) => {
@@ -23,17 +27,8 @@ export function validateRegisterForm() {
 
     hideToast(); // Hide any existing toast
 
-    // Check role
-    if (!roleInput.value) {
-      showErrorToast(
-        "Please select your role.",
-        "You must choose your position in the healthcare system."
-      );
-      hasError = true;
-    }
-
     // Check password format
-    else if (!isPasswordValid(password.value)) {
+    if (!isPasswordValid(password.value)) {
       showErrorToast(
         "Invalid password format.",
         "Password must be at least 8 characters long with at least one number and one special character."
@@ -51,7 +46,7 @@ export function validateRegisterForm() {
     }
 
     // Check password match
-    else if (!passwordValidator.doPasswordsMatch()) {
+    else if (passwordValidator && !passwordValidator.doPasswordsMatch()) {
       showErrorToast(
         "Passwords do not match.",
         "Please make sure both password fields contain exactly the same password."

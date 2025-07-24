@@ -35,16 +35,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         'team_name' => $_POST["team_name"] ?? null
     ];
 
-    $slugRole = $_POST["role"] ?? '';
-
-    // Convert slug (e.g. super-admin) to role title (e.g. Super Admin)
-    $roleName = slugToTitle($slugRole);
-
-    // Validate role
-    if (!validateRole($roleName)) {
-        header("Location: register.php?error=invalid_role");
-        exit();
-    }
+    // Set role to Patient (hardcoded for public registration)
+    $roleName = 'Patient';
 
     // Validate email format
     if (!validateEmail($userData['email'])) {
@@ -151,7 +143,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                 <!-- Register Form Card -->
                 <div class="bg-white px-4 py-8 shadow sm:rounded-lg sm:px-10">
-                    <form id="register-form" method="POST" action="/mediconnect/backend/auth/register-handler.php" class="flex flex-col gap-4">
+                    <form id="register-form" method="POST" action="register.php" class="flex flex-col gap-4">
 
                         <!-- Name Fields -->
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -178,32 +170,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                 placeholder="Enter email address">
                         </div>
 
-                        <!-- Role Selection -->
-                        <div class="relative" data-dropdown="container">
-                            <label for="role" class="text-sm font-medium leading-none mb-2 block">Role</label>
-
-                            <!-- Button that toggles dropdown -->
-                            <button type="button" role="combobox" data-dropdown="button" id="role-button"
-                                class="flex h-10 w-full items-center justify-between cursor-pointer rounded-md border border-solid border-input bg-background px-3 py-2 text-base text-left focus:ring focus:ring-2 focus:ring-medical-500 focus:ring-offset-2 focus:ring-offset-white md:text-sm">
-                                <span>Select a role</span>
-                                <i data-lucide="chevron-down" class="w-4 h-4 opacity-50"></i>
-                            </button>
-
-                            <!-- Custom Dropdown Menu -->
-                            <ul data-dropdown="menu"
-                                class="absolute z-10 mt-1.5 p-1 border border-solid border-input w-full bg-white rounded-md shadow-xl hidden">
-                                <li>
-                                    <button type="button" data-dropdown="option"
-                                        class="bg-white flex items-center justify-between border-none w-full px-3 py-1.5 text-sm hover:bg-medical-50 hover:text-medical-500 cursor-pointer rounded-md"
-                                        data-value="patient">
-                                        <span>Patient</span>
-                                        <i data-lucide="check" class="w-4 h-4 text-medical-500 hidden"></i>
-                                    </button>
-                                </li>
-                            </ul>
-
-                            <!-- Hidden input for form submission -->
-                            <input type="hidden" id="role" name="role" value="">
+                        <!-- Role Information (Patient Only) -->
+                        <div class="bg-medical-50 border border-medical-200 rounded-md p-3">
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="user" class="h-4 w-4 text-medical-600"></i>
+                                <span class="text-sm font-medium text-medical-800">Patient Registration</span>
+                            </div>
+                            <p class="text-xs text-medical-600 mt-1">You are registering as a patient. Other roles are available through admin invitation only.</p>
                         </div>
 
 
@@ -232,10 +205,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             </div>
                         </div>
 
-                        <!-- Password Strength Indicator -->
-                        <div class="mt-2">
-                            <div id="password-strength" class="text-xs"></div>
-                        </div>
+
 
                         <!-- Location Fields -->
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">

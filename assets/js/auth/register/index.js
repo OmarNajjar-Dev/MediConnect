@@ -13,7 +13,7 @@ window.addEventListener("DOMContentLoaded", () => {
   setupEnhancedRegistration();
 
   // Initialize password strength validator with simplified structure
-  new PasswordStrengthValidator(
+  window.passwordValidator = new PasswordStrengthValidator(
     "password", // password input ID
     null, // no strength bar (simplified)
     "password-strength", // strength text ID
@@ -41,8 +41,8 @@ function handlePhpErrors() {
           "This email is already registered. Please use another email or login instead.",
       },
       invalid_role: {
-        title: "Invalid Role",
-        message: "Please select a valid role from the dropdown.",
+        title: "Registration Error",
+        message: "There was an issue with your registration. Please try again.",
       },
       insert_failed: {
         title: "Registration Failed",
