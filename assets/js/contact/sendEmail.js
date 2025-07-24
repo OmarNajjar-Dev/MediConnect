@@ -1,5 +1,34 @@
 import { showSuccessToast, showErrorToast } from "../common/toast.js";
 
+// Cache for EmailJS configuration
+let emailJSConfig = null;
+
+// Function to get EmailJS configuration
+async function getEmailJSConfig() {
+  if (emailJSConfig) {
+    return emailJSConfig;
+  }
+
+  try {
+    const response = await fetch(
+      "/mediconnect/backend/api/utils/get-emailjs-config.php"
+    );
+    const result = await response.json();
+
+    if (result.success) {
+      emailJSConfig = result.data;
+      return emailJSConfig;
+    } else {
+      throw new Error("Failed to load EmailJS configuration");
+    }
+  } catch (error) {
+    console.error("Error loading EmailJS configuration:", error);
+    console.error("Response status:", response?.status);
+    console.error("Response text:", await response?.text());
+    throw error;
+  }
+}
+
 export async function sendEmail() {
   const submitBtn = document.getElementById("contact-submit-btn");
   const originalText = submitBtn.textContent;
@@ -10,24 +39,28 @@ export async function sendEmail() {
   submitBtn.classList.add("opacity-70", "cursor-not-allowed");
   submitBtn.classList.remove("hover:bg-primary");
 
-  const emailEndpoint = "https://api.emailjs.com/api/v1.0/email/send";
-
-  const subject = document.querySelector("#dropdown-button span")?.textContent;
-
-  const emailData = {
-    service_id: "service_tjk4vcw",
-    template_id: "template_chqvqdb",
-    user_id: "HYJ9rNlhhrXT4tlMY",
-    template_params: {
-      to_name: "MediConnect",
-      from_name: document.getElementById("name").value.trim(),
-      from_email: document.getElementById("email").value.trim(),
-      subject: subject,
-      message: document.getElementById("message").value.trim(),
-    },
-  };
-
   try {
+    // Get EmailJS configuration
+    const config = await getEmailJSConfig();
+
+    const emailEndpoint = "https://api.emailjs.com/api/v1.0/email/send";
+    const subject = document.querySelector(
+      "#dropdown-button span"
+    )?.textContent;
+
+    const emailData = {
+      service_id: config.service_id,
+      template_id: config.template_id,
+      user_id: config.public_key,
+      template_params: {
+        to_name: "MediConnect",
+        from_name: document.getElementById("name").value.trim(),
+        from_email: document.getElementById("email").value.trim(),
+        subject: subject,
+        message: document.getElementById("message").value.trim(),
+      },
+    };
+
     const response = await fetch(emailEndpoint, {
       method: "POST",
       headers: {
@@ -51,10 +84,10 @@ export async function sendEmail() {
       );
     }
   } catch (error) {
-    console.error("Network error while sending email:", error);
+    console.error("Error in sendEmail:", error);
     showErrorToast(
-      "Network Error",
-      "Please check your internet connection and try again."
+      "Configuration Error",
+      "Unable to load email configuration. Please try again later."
     );
   } finally {
     // Reset button state

@@ -18,9 +18,9 @@ define('OPENCAGE_BASE_URL', 'https://api.opencagedata.com/geocode/v1/json');
 // ============================================================================
 
 // EmailJS Configuration
-define('EMAILJS_PUBLIC_KEY', ''); // Add your EmailJS public key here
-define('EMAILJS_SERVICE_ID', ''); // Add your EmailJS service ID here
-define('EMAILJS_TEMPLATE_ID', ''); // Add your EmailJS template ID here
+define('EMAILJS_PUBLIC_KEY', 'HYJ9rNlhhrXT4tlMY'); // Add your EmailJS public key here
+define('EMAILJS_SERVICE_ID', 'service_tjk4vcw'); // Add your EmailJS service ID here
+define('EMAILJS_TEMPLATE_ID', 'template_chqvqdb'); // Add your EmailJS template ID here
 
 // ============================================================================
 // EXTERNAL CDN URLs
@@ -28,6 +28,3 @@ define('EMAILJS_TEMPLATE_ID', ''); // Add your EmailJS template ID here
 
 // Lucide Icons CDN
 define('LUCIDE_CDN_URL', 'https://unpkg.com/lucide@latest/dist/umd/lucide.min.js');
-
-// Google Maps Embed
-define('GOOGLE_MAPS_EMBED_URL', 'https://www.google.com/maps/embed'); 

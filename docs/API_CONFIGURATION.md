@@ -20,7 +20,6 @@ define('EMAILJS_TEMPLATE_ID', ''); // Add your EmailJS template ID here
 
 // External CDN URLs
 define('LUCIDE_CDN_URL', 'https://unpkg.com/lucide@latest/dist/umd/lucide.min.js');
-define('GOOGLE_MAPS_EMBED_URL', 'https://www.google.com/maps/embed');
 ```
 
 ## Usage

@@ -4,7 +4,7 @@ export function validateForm() {
   const nameInput = document.getElementById("name").value.trim();
   const emailInput = document.getElementById("email").value.trim();
   const subjectInput = document
-    .getElementById("dropdown-button")
+    .querySelector("[data-dropdown='button'] span")
     .textContent.trim();
   const messageInput = document.getElementById("message").value.trim();
 
