@@ -110,8 +110,8 @@ try {
                 throw new Exception('Hospital is required for ambulance teams');
             }
             $teamNameToUse = $teamName ?: ($firstName . "'s Team");
-            $stmt = $conn->prepare("INSERT INTO ambulance_teams (user_id, team_name, hospital_id) VALUES (?, ?, ?)");
-            $stmt->bind_param("isi", $userId, $teamNameToUse, $hospitalId);
+            $stmt = $conn->prepare("INSERT INTO ambulance_teams (user_id, hospital_id, team_name) VALUES (?, ?, ?)");
+            $stmt->bind_param("iis", $userId, $hospitalId, $teamNameToUse);
             $stmt->execute();
             
             // Get the team_id that was just created
@@ -126,7 +126,7 @@ try {
             $stmt->execute();
             break;
 
-        // Hospital Admin doesn't need additional tables
+        // Hospital Admin and Staff don't need additional tables
         case 'Hospital Admin':
             break;
     }
@@ -149,4 +149,4 @@ try {
     ]);
 }
 
-$conn->close(); 
+$conn->close();
