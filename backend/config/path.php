@@ -7,7 +7,7 @@ const BASE_URL = '';
 // Define all route paths
 $paths = [
     'home' => [
-        'index' => BASE_URL,
+        'index' => BASE_URL . '/',
     ],
 
     'auth' => [
