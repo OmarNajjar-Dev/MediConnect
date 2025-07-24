@@ -93,15 +93,6 @@ export function validateRegisterForm() {
     if (!hasError) {
       // Show success feedback before submission
       hideToast();
-
-      // For ambulance team registration, we'll geocode their address after successful registration
-      if (roleInput.value === "6") {
-        // Ambulance Team role ID
-        console.log(
-          "Registering ambulance team member - will geocode address after registration"
-        );
-      }
-
       form.submit();
     }
   });

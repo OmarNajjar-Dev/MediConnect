@@ -68,13 +68,4 @@ export function validateLoginForm() {
         '<i data-lucide="log-in" class="h-4 w-4"></i> Sign in';
     }
   });
-
-  // Also handle button click as backup
-  loginBtn.addEventListener("click", (e) => {
-    e.preventDefault(); // Prevent any default button behavior
-    console.log("Button clicked, triggering form submission...");
-    form.dispatchEvent(
-      new Event("submit", { bubbles: true, cancelable: true })
-    );
-  });
 }
