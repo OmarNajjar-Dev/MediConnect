@@ -2,7 +2,7 @@
 
 // Define base path and URL
 $basePath = '/mediconnect';
-const BASE_URL = '/mediconnect';
+const BASE_URL = '';
 
 // Define all route paths
 $paths = [
