@@ -57,8 +57,6 @@ CREATE TABLE doctors (
   specialty_id INT,
   hospital_id INT,
   is_verified BOOLEAN,
-  rating DECIMAL(3,2),
-  reviews_count INT,
   bio TEXT,
   FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (specialty_id) REFERENCES specialties(specialty_id) ON DELETE CASCADE ON UPDATE CASCADE,
