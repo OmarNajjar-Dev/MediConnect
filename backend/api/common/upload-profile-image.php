@@ -44,7 +44,7 @@ try {
     }
 
     // Create uploads directory if it doesn't exist
-    $uploadsDir = __DIR__ . '/../../uploads/profile_images/';
+    $uploadsDir = __DIR__ . '/../../../uploads/profile_images/';
     if (!is_dir($uploadsDir)) {
         mkdir($uploadsDir, 0755, true);
     }

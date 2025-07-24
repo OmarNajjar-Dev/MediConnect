@@ -89,7 +89,7 @@ try {
 
     // Handle profile image upload
     if (isset($_FILES['profile_image']) && $_FILES['profile_image']['error'] === UPLOAD_ERR_OK) {
-        $uploadDir = __DIR__ . '/../../uploads/profile_images/';
+        $uploadDir = __DIR__ . '/../../../uploads/profile_images/';
         if (!is_dir($uploadDir)) {
             mkdir($uploadDir, 0755, true);
         }
