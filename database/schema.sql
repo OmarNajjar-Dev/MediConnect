@@ -1,134 +1,122 @@
--- USERS & AUTHENTICATION
 CREATE TABLE users (
-    user_id INT PRIMARY KEY AUTO_INCREMENT,
-    email VARCHAR(255) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    full_name VARCHAR(200) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-) ENGINE = InnoDB;
+  user_id INT PRIMARY KEY,
+  email VARCHAR(255) UNIQUE,
+  password VARCHAR(255),
+  first_name VARCHAR(255),
+  last_name VARCHAR(255),
+  city VARCHAR(255),
+  address_line VARCHAR(255),
+  profile_image TEXT,
+  remember_token VARCHAR(255)
+);
 
 CREATE TABLE roles (
-    role_id INT PRIMARY KEY AUTO_INCREMENT,
-    role_name VARCHAR(50) NOT NULL UNIQUE
-) ENGINE = InnoDB;
+  role_id INT PRIMARY KEY,
+  role_name VARCHAR(100) UNIQUE
+);
 
 CREATE TABLE user_roles (
-    user_role_id INT PRIMARY KEY AUTO_INCREMENT,
-    user_id INT NOT NULL,
-    role_id INT NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
-    FOREIGN KEY (role_id) REFERENCES roles(role_id) ON DELETE CASCADE
-) ENGINE = InnoDB;
+  user_role_id INT PRIMARY KEY,
+  user_id INT,
+  role_id INT,
+  FOREIGN KEY (user_id) REFERENCES users(user_id),
+  FOREIGN KEY (role_id) REFERENCES roles(role_id)
+);
 
--- DOCTORS & SPECIALTIES
-CREATE TABLE specialties (
-    specialty_id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(100) NOT NULL UNIQUE
-) ENGINE = InnoDB;
-
-CREATE TABLE doctors (
-    doctor_id INT PRIMARY KEY AUTO_INCREMENT,
-    user_id INT NOT NULL,
-    specialty_id INT,
-    bio TEXT,
-    rating DECIMAL(2, 1),
-    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
-    FOREIGN KEY (specialty_id) REFERENCES specialties(specialty_id)
-) ENGINE = InnoDB;
-
--- PATIENTS
-CREATE TABLE patients (
-    patient_id INT PRIMARY KEY AUTO_INCREMENT,
-    user_id INT NOT NULL,
-    birthdate DATE,
-    gender ENUM('Male', 'Female', 'Other'),
-    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
-) ENGINE = InnoDB;
-
--- HOSPITALS
 CREATE TABLE hospitals (
-    hospital_id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(255) NOT NULL,
-    address VARCHAR(255),
-    contact VARCHAR(50),
-    emergency_services BOOLEAN DEFAULT FALSE
-) ENGINE = InnoDB;
+  hospital_id INT PRIMARY KEY,
+  name VARCHAR(255),
+  address VARCHAR(255),
+  contact VARCHAR(100),
+  available_beds INT,
+  rating DECIMAL(3,2),
+  reviews_count INT,
+  emergency_services BOOLEAN,
+  image_url TEXT
+);
+
+CREATE TABLE specialties (
+  specialty_id INT PRIMARY KEY,
+  name VARCHAR(100) UNIQUE,
+  label_for_doctor VARCHAR(100),
+  label_for_hospital VARCHAR(100)
+);
 
 CREATE TABLE hospital_specialties (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    hospital_id INT NOT NULL,
-    specialty_id INT NOT NULL,
-    FOREIGN KEY (hospital_id) REFERENCES hospitals(hospital_id) ON DELETE CASCADE,
-    FOREIGN KEY (specialty_id) REFERENCES specialties(specialty_id),
-    UNIQUE (hospital_id, specialty_id)
-) ENGINE = InnoDB;
+  id INT PRIMARY KEY,
+  hospital_id INT,
+  specialty_id INT,
+  UNIQUE(hospital_id, specialty_id),
+  FOREIGN KEY (hospital_id) REFERENCES hospitals(hospital_id),
+  FOREIGN KEY (specialty_id) REFERENCES specialties(specialty_id)
+);
 
--- APPOINTMENTS
+CREATE TABLE doctors (
+  doctor_id INT PRIMARY KEY,
+  user_id INT,
+  specialty_id INT,
+  hospital_id INT,
+  is_verified BOOLEAN,
+  rating DECIMAL(3,2),
+  reviews_count INT,
+  bio TEXT,
+  FOREIGN KEY (user_id) REFERENCES users(user_id),
+  FOREIGN KEY (specialty_id) REFERENCES specialties(specialty_id),
+  FOREIGN KEY (hospital_id) REFERENCES hospitals(hospital_id)
+);
+
+CREATE TABLE patients (
+  patient_id INT PRIMARY KEY,
+  user_id INT,
+  birthdate DATE,
+  gender VARCHAR(10),
+  FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
 CREATE TABLE appointments (
-    appointment_id INT PRIMARY KEY AUTO_INCREMENT,
-    patient_id INT NOT NULL,
-    doctor_id INT NOT NULL,
-    hospital_id INT,
-    appointment_date DATETIME,
-    status ENUM('Scheduled', 'Completed', 'Cancelled') DEFAULT 'Scheduled',
-    notes TEXT,
-    FOREIGN KEY (patient_id) REFERENCES patients(patient_id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (doctor_id) REFERENCES doctors(doctor_id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (hospital_id) REFERENCES hospitals(hospital_id) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB;
-
--- RATINGS
-CREATE TABLE ratings (
-    rating_id INT PRIMARY KEY AUTO_INCREMENT,
-    patient_id INT NOT NULL,
-    doctor_id INT,
-    hospital_id INT,
-    rating_value INT CHECK (
-        rating_value BETWEEN 1
-        AND 5
-    ),
-    comment TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (patient_id) REFERENCES patients(patient_id),
-    FOREIGN KEY (doctor_id) REFERENCES doctors(doctor_id),
-    FOREIGN KEY (hospital_id) REFERENCES hospitals(hospital_id)
-) ENGINE = InnoDB;
-
--- EMERGENCY MODULE
-CREATE TABLE emergency_requests (
-    request_id INT PRIMARY KEY AUTO_INCREMENT,
-    patient_id INT NULL,
-    -- Changed from NOT NULL to NULL to support guest users
-    location VARCHAR(255),
-    status ENUM('Pending', 'In Transit', 'Resolved') DEFAULT 'Pending',
-    requested_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (patient_id) REFERENCES patients(patient_id) ON DELETE
-    SET
-        NULL
-) ENGINE = InnoDB;
+  appointment_id INT PRIMARY KEY,
+  patient_id INT,
+  doctor_id INT,
+  hospital_id INT,
+  appointment_date DATETIME,
+  status VARCHAR(50),
+  notes TEXT,
+  FOREIGN KEY (patient_id) REFERENCES patients(patient_id),
+  FOREIGN KEY (doctor_id) REFERENCES doctors(doctor_id),
+  FOREIGN KEY (hospital_id) REFERENCES hospitals(hospital_id)
+);
 
 CREATE TABLE ambulance_teams (
-    team_id INT PRIMARY KEY AUTO_INCREMENT,
-    user_id INT NOT NULL,
-    team_name VARCHAR(100),
-    FOREIGN KEY (user_id) REFERENCES users(user_id)
-) ENGINE = InnoDB;
+  team_id INT PRIMARY KEY,
+  user_id INT,
+  team_name VARCHAR(255),
+  FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+CREATE TABLE ambulance_locations (
+  team_id INT PRIMARY KEY,
+  latitude DECIMAL(9,6),
+  longitude DECIMAL(9,6),
+  updated_at DATETIME,
+  FOREIGN KEY (team_id) REFERENCES ambulance_teams(team_id)
+);
+
+CREATE TABLE emergency_requests (
+  request_id INT PRIMARY KEY,
+  patient_id INT,
+  location JSON,
+  status VARCHAR(50),
+  requested_at DATETIME,
+  canceled_at DATETIME,
+  completed_at DATETIME,
+  FOREIGN KEY (patient_id) REFERENCES patients(patient_id)
+);
 
 CREATE TABLE emergency_responses (
-    response_id INT PRIMARY KEY AUTO_INCREMENT,
-    request_id INT NOT NULL,
-    team_id INT NOT NULL,
-    dispatched_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (request_id) REFERENCES emergency_requests(request_id),
-    FOREIGN KEY (team_id) REFERENCES ambulance_teams(team_id)
-) ENGINE = InnoDB;
-
--- NOTIFICATIONS
-CREATE TABLE notifications (
-    notification_id INT PRIMARY KEY AUTO_INCREMENT,
-    user_id INT NOT NULL,
-    message TEXT NOT NULL,
-    is_read BOOLEAN DEFAULT FALSE,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
-) ENGINE = InnoDB;
+  response_id INT PRIMARY KEY,
+  request_id INT,
+  team_id INT,
+  dispatched_at DATETIME,
+  FOREIGN KEY (request_id) REFERENCES emergency_requests(request_id),
+  FOREIGN KEY (team_id) REFERENCES ambulance_teams(team_id)
+);
