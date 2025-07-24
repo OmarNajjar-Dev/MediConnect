@@ -11,11 +11,11 @@ export const ratingCardsData = [
     animationDelay: "100ms",
   },
   {
-    title: "Doctor Reviews",
+    title: "Find Doctors",
     stars: 5,
     description:
-      "Browse doctor reviews and ratings to find the best healthcare provider for your needs.",
-    buttonText: "Find Rated Doctors",
+      "Browse and find healthcare providers that match your needs and preferences.",
+    buttonText: "Find Doctors",
     linkHref: "<?= $paths['services']['doctors'] ?>",
     animationDelay: "200ms",
   },

@@ -4,7 +4,7 @@ export const testimonialsCardsData = [
   {
     name: "Sarah Johnson",
     role: "Patient",
-    quote: `"MediConnect made it so easy to find a specialist and book an appointment. I love being able to see doctor ratings before making a choice."`,
+    quote: `"MediConnect made it so easy to find a specialist and book an appointment. The platform is user-friendly and efficient."`,
     avatar: "S",
     stars: 5, // Number of stars to display
     animationDelay: "0ms",

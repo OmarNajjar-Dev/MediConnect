@@ -31,13 +31,7 @@ export async function renderDoctors(container) {
               <i data-lucide="map-pin" class="h-3.5 w-3.5 text-gray-500 mr-1"></i>
               <span class="text-gray-600 text-sm">${card.name || ""}</span>
             </div>
-            <div class="flex items-center">
-              <i data-lucide="star" class="w-3.5 h-3.5 text-star-500 fill-star-500 mr-1"></i>
-              <span class="font-medium text-sm">${card.rating || "0.0"}</span>
-              <span class="text-gray-500 text-xs ml-1">(${
-                card.reviews_count || 0
-              } reviews)</span>
-            </div>
+
           </div>
         </div>
         <div class="text-sm text-gray-600 mb-6 flex-grow line-clamp-2">${

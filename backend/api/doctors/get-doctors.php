@@ -5,8 +5,6 @@ require_once __DIR__ . '/../../config/db.php';
 $sql = "SELECT 
             d.doctor_id,
             d.is_verified,
-            d.rating,
-            d.reviews_count,
             d.bio,
             u.first_name,
             u.last_name,
