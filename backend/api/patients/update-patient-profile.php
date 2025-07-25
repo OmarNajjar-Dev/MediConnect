@@ -1,21 +1,46 @@
 <?php
 
+// Enhanced session handling for InfinityFree
+require_once __DIR__ . '/../../config/session-config.php';
+startSecureSession();
+
 // Turn off error reporting to prevent HTML output
 error_reporting(0);
 ini_set('display_errors', 0);
 
-// Start session if not already started
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-};
-
+// Load database connection
 require_once __DIR__ . '/../../config/db.php';
 
 header('Content-Type: application/json');
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_SESSION['user_id'])) {
-    http_response_code(403);
-    echo json_encode(['success' => false, 'message' => 'Unauthorized']);
+// Debug session state (remove in production)
+$debug = [
+    'session_id' => session_id(),
+    'session_status' => session_status(),
+    'user_id_exists' => isset($_SESSION['user_id']),
+    'user_id_value' => $_SESSION['user_id'] ?? 'not_set',
+    'request_method' => $_SERVER['REQUEST_METHOD']
+];
+
+// Check if user is logged in
+if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
+    http_response_code(401);
+    echo json_encode([
+        'success' => false, 
+        'message' => 'Unauthorized: No valid session found',
+        'debug' => $debug
+    ]);
+    exit;
+}
+
+// Check request method
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    http_response_code(405);
+    echo json_encode([
+        'success' => false, 
+        'message' => 'Method not allowed',
+        'debug' => $debug
+    ]);
     exit;
 }
 
@@ -29,7 +54,11 @@ $address = trim($_POST['address'] ?? '');
 
 // Validation
 if (empty($name)) {
-    echo json_encode(['success' => false, 'message' => 'Full name is required']);
+    echo json_encode([
+        'success' => false, 
+        'message' => 'Full name is required',
+        'debug' => $debug
+    ]);
     exit;
 }
 
@@ -66,7 +95,11 @@ try {
 
     if (!$isPatient) {
         http_response_code(403);
-        echo json_encode(['success' => false, 'message' => 'Unauthorized: Patient role required']);
+        echo json_encode([
+            'success' => false, 
+            'message' => 'Unauthorized: Patient role required',
+            'debug' => $debug
+        ]);
         exit;
     }
 
@@ -166,7 +199,11 @@ try {
 } catch (Exception $e) {
     $conn->rollback();
     http_response_code(500);
-    echo json_encode(['success' => false, 'message' => 'Server error: ' . $e->getMessage()]);
+    echo json_encode([
+        'success' => false, 
+        'message' => 'Server error: ' . $e->getMessage(),
+        'debug' => $debug
+    ]);
 } finally {
     // Close the database connection
     if (isset($conn)) {

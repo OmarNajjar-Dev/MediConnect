@@ -158,10 +158,40 @@ class ProfileManager {
   // 5. Fetch Data
   async fetchProfileData() {
     try {
-      const res = await fetch("/backend/api/patients/get-patient-profile.php");
+      const res = await fetch("/backend/api/patients/get-patient-profile.php", {
+        method: "GET",
+        credentials: "same-origin", // Include cookies
+        headers: {
+          Accept: "application/json",
+          "X-Requested-With": "XMLHttpRequest",
+        },
+      });
+
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+
       const json = await res.json();
-      if (!json.success)
-        throw new Error(json.message || "Failed to load profile");
+
+      // Log debug information if available
+      if (json.debug) {
+        console.log("Profile API Debug Info:", json.debug);
+      }
+
+      if (!json.success) {
+        let errorMessage = json.message || "Failed to load profile";
+
+        // Add debug info to error message for development
+        if (
+          json.debug &&
+          (window.location.hostname === "localhost" ||
+            window.location.hostname.includes("test"))
+        ) {
+          errorMessage += ` (Debug: ${JSON.stringify(json.debug)})`;
+        }
+
+        throw new Error(errorMessage);
+      }
 
       const { name, email, birthdate, gender, city, address, profile_image } =
         json.data;
@@ -180,7 +210,20 @@ class ProfileManager {
       this.renderImage(profile_image);
     } catch (err) {
       console.error("Error fetching profile data:", err);
-      showErrorToast("Error", err.message);
+
+      // Check if it's a session issue
+      if (
+        err.message.includes("Unauthorized") ||
+        err.message.includes("session")
+      ) {
+        showErrorToast(
+          "Session Error",
+          "Please refresh the page and try again. If the problem persists, please log out and log back in."
+        );
+      } else {
+        showErrorToast("Error", err.message);
+      }
+
       this.closeModal();
     }
   }
@@ -346,13 +389,36 @@ class ProfileManager {
         "/backend/api/patients/update-patient-profile.php",
         {
           method: "POST",
+          credentials: "same-origin", // Include cookies
           body: formData,
         }
       );
 
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+
       const json = await res.json();
-      if (!json.success)
-        throw new Error(json.message || "Failed to update profile");
+
+      // Log debug information if available
+      if (json.debug) {
+        console.log("Profile Update API Debug Info:", json.debug);
+      }
+
+      if (!json.success) {
+        let errorMessage = json.message || "Failed to update profile";
+
+        // Add debug info to error message for development
+        if (
+          json.debug &&
+          (window.location.hostname === "localhost" ||
+            window.location.hostname.includes("test"))
+        ) {
+          errorMessage += ` (Debug: ${JSON.stringify(json.debug)})`;
+        }
+
+        throw new Error(errorMessage);
+      }
 
       const { name, birthdate, gender, city, address, profile_image } =
         json.data;
@@ -367,7 +433,19 @@ class ProfileManager {
       this.closeModal();
     } catch (err) {
       console.error("Error updating profile:", err);
-      showErrorToast("Error", err.message);
+
+      // Check if it's a session issue
+      if (
+        err.message.includes("Unauthorized") ||
+        err.message.includes("session")
+      ) {
+        showErrorToast(
+          "Session Error",
+          "Please refresh the page and try again. If the problem persists, please log out and log back in."
+        );
+      } else {
+        showErrorToast("Error", err.message);
+      }
     } finally {
       this.saveButton.disabled = false;
       this.saveText.classList.remove("hidden");
