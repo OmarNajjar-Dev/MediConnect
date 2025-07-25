@@ -11,10 +11,9 @@
  */
 function generateAvatar($profileImage, $fullName, $size = 'w-8 h-8', $textSize = 'text-sm')
 {
-    $imagePath = $_SERVER['DOCUMENT_ROOT'] . '/' . ltrim($profileImage, '/');
-
-    if (!empty($profileImage) && file_exists($imagePath)) {
-        // Use profile image
+    // Check if profile image exists and is not empty
+    if (!empty($profileImage)) {
+        // Use profile image - don't check file_exists as it might be a URL
         return '<img src="' . htmlspecialchars($profileImage) . '" alt="' . htmlspecialchars($fullName) . '" class="' . $size . ' rounded-full object-cover">';
     } else {
         // Use initials
