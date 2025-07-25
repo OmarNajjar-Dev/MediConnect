@@ -106,19 +106,6 @@ require_once __DIR__ . "/../backend/helpers/permission-helper.php";
                     <span class="<?= getDisabledMobileNavClasses(true, getActiveNavClassMobile('appointments', $currentPage)) ?>" title="Only patients can access appointments">Appointments</span>
                 <?php endif; ?>
 
-                <!-- Mobile Emergency button -->
-                <?php if (canAccessEmergency()): ?>
-                    <a href="<?= $paths['services']['emergency'] ?>" class="inline-flex items-center gap-2 bg-danger hover:bg-red-700 text-white text-sm font-medium px-3 py-2 rounded-lg transition-colors">
-                        <i data-lucide="ambulance" class="w-4 h-4"></i>
-                        Emergency
-                    </a>
-                <?php else: ?>
-                    <span class="inline-flex items-center gap-2 bg-gray-400 text-white text-sm font-medium px-3 py-2 rounded-lg opacity-50 pointer-events-none" title="Emergency access restricted">
-                        <i data-lucide="ambulance" class="w-4 h-4"></i>
-                        Emergency
-                    </span>
-                <?php endif; ?>
-
                 <!-- Mobile: Sign In / Sign Out depending on session -->
                 <?php if (!$isLoggedIn): ?>
                     <div class="flex flex-col pt-2 gap-2 border-t border-solid separator">
