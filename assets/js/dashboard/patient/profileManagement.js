@@ -6,9 +6,17 @@ class ProfileManager {
     this.originalData = {};
     this.originalImageUrl = null;
     this.currentImageFile = null;
+    this.isInitialized = false;
+
+    this.init();
+  }
+
+  init() {
+    if (this.isInitialized) return;
 
     this.initElements();
     this.initEventListeners();
+    this.isInitialized = true;
   }
 
   // 1. DOM Elements
@@ -37,6 +45,12 @@ class ProfileManager {
     this.saveButton = document.getElementById("save-profile-changes-btn");
     this.saveText = document.getElementById("save-profile-text");
     this.saveLoading = document.getElementById("save-profile-loading");
+
+    // Validate that all required elements exist
+    if (!this.modal || !this.form || !this.editButton) {
+      console.error("Required profile management elements not found");
+      return;
+    }
   }
 
   // 2. Events
@@ -53,15 +67,77 @@ class ProfileManager {
     this.uploadInput?.addEventListener("change", (e) =>
       this.handleImageSelection(e)
     );
+
+    // Monitor form changes
     this.form?.addEventListener("input", () => this.toggleDiscardButton());
     this.form?.addEventListener("submit", (e) => {
       e.preventDefault();
       this.submitForm();
     });
+
+    // Initialize dropdown functionality
+    this.initDropdown();
   }
 
-  // 3. Modal
+  // 3. Dropdown initialization
+  initDropdown() {
+    if (!this.genderInput) return;
+
+    const button = this.genderInput.querySelector('[data-dropdown="button"]');
+    const menu = this.genderInput.querySelector('[data-dropdown="menu"]');
+    const options = this.genderInput.querySelectorAll(
+      '[data-dropdown="option"]'
+    );
+    const hiddenInput = document.getElementById("gender-input");
+
+    if (!button || !menu || !hiddenInput) return;
+
+    // Toggle dropdown
+    button.addEventListener("click", () => {
+      menu.classList.toggle("hidden");
+    });
+
+    // Handle option selection
+    options.forEach((option) => {
+      option.addEventListener("click", () => {
+        const value = option.getAttribute("data-value");
+
+        // Update hidden input
+        hiddenInput.value = value;
+
+        // Update button text
+        button.querySelector("span").textContent = this.capitalize(value);
+
+        // Update checkmarks
+        options.forEach((opt) => {
+          const checkIcon = opt.querySelector("svg");
+          if (opt.getAttribute("data-value") === value) {
+            checkIcon?.classList.remove("hidden");
+          } else {
+            checkIcon?.classList.add("hidden");
+          }
+        });
+
+        // Close dropdown
+        menu.classList.add("hidden");
+
+        // Check for changes
+        this.toggleDiscardButton();
+      });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener("click", (e) => {
+      if (!this.genderInput.contains(e.target)) {
+        menu.classList.add("hidden");
+      }
+    });
+  }
+
+  // 4. Modal
   openModal() {
+    if (!this.modal) return;
+
     document.body.style.overflow = "hidden";
     this.modal.classList.remove("hidden");
     this.fetchProfileData();
@@ -69,15 +145,17 @@ class ProfileManager {
   }
 
   closeModal() {
+    if (!this.modal) return;
+
     document.body.style.overflow = "";
     this.modal.classList.add("hidden");
-    this.form.reset();
+    this.form?.reset();
     this.currentImageFile = null;
     this.restoreOriginalImage();
     this.hideDiscardButton();
   }
 
-  // 4. Fetch Data
+  // 5. Fetch Data
   async fetchProfileData() {
     try {
       const res = await fetch("/backend/api/patients/get-patient-profile.php");
@@ -88,25 +166,26 @@ class ProfileManager {
       const { name, email, birthdate, gender, city, address, profile_image } =
         json.data;
 
-      this.nameInput.value = name || "";
-      this.emailInput.value = email || "";
-      this.birthdateInput.value = birthdate || "";
+      if (this.nameInput) this.nameInput.value = name || "";
+      if (this.emailInput) this.emailInput.value = email || "";
+      if (this.birthdateInput) this.birthdateInput.value = birthdate || "";
+      if (this.cityInput) this.cityInput.value = city || "";
+      if (this.addressInput) this.addressInput.value = address || "";
+
       this.setGenderValue(gender || "");
-      this.cityInput.value = city || "";
-      this.addressInput.value = address || "";
 
       this.originalData = { name, birthdate, gender, city, address };
       this.originalImageUrl = profile_image || null;
 
       this.renderImage(profile_image);
     } catch (err) {
-      console.error(err);
+      console.error("Error fetching profile data:", err);
       showErrorToast("Error", err.message);
       this.closeModal();
     }
   }
 
-  // 5. Image Preview
+  // 6. Image Preview
   renderImage(url) {
     this.clearPreview();
     if (!url) return;
@@ -118,11 +197,15 @@ class ProfileManager {
     img.id = "profile-image-preview";
 
     img.onload = () => {
-      this.previewContainer.prepend(img);
+      if (this.previewContainer) {
+        this.previewContainer.prepend(img);
+      }
     };
   }
 
   clearPreview() {
+    if (!this.previewContainer) return;
+
     const existing = this.previewContainer.querySelector(
       "#profile-image-preview"
     );
@@ -153,6 +236,8 @@ class ProfileManager {
 
   renderPreviewFromDataUrl(dataUrl) {
     this.clearPreview();
+    if (!this.previewContainer) return;
+
     const img = document.createElement("img");
     img.src = dataUrl;
     img.className = "w-24 h-24 rounded-full object-cover";
@@ -165,37 +250,9 @@ class ProfileManager {
     this.renderImage(this.originalImageUrl);
   }
 
-  // 6. Discard
-  toggleDiscardButton() {
-    const changed =
-      this.nameInput.value !== this.originalData.name ||
-      this.birthdateInput.value !== this.originalData.birthdate ||
-      this.getSelectedGender() !== this.originalData.gender ||
-      this.cityInput.value !== this.originalData.city ||
-      this.addressInput.value !== this.originalData.address ||
-      this.currentImageFile !== null;
-    this.discardButton.classList.toggle("hidden", !changed);
-  }
-
-  hideDiscardButton() {
-    this.discardButton.classList.add("hidden");
-  }
-
-  resetForm() {
-    this.nameInput.value = this.originalData.name;
-    this.birthdateInput.value = this.originalData.birthdate;
-    this.setGenderValue(this.originalData.gender);
-    this.cityInput.value = this.originalData.city;
-    this.addressInput.value = this.originalData.address;
-    this.uploadInput.value = "";
-    this.currentImageFile = null;
-    this.restoreOriginalImage();
-    this.hideDiscardButton();
-  }
-
-  // 7. Gender
+  // 7. Gender handling
   setGenderValue(value) {
-    if (!value) return;
+    if (!value || !this.genderInput) return;
 
     const button = this.genderInput.querySelector('[data-dropdown="button"]');
     const options = this.genderInput.querySelectorAll(
@@ -203,24 +260,27 @@ class ProfileManager {
     );
     const hiddenInput = document.getElementById("gender-input");
 
+    if (!button || !hiddenInput) return;
+
     options.forEach((opt) => {
       const optionValue = opt.getAttribute("data-value");
       const checkIcon = opt.querySelector("svg");
 
       if (optionValue === value.toLowerCase()) {
-        checkIcon.classList.remove("hidden");
+        checkIcon?.classList.remove("hidden");
         hiddenInput.value = value.toLowerCase();
         // Update button text to show selected gender
-        button.querySelector("span").textContent = this.capitalize(value);
+        const span = button.querySelector("span");
+        if (span) span.textContent = this.capitalize(value);
       } else {
-        checkIcon.classList.add("hidden");
+        checkIcon?.classList.add("hidden");
       }
     });
   }
 
   getSelectedGender() {
     const hiddenInput = document.getElementById("gender-input");
-    const value = hiddenInput.value;
+    const value = hiddenInput?.value;
     return value ? this.capitalize(value) : "";
   }
 
@@ -228,8 +288,49 @@ class ProfileManager {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
 
-  // 8. Submit
+  // 8. Discard functionality
+  toggleDiscardButton() {
+    if (!this.discardButton) return;
+
+    const changed =
+      (this.nameInput && this.nameInput.value !== this.originalData.name) ||
+      (this.birthdateInput &&
+        this.birthdateInput.value !== this.originalData.birthdate) ||
+      this.getSelectedGender() !== this.originalData.gender ||
+      (this.cityInput && this.cityInput.value !== this.originalData.city) ||
+      (this.addressInput &&
+        this.addressInput.value !== this.originalData.address) ||
+      this.currentImageFile !== null;
+
+    this.discardButton.classList.toggle("hidden", !changed);
+  }
+
+  hideDiscardButton() {
+    if (this.discardButton) {
+      this.discardButton.classList.add("hidden");
+    }
+  }
+
+  resetForm() {
+    if (this.nameInput) this.nameInput.value = this.originalData.name || "";
+    if (this.birthdateInput)
+      this.birthdateInput.value = this.originalData.birthdate || "";
+    if (this.cityInput) this.cityInput.value = this.originalData.city || "";
+    if (this.addressInput)
+      this.addressInput.value = this.originalData.address || "";
+
+    this.setGenderValue(this.originalData.gender || "");
+
+    if (this.uploadInput) this.uploadInput.value = "";
+    this.currentImageFile = null;
+    this.restoreOriginalImage();
+    this.hideDiscardButton();
+  }
+
+  // 9. Submit
   async submitForm() {
+    if (!this.saveButton || !this.saveText || !this.saveLoading) return;
+
     this.saveButton.disabled = true;
     this.saveText.classList.add("hidden");
     this.saveLoading.classList.remove("hidden");
@@ -265,7 +366,7 @@ class ProfileManager {
       showSuccessToast("Success", "Profile updated successfully");
       this.closeModal();
     } catch (err) {
-      console.error(err);
+      console.error("Error updating profile:", err);
       showErrorToast("Error", err.message);
     } finally {
       this.saveButton.disabled = false;
@@ -274,7 +375,7 @@ class ProfileManager {
     }
   }
 
-  // 9. Update Static Content
+  // 10. Update Static Content
   updateStaticContent(name, birthdate, gender, city, address) {
     const nameEl = document.querySelector("[data-profile-name]");
     if (nameEl) nameEl.textContent = name;
@@ -285,17 +386,18 @@ class ProfileManager {
     const genderEl = document.querySelector("[data-profile-gender]");
     if (genderEl) genderEl.textContent = gender || "Not specified";
 
-    const cityE1 = document.querySelector("[data-profile-city]");
-    if (cityE1) cityE1.textContent = city || "Not specified";
+    const cityEl = document.querySelector("[data-profile-city]");
+    if (cityEl) cityEl.textContent = city || "Not specified";
 
-    const addressE1 = document.querySelector("[data-profile-address]");
-    if (addressE1) addressE1.textContent = address || "Not specified";
+    const addressEl = document.querySelector("[data-profile-address]");
+    if (addressEl) addressEl.textContent = address || "Not specified";
   }
 
-  // 10. Update Avatars
+  // 11. Update Avatars
   updateAvatars(imageUrl) {
     if (!imageUrl || imageUrl === "null" || imageUrl.trim() === "") return;
 
+    // Update header avatar
     const headerAvatar = document.querySelector(
       ".dropdown button img, .dropdown button div"
     );
@@ -307,6 +409,7 @@ class ProfileManager {
       headerAvatar.parentNode.replaceChild(newImg, headerAvatar);
     }
 
+    // Update profile section avatar
     const profileAvatar = document.querySelector(
       '[data-section="my-profile"] .w-24.h-24'
     );

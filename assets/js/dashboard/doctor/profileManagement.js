@@ -5,9 +5,17 @@ class ProfileManager {
     this.originalData = {};
     this.originalImageUrl = null;
     this.currentImageFile = null;
+    this.isInitialized = false;
+
+    this.init();
+  }
+
+  init() {
+    if (this.isInitialized) return;
 
     this.initElements();
     this.initEventListeners();
+    this.isInitialized = true;
   }
 
   // 1. DOM Elements
@@ -33,6 +41,12 @@ class ProfileManager {
     this.saveButton = document.getElementById("save-profile-changes-btn");
     this.saveText = document.getElementById("save-profile-text");
     this.saveLoading = document.getElementById("save-profile-loading");
+
+    // Validate that all required elements exist
+    if (!this.modal || !this.form || !this.editButton) {
+      console.error("Required profile management elements not found");
+      return;
+    }
   }
 
   // 2. Events
@@ -49,6 +63,8 @@ class ProfileManager {
     this.uploadInput?.addEventListener("change", (e) =>
       this.handleImageSelection(e)
     );
+
+    // Monitor form changes
     this.form?.addEventListener("input", () => this.toggleDiscardButton());
     this.form?.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -58,6 +74,8 @@ class ProfileManager {
 
   // 3. Modal
   openModal() {
+    if (!this.modal) return;
+
     document.body.style.overflow = "hidden";
     this.modal.classList.remove("hidden");
     this.fetchProfileData();
@@ -65,9 +83,11 @@ class ProfileManager {
   }
 
   closeModal() {
+    if (!this.modal) return;
+
     document.body.style.overflow = "";
     this.modal.classList.add("hidden");
-    this.form.reset();
+    this.form?.reset();
     this.currentImageFile = null;
     this.restoreOriginalImage();
     this.hideDiscardButton();
@@ -83,16 +103,16 @@ class ProfileManager {
 
       const { name, email, bio, profile_image } = json.data;
 
-      this.nameInput.value = name || "";
-      this.emailInput.value = email || "";
-      this.bioInput.value = bio || "";
+      if (this.nameInput) this.nameInput.value = name || "";
+      if (this.emailInput) this.emailInput.value = email || "";
+      if (this.bioInput) this.bioInput.value = bio || "";
 
       this.originalData = { name, email, bio };
       this.originalImageUrl = profile_image || null;
 
       this.renderImage(profile_image);
     } catch (err) {
-      console.error(err);
+      console.error("Error fetching profile data:", err);
       showErrorToast("Error", err.message);
       this.closeModal();
     }
@@ -110,11 +130,15 @@ class ProfileManager {
     img.id = "profile-image-preview";
 
     img.onload = () => {
-      this.previewContainer.prepend(img);
+      if (this.previewContainer) {
+        this.previewContainer.prepend(img);
+      }
     };
   }
 
   clearPreview() {
+    if (!this.previewContainer) return;
+
     const existing = this.previewContainer.querySelector(
       "#profile-image-preview"
     );
@@ -145,6 +169,8 @@ class ProfileManager {
 
   renderPreviewFromDataUrl(dataUrl) {
     this.clearPreview();
+    if (!this.previewContainer) return;
+
     const img = document.createElement("img");
     img.src = dataUrl;
     img.className = "w-24 h-24 rounded-full object-cover";
@@ -157,23 +183,28 @@ class ProfileManager {
     this.renderImage(this.originalImageUrl);
   }
 
-  // 6. Discard
+  // 6. Discard functionality
   toggleDiscardButton() {
+    if (!this.discardButton) return;
+
     const changed =
-      this.nameInput.value !== this.originalData.name ||
-      this.bioInput.value !== this.originalData.bio ||
+      (this.nameInput && this.nameInput.value !== this.originalData.name) ||
+      (this.bioInput && this.bioInput.value !== this.originalData.bio) ||
       this.currentImageFile !== null;
+
     this.discardButton.classList.toggle("hidden", !changed);
   }
 
   hideDiscardButton() {
-    this.discardButton.classList.add("hidden");
+    if (this.discardButton) {
+      this.discardButton.classList.add("hidden");
+    }
   }
 
   resetForm() {
-    this.nameInput.value = this.originalData.name;
-    this.bioInput.value = this.originalData.bio;
-    this.uploadInput.value = "";
+    if (this.nameInput) this.nameInput.value = this.originalData.name || "";
+    if (this.bioInput) this.bioInput.value = this.originalData.bio || "";
+    if (this.uploadInput) this.uploadInput.value = "";
     this.currentImageFile = null;
     this.restoreOriginalImage();
     this.hideDiscardButton();
@@ -181,6 +212,8 @@ class ProfileManager {
 
   // 7. Submit
   async submitForm() {
+    if (!this.saveButton || !this.saveText || !this.saveLoading) return;
+
     this.saveButton.disabled = true;
     this.saveText.classList.add("hidden");
     this.saveLoading.classList.remove("hidden");
@@ -214,7 +247,7 @@ class ProfileManager {
       showSuccessToast("Success", "Profile updated successfully");
       this.closeModal();
     } catch (err) {
-      console.error(err);
+      console.error("Error updating profile:", err);
       showErrorToast("Error", err.message);
     } finally {
       this.saveButton.disabled = false;
@@ -225,24 +258,29 @@ class ProfileManager {
 
   // 8. Update static content
   updateStaticContent(name, bio) {
+    // Update welcome header
     const welcomeHeader = document.querySelector(
       "h1.text-2xl.font-bold.text-gray-900"
     );
     if (welcomeHeader) welcomeHeader.textContent = `Welcome back, Dr. ${name}`;
 
+    // Update panel header
     const panelHeader = document.querySelector(".text-gray-600");
     if (panelHeader?.textContent?.startsWith("Welcome, Dr.")) {
       panelHeader.textContent = `Welcome, Dr. ${name}`;
     }
 
+    // Update profile name
     const profileName = document.querySelector("[data-profile-name]");
     if (profileName?.textContent?.startsWith("Dr.")) {
       profileName.textContent = `Dr. ${name}`;
     }
 
+    // Update dropdown name
     const dropdownName = document.querySelector(".dropdown .max-w-24");
     if (dropdownName) dropdownName.textContent = name;
 
+    // Update bio paragraph
     const bioParagraph = document.querySelector("[data-profile-bio]");
     if (bioParagraph) {
       if (bio?.trim()) {
@@ -262,7 +300,7 @@ class ProfileManager {
   updateAvatars(imageUrl) {
     if (!imageUrl || imageUrl === "null" || imageUrl.trim() === "") return;
 
-    // header
+    // Update header avatar
     const headerAvatar = document.querySelector(
       ".dropdown button img, .dropdown button div"
     );
@@ -274,7 +312,7 @@ class ProfileManager {
       headerAvatar.parentNode.replaceChild(newImg, headerAvatar);
     }
 
-    // profile section
+    // Update profile section avatar
     const profileAvatar = document.querySelector(
       '[data-section="my-profile"] .w-24.h-24'
     );
@@ -286,7 +324,7 @@ class ProfileManager {
       profileAvatar.parentNode.replaceChild(newImg, profileAvatar);
     }
 
-    // modal preview
+    // Update modal preview
     this.renderImage(imageUrl);
   }
 }
