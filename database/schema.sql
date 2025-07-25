@@ -87,8 +87,10 @@ CREATE TABLE appointments (
 CREATE TABLE ambulance_teams (
   team_id INT PRIMARY KEY,
   user_id INT,
+  hospital_id INT,
   team_name VARCHAR(255),
   FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY (hospital_id) REFERENCES hospitals(hospital_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE ambulance_locations (
