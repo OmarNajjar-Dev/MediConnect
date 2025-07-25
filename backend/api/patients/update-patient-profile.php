@@ -4,6 +4,9 @@
 require_once __DIR__ . '/../../config/session-config.php';
 startSecureSession();
 
+// Load the InfinityFree upload helper
+require_once __DIR__ . '/../common/infinityfree-upload-helper.php';
+
 // Turn off error reporting to prevent HTML output
 error_reporting(0);
 ini_set('display_errors', 0);
@@ -120,54 +123,17 @@ try {
     $stmt->bind_param("ssi", $birthday, $gender, $userId);
     $stmt->execute();
 
-    // Initialize imageUrl variable
-    $imageUrl = null;
+    // Handle profile image upload using InfinityFree helper
     $updatedImageUrl = null;
-
-    // Handle profile image upload
     if (isset($_FILES['profile_image']) && $_FILES['profile_image']['error'] === UPLOAD_ERR_OK) {
-        $uploadDir = __DIR__ . '/../../uploads/profile_images/';
-        if (!is_dir($uploadDir)) {
-            mkdir($uploadDir, 0755, true);
-        }
-
-        // Remove old image if it exists
-        $stmt = $conn->prepare("SELECT profile_image FROM users WHERE user_id = ?");
-        if (!$stmt) {
-            throw new Exception('Failed to prepare image check statement');
-        }
-        $stmt->bind_param("i", $userId);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        if ($row = $result->fetch_assoc()) {
-            if ($row['profile_image']) {
-                // Extract filename from the full path
-                $oldImagePath = $uploadDir . basename($row['profile_image']);
-                if (file_exists($oldImagePath)) {
-                    unlink($oldImagePath);
-                }
-            }
-        }
-
-        // Generate unique filename
-        $extension = pathinfo($_FILES['profile_image']['name'], PATHINFO_EXTENSION);
-        $newFileName = 'profile_' . $userId . '_' . time() . '.' . $extension;
-        $uploadPath = $uploadDir . $newFileName;
-
-        // Generate web-accessible URL (like Super Admin implementation)
-        $imageUrl = '/uploads/profile_images/' . $newFileName;
-
-        if (move_uploaded_file($_FILES['profile_image']['tmp_name'], $uploadPath)) {
-            // Update database with full web path (not just filename)
-            $stmt = $conn->prepare("UPDATE users SET profile_image = ? WHERE user_id = ?");
-            if (!$stmt) {
-                throw new Exception('Failed to prepare image update statement');
-            }
-            $stmt->bind_param("si", $imageUrl, $userId);
-            $stmt->execute();
-            $updatedImageUrl = $imageUrl;
+        $uploadResult = InfinityFreeUploadHelper::uploadImage($_FILES['profile_image'], $userId);
+        
+        if ($uploadResult['success']) {
+            $updatedImageUrl = $uploadResult['imageUrl'];
+            $debug['upload_method'] = $uploadResult['method'];
+            $debug['upload_success'] = true;
         } else {
-            throw new Exception("Failed to upload profile image");
+            throw new Exception($uploadResult['message']);
         }
     } else {
         // Get current image URL if no new image was uploaded
@@ -194,7 +160,8 @@ try {
             'city' => $city,
             'address' => $address,
             'profile_image' => $updatedImageUrl
-        ]
+        ],
+        'debug' => $debug
     ]);
 } catch (Exception $e) {
     $conn->rollback();
@@ -211,4 +178,3 @@ try {
     }
 }
 
-?>
