@@ -87,6 +87,10 @@ try {
     $stmt->bind_param("ssi", $birthday, $gender, $userId);
     $stmt->execute();
 
+    // Initialize imageUrl variable
+    $imageUrl = null;
+    $updatedImageUrl = null;
+
     // Handle profile image upload
     if (isset($_FILES['profile_image']) && $_FILES['profile_image']['error'] === UPLOAD_ERR_OK) {
         $uploadDir = __DIR__ . '/../../uploads/profile_images/';
@@ -128,18 +132,16 @@ try {
             }
             $stmt->bind_param("si", $imageUrl, $userId);
             $stmt->execute();
+            $updatedImageUrl = $imageUrl;
         } else {
             throw new Exception("Failed to upload profile image");
         }
-    }
-
-    // Get updated profile data to return
-    $updatedImageUrl = null;
-    if (isset($_FILES['profile_image']) && $_FILES['profile_image']['error'] === UPLOAD_ERR_OK) {
-        $updatedImageUrl = $imageUrl;
     } else {
         // Get current image URL if no new image was uploaded
         $stmt = $conn->prepare("SELECT profile_image FROM users WHERE user_id = ?");
+        if (!$stmt) {
+            throw new Exception('Failed to prepare image select statement');
+        }
         $stmt->bind_param("i", $userId);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -165,4 +167,11 @@ try {
     $conn->rollback();
     http_response_code(500);
     echo json_encode(['success' => false, 'message' => 'Server error: ' . $e->getMessage()]);
+} finally {
+    // Close the database connection
+    if (isset($conn)) {
+        $conn->close();
+    }
 }
+
+?>

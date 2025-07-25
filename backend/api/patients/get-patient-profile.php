@@ -20,6 +20,10 @@ $userId = $_SESSION['user_id'];
 try {
     // Check if user has patient role
     $roleCheck = $conn->prepare("SELECT r.role_name FROM users u JOIN user_roles ur ON u.user_id = ur.user_id JOIN roles r ON ur.role_id = r.role_id WHERE u.user_id = ?");
+    if (!$roleCheck) {
+        throw new Exception('Failed to prepare role check statement');
+    }
+    
     $roleCheck->bind_param("i", $userId);
     $roleCheck->execute();
     $roleResult = $roleCheck->get_result();
@@ -54,6 +58,10 @@ try {
         WHERE u.user_id = ?
     ");
     
+    if (!$stmt) {
+        throw new Exception('Failed to prepare profile select statement');
+    }
+    
     $stmt->bind_param("i", $userId);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -86,7 +94,11 @@ try {
         'success' => false,
         'message' => 'Server error: ' . $e->getMessage()
     ]);
+} finally {
+    // Close the database connection
+    if (isset($conn)) {
+        $conn->close();
+    }
 }
 
-$conn->close();
 ?> 
