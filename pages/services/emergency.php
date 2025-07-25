@@ -123,7 +123,6 @@ require_once __DIR__ . "/../../backend/helpers/avatar-helper.php";
                                         <h4 class="font-semibold text-heading text-lg">What to expect:</h4>
                                         <ul class="flex flex-col gap-2">
                                             <li class="flex"><i data-lucide="shield" class="mr-2 text-medical-500 flex-shrink-0 mt-0.5"></i>
-
                                                 <p class="text-heading">
                                                     Ambulance staff will be wearing full COVID-19 protective equipment</p>
                                             </li>
@@ -274,31 +273,31 @@ require_once __DIR__ . "/../../backend/helpers/avatar-helper.php";
                             </div>
                         </div>
 
-                        <!-- Alternative Contact -->
-                        <div class="mt-8 p-6 glass-card border-card-soft rounded-lg bg-gray-50">
-                            <h3 class="text-heading text-lg font-semibold mb-4 text-center">Alternative Contact Options</h3>
-                            <div class="grid gap-4 sm:grid-cols-2">
+                        <div class="mt-6 md:mt-8 p-4 md:p-6 glass-card border-card-soft rounded-lg bg-gray-50">
+                            <h3 class="text-heading text-base md:text-lg font-semibold mb-3 md:mb-4 text-center">Alternative Contact Options</h3>
+                            <div class="grid gap-3 md:gap-4 grid-cols-1 sm:grid-cols-2">
 
                                 <!-- Disabled Button with Tooltip wrapper -->
                                 <div class="group relative cursor-not-allowed">
-                                    <button
-                                        class="gap-2 whitespace-nowrap rounded-md text-sm font-medium text-heading glass-card border-card-soft bg-background px-4 py-2 flex items-center justify-center h-16 pointer-events-none w-full"
-                                        disabled>
-                                        <i data-lucide="phone" class="w-4 h-4 text-heading mr-2"></i>
-                                        Emergency COVID-19 Hotline<br />
+                                    <button class="gap-2 whitespace-nowrap rounded-md text-xs md:text-sm font-medium text-heading glass-card border-card-soft bg-background px-3 md:px-4 py-3 md:py-2 flex items-center justify-center h-14 md:h-16 pointer-events-none w-full" disabled="">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="phone" class="lucide lucide-phone w-4 h-4 text-heading mr-2">
+                                            <path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path>
+                                        </svg>
+                                        Emergency COVID-19 Hotline<br>
                                         <span class="font-bold text-heading">800-COVID-19</span>
                                     </button>
-                                    <div
-                                        class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded shadow whitespace-nowrap">
+                                    <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded shadow whitespace-nowrap">
                                         Coming Soon!
                                     </div>
                                 </div>
 
                                 <!-- Link to Coming Soon Page -->
-                                <a href="coming-soon.php"
-                                    class="gap-2 whitespace-nowrap rounded-md text-sm font-medium text-heading glass-card border-card-soft bg-background hover:bg-accent px-4 py-2 flex items-center justify-center h-16 cursor-pointer w-full">
-                                    <i data-lucide="map-pin" class="w-4 h-4 text-heading mr-2"></i>
-                                    Find Nearest<br />COVID-19 Treatment Center
+                                <a href="coming-soon.php" class="gap-2 whitespace-nowrap rounded-md text-xs md:text-sm font-medium text-heading glass-card border-card-soft bg-background hover:bg-accent px-3 md:px-4 py-3 md:py-2 flex items-center justify-center h-14 md:h-16 cursor-pointer w-full">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="map-pin" class="lucide lucide-map-pin w-4 h-4 text-heading mr-2">
+                                        <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
+                                        <circle cx="12" cy="10" r="3"></circle>
+                                    </svg>
+                                    Find Nearest<br>COVID-19 Treatment Center
                                 </a>
                             </div>
 
