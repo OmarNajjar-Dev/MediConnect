@@ -19,59 +19,40 @@ class ProfileManager {
   setupInitialState() {
     // Store original values
     const nameInput = document.getElementById("admin-name");
-    const emailInput = document.getElementById("admin-email");
     const cityInput = document.getElementById("admin-city");
     const addressInput = document.getElementById("admin-address");
     const profileAvatar = document.querySelector(
-      "#profile-avatar-container img, #profile-avatar-container div"
+      "#profile-avatar-container img"
     );
 
-    if (nameInput) {
-      this.originalData.name = nameInput.value;
-    }
-    if (emailInput) {
-      this.originalData.email = emailInput.value;
-    }
-    if (cityInput) {
-      this.originalData.city = cityInput.value;
-    }
-    if (addressInput) {
-      this.originalData.address = addressInput.value;
-    }
-    if (profileAvatar) {
-      if (profileAvatar.tagName === "IMG") {
-        this.originalImageSrc = profileAvatar.src;
-      } else {
-        // Handle avatar div case
-        this.originalImageSrc = null;
-      }
-    }
+    this.originalData.name = nameInput?.value;
+    this.originalData.city = cityInput?.value;
+    this.originalData.address = addressInput?.value;
+
+    this.originalImageSrc = profileAvatar ? profileAvatar.src : null;
   }
 
   setupEventListeners() {
     // Profile image upload
     const profileUpload = document.getElementById("profile-upload");
-    if (profileUpload) {
-      profileUpload.addEventListener(
-        "change",
-        this.handleImageSelection.bind(this)
-      );
-    }
+
+    profileUpload?.addEventListener(
+      "change",
+      this.handleImageSelection.bind(this)
+    );
 
     // Save button
     const saveButton = document.getElementById("save-profile-changes");
-    if (saveButton) {
-      saveButton.addEventListener("click", this.handleSaveChanges.bind(this));
-    }
+
+    saveButton?.addEventListener("click", this.handleSaveChanges.bind(this));
 
     // Discard button
     const discardButton = document.getElementById("discard-profile-changes");
-    if (discardButton) {
-      discardButton.addEventListener(
-        "click",
-        this.handleDiscardChanges.bind(this)
-      );
-    }
+
+    discardButton?.addEventListener(
+      "click",
+      this.handleDiscardChanges.bind(this)
+    );
 
     // Monitor form changes to show/hide discard button
     this.setupChangeMonitoring();
@@ -88,10 +69,9 @@ class ProfileManager {
     ];
 
     inputs.forEach((input) => {
-      if (input) {
-        input.addEventListener("input", this.checkForChanges.bind(this));
-        input.addEventListener("change", this.checkForChanges.bind(this));
-      }
+
+      input?.addEventListener("input", this.checkForChanges.bind(this));
+      input?.addEventListener("change", this.checkForChanges.bind(this));
     });
   }
 
