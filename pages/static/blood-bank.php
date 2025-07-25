@@ -71,7 +71,7 @@ require_once __DIR__ . "/../../backend/helpers/avatar-helper.php";
             </div>
             <div class="flex justify-center mt-8 mb-16">
                 <div>
-                    <a href="https://external-bloodbank.example" target="_blank" onclick="return false;" title="Coming Soon" class="inline-block bg-primary transition-colors hover:bg-medical-600 text-white font-medium py-4 px-8 rounded-full shadow-lg text-lg md:text-xl">Go to Blood Bank System</a>
+                    <a href="https://blood-bank.lovestoblog.com/" target="_blank" class="inline-block bg-primary transition-colors hover:bg-medical-600 text-white font-medium py-4 px-8 rounded-full shadow-lg text-lg md:text-xl">Go to Blood Bank System</a>
                 </div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto mt-8 mb-12">
