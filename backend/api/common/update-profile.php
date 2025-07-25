@@ -1,8 +1,11 @@
 <?php
 
+// Load session configuration
+require_once __DIR__ . '/../../config/session-config.php';
+
 // Start session if not already started
 if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+    startSecureSession();
 }
 
 require_once __DIR__ . '/../../config/db.php';

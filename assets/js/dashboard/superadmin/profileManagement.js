@@ -442,24 +442,32 @@ class ProfileManager {
   }
 
   updateHeaderAvatar(imageUrl) {
-    const headerAvatar = document.querySelector(
-      ".dropdown button img, .dropdown button div"
-    );
-    if (headerAvatar) {
-      if (headerAvatar.tagName === "IMG") {
-        headerAvatar.src = imageUrl;
-      } else {
-        // Replace div with img
-        const userName = headerAvatar.textContent || "User";
-        headerAvatar.outerHTML = `<img src="${imageUrl}" alt="${userName}" class="w-8 h-8 rounded-full object-cover">`;
-      }
+    // Find the avatar element inside the dropdown button
+    const dropdownButton = document.querySelector(".dropdown button");
+    if (!dropdownButton) return;
+
+    // Find the first img or div element (the avatar)
+    const avatarElement = dropdownButton.querySelector("img, div");
+    if (!avatarElement) return;
+
+    if (avatarElement.tagName === "IMG") {
+      // Update existing image
+      avatarElement.src = imageUrl;
+    } else {
+      // Replace div with img
+      const userName = avatarElement.textContent || "User";
+      avatarElement.outerHTML = `<img src="${imageUrl}" alt="${userName}" class="w-8 h-8 rounded-full object-cover">`;
     }
   }
 
   updateHeaderName(name) {
-    const headerName = document.querySelector(".dropdown button span");
-    if (headerName) {
-      headerName.textContent = name;
+    // Find the name span inside the dropdown button
+    const dropdownButton = document.querySelector(".dropdown button");
+    if (!dropdownButton) return;
+
+    const nameSpan = dropdownButton.querySelector("span");
+    if (nameSpan) {
+      nameSpan.textContent = name;
     }
   }
 }
