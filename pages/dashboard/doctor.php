@@ -1,9 +1,15 @@
 <?php
 
-// 4. Define required role for this dashboard
+// 1. Start session and load user context
+require_once __DIR__ . "/../../backend/middleware/session-context.php";
+
+// 2. Load path configuration
+require_once __DIR__ . "/../../backend/config/path.php";
+
+// 3. Define required role for this dashboard
 $requiredRole = 'doctor';
 
-// 5. Protect the dashboard: redirect if user role does not match
+// 4. Protect the dashboard: redirect if user role does not match
 require_once __DIR__ . "/../../backend/middleware/protect-dashboard.php";
 
 // 6. Include avatar helper
