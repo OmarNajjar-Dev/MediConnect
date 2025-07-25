@@ -6,7 +6,7 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^.*$ /mediconnect/pages/errors/404.php [L]
 
-# Fallback custom 404
+# Fallback custom errors
 ErrorDocument 401 /mediconnect/pages/errors/401.php
 ErrorDocument 403 /mediconnect/pages/errors/403.php
 ErrorDocument 404 /mediconnect/pages/errors/404.php
