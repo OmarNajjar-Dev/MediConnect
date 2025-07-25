@@ -29,5 +29,10 @@ if (isset($_SESSION['user_id'])) {
         $userProfileImage = $user['profile_image'];
         $userAddress = $user['address_line'];
         $userCity = $user['city'];
+        
+        // Update session with current profile image if it exists
+        if ($userProfileImage) {
+            $_SESSION['profile_image'] = $userProfileImage;
+        }
     }
 }

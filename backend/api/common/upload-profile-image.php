@@ -47,9 +47,37 @@ try {
     }
 
     // Create uploads directory if it doesn't exist
-    $uploadsDir = __DIR__ . '/../../uploads/profile_images/';
+    // Use absolute path from project root
+    $projectRoot = __DIR__ . '/../../../';
+    $uploadsDir = $projectRoot . 'uploads/profile_images/';
+    
+    // Ensure directory exists with proper permissions
     if (!is_dir($uploadsDir)) {
-        mkdir($uploadsDir, 0755, true);
+        if (!mkdir($uploadsDir, 0755, true)) {
+            echo json_encode(['success' => false, 'message' => 'Failed to create upload directory']);
+            exit;
+        }
+    }
+
+    // Check if directory is writable
+    if (!is_writable($uploadsDir)) {
+        echo json_encode(['success' => false, 'message' => 'Upload directory is not writable']);
+        exit;
+    }
+
+    // Get current profile image to delete old one
+    $stmt = $conn->prepare("SELECT profile_image FROM users WHERE user_id = ?");
+    $stmt->bind_param("i", $userId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $currentImage = $result->fetch_assoc();
+    
+    // Delete old profile image if it exists
+    if ($currentImage && $currentImage['profile_image']) {
+        $oldImagePath = $projectRoot . ltrim($currentImage['profile_image'], '/');
+        if (file_exists($oldImagePath) && is_file($oldImagePath)) {
+            unlink($oldImagePath);
+        }
     }
 
     // Generate unique filename
@@ -63,7 +91,7 @@ try {
         exit;
     }
 
-    // Generate web-accessible URL
+    // Generate web-accessible URL - this should match the database storage format
     $imageUrl = '/uploads/profile_images/' . $filename;
 
     // Update database
@@ -71,6 +99,9 @@ try {
     $stmt->bind_param("si", $imageUrl, $userId);
 
     if ($stmt->execute()) {
+        // Update session with new profile image
+        $_SESSION['profile_image'] = $imageUrl;
+        
         echo json_encode([
             'success' => true,
             'message' => 'Profile image updated successfully',

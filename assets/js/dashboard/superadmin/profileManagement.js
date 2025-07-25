@@ -234,10 +234,28 @@ class ProfileManager {
       if (result.success) {
         // Update the original image source
         this.originalImageSrc = result.imageUrl;
+
+        // Update header avatar immediately
         this.updateHeaderAvatar(result.imageUrl);
+
+        // Update the profile avatar container on the current page
+        const profileAvatarContainer = document.getElementById(
+          "profile-avatar-container"
+        );
+        if (profileAvatarContainer) {
+          profileAvatarContainer.innerHTML = `<img src="${result.imageUrl}" alt="Profile" class="w-24 h-24 rounded-full object-cover">`;
+        }
+
+        // Clear the current file and reset input
         this.currentImageFile = null;
         this.resetFileInput();
-        // Note: resetFileInput() already calls checkForChanges()
+
+        // Show success message
+        showSuccessToast(
+          "Image Uploaded",
+          "Profile image updated successfully!"
+        );
+
         return true;
       } else {
         showErrorToast(
@@ -442,22 +460,39 @@ class ProfileManager {
   }
 
   updateHeaderAvatar(imageUrl) {
-    // Find the avatar element inside the dropdown button
-    const dropdownButton = document.querySelector(".dropdown button");
-    if (!dropdownButton) return;
+    // Find all avatar elements in the header that need to be updated
+    const headerAvatars = document.querySelectorAll(
+      ".dropdown button img, .dropdown button div"
+    );
 
-    // Find the first img or div element (the avatar)
-    const avatarElement = dropdownButton.querySelector("img, div");
-    if (!avatarElement) return;
+    headerAvatars.forEach((avatarElement) => {
+      if (avatarElement.tagName === "IMG") {
+        // Update existing image
+        avatarElement.src = imageUrl;
+        avatarElement.alt = "Profile";
+      } else if (avatarElement.tagName === "DIV") {
+        // Replace div with img - get the user name from the span
+        const nameSpan = avatarElement.parentElement.querySelector("span");
+        const userName = nameSpan ? nameSpan.textContent : "User";
+        avatarElement.outerHTML = `<img src="${imageUrl}" alt="${userName}" class="w-8 h-8 rounded-full object-cover">`;
+      }
+    });
 
-    if (avatarElement.tagName === "IMG") {
-      // Update existing image
-      avatarElement.src = imageUrl;
-    } else {
-      // Replace div with img
-      const userName = avatarElement.textContent || "User";
-      avatarElement.outerHTML = `<img src="${imageUrl}" alt="${userName}" class="w-8 h-8 rounded-full object-cover">`;
-    }
+    // Also update any other avatar elements that might exist
+    const allAvatars = document.querySelectorAll(
+      "img[src*='profile_images'], .avatar img"
+    );
+    allAvatars.forEach((avatar) => {
+      if (
+        avatar.src.includes("profile_images") ||
+        avatar.classList.contains("avatar")
+      ) {
+        avatar.src = imageUrl;
+      }
+    });
+
+    // Update the original image source for future reference
+    this.originalImageSrc = imageUrl;
   }
 
   updateHeaderName(name) {
