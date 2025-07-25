@@ -96,7 +96,14 @@ class ProfileManager {
   // 4. Fetch Data
   async fetchProfileData() {
     try {
-      const res = await fetch("/backend/api/doctors/get-doctor-profile.php");
+      const res = await fetch("/backend/api/doctors/get-doctor-profile.php", {
+        credentials: "same-origin",
+      });
+
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+
       const json = await res.json();
       if (!json.success)
         throw new Error(json.message || "Failed to load profile");
@@ -113,7 +120,17 @@ class ProfileManager {
       this.renderImage(profile_image);
     } catch (err) {
       console.error("Error fetching profile data:", err);
-      showErrorToast("Error", err.message);
+
+      // Enhanced error handling for session issues
+      let errorMessage = err.message;
+      if (err.message.includes("401") || err.message.includes("Unauthorized")) {
+        errorMessage =
+          "Session expired. Please refresh the page and try again.";
+      } else if (err.message.includes("Unexpected end of JSON input")) {
+        errorMessage = "Server error. Please try again later.";
+      }
+
+      showErrorToast("Error", errorMessage);
       this.closeModal();
     }
   }
@@ -229,8 +246,13 @@ class ProfileManager {
         {
           method: "POST",
           body: formData,
+          credentials: "same-origin",
         }
       );
+
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
 
       const json = await res.json();
       if (!json.success)
@@ -248,7 +270,17 @@ class ProfileManager {
       this.closeModal();
     } catch (err) {
       console.error("Error updating profile:", err);
-      showErrorToast("Error", err.message);
+
+      // Enhanced error handling for session issues
+      let errorMessage = err.message;
+      if (err.message.includes("401") || err.message.includes("Unauthorized")) {
+        errorMessage =
+          "Session expired. Please refresh the page and try again.";
+      } else if (err.message.includes("Unexpected end of JSON input")) {
+        errorMessage = "Server error. Please try again later.";
+      }
+
+      showErrorToast("Error", errorMessage);
     } finally {
       this.saveButton.disabled = false;
       this.saveText.classList.remove("hidden");
